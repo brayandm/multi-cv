@@ -1,11 +1,5 @@
 # CV Builder
 
-### Change Project Name
-
-```bash
-bash setup.sh "New Project Name"
-```
-
 ### Setup git hooks
 
 ```bash
