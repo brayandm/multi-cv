@@ -20,7 +20,7 @@ jobs:
             - name: Building the containers
               run: bash build.sh
             - name: Stopping the containers
-              run: docker compose down --rmi all
+              run: docker compose down
             - name: Starting the containers
               run: docker compose  up -d --no-pull
             - name: Removing unused docker images
