@@ -1,0 +1,10 @@
+{
+    "version": "1.0.0",
+    "manifest_version": 3,
+    "name": "Multicv",
+    "description": "Multicv is an extension that able you to create personalized cv for diferent jobs offers",
+    "action": {
+        "default_popup": "index.html",
+        "default_title": "Multicv"
+    }
+}
