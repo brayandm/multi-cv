@@ -21,7 +21,7 @@ cp .env.example .env
 4 - Create Docker Network:
 
 ```bash
-docker network create xprojectname-local
+docker network create cv-builder-local
 ```
 
 5 - Start the container:

@@ -9,10 +9,10 @@ services:
     ports:
       - 3000:3000
     networks:
-      - xprojectname-local
+      - cv-builder-local
     command: npm run dev
 
 networks:
-  xprojectname-local:
+  cv-builder-local:
     driver: bridge
     external: true

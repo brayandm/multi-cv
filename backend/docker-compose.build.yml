@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile-php8
-    image: xprojectname-backend
+    image: cv-builder-backend
 
   mysql:
     build:
@@ -13,4 +13,4 @@ services:
         DB_PASSWORD: ${DB_PASSWORD}
         DB_DATABASE: ${DB_DATABASE}
       dockerfile: docker/Dockerfile-mysql
-    image: xprojectname-mysql
+    image: cv-builder-mysql

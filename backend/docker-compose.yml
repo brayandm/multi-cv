@@ -14,7 +14,7 @@ services:
         volumes:
             - '.:/var/www/html'
         networks:
-            - xprojectname-local
+            - cv-builder-local
         depends_on:
             - mysql
     mysql:
@@ -33,7 +33,7 @@ services:
             - 'sail-mysql:/var/lib/mysql'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
         networks:
-            - xprojectname-local
+            - cv-builder-local
         healthcheck:
             test:
                 - CMD
@@ -47,13 +47,13 @@ services:
         image: brayand/fullstack-project-template-phpmyadmin:1.0.0
         restart: always
         networks:
-            - xprojectname-local
+            - cv-builder-local
         environment:
             PMA_HOST: mysql
         ports:
         - '127.0.0.1:${FORWARD_PHPMYADMIN_PORT:-3406}:80'
 networks:
-    xprojectname-local:
+    cv-builder-local:
         driver: bridge
         external: true
 volumes:

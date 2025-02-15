@@ -3,4 +3,4 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    image: xprojectname-frontend
+    image: cv-builder-frontend
