@@ -1,4 +1,4 @@
-# CV builder
+# CV Builder
 
 ### Change Project Name
 
