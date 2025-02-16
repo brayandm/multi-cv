@@ -148,7 +148,7 @@ export async function isSessionValid() {
 
 export async function googleOAuth() {
   try {
-    const res = await axios.get(process.env.GOOGLE_URL!);
+    const res = await axios.get(process.env.GOOGLE_URL! + "/login");
 
     if (res.status == 200) {
       const responseUrl = res.data.url;
