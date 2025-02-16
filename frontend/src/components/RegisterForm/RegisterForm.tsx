@@ -11,6 +11,8 @@ import {
   InputAdornment,
   IconButton,
   FormHelperText,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
 import React, { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
@@ -37,6 +39,9 @@ const RegisterForm: React.FC = () => {
     React.useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [passwordMatchError, setPasswordMatchError] = useState(false);
+
+  const [confirmationPolicy, setConfirmationPolicy] = useState(false);
+  const [confirmationAge, setConfirmationAge] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -252,6 +257,53 @@ const RegisterForm: React.FC = () => {
             <FormHelperText>Passwords do not match</FormHelperText>
           )}
         </FormControl>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={confirmationAge}
+              onChange={(event) => setConfirmationAge(event.target.checked)}
+              name="confirmationAge"
+              color="primary"
+              required
+            />
+          }
+          label={
+            <span
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              I confirm that I am at least 18 years old.
+            </span>
+          }
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={confirmationPolicy}
+              onChange={(event) => setConfirmationPolicy(event.target.checked)}
+              name="confirmationPolicy"
+              color="primary"
+              required
+            />
+          }
+          label={
+            <span
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              I accept the{" "}
+              <a
+                href="https://brayandm.github.io/documents/multi-cv/privacy-policy"
+                style={{ color: theme.palette.primary.main }}
+              >
+                Privacy Policy
+              </a>
+              .
+            </span>
+          }
+        />
         <Button
           variant="contained"
           type="submit"
@@ -261,7 +313,9 @@ const RegisterForm: React.FC = () => {
             passwordError ||
             !fullname ||
             !email ||
-            !password
+            !password ||
+            !confirmationPolicy ||
+            !confirmationAge
           }
         >
           Register
