@@ -52,6 +52,6 @@ class GoogleAuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/dashboard')->with('success', 'Successfully logged in!');
+        return response()->json(['user' => $user, 'message' => 'Successfully logged in!']);
     }
 }

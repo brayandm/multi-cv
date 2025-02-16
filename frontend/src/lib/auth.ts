@@ -167,3 +167,29 @@ export async function googleOAuth() {
     };
   }
 }
+
+export async function googleOAuthCallback(code: string) {
+  try {
+    const res = await axios.get(
+      process.env.GOOGLE_URL! + "/callback?code=" + code
+    );
+
+    if (res.status == 200) {
+      const responseUrl = res.data.url;
+      return {
+        status: res.status,
+        responseUrl: responseUrl,
+      };
+    }
+    return {
+      status: res.status,
+      responseUrl: "",
+    };
+  } catch (error: any) {
+    console.error(error);
+    return {
+      status: error.response.status,
+      responseUrl: "",
+    };
+  }
+}
