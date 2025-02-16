@@ -18,16 +18,7 @@ export async function GET(req: NextRequest) {
   const res = await googleOAuthCallback(code);
 
   if (res.status == 200) {
-    return new NextResponse(
-      JSON.stringify({
-        message: "Google OAuth started",
-        token: res.token,
-      }),
-      {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    return NextResponse.redirect(process.env.HOST! + "?token=" + res.token);
   }
 
   return new NextResponse(
