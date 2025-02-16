@@ -32,12 +32,14 @@ class UserService
 
     public function isCredentialsCorrect($data)
     {
-        if (!empty($data->password)) {
+        if (! empty($data->password)) {
             return Auth::attempt($data->only('email', 'password'));
-        } elseif (!empty($data->auth_token)) {
+        } elseif (! empty($data->auth_token)) {
             $user = User::where('email', $data->email)->first();
+
             return $data->auth_token == $user->auth_token;
         }
+
         return false;
     }
 
