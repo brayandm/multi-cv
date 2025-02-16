@@ -149,7 +149,7 @@ export async function googleOAuth() {
     const res = await axios.get(process.env.GOOGLE_URL!);
 
     if (res.status == 200) {
-      const responseUrl = res.request.res.responseUrl;
+      const responseUrl = res.data.url;
       return {
         status: res.status,
         responseUrl: responseUrl,

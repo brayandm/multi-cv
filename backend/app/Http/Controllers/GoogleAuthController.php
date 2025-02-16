@@ -18,7 +18,8 @@ class GoogleAuthController extends Controller
 
     public function redirectToGoogle()
     {
-        return redirect()->away($this->googleService->getAuthUrl());
+        $authUrl = $this->googleService->getAuthUrl();
+        return response()->json(['url' => $authUrl]);
     }
 
     public function handleGoogleCallback(Request $request)
