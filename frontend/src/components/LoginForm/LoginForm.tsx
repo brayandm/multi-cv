@@ -59,6 +59,10 @@ const LoginForm: React.FC = () => {
     router.push(callbackUrl);
   };
 
+  const handleGoogleSignIn = async () => {
+    await signIn("google", { callbackUrl: "/dashboard" });
+  };
+
   return (
     <div
       style={{
@@ -142,6 +146,13 @@ const LoginForm: React.FC = () => {
         </FormControl>
         <Button variant="contained" type="submit" sx={{ marginTop: "16px" }}>
           Sign In
+        </Button>
+        <Button
+          variant="outlined"
+          sx={{ marginTop: "16px" }}
+          onClick={handleGoogleSignIn}
+        >
+          Sign In with Google
         </Button>
         <p
           style={{
