@@ -32,9 +32,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('/logoutall', 'App\Http\Controllers\AuthController@logoutall');
 
-        Route::get('/user', function (Request $request) {
-            return $request->user();
-        });
+        Route::get('/user', 'App\Http\Controllers\AuthController@getUser');
 
         Route::put('/user/update/profile', 'App\Http\Controllers\AuthController@updateProfile');
         Route::put('/user/update/password', 'App\Http\Controllers\AuthController@updatePassword');
