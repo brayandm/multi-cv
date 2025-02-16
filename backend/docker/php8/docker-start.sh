@@ -1,11 +1,11 @@
 #!/bin/bash
 
-DB_USERNAME=`grep DB_USERNAME /app/.env | awk -F= '{print $2}'`
-DB_PASSWORD=`grep DB_PASSWORD /app/.env | awk -F= '{print $2}'`
+DB_USERNAME=$(grep '^DB_USERNAME=' /app/.env | cut -d'=' -f2 | tr -d '\r' | tr -d ' ')
+DB_PASSWORD=$(grep '^DB_PASSWORD=' /app/.env | cut -d'=' -f2 | tr -d '\r' | tr -d ' ')
 
 if [ ! -f /build-lock ]; then
 
-  until mysql -hmysql -u$DB_USERNAME -p$DB_PASSWORD -e '\q' 2> /dev/null; do
+  until mysql -hmysql -u"$DB_USERNAME" -p"$DB_PASSWORD" -e '\q' 2> /dev/null; do
     echo '#### Mysql is unavailable - sleeping'
     sleep 10
   done
@@ -24,7 +24,7 @@ if [ ! -f /build-lock ]; then
   touch /build-lock
 else
 
-  until mysql -hmysql -u$DB_USERNAME -p$DB_PASSWORD -e '\q' 2> /dev/null; do
+  until mysql -hmysql -u"$DB_USERNAME" -p"$DB_PASSWORD" -e '\q' 2> /dev/null; do
     echo '#### Mysql is unavailable - sleeping'
     sleep 10
   done
