@@ -11,7 +11,7 @@ import {
   InputAdornment,
   IconButton,
 } from "@mui/material";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -26,6 +26,8 @@ const LoginForm: React.FC = () => {
   const [timerId, setTimerId] = useState<NodeJS.Timeout | undefined>(undefined);
   const searchParams = useSearchParams();
   const router = useRouter();
+  const [windowLoaded, setWindowLoaded] = useState(false);
+  const [onOauthLogin, setOnOauthLogin] = useState(false);
 
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -67,141 +69,154 @@ const LoginForm: React.FC = () => {
     window.location.href = redirectUrl;
   };
 
-  const token = searchParams.get("token");
-  const emailParam = searchParams.get("email");
+  useEffect(() => {
+    const loginWithToken = async (token: string, email: string) => {
+      const res = await signIn("credentials", {
+        email: email,
+        auth_token: token,
+        redirect: false,
+      });
 
-  const loginWithToken = async (token: string, email: string) => {
-    const res = await signIn("credentials", {
-      email: emailParam,
-      auth_token: token,
-      redirect: false,
-    });
+      if (res) {
+        if (res?.error) {
+          clearTimeout(timerId);
+          setError(true);
+          setTimerId(setTimeout(() => setError(false), 2000));
+          return;
+        }
+      }
 
-    if (res) {
-      if (res?.error) {
-        clearTimeout(timerId);
-        setError(true);
-        setTimerId(setTimeout(() => setError(false), 2000));
-        return;
+      const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+
+      router.push(callbackUrl);
+    };
+
+    if (window !== undefined) {
+      setWindowLoaded(true);
+      const token = searchParams.get("token");
+      const emailParam = searchParams.get("email");
+
+      if (token && emailParam) {
+        setOnOauthLogin(true);
+        loginWithToken(token, emailParam);
       }
     }
-
-    const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
-
-    router.push(callbackUrl);
-  };
-
-  if (token && emailParam) {
-    loginWithToken(token, emailParam);
-    return <></>;
-  }
+  }, [searchParams, router, timerId]);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <h1
-        style={{
-          textAlign: "center",
-          marginTop: "50px",
-          marginBottom: "0px",
-          fontSize: "40px",
-          color: theme.palette.primary.main,
-        }}
-      >
-        Web Application
-      </h1>
-      <h2
-        style={{
-          marginTop: "50px",
-          marginBottom: "0px",
-        }}
-      >
-        Sign In to your account
-      </h2>
-      <Box
-        component="form"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          width: "300px",
-          margin: "0 auto",
-        }}
-        onSubmit={handleSubmit}
-      >
-        <Box
-          component="div"
-          sx={{
-            margin: "0",
-          }}
-        ></Box>
-        <TextField
-          id="email"
-          label="Email"
-          variant="outlined"
-          margin="normal"
-          type="email"
-          required
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-        <FormControl
-          variant="outlined"
-          sx={{ marginBottom: "20px", height: "56px" }}
-        >
-          <InputLabel htmlFor="outlined-adornment-password" required>
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-        <Button variant="contained" type="submit" sx={{ marginTop: "16px" }}>
-          Sign In
-        </Button>
-        <Button
-          variant="outlined"
-          sx={{ marginTop: "16px" }}
-          onClick={handleGoogleSignIn}
-        >
-          Sign In with Google
-        </Button>
-        <p
+    <>
+      {windowLoaded && !onOauthLogin && (
+        <div
           style={{
-            textAlign: "center",
-            marginTop: "16px",
-            marginBottom: "16px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          Don&apos;t have an account?{" "}
-          <a href="/register" style={{ color: theme.palette.primary.main }}>
-            Sign up here
-          </a>
-        </p>
-        {error && <Alert severity="error">Bad credentials</Alert>}
-      </Box>
-    </div>
+          <h1
+            style={{
+              textAlign: "center",
+              marginTop: "50px",
+              marginBottom: "0px",
+              fontSize: "40px",
+              color: theme.palette.primary.main,
+            }}
+          >
+            Web Application
+          </h1>
+          <h2
+            style={{
+              marginTop: "50px",
+              marginBottom: "0px",
+            }}
+          >
+            Sign In to your account
+          </h2>
+          <Box
+            component="form"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              width: "300px",
+              margin: "0 auto",
+            }}
+            onSubmit={handleSubmit}
+          >
+            <Box
+              component="div"
+              sx={{
+                margin: "0",
+              }}
+            ></Box>
+            <TextField
+              id="email"
+              label="Email"
+              variant="outlined"
+              margin="normal"
+              type="email"
+              required
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <FormControl
+              variant="outlined"
+              sx={{ marginBottom: "20px", height: "56px" }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password" required>
+                Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                required
+                onChange={(event) => setPassword(event.target.value)}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{ marginTop: "16px" }}
+            >
+              Sign In
+            </Button>
+            <Button
+              variant="outlined"
+              sx={{ marginTop: "16px" }}
+              onClick={handleGoogleSignIn}
+            >
+              Sign In with Google
+            </Button>
+            <p
+              style={{
+                textAlign: "center",
+                marginTop: "16px",
+                marginBottom: "16px",
+              }}
+            >
+              Don&apos;t have an account?{" "}
+              <a href="/register" style={{ color: theme.palette.primary.main }}>
+                Sign up here
+              </a>
+            </p>
+            {error && <Alert severity="error">Bad credentials</Alert>}
+          </Box>
+        </div>
+      )}
+    </>
   );
 };
 
