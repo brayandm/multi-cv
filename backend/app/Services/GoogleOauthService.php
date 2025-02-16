@@ -41,7 +41,6 @@ class GoogleOauthService
             'response_type' => 'code', // Google will return an authorization code
             'scope' => 'email profile', // Request access to user's email and profile
             'access_type' => 'offline', // Allows getting a refresh token
-            'prompt' => 'consent', // Ensures the user sees the consent screen
         ]);
     }
 
