@@ -67,19 +67,34 @@ const LoginForm: React.FC = () => {
     window.location.href = redirectUrl;
   };
 
-  // console.log("Malangaaa");
-  // const token = searchParams.get("token");
-  // console.log("searchParams:", searchParams);
-  // console.log("Token:", token);
-  // if (token) {
-  // }
+  const token = searchParams.get("token");
+  const emailParam = searchParams.get("email");
 
-  // React.useEffect(() => {
-  //   const token = searchParams.get("token");
-  //   if (token) {
-  //     console.log("Token:", token);
-  //   }
-  // }, [searchParams]);
+  const loginWithToken = async (token: string, email: string) => {
+    const res = await signIn("credentials", {
+      email: emailParam,
+      auth_token: token,
+      redirect: false,
+    });
+
+    if (res) {
+      if (res?.error) {
+        clearTimeout(timerId);
+        setError(true);
+        setTimerId(setTimeout(() => setError(false), 2000));
+        return;
+      }
+    }
+
+    const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+
+    router.push(callbackUrl);
+  };
+
+  if (token && emailParam) {
+    loginWithToken(token, emailParam);
+    return <></>;
+  }
 
   return (
     <div
