@@ -36,7 +36,7 @@ services:
     environment:
         PMA_HOST: mysql
     ports:
-    - '127.0.0.1:${PHPMYADMIN_PORT:-49161}:80'
+    - '${PHPMYADMIN_PORT:-49161}:80'
     depends_on:
       - mysql
 

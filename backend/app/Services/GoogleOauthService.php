@@ -2,16 +2,20 @@
 
 namespace App\Services;
 
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 
 class GoogleOauthService
 {
     private string $clientId;
+
     private string $clientSecret;
+
     private string $redirectUri;
+
     private string $authUrl = 'https://accounts.google.com/o/oauth2/auth';
+
     private string $tokenUrl = 'https://oauth2.googleapis.com/token';
+
     private string $userInfoUrl = 'https://www.googleapis.com/oauth2/v2/userinfo';
 
     /**
@@ -31,30 +35,29 @@ class GoogleOauthService
      */
     public function getAuthUrl(): string
     {
-        return "{$this->authUrl}?" . http_build_query([
-            'client_id'     => $this->clientId,
-            'redirect_uri'  => $this->redirectUri,
+        return "{$this->authUrl}?".http_build_query([
+            'client_id' => $this->clientId,
+            'redirect_uri' => $this->redirectUri,
             'response_type' => 'code', // Google will return an authorization code
-            'scope'         => 'email profile', // Request access to user's email and profile
-            'access_type'   => 'offline', // Allows getting a refresh token
-            'prompt'        => 'consent', // Ensures the user sees the consent screen
+            'scope' => 'email profile', // Request access to user's email and profile
+            'access_type' => 'offline', // Allows getting a refresh token
         ]);
     }
 
     /**
      * Exchanges the authorization code for an access token.
      *
-     * @param string $code The authorization code received from Google.
+     * @param  string  $code The authorization code received from Google.
      * @return array|null The access token data or null on failure.
      */
     public function getAccessToken(string $code): ?array
     {
         $response = Http::asForm()->post($this->tokenUrl, [
-            'code'          => $code,
-            'client_id'     => $this->clientId,
+            'code' => $code,
+            'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
-            'redirect_uri'  => $this->redirectUri,
-            'grant_type'    => 'authorization_code',
+            'redirect_uri' => $this->redirectUri,
+            'grant_type' => 'authorization_code',
         ]);
 
         return $response->successful() ? $response->json() : null;
@@ -63,7 +66,7 @@ class GoogleOauthService
     /**
      * Retrieves user information from Google using the access token.
      *
-     * @param string $accessToken The access token obtained from Google.
+     * @param  string  $accessToken The access token obtained from Google.
      * @return array|null User profile data or null on failure.
      */
     public function getUserInfo(string $accessToken): ?array

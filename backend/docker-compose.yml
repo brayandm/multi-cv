@@ -51,7 +51,7 @@ services:
         environment:
             PMA_HOST: mysql
         ports:
-        - '127.0.0.1:${FORWARD_PHPMYADMIN_PORT:-3406}:80'
+        - '${FORWARD_PHPMYADMIN_PORT:-3406}:80'
 networks:
     cv-builder-local:
         driver: bridge

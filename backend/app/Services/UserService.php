@@ -32,7 +32,20 @@ class UserService
 
     public function isCredentialsCorrect($data)
     {
-        return Auth::attempt($data->only('email', 'password'));
+        if (! empty($data->password)) {
+            return Auth::attempt($data->only('email', 'password'));
+        } elseif (! empty($data->auth_token)) {
+            $user = User::where('email', $data->email)->first();
+            $res = $data->auth_token == $user->auth_token;
+
+            if ($res) {
+                $user->update(['auth_token' => null]);
+            }
+
+            return $res;
+        }
+
+        return false;
     }
 
     public function deleteUserTokenById($user, $tokenId)
@@ -43,11 +56,6 @@ class UserService
     public function deleteAllUserTokens($user)
     {
         $user->tokens()->update(['expires_at' => Carbon::now()]);
-    }
-
-    public function isUsersTableEmpty()
-    {
-        return User::count() === 0;
     }
 
     public function updateProfile($user, $data)

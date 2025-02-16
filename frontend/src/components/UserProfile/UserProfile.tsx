@@ -220,7 +220,7 @@ function UserProfile({ user }: UserProfileProps) {
       <h2
         style={{
           marginTop: "30px",
-          marginBottom: "0px",
+          marginBottom: "16px",
         }}
       >
         Change your password
@@ -241,34 +241,37 @@ function UserProfile({ user }: UserProfileProps) {
             margin: "0",
           }}
         ></Box>
-        <FormControl
-          variant="outlined"
-          sx={{ marginTop: "16px", marginBottom: "8px", height: "56px" }}
-        >
-          <InputLabel htmlFor="outlined-adornment-password" required>
-            Actual Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showOldPassword ? "text" : "password"}
-            value={oldPassword}
-            required
-            onChange={handleChangeOldPassword}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowOldPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showOldPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Actual Password"
-          />
-        </FormControl>
+        {!user.is_password_null && (
+          <FormControl
+            variant="outlined"
+            sx={{ marginTop: "0px", marginBottom: "8px", height: "56px" }}
+          >
+            <InputLabel htmlFor="outlined-adornment-password" required>
+              Actual Password
+            </InputLabel>
+
+            <OutlinedInput
+              id="outlined-adornment-password"
+              type={showOldPassword ? "text" : "password"}
+              value={oldPassword}
+              required
+              onChange={handleChangeOldPassword}
+              endAdornment={
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowOldPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {showOldPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              }
+              label="Actual Password"
+            />
+          </FormControl>
+        )}
         <FormControl
           variant="outlined"
           sx={{ marginTop: "0px", marginBottom: "8px", height: "56px" }}

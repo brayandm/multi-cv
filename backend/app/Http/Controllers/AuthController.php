@@ -31,7 +31,8 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:8|max:255',
+            'password' => 'string|min:8|max:255',
+            'token' => 'string|max:255',
         ]);
 
         return $validator;
@@ -58,7 +59,6 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-
         $validator = $this->validateCorrectRegisterUser($request);
 
         if ($validator->fails()) {
@@ -114,6 +114,14 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successful logout']);
     }
 
+    public function getUser(Request $request)
+    {
+        $user = $request->user();
+        $user->is_password_null = is_null($user->password);
+
+        return $user;
+    }
+
     public function updateProfile(Request $request)
     {
         $validator = $this->validateProfile($request);
@@ -139,8 +147,10 @@ class AuthController extends Controller
 
         $user = $this->userService->findUserByEmail(auth()->user()->email);
 
-        if (! Hash::check($request->old_password, $user->password)) {
-            return response()->json(['errors' => 'Old password is incorrect'], 401);
+        if (! is_null($user->password)) {
+            if (! Hash::check($request->old_password, $user->password)) {
+                return response()->json(['errors' => 'Old password is incorrect'], 401);
+            }
         }
 
         $this->userService->updatePassword($user, $request);
