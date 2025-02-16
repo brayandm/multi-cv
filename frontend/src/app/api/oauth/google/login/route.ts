@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { googleOAuth } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 
