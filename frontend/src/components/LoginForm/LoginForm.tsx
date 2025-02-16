@@ -17,6 +17,7 @@ import { useSearchParams } from "next/navigation";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import theme from "@/lib/theme";
+import axios from "axios";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -58,6 +59,27 @@ const LoginForm: React.FC = () => {
 
     router.push(callbackUrl);
   };
+
+  const handleGoogleSignIn = async () => {
+    const response = await axios.get("/api/auth/google");
+    const redirectUrl = response.data.redirect;
+
+    window.location.href = redirectUrl;
+  };
+
+  // console.log("Malangaaa");
+  // const token = searchParams.get("token");
+  // console.log("searchParams:", searchParams);
+  // console.log("Token:", token);
+  // if (token) {
+  // }
+
+  // React.useEffect(() => {
+  //   const token = searchParams.get("token");
+  //   if (token) {
+  //     console.log("Token:", token);
+  //   }
+  // }, [searchParams]);
 
   return (
     <div
@@ -142,6 +164,13 @@ const LoginForm: React.FC = () => {
         </FormControl>
         <Button variant="contained" type="submit" sx={{ marginTop: "16px" }}>
           Sign In
+        </Button>
+        <Button
+          variant="outlined"
+          sx={{ marginTop: "16px" }}
+          onClick={handleGoogleSignIn}
+        >
+          Sign In with Google
         </Button>
         <p
           style={{

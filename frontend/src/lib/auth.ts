@@ -143,3 +143,53 @@ export async function isSessionValid() {
 
   return true;
 }
+
+export async function googleOAuth() {
+  try {
+    const res = await axios.get(process.env.GOOGLE_URL!);
+
+    if (res.status == 200) {
+      const responseUrl = res.data.url;
+      return {
+        status: res.status,
+        responseUrl: responseUrl,
+      };
+    }
+    return {
+      status: res.status,
+      responseUrl: "",
+    };
+  } catch (error: any) {
+    console.error(error);
+    return {
+      status: error.response.status,
+      responseUrl: "",
+    };
+  }
+}
+
+export async function googleOAuthCallback(code: string) {
+  try {
+    const res = await axios.get(
+      process.env.GOOGLE_URL! + "/callback?code=" + code
+    );
+
+    if (res.status == 200) {
+      const token = res.data.auth_token;
+      return {
+        status: res.status,
+        token: token,
+      };
+    }
+    return {
+      status: res.status,
+      token: "",
+    };
+  } catch (error: any) {
+    console.error(error);
+    return {
+      status: error.response.status,
+      token: "",
+    };
+  }
+}
