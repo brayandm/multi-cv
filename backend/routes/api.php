@@ -20,6 +20,10 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/register', 'App\Http\Controllers\AuthController@register');
 
+    Route::get('/auth/google', 'App\Http\Controllers\GoogleAuthController@redirectToGoogle');
+
+    Route::get('/auth/google/callback', 'App\Http\Controllers\GoogleAuthController@handleGoogleCallback');
+
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
 
         Route::get('/verify', 'App\Http\Controllers\AuthController@verify');
