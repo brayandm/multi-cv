@@ -143,3 +143,27 @@ export async function isSessionValid() {
 
   return true;
 }
+
+export async function googleOAuth() {
+  try {
+    const res = await axios.get(process.env.GOOGLE_URL!);
+
+    if (res.status == 200) {
+      const responseUrl = res.request.res.responseUrl;
+      return {
+        status: res.status,
+        responseUrl: responseUrl,
+      };
+    }
+    return {
+      status: res.status,
+      responseUrl: "",
+    };
+  } catch (error: any) {
+    console.error(error);
+    return {
+      status: error.response.status,
+      responseUrl: "",
+    };
+  }
+}

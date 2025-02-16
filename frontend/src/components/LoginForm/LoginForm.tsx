@@ -17,6 +17,7 @@ import { useSearchParams } from "next/navigation";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useRouter } from "next/navigation";
 import theme from "@/lib/theme";
+import axios from "axios";
 
 const LoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -60,7 +61,10 @@ const LoginForm: React.FC = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    await signIn("google", { callbackUrl: "/dashboard" });
+    const response = await axios.get("/api/auth/google");
+    const redirectUrl = response.data.redirect;
+
+    window.location.href = redirectUrl;
   };
 
   return (
