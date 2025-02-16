@@ -61,7 +61,7 @@ const LoginForm: React.FC = () => {
   };
 
   const handleGoogleSignIn = async () => {
-    const response = await axios.get("/api/auth/google");
+    const response = await axios.get("/api/oauth/google");
     const redirectUrl = response.data.redirect;
 
     window.location.href = redirectUrl;
