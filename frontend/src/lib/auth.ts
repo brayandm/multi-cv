@@ -175,21 +175,21 @@ export async function googleOAuthCallback(code: string) {
     );
 
     if (res.status == 200) {
-      const responseUrl = res.data.url;
+      const token = res.data.token;
       return {
         status: res.status,
-        responseUrl: responseUrl,
+        token: token,
       };
     }
     return {
       status: res.status,
-      responseUrl: "",
+      token: "",
     };
   } catch (error: any) {
     console.error(error);
     return {
       status: error.response.status,
-      responseUrl: "",
+      token: "",
     };
   }
 }

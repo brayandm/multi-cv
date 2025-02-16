@@ -21,7 +21,7 @@ export async function GET(req: NextRequest) {
     return new NextResponse(
       JSON.stringify({
         message: "Google OAuth started",
-        redirect: res.responseUrl,
+        token: res.token,
       }),
       {
         status: 200,

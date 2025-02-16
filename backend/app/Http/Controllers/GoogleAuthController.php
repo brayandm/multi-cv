@@ -47,9 +47,11 @@ class GoogleAuthController extends Controller
             ['email' => $userInfo['email']],
             [
                 'name' => $userInfo['name'],
-                'auth_token' => Str::random(60),
+                'email_verified_at' => now(),
             ]
         );
+
+        $user->update(['auth_token' => Str::random(60)]);
 
         return response()->json(['email' => $user->email,
             'auth_token' => $user->auth_token,
