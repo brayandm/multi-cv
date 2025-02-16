@@ -1,5 +1,10 @@
 # Chrome Extension
 
+## Setup Node Version Manager (NVM):
+
+```bash
+nvm install && nvm use
+```
 
 ## Installation
 
