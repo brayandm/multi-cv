@@ -6,6 +6,7 @@ use App\Services\GoogleOauthService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 class GoogleAuthController extends Controller
 {
@@ -42,16 +43,16 @@ class GoogleAuthController extends Controller
             return redirect('/')->with('error', 'Failed to retrieve user information.');
         }
 
-        $user = User::updateOrCreate(
+        $user = User::firstOrCreate(
             ['email' => $userInfo['email']],
             [
                 'name'     => $userInfo['name'],
-                'password' => null,
+                'auth_token' => Str::random(60),
             ]
         );
 
-        Auth::login($user);
-
-        return response()->json(['user' => $user, 'message' => 'Successfully logged in!']);
+        return response()->json(['email' => $user->email,
+        'auth_token' => $user->auth_token,
+        'message' => 'Successfully logged in!']);
     }
 }
