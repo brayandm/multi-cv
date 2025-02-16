@@ -67,6 +67,20 @@ const LoginForm: React.FC = () => {
     window.location.href = redirectUrl;
   };
 
+  console.log("Malangaaa");
+  const token = searchParams.get("token");
+  console.log("searchParams:", searchParams);
+  console.log("Token:", token);
+  if (token) {
+  }
+
+  React.useEffect(() => {
+    const token = searchParams.get("token");
+    if (token) {
+      console.log("Token:", token);
+    }
+  }, [searchParams]);
+
   return (
     <div
       style={{
