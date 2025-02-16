@@ -15,6 +15,7 @@ export const authOptions: NextAuthOptions = {
       credentials: {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
+        auth_token: { label: "Token", type: "text" },
       },
       async authorize(credentials, req) {
         // You need to provide your own logic here that takes the credentials
@@ -33,6 +34,7 @@ export const authOptions: NextAuthOptions = {
               },
             }
           );
+          console.log("RESSSSSS", res);
           const user = res.data;
 
           if (user["errors"]) {
@@ -176,9 +178,11 @@ export async function googleOAuthCallback(code: string) {
 
     if (res.status == 200) {
       const token = res.data.auth_token;
+      const email = res.data.email;
       return {
         status: res.status,
         token: token,
+        email: email,
       };
     }
     return {

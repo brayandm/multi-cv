@@ -18,7 +18,9 @@ export async function GET(req: NextRequest) {
   const res = await googleOAuthCallback(code);
 
   if (res.status == 200) {
-    return NextResponse.redirect(process.env.HOST! + "?token=" + res.token);
+    return NextResponse.redirect(
+      process.env.HOST! + "/login?token=" + res.token + "&email=" + res.email
+    );
   }
 
   return new NextResponse(
