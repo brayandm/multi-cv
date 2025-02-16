@@ -36,8 +36,13 @@ class UserService
             return Auth::attempt($data->only('email', 'password'));
         } elseif (! empty($data->auth_token)) {
             $user = User::where('email', $data->email)->first();
+            $res = $data->auth_token == $user->auth_token;
 
-            return $data->auth_token == $user->auth_token;
+            if ($res) {
+                $user->update(['auth_token' => null]);
+            }
+
+            return $res;
         }
 
         return false;
