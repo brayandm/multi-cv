@@ -175,7 +175,7 @@ export async function googleOAuthCallback(code: string) {
     );
 
     if (res.status == 200) {
-      const token = res.data.token;
+      const token = res.data.auth_token;
       return {
         status: res.status,
         token: token,
