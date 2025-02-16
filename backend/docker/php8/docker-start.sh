@@ -1,7 +1,7 @@
 #!/bin/bash
 
-DB_USERNAME=$(source /app/.env && echo $DB_USERNAME)
-DB_PASSWORD=$(source /app/.env && echo $DB_PASSWORD)
+DB_USERNAME=`grep DB_USERNAME /app/.env | awk -F= '{print $2}'`
+DB_PASSWORD=`grep DB_PASSWORD /app/.env | awk -F= '{print $2}'`
 
 if [ ! -f /build-lock ]; then
 
