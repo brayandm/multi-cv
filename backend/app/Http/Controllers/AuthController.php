@@ -71,11 +71,10 @@ class AuthController extends Controller
             return response()->json(['errors' => 'Password or token is required'], 400);
         }
 
-        if (is_null($request->password) && !is_null($request->token)) {
+        if (is_null($request->password) && ! is_null($request->token)) {
             $user = User::where('email', $request->email)->first();
 
-            if($request->token !== $user->auth_token)
-            {
+            if ($request->token !== $user->auth_token) {
                 return response()->json(['errors' => 'Token is incorrect'], 400);
             }
 
