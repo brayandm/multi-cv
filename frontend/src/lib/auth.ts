@@ -13,9 +13,10 @@ export const authOptions: NextAuthOptions = {
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Email", type: "text" },
+        user_id: { label: "User ID", type: "number" },
         password: { label: "Password", type: "password" },
-        auth_token: { label: "Token", type: "text" },
+        auth_token: { label: "Token", type: "password" },
       },
       async authorize(credentials, req) {
         // You need to provide your own logic here that takes the credentials
@@ -27,14 +28,16 @@ export const authOptions: NextAuthOptions = {
         try {
           const res = await axios.post(
             process.env.LOGIN_URL!,
-            JSON.stringify(credentials),
+            JSON.stringify({
+              ...credentials,
+              user_id: Number(credentials?.user_id),
+            }),
             {
               headers: {
                 "Content-Type": "application/json",
               },
             }
           );
-          console.log("RESSSSSS", res);
           const user = res.data;
 
           if (user["errors"]) {
@@ -180,14 +183,12 @@ export async function googleOAuthCallback(code: string) {
 
     if (res.status == 200) {
       const token = res.data.auth_token;
-      const email = res.data.email;
+      const userId = res.data.user_id;
       const privacyPolicyAccept = res.data.privacy_policy_accept;
-      const name = res.data.name;
       return {
         status: res.status,
         token: token,
-        name: name,
-        email: email,
+        userId: userId,
         privacyPolicyAccept: privacyPolicyAccept,
       };
     }

@@ -70,9 +70,9 @@ const LoginForm: React.FC = () => {
   };
 
   useEffect(() => {
-    const loginWithToken = async (token: string, email: string) => {
+    const loginWithToken = async (token: string, userId: number) => {
       const res = await signIn("credentials", {
-        email: email,
+        user_id: userId,
         auth_token: token,
         redirect: false,
       });
@@ -94,23 +94,15 @@ const LoginForm: React.FC = () => {
     if (window !== undefined) {
       setWindowLoaded(true);
       const token = searchParams.get("token");
-      const emailParam = searchParams.get("email");
-      const name = searchParams.get("name");
+      const userId = Number(searchParams.get("id"));
       const ppa = searchParams.get("ppa");
 
-      if (token && emailParam) {
+      if (token && userId) {
         setOnOauthLogin(true);
         if (ppa !== undefined && !Number(ppa)) {
-          router.push(
-            "/register?token=" +
-              token +
-              "&email=" +
-              emailParam +
-              "&name=" +
-              name
-          );
+          router.push("/register?token=" + token + "&id=" + userId);
         } else {
-          loginWithToken(token, emailParam);
+          loginWithToken(token, userId);
         }
       }
     }

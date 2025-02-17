@@ -23,7 +23,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'password' => 'string|min:8|max:255|nullable',
-            'token' => 'string|max:255|nullable',
+            'auth_token' => 'string|max:255|nullable',
         ]);
 
         return $validator;
@@ -32,9 +32,10 @@ class AuthController extends Controller
     private function validateCorrectLoginUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email|max:255',
+            'email' => 'string|email|max:255|nullable',
+            'user_id' => 'integer|nullable',
             'password' => 'string|min:8|max:255|nullable',
-            'token' => 'string|max:255|nullable',
+            'auth_token' => 'string|max:255|nullable',
         ]);
 
         return $validator;
@@ -67,14 +68,14 @@ class AuthController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        if (is_null($request->password) && is_null($request->token)) {
+        if (is_null($request->password) && is_null($request->auth_token)) {
             return response()->json(['errors' => 'Password or token is required'], 400);
         }
 
-        if (is_null($request->password) && ! is_null($request->token)) {
+        if (is_null($request->password) && ! is_null($request->auth_token)) {
             $user = User::where('email', $request->email)->first();
 
-            if ($request->token !== $user->auth_token) {
+            if ($request->auth_token !== $user->auth_token) {
                 return response()->json(['errors' => 'Token is incorrect'], 400);
             }
 

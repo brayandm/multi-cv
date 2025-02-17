@@ -24,10 +24,8 @@ export async function GET(req: NextRequest) {
       process.env.HOST! +
         "/login?token=" +
         res.token +
-        "&email=" +
-        res.email +
-        "&name=" +
-        res.name +
+        "&id=" +
+        res.userId +
         "&ppa=" +
         res.privacyPolicyAccept
     );
