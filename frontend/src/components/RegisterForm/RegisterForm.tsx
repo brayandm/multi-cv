@@ -22,9 +22,21 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import theme from "@/lib/theme";
 
-const RegisterForm: React.FC = () => {
-  const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
+interface UserData {
+  nameData?: string;
+  emailData?: string;
+  oauth?: boolean;
+  token?: string;
+}
+
+const RegisterForm: React.FC<UserData> = ({
+  nameData,
+  emailData,
+  oauth,
+  token,
+}) => {
+  const [fullname, setFullname] = useState(nameData || "");
+  const [email, setEmail] = useState(emailData || "");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [registratioError, setRegistratioError] = useState(false);
@@ -42,10 +54,6 @@ const RegisterForm: React.FC = () => {
 
   const [confirmationPolicy, setConfirmationPolicy] = useState(false);
   const [confirmationAge, setConfirmationAge] = useState(false);
-
-  const [showPasswordForm, setShowPasswordForm] = useState(true);
-
-  const [secretToken, setSecretToken] = useState("");
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -78,8 +86,8 @@ const RegisterForm: React.FC = () => {
       const resRegistration = await axios.post("/api/register", {
         name: fullname,
         email: email,
-        password: secretToken ? null : password,
-        token: secretToken,
+        password: token ? null : password,
+        token: token,
       });
 
       if (resRegistration) {
@@ -113,7 +121,7 @@ const RegisterForm: React.FC = () => {
     const resSignIn = await signIn("credentials", {
       email: email,
       password: password,
-      auth_token: secretToken,
+      auth_token: token,
       redirect: false,
     });
 
@@ -130,22 +138,6 @@ const RegisterForm: React.FC = () => {
 
     router.push(callbackUrl);
   };
-
-  useEffect(() => {
-    if (window !== undefined) {
-      const token = searchParams.get("token");
-      const emailParam = searchParams.get("email");
-      const name = searchParams.get("name");
-
-      setFullname(name || "");
-      setEmail(emailParam || "");
-
-      if (token && emailParam) {
-        setShowPasswordForm(false);
-        setSecretToken(token);
-      }
-    }
-  }, [searchParams]);
 
   return (
     <div
@@ -211,7 +203,7 @@ const RegisterForm: React.FC = () => {
           onChange={(event) => setEmail(event.target.value)}
           style={{ marginTop: "0px" }}
         />
-        {showPasswordForm && (
+        {!oauth && (
           <>
             <FormControl
               variant="outlined"
@@ -340,7 +332,7 @@ const RegisterForm: React.FC = () => {
             passwordError ||
             !fullname ||
             !email ||
-            (showPasswordForm && !password) ||
+            (!oauth && !password) ||
             !confirmationPolicy ||
             !confirmationAge
           }

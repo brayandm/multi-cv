@@ -60,6 +60,36 @@ class AuthController extends Controller
         return $validator;
     }
 
+    public function validateUserDataWithToken($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|integer',
+            'auth_token' => 'required|string|max:255',
+        ]);
+
+        return $validator;
+    }
+
+    public function getUserDataWithToken(Request $request)
+    {
+        $validator = $this->validateUserDataWithToken($request);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $user = $this->userService->findUserById($request->user_id);
+
+        if($request->auth_token !== $user->auth_token) {
+            return response()->json(['errors' => 'Token is incorrect'], 400);
+        }
+
+        return response()->json([
+            'name' => $user->name,
+            'email' => $user->email,
+        ]);
+    }
+
     public function register(Request $request)
     {
         $validator = $this->validateCorrectRegisterUser($request);

@@ -4,7 +4,7 @@ import { isSessionValid } from "@/lib/auth";
 import { serverGet } from "@/lib/backendApi";
 
 export default async function Profile() {
-  const res = await serverGet("/user");
+  const res = await serverGet("/user", true);
 
   if (!(await isSessionValid())) {
     return <Logout />;
