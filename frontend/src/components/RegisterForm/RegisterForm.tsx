@@ -130,7 +130,7 @@ const RegisterForm: React.FC<UserData> = ({
       });
     } else {
       resSignIn = await signIn("credentials", {
-        userId: userId,
+        user_id: userId,
         auth_token: token,
         redirect: false,
       });
