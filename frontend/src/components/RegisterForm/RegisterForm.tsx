@@ -167,7 +167,7 @@ const RegisterForm: React.FC<UserData> = ({
           color: theme.palette.primary.main,
         }}
       >
-        Web Application
+        MultiCV
       </h1>
       <h2
         style={{

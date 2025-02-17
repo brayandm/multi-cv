@@ -127,7 +127,7 @@ const LoginForm: React.FC = () => {
               color: theme.palette.primary.main,
             }}
           >
-            Web Application
+            MultiCV
           </h1>
           <h2
             style={{
