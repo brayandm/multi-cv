@@ -1,4 +1,4 @@
-name: cv-builder
+name: multi-cv
 
 on:
     push:

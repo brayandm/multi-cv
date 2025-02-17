@@ -20,7 +20,7 @@ cp .env.example .env
 3 - Create Docker Network:
 
 ```bash
-docker network create cv-builder-local
+docker network create multi-cv-local
 ```
 
 4 - Start the containers:

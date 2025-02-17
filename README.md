@@ -1,4 +1,4 @@
-# CV Builder
+# Multi CV
 
 ### Setup git hooks
 
