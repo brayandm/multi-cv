@@ -15,6 +15,7 @@ class UserService
             'name' => $data->name,
             'email' => $data->email,
             'password' => Hash::make($data->password),
+            'privacy_policy_accept' => true,
         ]);
 
         return $user;

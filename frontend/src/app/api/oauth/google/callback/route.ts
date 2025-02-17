@@ -21,7 +21,13 @@ export async function GET(req: NextRequest) {
 
   if (res.status == 200) {
     return NextResponse.redirect(
-      process.env.HOST! + "/login?token=" + res.token + "&email=" + res.email
+      process.env.HOST! +
+        "/login?token=" +
+        res.token +
+        "&email=" +
+        res.email +
+        "&ppa=" +
+        res.privacyPolicyAccept
     );
   }
 

@@ -55,6 +55,7 @@ class GoogleAuthController extends Controller
 
         return response()->json(['email' => $user->email,
             'auth_token' => $user->auth_token,
+            'privacy_policy_accept' => $user->privacy_policy_accept,
             'message' => 'Successfully logged in!']);
     }
 }

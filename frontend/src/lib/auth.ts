@@ -179,10 +179,12 @@ export async function googleOAuthCallback(code: string) {
     if (res.status == 200) {
       const token = res.data.auth_token;
       const email = res.data.email;
+      const privacyPolicyAccept = res.data.privacy_policy_accept;
       return {
         status: res.status,
         token: token,
         email: email,
+        privacyPolicyAccept: privacyPolicyAccept,
       };
     }
     return {
