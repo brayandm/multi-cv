@@ -113,7 +113,7 @@ const RegisterForm: React.FC = () => {
     const resSignIn = await signIn("credentials", {
       email: email,
       password: password,
-      token: secretToken,
+      auth_token: secretToken,
       redirect: false,
     });
 
