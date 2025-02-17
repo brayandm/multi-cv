@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->string('auth_token')->nullable();
-            $table->boolean('privacy policy accept')->default(false);
+            $table->boolean('privacy_policy_accept')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
