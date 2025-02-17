@@ -25,6 +25,7 @@ import theme from "@/lib/theme";
 interface UserData {
   nameData?: string;
   emailData?: string;
+  userId?: number;
   oauth?: boolean;
   token?: string;
 }
@@ -32,6 +33,7 @@ interface UserData {
 const RegisterForm: React.FC<UserData> = ({
   nameData,
   emailData,
+  userId,
   oauth,
   token,
 }) => {
@@ -118,12 +120,21 @@ const RegisterForm: React.FC<UserData> = ({
       return;
     }
 
-    const resSignIn = await signIn("credentials", {
-      email: email,
-      password: password,
-      auth_token: token,
-      redirect: false,
-    });
+    let resSignIn;
+
+    if (!oauth) {
+      resSignIn = await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect: false,
+      });
+    } else {
+      resSignIn = await signIn("credentials", {
+        userId: userId,
+        auth_token: token,
+        redirect: false,
+      });
+    }
 
     if (resSignIn) {
       if (resSignIn.status !== 200) {

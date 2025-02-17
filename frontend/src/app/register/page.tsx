@@ -30,6 +30,7 @@ export default async function Register({
       <RegisterForm
         nameData={user.data.name}
         emailData={user.data.email}
+        userId={Number(userId)}
         token={token as string}
         oauth={true}
       />
