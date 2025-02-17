@@ -78,7 +78,7 @@ const RegisterForm: React.FC = () => {
       const resRegistration = await axios.post("/api/register", {
         name: fullname,
         email: email,
-        password: password,
+        password: secretToken ? null : password,
         token: secretToken,
       });
 

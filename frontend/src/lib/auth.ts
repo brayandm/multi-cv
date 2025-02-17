@@ -88,13 +88,15 @@ export const authOptions: NextAuthOptions = {
 export async function registerUser(
   name: string,
   email: string,
-  password: string
+  password: string,
+  token: string
 ) {
   try {
     const res = await axios.post(process.env.REGISTER_URL!, {
       name: name,
       email: email,
       password: password,
+      token: token,
     });
 
     if (res.status !== 200) {

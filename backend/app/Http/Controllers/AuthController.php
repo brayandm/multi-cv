@@ -21,9 +21,9 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'string|min:8|max:255',
-            'token' => 'string|max:255',
+            'email' => 'required|string|email|max:255',
+            'password' => 'string|min:8|max:255|nullable',
+            'token' => 'string|max:255|nullable',
         ]);
 
         return $validator;
@@ -33,8 +33,8 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
-            'password' => 'string|min:8|max:255',
-            'token' => 'string|max:255',
+            'password' => 'string|min:8|max:255|nullable',
+            'token' => 'string|max:255|nullable',
         ]);
 
         return $validator;
@@ -83,6 +83,10 @@ class AuthController extends Controller
             ]);
 
             return response()->json(['message' => 'User created successfully']);
+        }
+
+        if (User::where('email', $request->email)->exists()) {
+            return response()->json(['errors' => 'Email already exists'], 400);
         }
 
         $user = $this->userService->createUser($request);

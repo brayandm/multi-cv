@@ -2,9 +2,9 @@ import { registerUser } from "@/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { name, email, password } = await req.json();
+  const { name, email, password, token } = await req.json();
 
-  const res = await registerUser(name, email, password);
+  const res = await registerUser(name, email, password, token);
 
   if (res == 200) {
     return new NextResponse(
