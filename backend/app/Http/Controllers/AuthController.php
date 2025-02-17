@@ -107,7 +107,15 @@ class AuthController extends Controller
             return response()->json(['errors' => 'Bad credentials'], 401);
         }
 
-        $user = $this->userService->findUserByEmail($request->email);
+        if(! is_null($request->email)) {
+            $user = $this->userService->findUserByEmail($request->email);
+        }
+        else if(! is_null($request->user_id)) {
+            $user = $this->userService->findUserById($request->user_id);
+        }
+        else {
+            return response()->json(['errors' => 'Bad credentials'], 401);
+        }
 
         $token = $this->userService->createUserToken($user);
 

@@ -31,6 +31,11 @@ class UserService
         return User::where('email', $email)->firstOrFail();
     }
 
+    public function findUserById($id)
+    {
+        return User::where('id', $id)->firstOrFail();
+    }
+
     public function isCredentialsCorrect($data)
     {
         if (! empty($data->email) & ! empty($data->password)) {
