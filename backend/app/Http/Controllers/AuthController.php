@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +22,8 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|max:255',
+            'password' => 'string|min:8|max:255',
+            'token' => 'string|max:255',
         ]);
 
         return $validator;
@@ -63,6 +65,25 @@ class AuthController extends Controller
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        if (is_null($request->password) && is_null($request->token)) {
+            return response()->json(['errors' => 'Password or token is required'], 400);
+        }
+
+        if (is_null($request->password) && !is_null($request->token)) {
+            $user = User::where('email', $request->email)->first();
+
+            if($request->token !== $user->auth_token)
+            {
+                return response()->json(['errors' => 'Token is incorrect'], 400);
+            }
+
+            $user->update([
+                'privacy_policy_accept' => true,
+            ]);
+
+            return response()->json(['message' => 'User created successfully']);
         }
 
         $user = $this->userService->createUser($request);

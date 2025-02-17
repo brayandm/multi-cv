@@ -45,6 +45,8 @@ const RegisterForm: React.FC = () => {
 
   const [showPasswordForm, setShowPasswordForm] = useState(true);
 
+  const [secretToken, setSecretToken] = useState("");
+
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   const handleClickShowPasswordConfirmation = () =>
@@ -77,6 +79,7 @@ const RegisterForm: React.FC = () => {
         name: fullname,
         email: email,
         password: password,
+        token: secretToken,
       });
 
       if (resRegistration) {
@@ -110,6 +113,7 @@ const RegisterForm: React.FC = () => {
     const resSignIn = await signIn("credentials", {
       email: email,
       password: password,
+      token: secretToken,
       redirect: false,
     });
 
@@ -131,9 +135,14 @@ const RegisterForm: React.FC = () => {
     if (window !== undefined) {
       const token = searchParams.get("token");
       const emailParam = searchParams.get("email");
+      const name = searchParams.get("name");
+
+      setFullname(name || "");
+      setEmail(emailParam || "");
 
       if (token && emailParam) {
         setShowPasswordForm(false);
+        setSecretToken(token);
       }
     }
   }, [searchParams]);
@@ -331,7 +340,7 @@ const RegisterForm: React.FC = () => {
             passwordError ||
             !fullname ||
             !email ||
-            !password ||
+            (showPasswordForm && !password) ||
             !confirmationPolicy ||
             !confirmationAge
           }
