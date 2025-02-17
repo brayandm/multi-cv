@@ -95,10 +95,15 @@ const LoginForm: React.FC = () => {
       setWindowLoaded(true);
       const token = searchParams.get("token");
       const emailParam = searchParams.get("email");
+      const ppa = searchParams.get("ppa");
 
       if (token && emailParam) {
         setOnOauthLogin(true);
-        loginWithToken(token, emailParam);
+        if (ppa !== undefined && !Number(ppa)) {
+          router.push("/register?token=" + token + "&email=" + emailParam);
+        } else {
+          loginWithToken(token, emailParam);
+        }
       }
     }
   }, [searchParams, router, timerId]);
