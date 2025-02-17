@@ -54,6 +54,7 @@ class GoogleAuthController extends Controller
         $user->update(['auth_token' => Str::random(60)]);
 
         return response()->json(['email' => $user->email,
+            'name' => $user->name,
             'auth_token' => $user->auth_token,
             'privacy_policy_accept' => $user->privacy_policy_accept,
             'message' => 'Successfully logged in!']);

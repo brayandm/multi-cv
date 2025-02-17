@@ -180,9 +180,11 @@ export async function googleOAuthCallback(code: string) {
       const token = res.data.auth_token;
       const email = res.data.email;
       const privacyPolicyAccept = res.data.privacy_policy_accept;
+      const name = res.data.name;
       return {
         status: res.status,
         token: token,
+        name: name,
         email: email,
         privacyPolicyAccept: privacyPolicyAccept,
       };

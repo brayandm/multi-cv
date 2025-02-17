@@ -14,7 +14,7 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@mui/material";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -42,6 +42,8 @@ const RegisterForm: React.FC = () => {
 
   const [confirmationPolicy, setConfirmationPolicy] = useState(false);
   const [confirmationAge, setConfirmationAge] = useState(false);
+
+  const [showPasswordForm, setShowPasswordForm] = useState(true);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -125,6 +127,17 @@ const RegisterForm: React.FC = () => {
     router.push(callbackUrl);
   };
 
+  useEffect(() => {
+    if (window !== undefined) {
+      const token = searchParams.get("token");
+      const emailParam = searchParams.get("email");
+
+      if (token && emailParam) {
+        setShowPasswordForm(false);
+      }
+    }
+  }, [searchParams]);
+
   return (
     <div
       style={{
@@ -189,74 +202,79 @@ const RegisterForm: React.FC = () => {
           onChange={(event) => setEmail(event.target.value)}
           style={{ marginTop: "0px" }}
         />
-        <FormControl
-          variant="outlined"
-          sx={{ marginBottom: "8px", height: "56px" }}
-        >
-          <InputLabel htmlFor="outlined-adornment-password" required>
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            required
-            onChange={handleChangePassword}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-        <FormControl
-          variant="outlined"
-          sx={{ marginBottom: "20px", height: "56px" }}
-        >
-          <InputLabel htmlFor="outlined-adornment-password" required>
-            Confirm Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPasswordConfirmation ? "text" : "password"}
-            value={passwordConfirmation}
-            required
-            onChange={handleChangePasswordConfirmation}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPasswordConfirmation}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPasswordConfirmation ? (
-                    <VisibilityOff />
-                  ) : (
-                    <Visibility />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Confirm Password"
-          />
-          {passwordError && (
-            <FormHelperText>
-              Password must be at least 8 characters long
-            </FormHelperText>
-          )}
-          {!passwordError && passwordMatchError && (
-            <FormHelperText>Passwords do not match</FormHelperText>
-          )}
-        </FormControl>
+        {showPasswordForm && (
+          <>
+            <FormControl
+              variant="outlined"
+              sx={{ marginBottom: "8px", height: "56px" }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password" required>
+                Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                required
+                onChange={handleChangePassword}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+            <FormControl
+              variant="outlined"
+              sx={{ marginBottom: "20px", height: "56px" }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password" required>
+                Confirm Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPasswordConfirmation ? "text" : "password"}
+                value={passwordConfirmation}
+                required
+                onChange={handleChangePasswordConfirmation}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPasswordConfirmation}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPasswordConfirmation ? (
+                        <VisibilityOff />
+                      ) : (
+                        <Visibility />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Confirm Password"
+              />
+
+              {passwordError && (
+                <FormHelperText>
+                  Password must be at least 8 characters long
+                </FormHelperText>
+              )}
+              {!passwordError && passwordMatchError && (
+                <FormHelperText>Passwords do not match</FormHelperText>
+              )}
+            </FormControl>
+          </>
+        )}
         <FormControlLabel
           control={
             <Checkbox

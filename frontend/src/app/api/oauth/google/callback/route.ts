@@ -26,6 +26,8 @@ export async function GET(req: NextRequest) {
         res.token +
         "&email=" +
         res.email +
+        "&name=" +
+        res.name +
         "&ppa=" +
         res.privacyPolicyAccept
     );
