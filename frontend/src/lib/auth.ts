@@ -92,14 +92,14 @@ export async function registerUser(
   name: string,
   email: string,
   password: string,
-  token: string
+  auth_token: string
 ) {
   try {
     const res = await axios.post(process.env.REGISTER_URL!, {
       name: name,
       email: email,
       password: password,
-      token: token,
+      auth_token: auth_token,
     });
 
     if (res.status !== 200) {

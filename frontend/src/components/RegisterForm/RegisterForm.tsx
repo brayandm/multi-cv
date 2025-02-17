@@ -83,11 +83,12 @@ const RegisterForm: React.FC<UserData> = ({
     event.preventDefault();
 
     try {
+      console.log("Registering user", password, token);
       const resRegistration = await axios.post("/api/register", {
         name: fullname,
         email: email,
         password: token ? null : password,
-        token: token,
+        auth_token: token,
       });
 
       if (resRegistration) {

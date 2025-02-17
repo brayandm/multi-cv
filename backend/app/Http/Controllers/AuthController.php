@@ -80,7 +80,7 @@ class AuthController extends Controller
 
         $user = $this->userService->findUserById($request->user_id);
 
-        if($request->auth_token !== $user->auth_token) {
+        if ($request->auth_token !== $user->auth_token) {
             return response()->json(['errors' => 'Token is incorrect'], 400);
         }
 
