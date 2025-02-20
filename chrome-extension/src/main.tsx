@@ -14,13 +14,32 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Provider>
       <Router>
         <Routes>
-          <Route path="/" element={<MainLayout><App /></MainLayout>} />
-          <Route path="/login" element={<MainLayout><LoginScene /></MainLayout>} />
-          <Route path="/register" element={<MainLayout><RegisterScene /></MainLayout>} />
+          <Route
+            path="/"
+            element={
+              <MainLayout width="300px" height="450px">
+                <App />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <MainLayout width="300px" height="450px">
+                <LoginScene />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <MainLayout width="300px" height="550px">
+                <RegisterScene />
+              </MainLayout>
+            }
+          />
         </Routes>
       </Router>
-
     </Provider>
   </React.StrictMode>
 );
-

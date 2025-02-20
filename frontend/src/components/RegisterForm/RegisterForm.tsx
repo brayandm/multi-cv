@@ -11,8 +11,10 @@ import {
   InputAdornment,
   IconButton,
   FormHelperText,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -20,9 +22,23 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import theme from "@/lib/theme";
 
-const RegisterForm: React.FC = () => {
-  const [fullname, setFullname] = useState("");
-  const [email, setEmail] = useState("");
+interface UserData {
+  nameData?: string;
+  emailData?: string;
+  userId?: number;
+  oauth?: boolean;
+  token?: string;
+}
+
+const RegisterForm: React.FC<UserData> = ({
+  nameData,
+  emailData,
+  userId,
+  oauth,
+  token,
+}) => {
+  const [fullname, setFullname] = useState(nameData || "");
+  const [email, setEmail] = useState(emailData || "");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [registratioError, setRegistratioError] = useState(false);
@@ -37,6 +53,9 @@ const RegisterForm: React.FC = () => {
     React.useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const [passwordMatchError, setPasswordMatchError] = useState(false);
+
+  const [confirmationPolicy, setConfirmationPolicy] = useState(false);
+  const [confirmationAge, setConfirmationAge] = useState(false);
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -69,7 +88,8 @@ const RegisterForm: React.FC = () => {
       const resRegistration = await axios.post("/api/register", {
         name: fullname,
         email: email,
-        password: password,
+        password: token ? null : password,
+        auth_token: token,
       });
 
       if (resRegistration) {
@@ -100,11 +120,21 @@ const RegisterForm: React.FC = () => {
       return;
     }
 
-    const resSignIn = await signIn("credentials", {
-      email: email,
-      password: password,
-      redirect: false,
-    });
+    let resSignIn;
+
+    if (!oauth) {
+      resSignIn = await signIn("credentials", {
+        email: email,
+        password: password,
+        redirect: false,
+      });
+    } else {
+      resSignIn = await signIn("credentials", {
+        user_id: userId,
+        auth_token: token,
+        redirect: false,
+      });
+    }
 
     if (resSignIn) {
       if (resSignIn.status !== 200) {
@@ -137,7 +167,7 @@ const RegisterForm: React.FC = () => {
           color: theme.palette.primary.main,
         }}
       >
-        Web Application
+        MultiCV
       </h1>
       <h2
         style={{
@@ -184,74 +214,126 @@ const RegisterForm: React.FC = () => {
           onChange={(event) => setEmail(event.target.value)}
           style={{ marginTop: "0px" }}
         />
-        <FormControl
-          variant="outlined"
-          sx={{ marginBottom: "8px", height: "56px" }}
-        >
-          <InputLabel htmlFor="outlined-adornment-password" required>
-            Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPassword ? "text" : "password"}
-            value={password}
-            required
-            onChange={handleChangePassword}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Password"
-          />
-        </FormControl>
-        <FormControl
-          variant="outlined"
-          sx={{ marginBottom: "20px", height: "56px" }}
-        >
-          <InputLabel htmlFor="outlined-adornment-password" required>
-            Confirm Password
-          </InputLabel>
-          <OutlinedInput
-            id="outlined-adornment-password"
-            type={showPasswordConfirmation ? "text" : "password"}
-            value={passwordConfirmation}
-            required
-            onChange={handleChangePasswordConfirmation}
-            endAdornment={
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPasswordConfirmation}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {showPasswordConfirmation ? (
-                    <VisibilityOff />
-                  ) : (
-                    <Visibility />
-                  )}
-                </IconButton>
-              </InputAdornment>
-            }
-            label="Confirm Password"
-          />
-          {passwordError && (
-            <FormHelperText>
-              Password must be at least 8 characters long
-            </FormHelperText>
-          )}
-          {!passwordError && passwordMatchError && (
-            <FormHelperText>Passwords do not match</FormHelperText>
-          )}
-        </FormControl>
+        {!oauth && (
+          <>
+            <FormControl
+              variant="outlined"
+              sx={{ marginBottom: "8px", height: "56px" }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password" required>
+                Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? "text" : "password"}
+                value={password}
+                required
+                onChange={handleChangePassword}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Password"
+              />
+            </FormControl>
+            <FormControl
+              variant="outlined"
+              sx={{ marginBottom: "20px", height: "56px" }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password" required>
+                Confirm Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPasswordConfirmation ? "text" : "password"}
+                value={passwordConfirmation}
+                required
+                onChange={handleChangePasswordConfirmation}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPasswordConfirmation}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPasswordConfirmation ? (
+                        <VisibilityOff />
+                      ) : (
+                        <Visibility />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label="Confirm Password"
+              />
+
+              {passwordError && (
+                <FormHelperText>
+                  Password must be at least 8 characters long
+                </FormHelperText>
+              )}
+              {!passwordError && passwordMatchError && (
+                <FormHelperText>Passwords do not match</FormHelperText>
+              )}
+            </FormControl>
+          </>
+        )}
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={confirmationAge}
+              onChange={(event) => setConfirmationAge(event.target.checked)}
+              name="confirmationAge"
+              color="primary"
+              required
+            />
+          }
+          label={
+            <span
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              I confirm that I am at least 18 years old.
+            </span>
+          }
+        />
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={confirmationPolicy}
+              onChange={(event) => setConfirmationPolicy(event.target.checked)}
+              name="confirmationPolicy"
+              color="primary"
+              required
+            />
+          }
+          label={
+            <span
+              style={{
+                fontSize: "12px",
+              }}
+            >
+              I accept the{" "}
+              <a
+                href="https://brayandm.github.io/documents/multi-cv/privacy-policy"
+                style={{ color: theme.palette.primary.main }}
+              >
+                Privacy Policy
+              </a>
+              .
+            </span>
+          }
+        />
         <Button
           variant="contained"
           type="submit"
@@ -261,7 +343,9 @@ const RegisterForm: React.FC = () => {
             passwordError ||
             !fullname ||
             !email ||
-            !password
+            (!oauth && !password) ||
+            !confirmationPolicy ||
+            !confirmationAge
           }
         >
           Register

@@ -1,6 +1,6 @@
 services:
   laravel.test:
-    image: cv-builder-backend
+    image: multi-cv-backend
     restart: always
     volumes:
       - backend-storage:/app/storage
@@ -15,13 +15,13 @@ services:
       start_period: 20s
 
   mysql:
-    image: cv-builder-mysql
+    image: multi-cv-mysql
     restart: always
     volumes:
       - 'backend-mysql:/var/lib/mysql'
 
   frontend:
-    image: cv-builder-frontend
+    image: multi-cv-frontend
     restart: always
     ports:
       - ${APP_PORT:-49160}:3000

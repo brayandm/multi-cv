@@ -46,7 +46,7 @@ function MenuNavigation() {
               fontSize: "1.5rem",
             }}
           >
-            Web Application
+            MultiCV
           </Box>
         </Typography>
         <Button color="inherit" onClick={handleClick}>

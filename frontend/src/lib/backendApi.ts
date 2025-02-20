@@ -162,12 +162,13 @@ export const download = async (
 export const serverPost = async (
   url: string,
   data: any,
+  auth: boolean,
   headers: any = {}
 ): Promise<BackendResponse> => {
   try {
     const session = await getServerSession(authOptions);
 
-    headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+    if (auth) headers["Authorization"] = `Bearer ${session?.user.access_token}`;
 
     const res = await axios.post(process.env.BASE_URL! + url, data, {
       headers,
@@ -193,12 +194,13 @@ export const serverPost = async (
 export const serverPut = async (
   url: string,
   data: any,
+  auth: boolean,
   headers: any = {}
 ): Promise<BackendResponse> => {
   try {
     const session = await getServerSession(authOptions);
 
-    headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+    if (auth) headers["Authorization"] = `Bearer ${session?.user.access_token}`;
 
     const res = await axios.put(process.env.BASE_URL! + url, data, {
       headers,
@@ -223,12 +225,13 @@ export const serverPut = async (
 
 export const serverDel = async (
   url: string,
+  auth: boolean,
   headers: any = {}
 ): Promise<BackendResponse> => {
   try {
     const session = await getServerSession(authOptions);
 
-    headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+    if (auth) headers["Authorization"] = `Bearer ${session?.user.access_token}`;
 
     const res = await axios.delete(process.env.BASE_URL! + url, {
       headers,
@@ -253,12 +256,13 @@ export const serverDel = async (
 
 export const serverGet = async (
   url: string,
+  auth: boolean,
   headers: any = {}
 ): Promise<BackendResponse> => {
   try {
     const session = await getServerSession(authOptions);
 
-    headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+    if (auth) headers["Authorization"] = `Bearer ${session?.user.access_token}`;
 
     const res = await axios.get(process.env.BASE_URL! + url, {
       headers,

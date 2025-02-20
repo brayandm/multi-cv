@@ -70,9 +70,9 @@ const LoginForm: React.FC = () => {
   };
 
   useEffect(() => {
-    const loginWithToken = async (token: string, email: string) => {
+    const loginWithToken = async (token: string, userId: number) => {
       const res = await signIn("credentials", {
-        email: email,
+        user_id: userId,
         auth_token: token,
         redirect: false,
       });
@@ -94,11 +94,16 @@ const LoginForm: React.FC = () => {
     if (window !== undefined) {
       setWindowLoaded(true);
       const token = searchParams.get("token");
-      const emailParam = searchParams.get("email");
+      const userId = Number(searchParams.get("id"));
+      const ppa = searchParams.get("ppa");
 
-      if (token && emailParam) {
+      if (token && userId) {
         setOnOauthLogin(true);
-        loginWithToken(token, emailParam);
+        if (ppa !== undefined && !Number(ppa)) {
+          router.push("/register?token=" + token + "&id=" + userId);
+        } else {
+          loginWithToken(token, userId);
+        }
       }
     }
   }, [searchParams, router, timerId]);
@@ -122,7 +127,7 @@ const LoginForm: React.FC = () => {
               color: theme.palette.primary.main,
             }}
           >
-            Web Application
+            MultiCV
           </h1>
           <h2
             style={{

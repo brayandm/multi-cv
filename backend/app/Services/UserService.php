@@ -15,6 +15,7 @@ class UserService
             'name' => $data->name,
             'email' => $data->email,
             'password' => Hash::make($data->password),
+            'privacy_policy_accept' => true,
         ]);
 
         return $user;
@@ -30,12 +31,22 @@ class UserService
         return User::where('email', $email)->firstOrFail();
     }
 
+    public function findUserById($id)
+    {
+        return User::where('id', $id)->firstOrFail();
+    }
+
     public function isCredentialsCorrect($data)
     {
-        if (! empty($data->password)) {
+        if (! empty($data->email) & ! empty($data->password)) {
             return Auth::attempt($data->only('email', 'password'));
-        } elseif (! empty($data->auth_token)) {
-            $user = User::where('email', $data->email)->first();
+        } elseif (! empty($data->user_id) && ! empty($data->auth_token)) {
+            $user = User::where('id', $data->user_id)->first();
+
+            if (! $user) {
+                return false;
+            }
+
             $res = $data->auth_token == $user->auth_token;
 
             if ($res) {
