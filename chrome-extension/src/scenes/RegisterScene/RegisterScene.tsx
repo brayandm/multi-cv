@@ -8,7 +8,7 @@ export default function RegisterScene() {
   const navigator = useNavigate();
 
   const [formData, setFormData] = useState({
-    fullName: "",
+    name: "",
     email: "",
     password: "",
     repeatPassword: "",
@@ -28,7 +28,7 @@ export default function RegisterScene() {
       const response = await post(
         "/register",
         {
-          fullName: formData.fullName,
+          name: formData.name,
           email: formData.email,
           password: formData.password,
         },
@@ -53,8 +53,8 @@ export default function RegisterScene() {
           label="Full Name"
           placeholder="John Doe"
           type="text"
-          name="fullName"
-          value={formData.fullName}
+          name="name"
+          value={formData.name}
           onChange={handleChange}
         />
         <Input
