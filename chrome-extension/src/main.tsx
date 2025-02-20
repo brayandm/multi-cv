@@ -17,7 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route
             path="/"
             element={
-              <MainLayout>
+              <MainLayout width="300px" height="450px">
                 <App />
               </MainLayout>
             }
@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route
             path="/login"
             element={
-              <MainLayout>
+              <MainLayout width="300px" height="450px">
                 <LoginScene />
               </MainLayout>
             }
@@ -33,7 +33,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route
             path="/register"
             element={
-              <MainLayout>
+              <MainLayout width="300px" height="550px">
                 <RegisterScene />
               </MainLayout>
             }

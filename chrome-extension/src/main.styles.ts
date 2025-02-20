@@ -1,8 +1,11 @@
 import { styled } from "styled-components";
 
-export const ExtensionContainer = styled.div`
-  width: 300px;
-  height: 450px;
+export const ExtensionContainer = styled.div<{
+  width: string;
+  height: string;
+}>`
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
   padding: 20px;
   overflow-y: auto;
   margin: auto;

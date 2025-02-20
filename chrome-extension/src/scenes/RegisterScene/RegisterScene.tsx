@@ -9,8 +9,7 @@ export default function RegisterScene() {
       <h1 className="text-center">Register</h1>
       <p>Introduce yourself</p>
       <div className="flex flex-col gap-3">
-        <Input label="First Name" placeholder="John" type="text" />
-        <Input label="Last Name" placeholder="Doe" type="text" />
+        <Input label="Full Name" placeholder="John Doe" type="text" />
         <Input label="Email" placeholder="Enter your email" type="email" />
         <Input
           label="Password"
