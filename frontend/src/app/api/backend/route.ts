@@ -3,6 +3,20 @@ import axios from "axios";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function OPTIONS() {
+  return NextResponse.json(
+    {},
+    {
+      status: 204,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "*",
+      },
+    }
+  );
+}
+
 export async function POST(req: NextRequest) {
   const request = await req.json();
 
