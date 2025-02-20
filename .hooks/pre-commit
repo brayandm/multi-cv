@@ -1,8 +1,14 @@
 #!/bin/sh
 
+cd backend
 files=$(git diff --cached --name-only --diff-filter=ACM -- '*.php');
-backend/vendor/bin/pint $files
-
+vendor/bin/pint $files
+cd ..
 
 cd frontend
 npx prettier --write .
+cd ..
+
+cd chrome-extension
+npx prettier --write .
+cd ..
