@@ -1,3 +1,4 @@
+import { hostLink } from "@/utils/links";
 import axios from "axios";
 
 interface BackendResponse {
@@ -13,7 +14,7 @@ export const post = async (
   headers: any = {}
 ): Promise<BackendResponse> => {
   try {
-    const res = await axios.post("/api/backend", {
+    const res = await axios.post(hostLink + "/api/backend", {
       url,
       data,
       headers,
@@ -43,7 +44,7 @@ export const put = async (
   headers: any = {}
 ): Promise<BackendResponse> => {
   try {
-    const res = await axios.post("/api/backend", {
+    const res = await axios.post(hostLink + "/api/backend", {
       url,
       data,
       headers,
@@ -72,7 +73,7 @@ export const del = async (
   headers: any = {}
 ): Promise<BackendResponse> => {
   try {
-    const res = await axios.post("/api/backend", {
+    const res = await axios.post(hostLink + "/api/backend", {
       url,
       headers,
       method: "DELETE",
@@ -100,7 +101,7 @@ export const get = async (
   headers: any = {}
 ): Promise<BackendResponse> => {
   try {
-    const res = await axios.post("/api/backend", {
+    const res = await axios.post(hostLink + "/api/backend", {
       url,
       headers,
       method: "GET",
@@ -129,7 +130,7 @@ export const download = async (
 ): Promise<BackendResponse> => {
   try {
     const res = await axios.post(
-      "/api/backend",
+      hostLink + "/api/backend",
       {
         url,
         headers,
