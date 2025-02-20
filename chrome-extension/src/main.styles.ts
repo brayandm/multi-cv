@@ -5,6 +5,7 @@ export const ExtensionContainer = styled.div`
   height: 450px;
   padding: 20px;
   overflow-y: auto;
+  margin: auto;
 `;
 export const TopBarNavigation = styled.div`
   position: fixed;
