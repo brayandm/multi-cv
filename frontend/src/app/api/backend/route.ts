@@ -6,13 +6,21 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   const request = await req.json();
 
-  const session = await getServerSession(authOptions);
+  const nextauth = request.nextauth;
+
+  let session = null;
+
+  if (nextauth) {
+    session = await getServerSession(authOptions);
+  }
 
   if (request.method === "POST") {
     try {
       const { url, data, headers } = request;
 
-      headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      if (nextauth) {
+        headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      }
 
       const res = await axios.post(process.env.BASE_URL! + url, data, {
         headers,
@@ -47,7 +55,9 @@ export async function POST(req: NextRequest) {
     try {
       const { url, data, headers } = request;
 
-      headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      if (nextauth) {
+        headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      }
 
       const res = await axios.put(process.env.BASE_URL! + url, data, {
         headers,
@@ -82,7 +92,9 @@ export async function POST(req: NextRequest) {
     try {
       const { url, headers } = request;
 
-      headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      if (nextauth) {
+        headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      }
 
       const res = await axios.get(process.env.BASE_URL! + url, {
         headers,
@@ -117,7 +129,9 @@ export async function POST(req: NextRequest) {
     try {
       const { url, headers } = request;
 
-      headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      if (nextauth) {
+        headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      }
 
       const res = await axios.delete(process.env.BASE_URL! + url, {
         headers,
@@ -152,7 +166,9 @@ export async function POST(req: NextRequest) {
     try {
       const { url, headers } = request;
 
-      headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      if (nextauth) {
+        headers["Authorization"] = `Bearer ${session?.user.access_token}`;
+      }
 
       const res = await axios.get(process.env.BASE_URL! + url, {
         headers,

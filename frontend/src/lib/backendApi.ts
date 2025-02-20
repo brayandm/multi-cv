@@ -20,6 +20,7 @@ export const post = async (
       data,
       headers,
       method: "POST",
+      nextauth: true,
     });
 
     return {
@@ -50,6 +51,7 @@ export const put = async (
       data,
       headers,
       method: "PUT",
+      nextauth: true,
     });
 
     return {
@@ -78,6 +80,7 @@ export const del = async (
       url,
       headers,
       method: "DELETE",
+      nextauth: true,
     });
 
     return {
@@ -106,6 +109,7 @@ export const get = async (
       url,
       headers,
       method: "GET",
+      nextauth: true,
     });
 
     return {
@@ -136,6 +140,7 @@ export const download = async (
         url,
         headers,
         method: "DOWNLOAD",
+        nextauth: true,
       },
       {
         responseType: "arraybuffer",
