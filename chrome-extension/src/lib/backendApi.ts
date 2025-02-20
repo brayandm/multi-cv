@@ -10,7 +10,7 @@ interface BackendResponse {
 export const post = async (
   url: string,
   data: any,
-  headers: any = {}
+  headers: any = {},
 ): Promise<BackendResponse> => {
   try {
     const res = await axios.post("/api/backend", {
@@ -40,7 +40,7 @@ export const post = async (
 export const put = async (
   url: string,
   data: any,
-  headers: any = {}
+  headers: any = {},
 ): Promise<BackendResponse> => {
   try {
     const res = await axios.post("/api/backend", {
@@ -69,7 +69,7 @@ export const put = async (
 
 export const del = async (
   url: string,
-  headers: any = {}
+  headers: any = {},
 ): Promise<BackendResponse> => {
   try {
     const res = await axios.post("/api/backend", {
@@ -97,7 +97,7 @@ export const del = async (
 
 export const get = async (
   url: string,
-  headers: any = {}
+  headers: any = {},
 ): Promise<BackendResponse> => {
   try {
     const res = await axios.post("/api/backend", {
@@ -125,7 +125,7 @@ export const get = async (
 
 export const download = async (
   url: string,
-  headers: any = {}
+  headers: any = {},
 ): Promise<BackendResponse> => {
   try {
     const res = await axios.post(
@@ -137,7 +137,7 @@ export const download = async (
       },
       {
         responseType: "arraybuffer",
-      }
+      },
     );
 
     return {
