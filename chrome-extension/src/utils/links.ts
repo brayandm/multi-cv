@@ -1,1 +1,1 @@
-export const hostLink = "https://multicv.space/";
+export const hostLink = "https://multicv.space";
