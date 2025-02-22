@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -24,6 +25,26 @@ export default function RegisterComponent() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/register`,
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
