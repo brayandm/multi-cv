@@ -1,27 +1,19 @@
 "use client";
 
-import { logoutApi, verifyApi } from "@/lib/backendService";
+import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
+import { logoutApi } from "@/lib/backendService";
 
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export default function HomeComponent() {
   const router = useRouter();
 
-  const [verified, setVerified] = useState<boolean | null>(null);
+  const { isLoading } = useIsAuthenticated();
 
-  useEffect(() => {
-    verifyApi().then((res) => {
-      setVerified(res.data.authenticated);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (verified === false) {
-      router.push("/");
-    }
-  }, [router, verified]);
+  if (isLoading) {
+    return null;
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -35,10 +27,6 @@ export default function HomeComponent() {
       console.log(error);
     }
   };
-
-  if (verified === null || verified === false) {
-    return null;
-  }
 
   return (
     <div className="flex flex-col w-[250px] mt-8 mx-auto">
