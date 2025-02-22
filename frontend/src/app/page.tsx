@@ -1,5 +1,5 @@
-import { redirect } from "next/navigation";
+import WelcomeComponent from "@/components/WelcomeComponent";
 
-export default async function Home() {
-  redirect("/dashboard");
+export default function Home() {
+  return <WelcomeComponent />;
 }

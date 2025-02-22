@@ -19,8 +19,6 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/register', 'App\Http\Controllers\AuthController@register');
 
-    Route::post('/user-data/with-token', 'App\Http\Controllers\AuthController@getUserDataWithToken');
-
     Route::get('/oauth/google/login', 'App\Http\Controllers\GoogleAuthController@redirectToGoogle');
 
     Route::get('/oauth/google/callback', 'App\Http\Controllers\GoogleAuthController@handleGoogleCallback');

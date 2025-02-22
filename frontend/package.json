@@ -3,38 +3,32 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.0",
-    "@emotion/styled": "^11.11.0",
-    "@fontsource/roboto": "^4.5.8",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.13.1",
-    "@mui/styled-engine-sc": "^5.12.0",
-    "@mui/x-charts": "^7.12.0",
-    "@types/node": "20.1.7",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
-    "autoprefixer": "10.4.14",
-    "axios": "^1.4.0",
-    "date-fns": "^3.6.0",
-    "eslint": "8.40.0",
-    "eslint-config-next": "13.4.2",
-    "next": "13.4.2",
-    "next-auth": "^4.22.1",
-    "postcss": "8.4.23",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "styled-components": "^5.3.10",
-    "swr": "^2.2.5",
-    "tailwindcss": "3.3.2",
-    "typescript": "5.0.4"
+    "@heroui/react": "^2.7.2",
+    "@heroui/theme": "^2.4.9",
+    "@react-oauth/google": "^0.12.1",
+    "axios": "^1.7.9",
+    "framer-motion": "^12.4.7",
+    "next": "15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "styled-components": "^6.1.15",
+    "swr": "^2.3.2"
   },
   "devDependencies": {
-    "prettier": "2.8.8"
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.7",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
   }
 }
