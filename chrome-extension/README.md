@@ -1,24 +1,3 @@
 # Chrome Extension
 
-## Setup Node Version Manager (NVM):
-
-```bash
-nvm install && nvm use
-```
-
-## Installation
-
-```bash
-npm install
-npm run dev
-```
-
-## To test in Chrome
-
-You need to build the extension first:
-
-```bash
-npm run build
-```
-
-Then you can open the extension in Chrome by going to `chrome://extensions` and enabling developer mode. Then click on `Load unpacked extension` and select the `dist` folder.
+You can open the extension in Chrome by going to `chrome://extensions` and enabling developer mode. Then click on `Load unpacked extension` and select the `chrome-extension` folder.
