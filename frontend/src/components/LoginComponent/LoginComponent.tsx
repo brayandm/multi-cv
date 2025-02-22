@@ -1,12 +1,13 @@
 "use client";
 
-import { loginApi, verifyApi } from "@/lib/backendService";
+import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
+import { loginApi } from "@/lib/backendService";
 
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -15,19 +16,11 @@ export default function LoginComponent() {
     password: "",
   });
 
-  const [verified, setVerified] = useState<boolean | null>(null);
+  const { isLoading } = useIsAuthenticated();
 
-  useEffect(() => {
-    verifyApi().then((res) => {
-      setVerified(res.data.authenticated);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (verified === true) {
-      router.push("/home");
-    }
-  }, [router, verified]);
+  if (isLoading) {
+    return null;
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -51,10 +44,6 @@ export default function LoginComponent() {
       console.log(error);
     }
   };
-
-  if (verified === null || verified === true) {
-    return null;
-  }
 
   return (
     <form

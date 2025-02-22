@@ -1,28 +1,15 @@
 "use client";
 
-import { verifyApi } from "@/lib/backendService";
+import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 
 export default function WelcomeComponent() {
   const router = useRouter();
 
-  const [verified, setVerified] = useState<boolean | null>(null);
+  const { isLoading } = useIsAuthenticated();
 
-  useEffect(() => {
-    verifyApi().then((res) => {
-      setVerified(res.data.authenticated);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (verified === true) {
-      router.push("/home");
-    }
-  }, [router, verified]);
-
-  if (verified === null || verified === true) {
+  if (isLoading) {
     return null;
   }
 
