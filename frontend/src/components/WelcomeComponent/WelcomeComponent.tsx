@@ -1,25 +1,28 @@
 "use client";
 
-import { fetcherApi } from "@/lib/backendService";
-import { verifyApiLink } from "@/lib/links";
-import { VerifyResponse } from "@/lib/types";
+import { verifyApi } from "@/lib/backendService";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import useSWR from "swr";
+import { useEffect, useState } from "react";
 
 export default function WelcomeComponent() {
   const router = useRouter();
 
-  const { data, isLoading } = useSWR<VerifyResponse>(verifyApiLink, fetcherApi);
+  const [verified, setVerified] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (data?.authenticated) {
+    verifyApi().then((res) => {
+      setVerified(res.data.authenticated);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (verified === true) {
       router.push("/home");
     }
-  }, [router, data]);
+  }, [router, verified]);
 
-  if (isLoading || data?.authenticated) {
+  if (verified === null || verified === true) {
     return null;
   }
 

@@ -1,16 +1,21 @@
 "use client";
 
-import { fetcherApi, logoutApi } from "@/lib/backendService";
-import { verifyApiLink } from "@/lib/links";
-import { VerifyResponse } from "@/lib/types";
+import { logoutApi, verifyApi } from "@/lib/backendService";
+
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import useSWR from "swr";
+import { useEffect, useState } from "react";
 
 export default function HomeComponent() {
   const router = useRouter();
 
-  const { data, isLoading } = useSWR<VerifyResponse>(verifyApiLink, fetcherApi);
+  const [verified, setVerified] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    verifyApi().then((res) => {
+      setVerified(res.data.authenticated);
+    });
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,7 +30,7 @@ export default function HomeComponent() {
     }
   };
 
-  if (isLoading || !data?.authenticated) {
+  if (verified === null || verified === false) {
     return null;
   }
 

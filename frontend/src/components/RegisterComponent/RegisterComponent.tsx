@@ -1,14 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { fetcherApi, loginApi, registerApi } from "@/lib/backendService";
-import { verifyApiLink } from "@/lib/links";
-import { VerifyResponse } from "@/lib/types";
-import useSWR from "swr";
+import { loginApi, registerApi, verifyApi } from "@/lib/backendService";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -20,7 +17,19 @@ export default function RegisterComponent() {
     repeatPassword: "",
   });
 
-  const { data, isLoading } = useSWR<VerifyResponse>(verifyApiLink, fetcherApi);
+  const [verified, setVerified] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    verifyApi().then((res) => {
+      setVerified(res.data.authenticated);
+    });
+  }, []);
+
+  useEffect(() => {
+    if (verified === true) {
+      router.push("/home");
+    }
+  }, [router, verified]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -52,7 +61,7 @@ export default function RegisterComponent() {
     }
   };
 
-  if (isLoading || data?.authenticated) {
+  if (verified === null || verified === true) {
     return null;
   }
 
