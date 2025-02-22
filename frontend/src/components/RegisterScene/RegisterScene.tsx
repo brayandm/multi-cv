@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";

@@ -1,3 +1,5 @@
+"use client";
+
 export default function HomeScene() {
   return (
     <div className="flex flex-col ">
