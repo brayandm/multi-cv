@@ -12,10 +12,10 @@ import {
   VerifyResponse,
 } from "./types";
 
-axios.defaults.withCredentials = true;
+const isServer = typeof window === "undefined";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: isServer ? process.env.API_URL : process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
 });
 
