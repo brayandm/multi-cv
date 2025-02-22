@@ -17,6 +17,12 @@ export default function HomeComponent() {
     });
   }, []);
 
+  useEffect(() => {
+    if (verified === false) {
+      router.push("/");
+    }
+  }, [router, verified]);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
