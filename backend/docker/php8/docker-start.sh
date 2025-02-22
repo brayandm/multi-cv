@@ -13,7 +13,7 @@ if [ ! -f /build-lock ]; then
   echo '#### Mysql is up - executing command'
 
   echo '#### Laravel - php artisan migrate'
-  (cd /app && php artisan migrate)
+  (cd /app && php artisan migrate --force)
 
   echo '#### Laravel - php artisan storage:link'
   (cd /app && php artisan storage:link)
