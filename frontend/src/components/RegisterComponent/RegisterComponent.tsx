@@ -5,6 +5,7 @@ import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { loginApi, registerApi } from "@/lib/backendService";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -29,33 +30,13 @@ export default function RegisterComponent() {
     try {
       axios.defaults.withCredentials = true;
 
-      const registerResponse = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/register`,
-        {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const registerResponse = await registerApi(formData);
 
       if (registerResponse.status === 200) {
-        const Loginresponse = await axios.post(
-          `${process.env.NEXT_PUBLIC_API_URL}/login`,
-          {
-            email: formData.email,
-            password: formData.password,
-          },
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        await loginApi({
+          email: formData.email,
+          password: formData.password,
+        });
       }
     } catch (error) {
       console.log(error);

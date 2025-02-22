@@ -1,5 +1,6 @@
 "use client";
 
+import { loginApi } from "@/lib/backendService";
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import axios from "axios";
@@ -26,18 +27,15 @@ export default function LoginComponent() {
     try {
       axios.defaults.withCredentials = true;
 
-      const Loginresponse = await axios.post(
-        `${process.env.NEXT_PUBLIC_API_URL}/login`,
-        {
-          email: formData.email,
-          password: formData.password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const Loginresponse = await loginApi(formData);
+
+      if (Loginresponse.status === 200) {
+        const UserData = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/user`
+        );
+
+        console.log(UserData);
+      }
 
       console.log(Loginresponse);
     } catch (error) {
