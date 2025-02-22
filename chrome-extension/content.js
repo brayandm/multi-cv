@@ -40,10 +40,35 @@ const iframe = (() => {
     return iframe;
 })();
 
+const tooltip = (() => {
+    const tooltip = document.createElement("div");
+    tooltip.innerText = "Summarize and generate CV for this position!";
+    tooltip.style.position = "fixed";
+    tooltip.style.top = "50%";
+    tooltip.style.width = "300px";
+    tooltip.style.height = "200px";
+    tooltip.style.right = "20px";
+    tooltip.style.textAlign = "center";
+    tooltip.style.background = "#fff";
+    tooltip.style.color = "#0073b1";
+    tooltip.style.padding = "10px 15px";
+    tooltip.style.borderRadius = "8px";
+    tooltip.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.2)";
+    tooltip.style.fontSize = "14px";
+    tooltip.style.fontWeight = "bold";
+    tooltip.style.zIndex = "10001";
+    tooltip.style.opacity = "0";
+    tooltip.style.transition = "opacity 0.3s ease";
+    tooltip.style.cursor = "pointer";
+
+    return tooltip;
+})();
+
 (() => {
     if (hostList.some((host) => window.location.hostname.includes(host))) {
         document.body.appendChild(button);
         document.body.appendChild(iframe);
+        document.body.appendChild(tooltip);
 
         let isIframeOpen = false;
 
@@ -75,5 +100,24 @@ const iframe = (() => {
             }
             isIframeOpen = !isIframeOpen;
         });
+
+        const showTooltip = () => {
+            setTimeout(() => {
+                tooltip.style.opacity = "1";
+
+                setTimeout(() => {
+                    tooltip.style.opacity = "0";
+                    setTimeout(() => tooltip.remove(), 300);
+                }, 5000);
+            }, 1000);
+        };
+
+        if (
+            window.location.href.includes(
+                "linkedin.com/jobs/collections/recommended",
+            )
+        ) {
+            showTooltip();
+        }
     }
 })();
