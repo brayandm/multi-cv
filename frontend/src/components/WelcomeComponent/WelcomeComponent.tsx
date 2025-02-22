@@ -3,7 +3,7 @@
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
-export default function WelcomeScene() {
+export default function WelcomeComponent() {
   const router = useRouter();
 
   return (

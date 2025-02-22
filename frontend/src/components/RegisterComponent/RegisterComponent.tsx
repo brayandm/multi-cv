@@ -5,7 +5,7 @@ import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 
-export default function RegisterScene() {
+export default function RegisterComponent() {
   const router = useRouter();
 
   const [formData, setFormData] = useState({

@@ -4,7 +4,7 @@ import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 
-export default function LoginScene() {
+export default function LoginComponent() {
   const router = useRouter();
   return (
     <form className="flex flex-col gap-2 text-center mt-8 ">
