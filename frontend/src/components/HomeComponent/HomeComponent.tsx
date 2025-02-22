@@ -13,7 +13,7 @@ export default function HomeComponent() {
       const logoutResponse = await logoutApi();
 
       if (logoutResponse.status === 200) {
-        router.push("/welcome");
+        router.push("/");
       }
     } catch (error) {
       console.log(error);
