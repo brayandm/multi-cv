@@ -1,8 +1,8 @@
 const hostList = ["linkedin.com", "infojobs.net"];
 
-(() => {
-  if (hostList.some((host) => window.location.hostname.includes(host))) {
+const button = (() => {
     const button = document.createElement("div");
+
     button.innerText = "◀";
     button.style.position = "fixed";
     button.style.top = "50%";
@@ -21,7 +21,12 @@ const hostList = ["linkedin.com", "infojobs.net"];
     button.style.zIndex = "9999";
     button.style.transition = "right 0.3s ease";
 
+    return button;
+})();
+
+const iframe = (() => {
     const iframe = document.createElement("iframe");
+
     iframe.src = "http://localhost:3000";
     iframe.style.position = "fixed";
     iframe.style.top = "0";
@@ -32,38 +37,43 @@ const hostList = ["linkedin.com", "infojobs.net"];
     iframe.style.zIndex = "10000";
     iframe.style.transition = "right 0.3s ease";
 
-    document.body.appendChild(button);
-    document.body.appendChild(iframe);
+    return iframe;
+})();
 
-    let isIframeOpen = false;
+(() => {
+    if (hostList.some((host) => window.location.hostname.includes(host))) {
+        document.body.appendChild(button);
+        document.body.appendChild(iframe);
 
-    button.addEventListener("mouseenter", () => {
-      if (!isIframeOpen) {
-        button.style.right = "0px";
-      } else {
-        button.style.right = "285px";
-      }
-    });
+        let isIframeOpen = false;
 
-    button.addEventListener("mouseleave", () => {
-      if (!isIframeOpen) {
-        button.style.right = "-5px";
-      } else {
-        button.style.right = "290px";
-      }
-    });
+        button.addEventListener("mouseenter", () => {
+            if (!isIframeOpen) {
+                button.style.right = "0px";
+            } else {
+                button.style.right = "285px";
+            }
+        });
 
-    button.addEventListener("click", () => {
-      if (isIframeOpen) {
-        iframe.style.right = "-310px";
-        button.style.right = "0";
-        button.innerText = "◀";
-      } else {
-        iframe.style.right = "0";
-        button.style.right = "295px";
-        button.innerText = "▶";
-      }
-      isIframeOpen = !isIframeOpen;
-    });
-  }
+        button.addEventListener("mouseleave", () => {
+            if (!isIframeOpen) {
+                button.style.right = "-5px";
+            } else {
+                button.style.right = "290px";
+            }
+        });
+
+        button.addEventListener("click", () => {
+            if (isIframeOpen) {
+                iframe.style.right = "-310px";
+                button.style.right = "0";
+                button.innerText = "◀";
+            } else {
+                iframe.style.right = "0";
+                button.style.right = "295px";
+                button.innerText = "▶";
+            }
+            isIframeOpen = !isIframeOpen;
+        });
+    }
 })();
