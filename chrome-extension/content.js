@@ -47,22 +47,36 @@ const tooltip = (() => {
     tooltip.style.display = "flex";
     tooltip.style.alignItems = "center";
     tooltip.style.justifyContent = "center";
-    tooltip.style.top = "calc(50% - 200px)";
-    tooltip.style.width = "300px";
-    tooltip.style.height = "200px";
-    tooltip.style.right = "20px";
-    tooltip.style.textAlign = "center";
-    tooltip.style.background = "#fff";
-    tooltip.style.color = "#0073b1";
+    tooltip.style.top = "calc(50% - 100px)";
+    tooltip.style.right = "60px";
+    tooltip.style.width = "200px";
+    tooltip.style.height = "100px";
     tooltip.style.padding = "10px 15px";
+    tooltip.style.background = "#fff";
+    tooltip.style.color = "#000";
     tooltip.style.borderRadius = "8px";
-    tooltip.style.boxShadow = "0px 0px 10px rgba(0, 0, 0, 0.2)";
+    tooltip.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.2)";
     tooltip.style.fontSize = "14px";
     tooltip.style.fontWeight = "bold";
     tooltip.style.zIndex = "10001";
     tooltip.style.opacity = "0";
     tooltip.style.transition = "opacity 0.3s ease";
     tooltip.style.cursor = "pointer";
+    tooltip.style.textAlign = "center";
+
+    const arrow = document.createElement("div");
+    arrow.style.position = "absolute";
+    arrow.style.right = "-10px";
+    arrow.style.bottom = "-18px";
+    arrow.style.transform = "translateY(-50%)";
+    arrow.style.width = "0";
+    arrow.style.rotate = "45deg";
+    arrow.style.height = "0";
+    arrow.style.borderLeft = "30px solid #fff";
+    arrow.style.borderTop = "10px solid transparent";
+    arrow.style.borderBottom = "10px solid transparent";
+
+    tooltip.appendChild(arrow);
 
     return tooltip;
 })();
