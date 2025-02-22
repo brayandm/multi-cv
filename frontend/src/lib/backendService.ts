@@ -3,11 +3,18 @@ import { loginApiLink, registerApiLink, verifyApiLink } from "./links";
 
 axios.defaults.withCredentials = true;
 
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  withCredentials: true,
+});
+
+export const fetcherApi = (url: string) => api.get(url).then((res) => res.data);
+
 export const loginApi = async (formData: {
   email: string;
   password: string;
 }) => {
-  return await axios.post(
+  return await api.post(
     loginApiLink,
     {
       email: formData.email,
@@ -26,7 +33,7 @@ export const registerApi = async (formData: {
   email: string;
   password: string;
 }) => {
-  return await axios.post(
+  return await api.post(
     registerApiLink,
     {
       name: formData.name,
@@ -42,5 +49,5 @@ export const registerApi = async (formData: {
 };
 
 export const verifyApi = async () => {
-  return await axios.get(verifyApiLink);
+  return await api.get(verifyApiLink);
 };

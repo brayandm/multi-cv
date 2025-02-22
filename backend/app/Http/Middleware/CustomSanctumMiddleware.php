@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Middleware;
 
 use Closure;
@@ -15,7 +16,7 @@ class CustomSanctumMiddleware
         if ($request->hasCookie('auth_token')) {
             $token = $request->cookie('auth_token');
 
-            $request->headers->set('Authorization', 'Bearer ' . $token);
+            $request->headers->set('Authorization', 'Bearer '.$token);
         }
 
         return $next($request);

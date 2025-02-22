@@ -1,9 +1,7 @@
-const backendApi = process.env.NEXT_PUBLIC_API_URL;
+export const loginApiLink = `/login`;
 
-export const loginApiLink = `${backendApi}/login`;
+export const registerApiLink = `/register`;
 
-export const registerApiLink = `${backendApi}/register`;
+export const verifyApiLink = `/verify`;
 
-export const verifyApiLink = `${backendApi}/verify`;
-
-export const userApiLink = `${backendApi}/user`;
+export const userApiLink = `/user`;
