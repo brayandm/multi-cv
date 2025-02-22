@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-import { post } from "@/lib/backendApi";
 
 export default function RegisterScene() {
   const navigator = useNavigate();
@@ -23,25 +22,6 @@ export default function RegisterScene() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-
-    try {
-      const response = await post(
-        "/register",
-        {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        },
-        {
-          "Content-Type": "application/json",
-        }
-      );
-
-      console.log("Response:", response);
-    } catch (error) {
-      console.error("Error:", error);
-      alert("An error occurred");
-    }
   };
 
   return (
