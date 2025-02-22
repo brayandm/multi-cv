@@ -22,8 +22,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
-            'password' => 'string|min:8|max:255|nullable',
-            'auth_token' => 'string|max:255|nullable',
+            'password' => 'required|string|min:8|max:255',
         ]);
 
         return $validator;
@@ -32,10 +31,8 @@ class AuthController extends Controller
     private function validateCorrectLoginUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'string|email|max:255|nullable',
-            'user_id' => 'integer|nullable',
-            'password' => 'string|min:8|max:255|nullable',
-            'auth_token' => 'string|max:255|nullable',
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:8|max:255',
         ]);
 
         return $validator;
@@ -68,26 +65,6 @@ class AuthController extends Controller
         ]);
 
         return $validator;
-    }
-
-    public function getUserDataWithToken(Request $request)
-    {
-        $validator = $this->validateUserDataWithToken($request);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
-        }
-
-        $user = $this->userService->findUserById($request->user_id);
-
-        if ($request->auth_token !== $user->auth_token) {
-            return response()->json(['errors' => 'Token is incorrect'], 400);
-        }
-
-        return response()->json([
-            'name' => $user->name,
-            'email' => $user->email,
-        ]);
     }
 
     public function register(Request $request)
