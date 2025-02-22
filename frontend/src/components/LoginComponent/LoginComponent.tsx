@@ -29,7 +29,7 @@ export default function LoginComponent() {
           Register
         </span>
       </p>
-      <GoogleOAuthProvider clientId="">
+      <GoogleOAuthProvider clientId="874501087601">
         <GoogleLogin
           onSuccess={(credentialResponse) => {
             console.log(credentialResponse);
