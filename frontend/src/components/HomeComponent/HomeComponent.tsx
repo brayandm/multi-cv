@@ -1,6 +1,6 @@
 "use client";
 
-import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
+import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
 import { logoutApi } from "@/lib/backendService";
 
 import { Button } from "@heroui/react";
@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 export default function HomeComponent() {
   const router = useRouter();
 
-  const { isLoading } = useIsAuthenticated();
+  const { isLoading } = useIsNotAuthenticated();
 
   if (isLoading) {
     return null;
