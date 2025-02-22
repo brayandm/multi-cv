@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 export default function RegisterScene() {
-  const navigator = useNavigate();
+  const router = useRouter();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -13,14 +13,14 @@ export default function RegisterScene() {
     repeatPassword: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
@@ -70,7 +70,7 @@ export default function RegisterScene() {
         Use another method |{" "}
         <span
           className="text-primary cursor-pointer"
-          onClick={() => navigator("/login")}
+          onClick={() => router.push("/login")}
         >
           Login
         </span>

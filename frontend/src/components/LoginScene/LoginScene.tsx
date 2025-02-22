@@ -1,9 +1,9 @@
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 export default function LoginScene() {
-  const navigator = useNavigate();
+  const router = useRouter();
   return (
     <form className="flex flex-col gap-2 text-center mt-8 ">
       <h1 className="text-center">Login</h1>
@@ -22,7 +22,7 @@ export default function LoginScene() {
         Use another method |{" "}
         <span
           className="text-primary cursor-pointer"
-          onClick={() => navigator("/register")}
+          onClick={() => router.push("/register")}
         >
           Register
         </span>

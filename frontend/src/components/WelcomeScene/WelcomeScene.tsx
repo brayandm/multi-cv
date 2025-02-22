@@ -1,8 +1,8 @@
 import { Button } from "@heroui/react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
 
 export default function WelcomeScene() {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   return (
     <div className="flex flex-col mt-40 ">
@@ -11,10 +11,10 @@ export default function WelcomeScene() {
       </h1>
       <p className="text-center">Create unique CVs for unique job offers.</p>
       <div className="flex justify-center gap-2 mt-2">
-        <Button onPress={() => navigate("login")} color="primary">
+        <Button onPress={() => router.push("/login")} color="primary">
           Login
         </Button>
-        <Button onPress={() => navigate("register")} color="secondary">
+        <Button onPress={() => router.push("/register")} color="secondary">
           Register
         </Button>
       </div>
