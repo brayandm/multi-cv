@@ -41,9 +41,13 @@ export default function HomeComponent() {
   }
 
   return (
-    <div className="flex flex-col w-[250px] mx-auto">
+    <div className="flex flex-col w-[250px] mt-8 mx-auto">
       <h1 className="text-center">Home</h1>
-      <form onSubmit={handleSubmit}>
+      <p className="text-center">Welcome to the Crypta</p>
+      <form
+        className="flex flex-col gap-2 text-center mt-8 w-[250px] mx-auto"
+        onSubmit={handleSubmit}
+      >
         <Button color="primary" type="submit">
           Logout
         </Button>
