@@ -1,5 +1,16 @@
-import axios from "axios";
-import { loginApiLink, registerApiLink, verifyApiLink } from "./links";
+import axios, { AxiosResponse } from "axios";
+import {
+  loginApiLink,
+  logoutApiLink,
+  registerApiLink,
+  verifyApiLink,
+} from "./links";
+import {
+  LoginResponse,
+  LogoutResponse,
+  RegisterResponse,
+  VerifyResponse,
+} from "./types";
 
 axios.defaults.withCredentials = true;
 
@@ -13,7 +24,7 @@ export const fetcherApi = (url: string) => api.get(url).then((res) => res.data);
 export const loginApi = async (formData: {
   email: string;
   password: string;
-}) => {
+}): Promise<AxiosResponse<LoginResponse>> => {
   return await api.post(
     loginApiLink,
     {
@@ -28,11 +39,15 @@ export const loginApi = async (formData: {
   );
 };
 
+export const logoutApi = async (): Promise<AxiosResponse<LogoutResponse>> => {
+  return await api.post(logoutApiLink);
+};
+
 export const registerApi = async (formData: {
   name: string;
   email: string;
   password: string;
-}) => {
+}): Promise<AxiosResponse<RegisterResponse>> => {
   return await api.post(
     registerApiLink,
     {
@@ -48,6 +63,6 @@ export const registerApi = async (formData: {
   );
 };
 
-export const verifyApi = async () => {
+export const verifyApi = async (): Promise<AxiosResponse<VerifyResponse>> => {
   return await api.get(verifyApiLink);
 };
