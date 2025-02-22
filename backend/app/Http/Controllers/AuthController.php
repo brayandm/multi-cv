@@ -135,7 +135,7 @@ class AuthController extends Controller
         $access_token = $request->bearerToken();
 
         if (! $access_token) {
-           return response()->json(["authenticated" => false]);
+            return response()->json(['authenticated' => false]);
         }
 
         $tokenHash = hash('sha256', explode('|', $access_token)[1]);
@@ -143,24 +143,24 @@ class AuthController extends Controller
         $token = DB::table('personal_access_tokens')->where('token', $tokenHash)->first();
 
         if (! $token) {
-            return response()->json(["authenticated" => false]);
+            return response()->json(['authenticated' => false]);
         }
 
         if ($token->last_used_at) {
             if ((new Carbon($token->last_used_at))->diffInSeconds(Carbon::now(), false) > config('auth.max_age_session')) {
-                return response()->json(["authenticated" => false]);
+                return response()->json(['authenticated' => false]);
             }
         } else {
             if ((new Carbon($token->created_at))->diffInSeconds(Carbon::now(), false) > config('auth.max_age_session')) {
-                return response()->json(["authenticated" => false]);
+                return response()->json(['authenticated' => false]);
             }
         }
 
         if ((new Carbon($token->expires_at))->diffInSeconds(Carbon::now(), false) > 0) {
-            return response()->json(["authenticated" => false]);
+            return response()->json(['authenticated' => false]);
         }
 
-        return response()->json(["authenticated" => true]);
+        return response()->json(['authenticated' => true]);
     }
 
     public function logout(Request $request)
