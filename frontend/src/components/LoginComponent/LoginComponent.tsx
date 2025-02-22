@@ -41,14 +41,8 @@ export default function LoginComponent() {
       const Loginresponse = await loginApi(formData);
 
       if (Loginresponse.status === 200) {
-        const UserData = await axios.get(
-          `${process.env.NEXT_PUBLIC_API_URL}/user`
-        );
-
-        console.log(UserData);
+        router.push("/home");
       }
-
-      console.log(Loginresponse);
     } catch (error) {
       console.log(error);
     }
@@ -56,7 +50,7 @@ export default function LoginComponent() {
 
   return (
     <>
-      {isLoading ? null : (
+      {isLoading || data?.authenticated ? null : (
         <form
           className="flex flex-col gap-2 text-center mt-8 w-[250px] mx-auto"
           onSubmit={handleSubmit}
