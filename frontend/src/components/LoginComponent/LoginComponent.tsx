@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export default function LoginComponent() {
   const router = useRouter();
   return (
-    <form className="flex flex-col gap-2 text-center mt-8 ">
+    <form className="flex flex-col gap-2 text-center mt-8 w-[250px] mx-auto">
       <h1 className="text-center">Login</h1>
       <p>Please enter your credentials</p>
       <div className="flex flex-col gap-3">
@@ -30,7 +30,6 @@ export default function LoginComponent() {
         </span>
       </p>
       <GoogleOAuthProvider clientId="">
-        {/* Checa la documentacion https://www.npmjs.com/package/@react-oauth/google */}
         <GoogleLogin
           onSuccess={(credentialResponse) => {
             console.log(credentialResponse);

@@ -7,7 +7,7 @@ export default function WelcomeComponent() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col mt-40 ">
+    <div className="flex flex-col mt-40 w-[250px] mx-auto">
       <h1 className="text-center">
         Welcome to <span className="text-primary">MultiCV</span>
       </h1>
