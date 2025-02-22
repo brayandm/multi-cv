@@ -1,5 +1,5 @@
 export interface VerifyResponse {
-  message: string;
+  authenticated: boolean;
 }
 
 export interface LoginResponse {

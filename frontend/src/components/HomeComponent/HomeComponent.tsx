@@ -2,7 +2,7 @@
 
 import { logoutApi } from "@/lib/backendService";
 import { Button } from "@heroui/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function HomeComponent() {
   const router = useRouter();

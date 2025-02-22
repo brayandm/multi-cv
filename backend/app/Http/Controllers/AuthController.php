@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Services\UserService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -128,9 +130,37 @@ class AuthController extends Controller
             ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration'), '/', null, true, true, false, 'None');
     }
 
-    public function verify()
+    public function verify(Request $request)
     {
-        return response()->json(['message' => 'Successful verification']);
+        $access_token = $request->bearerToken();
+
+        if (! $access_token) {
+           return response()->json(["authenticated" => false]);
+        }
+
+        $tokenHash = hash('sha256', explode('|', $access_token)[1]);
+
+        $token = DB::table('personal_access_tokens')->where('token', $tokenHash)->first();
+
+        if (! $token) {
+            return response()->json(["authenticated" => false]);
+        }
+
+        if ($token->last_used_at) {
+            if ((new Carbon($token->last_used_at))->diffInSeconds(Carbon::now(), false) > config('auth.max_age_session')) {
+                return response()->json(["authenticated" => false]);
+            }
+        } else {
+            if ((new Carbon($token->created_at))->diffInSeconds(Carbon::now(), false) > config('auth.max_age_session')) {
+                return response()->json(["authenticated" => false]);
+            }
+        }
+
+        if ((new Carbon($token->expires_at))->diffInSeconds(Carbon::now(), false) > 0) {
+            return response()->json(["authenticated" => false]);
+        }
+
+        return response()->json(["authenticated" => true]);
     }
 
     public function logout(Request $request)

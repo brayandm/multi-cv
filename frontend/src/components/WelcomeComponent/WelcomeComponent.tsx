@@ -14,14 +14,14 @@ export default function WelcomeComponent() {
   const { data, isLoading } = useSWR<VerifyResponse>(verifyApiLink, fetcherApi);
 
   useEffect(() => {
-    if (data) {
+    if (data?.authenticated) {
       router.push("/home");
     }
   }, [router, data]);
 
   return (
     <>
-      {isLoading ? null : (
+      {isLoading && !data ? null : (
         <div className="flex flex-col mt-40 w-[250px] mx-auto">
           <h1 className="text-center">
             Welcome to <span className="text-primary">MultiCV</span>
