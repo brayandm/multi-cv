@@ -27,7 +27,9 @@ export default function RegisterComponent() {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
+      axios.defaults.withCredentials = true;
+
+      const registerResponse = await axios.post(
         `${process.env.NEXT_PUBLIC_API_URL}/register`,
         {
           name: formData.name,
@@ -41,7 +43,20 @@ export default function RegisterComponent() {
         }
       );
 
-      console.log(response.data);
+      if (registerResponse.status === 200) {
+        const Loginresponse = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}/login`,
+          {
+            email: formData.email,
+            password: formData.password,
+          },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+      }
     } catch (error) {
       console.log(error);
     }
