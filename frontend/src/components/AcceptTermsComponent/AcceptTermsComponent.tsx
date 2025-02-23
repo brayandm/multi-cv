@@ -48,7 +48,7 @@ export default function AcceptTermsComponent() {
 
   return (
     <form
-      className="flex flex-col gap-2 mt-8 text-center w-[300px] mx-auto"
+      className="flex flex-col gap-2 mt-8 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
       <h1 className="text-center">Privacy Policy and Terms & Conditions</h1>
@@ -62,7 +62,7 @@ export default function AcceptTermsComponent() {
             size="sm"
           />
           <span
-            className="text-xs text-gray-600
+            className="text-[9px] text-gray-600
           "
           >
             I confirm that I am over 18 years old
@@ -76,7 +76,7 @@ export default function AcceptTermsComponent() {
             onChange={handleCheckboxChange}
             size="sm"
           />
-          <span className="text-xs text-gray-600">
+          <span className="text-[9px] text-gray-600">
             I accept the{" "}
             <Link
               href="/terms-and-conditions.html"

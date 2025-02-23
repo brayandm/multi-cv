@@ -7,7 +7,7 @@ export const useIsAuthenticated = () => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
 
-  useEffect(() => {
+  const checkAuthentication = () => {
     verifyApi()
       .then((res) => {
         setAuthenticated(res.data.authenticated);
@@ -18,6 +18,10 @@ export const useIsAuthenticated = () => {
       .catch(() => {
         setAuthenticated(false);
       });
+  };
+
+  useEffect(() => {
+    checkAuthentication();
   }, []);
 
   useEffect(() => {
@@ -25,6 +29,19 @@ export const useIsAuthenticated = () => {
       router.push("/home");
     }
   }, [router, authenticated]);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        checkAuthentication();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   return { authenticated, isLoading };
 };
