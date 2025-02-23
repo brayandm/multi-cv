@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import {
+  googleLoginApiLink,
   loginApiLink,
   logoutApiLink,
   registerApiLink,
@@ -61,6 +62,10 @@ export const registerApi = async (formData: {
       },
     }
   );
+};
+
+export const googleLoginApi = async (): Promise<AxiosResponse> => {
+  return await api.get(googleLoginApiLink);
 };
 
 export const verifyApi = async (): Promise<AxiosResponse<VerifyResponse>> => {

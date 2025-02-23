@@ -1,7 +1,7 @@
 "use client";
 
 import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
-import { loginApi } from "@/lib/backendService";
+import { googleLoginApi, loginApi } from "@/lib/backendService";
 
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
@@ -45,6 +45,13 @@ export default function LoginComponent() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    const response = await googleLoginApi();
+    console.log(response);
+    const redirectUrl = response.data.url;
+    window.location.href = redirectUrl;
+  };
+
   return (
     <form
       className="flex flex-col gap-2 text-center mt-8 w-[250px] mx-auto"
@@ -83,16 +90,11 @@ export default function LoginComponent() {
           Register
         </span>
       </p>
-      <GoogleOAuthProvider clientId="874501087601">
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            console.log(credentialResponse);
-          }}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
-      </GoogleOAuthProvider>
+      <div onClick={handleGoogleSignIn}>
+        <GoogleOAuthProvider clientId="">
+          <GoogleLogin onSuccess={() => {}} onError={() => {}} />
+        </GoogleOAuthProvider>
+      </div>
     </form>
   );
 }
