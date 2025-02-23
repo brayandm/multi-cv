@@ -47,7 +47,6 @@ export default function LoginComponent() {
 
   const handleGoogleSignIn = async () => {
     const response = await googleLoginApi();
-    console.log(response);
     const redirectUrl = response.data.url;
     window.location.href = redirectUrl;
   };

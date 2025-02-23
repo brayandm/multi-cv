@@ -59,16 +59,6 @@ class AuthController extends Controller
         return $validator;
     }
 
-    public function validateUserDataWithToken($request)
-    {
-        $validator = Validator::make($request->all(), [
-            'user_id' => 'required|integer',
-            'auth_token' => 'required|string|max:255',
-        ]);
-
-        return $validator;
-    }
-
     public function register(Request $request)
     {
         $validator = $this->validateCorrectRegisterUser($request);
