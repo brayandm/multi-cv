@@ -59,7 +59,7 @@ class GoogleAuthController extends Controller
 
         $token = $this->userService->createUserToken($user);
 
-        if($extension) {
+        if ($extension) {
             return redirect(config('app.frontend_url').'/redirect-back')
                 ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration'), '/', null, true, true, false, 'None');
         }
