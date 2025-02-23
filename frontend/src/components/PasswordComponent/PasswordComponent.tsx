@@ -2,21 +2,27 @@
 
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
-import { useRouter } from "next/navigation";
 import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
+import useSWR from "swr";
+import { userApiLink } from "@/lib/links";
+import { fetcherApi } from "@/lib/backendService";
+import { UserResponse } from "@/lib/types";
 
 export default function PasswordComponent() {
-  const router = useRouter();
-
   const [formData, setFormData] = useState({
     currentPassword: "",
     password: "",
     repeatPassword: "",
   });
 
-  const { isLoading } = useIsNotAuthenticated();
+  const { authenticated, isLoading } = useIsNotAuthenticated();
 
-  if (isLoading) {
+  const { data: userData, isLoading: isUserDataLoading } = useSWR<UserResponse>(
+    authenticated ? userApiLink : null,
+    fetcherApi
+  );
+
+  if (isLoading || isUserDataLoading) {
     return null;
   }
 
@@ -56,14 +62,16 @@ export default function PasswordComponent() {
       <h1 className="text-center">Change Password</h1>
       <p>Enter your new password</p>
       <div className="flex flex-col gap-3">
-        <Input
-          label="Current Password"
-          placeholder="Enter your password"
-          type="password"
-          name="currentPassword"
-          value={formData.currentPassword}
-          onChange={handleChange}
-        />
+        {!userData?.is_password_null && (
+          <Input
+            label="Current Password"
+            placeholder="Enter your password"
+            type="password"
+            name="currentPassword"
+            value={formData.currentPassword}
+            onChange={handleChange}
+          />
+        )}
         <Input
           label="Password"
           placeholder="Enter your password"
