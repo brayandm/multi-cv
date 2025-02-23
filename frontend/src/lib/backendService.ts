@@ -85,8 +85,12 @@ export const userApi = async (): Promise<AxiosResponse<UserResponse>> => {
   return await api.get(userApiLink);
 };
 
-export const googleLoginApi = async (): Promise<AxiosResponse> => {
-  return await api.get(googleLoginApiLink);
+export const googleLoginApi = async (
+  isExtension: boolean = false
+): Promise<AxiosResponse> => {
+  return await api.get(
+    googleLoginApiLink + (isExtension ? "?extension=true" : "")
+  );
 };
 
 export const verifyApi = async (): Promise<AxiosResponse<VerifyResponse>> => {

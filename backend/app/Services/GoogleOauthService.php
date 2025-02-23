@@ -33,11 +33,11 @@ class GoogleOauthService
      *
      * @return string The Google OAuth authorization URL.
      */
-    public function getAuthUrl(): string
+    public function getAuthUrl(?string $extension): string
     {
         return "{$this->authUrl}?".http_build_query([
             'client_id' => $this->clientId,
-            'redirect_uri' => $this->redirectUri,
+            'redirect_uri' => $this->redirectUri . ($extension ? "?extension={$extension}" : ''),
             'response_type' => 'code', // Google will return an authorization code
             'scope' => 'email profile', // Request access to user's email and profile
             'access_type' => 'offline', // Allows getting a refresh token
@@ -50,13 +50,13 @@ class GoogleOauthService
      * @param  string  $code The authorization code received from Google.
      * @return array|null The access token data or null on failure.
      */
-    public function getAccessToken(string $code): ?array
+    public function getAccessToken(?string $extension, string $code): ?array
     {
         $response = Http::asForm()->post($this->tokenUrl, [
             'code' => $code,
             'client_id' => $this->clientId,
             'client_secret' => $this->clientSecret,
-            'redirect_uri' => $this->redirectUri,
+            'redirect_uri' => $this->redirectUri. ($extension ? "?extension={$extension}" : ''),
             'grant_type' => 'authorization_code',
         ]);
 
