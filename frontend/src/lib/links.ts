@@ -4,4 +4,5 @@ export const registerApiLink = `/register`;
 export const verifyApiLink = `/verify`;
 export const userApiLink = `/user`;
 export const googleLoginApiLink = `oauth/google/login`;
+export const updatePasswordApiLink = `/user/update/password`;
 export const acceptTermsVersionApiLink = `/user/accept-terms-version`;

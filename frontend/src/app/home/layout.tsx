@@ -1,7 +1,14 @@
+import TopBarNavigationComponent from "@/components/TopBarNavigationComponent";
+
 export default function HomeLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <TopBarNavigationComponent passwordLink logoutLink />
+      {children}
+    </>
+  );
 }
