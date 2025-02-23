@@ -4,9 +4,10 @@ import { useState } from "react";
 import { Button, Divider, Input, Checkbox } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
-import { googleLoginApi, loginApi, registerApi } from "@/lib/backendService";
+import { loginApi, registerApi } from "@/lib/backendService";
 import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import Link from "next/link";
+import { handleGoogleSignIn } from "@/lib/oauth";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -58,19 +59,6 @@ export default function RegisterComponent() {
       }
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    const isIframe = window.self !== window.top;
-
-    if (isIframe) {
-      window.top!.location.href =
-        process.env.NEXT_PUBLIC_FRONTEND_URL + "/auth/google";
-    } else {
-      const response = await googleLoginApi();
-      const redirectUrl = response.data.url;
-      window.location.href = redirectUrl;
     }
   };
 

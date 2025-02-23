@@ -1,7 +1,8 @@
 "use client";
 
 import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
-import { googleLoginApi, loginApi } from "@/lib/backendService";
+import { loginApi } from "@/lib/backendService";
+import { handleGoogleSignIn } from "@/lib/oauth";
 
 import { Button, Divider, Input } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
@@ -42,19 +43,6 @@ export default function LoginComponent() {
       }
     } catch (error) {
       console.log(error);
-    }
-  };
-
-  const handleGoogleSignIn = async () => {
-    const isIframe = window.self !== window.top;
-
-    if (isIframe) {
-      window.top!.location.href =
-        process.env.NEXT_PUBLIC_FRONTEND_URL + "/auth/google";
-    } else {
-      const response = await googleLoginApi();
-      const redirectUrl = response.data.url;
-      window.location.href = redirectUrl;
     }
   };
 
