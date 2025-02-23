@@ -106,22 +106,29 @@ export default function RegisterComponent() {
           value={formData.repeatPassword}
           onChange={handleChange}
         />
-        <Checkbox
-          name="underAge"
-          checked={formData.underAge}
-          onChange={handleCheckboxChange}
-          size="sm"
-        >
-          <p className="text-xs">I confirm that I am over 18 years old</p>
-        </Checkbox>
+        <div className="flex items-start gap-1">
+          <Checkbox
+            name="underAge"
+            checked={formData.underAge}
+            onChange={handleCheckboxChange}
+            size="sm"
+          />
+          <span
+            className="text-xs text-gray-600
+          "
+          >
+            I confirm that I am over 18 years old
+          </span>
+        </div>
 
-        <Checkbox
-          name="acceptTerms"
-          checked={formData.acceptTerms}
-          onChange={handleCheckboxChange}
-          size="sm"
-        >
-          <p className="text-xs">
+        <div className="flex items-start gap-1">
+          <Checkbox
+            name="acceptTerms"
+            checked={formData.acceptTerms}
+            onChange={handleCheckboxChange}
+            size="sm"
+          />
+          <span className="text-xs text-gray-600">
             I accept the{" "}
             <Link
               href="/terms-and-conditions"
@@ -138,8 +145,8 @@ export default function RegisterComponent() {
             >
               Privacy Policy
             </Link>
-          </p>
-        </Checkbox>
+          </span>
+        </div>
         <Button
           color="primary"
           type="submit"
