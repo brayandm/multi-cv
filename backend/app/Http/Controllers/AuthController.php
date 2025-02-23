@@ -165,7 +165,7 @@ class AuthController extends Controller
 
         $user->is_valid_terms_version = $user->accepted_terms_at ?
         Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
-        false;
+        null;
 
         return $user;
     }
