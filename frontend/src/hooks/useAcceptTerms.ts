@@ -11,7 +11,10 @@ export const useAcceptTerms = () => {
     userApi()
       .then((res) => {
         setAcceptTerms(res.data.is_valid_terms_version);
-        if (res.data.is_valid_terms_version === false) {
+        if (
+          res.data.is_valid_terms_version === false ||
+          res.data.is_valid_terms_version === null
+        ) {
           setIsLoading(false);
         }
       })

@@ -21,7 +21,7 @@ export const useNotAcceptTerms = () => {
   }, []);
 
   useEffect(() => {
-    if (acceptTerms === false) {
+    if (acceptTerms === false || acceptTerms === null) {
       router.push("/accept-terms");
     }
   }, [router, acceptTerms]);

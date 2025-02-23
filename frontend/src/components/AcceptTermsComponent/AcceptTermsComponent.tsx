@@ -19,7 +19,7 @@ export default function AcceptTermsComponent() {
 
   const { isLoading } = useIsNotAuthenticated();
 
-  const { isLoading: acceptTermsLoading } = useAcceptTerms();
+  const { acceptTerms, isLoading: acceptTermsLoading } = useAcceptTerms();
 
   if (isLoading || acceptTermsLoading) {
     return null;
@@ -52,7 +52,16 @@ export default function AcceptTermsComponent() {
       onSubmit={handleSubmit}
     >
       <h1 className="text-center">Privacy Policy and Terms & Conditions</h1>
-      <p> Please read and accept</p>
+      {acceptTerms == null ? (
+        <p> Please read and accept.</p>
+      ) : (
+        <>
+          <p>
+            We have updated our privacy policy and terms & conditions. Please
+            read and accept to continue.
+          </p>
+        </>
+      )}
       <div className="flex flex-col gap-3 mt-7">
         <div className="flex items-start gap-1">
           <Checkbox
