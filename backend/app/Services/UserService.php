@@ -15,7 +15,7 @@ class UserService
             'name' => $data->name,
             'email' => $data->email,
             'password' => Hash::make($data->password),
-            'accepted_terms_version' => Carbon::now(),
+            'accepted_terms_at' => Carbon::now(),
         ]);
 
         return $user;

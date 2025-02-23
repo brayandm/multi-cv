@@ -163,8 +163,8 @@ class AuthController extends Controller
 
         $current_terms_version = config('app.privacy_policy_and_terms_of_service_version');
 
-        $user->is_valid_terms_version = $user->accepted_terms_version ?
-        Carbon::parse($user->accepted_terms_version)->gte(Carbon::parse($current_terms_version)) :
+        $user->is_valid_terms_version = $user->accepted_terms_at ?
+        Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
         false;
 
         return $user;
@@ -211,7 +211,7 @@ class AuthController extends Controller
         $user = $this->userService->findUserByEmail(auth()->user()->email);
 
         $user->update([
-            'accepted_terms_version' => Carbon::now(),
+            'accepted_terms_at' => Carbon::now(),
         ]);
 
         return response()->json(['message' => 'Accepted Privacy Policy and Terms of Service successfully']);
