@@ -3,7 +3,9 @@ import { useRouter } from "next/navigation";
 import { userApi } from "@/lib/backendService";
 
 export const useAcceptTerms = () => {
-  const [acceptTerms, setAcceptTerms] = useState<boolean | null>(null);
+  const [acceptTerms, setAcceptTerms] = useState<boolean | null | undefined>(
+    null
+  );
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
 
