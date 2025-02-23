@@ -48,6 +48,7 @@ class GoogleAuthController extends Controller
             [
                 'name' => $userInfo['name'],
                 'email_verified_at' => now(),
+                'privacy_policy_accept' => false,
             ]
         );
 
