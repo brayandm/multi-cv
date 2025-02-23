@@ -162,7 +162,9 @@ class AuthController extends Controller
 
         $current_terms_version = config('app.privacy_policy_and_terms_of_service_version');
 
-        $user->is_valid_terms_version = Carbon::parse($user->accepted_terms_version)->gte(Carbon::parse($current_terms_version));
+        $user->is_valid_terms_version = $user->accepted_terms_version ?
+        Carbon::parse($user->accepted_terms_version)->gte(Carbon::parse($current_terms_version)) :
+        false;
 
         return $user;
     }
