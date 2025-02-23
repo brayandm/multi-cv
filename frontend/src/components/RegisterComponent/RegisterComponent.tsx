@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Divider, Input } from "@heroui/react";
+import { Button, Divider, Input, Checkbox } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import axios from "axios";
@@ -16,6 +16,8 @@ export default function RegisterComponent() {
     email: "",
     password: "",
     repeatPassword: "",
+    acceptTerms: false,
+    underAge: false,
   });
 
   const { isLoading } = useIsAuthenticated();
@@ -28,6 +30,13 @@ export default function RegisterComponent() {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.checked,
     });
   };
 
@@ -54,9 +63,11 @@ export default function RegisterComponent() {
     }
   };
 
+  console.log(formData);
+
   return (
     <form
-      className="flex flex-col gap-2 mt-8 text-center w-[250px] mx-auto"
+      className="flex flex-col gap-2 mt-8 text-center w-[300px] mx-auto"
       onSubmit={handleSubmit}
     >
       <h1 className="text-center">Register</h1>
@@ -94,7 +105,51 @@ export default function RegisterComponent() {
           value={formData.repeatPassword}
           onChange={handleChange}
         />
-        <Button color="primary" type="submit">
+        <Checkbox
+          name="underAge"
+          checked={formData.underAge}
+          onChange={handleCheckboxChange}
+        >
+          <p className="text-xs">I confirm that I am over 18 years old</p>
+        </Checkbox>
+
+        <Checkbox
+          name="acceptTerms"
+          checked={formData.acceptTerms}
+          onChange={handleCheckboxChange}
+        >
+          <p className="text-xs">
+            I accept the{" "}
+            <a
+              href="/terms-and-conditions"
+              target="_blank"
+              className="text-primary underline"
+            >
+              Terms & Conditions
+            </a>{" "}
+            and{" "}
+            <a
+              href="/privacy-policy"
+              target="_blank"
+              className="text-primary underline"
+            >
+              Privacy Policy
+            </a>
+          </p>
+        </Checkbox>
+        <Button
+          color="primary"
+          type="submit"
+          isDisabled={
+            !formData.acceptTerms ||
+            !formData.underAge ||
+            !formData.name ||
+            !formData.email ||
+            !formData.password ||
+            !formData.repeatPassword ||
+            formData.password !== formData.repeatPassword
+          }
+        >
           Register
         </Button>
       </div>
