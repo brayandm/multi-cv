@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { loginApi, registerApi } from "@/lib/backendService";
 import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
+import Link from "next/link";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -109,6 +110,7 @@ export default function RegisterComponent() {
           name="underAge"
           checked={formData.underAge}
           onChange={handleCheckboxChange}
+          size="sm"
         >
           <p className="text-xs">I confirm that I am over 18 years old</p>
         </Checkbox>
@@ -117,24 +119,25 @@ export default function RegisterComponent() {
           name="acceptTerms"
           checked={formData.acceptTerms}
           onChange={handleCheckboxChange}
+          size="sm"
         >
           <p className="text-xs">
             I accept the{" "}
-            <a
+            <Link
               href="/terms-and-conditions"
               target="_blank"
               className="text-primary underline"
             >
               Terms & Conditions
-            </a>{" "}
+            </Link>{" "}
             and{" "}
-            <a
+            <Link
               href="/privacy-policy"
               target="_blank"
               className="text-primary underline"
             >
               Privacy Policy
-            </a>
+            </Link>
           </p>
         </Checkbox>
         <Button
