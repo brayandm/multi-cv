@@ -131,7 +131,7 @@ export default function RegisterComponent() {
           <span className="text-xs text-gray-600">
             I accept the{" "}
             <Link
-              href="/terms-and-conditions"
+              href="/terms-and-conditions.html"
               target="_blank"
               className="text-primary underline"
             >
@@ -139,7 +139,7 @@ export default function RegisterComponent() {
             </Link>{" "}
             and{" "}
             <Link
-              href="/privacy-policy"
+              href="/privacy-policy.html"
               target="_blank"
               className="text-primary underline"
             >
