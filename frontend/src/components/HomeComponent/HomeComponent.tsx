@@ -6,6 +6,7 @@ import { fetcherApi } from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
 
 import useSWR from "swr";
+import TopBarNavigationComponent from "../TopBarNavigationComponent";
 
 export default function HomeComponent() {
   const { authenticated, isLoading } = useIsNotAuthenticated();
@@ -22,9 +23,12 @@ export default function HomeComponent() {
   }
 
   return (
-    <div className="flex flex-col w-[250px] mx-auto">
-      <h1 className="text-center">Home</h1>
-      <p className="text-center">Welcome {userData?.name}</p>
-    </div>
+    <>
+      <TopBarNavigationComponent passwordLink logoutLink />{" "}
+      <div className="flex flex-col w-[250px] mx-auto">
+        <h1 className="text-center">Home</h1>
+        <p className="text-center">Welcome {userData?.name}</p>
+      </div>
+    </>
   );
 }
