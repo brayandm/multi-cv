@@ -19,7 +19,9 @@ export interface UserResponse {
   name: string;
   email: string;
   email_verified: boolean;
-  is_password_null: boolean;
+  accepted_terms_version: string;
   created_at: string;
   updated_at: string;
+  is_password_null: boolean;
+  is_valid_terms_version: boolean;
 }

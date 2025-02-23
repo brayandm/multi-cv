@@ -1,6 +1,7 @@
 "use client";
 
 import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
+import { useNotAcceptTerms } from "@/hooks/useNotAcceptTerms";
 import { fetcherApi, logoutApi } from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
 
@@ -13,12 +14,14 @@ export default function HomeComponent() {
 
   const { authenticated, isLoading } = useIsNotAuthenticated();
 
+  const { isLoading: isAcceptTermsLoading } = useNotAcceptTerms();
+
   const { data: userData, isLoading: isUserDataLoading } = useSWR(
     authenticated ? userApiLink : null,
     fetcherApi
   );
 
-  if (isLoading || isUserDataLoading) {
+  if (isLoading || isUserDataLoading || isAcceptTermsLoading) {
     return null;
   }
 
