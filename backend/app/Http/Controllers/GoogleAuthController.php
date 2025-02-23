@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class GoogleAuthController extends Controller
 {
     private GoogleOauthService $googleService;
+
     private UserService $userService;
 
     public function __construct(GoogleOauthService $googleService, UserService $userService)
@@ -56,7 +57,7 @@ class GoogleAuthController extends Controller
 
         $token = $this->userService->createUserToken($user);
 
-        return redirect(config('app.frontend_url') . '/home')
+        return redirect(config('app.frontend_url').'/home')
             ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration'), '/', null, true, true, false, 'None');
     }
 }
