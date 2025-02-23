@@ -5,6 +5,7 @@ import {
   loginApiLink,
   logoutApiLink,
   registerApiLink,
+  updatePasswordApiLink,
   userApiLink,
   verifyApiLink,
 } from "./links";
@@ -95,4 +96,22 @@ export const googleLoginApi = async (
 
 export const verifyApi = async (): Promise<AxiosResponse<VerifyResponse>> => {
   return await api.get(verifyApiLink);
+};
+
+export const updatePasswordApi = async (formData: {
+  currentPassword: string;
+  password: string;
+}): Promise<AxiosResponse<RegisterResponse>> => {
+  return await api.put(
+    updatePasswordApiLink,
+    {
+      old_password: formData.currentPassword,
+      password: formData.password,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 };

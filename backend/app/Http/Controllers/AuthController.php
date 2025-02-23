@@ -53,6 +53,7 @@ class AuthController extends Controller
     public function validatePassword($request)
     {
         $validator = Validator::make($request->all(), [
+            'old_password' => 'nullable|string|min:8|max:255',
             'password' => 'required|string|min:8|max:255',
         ]);
 

@@ -5,7 +5,7 @@ import { Button, Input } from "@heroui/react";
 import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
 import useSWR from "swr";
 import { userApiLink } from "@/lib/links";
-import { fetcherApi } from "@/lib/backendService";
+import { fetcherApi, updatePasswordApi } from "@/lib/backendService";
 import { UserResponse } from "@/lib/types";
 
 export default function PasswordComponent() {
@@ -36,22 +36,17 @@ export default function PasswordComponent() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // try {
-    //   const registerResponse = await registerApi(formData);
+    try {
+      const updatePasswordResponse = await updatePasswordApi({
+        currentPassword: formData.currentPassword,
+        password: formData.password,
+      });
 
-    //   if (registerResponse.status === 200) {
-    //     const loginResponse = await loginApi({
-    //       email: formData.email,
-    //       password: formData.password,
-    //     });
-
-    //     if (loginResponse.status === 200) {
-    //       router.push("/home");
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      if (updatePasswordResponse.status === 200) {
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -92,6 +87,7 @@ export default function PasswordComponent() {
           color="primary"
           type="submit"
           isDisabled={
+            (!userData?.is_password_null && !formData.currentPassword) ||
             !formData.password ||
             !formData.repeatPassword ||
             formData.password !== formData.repeatPassword
