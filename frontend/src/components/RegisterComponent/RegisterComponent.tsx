@@ -64,7 +64,7 @@ export default function RegisterComponent() {
 
   return (
     <form
-      className="flex flex-col gap-2 mt-8 text-center w-[250px] mx-auto"
+      className="flex flex-col gap-2 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
       <h1 className="text-center">Register</h1>
