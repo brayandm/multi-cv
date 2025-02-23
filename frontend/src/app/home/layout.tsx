@@ -7,7 +7,7 @@ export default function HomeLayout({
 }) {
   return (
     <>
-      <TopBarNavigationComponent passwordLink />
+      <TopBarNavigationComponent passwordLink logoutLink />
       {children}
     </>
   );

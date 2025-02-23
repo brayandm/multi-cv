@@ -18,4 +18,5 @@ export const TopBarNavigationContainer = styled.div`
   justify-content: right;
   width: 250px;
   align-items: center;
+  gap: 10px;
 `;

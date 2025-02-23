@@ -7,7 +7,7 @@ export default function RegisterLayout({
 }) {
   return (
     <>
-      <TopBarNavigationComponent homeLink />
+      <TopBarNavigationComponent homeLink logoutLink />
       {children}
     </>
   );
