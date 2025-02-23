@@ -3,9 +3,11 @@
 import { styled } from "styled-components";
 export const TopBarNavigation = styled.div`
   position: fixed;
+  display: flex;
+  justify-content: right;
+  align-items: center;
   top: 0;
   height: 20px;
-  background-color: red;
   width: 100%;
   padding: 20px;
 `;

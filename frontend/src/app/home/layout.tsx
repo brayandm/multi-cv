@@ -1,4 +1,4 @@
-import { TopBarNavigation } from "../main.styles";
+import TopBarNavigationComponent from "@/components/TopBarNavigationComponent";
 
 export default function HomeLayout({
   children,
@@ -7,7 +7,7 @@ export default function HomeLayout({
 }) {
   return (
     <>
-      <TopBarNavigation></TopBarNavigation>
+      <TopBarNavigationComponent passwordLink />
       {children}
     </>
   );

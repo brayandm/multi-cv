@@ -1,7 +1,14 @@
+import TopBarNavigationComponent from "@/components/TopBarNavigationComponent";
+
 export default function RegisterLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <TopBarNavigationComponent homeLink />
+      {children}
+    </>
+  );
 }
