@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
-            $table->boolean('privacy_policy_accept')->default(false);
+            $table->date('accepted_terms_version')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

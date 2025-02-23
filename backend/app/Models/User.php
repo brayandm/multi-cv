@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'privacy_policy_accept',
+        'accepted_terms_version',
         'email_verified_at',
     ];
 
