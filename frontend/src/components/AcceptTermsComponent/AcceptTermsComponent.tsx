@@ -1,5 +1,6 @@
 "use client";
 
+import { useAcceptTerms } from "@/hooks/useAcceptTerms";
 import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
 import { acceptTermsVersionApi } from "@/lib/backendService";
 
@@ -18,7 +19,9 @@ export default function AcceptTermsComponent() {
 
   const { isLoading } = useIsNotAuthenticated();
 
-  if (isLoading) {
+  const { isLoading: acceptTermsLoading } = useAcceptTerms();
+
+  if (isLoading || acceptTermsLoading) {
     return null;
   }
 
