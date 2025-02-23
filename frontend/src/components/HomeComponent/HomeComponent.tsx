@@ -1,17 +1,27 @@
 "use client";
 
 import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
-import { logoutApi } from "@/lib/backendService";
+import { useNotAcceptTerms } from "@/hooks/useNotAcceptTerms";
+import { fetcherApi, logoutApi } from "@/lib/backendService";
+import { userApiLink } from "@/lib/links";
 
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
 
 export default function HomeComponent() {
   const router = useRouter();
 
-  const { isLoading } = useIsNotAuthenticated();
+  const { authenticated, isLoading } = useIsNotAuthenticated();
 
-  if (isLoading) {
+  const { isLoading: isAcceptTermsLoading } = useNotAcceptTerms();
+
+  const { data: userData, isLoading: isUserDataLoading } = useSWR(
+    authenticated ? userApiLink : null,
+    fetcherApi
+  );
+
+  if (isLoading || isUserDataLoading || isAcceptTermsLoading) {
     return null;
   }
 
@@ -31,7 +41,7 @@ export default function HomeComponent() {
   return (
     <div className="flex flex-col w-[250px] mt-8 mx-auto">
       <h1 className="text-center">Home</h1>
-      <p className="text-center">Welcome to the Crypta</p>
+      <p className="text-center">Welcome {userData?.name}</p>
       <form
         className="flex flex-col gap-2 text-center mt-8 w-[250px] mx-auto"
         onSubmit={handleSubmit}

@@ -59,6 +59,8 @@ return [
 
     'frontend_url' => env('FRONTEND_URL', 'http://localhost'),
 
+    'privacy_policy_and_terms_of_service_version' => env('PRIVACY_POLICY_AND_TERMS_OF_SERVICE_VERSION', '01-01-1999'),
+
     'asset_url' => env('ASSET_URL'),
 
     /*

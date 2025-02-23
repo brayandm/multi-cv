@@ -1,12 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import {
+  acceptTermsVersionApiLink,
   googleLoginApiLink,
   loginApiLink,
   logoutApiLink,
   registerApiLink,
+  userApiLink,
   verifyApiLink,
 } from "./links";
 import {
+  UserResponse,
   LoginResponse,
   LogoutResponse,
   RegisterResponse,
@@ -64,8 +67,30 @@ export const registerApi = async (formData: {
   );
 };
 
-export const googleLoginApi = async (): Promise<AxiosResponse> => {
-  return await api.get(googleLoginApiLink);
+export const acceptTermsVersionApi = async (): Promise<
+  AxiosResponse<RegisterResponse>
+> => {
+  return await api.put(
+    acceptTermsVersionApiLink,
+    {},
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};
+
+export const userApi = async (): Promise<AxiosResponse<UserResponse>> => {
+  return await api.get(userApiLink);
+};
+
+export const googleLoginApi = async (
+  isExtension: boolean = false
+): Promise<AxiosResponse> => {
+  return await api.get(
+    googleLoginApiLink + (isExtension ? "?extension=true" : "")
+  );
 };
 
 export const verifyApi = async (): Promise<AxiosResponse<VerifyResponse>> => {

@@ -15,7 +15,7 @@ class UserService
             'name' => $data->name,
             'email' => $data->email,
             'password' => Hash::make($data->password),
-            'privacy_policy_accept' => true,
+            'accepted_terms_version' => Carbon::now(),
         ]);
 
         return $user;

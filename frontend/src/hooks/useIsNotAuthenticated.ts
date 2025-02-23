@@ -26,5 +26,5 @@ export const useIsNotAuthenticated = () => {
     }
   }, [router, authenticated]);
 
-  return { isLoading };
+  return { authenticated, isLoading };
 };

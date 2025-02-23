@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 class GoogleAuthController extends Controller
 {
     private GoogleOauthService $googleService;
+
     private UserService $userService;
 
     public function __construct(GoogleOauthService $googleService, UserService $userService)
@@ -18,22 +19,25 @@ class GoogleAuthController extends Controller
         $this->userService = $userService;
     }
 
-    public function redirectToGoogle()
+    public function redirectToGoogle(Request $request)
     {
-        $authUrl = $this->googleService->getAuthUrl();
+        $extension = $request->query('extension');
+
+        $authUrl = $this->googleService->getAuthUrl($extension);
 
         return response()->json(['url' => $authUrl]);
     }
 
     public function handleGoogleCallback(Request $request)
     {
+        $extension = $request->query('extension');
         $code = $request->query('code');
 
         if (! $code) {
             return redirect('/')->with('error', 'Authorization code not received.');
         }
 
-        $tokenData = $this->googleService->getAccessToken($code);
+        $tokenData = $this->googleService->getAccessToken($extension, $code);
 
         if (! $tokenData) {
             return redirect('/')->with('error', 'Failed to get Google access token.');
@@ -50,13 +54,17 @@ class GoogleAuthController extends Controller
             [
                 'name' => $userInfo['name'],
                 'email_verified_at' => now(),
-                'privacy_policy_accept' => false,
             ]
         );
 
         $token = $this->userService->createUserToken($user);
 
-        return redirect(config('app.frontend_url') . '/home')
+        if ($extension) {
+            return redirect(config('app.frontend_url').'/redirect-back')
+                ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration'), '/', null, true, true, false, 'None');
+        }
+
+        return redirect(config('app.frontend_url').'/home')
             ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration'), '/', null, true, true, false, 'None');
     }
 }

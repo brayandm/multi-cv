@@ -23,7 +23,7 @@ class AuthController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|max:255',
         ]);
 
@@ -67,29 +67,11 @@ class AuthController extends Controller
             return response()->json(['errors' => $validator->errors()], 400);
         }
 
-        if (is_null($request->password) && is_null($request->auth_token)) {
-            return response()->json(['errors' => 'Password or token is required'], 400);
-        }
-
-        if (is_null($request->password) && ! is_null($request->auth_token)) {
-            $user = User::where('email', $request->email)->first();
-
-            if ($request->auth_token !== $user->auth_token) {
-                return response()->json(['errors' => 'Token is incorrect'], 400);
-            }
-
-            $user->update([
-                'privacy_policy_accept' => true,
-            ]);
-
-            return response()->json(['message' => 'User created successfully']);
-        }
-
         if (User::where('email', $request->email)->exists()) {
             return response()->json(['errors' => 'Email already exists'], 400);
         }
 
-        $user = $this->userService->createUser($request);
+        $this->userService->createUser($request);
 
         return response()->json(['message' => 'User created successfully']);
     }
@@ -178,6 +160,12 @@ class AuthController extends Controller
         $user = $request->user();
         $user->is_password_null = is_null($user->password);
 
+        $current_terms_version = config('app.privacy_policy_and_terms_of_service_version');
+
+        $user->is_valid_terms_version = $user->accepted_terms_version ?
+        Carbon::parse($user->accepted_terms_version)->gte(Carbon::parse($current_terms_version)) :
+        false;
+
         return $user;
     }
 
@@ -215,5 +203,16 @@ class AuthController extends Controller
         $this->userService->updatePassword($user, $request);
 
         return response()->json(['message' => 'Password updated successfully']);
+    }
+
+    public function updateAcceptedTermsVersion(Request $request)
+    {
+        $user = $this->userService->findUserByEmail(auth()->user()->email);
+
+        $user->update([
+            'accepted_terms_version' => Carbon::now(),
+        ]);
+
+        return response()->json(['message' => 'Accepted Privacy Policy and Terms of Service successfully']);
     }
 }
