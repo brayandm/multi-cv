@@ -26,5 +26,5 @@ export const useIsAuthenticated = () => {
     }
   }, [router, authenticated]);
 
-  return { isLoading };
+  return { authenticated, isLoading };
 };

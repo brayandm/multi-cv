@@ -4,9 +4,11 @@ import {
   loginApiLink,
   logoutApiLink,
   registerApiLink,
+  userApiLink,
   verifyApiLink,
 } from "./links";
 import {
+  UserResponse,
   LoginResponse,
   LogoutResponse,
   RegisterResponse,
@@ -62,6 +64,10 @@ export const registerApi = async (formData: {
       },
     }
   );
+};
+
+export const userApi = async (): Promise<AxiosResponse<UserResponse>> => {
+  return await api.get(userApiLink);
 };
 
 export const googleLoginApi = async (): Promise<AxiosResponse> => {
