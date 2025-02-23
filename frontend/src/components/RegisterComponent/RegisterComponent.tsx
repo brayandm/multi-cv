@@ -69,7 +69,7 @@ export default function RegisterComponent() {
 
   return (
     <form
-      className="flex flex-col gap-2 mt-8 text-center w-[300px] mx-auto"
+      className="flex flex-col gap-2 mt-8 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
       <h1 className="text-center">Register</h1>
@@ -115,7 +115,7 @@ export default function RegisterComponent() {
             size="sm"
           />
           <span
-            className="text-xs text-gray-600
+            className="text-[9px] text-gray-600
           "
           >
             I confirm that I am over 18 years old
@@ -129,7 +129,7 @@ export default function RegisterComponent() {
             onChange={handleCheckboxChange}
             size="sm"
           />
-          <span className="text-xs text-gray-600">
+          <span className="text-[9px] text-gray-600">
             I accept the{" "}
             <Link
               href="/terms-and-conditions.html"
