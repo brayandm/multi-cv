@@ -4,16 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Services\GoogleOauthService;
+use App\Services\UserService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class GoogleAuthController extends Controller
 {
     private GoogleOauthService $googleService;
+    private UserService $userService;
 
-    public function __construct(GoogleOauthService $googleService)
+    public function __construct(GoogleOauthService $googleService, UserService $userService)
     {
         $this->googleService = $googleService;
+        $this->userService = $userService;
     }
 
     public function redirectToGoogle()
@@ -52,8 +54,9 @@ class GoogleAuthController extends Controller
             ]
         );
 
-        return response()->json(['user_id' => $user->id,
-            'privacy_policy_accept' => $user->privacy_policy_accept,
-            'message' => 'Successfully logged in!']);
+        $token = $this->userService->createUserToken($user);
+
+        return redirect(config('app.frontend_url') . '/home')
+            ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration'), '/', null, true, true, false, 'None');
     }
 }

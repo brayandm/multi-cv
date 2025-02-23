@@ -14,9 +14,9 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - name: Copying .env to frontend project
-              run: echo "${{ vars.FRONTEND }}" > frontend/.env
+              run: echo "${{ vars.PROD_FRONTEND }}" > frontend/.env
             - name: Copying .env to backend project
-              run: echo "${{ vars.BACKEND }}" > backend/.env
+              run: echo "${{ vars.PROD_BACKEND }}" > backend/.env
             - name: Building the containers
               run: bash build.sh
             - name: Stopping the containers
