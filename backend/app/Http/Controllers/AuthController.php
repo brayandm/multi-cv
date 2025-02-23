@@ -160,6 +160,10 @@ class AuthController extends Controller
         $user = $request->user();
         $user->is_password_null = is_null($user->password);
 
+        $current_terms_version = config('app.privacy_policy_and_terms_of_service_version');
+
+        $user->is_valid_terms_version = Carbon::parse($user->accepted_terms_version)->gte(Carbon::parse($current_terms_version));
+
         return $user;
     }
 
