@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import {
+  acceptTermsVersionApiLink,
   googleLoginApiLink,
   loginApiLink,
   logoutApiLink,
@@ -58,6 +59,20 @@ export const registerApi = async (formData: {
       email: formData.email,
       password: formData.password,
     },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};
+
+export const acceptTermsVersionApi = async (): Promise<
+  AxiosResponse<RegisterResponse>
+> => {
+  return await api.put(
+    acceptTermsVersionApiLink,
+    {},
     {
       headers: {
         "Content-Type": "application/json",

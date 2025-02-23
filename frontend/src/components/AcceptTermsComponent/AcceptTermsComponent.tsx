@@ -1,6 +1,7 @@
 "use client";
 
 import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
+import { acceptTermsVersionApi } from "@/lib/backendService";
 
 import { Button, Checkbox } from "@heroui/react";
 import Link from "next/link";
@@ -31,24 +32,15 @@ export default function AcceptTermsComponent() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // try {
-    //   axios.defaults.withCredentials = true;
+    try {
+      const acceptTermsResponse = await acceptTermsVersionApi();
 
-    //   const registerResponse = await registerApi(formData);
-
-    //   if (registerResponse.status === 200) {
-    //     const loginResponse = await loginApi({
-    //       email: formData.email,
-    //       password: formData.password,
-    //     });
-
-    //     if (loginResponse.status === 200) {
-    //       router.push("/home");
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    // }
+      if (acceptTermsResponse.status === 200) {
+        router.push("/home");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Button, Divider, Input, Checkbox } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
-import axios from "axios";
 import { googleLoginApi, loginApi, registerApi } from "@/lib/backendService";
 import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import Link from "next/link";
@@ -45,8 +44,6 @@ export default function RegisterComponent() {
     e.preventDefault();
 
     try {
-      axios.defaults.withCredentials = true;
-
       const registerResponse = await registerApi(formData);
 
       if (registerResponse.status === 200) {
