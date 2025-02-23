@@ -60,7 +60,7 @@ export default function PasswordComponent() {
         {!userData?.is_password_null && (
           <Input
             label="Current Password"
-            placeholder="Enter your password"
+            placeholder="Enter your current password"
             type="password"
             name="currentPassword"
             value={formData.currentPassword}
