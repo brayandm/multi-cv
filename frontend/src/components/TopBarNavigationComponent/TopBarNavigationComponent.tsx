@@ -1,8 +1,10 @@
 "use client";
 
-import { TopBarNavigation } from "@/app/main.styles";
-import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import { useRouter } from "next/navigation";
+import {
+  TopBarNavigation,
+  TopBarNavigationContainer,
+} from "./TopBarNavigationComponent.styles";
 
 interface ITopBarNavigationProps {
   passwordLink?: boolean;
@@ -15,38 +17,34 @@ export default function TopBarNavigationComponent({
 }: ITopBarNavigationProps) {
   const router = useRouter();
 
-  const { isLoading } = useIsAuthenticated();
-
-  if (isLoading) {
-    return null;
-  }
-
   return (
     <TopBarNavigation>
-      {homeLink && (
-        <span className="text-xs text-gray-600">
-          <button
-            onClick={() => {
-              router.push("/home");
-            }}
-            className="text-primary underline"
-          >
-            Home
-          </button>
-        </span>
-      )}
-      {passwordLink && (
-        <span className="text-xs text-gray-600">
-          <button
-            onClick={() => {
-              router.push("/password");
-            }}
-            className="text-primary underline"
-          >
-            Change Password
-          </button>
-        </span>
-      )}
+      <TopBarNavigationContainer>
+        {homeLink && (
+          <span className="text-xs text-gray-600">
+            <button
+              onClick={() => {
+                router.push("/home");
+              }}
+              className="text-primary underline"
+            >
+              Home
+            </button>
+          </span>
+        )}
+        {passwordLink && (
+          <span className="text-xs text-gray-600">
+            <button
+              onClick={() => {
+                router.push("/password");
+              }}
+              className="text-primary underline"
+            >
+              Change Password
+            </button>
+          </span>
+        )}
+      </TopBarNavigationContainer>
     </TopBarNavigation>
   );
 }

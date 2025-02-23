@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
+import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
 
 export default function PasswordComponent() {
   const router = useRouter();
@@ -14,7 +14,7 @@ export default function PasswordComponent() {
     repeatPassword: "",
   });
 
-  const { isLoading } = useIsAuthenticated();
+  const { isLoading } = useIsNotAuthenticated();
 
   if (isLoading) {
     return null;
