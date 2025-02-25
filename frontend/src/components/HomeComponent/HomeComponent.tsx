@@ -1,7 +1,5 @@
 "use client";
 
-import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
-import { useNotAcceptTerms } from "@/hooks/useNotAcceptTerms";
 import { fetcherApi } from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
 
@@ -9,16 +7,12 @@ import useSWR from "swr";
 import TopBarNavigationComponent from "../TopBarNavigationComponent";
 
 export default function HomeComponent() {
-  const { authenticated, isLoading } = useIsNotAuthenticated();
-
-  const { isLoading: isAcceptTermsLoading } = useNotAcceptTerms();
-
   const { data: userData, isLoading: isUserDataLoading } = useSWR(
-    authenticated ? userApiLink : null,
+    userApiLink,
     fetcherApi
   );
 
-  if (isLoading || isUserDataLoading || isAcceptTermsLoading) {
+  if (isUserDataLoading) {
     return null;
   }
 

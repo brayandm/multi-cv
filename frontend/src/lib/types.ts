@@ -1,5 +1,6 @@
 export interface VerifyResponse {
   authenticated: boolean;
+  is_valid_terms_version?: boolean;
 }
 
 export interface LoginResponse {

@@ -19,7 +19,7 @@ import {
 
 const isServer = typeof window === "undefined";
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: isServer ? process.env.API_URL : process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
 });

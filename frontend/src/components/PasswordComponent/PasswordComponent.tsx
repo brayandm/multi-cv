@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Button, Input } from "@heroui/react";
-import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
 import useSWR from "swr";
 import { userApiLink } from "@/lib/links";
 import { fetcherApi, updatePasswordApi } from "@/lib/backendService";
@@ -16,14 +15,12 @@ export default function PasswordComponent() {
     repeatPassword: "",
   });
 
-  const { authenticated, isLoading } = useIsNotAuthenticated();
-
   const { data: userData, isLoading: isUserDataLoading } = useSWR<UserResponse>(
-    authenticated ? userApiLink : null,
+    userApiLink,
     fetcherApi
   );
 
-  if (isLoading || isUserDataLoading) {
+  if (isUserDataLoading) {
     return null;
   }
 
