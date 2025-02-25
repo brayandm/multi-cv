@@ -3,7 +3,7 @@ Disallow: /
 Disallow: /*?callbackUrl=
 
 Allow: /$
-Allow: /login/
-Allow: /register/
+Allow: /login
+Allow: /register
 
 Sitemap: https://multicv.space/sitemap.xml
