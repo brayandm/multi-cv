@@ -133,7 +133,15 @@ class AuthController extends Controller
             return response()->json(['authenticated' => false]);
         }
 
-        return response()->json(['authenticated' => true]);
+        $user = $this->userService->findUserById($token->tokenable_id);
+
+        $current_terms_version = config('app.privacy_policy_and_terms_of_service_version');
+
+        $is_valid_terms_version = $user->accepted_terms_at ?
+        Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
+        null;
+
+        return response()->json(['authenticated' => true, 'is_valid_terms_version' => $is_valid_terms_version]);
     }
 
     public function logout(Request $request)

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { api } from "@/lib/backendService";
 import { verifyApiLink } from "./lib/links";
+import { VerifyResponse } from "./lib/types";
 
 const authPages = ["/", "/login", "/register"];
 const protectedPages = ["/accept-terms", "/home", "/password"];
@@ -11,10 +12,11 @@ export async function middleware(req: NextRequest) {
   const isProtectedPage = protectedPages.some((route) =>
     url.pathname.startsWith(route)
   );
+  const isAcceptTermsPage = url.pathname === "/accept-terms";
 
   const authToken = req.cookies.get("auth_token");
 
-  const data = await api.get(verifyApiLink, {
+  const data = await api.get<VerifyResponse>(verifyApiLink, {
     headers: {
       Authorization: `Bearer ${authToken?.value}`,
     },
@@ -23,6 +25,9 @@ export async function middleware(req: NextRequest) {
   const isAuthenticated =
     data.status === 200 && data.data.authenticated === true;
 
+  const isValidTermsVersion =
+    data.status === 200 && data.data.is_valid_terms_version === true;
+
   if (isAuthenticated && isAuthPage) {
     url.pathname = "/home";
     return NextResponse.redirect(url);
@@ -30,6 +35,16 @@ export async function middleware(req: NextRequest) {
 
   if (!isAuthenticated && isProtectedPage) {
     url.pathname = "/";
+    return NextResponse.redirect(url);
+  }
+
+  if (
+    !isAcceptTermsPage &&
+    isAuthenticated &&
+    isProtectedPage &&
+    !isValidTermsVersion
+  ) {
+    url.pathname = "/accept-terms";
     return NextResponse.redirect(url);
   }
 
