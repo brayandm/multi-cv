@@ -48,6 +48,11 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  if (isAcceptTermsPage && isAuthenticated && isValidTermsVersion) {
+    url.pathname = "/home";
+    return NextResponse.redirect(url);
+  }
+
   return NextResponse.next();
 }
 export const config = {

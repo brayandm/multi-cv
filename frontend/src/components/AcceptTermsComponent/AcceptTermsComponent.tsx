@@ -1,6 +1,5 @@
 "use client";
 
-import { useAcceptTerms } from "@/hooks/useAcceptTerms";
 import { acceptTermsVersionApi } from "@/lib/backendService";
 
 import { Button, Checkbox } from "@heroui/react";
@@ -8,19 +7,19 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function AcceptTermsComponent() {
+interface IAcceptTermsComponentProps {
+  acceptTerms: boolean;
+}
+
+export default function AcceptTermsComponent({
+  acceptTerms,
+}: IAcceptTermsComponentProps) {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
     acceptTerms: false,
     underAge: false,
   });
-
-  const { acceptTerms, isLoading: acceptTermsLoading } = useAcceptTerms();
-
-  if (acceptTermsLoading) {
-    return null;
-  }
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
