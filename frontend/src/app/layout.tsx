@@ -17,6 +17,27 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "MultiCV",
   description: "Create and manage multiple CVs",
+  openGraph: {
+    type: "website",
+    url: "https://multicv.space",
+    title: "MultiCV",
+    siteName: "MultiCV",
+    description: "Create and manage multiple CVs",
+    images: [
+      {
+        url: "https://multicv.space/og-image.png",
+        width: 500,
+        height: 500,
+        alt: "MultiCV",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MultiCV",
+    description: "Create and manage multiple CVs",
+    images: ["https://multicv.space/og-image.png"],
+  },
 };
 
 export default function RootLayout({
