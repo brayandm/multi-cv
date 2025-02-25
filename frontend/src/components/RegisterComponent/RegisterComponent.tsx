@@ -8,6 +8,7 @@ import { loginApi, registerApi } from "@/lib/backendService";
 import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import Link from "next/link";
 import { handleGoogleSignIn } from "@/lib/oauth";
+import GoogleOauthBtn from "../shared/components/GoogleOauthBtn";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -169,11 +170,8 @@ export default function RegisterComponent() {
           Login
         </span>
       </p>
-      <div onClick={handleGoogleSignIn}>
-        <GoogleOAuthProvider clientId="">
-          <GoogleLogin onSuccess={() => {}} onError={() => {}} />
-        </GoogleOAuthProvider>
-      </div>
+
+      <GoogleOauthBtn onPress={handleGoogleSignIn}></GoogleOauthBtn>
     </form>
   );
 }

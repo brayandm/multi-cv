@@ -1,5 +1,6 @@
 "use client";
 
+import GoogleOauthBtn from "@/components/shared/components/GoogleOauthBtn";
 import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import { loginApi } from "@/lib/backendService";
 import { handleGoogleSignIn } from "@/lib/oauth";
@@ -84,10 +85,8 @@ export default function LoginComponent() {
           Register
         </span>
       </p>
-      <div onClick={handleGoogleSignIn}>
-        <GoogleOAuthProvider clientId="">
-          <GoogleLogin onSuccess={() => {}} onError={() => {}} />
-        </GoogleOAuthProvider>
+      <div>
+        <GoogleOauthBtn onPress={handleGoogleSignIn}></GoogleOauthBtn>
       </div>
     </form>
   );
