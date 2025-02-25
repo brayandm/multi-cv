@@ -16,7 +16,7 @@ export async function middleware(req: NextRequest) {
 
   const data = await api.get(verifyApiLink, {
     headers: {
-      Authorization: `Bearer ${authToken}`,
+      Authorization: `Bearer ${authToken?.value}`,
     },
   });
 
