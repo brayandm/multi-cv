@@ -1,6 +1,5 @@
 "use client";
 
-import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import { loginApi } from "@/lib/backendService";
 import { handleGoogleSignIn } from "@/lib/oauth";
 
@@ -16,12 +15,6 @@ export default function LoginComponent() {
     email: "",
     password: "",
   });
-
-  const { isLoading } = useIsAuthenticated();
-
-  if (isLoading) {
-    return null;
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

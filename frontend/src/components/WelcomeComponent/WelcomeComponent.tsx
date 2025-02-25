@@ -1,17 +1,10 @@
 "use client";
 
-import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 
 export default function WelcomeComponent() {
   const router = useRouter();
-
-  const { isLoading } = useIsAuthenticated();
-
-  if (isLoading) {
-    return null;
-  }
 
   return (
     <div className="flex flex-col mt-40 w-[280px] mx-auto">

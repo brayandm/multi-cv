@@ -5,7 +5,6 @@ import { Button, Divider, Input, Checkbox } from "@heroui/react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import { loginApi, registerApi } from "@/lib/backendService";
-import { useIsAuthenticated } from "@/hooks/useIsAuthenticated";
 import Link from "next/link";
 import { handleGoogleSignIn } from "@/lib/oauth";
 
@@ -20,12 +19,6 @@ export default function RegisterComponent() {
     acceptTerms: false,
     underAge: false,
   });
-
-  const { isLoading } = useIsAuthenticated();
-
-  if (isLoading) {
-    return null;
-  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

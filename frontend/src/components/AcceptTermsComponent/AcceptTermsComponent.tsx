@@ -1,7 +1,6 @@
 "use client";
 
 import { useAcceptTerms } from "@/hooks/useAcceptTerms";
-import { useIsNotAuthenticated } from "@/hooks/useIsNotAuthenticated";
 import { acceptTermsVersionApi } from "@/lib/backendService";
 
 import { Button, Checkbox } from "@heroui/react";
@@ -17,11 +16,9 @@ export default function AcceptTermsComponent() {
     underAge: false,
   });
 
-  const { isLoading } = useIsNotAuthenticated();
-
   const { acceptTerms, isLoading: acceptTermsLoading } = useAcceptTerms();
 
-  if (isLoading || acceptTermsLoading) {
+  if (acceptTermsLoading) {
     return null;
   }
 
