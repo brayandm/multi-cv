@@ -20,7 +20,9 @@ class ExampleTest extends TestCase
      */
     public function testTheApplicationReturnsASuccessfulResponse(): void
     {
-        $response = $this->get('/');
+        $response = $this->get('/api/v1/ping');
+
+        $response->assertSeeText('pong');
 
         $response->assertStatus(200);
     }

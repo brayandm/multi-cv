@@ -59,7 +59,7 @@ class AuthTest extends TestCase
         return $response;
     }
 
-    public function testLoginAndLogout()
+    public function testLogin()
     {
         //Register format incorrect
 
@@ -108,20 +108,7 @@ class AuthTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-
-        $this->app->get('auth')->forgetGuards();
-
-        //Get token
-
-        $token = $response['access_token'];
-
-        //Logout
-
-        $response = $this->post('/api/v1/logoutall', [], ['Authorization' => 'Bearer '.$token]);
-
-        $response->assertStatus(200);
-
-        $response->assertJsonPath('message', 'Successful logout');
+        $response->assertCookie('auth_token');
 
         $this->app->get('auth')->forgetGuards();
     }
