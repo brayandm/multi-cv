@@ -54,7 +54,9 @@ services:
         - '${FORWARD_PHPMYADMIN_PORT:-3406}:80'
 
     redis:
-        image: brayand/fullstack-project-template-redis:1.0.0
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-redis
         ports:
             - '${FORWARD_REDIS_PORT:-6379}:6379'
         volumes:
