@@ -9,6 +9,8 @@ services:
       - mysql
       - redis
     command: /docker-start.sh
+    expose:
+      - "9000"
     ports:
       - ${BACKEND_PORT:-49162}:80
 
@@ -44,7 +46,6 @@ services:
   nginx:
     image: multi-cv-nginx
     restart: always
-    tty: true
     depends_on:
       - backend
     ports:
