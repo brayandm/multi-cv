@@ -51,7 +51,6 @@ services:
       - "${NGINX_PORT:-49163}:80"
     volumes:
       - backend-app:/var/www
-      - ./nginx/:/etc/nginx/conf.d/
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://localhost:80/api/v1/ping || exit 1" ]
       interval: 5s
