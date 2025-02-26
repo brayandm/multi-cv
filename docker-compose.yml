@@ -25,6 +25,7 @@ services:
 
   redis:
     image: brayand/fullstack-project-template-redis:1.0.0
+    restart: always
     volumes:
         - 'backend-redis:/data'
     healthcheck:
