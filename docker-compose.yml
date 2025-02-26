@@ -37,7 +37,7 @@ services:
     ports:
       - ${APP_PORT:-49160}:3000
     depends_on:
-      backend:
+      nginx:
         condition: service_healthy
     command: npm run start
 
@@ -45,11 +45,19 @@ services:
     image: multi-cv-nginx
     restart: always
     tty: true
+    depends_on:
+      - backend
     ports:
       - "${NGINX_PORT:-49163}:80"
     volumes:
       - backend-app:/var/www
       - ./nginx/:/etc/nginx/conf.d/
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:80/api/v1/ping || exit 1" ]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+      start_period: 20s
 
   phpmyadmin:
     image: brayand/fullstack-project-template-phpmyadmin:1.0.0
