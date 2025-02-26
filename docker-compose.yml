@@ -1,5 +1,5 @@
 services:
-  laravel.test:
+  backend:
     image: multi-cv-backend
     restart: always
     volumes:
@@ -42,7 +42,7 @@ services:
     ports:
       - ${APP_PORT:-49160}:3000
     depends_on:
-      laravel.test:
+      backend:
         condition: service_healthy
     command: npm run start
 

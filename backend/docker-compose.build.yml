@@ -1,5 +1,5 @@
 services:
-  laravel.test:
+  backend:
     build:
       context: .
       dockerfile: docker/Dockerfile-php8

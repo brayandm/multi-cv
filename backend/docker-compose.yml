@@ -1,5 +1,5 @@
 services:
-    laravel.test:
+    backend:
         image: brayand/fullstack-project-template-sail:1.0.0
         restart: always
         ports:
