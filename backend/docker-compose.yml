@@ -52,10 +52,31 @@ services:
             PMA_HOST: mysql
         ports:
         - '${FORWARD_PHPMYADMIN_PORT:-3406}:80'
+
+    redis:
+        restart: always
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-redis
+        ports:
+            - '127.0.0.1:${FORWARD_REDIS_PORT:-6379}:6379'
+        volumes:
+            - 'sail-redis:/data'
+        networks:
+            - multi-cv-local
+        healthcheck:
+            test:
+                - CMD
+                - redis-cli
+                - ping
+            retries: 3
+            timeout: 5s
 networks:
     multi-cv-local:
         driver: bridge
         external: true
 volumes:
     sail-mysql:
+        driver: local
+    sail-redis:
         driver: local

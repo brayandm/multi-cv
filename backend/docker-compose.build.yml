@@ -14,3 +14,9 @@ services:
         DB_DATABASE: ${DB_DATABASE}
       dockerfile: docker/Dockerfile-mysql
     image: multi-cv-mysql
+
+  redis:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-redis
+    image: multi-cv-redis

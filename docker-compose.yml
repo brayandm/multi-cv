@@ -6,6 +6,7 @@ services:
       - backend-storage:/app/storage
     depends_on:
       - mysql
+      - redis
     command: /docker-start.sh
     ports:
       - ${BACKEND_PORT:-49162}:80
@@ -21,6 +22,19 @@ services:
     restart: always
     volumes:
       - 'backend-mysql:/var/lib/mysql'
+
+  redis:
+    image: brayand/fullstack-project-template-redis:1.0.0
+    restart: always
+    volumes:
+        - 'backend-redis:/data'
+    healthcheck:
+        test:
+            - CMD
+            - redis-cli
+            - ping
+        retries: 20
+        timeout: 20s
 
   frontend:
     image: multi-cv-frontend
@@ -44,4 +58,5 @@ services:
 
 volumes:
   backend-mysql:
+  backend-redis:
   backend-storage:
