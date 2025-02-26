@@ -45,5 +45,4 @@ supervisorctl update
 supervisorctl start laravel-worker:*
 
 echo '#### Starting server'
-php artisan serve --host=0.0.0.0 --port=80
-
+php-fpm8.1

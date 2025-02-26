@@ -20,3 +20,9 @@ services:
       context: .
       dockerfile: docker/Dockerfile-redis
     image: multi-cv-redis
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-nginx
+    image: multi-cv-nginx

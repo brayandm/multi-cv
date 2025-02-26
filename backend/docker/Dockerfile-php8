@@ -1,16 +1,18 @@
 FROM brayand/fullstack-project-template-composer:1.0.0 AS composer
 
-COPY . /app
+COPY . /var/www
 
-WORKDIR /app
+WORKDIR /var/www
 
 RUN composer install
 
 FROM brayand/fullstack-project-template-backend:1.0.0
 
-COPY --from=composer /app /app
+COPY --from=composer /var/www /var/www
 
 COPY docker/php8/docker-start.sh /docker-start.sh
+
+COPY docker/php8/php.ini /usr/local/etc/php/conf.d/local.ini
 
 RUN chmod +x /docker-start.sh
 
@@ -18,4 +20,4 @@ RUN mkdir -p /etc/supervisor/conf.d/
 
 COPY docker/php8/laravel-worker.conf /etc/supervisor/conf.d/laravel-worker.conf
 
-WORKDIR /app
+WORKDIR /var/www

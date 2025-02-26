@@ -4,6 +4,7 @@ services:
     restart: always
     volumes:
       - backend-storage:/app/storage
+      - backend-app:/app
     depends_on:
       - mysql
       - redis
@@ -24,7 +25,7 @@ services:
       - 'backend-mysql:/var/lib/mysql'
 
   redis:
-    image: brayand/fullstack-project-template-redis:1.0.0
+    image: multi-cv-redis
     restart: always
     volumes:
         - 'backend-redis:/data'
@@ -46,6 +47,16 @@ services:
         condition: service_healthy
     command: npm run start
 
+  nginx:
+    image: multi-cv-nginx
+    restart: always
+    tty: true
+    ports:
+      - "${NGINX_PORT:-49163}:80"
+    volumes:
+      - backend-app:/var/www
+      - ./nginx/:/etc/nginx/conf.d/
+
   phpmyadmin:
     image: brayand/fullstack-project-template-phpmyadmin:1.0.0
     restart: always
@@ -60,3 +71,4 @@ volumes:
   backend-mysql:
   backend-redis:
   backend-storage:
+  backend-app:
