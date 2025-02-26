@@ -46,4 +46,4 @@ supervisorctl start laravel-worker:*
 
 echo '#### Starting server'
 mkdir -p /run/php
-php-fpm8.1
+php-fpm8.1 -F
