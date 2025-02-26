@@ -26,3 +26,12 @@ export interface UserResponse {
   is_password_null: boolean;
   is_valid_terms_version: boolean;
 }
+
+/* -- Cv --  */
+export interface CV {
+  id: number;
+  company: string;
+  role: string;
+  pdf_file: string;
+  time_to_expire: number;
+}
