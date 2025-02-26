@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Button, Divider, Input, Checkbox } from "@heroui/react";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import { loginApi, registerApi } from "@/lib/backendService";
 import Link from "next/link";
@@ -164,7 +163,13 @@ export default function RegisterComponent() {
         </span>
       </p>
 
-      <GoogleOauthBtn onPress={handleGoogleSignIn}></GoogleOauthBtn>
+      <GoogleOauthBtn
+        onPress={() => {
+          setTimeout(() => {
+            handleGoogleSignIn();
+          }, 500);
+        }}
+      ></GoogleOauthBtn>
     </form>
   );
 }

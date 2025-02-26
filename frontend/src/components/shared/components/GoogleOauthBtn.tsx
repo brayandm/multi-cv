@@ -1,7 +1,15 @@
 import { Button, ButtonProps } from "@heroui/react";
+import Image from "next/image";
 
-export const GoogleIcon = ({ ...props }) => {
-  return <img width={20} height={20} src="icons/companies/google.svg"></img>;
+export const GoogleIcon = ({}) => {
+  return (
+    <Image
+      alt="Google Logo"
+      width={20}
+      height={20}
+      src="icons/companies/google.svg"
+    ></Image>
+  );
 };
 
 export default function GoogleOauthBtn({ ...props }: ButtonProps) {
@@ -14,7 +22,7 @@ export default function GoogleOauthBtn({ ...props }: ButtonProps) {
         variant="bordered"
         {...props}
       >
-        Enter with Google
+        Sign in with Google
       </Button>
     </div>
   );

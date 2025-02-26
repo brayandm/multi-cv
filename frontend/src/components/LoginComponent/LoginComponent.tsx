@@ -5,7 +5,6 @@ import { loginApi } from "@/lib/backendService";
 import { handleGoogleSignIn } from "@/lib/oauth";
 
 import { Button, Divider, Input } from "@heroui/react";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -79,7 +78,13 @@ export default function LoginComponent() {
         </span>
       </p>
       <div>
-        <GoogleOauthBtn onPress={handleGoogleSignIn}></GoogleOauthBtn>
+        <GoogleOauthBtn
+          onPress={() => {
+            setTimeout(() => {
+              handleGoogleSignIn();
+            }, 500);
+          }}
+        ></GoogleOauthBtn>
       </div>
     </form>
   );
