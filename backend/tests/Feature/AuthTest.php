@@ -104,7 +104,7 @@ class AuthTest extends TestCase
 
         $response = $this->post('/api/v1/login', [
             'email' => 'user@testing.com',
-            'password' => '12345678',
+            // 'password' => '12345678',
         ]);
 
         $response->assertStatus(200);
