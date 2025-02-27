@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'accepted_terms_at',
+        'notified_terms_at',
         'email_verified_at',
     ];
 
@@ -42,6 +43,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'accepted_terms_at' => 'datetime',
+        'notified_terms_at' => 'datetime',
         'password' => 'hashed',
     ];
 }

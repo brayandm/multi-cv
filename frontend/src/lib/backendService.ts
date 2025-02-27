@@ -4,6 +4,7 @@ import {
   googleLoginApiLink,
   loginApiLink,
   logoutApiLink,
+  notifiedTermsVersionApiLink,
   registerApiLink,
   updatePasswordApiLink,
   userApiLink,
@@ -15,6 +16,8 @@ import {
   LogoutResponse,
   RegisterResponse,
   VerifyResponse,
+  NotifiedTermsVersionResponse,
+  AcceptTermsVersionResponse,
 } from "./types";
 
 const isServer = typeof window === "undefined";
@@ -69,10 +72,24 @@ export const registerApi = async (formData: {
 };
 
 export const acceptTermsVersionApi = async (): Promise<
-  AxiosResponse<RegisterResponse>
+  AxiosResponse<AcceptTermsVersionResponse>
 > => {
   return await api.put(
     acceptTermsVersionApiLink,
+    {},
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};
+
+export const notifiedTermsVersionApi = async (): Promise<
+  AxiosResponse<NotifiedTermsVersionResponse>
+> => {
+  return await api.put(
+    notifiedTermsVersionApiLink,
     {},
     {
       headers: {

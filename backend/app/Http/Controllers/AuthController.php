@@ -175,6 +175,10 @@ class AuthController extends Controller
         Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
         null;
 
+        $user->notice_new_terms_version = $user->accepted_terms_at ?
+        Carbon::parse($user->accepted_terms_at)->lt(Carbon::parse($current_terms_version)->addMonth()) :
+        null;
+
         return $user;
     }
 
@@ -223,5 +227,16 @@ class AuthController extends Controller
         ]);
 
         return response()->json(['message' => 'Accepted Privacy Policy and Terms of Service successfully']);
+    }
+
+    public function updateNotifiedTermsVersion(Request $request)
+    {
+        $user = $this->userService->findUserByEmail(auth()->user()->email);
+
+        $user->update([
+            'notified_terms_at' => Carbon::now(),
+        ]);
+
+        return response()->json(['message' => 'Notified Privacy Policy and Terms of Service successfully']);
     }
 }

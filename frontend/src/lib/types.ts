@@ -15,6 +15,14 @@ export interface RegisterResponse {
   message: string;
 }
 
+export interface AcceptTermsVersionResponse {
+  message: string;
+}
+
+export interface NotifiedTermsVersionResponse {
+  message: string;
+}
+
 export interface UserResponse {
   id: number;
   name: string;
@@ -24,5 +32,6 @@ export interface UserResponse {
   created_at: string;
   updated_at: string;
   is_password_null: boolean;
-  is_valid_terms_version: boolean;
+  is_valid_terms_version: boolean | null;
+  notice_new_terms_version: boolean | null;
 }

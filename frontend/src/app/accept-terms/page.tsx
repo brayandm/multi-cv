@@ -13,6 +13,9 @@ export default async function AccepTerms() {
   });
 
   const acceptTerms = data.data.is_valid_terms_version;
+  const noticeTerms = data.data.notice_new_terms_version;
 
-  return <AcceptTermsComponent acceptTerms={acceptTerms} />;
+  return (
+    <AcceptTermsComponent acceptTerms={acceptTerms} noticeTerms={noticeTerms} />
+  );
 }
