@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { api } from "@/lib/backendService";
-import { verifyApiLink } from "./lib/links";
-import { VerifyResponse } from "./lib/types";
+import { userStatusApiLink } from "./lib/links";
+import { UserStatusResponse } from "./lib/types";
 
 const authPages = ["/", "/login", "/register"];
 const unProtectedPages: string[] = [];
@@ -28,7 +28,7 @@ export async function middleware(req: NextRequest) {
 
   const authToken = req.cookies.get("auth_token");
 
-  const data = await api.get<VerifyResponse>(verifyApiLink, {
+  const data = await api.get<UserStatusResponse>(userStatusApiLink, {
     headers: {
       Authorization: `Bearer ${authToken?.value || ""}`,
     },

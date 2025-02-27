@@ -9,14 +9,14 @@ import {
   resendEmailApiLink,
   updatePasswordApiLink,
   userApiLink,
-  verifyApiLink,
+  userStatusApiLink,
 } from "./links";
 import {
   UserResponse,
   LoginResponse,
   LogoutResponse,
   RegisterResponse,
-  VerifyResponse,
+  UserStatusResponse,
   NotifiedTermsVersionResponse,
   AcceptTermsVersionResponse,
   ResendEmailResponse,
@@ -119,8 +119,10 @@ export const googleLoginApi = async (
   );
 };
 
-export const verifyApi = async (): Promise<AxiosResponse<VerifyResponse>> => {
-  return await api.get(verifyApiLink);
+export const userStatusApi = async (): Promise<
+  AxiosResponse<UserStatusResponse>
+> => {
+  return await api.get(userStatusApiLink);
 };
 
 export const updatePasswordApi = async (formData: {

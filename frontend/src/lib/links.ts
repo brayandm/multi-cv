@@ -1,7 +1,7 @@
 export const loginApiLink = `/login`;
 export const logoutApiLink = `/logout`;
 export const registerApiLink = `/register`;
-export const verifyApiLink = `/verify`;
+export const userStatusApiLink = `/user-status`;
 export const userApiLink = `/user`;
 export const googleLoginApiLink = `oauth/google/login`;
 export const updatePasswordApiLink = `/user/update/password`;

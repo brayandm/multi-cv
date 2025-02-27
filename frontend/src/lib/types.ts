@@ -1,4 +1,4 @@
-export interface VerifyResponse {
+export interface UserStatusResponse {
   authenticated: boolean;
   is_valid_terms_version?: boolean;
   notice_new_terms_version?: boolean;
