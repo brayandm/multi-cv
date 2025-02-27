@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,6 +18,8 @@ class UserService
             'password' => Hash::make($data->password),
             'accepted_terms_at' => Carbon::now(),
         ]);
+
+        event(new Registered($user));
 
         return $user;
     }

@@ -146,9 +146,12 @@ class AuthController extends Controller
         $notice_new_terms_version = $user->accepted_terms_at ?
          ($in_time ? ($user->notified_terms_at ? null : true) : false) : null;
 
+        $email_verified = $user->email_verified_at ? true : false;
+
         return response()->json(['authenticated' => true,
             'is_valid_terms_version' => $is_valid_terms_version,
             'notice_new_terms_version' => $notice_new_terms_version,
+            'email_verified' => $email_verified,
         ]);
     }
 
