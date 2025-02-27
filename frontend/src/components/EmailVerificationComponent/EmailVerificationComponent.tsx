@@ -1,6 +1,8 @@
 "use client";
 
+import { resendEmailApi } from "@/lib/backendService";
 import { Button } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 interface IEmailVerificationComponentProps {
   type: "already-verified" | "success" | "expired" | "verification";
@@ -9,11 +11,31 @@ interface IEmailVerificationComponentProps {
 export default function EmailVerificationComponent({
   type,
 }: IEmailVerificationComponentProps) {
+  const router = useRouter();
+
+  const resendEmail = async () => {
+    try {
+      const response = await resendEmailApi();
+
+      if (response.status === 200) {
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleContinue = () => {
+    router.push("/home");
+  };
+
   return (
     <>
       {type === "verification" && (
         <>
-          <form className="flex flex-col gap-2 text-center w-[250px] mx-auto">
+          <form
+            className="flex flex-col gap-2 text-center w-[250px] mx-auto"
+            onSubmit={resendEmail}
+          >
             <h1 className="text-center">Email Verification</h1>
             <p> We have sent you an email with a verification link.</p>
             <Button color="primary" type="submit">
@@ -24,7 +46,10 @@ export default function EmailVerificationComponent({
       )}
       {type === "already-verified" && (
         <>
-          <form className="flex flex-col gap-2 text-center w-[250px] mx-auto">
+          <form
+            className="flex flex-col gap-2 text-center w-[250px] mx-auto"
+            onSubmit={handleContinue}
+          >
             <h1 className="text-center">Email Verification Already Verified</h1>
             <p> Your email has already been verified.</p>
             <Button color="primary" type="submit">
@@ -35,7 +60,10 @@ export default function EmailVerificationComponent({
       )}
       {type === "success" && (
         <>
-          <form className="flex flex-col gap-2 text-center w-[250px] mx-auto">
+          <form
+            className="flex flex-col gap-2 text-center w-[250px] mx-auto"
+            onSubmit={handleContinue}
+          >
             <h1 className="text-center">Email Verification Success</h1>
 
             <p>Your email has been verified.</p>
@@ -47,7 +75,10 @@ export default function EmailVerificationComponent({
       )}
       {type === "expired" && (
         <>
-          <form className="flex flex-col gap-2 text-center w-[250px] mx-auto">
+          <form
+            className="flex flex-col gap-2 text-center w-[250px] mx-auto"
+            onSubmit={resendEmail}
+          >
             <h1 className="text-center">Email Verification Expired</h1>
 
             <p>Your email verification link has expired.</p>

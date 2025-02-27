@@ -22,12 +22,6 @@ export async function middleware(req: NextRequest) {
     url.pathname
   );
 
-  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-  console.log(url.pathname);
-  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-
   const isGoodEmailVerificationPage = goodEmailVerificationPages.includes(
     url.pathname
   );

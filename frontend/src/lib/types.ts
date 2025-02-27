@@ -25,6 +25,9 @@ export interface NotifiedTermsVersionResponse {
   message: string;
 }
 
+export interface ResendEmailResponse {
+  message: string;
+}
 export interface UserResponse {
   id: number;
   name: string;

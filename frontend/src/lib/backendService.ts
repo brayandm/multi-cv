@@ -6,6 +6,7 @@ import {
   logoutApiLink,
   notifiedTermsVersionApiLink,
   registerApiLink,
+  resendEmailApiLink,
   updatePasswordApiLink,
   userApiLink,
   verifyApiLink,
@@ -18,6 +19,7 @@ import {
   VerifyResponse,
   NotifiedTermsVersionResponse,
   AcceptTermsVersionResponse,
+  ResendEmailResponse,
 } from "./types";
 
 const isServer = typeof window === "undefined";
@@ -49,6 +51,12 @@ export const loginApi = async (formData: {
 
 export const logoutApi = async (): Promise<AxiosResponse<LogoutResponse>> => {
   return await api.post(logoutApiLink);
+};
+
+export const resendEmailApi = async (): Promise<
+  AxiosResponse<ResendEmailResponse>
+> => {
+  return await api.post(resendEmailApiLink);
 };
 
 export const registerApi = async (formData: {

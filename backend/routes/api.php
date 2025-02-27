@@ -34,8 +34,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/email/verify', 'App\Http\Controllers\EmailVerificationController@verify')
             ->name('verification.verify');
 
-        // Route::post('/email/resend', `App\Http\Controllers\EmailVerificationController@resend`)
-        //     ->name('verification.resend');
+        Route::post('/email/resend', 'App\Http\Controllers\EmailVerificationController@resend')
+            ->name('verification.resend')
+            ->middleware('throttle:resend-verification-email');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {
