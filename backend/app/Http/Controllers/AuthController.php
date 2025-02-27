@@ -143,8 +143,8 @@ class AuthController extends Controller
 
         $in_time = Carbon::now()->lt(Carbon::parse($current_terms_version)->addMonth());
 
-        $notice_new_terms_version = $user->accepted_terms_at ?
-         ($in_time ? ($user->notified_terms_at ? null : true) : false) : null;
+        $notice_new_terms_version = $is_valid_terms_version ? null : ($user->accepted_terms_at ?
+         ($in_time ? ($user->notified_terms_at ? null : true) : false) : null);
 
         $email_verified = $user->email_verified_at ? true : false;
 
@@ -188,8 +188,8 @@ class AuthController extends Controller
 
         $in_time = Carbon::now()->lt(Carbon::parse($current_terms_version)->addMonth());
 
-        $user->notice_new_terms_version = $user->accepted_terms_at ?
-         ($in_time ? ($user->notified_terms_at ? null : true) : false) : null;
+        $user->notice_new_terms_version = $user->is_valid_terms_version ? null : ($user->accepted_terms_at ?
+        ($in_time ? ($user->notified_terms_at ? null : true) : false) : null);
 
         return $user;
     }
