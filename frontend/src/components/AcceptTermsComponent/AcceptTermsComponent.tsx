@@ -88,8 +88,24 @@ export default function AcceptTermsComponent({
             </span>
           ) : (
             <p>
-              We have updated our privacy policy and terms & conditions. Please
-              read and accept to continue using our services.
+              We have updated our{" "}
+              <Link
+                href="/privacy-policy.html"
+                target="_blank"
+                className="text-primary underline"
+              >
+                Privacy Policy
+              </Link>{" "}
+              and{" "}
+              <Link
+                href="/terms-and-conditions.html"
+                target="_blank"
+                className="text-primary underline"
+              >
+                Terms & Conditions
+              </Link>
+              . By clicking &quot;Continue&quot;, you agree to the updated
+              terms.
             </p>
           )}
         </>
@@ -111,7 +127,7 @@ export default function AcceptTermsComponent({
             </span>
           </div>
         )}
-        {noticeTerms !== true && (
+        {acceptTerms === true && (
           <div className="flex items-start gap-1">
             <Checkbox
               name="acceptTerms"
@@ -143,7 +159,7 @@ export default function AcceptTermsComponent({
           color="primary"
           type="submit"
           isDisabled={
-            (noticeTerms !== true && !formData.acceptTerms) ||
+            (acceptTerms === null && !formData.acceptTerms) ||
             (acceptTerms === null && !formData.underAge)
           }
         >
