@@ -60,7 +60,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if (isAuthenticated && isEmailVerified && isBadEmailVerificationPage) {
-    url.pathname = "/email/home";
+    url.pathname = "/home";
     return NextResponse.redirect(url);
   }
 
