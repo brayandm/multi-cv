@@ -5,11 +5,10 @@ import { VerifyResponse } from "./lib/types";
 
 const authPages = ["/", "/login", "/register"];
 const unProtectedPages: string[] = [];
-const EmailVerificationPages = [
-  "email/verify",
-  "email/verify/already-verified",
-  "email/verify/expired",
-  "email/verify/success",
+const badEmailVerificationPages = ["/email/verify", "/email/verify/expired"];
+const goodEmailVerificationPages = [
+  "/email/verify/success",
+  "/email/verify/already-verified",
 ];
 
 export async function middleware(req: NextRequest) {
@@ -19,7 +18,13 @@ export async function middleware(req: NextRequest) {
     !authPages.includes(url.pathname) &&
     !unProtectedPages.includes(url.pathname);
   const isAcceptTermsPage = url.pathname === "/accept-terms";
-  const isEmailVerificationPage = EmailVerificationPages.includes(url.pathname);
+  const isBadEmailVerificationPage = badEmailVerificationPages.includes(
+    url.pathname
+  );
+
+  const isGoodEmailVerificationPage = goodEmailVerificationPages.includes(
+    url.pathname
+  );
 
   const authToken = req.cookies.get("auth_token");
 
@@ -54,8 +59,13 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
-  if (isAuthenticated && isEmailVerified && isEmailVerificationPage) {
-    url.pathname = "/home";
+  if (isAuthenticated && isEmailVerified && isBadEmailVerificationPage) {
+    url.pathname = "/email/home";
+    return NextResponse.redirect(url);
+  }
+
+  if (isAuthenticated && !isEmailVerified && isGoodEmailVerificationPage) {
+    url.pathname = "/verify";
     return NextResponse.redirect(url);
   }
 
