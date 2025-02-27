@@ -29,7 +29,17 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('/verify', 'App\Http\Controllers\AuthController@verify');
 
+
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
+
+        Route::get('/email/verify', 'App\Http\Controllers\EmailVerificationController@verify')
+            ->name('verification.verify');
+
+        Route::post('/email/resend', `App\Http\Controllers\EmailVerificationController@resend`)
+            ->name('verification.resend');
+    });
+
+    Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {
 
         Route::post('/logout', 'App\Http\Controllers\AuthController@logout');
 
