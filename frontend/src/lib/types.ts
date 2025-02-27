@@ -2,6 +2,7 @@ export interface VerifyResponse {
   authenticated: boolean;
   is_valid_terms_version?: boolean;
   notice_new_terms_version?: boolean;
+  email_verified?: boolean;
 }
 
 export interface LoginResponse {

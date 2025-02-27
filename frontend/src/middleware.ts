@@ -4,15 +4,22 @@ import { verifyApiLink } from "./lib/links";
 import { VerifyResponse } from "./lib/types";
 
 const authPages = ["/", "/login", "/register"];
-const protectedPages = ["/accept-terms", "/home", "/password"];
+const unProtectedPages: string[] = [];
+const EmailVerificationPages = [
+  "email/verify",
+  "email/verify/already-verified",
+  "email/verify/expired",
+  "email/verify/success",
+];
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
   const isAuthPage = authPages.includes(url.pathname);
-  const isProtectedPage = protectedPages.some((route) =>
-    url.pathname.startsWith(route)
-  );
+  const isProtectedPage =
+    !authPages.includes(url.pathname) &&
+    !unProtectedPages.includes(url.pathname);
   const isAcceptTermsPage = url.pathname === "/accept-terms";
+  const isEmailVerificationPage = EmailVerificationPages.includes(url.pathname);
 
   const authToken = req.cookies.get("auth_token");
 
@@ -28,6 +35,9 @@ export async function middleware(req: NextRequest) {
   const isValidTermsVersion =
     data.status === 200 && data.data.is_valid_terms_version === true;
 
+  const isEmailVerified =
+    data.status === 200 && data.data.email_verified === true;
+
   let isNoticeTermsVersion = null;
 
   if (data.status === 200) {
@@ -41,6 +51,16 @@ export async function middleware(req: NextRequest) {
 
   if (!isAuthenticated && isProtectedPage) {
     url.pathname = "/";
+    return NextResponse.redirect(url);
+  }
+
+  if (isAuthenticated && isEmailVerified && isEmailVerificationPage) {
+    url.pathname = "/home";
+    return NextResponse.redirect(url);
+  }
+
+  if (isAuthenticated && !isEmailVerified) {
+    url.pathname = "/email/verify";
     return NextResponse.redirect(url);
   }
 
