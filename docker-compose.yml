@@ -1,21 +1,14 @@
 services:
-  laravel.test:
+  backend:
     image: multi-cv-backend
     restart: always
     volumes:
-      - backend-storage:/app/storage
+      - backend-storage:/var/www/storage
+      - backend-app:/var/www
     depends_on:
       - mysql
       - redis
     command: /docker-start.sh
-    ports:
-      - ${BACKEND_PORT:-49162}:80
-    healthcheck:
-      test: [ "CMD-SHELL", "curl -f http://localhost:80/api/v1/ping || exit 1" ]
-      interval: 5s
-      timeout: 10s
-      retries: 20
-      start_period: 20s
 
   mysql:
     image: multi-cv-mysql
@@ -24,7 +17,7 @@ services:
       - 'backend-mysql:/var/lib/mysql'
 
   redis:
-    image: brayand/fullstack-project-template-redis:1.0.0
+    image: multi-cv-redis
     restart: always
     volumes:
         - 'backend-redis:/data'
@@ -42,9 +35,25 @@ services:
     ports:
       - ${APP_PORT:-49160}:3000
     depends_on:
-      laravel.test:
+      nginx:
         condition: service_healthy
     command: npm run start
+
+  nginx:
+    image: multi-cv-nginx
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "${NGINX_PORT:-49161}:80"
+    volumes:
+      - backend-app:/var/www
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:80/api/v1/ping || exit 1" ]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+      start_period: 20s
 
   phpmyadmin:
     image: brayand/fullstack-project-template-phpmyadmin:1.0.0
@@ -52,7 +61,7 @@ services:
     environment:
         PMA_HOST: mysql
     ports:
-    - '${PHPMYADMIN_PORT:-49161}:80'
+    - '${PHPMYADMIN_PORT:-49162}:80'
     depends_on:
       - mysql
 
@@ -60,3 +69,4 @@ volumes:
   backend-mysql:
   backend-redis:
   backend-storage:
+  backend-app:

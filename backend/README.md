@@ -32,13 +32,13 @@ docker compose up -d
 5 - Generate the application key:
 
 ```bash
-docker compose exec laravel.test php artisan key:generate
+docker compose exec backend php artisan key:generate
 ```
 
 6 - Run the migrations:
 
 ```bash
-docker compose exec laravel.test php artisan migrate
+docker compose exec backend php artisan migrate
 ```
 
 ## How to build (Docker)

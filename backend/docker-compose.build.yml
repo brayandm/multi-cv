@@ -1,5 +1,5 @@
 services:
-  laravel.test:
+  backend:
     build:
       context: .
       dockerfile: docker/Dockerfile-php8
@@ -20,3 +20,9 @@ services:
       context: .
       dockerfile: docker/Dockerfile-redis
     image: multi-cv-redis
+
+  nginx:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-nginx
+    image: multi-cv-nginx
