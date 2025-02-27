@@ -37,6 +37,8 @@ jobs:
             - uses: actions/checkout@v3
             - name: Stopping the containers
               run: docker compose down
+            - name: Removing backend code volume
+              run: docker volume rm multi-cv_backend-app || true
             - name: Starting the containers
               run: docker compose  up -d
             - name: Removing unused docker images
