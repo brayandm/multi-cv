@@ -31,7 +31,9 @@ export interface UserResponse {
 export interface CV {
   id: number;
   company: string;
+  image: string;
   role: string;
+  job_description: string;
   pdf_file: string;
-  time_to_expire: number;
+  days_to_expire: number;
 }
