@@ -22,6 +22,12 @@ export async function middleware(req: NextRequest) {
     url.pathname
   );
 
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+  console.log(url.pathname);
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+  console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
   const isGoodEmailVerificationPage = goodEmailVerificationPages.includes(
     url.pathname
   );
@@ -65,8 +71,12 @@ export async function middleware(req: NextRequest) {
   }
 
   if (isAuthenticated && !isEmailVerified && isGoodEmailVerificationPage) {
-    url.pathname = "/verify";
+    url.pathname = "/email/verify";
     return NextResponse.redirect(url);
+  }
+
+  if (isAuthenticated && !isEmailVerified && isBadEmailVerificationPage) {
+    return NextResponse.next();
   }
 
   if (isAuthenticated && !isEmailVerified) {
@@ -98,5 +108,13 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 export const config = {
-  matcher: ["/", "/login", "/register", "/accept-terms", "/home", "/password"],
+  matcher: [
+    "/",
+    "/login",
+    "/register",
+    "/accept-terms",
+    "/home",
+    "/password",
+    "/email/:path*",
+  ],
 };
