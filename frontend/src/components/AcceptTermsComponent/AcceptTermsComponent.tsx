@@ -127,7 +127,7 @@ export default function AcceptTermsComponent({
             </span>
           </div>
         )}
-        {acceptTerms === true && (
+        {acceptTerms === null && (
           <div className="flex items-start gap-1">
             <Checkbox
               name="acceptTerms"
