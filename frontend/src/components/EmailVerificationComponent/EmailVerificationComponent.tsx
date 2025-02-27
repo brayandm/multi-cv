@@ -40,9 +40,9 @@ export default function EmailVerificationComponent({
       if (remainingTime > 0) {
         setIsCooldown(true);
         setTimeLeft(remainingTime);
-        setDisplayResendButton(true);
       }
     }
+    setDisplayResendButton(true);
   }, []);
 
   useEffect(() => {
@@ -74,7 +74,6 @@ export default function EmailVerificationComponent({
         localStorage.setItem("lastEmailResendTime", Date.now().toString());
         setIsCooldown(true);
         setTimeLeft(90);
-        setDisplayResendButton(true);
       }
     } catch (error: unknown) {
       console.log(error);
@@ -86,7 +85,6 @@ export default function EmailVerificationComponent({
         ).status === 429
       ) {
         setTryOtherDay(true);
-        setDisplayResendButton(true);
       }
     }
   };
