@@ -3,8 +3,8 @@ services:
     image: multi-cv-backend
     restart: always
     volumes:
-      - backend-storage:/app/storage
-      - backend-app:/app
+      - backend-storage:/var/www/storage
+      - backend-app:/var/www
     depends_on:
       - mysql
       - redis
