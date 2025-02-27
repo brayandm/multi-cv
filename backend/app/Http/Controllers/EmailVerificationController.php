@@ -13,17 +13,17 @@ class EmailVerificationController extends Controller
         $user = $request->user();
 
         if ($user->hasVerifiedEmail()) {
-            return response()->json(['message' => 'The email has already been verified.'], 200);
+            return redirect()->to(config('app.frontend_url') . '/email/verify/already-verified');
         }
 
         if (!$request->hasValidSignature()) {
-            return response()->json(['message' => 'Invalid signature or expired link.'], 403);
+            return redirect()->to(config('app.frontend_url') . '/email/verify/expired');
         }
 
         $user->markEmailAsVerified();
         event(new Verified($user));
 
-        return response()->json(['message' => 'Email successfully verified.']);
+        return redirect()->to(config('app.frontend_url') . '/email/verify/success');
     }
 
     public function resend(Request $request)
