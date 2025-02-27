@@ -28,6 +28,12 @@ export async function middleware(req: NextRequest) {
   const isValidTermsVersion =
     data.status === 200 && data.data.is_valid_terms_version === true;
 
+  let isNoticeTermsVersion = null;
+
+  if (data.status === 200) {
+    isNoticeTermsVersion = data.data.notice_new_terms_version;
+  }
+
   if (isAuthenticated && isAuthPage) {
     url.pathname = "/home";
     return NextResponse.redirect(url);
@@ -42,13 +48,19 @@ export async function middleware(req: NextRequest) {
     !isAcceptTermsPage &&
     isAuthenticated &&
     isProtectedPage &&
-    !isValidTermsVersion
+    !isValidTermsVersion &&
+    isNoticeTermsVersion !== null
   ) {
     url.pathname = "/accept-terms";
     return NextResponse.redirect(url);
   }
 
-  if (isAcceptTermsPage && isAuthenticated && isValidTermsVersion) {
+  if (
+    isAcceptTermsPage &&
+    isAuthenticated &&
+    (isValidTermsVersion ||
+      (!isValidTermsVersion && isNoticeTermsVersion === null))
+  ) {
     url.pathname = "/home";
     return NextResponse.redirect(url);
   }

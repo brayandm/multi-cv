@@ -141,7 +141,15 @@ class AuthController extends Controller
         Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
         null;
 
-        return response()->json(['authenticated' => true, 'is_valid_terms_version' => $is_valid_terms_version]);
+        $in_time = Carbon::now()->lt(Carbon::parse($current_terms_version)->addMonth());
+
+        $notice_new_terms_version = $user->accepted_terms_at ?
+         ($in_time ? ($user->notified_terms_at ? null : true) : false) : null;
+
+        return response()->json(['authenticated' => true,
+            'is_valid_terms_version' => $is_valid_terms_version,
+            'notice_new_terms_version' => $notice_new_terms_version,
+        ]);
     }
 
     public function logout(Request $request)
@@ -175,9 +183,10 @@ class AuthController extends Controller
         Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
         null;
 
+        $in_time = Carbon::now()->lt(Carbon::parse($current_terms_version)->addMonth());
+
         $user->notice_new_terms_version = $user->accepted_terms_at ?
-        Carbon::parse($user->accepted_terms_at)->lt(Carbon::parse($current_terms_version)->addMonth()) :
-        null;
+         ($in_time ? ($user->notified_terms_at ? null : true) : false) : null;
 
         return $user;
     }

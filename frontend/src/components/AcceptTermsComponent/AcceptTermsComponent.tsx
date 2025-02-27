@@ -111,7 +111,7 @@ export default function AcceptTermsComponent({
             </span>
           </div>
         )}
-        {acceptTerms !== null && noticeTerms !== true && (
+        {noticeTerms !== true && (
           <div className="flex items-start gap-1">
             <Checkbox
               name="acceptTerms"
@@ -143,9 +143,7 @@ export default function AcceptTermsComponent({
           color="primary"
           type="submit"
           isDisabled={
-            (acceptTerms !== null &&
-              noticeTerms !== true &&
-              !formData.acceptTerms) ||
+            (noticeTerms !== true && !formData.acceptTerms) ||
             (acceptTerms === null && !formData.underAge)
           }
         >
