@@ -16,6 +16,18 @@ export default function EmailVerificationComponent({
   const [isCooldown, setIsCooldown] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
   const [tryOtherDay, setTryOtherDay] = useState(false);
+  const [displayResendButton, setDisplayResendButton] = useState(false);
+
+  useEffect(() => {
+    const firstTimeResend = localStorage.getItem("firstTimeResend");
+    if (!firstTimeResend) {
+      localStorage.setItem("firstTimeResend", "true");
+      localStorage.setItem("lastEmailResendTime", Date.now().toString());
+      setIsCooldown(true);
+      setTimeLeft(90);
+      setDisplayResendButton(true);
+    }
+  }, []);
 
   useEffect(() => {
     const lastSentTime = localStorage.getItem("lastEmailResendTime");
@@ -28,6 +40,7 @@ export default function EmailVerificationComponent({
       if (remainingTime > 0) {
         setIsCooldown(true);
         setTimeLeft(remainingTime);
+        setDisplayResendButton(true);
       }
     }
   }, []);
@@ -61,8 +74,7 @@ export default function EmailVerificationComponent({
         localStorage.setItem("lastEmailResendTime", Date.now().toString());
         setIsCooldown(true);
         setTimeLeft(90);
-      } else if (response.status === 429) {
-        setTryOtherDay(true);
+        setDisplayResendButton(true);
       }
     } catch (error: unknown) {
       console.log(error);
@@ -74,6 +86,7 @@ export default function EmailVerificationComponent({
         ).status === 429
       ) {
         setTryOtherDay(true);
+        setDisplayResendButton(true);
       }
     }
   };
@@ -92,15 +105,17 @@ export default function EmailVerificationComponent({
         >
           <h1 className="text-center">Email Verification</h1>
           <p>We have sent you an email with a verification link.</p>
-          <Button
-            color="primary"
-            type="submit"
-            isDisabled={isCooldown || tryOtherDay}
-          >
-            {tryOtherDay && "Too many requests, try in 24 hours"}
-            {!tryOtherDay &&
-              (isCooldown ? `Resend in ${timeLeft}s` : "Resend Email")}
-          </Button>
+          {displayResendButton && (
+            <Button
+              color="primary"
+              type="submit"
+              isDisabled={isCooldown || tryOtherDay}
+            >
+              {tryOtherDay && "Too many requests, try in 24 hours"}
+              {!tryOtherDay &&
+                (isCooldown ? `Resend in ${timeLeft}s` : "Resend Email")}
+            </Button>
+          )}
         </form>
       )}
       {type === "already-verified" && (
@@ -134,15 +149,17 @@ export default function EmailVerificationComponent({
         >
           <h1 className="text-center">Email Verification Expired</h1>
           <p>Your email verification link has expired.</p>
-          <Button
-            color="primary"
-            type="submit"
-            isDisabled={isCooldown || tryOtherDay}
-          >
-            {tryOtherDay && "Too many requests, try in 24 hours"}
-            {!tryOtherDay &&
-              (isCooldown ? `Resend in ${timeLeft}s` : "Resend Email")}
-          </Button>
+          {displayResendButton && (
+            <Button
+              color="primary"
+              type="submit"
+              isDisabled={isCooldown || tryOtherDay}
+            >
+              {tryOtherDay && "Too many requests, try in 24 hours"}
+              {!tryOtherDay &&
+                (isCooldown ? `Resend in ${timeLeft}s` : "Resend Email")}
+            </Button>
+          )}
         </form>
       )}
     </>
