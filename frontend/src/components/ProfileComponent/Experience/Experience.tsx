@@ -20,7 +20,7 @@ const Experience: React.FC<IExperienceProps> = (props) => {
     });
 
     console.log(email, full_name, about);
-  }, [email, full_name, about, props]);
+  }, [email, full_name, about]);
 
   const inputs: IDynamicInput[] = [
     {

@@ -1,5 +1,3 @@
-import { MaxWidthContainer } from "../main.styles";
-
 export default function ProfileLayout({
   children,
 }: {

@@ -1,3 +1,3 @@
-import DynamicInputs, { IDynamicInput } from "./DynamicInputs";
+import DynamicInputs from "./DynamicInputs";
 
 export default DynamicInputs;

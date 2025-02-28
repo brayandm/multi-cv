@@ -1,5 +1,4 @@
 "use client";
-import { Input, Textarea } from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import { IProfileFrom } from "../ProfileComponent.types";
 import DynamicInputs from "../DynamicInputs";
