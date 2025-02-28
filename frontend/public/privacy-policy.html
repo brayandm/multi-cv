@@ -230,10 +230,20 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        let count = 1;
-        document.querySelectorAll("h2").forEach((h2) => {
-          h2.textContent = `${count}. ${h2.textContent}`;
-          count++;
+        let sectionCount = 1;
+        let subSectionCount = 0;
+
+        document.querySelectorAll("h2, h3").forEach((el) => {
+          if (el.tagName === "H2") {
+            subSectionCount = 0;
+            el.textContent = `${sectionCount}. ${el.textContent}`;
+            sectionCount++;
+          } else if (el.tagName === "H3") {
+            subSectionCount++;
+            el.textContent = `${sectionCount - 1}.${subSectionCount} ${
+              el.textContent
+            }`;
+          }
         });
       });
     </script>
