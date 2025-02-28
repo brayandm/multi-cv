@@ -15,7 +15,7 @@ return [
                  * The list of directories and files that will be included in the backup.
                  */
                 'include' => [
-                    base_path(),
+                    // base_path(),
                 ],
 
                 /*
@@ -92,7 +92,7 @@ return [
          *
          * If you do not want any compressor at all, set it to null.
          */
-        'database_dump_compressor' => null,
+        'database_dump_compressor' => Spatie\DbDumper\Compressors\GzipCompressor::class,
 
         /*
          * If specified, the database dumped file name will contain a timestamp (e.g.: 'Y-m-d-H-i-s').
@@ -151,7 +151,7 @@ return [
              * The disk names on which the backups will be stored.
              */
             'disks' => [
-                'local',
+                env('BACKUP_DISK', 'local'),
             ],
         ],
 
@@ -211,7 +211,7 @@ return [
         'notifiable' => \Spatie\Backup\Notifications\Notifiable::class,
 
         'mail' => [
-            'to' => 'your@example.com',
+            'to' => env('BACKUP_MAIL_TO_ADDRESS'),
 
             'from' => [
                 'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
@@ -255,7 +255,7 @@ return [
     'monitor_backups' => [
         [
             'name' => env('APP_NAME', 'laravel-backup'),
-            'disks' => ['local'],
+            'disks' => [env('BACKUP_DISK', 'local')],
             'health_checks' => [
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumAgeInDays::class => 1,
                 \Spatie\Backup\Tasks\Monitor\HealthChecks\MaximumStorageInMegabytes::class => 5000,
