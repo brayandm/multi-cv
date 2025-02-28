@@ -7,9 +7,7 @@ import {
   Avatar,
   Button,
 } from "@heroui/react";
-import { CV } from "@/lib/types";
-
-interface CvComponentProps extends CV {}
+import { CV as CvComponentProps } from "@/lib/types";
 
 const CvComponent: React.FC<CvComponentProps> = (props) => {
   const [isDownloaded, setIsDownloaded] = React.useState(false);

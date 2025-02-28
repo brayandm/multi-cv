@@ -41,7 +41,6 @@ export interface UserResponse {
   notice_new_terms_version: boolean | null;
 }
 
-/* -- Cv --  */
 export interface CV {
   id: number;
   company: string;

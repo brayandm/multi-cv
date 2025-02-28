@@ -7,7 +7,7 @@ interface CvListProps {
   onSelect?: (cv: CV) => void;
 }
 
-const CvList: React.FC<CvListProps> = ({ cvs, onSelect }) => {
+const CvList: React.FC<CvListProps> = ({ cvs }) => {
   return (
     <div className="px-2 flex flex-col gap-2">
       <h2 className="">Your resumes</h2>
