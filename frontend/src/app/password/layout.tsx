@@ -9,7 +9,7 @@ export default function RegisterLayout({
   return (
     <>
       <NavbarWrapper>
-        <Navbar passwordLink logoutLink />
+        <Navbar homeLink logoutLink />
       </NavbarWrapper>
       {children}
     </>

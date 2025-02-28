@@ -39,9 +39,8 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
       {homeLink && (
         <NavbarMenuItem>
           <Link
-            className="w-full"
+            className="w-full cursor-pointer"
             color={"foreground"}
-            href="#"
             size="sm"
             onPress={() => router.push("/home")}
           >
@@ -52,9 +51,8 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
       {passwordLink && (
         <NavbarMenuItem>
           <Link
-            className="w-full"
+            className="w-full cursor-pointer"
             color={"foreground"}
-            href="#"
             size="sm"
             onPress={() => router.push("/password")}
           >
@@ -65,9 +63,8 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
       {logoutLink && (
         <NavbarMenuItem>
           <Link
-            className="w-full"
+            className="w-full cursor-pointer"
             color={"danger"}
-            href="#"
             size="sm"
             onPress={() => logout()}
           >
@@ -95,7 +92,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           className="sm:hidden"
         />
         <NavbarBrand>
-          <Link onPress={() => router.push("/")} href="/">
+          <Link onPress={() => router.push("/")} className="cursor-pointer">
             <p className="font-bold text-inherit">MultiCV</p>
           </Link>
         </NavbarBrand>
