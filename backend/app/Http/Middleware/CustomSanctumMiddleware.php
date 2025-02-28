@@ -13,8 +13,8 @@ class CustomSanctumMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if ($request->hasCookie(config("auth.cookie_name"))) {
-            $token = $request->cookie(config("auth.cookie_name"));
+        if ($request->hasCookie(config('auth.cookie_name'))) {
+            $token = $request->cookie(config('auth.cookie_name'));
 
             $request->headers->set('Authorization', 'Bearer '.$token);
         }
