@@ -100,7 +100,7 @@ class AuthController extends Controller
         $token = $this->userService->createUserToken($user);
 
         return response()->json(['message' => 'Login successful'])
-            ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+            ->cookie(config("auth.cookie_name"), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
     }
 
     public function verify(Request $request)

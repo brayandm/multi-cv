@@ -115,4 +115,6 @@ return [
     'token_expiration' => env('TOKEN_EXPIRATION', 2419200),
 
     'max_age_session' => env('MAX_AGE_SESSION', 604800),
+
+    'cookie_name' => env('AUTH_COOKIE_NAME', 'auth_token'),
 ];

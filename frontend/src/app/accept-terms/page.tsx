@@ -4,7 +4,7 @@ import { userApiLink } from "@/lib/links";
 import { UserResponse } from "@/lib/types";
 import { cookies } from "next/headers";
 export default async function AccepTerms() {
-  const authToken = (await cookies()).get("auth_token");
+  const authToken = (await cookies()).get(process.env.AUTH_COOKIE_NAME!);
 
   const data = await api.get<UserResponse>(userApiLink, {
     headers: {

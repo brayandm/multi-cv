@@ -61,10 +61,10 @@ class GoogleAuthController extends Controller
 
         if ($extension) {
             return redirect(config('app.frontend_url').'/redirect-back')
-                ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+                ->cookie(config("auth.cookie_name"), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
         }
 
         return redirect(config('app.frontend_url').'/home')
-            ->cookie('auth_token', $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+            ->cookie(config("auth.cookie_name"), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
     }
 }
