@@ -85,7 +85,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
   const router = useRouter();
 
   return (
-    <NavbarUI onMenuOpenChange={setIsMenuOpen}>
+    <NavbarUI onMenuOpenChange={setIsMenuOpen} style={{ overflow: "hidden" }}>
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -106,7 +106,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
         ></NavbarItems>
       </NavbarContent>
 
-      <NavbarMenu>
+      <NavbarMenu className="overflow-hidden">
         <NavbarItems
           passwordLink={passwordLink}
           logoutLink={logoutLink}
