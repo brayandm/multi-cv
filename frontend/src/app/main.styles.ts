@@ -12,3 +12,12 @@ export const NavbarWrapper = styled.div`
   z-index: 1000;
   width: 100%;
 `;
+
+export const MaxWidthContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  :nth-child(1) {
+    max-width: 600px;
+    background-color: "red";
+  }
+`;
