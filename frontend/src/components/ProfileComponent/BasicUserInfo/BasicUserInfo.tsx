@@ -1,5 +1,4 @@
 "use client";
-import { Input, Textarea } from "@heroui/react";
 import React, { useEffect, useState } from "react";
 import { IProfileFrom } from "../ProfileComponent.types";
 import DynamicInputs from "../DynamicInputs";
@@ -26,7 +25,7 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
     });
 
     console.log(email, full_name, about);
-  }, [email, full_name, about]);
+  }, [email, full_name, about, props]);
 
   const inputs: IDynamicInput[] = [
     {

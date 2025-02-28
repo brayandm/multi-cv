@@ -1,7 +1,6 @@
 "use client";
-import { Input, Tab, Tabs } from "@heroui/react";
+import { Tab, Tabs } from "@heroui/react";
 import React, { useState } from "react";
-import MailIcon from "../shared/icons/MailIcon/MailIcon";
 import BasicUserInfo from "./BasicUserInfo";
 import { IProfileFrom } from "./ProfileComponent.types";
 import Experience from "./Experience";
