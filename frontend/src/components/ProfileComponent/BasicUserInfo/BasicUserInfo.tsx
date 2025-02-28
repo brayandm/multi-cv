@@ -25,7 +25,7 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
     });
 
     console.log(email, full_name, about);
-  }, [email, full_name, about, props]);
+  }, [email, full_name, about]);
 
   const inputs: IDynamicInput[] = [
     {
