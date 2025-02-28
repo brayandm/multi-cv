@@ -20,13 +20,13 @@ const Experience: React.FC<IExperienceProps> = (props) => {
     });
 
     console.log(email, full_name, about);
-  }, [email, full_name, about]);
+  }, [email, full_name, about, props]);
 
   const inputs: IDynamicInput[] = [
     {
       label: "Full name",
       placeholder: "John Doe",
-      type: "email", // Nota: si el nombre completo debe ser texto, podrías cambiarlo a "text"
+      type: "email",
       value: props.formData.basicInfo.full_name,
       onValueChange: setFull_name,
     },
