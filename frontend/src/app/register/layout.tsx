@@ -1,7 +1,9 @@
+import { MarginTopContainer } from "../main.styles";
+
 export default function PasswordLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <MarginTopContainer>{children}</MarginTopContainer>;
 }

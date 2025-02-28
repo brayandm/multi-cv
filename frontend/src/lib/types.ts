@@ -40,3 +40,14 @@ export interface UserResponse {
   is_valid_terms_version: boolean | null;
   notice_new_terms_version: boolean | null;
 }
+
+/* -- Cv --  */
+export interface CV {
+  id: number;
+  company: string;
+  image: string;
+  role: string;
+  job_description: string;
+  pdf_file: string;
+  days_to_expire: number;
+}

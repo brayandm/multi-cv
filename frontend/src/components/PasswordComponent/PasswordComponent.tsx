@@ -6,7 +6,7 @@ import useSWR from "swr";
 import { userApiLink } from "@/lib/links";
 import { fetcherApi, updatePasswordApi } from "@/lib/backendService";
 import { UserResponse } from "@/lib/types";
-import TopBarNavigationComponent from "../TopBarNavigationComponent";
+import TopBarNavigationComponent from "../shared/components/Navbar";
 
 export default function PasswordComponent() {
   const [formData, setFormData] = useState({
