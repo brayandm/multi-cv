@@ -42,7 +42,7 @@ const DynamicInputs: React.FC<DynamicInputsProps> = ({ inputs }) => {
               key={index}
               label={input.label}
               placeholder={input.placeholder}
-              value={input.value}
+              value={input.value as string}
               onValueChange={input.onValueChange}
               color={color}
               errorMessage={errorMessage}
@@ -67,7 +67,7 @@ const DynamicInputs: React.FC<DynamicInputsProps> = ({ inputs }) => {
             label={input.label}
             placeholder={input.placeholder}
             type={input.type}
-            value={input.value}
+            value={input.value as string}
             onValueChange={input.onValueChange}
             color={color}
             isInvalid={isInvalid}
