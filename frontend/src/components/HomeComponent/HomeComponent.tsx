@@ -55,7 +55,6 @@ export default function HomeComponent() {
 
   return (
     <main className="">
-      <Navbar passwordLink logoutLink />
       <div className="flex justify-center">
         <CvList cvs={cvs}></CvList>
       </div>

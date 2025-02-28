@@ -62,7 +62,7 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
           <p className="font-semibold text-default-400 text-small">
             {props.days_to_expire} days
           </p>
-          <p className="text-default-400 text-small">To expire</p>
+          <p className="text-default-500 text-small">To expire</p>
         </div>
       </CardFooter>
     </Card>
