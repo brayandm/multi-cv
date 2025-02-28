@@ -1,6 +1,6 @@
 import { CV } from "@/lib/types";
 import React from "react";
-import CvComponent from "./CvComponent/CvComponent";
+import CvComponent from "../CvComponent/CvComponent";
 
 interface CvListProps {
   cvs: CV[];
