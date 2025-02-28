@@ -4,7 +4,6 @@ import { fetcherApi } from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
 
 import useSWR from "swr";
-import Navbar from "../shared/components/Navbar";
 import CvList from "./CvList";
 import { CV } from "@/lib/types";
 
@@ -55,7 +54,6 @@ export default function HomeComponent() {
 
   return (
     <main className="">
-      <Navbar passwordLink logoutLink />
       <div className="flex justify-center">
         <CvList cvs={cvs}></CvList>
       </div>
