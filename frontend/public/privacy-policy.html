@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -25,7 +25,7 @@
       with this Privacy Policy.
     </p>
 
-    <h2>1. Who We Are</h2>
+    <h2>Who We Are</h2>
     <p>
       MultiCV is an independent project developed by a group of individuals. It
       is not registered as a formal business entity. By using this service, You
@@ -33,7 +33,7 @@
       guarantees.
     </p>
 
-    <h2>2. Interpretation and Definitions</h2>
+    <h2>Interpretation and Definitions</h2>
     <h3>Interpretation</h3>
     <p>
       The words with capitalized initial letters have meanings defined under the
@@ -59,7 +59,7 @@
       </li>
     </ul>
 
-    <h2>3. Collecting and Using Your Personal Data</h2>
+    <h2>Collecting and Using Your Personal Data</h2>
     <h3>Types of Data Collected</h3>
     <h4>Personal Data</h4>
     <p>We collect and process the following Personal Data:</p>
@@ -72,7 +72,7 @@
       <li>Usage Data (e.g., IP address, browser type, visited pages, etc.)</li>
     </ul>
 
-    <h3>4. Legal Basis for Processing Personal Data (GDPR)</h3>
+    <h3>Legal Basis for Processing Personal Data (GDPR)</h3>
     <p>
       If You are in the European Economic Area (EEA), We process Your Personal
       Data under the following legal bases:
@@ -91,7 +91,7 @@
       </li>
     </ul>
 
-    <h2>5. Cookies and Analytics</h2>
+    <h2>Cookies and Analytics</h2>
     <p>
       We use cookies and similar tracking technologies to enhance user
       experience and analyze website traffic. By using the Service, You consent
@@ -99,7 +99,7 @@
       <a href="cookies-policy.html">Cookies Policy</a>.
     </p>
 
-    <h2>6. Your Rights Under GDPR</h2>
+    <h2>Your Rights Under GDPR</h2>
     <p>If You are in the EU, You have the following rights:</p>
     <ul>
       <li>
@@ -126,7 +126,7 @@
       <strong>hello.multicv@gmail.com</strong>.
     </p>
 
-    <h2>7. Your Rights Under CCPA/CPRA (California Residents)</h2>
+    <h2>Your Rights Under CCPA/CPRA (California Residents)</h2>
     <p>
       Under the
       <strong
@@ -154,7 +154,7 @@
       <strong>hello.multicv@gmail.com</strong>.
     </p>
 
-    <h2>8. Age Restriction and Children's Privacy</h2>
+    <h2>Age Restriction and Children's Privacy</h2>
     <p>
       Our Service is
       <strong>strictly intended for users aged 18 years and older</strong>. If
@@ -178,26 +178,26 @@
       responsible for any resulting consequences.
     </p>
 
-    <h2>9. Data Retention</h2>
+    <h2>Data Retention</h2>
     <p>
       We retain Your Personal Data only as long as necessary. We also retain
       data for legal compliance.
     </p>
 
-    <h2>10. Data Security</h2>
+    <h2>Data Security</h2>
     <p>
       We implement appropriate security measures to protect Your Personal Data.
       However, no method of transmission over the Internet or electronic storage
       is 100% secure.
     </p>
 
-    <h2>11. Data Transfers</h2>
+    <h2>Data Transfers</h2>
     <p>
       Your data may be stored outside Your country. We ensure proper safeguards
       for such transfers.
     </p>
 
-    <h2>12. Third-Party Services</h2>
+    <h2>Third-Party Services</h2>
     <p>
       We do not sell Your Personal Data to third parties. However, we use
       third-party services, including OpenAI's API, to provide certain
@@ -212,20 +212,30 @@
       or policies implemented by OpenAI.
     </p>
 
-    <h2>13. Account and Data Deletion</h2>
+    <h2>Account and Data Deletion</h2>
     <p>
       You may request deletion of Your account and associated data at any time
       by contacting us at hello.multicv@gmail.com.
     </p>
 
-    <h2>14. Changes to This Privacy Policy</h2>
+    <h2>Changes to This Privacy Policy</h2>
     <p>
       We may update this policy. Changes will be posted with an updated "Last
       updated" date.
     </p>
 
-    <h2>15. Contact Us</h2>
+    <h2>Contact Us</h2>
     <p>If You have any questions, contact us at:</p>
     <p><strong>Email</strong>: hello.multicv@gmail.com</p>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let count = 1;
+        document.querySelectorAll("h2").forEach((h2) => {
+          h2.textContent = `${count}. ${h2.textContent}`;
+          count++;
+        });
+      });
+    </script>
   </body>
 </html>

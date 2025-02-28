@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -13,7 +13,7 @@
     <h1>Terms and Conditions</h1>
     <p><strong>Last updated: February 27, 2025</strong></p>
 
-    <h2>1. Who We Are</h2>
+    <h2>Who We Are</h2>
     <p>
       MultiCV is an independent project developed by a group of individuals. It
       is not registered as a formal business entity. By using this service, You
@@ -21,14 +21,28 @@
       guarantees.
     </p>
 
-    <h2>2. Acceptance of Terms</h2>
+    <h2>Beta Phase and Purpose of Payments</h2>
+    <p>
+      MultiCV is currently in a testing phase ("beta"), and as such, the Service
+      may experience bugs, errors, or limited functionality. The purpose of
+      charging users is not for profit but to cover operational costs such as
+      server expenses and third-party API costs (e.g., OpenAI API usage). By
+      making a payment, You acknowledge that the service is experimental, and
+      You are supporting its development.
+    </p>
+    <p>
+      If You are dissatisfied with the Service, You may request a refund as
+      outlined below.
+    </p>
+
+    <h2>Acceptance of Terms</h2>
     <p>
       By using MultiCV ("Service"), You agree to these Terms and Conditions. If
       You do not agree to these Terms, You must discontinue use of the Service
       immediately.
     </p>
 
-    <h2>3. Use of AI-Generated Content</h2>
+    <h2>Use of AI-Generated Content</h2>
     <p>
       Our Service leverages OpenAI’s API to generate CVs. We do not guarantee
       the accuracy or appropriateness of AI-generated content and are not
@@ -52,7 +66,7 @@
       </li>
     </ol>
 
-    <h2>3. Data Storage and Privacy</h2>
+    <h2>Data Storage and Privacy</h2>
     <p>
       When using MultiCV, the data You provide is stored on our servers and is
       also sent to OpenAI’s API for processing. We do not control how OpenAI
@@ -68,7 +82,7 @@
       will immediately delete their account and any associated data.
     </p>
 
-    <h2>5. Right of Withdrawal</h2>
+    <h2>Right of Withdrawal</h2>
     <p>
       In accordance with Spanish consumer protection laws, You have the right to
       withdraw from Your purchase within 14 days, provided You have not already
@@ -76,7 +90,7 @@
       You expressly waive this right of withdrawal.
     </p>
 
-    <h2>6. Refund Policy</h2>
+    <h2>Refund Policy</h2>
     <p>
       Refunds are available in cases where You have not accessed or used the
       digital services. Additionally, if an error occurs in the purchase process
@@ -90,7 +104,7 @@
       You may request a refund for the unused portion of Your purchase.
     </p>
 
-    <h2>7. Service Availability and Subscriptions</h2>
+    <h2>Service Availability and Subscriptions</h2>
     <p>
       We reserve the right to modify, suspend, or terminate the Service at any
       time. We will make reasonable efforts to notify users in advance of any
@@ -117,7 +131,7 @@
       </li>
     </ol>
 
-    <h2>8. Free Tier</h2>
+    <h2>Free Tier</h2>
     <p>
       We offer a free tier with limited functionality that allows users to try
       basic features of the Service. Users can later extend these features by
@@ -131,7 +145,7 @@
       the unused portion of Your purchase.
     </p>
 
-    <h2>9. Prohibited Conduct</h2>
+    <h2>Prohibited Conduct</h2>
     <p>
       You agree not to misuse the Service. Prohibited actions include but are
       not limited to:
@@ -159,14 +173,14 @@
       will be suspended immediately.
     </p>
 
-    <h2>10. Limitation of Liability</h2>
+    <h2>Limitation of Liability</h2>
     <p>
       TO THE MAXIMUM EXTENT PERMITTED BY LAW, MULTICV SHALL NOT BE LIABLE FOR
       ANY DAMAGES, INCLUDING BUT NOT LIMITED TO DIRECT, INDIRECT, INCIDENTAL,
       CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING FROM YOUR USE OF THE SERVICE.
     </p>
 
-    <h2>11. Force Majeure</h2>
+    <h2>Force Majeure</h2>
     <p>
       MultiCV shall not be held liable for any failure or delay in performance
       caused by circumstances beyond our reasonable control, including but not
@@ -174,7 +188,7 @@
       third-party service failures.
     </p>
 
-    <h2>12. Changes to Terms and Conditions or Privacy Policy</h2>
+    <h2>Changes to Terms and Conditions or Privacy Policy</h2>
     <p>
       We may update these Terms and Conditions or our Privacy Policy. Users will
       be notified at least 30 days before changes take effect. The updated Terms
@@ -182,7 +196,7 @@
       the Service after this period, You agree to the revised Terms.
     </p>
 
-    <h2>13. Governing Law and Jurisdiction</h2>
+    <h2>Governing Law and Jurisdiction</h2>
     <p>
       These Terms and Conditions shall be governed and construed in accordance
       with the laws of Spain, without regard to its conflict of law provisions.
@@ -191,7 +205,7 @@
       Spain.
     </p>
 
-    <h2>15. Cookies and Tracking Technologies</h2>
+    <h2>Cookies and Tracking Technologies</h2>
     <p>
       By using MultiCV, You agree to the use of cookies and similar tracking
       technologies as described in our
@@ -223,8 +237,18 @@
       <a href="cookies-policy.html">Cookies Policy</a>.
     </p>
 
-    <h2>16. Contact Us</h2>
+    <h2>Contact Us</h2>
     <p>If You have any questions about these Terms, contact us at:</p>
     <p><strong>Email</strong>: hello.multicv@gmail.com</p>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        let count = 1;
+        document.querySelectorAll("h2").forEach((h2) => {
+          h2.textContent = `${count}. ${h2.textContent}`;
+          count++;
+        });
+      });
+    </script>
   </body>
 </html>
