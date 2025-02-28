@@ -1,7 +1,9 @@
+import { MarginTopContainer } from "@/app/main.styles";
+
 export default function EmailVerificationLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <MarginTopContainer>{children}</MarginTopContainer>;
 }
