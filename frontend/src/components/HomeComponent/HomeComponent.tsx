@@ -8,14 +8,12 @@ import CvList from "../shared/components/CvList";
 import { CV } from "@/lib/types";
 
 export default function HomeComponent() {
-  const { data: userData, isLoading: isUserDataLoading } = useSWR(
-    userApiLink,
-    fetcherApi
-  );
+  const { isLoading: isUserDataLoading } = useSWR(userApiLink, fetcherApi);
+
   if (isUserDataLoading) {
     return null;
   }
-  console.log(userData);
+
   const cvs: CV[] = [
     {
       company: "Revolut",
