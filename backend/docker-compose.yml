@@ -86,6 +86,16 @@ services:
         volumes:
             - redis_insight_data:/db
 
+    mailhog:
+        image: 'mailhog/mailhog:latest'
+        restart: always
+        ports:
+            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+        networks:
+            - multi-cv-local
+
+
 networks:
     multi-cv-local:
         driver: bridge
