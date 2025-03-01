@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -47,4 +49,36 @@ class User extends Authenticatable implements MustVerifyEmail
         'notified_terms_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($user) {
+            $request = request();
+            $action = 'register';
+
+            RateLimiter::attempt(
+                "{$action}:ip:{$request->ip()}",
+                10,
+                function () {
+                    return true;
+                },
+                60 * 60 * 24
+            ) || throw ValidationException::withMessages([
+                'error' => 'You have exceeded the registration limit per IP. Please try again later.'
+            ])->status(429);
+
+            RateLimiter::attempt(
+                "{$action}:global",
+                100,
+                function () {
+                    return true;
+                },
+                60 * 60 * 24
+            ) || throw ValidationException::withMessages([
+                'error' => 'You have exceeded the global registration limit. Please try again later.'
+            ])->status(429);
+        });
+    }
 }
