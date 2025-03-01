@@ -75,7 +75,7 @@ services:
             timeout: 5s
 
     redis-insight:
-        image: redislabs/redisinsight:latest
+        image: brayand/fullstack-project-template-redisinsight:1.0.0
         restart: always
         networks:
             - multi-cv-local
@@ -87,7 +87,7 @@ services:
             - redis_insight_data:/db
 
     mailhog:
-        image: 'mailhog/mailhog:latest'
+        image: brayand/fullstack-project-template-mailhog:1.0.0
         restart: always
         ports:
             - '${FORWARD_MAILHOG_PORT:-1025}:1025'
