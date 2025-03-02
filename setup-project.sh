@@ -2,6 +2,8 @@
 
 set -e
 
+cp .hooks/* .git/hooks/
+
 
 docker network create multi-cv-local || true
 
