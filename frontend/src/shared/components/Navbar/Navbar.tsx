@@ -15,6 +15,7 @@ import {
 } from "@heroui/react";
 import { ITopBarNavigationProps } from "./Navbar.types";
 import LanguageToggle from "../LanguageToggle";
+import { useTranslations } from "next-intl";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   passwordLink,
@@ -35,6 +36,8 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
     }
   };
 
+  const tCommon = useTranslations();
+
   return (
     <>
       {homeLink && (
@@ -45,7 +48,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             size="sm"
             onPress={() => router.push("/home")}
           >
-            Home
+            {tCommon("home")}
           </Link>
         </NavbarMenuItem>
       )}
@@ -57,7 +60,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             size="sm"
             onPress={() => router.push("/password")}
           >
-            Change password
+            {tCommon("change-password")}
           </Link>
         </NavbarMenuItem>
       )}
@@ -69,7 +72,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             size="sm"
             onPress={() => logout()}
           >
-            Log out
+            {tCommon("logout")}
           </Link>
         </NavbarMenuItem>
       )}
@@ -85,6 +88,8 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const router = useRouter();
 
+  const tCommon = useTranslations();
+
   return (
     <NavbarUI onMenuOpenChange={setIsMenuOpen} style={{ overflow: "hidden" }}>
       <NavbarContent>
@@ -94,7 +99,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
         />
         <NavbarBrand>
           <Link onPress={() => router.push("/")} className="cursor-pointer">
-            <p className="font-bold text-inherit">MultiCV</p>
+            <p className="font-bold text-inherit">{tCommon("app-name")}</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>

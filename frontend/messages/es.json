@@ -3,6 +3,8 @@
   "login": "Iniciar sesión",
   "register": "Registrarse",
   "logout": "Cerrar sesión",
+  "home": "Inicio",
+  "change-password": "Cambiar contraseña",
   "full-name": "Nombre completo",
   "enter-full-name": "Ingresa tu nombre completo",
   "email": "Correo electrónico",
