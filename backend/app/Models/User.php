@@ -66,7 +66,7 @@ class User extends Authenticatable implements MustVerifyEmail
                 },
                 60 * 60 * 24
             ) || throw ValidationException::withMessages([
-                'error' => 'You have exceeded the registration limit per IP. Please try again later.'
+                'error' => 'You have exceeded the registration limit per IP. Please try again later.',
             ])->status(429);
 
             RateLimiter::attempt(
@@ -77,7 +77,7 @@ class User extends Authenticatable implements MustVerifyEmail
                 },
                 60 * 60 * 24
             ) || throw ValidationException::withMessages([
-                'error' => 'You have exceeded the global registration limit. Please try again later.'
+                'error' => 'You have exceeded the global registration limit. Please try again later.',
             ])->status(429);
         });
     }
