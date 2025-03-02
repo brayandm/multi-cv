@@ -1,10 +1,13 @@
 {
+  "app-name": "MultiCV",
+  "login": "Iniciar sesión",
+  "register": "Registrarse",
+  "logout": "Cerrar sesión",
   "WelcomePage": {
     "welcome-to": "Bienvenido a",
-    "app-name": "MultiCV"
+    "description": "Crea currículums únicos para ofertas de trabajo únicas."
   },
   "HomePage": {
-    "your-resumes": "Tus CVs",
-    "app-name": "MultiCV"
+    "your-resumes": "Tus currículums"
   }
 }
