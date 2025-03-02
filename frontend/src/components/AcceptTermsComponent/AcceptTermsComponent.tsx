@@ -106,7 +106,7 @@ export default function AcceptTermsComponent({
               >
                 {tCommon("terms-and-conditions")}
               </Link>
-              . {t("by-clickin")}
+              . {t("by-clicking")}
             </p>
           )}
         </>
