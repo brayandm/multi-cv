@@ -14,6 +14,7 @@ import {
   Link,
 } from "@heroui/react";
 import { ITopBarNavigationProps } from "./Navbar.types";
+import LanguageToggle from "../LanguageToggle";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   passwordLink,
@@ -113,6 +114,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           homeLink={homeLink}
         ></NavbarItems>
       </NavbarMenu>
+      <LanguageToggle />
     </NavbarUI>
   );
 };

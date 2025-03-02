@@ -2,5 +2,9 @@
   "WelcomePage": {
     "welcome-to": "Bienvenido a",
     "app-name": "MultiCV"
+  },
+  "HomePage": {
+    "your-resumes": "Tus CVs",
+    "app-name": "MultiCV"
   }
 }
