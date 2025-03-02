@@ -3,11 +3,18 @@
   "login": "Iniciar sesión",
   "register": "Registrarse",
   "logout": "Cerrar sesión",
+  "email": "Correo electrónico",
+  "password": "Contraseña",
+  "google-login": "Iniciar sesión con Google",
   "WelcomePage": {
     "welcome-to": "Bienvenido a",
     "description": "Crea currículums únicos para ofertas de trabajo únicas."
   },
   "HomePage": {
     "your-resumes": "Tus currículums"
+  },
+  "LoginPage": {
+    "description": "Por favor, introduce tus credenciales",
+    "other-method": "Usar otro método"
   }
 }

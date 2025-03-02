@@ -8,6 +8,7 @@ import { Button, Divider, Input } from "@heroui/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -39,16 +40,19 @@ export default function LoginComponent() {
     }
   };
 
+  const t = useTranslations("LoginPage");
+  const tCommon = useTranslations();
+
   return (
     <form
       className="flex flex-col gap-2 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-center">Login</h1>
-      <p>Please enter your credentials</p>
+      <h1 className="text-center">{tCommon("login")}</h1>
+      <p>{t("description")}</p>
       <div className="flex flex-col gap-3">
         <Input
-          label="Email"
+          label={tCommon("email")}
           placeholder="Enter your email"
           type="email"
           name="email"
@@ -56,7 +60,7 @@ export default function LoginComponent() {
           onChange={handleChange}
         />
         <Input
-          label="Password"
+          label={tCommon("password")}
           placeholder="Enter your password"
           type="password"
           name="password"
@@ -64,17 +68,17 @@ export default function LoginComponent() {
           onChange={handleChange}
         />
         <Button color="primary" type="submit">
-          Login
+          {tCommon("login")}
         </Button>
       </div>
       <Divider className="my-4"></Divider>
       <p>
-        Use another method |{" "}
+        {t("other-method")} |{" "}
         <span
           className="text-primary cursor-pointer"
           onClick={() => router.push("/register")}
         >
-          Register
+          {tCommon("register")}
         </span>
       </p>
       <div>
