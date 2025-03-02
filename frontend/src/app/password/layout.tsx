@@ -1,4 +1,4 @@
-import Navbar from "@/components/shared/components/Navbar";
+import Navbar from "@/shared/components/Navbar";
 import { NavbarWrapper } from "../main.styles";
 
 export default function RegisterLayout({

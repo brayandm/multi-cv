@@ -4,7 +4,7 @@ import { fetcherApi } from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
 
 import useSWR from "swr";
-import CvList from "../shared/components/CvList";
+import CvList from "../../shared/components/CvList";
 import { CV } from "@/lib/types";
 
 export default function HomeComponent() {

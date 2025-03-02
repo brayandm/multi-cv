@@ -1,6 +1,6 @@
 "use client";
 
-import GoogleOauthBtn from "@/components/shared/components/GoogleOauthBtn";
+import GoogleOauthBtn from "@/shared/components/GoogleOauthBtn";
 import { loginApi } from "@/lib/backendService";
 import { handleGoogleSignIn } from "@/lib/oauth";
 

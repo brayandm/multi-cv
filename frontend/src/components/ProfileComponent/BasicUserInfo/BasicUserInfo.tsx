@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { IProfileFrom } from "../ProfileComponent.types";
+import { IDynamicInput, IProfileFrom } from "../ProfileComponent.types";
 import DynamicInputs from "../DynamicInputs";
-import { IDynamicInput } from "../DynamicInputs/DynamicInputs";
 
 interface IBasicUserInfoProps {
   formData: IProfileFrom;
@@ -23,11 +22,10 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
         full_name,
       },
     });
-
-    console.log(email, full_name, about);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, full_name, about]);
 
-  const inputs: IDynamicInput[] = [
+  const inputs: IDynamicInput<string>[] = [
     {
       label: "Full name",
       placeholder: "John Doe",

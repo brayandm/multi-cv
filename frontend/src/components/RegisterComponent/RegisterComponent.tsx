@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { loginApi, registerApi } from "@/lib/backendService";
 import Link from "next/link";
 import { handleGoogleSignIn } from "@/lib/oauth";
-import GoogleOauthBtn from "../shared/components/GoogleOauthBtn";
+import GoogleOauthBtn from "../../shared/components/GoogleOauthBtn";
 
 export default function RegisterComponent() {
   const router = useRouter();
