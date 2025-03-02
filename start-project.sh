@@ -75,3 +75,6 @@ docker compose exec backend php artisan storage:link > /dev/null 2>&1 || true
 popd > /dev/null
 
 echo "🚀 Project is ready! 🚀"
+
+echo "🌐 Frontend: http://localhost:3000"
+open http://localhost:3000

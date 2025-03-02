@@ -6,6 +6,7 @@ import useSWR from "swr";
 import { userApiLink } from "@/lib/links";
 import { fetcherApi, updatePasswordApi } from "@/lib/backendService";
 import { UserResponse } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 export default function PasswordComponent() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,8 @@ export default function PasswordComponent() {
     password: "",
     repeatPassword: "",
   });
+
+  const tCommon = useTranslations();
 
   const { data: userData, isLoading: isUserDataLoading } = useSWR<UserResponse>(
     userApiLink,
@@ -51,13 +54,13 @@ export default function PasswordComponent() {
       className="flex flex-col gap-2 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-center">Change Password</h1>
-      <p>Enter your new password</p>
+      <h1 className="text-center">{tCommon("change-password")}</h1>
+      <p>{tCommon("enter-new-password")}</p>
       <div className="flex flex-col gap-3">
         {!userData?.is_password_null && (
           <Input
-            label="Current Password"
-            placeholder="Enter your current password"
+            label={tCommon("current-password")}
+            placeholder={tCommon("enter-current-password")}
             type="password"
             name="currentPassword"
             value={formData.currentPassword}
@@ -65,16 +68,16 @@ export default function PasswordComponent() {
           />
         )}
         <Input
-          label="Password"
-          placeholder="Enter your password"
+          label={tCommon("password")}
+          placeholder={tCommon("enter-password")}
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
         <Input
-          label="Repeat the password"
-          placeholder="Enter your password"
+          label={tCommon("repeat-password")}
+          placeholder={tCommon("enter-password-again")}
           type="password"
           name="repeatPassword"
           value={formData.repeatPassword}
@@ -90,7 +93,7 @@ export default function PasswordComponent() {
             formData.password !== formData.repeatPassword
           }
         >
-          Change Password
+          {tCommon("change-password")}
         </Button>
       </div>
     </form>
