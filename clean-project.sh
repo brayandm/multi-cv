@@ -34,7 +34,7 @@ rm -f .env
 
 echo "Stopping and removing backend containers..."
 if [ "$REMOVE_VOLUMES" = true ]; then
-  echo "Removing Docker volumes for backend..."
+  echo -e "\e[31mRemoving Docker volumes for backend...\e[0m"
   docker compose down -v > /dev/null 2>&1
 else
   docker compose down > /dev/null 2>&1
@@ -53,7 +53,7 @@ rm -f .env
 
 echo "Stopping and removing frontend containers..."
 if [ "$REMOVE_VOLUMES" = true ]; then
-  echo "Removing Docker volumes for frontend..."
+  echo -e "\e[31mRemoving Docker volumes for frontend...\e[0m"
   docker compose down -v > /dev/null 2>&1
 else
   docker compose down > /dev/null 2>&1
