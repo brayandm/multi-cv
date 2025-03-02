@@ -26,7 +26,7 @@ export async function middleware(req: NextRequest) {
     url.pathname
   );
 
-  const authToken = req.cookies.get(process.env.AUTH_COOKIE_NAME!);
+  const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
 
   const data = await api.get<UserStatusResponse>(userStatusApiLink, {
     headers: {
