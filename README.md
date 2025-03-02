@@ -11,3 +11,9 @@ cp .hooks/* .git/hooks/
 ```bash
 bash build.sh
 ```
+
+## Setup Project for Local Development (super easy)
+
+```bash
+bash setup-project.sh
+```
