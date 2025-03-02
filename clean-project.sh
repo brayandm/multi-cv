@@ -2,6 +2,20 @@
 
 set -e
 
+REMOVE_VOLUMES=false
+
+while getopts "v" opt; do
+  case $opt in
+    v)
+      REMOVE_VOLUMES=true
+      ;;
+    *)
+      echo "Usage: $0 [-v] (optional: remove Docker volumes)"
+      exit 1
+      ;;
+  esac
+done
+
 echo "🚀 Cleaning up project... 🚀"
 
 echo "Removing Git hooks..."
@@ -19,7 +33,12 @@ echo "Removing backend .env file..."
 rm -f .env
 
 echo "Stopping and removing backend containers..."
-docker compose down -v > /dev/null 2>&1
+if [ "$REMOVE_VOLUMES" = true ]; then
+  echo "Removing Docker volumes for backend..."
+  docker compose down -v > /dev/null 2>&1
+else
+  docker compose down > /dev/null 2>&1
+fi
 
 popd > /dev/null
 
@@ -33,8 +52,13 @@ echo "Removing frontend .env file..."
 rm -f .env
 
 echo "Stopping and removing frontend containers..."
-docker compose down -v > /dev/null 2>&1
+if [ "$REMOVE_VOLUMES" = true ]; then
+  echo "Removing Docker volumes for frontend..."
+  docker compose down -v > /dev/null 2>&1
+else
+  docker compose down > /dev/null 2>&1
+fi
 
 popd > /dev/null
 
-echo "🚀 Project is cleaned"
+echo "🚀 Project is cleaned! 🚀"
