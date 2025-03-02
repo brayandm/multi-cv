@@ -26,6 +26,7 @@ class UserService
 
     public function createUserToken(User $user)
     {
+        $user->tokens()->delete();
         return $user->createToken(config('auth.cookie_name'), [], Carbon::now()->addSeconds(config('auth.token_expiration')));
     }
 
