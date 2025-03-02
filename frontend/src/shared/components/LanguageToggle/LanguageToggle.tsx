@@ -23,7 +23,7 @@ export default function LanguageToggle() {
   const [locale, setLocale] = useState("en");
 
   useEffect(() => {
-    const savedLocale = getCookie("locale") || "en";
+    const savedLocale = (getCookie("locale") as string) || "en";
     setLocale(savedLocale);
   }, []);
 
