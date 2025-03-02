@@ -2,49 +2,54 @@
 
 set -e
 
+echo "🚀 Setting up project... 🚀"
+
+echo "Copying hooks..."
 cp .hooks/* .git/hooks/
 
+echo "Creating docker network..."
+docker network create multi-cv-local > /dev/null 2>&1 || true 
 
-docker network create multi-cv-local || true
 
+pushd backend/ > /dev/null
 
-pushd backend/
-
-# Install composer dependencies
+echo "Installing composer dependencies..."
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
     -w /var/www/html \
     brayand/fullstack-project-template-composer:1.0.0 \
-    composer install --ignore-platform-reqs
+    composer install --ignore-platform-reqs > /dev/null 2>&1
 
-# Copy .env file
+echo "Copying backend .env file..."
 cp .env.local .env
 
-docker compose up -d
+echo "Starting backend..."
+docker compose up -d > /dev/null 2>&1
 
-popd
+popd > /dev/null
 
 
-pushd frontend/
+pushd frontend/ > /dev/null
 
-# Install npm dependencies
+echo "Installing npm dependencies..."
 docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/usr/src/app \
     -w /usr/src/app \
     brayand/fullstack-project-template-node:1.0.0 \
-    npm install
+    npm install > /dev/null 2>&1
 
-# Copy .env file
+echo "Copying frontend .env file..."
 cp .env.local .env
 
-docker compose up -d
+echo "Starting frontend..."
+docker compose up -d > /dev/null 2>&1
 
-popd
+popd > /dev/null
 
 
-pushd backend/
+pushd backend/ > /dev/null
 
 echo "Waiting for MySQL to be ready..."
 CONTAINER_NAME="backend-backend-1" 
@@ -61,10 +66,12 @@ done
 
 echo "✅ MySQL is ready!"
 
-docker compose exec backend php artisan migrate
+echo "Running migrations..."
+docker compose exec backend php artisan migrate > /dev/null 2>&1
 
-docker compose exec backend php artisan storage:link || true
+echo "Running seeders..."
+docker compose exec backend php artisan storage:link > /dev/null 2>&1 || true 
 
-popd
+popd > /dev/null
 
 echo "🚀 Project is ready! 🚀"
