@@ -40,6 +40,9 @@ export async function middleware(req: NextRequest) {
   const isValidTermsVersion =
     data.status === 200 && data.data.is_valid_terms_version === true;
 
+  const isFirstTermsVersion =
+    data.status === 200 && data.data.is_valid_terms_version === null;
+
   const isEmailVerified =
     data.status === 200 && data.data.email_verified === true;
 
@@ -82,8 +85,8 @@ export async function middleware(req: NextRequest) {
     !isAcceptTermsPage &&
     isAuthenticated &&
     isProtectedPage &&
-    !isValidTermsVersion &&
-    isNoticeTermsVersion !== null
+    (isFirstTermsVersion ||
+      (!isValidTermsVersion && isNoticeTermsVersion !== null))
   ) {
     url.pathname = "/accept-terms";
     return NextResponse.redirect(url);
@@ -92,6 +95,7 @@ export async function middleware(req: NextRequest) {
   if (
     isAcceptTermsPage &&
     isAuthenticated &&
+    !isFirstTermsVersion &&
     (isValidTermsVersion ||
       (!isValidTermsVersion && isNoticeTermsVersion === null))
   ) {
