@@ -24,6 +24,19 @@
   "i-accept": "Acepto los",
   "and": "y",
   "continue": "Continuar",
+  "EmailVerificationPage": {
+    "resend-email": "Reenviar correo",
+    "resend-email-timeleft": "Reenviar en {timeleft}s",
+    "try-other-day": "Demasiadas solicitudes, inténtalo en 24 horas",
+    "verification-title": "Verificación de correo electrónico",
+    "already-verified-title": "Correo electrónico ya verificado",
+    "success-title": "Verificación de correo electrónico exitosa",
+    "expired-title": "Verificación de correo electrónico expirada",
+    "verification-text": "Te hemos enviado un correo electrónico con un enlace de verificación.",
+    "already-verified-text": "Tu correo electrónico ya ha sido verificado.",
+    "success-text": "Tu correo electrónico ha sido verificado.",
+    "expired-text": "El enlace de verificación de tu correo electrónico ha expirado."
+  },
   "WelcomePage": {
     "welcome-to": "Bienvenido a",
     "description": "Crea CVs únicos para ofertas de trabajo únicas."

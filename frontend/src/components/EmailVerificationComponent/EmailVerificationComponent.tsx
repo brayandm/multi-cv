@@ -113,17 +113,19 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={resendEmail}
         >
-          <h1 className="text-center">{t("everification-title")}</h1>
-          <p>{t("everification-text")}</p>
+          <h1 className="text-center">{t("verification-title")}</h1>
+          <p>{t("verification-text")}</p>
           {displayResendButton && (
             <Button
               color="primary"
               type="submit"
               isDisabled={isCooldown || tryOtherDay}
             >
-              {tryOtherDay && "Too many requests, try in 24 hours"}
+              {tryOtherDay && t("try-other-day")}
               {!tryOtherDay &&
-                (isCooldown ? `Resend in ${timeLeft}s` : "Resend Email")}
+                (isCooldown
+                  ? t("resend-email-timeleft", { timeLeft })
+                  : t("resend-email"))}
             </Button>
           )}
         </form>
@@ -165,9 +167,11 @@ export default function EmailVerificationComponent({
               type="submit"
               isDisabled={isCooldown || tryOtherDay}
             >
-              {tryOtherDay && "Too many requests, try in 24 hours"}
+              {tryOtherDay && t("try-other-day")}
               {!tryOtherDay &&
-                (isCooldown ? `Resend in ${timeLeft}s` : "Resend Email")}
+                (isCooldown
+                  ? t("resend-email-timeleft", { timeLeft })
+                  : t("resend-email"))}
             </Button>
           )}
         </form>

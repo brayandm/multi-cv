@@ -25,6 +25,9 @@
   "and": "and",
   "continue": "Continue",
   "EmailVerificationPage": {
+    "resend-email": "Resend email",
+    "resend-email-timeleft": "Resend in {timeleft}s",
+    "try-other-day": "Too many requests, try in 24 hours",
     "verification-title": "Email Verification",
     "already-verified-title": "Email Verification Already Verified",
     "success-title": "Email Verification Success",
