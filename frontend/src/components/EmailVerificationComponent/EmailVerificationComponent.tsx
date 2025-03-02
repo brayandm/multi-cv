@@ -48,7 +48,7 @@ export default function EmailVerificationComponent({
       }
     }
     setDisplayResendButton(true);
-  }, []);
+  }, [email]);
 
   useEffect(() => {
     if (isCooldown) {
