@@ -18,8 +18,14 @@ bash build.sh
 bash setup-project.sh
 ```
 
-## Clean Project for Local Development (super easy)
+## Clean Project for Local Development (super easy) without deleting the data
 
 ```bash
 bash clean-project.sh
+```
+
+## Clean Project for Local Development (super easy) with deleting the data
+
+```bash
+bash clean-project.sh -v
 ```
