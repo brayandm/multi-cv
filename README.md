@@ -18,8 +18,8 @@ bash build.sh
 bash setup-project.sh
 ```
 
-## Stop Project and Clean Up
+## Clean Project for Local Development (super easy)
 
 ```bash
-bash stop-project.sh
+bash clean-project.sh
 ```
