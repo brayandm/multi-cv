@@ -6,7 +6,7 @@ export default function AuthGoogle() {
   const handleGoogleSignIn = async () => {
     const response = await googleLoginApi(true);
     const redirectUrl = response.data.url;
-    window.location.href = redirectUrl;
+    if (redirectUrl) window.location.href = redirectUrl;
   };
 
   handleGoogleSignIn();
