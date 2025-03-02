@@ -63,6 +63,8 @@ echo "✅ MySQL is ready!"
 
 docker compose exec backend php artisan migrate
 
-docker compose exec backend php artisan storage:link
+docker compose exec backend php artisan storage:link || true
 
 popd
+
+echo "🚀 Project is ready! 🚀"
