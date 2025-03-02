@@ -4,7 +4,7 @@ set -e
 
 echo "🚀 Setting up project... 🚀"
 
-echo "Copying hooks..."
+echo "Copying Git hooks..."
 cp .hooks/* .git/hooks/
 
 echo "Creating docker network..."
