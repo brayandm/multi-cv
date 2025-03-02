@@ -7,10 +7,12 @@ import { useRouter } from "next/navigation";
 
 interface IEmailVerificationComponentProps {
   type: "already-verified" | "success" | "expired" | "verification";
+  email: string;
 }
 
 export default function EmailVerificationComponent({
   type,
+  email,
 }: IEmailVerificationComponentProps) {
   const router = useRouter();
   const [isCooldown, setIsCooldown] = useState(false);
@@ -19,10 +21,13 @@ export default function EmailVerificationComponent({
   const [displayResendButton, setDisplayResendButton] = useState(false);
 
   useEffect(() => {
-    const firstTimeResend = localStorage.getItem("firstTimeResend");
+    const firstTimeResend = localStorage.getItem(email + ":firstTimeResend");
     if (!firstTimeResend) {
-      localStorage.setItem("firstTimeResend", "true");
-      localStorage.setItem("lastEmailResendTime", Date.now().toString());
+      localStorage.setItem(email + ":firstTimeResend", "true");
+      localStorage.setItem(
+        email + ":lastEmailResendTime",
+        Date.now().toString()
+      );
       setIsCooldown(true);
       setTimeLeft(90);
       setDisplayResendButton(true);
@@ -30,7 +35,7 @@ export default function EmailVerificationComponent({
   }, []);
 
   useEffect(() => {
-    const lastSentTime = localStorage.getItem("lastEmailResendTime");
+    const lastSentTime = localStorage.getItem(email + ":lastEmailResendTime");
     if (lastSentTime) {
       const elapsedTime = Math.floor(
         (Date.now() - parseInt(lastSentTime)) / 1000
@@ -71,7 +76,10 @@ export default function EmailVerificationComponent({
       const response = await resendEmailApi();
 
       if (response.status === 200) {
-        localStorage.setItem("lastEmailResendTime", Date.now().toString());
+        localStorage.setItem(
+          email + ":lastEmailResendTime",
+          Date.now().toString()
+        );
         setIsCooldown(true);
         setTimeLeft(90);
       }
