@@ -53,7 +53,7 @@ export default function LoginComponent() {
       <div className="flex flex-col gap-3">
         <Input
           label={tCommon("email")}
-          placeholder="Enter your email"
+          placeholder={tCommon("enter-email")}
           type="email"
           name="email"
           value={formData.email}
@@ -61,7 +61,7 @@ export default function LoginComponent() {
         />
         <Input
           label={tCommon("password")}
-          placeholder="Enter your password"
+          placeholder={tCommon("enter-password")}
           type="password"
           name="password"
           value={formData.password}
