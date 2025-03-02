@@ -22,7 +22,7 @@ docker run --rm \
     composer install --ignore-platform-reqs > /dev/null 2>&1
 
 echo "Copying backend .env file..."
-cp .env.local .env
+cp .env.example .env
 
 echo "Starting backend..."
 docker compose up --build --force-recreate --remove-orphans -d > /dev/null 2>&1
@@ -41,7 +41,7 @@ docker run --rm \
     npm install > /dev/null 2>&1
 
 echo "Copying frontend .env file..."
-cp .env.local .env
+cp .env.example .env
 
 echo "Starting frontend..."
 docker compose up --build --force-recreate --remove-orphans -d > /dev/null 2>&1

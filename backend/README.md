@@ -11,10 +11,10 @@ docker run --rm \
     composer install --ignore-platform-reqs
 ```
 
-2 - Copy the `.env.local` file to `.env`:
+2 - Copy the `.env.example` file to `.env`:
 
 ```bash
-cp .env.local .env
+cp .env.example .env
 ```
 
 3 - Create Docker Network:
@@ -29,7 +29,7 @@ docker network create multi-cv-local
 docker compose up -d
 ```
 
-5 - Generate a new application key (Optional, already exists in the `.env.local` file):
+5 - Generate a new application key (Optional, already exists in the `.env.example` file):
 
 ```bash
 docker compose exec backend php artisan key:generate

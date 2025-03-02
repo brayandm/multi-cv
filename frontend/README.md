@@ -12,10 +12,10 @@ nvm install && nvm use
 npm install
 ```
 
-3 - Copy the `.env.local` file to `.env`:
+3 - Copy the `.env.example` file to `.env`:
 
 ```bash
-cp .env.local .env
+cp .env.example .env
 ```
 
 4 - Create Docker Network:
