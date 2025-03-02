@@ -28,11 +28,12 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
         });
 
-        RateLimiter::for('resend-verification-email', function (Request $request) {
-            return [
-                Limit::perDay(3)->by($request->user()?->id ?: $request->ip()),
-                Limit::perMinutes(1, 1)->by($request->user()?->id ?: $request->ip()),
-            ];
+        RateLimiter::for('resend-verification-email-per-minute', function (Request $request) {
+            return Limit::perMinute(1)->by($request->user()?->id ?: $request->ip());
+        });
+
+        RateLimiter::for('resend-verification-email-per-day', function (Request $request) {
+            return Limit::perDay(3)->by($request->user()?->id ?: $request->ip());
         });
 
         $this->routes(function () {
