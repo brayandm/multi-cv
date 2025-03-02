@@ -122,6 +122,23 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
                   onExperienceChange(index, "role", value),
                 value: experience?.role || "",
               },
+              {
+                label: "Description",
+                type: "textarea",
+                placeholder:
+                  "A description of your duties and responsibilities in the job",
+                onValueChange: (value: string) =>
+                  onExperienceChange(index, "description", value),
+                value: experience?.description || "",
+              },
+              {
+                label: "Country / City",
+                type: "text",
+                placeholder: 'The work location (you can also type "Remote")',
+                onValueChange: (value: string) =>
+                  onExperienceChange(index, "description", value),
+                value: experience?.description || "",
+              },
               [
                 {
                   label: "Start Date",
@@ -138,6 +155,7 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
                   value: experience?.end_date || "",
                 },
               ],
+
               isPresentJob(),
             ];
             return (
