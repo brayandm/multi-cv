@@ -2,7 +2,7 @@
 
 set -e
 
-echo "🚀 Setting up project... 🚀"
+echo "🚀 Starting up project... 🚀"
 
 echo "Copying Git hooks..."
 cp .hooks/* .git/hooks/

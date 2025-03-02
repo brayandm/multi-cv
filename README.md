@@ -12,10 +12,10 @@ cp .hooks/* .git/hooks/
 bash build.sh
 ```
 
-## Setup Project for Local Development (super easy)
+## Start Project for Local Development (super easy)
 
 ```bash
-bash setup-project.sh
+bash start-project.sh
 ```
 
 ## Clean Project for Local Development (super easy) without deleting the data
