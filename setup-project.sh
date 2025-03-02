@@ -2,7 +2,9 @@
 
 set -e
 
-docker network create multi-cv-local
+
+docker network create multi-cv-local || true
+
 
 pushd backend/
 
@@ -16,6 +18,8 @@ docker run --rm \
 
 # Copy .env file
 cp .env.local .env
+
+docker compose up -d
 
 popd
 
@@ -32,5 +36,31 @@ docker run --rm \
 
 # Copy .env file
 cp .env.local .env
+
+docker compose up -d
+
+popd
+
+
+pusd backend/
+
+echo "Waiting for MySQL to be ready..."
+CONTAINER_NAME="backend-backend-1" 
+DB_USER="admin"
+DB_PASSWORD="password"
+DB_NAME="multicv"
+DB_HOST="mysql"
+DB_PORT="3306"
+
+until docker exec "$CONTAINER_NAME" mysql -h"$DB_HOST" -P"$DB_PORT" -u"$DB_USER" -p"$DB_PASSWORD" -e "USE $DB_NAME;" &>/dev/null; do
+    echo "MySQL is not ready yet; sleeping..."
+    sleep 5
+done
+
+echo "✅ MySQL is ready!"
+
+docker compose exec backend php artisan migrate
+
+docker compose exec backend php artisan artisan storage:link
 
 popd
