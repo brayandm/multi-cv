@@ -28,6 +28,11 @@ export interface NotifiedTermsVersionResponse {
 export interface ResendEmailResponse {
   message: string;
 }
+
+export interface GoogleLoginResponse {
+  is_local?: boolean;
+  url?: string;
+}
 export interface UserResponse {
   id: number;
   name: string;

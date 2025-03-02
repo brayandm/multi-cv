@@ -20,6 +20,7 @@ import {
   NotifiedTermsVersionResponse,
   AcceptTermsVersionResponse,
   ResendEmailResponse,
+  GoogleLoginResponse,
 } from "./types";
 
 const isServer = typeof window === "undefined";
@@ -113,7 +114,7 @@ export const userApi = async (): Promise<AxiosResponse<UserResponse>> => {
 
 export const googleLoginApi = async (
   isExtension: boolean = false
-): Promise<AxiosResponse> => {
+): Promise<AxiosResponse<GoogleLoginResponse>> => {
   return await api.get(
     googleLoginApiLink + (isExtension ? "?extension=true" : "")
   );

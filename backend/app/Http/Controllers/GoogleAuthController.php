@@ -32,11 +32,11 @@ class GoogleAuthController extends Controller
         $token = $this->userService->createUserToken($user);
 
         if ($extension) {
-            return redirect(config('app.frontend_url').'/redirect-back')
+            return response()->json(['is_local' => true])
                 ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
         }
 
-        return redirect(config('app.frontend_url').'/home')
+        return response()->json(['is_local' => true])
             ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
     }
 
