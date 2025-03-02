@@ -3,9 +3,17 @@
   "login": "Login",
   "register": "Register",
   "logout": "Logout",
+  "full-name": "Full Name",
   "email": "Email",
   "password": "Password",
+  "repeat-password": "Repeat the password",
   "google-login": "Sign in with Google",
+  "other-method": "Use another method",
+  "terms-and-conditions": "Terms & Conditions",
+  "privacy-policy": "Privacy Policy",
+  "confirm-age": "I confirm that I am over 18 years old",
+  "i-accept": "I accept the",
+  "and": "and",
   "WelcomePage": {
     "welcome-to": "Welcome to",
     "description": "Create unique CVs for unique job offers."
@@ -14,7 +22,9 @@
     "your-resumes": "Your Resumes"
   },
   "LoginPage": {
-    "description": "Please enter your credentials",
-    "other-method": "Use another method"
+    "description": "Please enter your credentials"
+  },
+  "RegisterPage": {
+    "description": "Introduce yourself"
   }
 }

@@ -3,9 +3,17 @@
   "login": "Iniciar sesión",
   "register": "Registrarse",
   "logout": "Cerrar sesión",
+  "full-name": "Nombre completo",
   "email": "Correo electrónico",
   "password": "Contraseña",
+  "repeat-password": "Repite la contraseña",
   "google-login": "Iniciar sesión con Google",
+  "other-method": "Usar otro método",
+  "terms-and-conditions": "Términos y condiciones",
+  "privacy-policy": "Política de privacidad",
+  "confirm-age": "Confirmo que tengo más de 18 años",
+  "i-accept": "Acepto los",
+  "and": "y la",
   "WelcomePage": {
     "welcome-to": "Bienvenido a",
     "description": "Crea currículums únicos para ofertas de trabajo únicas."
@@ -14,7 +22,9 @@
     "your-resumes": "Tus currículums"
   },
   "LoginPage": {
-    "description": "Por favor, introduce tus credenciales",
-    "other-method": "Usar otro método"
+    "description": "Por favor, introduce tus credenciales"
+  },
+  "RegisterPage": {
+    "description": "Preséntate"
   }
 }

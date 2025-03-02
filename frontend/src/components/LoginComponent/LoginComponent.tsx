@@ -73,7 +73,7 @@ export default function LoginComponent() {
       </div>
       <Divider className="my-4"></Divider>
       <p>
-        {t("other-method")} |{" "}
+        {tCommon("other-method")} |{" "}
         <span
           className="text-primary cursor-pointer"
           onClick={() => router.push("/register")}
