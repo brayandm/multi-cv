@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { resendEmailApi } from "@/lib/backendService";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 
 interface IEmailVerificationComponentProps {
   type: "already-verified" | "success" | "expired" | "verification";
@@ -102,6 +103,9 @@ export default function EmailVerificationComponent({
     router.push("/home");
   };
 
+  const t = useTranslations("EmailVerificationPage");
+  const tCommon = useTranslations();
+
   return (
     <>
       {type === "verification" && (
@@ -109,8 +113,8 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={resendEmail}
         >
-          <h1 className="text-center">Email Verification</h1>
-          <p>We have sent you an email with a verification link.</p>
+          <h1 className="text-center">{t("everification-title")}</h1>
+          <p>{t("everification-text")}</p>
           {displayResendButton && (
             <Button
               color="primary"
@@ -129,10 +133,10 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={handleContinue}
         >
-          <h1 className="text-center">Email Verification Already Verified</h1>
-          <p>Your email has already been verified.</p>
+          <h1 className="text-center">{t("already-verified-title")}</h1>
+          <p>{t("already-verified-text")}</p>
           <Button color="primary" type="submit">
-            Continue
+            {tCommon("continue")}
           </Button>
         </form>
       )}
@@ -141,10 +145,10 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={handleContinue}
         >
-          <h1 className="text-center">Email Verification Success</h1>
-          <p>Your email has been verified.</p>
+          <h1 className="text-center">{t("success-title")}</h1>
+          <p>{t("success-text")}</p>
           <Button color="primary" type="submit">
-            Continue
+            {tCommon("continue")}
           </Button>
         </form>
       )}
@@ -153,8 +157,8 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={resendEmail}
         >
-          <h1 className="text-center">Email Verification Expired</h1>
-          <p>Your email verification link has expired.</p>
+          <h1 className="text-center">{t("expired-title")}</h1>
+          <p>{t("expired-text")}</p>
           {displayResendButton && (
             <Button
               color="primary"

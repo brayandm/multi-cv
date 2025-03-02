@@ -24,6 +24,16 @@
   "i-accept": "I accept the",
   "and": "and",
   "continue": "Continue",
+  "EmailVerificationPage": {
+    "verification-title": "Email Verification",
+    "already-verified-title": "Email Verification Already Verified",
+    "success-title": "Email Verification Success",
+    "expired-title": "Email Verification Expired",
+    "verification-text": "We have sent you an email with a verification link.",
+    "already-verified-text": "Your email has already been verified.",
+    "success-text": "Your email has been verified.",
+    "expired-text": "Your email verification link has expired."
+  },
   "WelcomePage": {
     "welcome-to": "Welcome to",
     "description": "Create unique CVs for unique job offers."
