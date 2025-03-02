@@ -25,6 +25,7 @@ echo "Copying backend .env file..."
 cp .env.local .env
 
 echo "Starting backend..."
+docker compose down --remove-orphans > /dev/null 2>&1
 docker compose up -d > /dev/null 2>&1
 
 popd > /dev/null
@@ -44,6 +45,7 @@ echo "Copying frontend .env file..."
 cp .env.local .env
 
 echo "Starting frontend..."
+docker compose down --remove-orphans > /dev/null 2>&1
 docker compose up -d > /dev/null 2>&1
 
 popd > /dev/null
