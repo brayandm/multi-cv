@@ -27,7 +27,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('/oauth/google/callback', 'App\Http\Controllers\GoogleAuthController@handleGoogleCallback');
 
-    Route::get('/user-status', 'App\Http\Controllers\AuthController@verify');
+    Route::get('/user-status', 'App\Http\Controllers\AuthController@userStatus');
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
 

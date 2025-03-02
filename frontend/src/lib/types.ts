@@ -3,6 +3,7 @@ export interface UserStatusResponse {
   is_valid_terms_version?: boolean;
   notice_new_terms_version?: boolean;
   email_verified?: boolean;
+  email?: string;
 }
 
 export interface LoginResponse {
