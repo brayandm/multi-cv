@@ -3,6 +3,7 @@ export interface UserStatusResponse {
   is_valid_terms_version?: boolean;
   notice_new_terms_version?: boolean;
   email_verified?: boolean;
+  email?: string;
 }
 
 export interface LoginResponse {
@@ -27,6 +28,11 @@ export interface NotifiedTermsVersionResponse {
 
 export interface ResendEmailResponse {
   message: string;
+}
+
+export interface GoogleLoginResponse {
+  is_local?: boolean;
+  url?: string;
 }
 export interface UserResponse {
   id: number;

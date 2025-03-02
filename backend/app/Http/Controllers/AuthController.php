@@ -103,7 +103,7 @@ class AuthController extends Controller
             ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
     }
 
-    public function verify(Request $request)
+    public function userStatus(Request $request)
     {
         $access_token = $request->bearerToken();
 
@@ -152,6 +152,7 @@ class AuthController extends Controller
             'is_valid_terms_version' => $is_valid_terms_version,
             'notice_new_terms_version' => $notice_new_terms_version,
             'email_verified' => $email_verified,
+            'email' => $user->email,
         ]);
     }
 

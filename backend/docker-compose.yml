@@ -50,6 +50,8 @@ services:
             - multi-cv-local
         environment:
             PMA_HOST: mysql
+        depends_on:
+            - mysql
         ports:
         - '${FORWARD_PHPMYADMIN_PORT:-3406}:80'
 
@@ -71,6 +73,29 @@ services:
                 - ping
             retries: 3
             timeout: 5s
+
+    redis-insight:
+        image: brayand/fullstack-project-template-redisinsight:1.0.0
+        restart: always
+        networks:
+            - multi-cv-local
+        depends_on:
+            - redis
+        ports:
+            - '127.0.0.1:${FORWARD_REDIS_INSIGHT_PORT:-5540}:5540'
+        volumes:
+            - redis_insight_data:/db
+
+    mailhog:
+        image: brayand/fullstack-project-template-mailhog:1.0.0
+        restart: always
+        ports:
+            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
+            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+        networks:
+            - multi-cv-local
+
+
 networks:
     multi-cv-local:
         driver: bridge
@@ -79,4 +104,6 @@ volumes:
     sail-mysql:
         driver: local
     sail-redis:
+        driver: local
+    redis_insight_data:
         driver: local

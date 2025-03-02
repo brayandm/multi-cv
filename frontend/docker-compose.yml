@@ -1,8 +1,7 @@
 services:
   frontend:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
+    user: "${UID:-1000}:${GID:-1000}"
+    image: brayand/fullstack-project-template-frontend:1.0.0
     restart: always
     volumes:
       - .:/app
@@ -10,6 +9,7 @@ services:
       - 3000:3000
     networks:
       - multi-cv-local
+    working_dir: /app
     command: npm run dev
 
 networks:

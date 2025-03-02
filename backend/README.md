@@ -29,7 +29,7 @@ docker network create multi-cv-local
 docker compose up -d
 ```
 
-5 - Generate the application key:
+5 - Generate a new application key (Optional, already exists in the `.env.example` file):
 
 ```bash
 docker compose exec backend php artisan key:generate

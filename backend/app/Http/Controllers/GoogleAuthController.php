@@ -19,9 +19,34 @@ class GoogleAuthController extends Controller
         $this->userService = $userService;
     }
 
+    public function fakeLocalUser($extension = false)
+    {
+        $user = User::firstOrCreate(
+            ['email' => 'user@example.com'],
+            [
+                'name' => 'John Doe',
+                'email_verified_at' => now(),
+            ]
+        );
+
+        $token = $this->userService->createUserToken($user);
+
+        if ($extension) {
+            return response()->json(['is_local' => true])
+                ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+        }
+
+        return response()->json(['is_local' => true])
+            ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+    }
+
     public function redirectToGoogle(Request $request)
     {
         $extension = $request->query('extension');
+
+        if (config('app.env') === 'local') {
+            return $this->fakeLocalUser($extension);
+        }
 
         $authUrl = $this->googleService->getAuthUrl($extension);
 
