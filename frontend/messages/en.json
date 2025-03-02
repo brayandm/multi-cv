@@ -18,6 +18,7 @@
   "confirm-age": "I confirm that I am over 18 years old",
   "i-accept": "I accept the",
   "and": "and",
+  "continue": "Continue",
   "WelcomePage": {
     "welcome-to": "Welcome to",
     "description": "Create unique CVs for unique job offers."
@@ -30,5 +31,12 @@
   },
   "RegisterPage": {
     "description": "Introduce yourself"
+  },
+  "TermsAndConditionsPage": {
+    "title": "Privacy Policy and Terms & Conditions",
+    "description-first-time": "Please read and accept.",
+    "we-are-updating": "We are updating our",
+    "notification": "The new terms will take effect in one month and will be available for review before then. Please take a moment to review the upcoming changes.",
+    "by-clicking": "By clicking &quot;Continue&quot;, you agree to the updated terms."
   }
 }
