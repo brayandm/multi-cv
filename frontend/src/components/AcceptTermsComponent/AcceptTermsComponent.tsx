@@ -136,7 +136,7 @@ export default function AcceptTermsComponent({
               onChange={handleCheckboxChange}
               size="sm"
             />
-            <span className="text-[9px] text-gray-600">
+            <span className="text-[9px] text-gray-600 text-left">
               {tCommon("i-accept")}{" "}
               <Link
                 href="/terms-and-conditions.html"
