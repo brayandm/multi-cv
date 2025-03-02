@@ -17,3 +17,9 @@ bash build.sh
 ```bash
 bash setup-project.sh
 ```
+
+## Stop Project and Clean Up
+
+```bash
+bash stop-project.sh
+```
