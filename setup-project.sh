@@ -69,7 +69,7 @@ echo "✅ MySQL is ready!"
 echo "Running migrations..."
 docker compose exec backend php artisan migrate > /dev/null 2>&1
 
-echo "Running seeders..."
+echo "Creating symbolic link for storage..."
 docker compose exec backend php artisan storage:link > /dev/null 2>&1 || true 
 
 popd > /dev/null
