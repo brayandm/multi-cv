@@ -14,7 +14,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
   return (
     <>
       {inputs.map((input, index) => {
-        // ✅ Verificar si `input` es un array (subgrupo de inputs anidados)
         if (Array.isArray(input)) {
           return (
             <div key={index} className="flex gap-2">
@@ -23,7 +22,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
           );
         }
 
-        // 🛠 Manejo de validaciones individuales
         let isInvalid = false;
         let errorMessage = "";
         let color: "default" | "danger" = "default";
@@ -56,7 +54,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
           return (
             <Checkbox
               key={index}
-              isSelected={input.value as boolean} // Ahora se refleja el valor del estado
+              isSelected={input.value as boolean}
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<boolean>
               }
