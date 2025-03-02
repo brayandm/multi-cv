@@ -13,7 +13,7 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
   const [experiences, setExperiences] = useState<Array<IExperience>>(
-    new Array<IExperience>()
+    formData.experience
   );
   const [currentExperience, setCurrentExperience] = useState<number>(1);
 
@@ -136,8 +136,8 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
                 type: "text",
                 placeholder: 'The work location (you can also type "Remote")',
                 onValueChange: (value: string) =>
-                  onExperienceChange(index, "description", value),
-                value: experience?.description || "",
+                  onExperienceChange(index, "location", value),
+                value: experience?.location || "",
               },
               [
                 {

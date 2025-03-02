@@ -3,6 +3,8 @@ export type BasicInfo = {
   full_name: string;
   email: string;
   about: string;
+  country_code: string;
+  phone_number: string;
 };
 export interface IExperience {
   company: string;
@@ -40,9 +42,12 @@ export interface IDynamicInput<T> {
     | "end_date"
     | "start_date"
     | "checkbox"
-    | "is_present";
+    | "is_present"
+    | "phone_number"
+    | "country_code";
   value: unknown;
   selected?: boolean;
+  startContent?: React.ReactNode;
   onValueChange: IDynamicOnValueChange<T>;
 }
 

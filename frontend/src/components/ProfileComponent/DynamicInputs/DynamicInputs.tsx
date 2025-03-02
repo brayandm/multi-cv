@@ -1,14 +1,53 @@
 "use client";
 import { Checkbox, Input, Textarea } from "@heroui/react";
-import React from "react";
+import React, { Key } from "react";
 import {
   DynamicInputsProps,
+  IDynamicInput,
+  IDynamicInputArray,
   IDynamicOnValueChange,
 } from "../ProfileComponent.types";
+import SelectCountry from "@/shared/components/SelectCountry";
+import Flag from "react-world-flags";
+import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 
 const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
   const validateEmail = (email: string): boolean => {
     return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
+  };
+  const getSelectedCountry = (
+    inputs: IDynamicInputArray<T>
+  ): IDynamicInput<T> => {
+    return inputs.find((input) => {
+      if (Array.isArray(input)) {
+        return getSelectedCountry(input); // <- Aquí hay un problema
+      } else {
+        return input.type === "country_code" && input.value !== null;
+      }
+    }) as IDynamicInput<T>;
+  };
+
+  const PhoneNumberStartContent = () => {
+    try {
+      const Component = (
+        <>
+          {getSelectedCountry(inputs) &&
+            (getSelectedCountry(inputs).value as string) && (
+              <>
+                +
+                {getCountryCallingCode(
+                  getSelectedCountry(inputs).value as CountryCode
+                )}
+              </>
+            )}
+        </>
+      );
+      return Component;
+    } catch (e) {
+      console.log(e);
+
+      return <></>;
+    }
   };
 
   return (
@@ -31,6 +70,42 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
             input.value !== "" && !validateEmail(input.value as string);
           errorMessage = isInvalid ? "Please enter a valid email" : "";
           if (isInvalid) color = "danger";
+        }
+
+        if (input.type === "country_code") {
+          return (
+            <SelectCountry
+              key={index}
+              label={input.label}
+              onSelectionChange={
+                input.onValueChange as IDynamicOnValueChange<Key | null>
+              }
+              selectedKey={input.value as string}
+              className="mb-2 "
+              startContent={
+                <Flag className="w-6 h-6" code={input.value as string}></Flag>
+              }
+            ></SelectCountry>
+          );
+        }
+        if (input.type === "phone_number") {
+          return (
+            <Input
+              key={index}
+              label={input.label}
+              placeholder={input.placeholder}
+              type={"text"}
+              value={input.value as string}
+              onValueChange={
+                input.onValueChange as IDynamicOnValueChange<string>
+              }
+              color={color}
+              isInvalid={isInvalid}
+              errorMessage={errorMessage}
+              className="mb-2"
+              startContent={PhoneNumberStartContent()}
+            />
+          );
         }
 
         if (input.type === "textarea") {
@@ -126,6 +201,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
             isInvalid={isInvalid}
             errorMessage={errorMessage}
             className="mb-2"
+            startContent={input.startContent}
           />
         );
       })}

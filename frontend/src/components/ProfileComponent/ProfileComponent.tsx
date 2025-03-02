@@ -1,15 +1,27 @@
 "use client";
 import { Tab, Tabs } from "@heroui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
 import { IProfileFrom } from "./ProfileComponent.types";
 import Experience from "./Experience";
 
 const ProfileComponent: React.FC = () => {
   const [formData, setFormData] = useState<IProfileFrom>({
-    basicInfo: { about: "", email: "", full_name: "" },
+    basicInfo: {
+      about: "",
+      email: "",
+      full_name: "",
+      country_code: "",
+      phone_number: "",
+    },
     experience: [],
   });
+  useEffect(() => {
+    {
+      console.log(formData);
+    }
+  }, [formData]);
+
   return (
     <main className="flex justify-center">
       <div className="w-full max-w-[450px] px-5">

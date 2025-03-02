@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { IDynamicInput, IProfileFrom } from "../ProfileComponent.types";
+import { IDynamicInputArray, IProfileFrom } from "../ProfileComponent.types";
 import DynamicInputs from "../DynamicInputs";
 
 interface IBasicUserInfoProps {
@@ -9,9 +9,17 @@ interface IBasicUserInfoProps {
 }
 
 const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
-  const [full_name, setFull_name] = useState<string>("");
-  const [about, setAbout] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
+  const [fullName, setFullName] = useState<string>(
+    props.formData.basicInfo.full_name
+  );
+  const [about, setAbout] = useState<string>(props.formData.basicInfo.about);
+  const [email, setEmail] = useState<string>(props.formData.basicInfo.email);
+  const [phoneNumber, setPhoneNumber] = useState<string>(
+    props.formData.basicInfo.phone_number
+  );
+  const [countryCode, setCountryCode] = useState<string>(
+    props.formData.basicInfo.country_code
+  );
 
   useEffect(() => {
     props.setFormData({
@@ -19,19 +27,21 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
       basicInfo: {
         about,
         email,
-        full_name,
+        full_name: fullName,
+        phone_number: phoneNumber,
+        country_code: countryCode,
       },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, full_name, about]);
+  }, [email, fullName, about, phoneNumber, countryCode]);
 
-  const inputs: IDynamicInput<string>[] = [
+  const inputs: IDynamicInputArray<string> = [
     {
       label: "Full name",
       placeholder: "John Doe",
-      type: "email",
-      value: props.formData.basicInfo.full_name,
-      onValueChange: setFull_name,
+      type: "text",
+      value: fullName,
+      onValueChange: setFullName,
     },
     {
       label: "Email",
@@ -40,6 +50,21 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
       value: email,
       onValueChange: setEmail,
     },
+    [
+      {
+        label: "Country",
+        type: "country_code",
+        value: countryCode,
+        onValueChange: setCountryCode,
+      },
+      {
+        label: "Phone number",
+        placeholder: "XXXXXXXXX",
+        type: "phone_number",
+        value: phoneNumber,
+        onValueChange: setPhoneNumber,
+      },
+    ],
     {
       label: "About you",
       placeholder: "I have done...",
