@@ -7,9 +7,13 @@ import { loginApi, registerApi } from "@/lib/backendService";
 import Link from "next/link";
 import { handleGoogleSignIn } from "@/lib/oauth";
 import GoogleOauthBtn from "../../shared/components/GoogleOauthBtn";
+import { useTranslations } from "next-intl";
 
 export default function RegisterComponent() {
   const router = useRouter();
+
+  const tCommon = useTranslations();
+  const t = useTranslations("RegisterPage");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -60,36 +64,36 @@ export default function RegisterComponent() {
       className="flex flex-col gap-2 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-center">Register</h1>
-      <p>Introduce yourself</p>
+      <h1 className="text-center">{tCommon("register")}</h1>
+      <p>{t("description")}</p>
       <div className="flex flex-col gap-3">
         <Input
-          label="Full Name"
-          placeholder="John Doe"
+          label={tCommon("full-name")}
+          placeholder={tCommon("enter-full-name")}
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
         />
         <Input
-          label="Email"
-          placeholder="Enter your email"
+          label={tCommon("email")}
+          placeholder={tCommon("enter-email")}
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
         />
         <Input
-          label="Password"
-          placeholder="Enter your password"
+          label={tCommon("password")}
+          placeholder={tCommon("enter-password")}
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
         <Input
-          label="Repeat the password"
-          placeholder="Enter your password"
+          label={tCommon("repeat-password")}
+          placeholder={tCommon("enter-password-again")}
           type="password"
           name="repeatPassword"
           value={formData.repeatPassword}
@@ -106,7 +110,7 @@ export default function RegisterComponent() {
             className="text-[9px] text-gray-600
           "
           >
-            I confirm that I am over 18 years old
+            {tCommon("confirm-age")}
           </span>
         </div>
 
@@ -117,22 +121,22 @@ export default function RegisterComponent() {
             onChange={handleCheckboxChange}
             size="sm"
           />
-          <span className="text-[9px] text-gray-600">
-            I accept the{" "}
+          <span className="text-[9px] text-gray-600 text-left">
+            {tCommon("i-accept")}{" "}
             <Link
               href="/terms-and-conditions.html"
               target="_blank"
               className="text-primary underline"
             >
-              Terms & Conditions
+              {tCommon("terms-and-conditions")}
             </Link>{" "}
-            and{" "}
+            {tCommon("and")}{" "}
             <Link
               href="/privacy-policy.html"
               target="_blank"
               className="text-primary underline"
             >
-              Privacy Policy
+              {tCommon("privacy-policy")}
             </Link>
           </span>
         </div>
@@ -149,17 +153,17 @@ export default function RegisterComponent() {
             formData.password !== formData.repeatPassword
           }
         >
-          Register
+          {tCommon("register")}
         </Button>
       </div>
       <Divider className="my-4" />
       <p>
-        Use another method |{" "}
+        {tCommon("other-method")} |{" "}
         <span
           className="text-primary cursor-pointer"
           onClick={() => router.push("/login")}
         >
-          Login
+          {tCommon("login")}
         </span>
       </p>
 
