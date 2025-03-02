@@ -1,0 +1,60 @@
+{
+  "app-name": "MultiCV",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Log out",
+  "home": "Home",
+  "change-password": "Change password",
+  "full-name": "Full Name",
+  "enter-full-name": "Enter your full name",
+  "email": "Email",
+  "enter-email": "Enter your email",
+  "password": "Password",
+  "current-password": "Current password",
+  "enter-password": "Enter your password",
+  "enter-current-password": "Enter your current password",
+  "enter-new-password": "Enter your new password",
+  "enter-password-again": "Enter your password again",
+  "repeat-password": "Repeat the password",
+  "google-login": "Sign in with Google",
+  "other-method": "Use another method",
+  "terms-and-conditions": "Terms & Conditions",
+  "privacy-policy": "Privacy Policy",
+  "confirm-age": "I confirm that I am over 18 years old",
+  "i-accept": "I accept the",
+  "and": "and",
+  "continue": "Continue",
+  "EmailVerificationPage": {
+    "resend-email": "Resend email",
+    "resend-email-timeleft": "Resend in {timeleft}s",
+    "try-other-day": "Too many requests, try in 24 hours",
+    "verification-title": "Email Verification",
+    "already-verified-title": "Email Verification Already Verified",
+    "success-title": "Email Verification Success",
+    "expired-title": "Email Verification Expired",
+    "verification-text": "We have sent you an email with a verification link.",
+    "already-verified-text": "Your email has already been verified.",
+    "success-text": "Your email has been verified.",
+    "expired-text": "Your email verification link has expired."
+  },
+  "WelcomePage": {
+    "welcome-to": "Welcome to",
+    "description": "Create unique CVs for unique job offers."
+  },
+  "HomePage": {
+    "your-resumes": "Your Resumes"
+  },
+  "LoginPage": {
+    "description": "Please enter your credentials"
+  },
+  "RegisterPage": {
+    "description": "Introduce yourself"
+  },
+  "TermsAndConditionsPage": {
+    "title": "Privacy Policy and Terms & Conditions",
+    "description-first-time": "Please read and accept.",
+    "we-are-updating": "We are updating our",
+    "notification": "The new terms will take effect in one month and will be available for review before then. Please take a moment to review the upcoming changes.",
+    "by-clicking": "By clicking \"Continue\", you agree to the updated terms."
+  }
+}

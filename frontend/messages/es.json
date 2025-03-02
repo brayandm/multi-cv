@@ -1,0 +1,60 @@
+{
+  "app-name": "MultiCV",
+  "login": "Iniciar sesión",
+  "register": "Registrarse",
+  "logout": "Cerrar sesión",
+  "home": "Inicio",
+  "change-password": "Cambiar contraseña",
+  "full-name": "Nombre completo",
+  "enter-full-name": "Ingresa tu nombre completo",
+  "email": "Correo electrónico",
+  "enter-email": "Ingresa tu correo electrónico",
+  "password": "Contraseña",
+  "current-password": "Contraseña actual",
+  "enter-password": "Ingresa tu contraseña",
+  "enter-current-password": "Ingresa tu contraseña actual",
+  "enter-new-password": "Ingresa tu nueva contraseña",
+  "enter-password-again": "Ingresa tu contraseña nuevamente",
+  "repeat-password": "Repite la contraseña",
+  "google-login": "Iniciar sesión con Google",
+  "other-method": "Usar otro método",
+  "terms-and-conditions": "Términos y condiciones",
+  "privacy-policy": "Política de privacidad",
+  "confirm-age": "Confirmo que tengo más de 18 años",
+  "i-accept": "Acepto los",
+  "and": "y",
+  "continue": "Continuar",
+  "EmailVerificationPage": {
+    "resend-email": "Reenviar correo",
+    "resend-email-timeleft": "Reenviar en {timeleft}s",
+    "try-other-day": "Demasiadas solicitudes, inténtalo en 24 horas",
+    "verification-title": "Verificación de correo electrónico",
+    "already-verified-title": "Correo electrónico ya verificado",
+    "success-title": "Verificación de correo electrónico exitosa",
+    "expired-title": "Verificación de correo electrónico expirada",
+    "verification-text": "Te hemos enviado un correo electrónico con un enlace de verificación.",
+    "already-verified-text": "Tu correo electrónico ya ha sido verificado.",
+    "success-text": "Tu correo electrónico ha sido verificado.",
+    "expired-text": "El enlace de verificación de tu correo electrónico ha expirado."
+  },
+  "WelcomePage": {
+    "welcome-to": "Bienvenido a",
+    "description": "Crea CVs únicos para ofertas de trabajo únicas."
+  },
+  "HomePage": {
+    "your-resumes": "Tus currículums"
+  },
+  "LoginPage": {
+    "description": "Por favor, ingresa tus credenciales"
+  },
+  "RegisterPage": {
+    "description": "Preséntate"
+  },
+  "TermsAndConditionsPage": {
+    "title": "Política de privacidad y Términos y condiciones",
+    "description-first-time": "Por favor, lee y acepta.",
+    "we-are-updating": "Estamos actualizando nuestros",
+    "notification": "Los nuevos términos entrarán en vigor en un mes y estarán disponibles para su revisión antes de esa fecha. Tómate un momento para revisar los próximos cambios.",
+    "by-clicking": "Al hacer clic en \"Continuar\", aceptas los términos actualizados."
+  }
+}

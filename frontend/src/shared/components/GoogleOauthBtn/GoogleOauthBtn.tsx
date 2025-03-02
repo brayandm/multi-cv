@@ -1,4 +1,5 @@
 import { Button, ButtonProps } from "@heroui/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export const GoogleIcon = ({}) => {
@@ -13,6 +14,7 @@ export const GoogleIcon = ({}) => {
 };
 
 export default function GoogleOauthBtn({ ...props }: ButtonProps) {
+  const tCommon = useTranslations();
   return (
     <div className="w-full gap-4 items-center">
       <Button
@@ -22,7 +24,7 @@ export default function GoogleOauthBtn({ ...props }: ButtonProps) {
         variant="bordered"
         {...props}
       >
-        Sign in with Google
+        {tCommon("google-login")}
       </Button>
     </div>
   );

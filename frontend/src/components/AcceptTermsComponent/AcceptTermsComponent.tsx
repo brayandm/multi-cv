@@ -6,6 +6,7 @@ import {
 } from "@/lib/backendService";
 
 import { Button, Checkbox } from "@heroui/react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -52,60 +53,60 @@ export default function AcceptTermsComponent({
     }
   };
 
+  const t = useTranslations("TermsAndConditionsPage");
+  const tCommon = useTranslations();
+
   return (
     <form
       className="flex flex-col gap-2 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-center">Privacy Policy and Terms & Conditions</h1>
+      <h1 className="text-center">{t("title")}</h1>
       {acceptTerms === null ? (
-        <p> Please read and accept.</p>
+        <p> {t("description-first-time")}</p>
       ) : (
         <>
           {noticeTerms ? (
             <span>
               <p>
-                We are updating our{" "}
+                {t("we-are-updating")}{" "}
                 <Link
                   href="/privacy-policy.html"
                   target="_blank"
                   className="text-primary underline"
                 >
-                  Privacy Policy
+                  {tCommon("privacy-policy")}
                 </Link>{" "}
-                and{" "}
+                {tCommon("and")}{" "}
                 <Link
                   href="/terms-and-conditions.html"
                   target="_blank"
                   className="text-primary underline"
                 >
-                  Terms & Conditions
+                  {tCommon("terms-and-conditions")}
                 </Link>
-                . The new terms will take effect in one month and will be
-                available for review before then. Please take a moment to review
-                the upcoming changes.
+                . {t("notification")}{" "}
               </p>
             </span>
           ) : (
             <p>
-              We have updated our{" "}
+              {t("we-are-updating")}{" "}
               <Link
                 href="/privacy-policy.html"
                 target="_blank"
                 className="text-primary underline"
               >
-                Privacy Policy
+                {tCommon("privacy-policy")}
               </Link>{" "}
-              and{" "}
+              {tCommon("and")}{" "}
               <Link
                 href="/terms-and-conditions.html"
                 target="_blank"
                 className="text-primary underline"
               >
-                Terms & Conditions
+                {tCommon("terms-and-conditions")}
               </Link>
-              . By clicking &quot;Continue&quot;, you agree to the updated
-              terms.
+              . {t("by-clicking")}
             </p>
           )}
         </>
@@ -123,7 +124,7 @@ export default function AcceptTermsComponent({
               className="text-[9px] text-gray-600
           "
             >
-              I confirm that I am over 18 years old
+              {tCommon("confirm-age")}
             </span>
           </div>
         )}
@@ -135,22 +136,22 @@ export default function AcceptTermsComponent({
               onChange={handleCheckboxChange}
               size="sm"
             />
-            <span className="text-[9px] text-gray-600">
-              I accept the{" "}
+            <span className="text-[9px] text-gray-600 text-left">
+              {tCommon("i-accept")}{" "}
               <Link
                 href="/terms-and-conditions.html"
                 target="_blank"
                 className="text-primary underline"
               >
-                Terms & Conditions
+                {tCommon("terms-and-conditions")}
               </Link>{" "}
-              and{" "}
+              {tCommon("and")}{" "}
               <Link
                 href="/privacy-policy.html"
                 target="_blank"
                 className="text-primary underline"
               >
-                Privacy Policy
+                {tCommon("privacy-policy")}
               </Link>
             </span>
           </div>
@@ -163,7 +164,7 @@ export default function AcceptTermsComponent({
             (acceptTerms === null && !formData.underAge)
           }
         >
-          Continue
+          {tCommon("continue")}
         </Button>
       </div>
     </form>
