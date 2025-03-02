@@ -32,7 +32,7 @@ export default function EmailVerificationComponent({
       setTimeLeft(90);
       setDisplayResendButton(true);
     }
-  }, []);
+  }, [email]);
 
   useEffect(() => {
     const lastSentTime = localStorage.getItem(email + ":lastEmailResendTime");
