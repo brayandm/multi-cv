@@ -1,9 +1,7 @@
 services:
   frontend:
     user: "${UID:-1000}:${GID:-1000}"
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
+    image: brayand/fullstack-project-template-frontend:1.0.0 
     restart: always
     volumes:
       - .:/app
