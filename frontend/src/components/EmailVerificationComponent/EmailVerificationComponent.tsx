@@ -124,7 +124,7 @@ export default function EmailVerificationComponent({
               {tryOtherDay && t("try-other-day")}
               {!tryOtherDay &&
                 (isCooldown
-                  ? t("resend-email-timeleft", { timeLeft })
+                  ? t("resend-email-timeleft", { timeleft: timeLeft })
                   : t("resend-email"))}
             </Button>
           )}
@@ -170,7 +170,7 @@ export default function EmailVerificationComponent({
               {tryOtherDay && t("try-other-day")}
               {!tryOtherDay &&
                 (isCooldown
-                  ? t("resend-email-timeleft", { timeLeft })
+                  ? t("resend-email-timeleft", { timeleft: timeLeft })
                   : t("resend-email"))}
             </Button>
           )}
