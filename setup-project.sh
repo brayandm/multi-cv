@@ -42,7 +42,7 @@ docker compose up -d
 popd
 
 
-pusd backend/
+pushd backend/
 
 echo "Waiting for MySQL to be ready..."
 CONTAINER_NAME="backend-backend-1" 
@@ -61,6 +61,6 @@ echo "✅ MySQL is ready!"
 
 docker compose exec backend php artisan migrate
 
-docker compose exec backend php artisan artisan storage:link
+docker compose exec backend php artisan storage:link
 
 popd
