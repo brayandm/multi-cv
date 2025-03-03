@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { IDynamicInputArray, IProfileFrom } from "../ProfileComponent.types";
 import DynamicInputs from "../DynamicInputs";
+import { useTranslations } from "next-intl";
 
 interface IBasicUserInfoProps {
   formData: IProfileFrom;
@@ -20,6 +21,7 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
   const [countryCode, setCountryCode] = useState<string>(
     props.formData.basicInfo.country_code
   );
+  const t = useTranslations("ProfilePage.BasicUserInfo");
 
   useEffect(() => {
     props.setFormData({
@@ -37,28 +39,28 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
 
   const inputs: IDynamicInputArray<string> = [
     {
-      label: "Full name",
-      placeholder: "John Doe",
+      label: t("full-name.label"),
+      placeholder: t("full-name.placeholder"),
       type: "text",
       value: fullName,
       onValueChange: setFullName,
     },
     {
-      label: "Email",
-      placeholder: "john@example.doe",
+      label: t("email.label"),
+      placeholder: t("email.placeholder"),
       type: "email",
       value: email,
       onValueChange: setEmail,
     },
     [
       {
-        label: "Country",
+        label: t("country.label"),
         type: "country_code",
         value: countryCode,
         onValueChange: setCountryCode,
       },
       {
-        label: "Phone number",
+        label: t("phone.label"),
         placeholder: "XXXXXXXXX",
         type: "phone_number",
         value: phoneNumber,
@@ -66,8 +68,8 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
       },
     ],
     {
-      label: "About you",
-      placeholder: "I have done...",
+      label: t("about.label"),
+      placeholder: t("about.placeholder"),
       type: "textarea",
       value: about,
       onValueChange: setAbout,

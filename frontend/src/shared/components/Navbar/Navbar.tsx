@@ -21,6 +21,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   passwordLink,
   logoutLink,
   homeLink,
+  profileLink,
 }) => {
   const router = useRouter();
 
@@ -64,6 +65,18 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
           </Link>
         </NavbarMenuItem>
       )}
+      {profileLink && (
+        <NavbarMenuItem>
+          <Link
+            className="w-full cursor-pointer"
+            size="sm"
+            color={"foreground"}
+            onPress={() => router.push("/profile")}
+          >
+            {tCommon("profile")}
+          </Link>
+        </NavbarMenuItem>
+      )}
       {logoutLink && (
         <NavbarMenuItem>
           <Link
@@ -83,6 +96,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
 const Navbar: React.FC<ITopBarNavigationProps> = ({
   passwordLink,
   logoutLink,
+  profileLink,
   homeLink,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -109,6 +123,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           passwordLink={passwordLink}
           logoutLink={logoutLink}
           homeLink={homeLink}
+          profileLink={profileLink}
         ></NavbarItems>
       </NavbarContent>
 
@@ -117,6 +132,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           passwordLink={passwordLink}
           logoutLink={logoutLink}
           homeLink={homeLink}
+          profileLink={profileLink}
         ></NavbarItems>
       </NavbarMenu>
       <LanguageToggle />

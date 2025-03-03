@@ -4,6 +4,7 @@
   "register": "Registrarse",
   "logout": "Cerrar sesión",
   "home": "Inicio",
+  "profile": "Perfil",
   "change-password": "Cambiar contraseña",
   "full-name": "Nombre completo",
   "enter-full-name": "Ingresa tu nombre completo",
@@ -49,6 +50,57 @@
   },
   "RegisterPage": {
     "description": "Preséntate"
+  },
+  "ProfilePage": {
+    "BasicUserInfo": {
+      "category-name": "Personal",
+
+      "full-name": {
+        "label": "Nombre completo",
+        "placeholder": "Juan Pérez"
+      },
+      "email": {
+        "label": "Correo electrónico",
+        "placeholder": "juan@ejemplo.com"
+      },
+      "country": {
+        "label": "País"
+      },
+      "phone": {
+        "label": "Número de teléfono"
+      },
+      "about": {
+        "label": "Acerca de ti",
+        "placeholder": "Soy un..."
+      }
+    },
+    "Experience": {
+      "category-name": "Experiencia",
+      "add-button": "Agregar experiencia",
+      "is-present": "Actualmente trabajo aquí",
+      "company": {
+        "label": "Empresa",
+        "placeholder": "Nombre de la empresa"
+      },
+      "role": {
+        "label": "Cargo",
+        "placeholder": "Tu cargo en la empresa"
+      },
+      "description": {
+        "label": "Descripción",
+        "placeholder": "Una descripción de tus funciones y responsabilidades en el trabajo"
+      },
+      "country-city": {
+        "label": "País/Ciudad",
+        "placeholder": "Ubicación del trabajo, también puedes escribir \"Remoto\""
+      },
+      "start-date": {
+        "label": "Fecha de inicio"
+      },
+      "end-date": {
+        "label": "Fecha de finalización"
+      }
+    }
   },
   "TermsAndConditionsPage": {
     "title": "Política de privacidad y Términos y condiciones",

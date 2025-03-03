@@ -9,4 +9,5 @@ export interface ITopBarNavigationProps {
   passwordLink?: boolean;
   homeLink?: boolean;
   logoutLink?: boolean;
+  profileLink?: boolean;
 }

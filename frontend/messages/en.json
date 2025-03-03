@@ -4,6 +4,7 @@
   "register": "Register",
   "logout": "Log out",
   "home": "Home",
+  "profile": "Profile",
   "change-password": "Change password",
   "full-name": "Full Name",
   "enter-full-name": "Enter your full name",
@@ -49,6 +50,56 @@
   },
   "RegisterPage": {
     "description": "Introduce yourself"
+  },
+  "ProfilePage": {
+    "BasicUserInfo": {
+      "category-name": "Personal",
+      "full-name": {
+        "label": "Full Name",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "john@example.doe"
+      },
+      "country": {
+        "label": "Country"
+      },
+      "phone": {
+        "label": "Phone number"
+      },
+      "about": {
+        "label": "About you",
+        "placeholder": "I am a ..."
+      }
+    },
+    "Experience": {
+      "category-name": "Experience",
+      "add-button": "Add Experience",
+      "is-present": "I'm currently working here",
+      "company": {
+        "label": "Company",
+        "placeholder": "Company name"
+      },
+      "role": {
+        "label": "Role",
+        "placeholder": "Your role in the company"
+      },
+      "description": {
+        "label": "Description",
+        "placeholder": "A description of your duties and responsabilities in the job"
+      },
+      "country-city": {
+        "label": "Country/City",
+        "placeholder": "The job location, you can also type \"Remote\""
+      },
+      "start-date": {
+        "label": "Start Date"
+      },
+      "end-date": {
+        "label": "End Date"
+      }
+    }
   },
   "TermsAndConditionsPage": {
     "title": "Privacy Policy and Terms & Conditions",

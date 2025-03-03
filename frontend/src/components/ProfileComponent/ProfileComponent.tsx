@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
 import { IProfileFrom } from "./ProfileComponent.types";
 import Experience from "./Experience";
+import { useTranslations } from "next-intl";
 
 const ProfileComponent: React.FC = () => {
   const [formData, setFormData] = useState<IProfileFrom>({
@@ -22,18 +23,20 @@ const ProfileComponent: React.FC = () => {
     }
   }, [formData]);
 
+  const t = useTranslations("ProfilePage");
+
   return (
     <main className="flex justify-center">
       <div className="w-full max-w-[450px] px-5">
         <form>
           <Tabs aria-label="Options">
-            <Tab key="basic-user-info" title="Personal">
+            <Tab key="basic-user-info" title={t("BasicUserInfo.category-name")}>
               <BasicUserInfo
                 formData={formData}
                 setFormData={setFormData}
               ></BasicUserInfo>
             </Tab>
-            <Tab key="experiences" title="Experience">
+            <Tab key="experiences" title={t("Experience.category-name")}>
               <Experience
                 formData={formData}
                 setFormData={setFormData}

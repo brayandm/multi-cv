@@ -8,6 +8,7 @@ import {
 } from "../ProfileComponent.types";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";
+import { useTranslations } from "next-intl";
 
 const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -16,7 +17,7 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
     formData.experience
   );
   const [currentExperience, setCurrentExperience] = useState<number>(1);
-
+  const t = useTranslations("ProfilePage.Experience");
   function onExperienceChange(
     index: number,
     key: keyof IExperience,
@@ -94,78 +95,79 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
         ref={scrollRef}
         className="w-[400px] overflow-hidden snap-x snap-mandatory"
       >
-        <div ref={childRef} className="flex gap-2 ">
+        <div ref={childRef} className="flex gap-2">
           {experiences.map((experience, index) => {
             const isPresentJob = (): IDynamicInput<boolean> => {
               return {
-                label: "I'm currently working here",
+                label: t("is-present"), // Nueva clave para "I'm currently working here"
                 type: "is_present",
                 onValueChange: (value: boolean) =>
                   onExperienceChange(index, "is_present", value),
                 value: experience?.is_present || "",
               };
             };
+
             const inputs: IDynamicInputArray<string & boolean> = [
               {
-                label: "Company",
+                label: t("company.label"),
                 type: "text",
-                placeholder: "Company name",
+                placeholder: t("company.placeholder"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "company", value),
                 value: experience?.company || "",
               },
               {
-                label: "Role",
+                label: t("role.label"),
                 type: "text",
-                placeholder: "Your role in the company",
+                placeholder: t("role.placeholder"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "role", value),
                 value: experience?.role || "",
               },
               {
-                label: "Description",
+                label: t("description.label"),
                 type: "textarea",
-                placeholder:
-                  "A description of your duties and responsibilities in the job",
+                placeholder: t("description.placeholder"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "description", value),
                 value: experience?.description || "",
               },
               {
-                label: "Country / City",
+                label: t("country-city.label"),
                 type: "text",
-                placeholder: 'The work location (you can also type "Remote")',
+                placeholder: t("country-city.placeholder"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "location", value),
                 value: experience?.location || "",
               },
               [
                 {
-                  label: "Start Date",
+                  label: t("start-date.label"),
                   type: "start_date",
                   onValueChange: (value: string) =>
                     onExperienceChange(index, "start_date", value),
                   value: experience?.start_date || "",
                 },
                 {
-                  label: "End Date",
+                  label: t("end-date.label"),
                   type: "end_date",
                   onValueChange: (value: string) =>
                     onExperienceChange(index, "end_date", value),
                   value: experience?.end_date || "",
                 },
               ],
-
               isPresentJob(),
             ];
+
             return (
-              <div key={index} className=" min-w-[400px] mb-4 mr-2 snap-center">
+              <div key={index} className="min-w-[400px] mb-4 mr-2 snap-center">
                 <DynamicInputs isPresentJob={isPresentJob()} inputs={inputs} />
               </div>
             );
           })}
         </div>
       </div>
+
       {experiences.length > 0 && (
         <div className="flex justify-center">
           <Pagination
@@ -183,7 +185,7 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
         </div>
       )}
       <Button variant="bordered" color="primary" onPress={addNewExperience}>
-        Add Experience
+        {t("add-button")}
       </Button>
     </section>
   );
