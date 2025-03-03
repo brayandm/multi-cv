@@ -11,11 +11,13 @@ import {
   DropdownSection,
   DropdownItem,
 } from "@heroui/dropdown";
-import { Button } from "@heroui/react";
+import { Link } from "@heroui/react";
 
 const languages = [
   { code: "en", label: "English" },
-  { code: "es", label: "Español" },
+  { code: "es", label: "Spanish" },
+  { code: "hi", label: "Hindi" },
+  { code: "ru", label: "Russian" },
 ];
 
 export default function LanguageToggle() {
@@ -36,12 +38,13 @@ export default function LanguageToggle() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button variant="bordered">
+        <Link className="cursor-pointer flex gap-1">
           <GlobeAltIcon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+
           <span className="text-gray-700 dark:text-gray-200">
-            {languages.find((lang) => lang.code === locale)?.label}
+            {languages.find((lang) => lang.code === locale)?.code.toUpperCase()}
           </span>
-        </Button>
+        </Link>
       </DropdownTrigger>
       <DropdownMenu>
         <DropdownSection>

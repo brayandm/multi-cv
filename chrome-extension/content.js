@@ -1,5 +1,5 @@
 const hostList = ["linkedin.com", "infojobs.net"];
-const IFRAME_WIDTH = "440px";
+const IFRAME_WIDTH = "340px";
 
 const button = (() => {
   const button = document.createElement("div");

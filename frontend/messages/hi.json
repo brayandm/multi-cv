@@ -1,0 +1,124 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Ghar",
+      "change_password": "Password Badlein",
+      "profile": "Profile"
+    },
+    "auth": {
+      "login": "Login karein",
+      "register": "Register karein",
+      "logout": "Log out karein",
+      "google_sign_in": "Google se sign in karein",
+      "use_other_method": "Koi aur tareeka istemal karein"
+    },
+    "buttons": {
+      "continue": "Jaari rakhein",
+      "add": "Jodein",
+      "resend_email": "Email fir se bhejein",
+      "change_password": "Password badlein"
+    },
+    "form": {
+      "full_name": "Pura Naam",
+      "email": "Email",
+      "password": "Password",
+      "current_password": "Maujooda password",
+      "new_password": "Naya password",
+      "repeat_password": "Password dobara likhein",
+      "country": "Desh",
+      "phone": "Phone number",
+      "about": "Aapke baare mein",
+      "company_name": "Company",
+      "role": "Bhumika",
+      "phone_number": "Phone number",
+      "country_code": "Desh ka code",
+      "company_description": "Company ka varnan",
+      "company_location": "Desh/Sheher",
+      "company_start_date": "Shuru tareekh",
+      "company_end_date": "Antim tareekh"
+    },
+    "placeholders": {
+      "enter_full_name": "Apna pura naam likhein",
+      "enter_email": "Apna email likhein",
+      "enter_password": "Apna password likhein",
+      "enter_current_password": "Apna maujooda password likhein",
+      "enter_new_password": "Apna naya password likhein",
+      "enter_password_again": "Apna password dobara likhein",
+      "enter_country": "Apna desh likhein",
+      "enter_phone": "Apna phone number likhein",
+      "enter_about": "Main ek ... hoon",
+      "enter_company_name": "Company ka naam likhein",
+      "enter_role": "Company mein aapki bhumika",
+      "enter_company_description": "Aapki zimmedariyon aur kartavyon ka varnan",
+      "enter_company_location": "Naukri ki jagah, aap 'Remote' bhi likh sakte hain"
+    },
+    "legal": {
+      "terms_conditions": "Shartein aur Niyam",
+      "privacy_policy": "Gopniyata Niti",
+      "confirm_age": "Main pushti karta hoon ki main 18 saal se adhik hoon",
+      "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> sweekar karta hoon"
+    }
+  },
+  "components": {
+    "cv": {
+      "download": "Download karein",
+      "to_expire": "<days></days> mein samapt hoga",
+      "days": "{count, plural, =1 {1 din} other {# din}}"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "Email Pushti",
+      "already_verified": {
+        "title": "Email Pehle Se Hi Pusht Hai",
+        "message": "Aapka email pehle se hi pusht ho chuka hai."
+      },
+      "success": {
+        "title": "Email Safaltapurvak Pusht Hua",
+        "message": "Aapka email pusht ho gaya hai."
+      },
+      "expired": {
+        "title": "Email Pushti Samapt Ho Gayi",
+        "message": "Aapka email pushti link ab samapt ho gaya hai."
+      },
+      "instructions": "Humne aapko ek pushti link ke saath email bheji hai.",
+      "resend_in": "{timeleft}s mein dobara bhej sakte hain",
+      "too_many_requests": "Bahut saari requests, 24 ghante baad koshish karein"
+    },
+    "welcome": {
+      "title": "<appName></appName> mein aapka swagat hai",
+      "description": "Vishisht naukri avsaron ke liye vishisht CV banaiye."
+    },
+    "home": {
+      "your_resumes": "Aapke CVs"
+    },
+    "login": {
+      "description": "Kripya apne credentials dalein"
+    },
+    "register": {
+      "description": "Apni pehchaan batayein"
+    },
+    "profile": {
+      "subtitle": "Aapka CV thik se banane ke liye yah jankari zaroori hai.",
+      "sections": {
+        "basic_info": {
+          "title": "Vyaktigat"
+        },
+        "experience": {
+          "title": "Anubhav",
+          "add_experience": "Anubhav jodein",
+          "is_present": "Main filhal yahan kaam kar raha hoon"
+        }
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Gopniyata Niti aur Shartein",
+      "description_first_time": "Kripya padhein aur sweekar karein.",
+      "updating_notice": "Hum apni <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. Naye niyam ek mahine mein lagu honge aur isse pehle review ke liye uplabdh rahenge. Kripya in badlavon ko dekhein.",
+      "accept_terms": "Hum apni <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> update kar rahe hain. 'Jaari rakhein' dabakar, aap naye niyamon se sahmat hain."
+    }
+  }
+}

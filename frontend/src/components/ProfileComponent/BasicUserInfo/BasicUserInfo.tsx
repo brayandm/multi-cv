@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 interface IBasicUserInfoProps {
   formData: IProfileFrom;
   setFormData: React.Dispatch<React.SetStateAction<IProfileFrom>>;
+  width: number;
 }
 
 const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
@@ -76,7 +77,11 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
     },
   ];
 
-  return <DynamicInputs inputs={inputs}></DynamicInputs>;
+  return (
+    <div>
+      <DynamicInputs inputs={inputs}></DynamicInputs>
+    </div>
+  );
 };
 
 export default BasicUserInfo;

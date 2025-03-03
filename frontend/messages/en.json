@@ -102,6 +102,7 @@
       "description": "Introduce yourself"
     },
     "profile": {
+      "subtitle": "This information is necessary to properly create your CV.",
       "sections": {
         "basic_info": {
           "title": "Personal"

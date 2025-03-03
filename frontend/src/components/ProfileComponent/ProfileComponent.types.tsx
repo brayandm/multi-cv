@@ -22,6 +22,7 @@ export interface IProfileFrom {
 }
 
 export interface IExperienceProps {
+  width: number;
   formData: IProfileFrom;
   setFormData: React.Dispatch<React.SetStateAction<IProfileFrom>>;
 }

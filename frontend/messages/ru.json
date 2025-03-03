@@ -1,0 +1,124 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Главная",
+      "change_password": "Сменить пароль",
+      "profile": "Профиль"
+    },
+    "auth": {
+      "login": "Войти",
+      "register": "Регистрация",
+      "logout": "Выйти",
+      "google_sign_in": "Войти через Google",
+      "use_other_method": "Использовать другой метод"
+    },
+    "buttons": {
+      "continue": "Продолжить",
+      "add": "Добавить",
+      "resend_email": "Отправить письмо снова",
+      "change_password": "Сменить пароль"
+    },
+    "form": {
+      "full_name": "Полное имя",
+      "email": "Электронная почта",
+      "password": "Пароль",
+      "current_password": "Текущий пароль",
+      "new_password": "Новый пароль",
+      "repeat_password": "Повторите пароль",
+      "country": "Страна",
+      "phone": "Номер телефона",
+      "about": "О вас",
+      "company_name": "Компания",
+      "role": "Должность",
+      "phone_number": "Номер телефона",
+      "country_code": "Код страны",
+      "company_description": "Описание компании",
+      "company_location": "Страна/Город",
+      "company_start_date": "Дата начала",
+      "company_end_date": "Дата окончания"
+    },
+    "placeholders": {
+      "enter_full_name": "Введите ваше полное имя",
+      "enter_email": "Введите вашу электронную почту",
+      "enter_password": "Введите ваш пароль",
+      "enter_current_password": "Введите ваш текущий пароль",
+      "enter_new_password": "Введите ваш новый пароль",
+      "enter_password_again": "Повторите ваш пароль",
+      "enter_country": "Введите вашу страну",
+      "enter_phone": "Введите ваш номер телефона",
+      "enter_about": "Я ...",
+      "enter_company_name": "Название компании",
+      "enter_role": "Ваша должность в компании",
+      "enter_company_description": "Описание ваших обязанностей и ответственности на работе",
+      "enter_company_location": "Местоположение работы, можно указать \"Удаленно\""
+    },
+    "legal": {
+      "terms_conditions": "Условия и положения",
+      "privacy_policy": "Политика конфиденциальности",
+      "confirm_age": "Я подтверждаю, что мне больше 18 лет",
+      "accept_terms": "Я принимаю <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>"
+    }
+  },
+  "components": {
+    "cv": {
+      "download": "Скачать",
+      "to_expire": "Истекает через <days></days>",
+      "days": "{count, plural, =1 {1 день} other {# дней}}"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "Подтверждение email",
+      "already_verified": {
+        "title": "Email уже подтвержден",
+        "message": "Ваш email уже был подтвержден."
+      },
+      "success": {
+        "title": "Подтверждение успешно",
+        "message": "Ваш email был подтвержден."
+      },
+      "expired": {
+        "title": "Срок действия подтверждения истек",
+        "message": "Срок действия ссылки для подтверждения email истек."
+      },
+      "instructions": "Мы отправили вам письмо со ссылкой для подтверждения.",
+      "resend_in": "Отправить повторно через {timeleft} сек.",
+      "too_many_requests": "Слишком много запросов, попробуйте через 24 часа"
+    },
+    "welcome": {
+      "title": "Добро пожаловать в <appName></appName>",
+      "description": "Создавайте уникальные резюме для уникальных вакансий."
+    },
+    "home": {
+      "your_resumes": "Ваши резюме"
+    },
+    "login": {
+      "description": "Пожалуйста, введите свои учетные данные"
+    },
+    "register": {
+      "description": "Представьтесь"
+    },
+    "profile": {
+      "subtitle": "Эта информация необходима для корректного создания вашего резюме.",
+      "sections": {
+        "basic_info": {
+          "title": "Личная информация"
+        },
+        "experience": {
+          "title": "Опыт",
+          "add_experience": "Добавить опыт",
+          "is_present": "Я работаю здесь в настоящее время"
+        }
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Политика конфиденциальности и Условия использования",
+      "description_first_time": "Пожалуйста, прочитайте и примите условия.",
+      "updating_notice": "Мы обновляем наши <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>. Новые условия вступят в силу через месяц, и у вас будет возможность ознакомиться с ними заранее. Пожалуйста, уделите время для изучения предстоящих изменений.",
+      "accept_terms": "Мы обновляем наши <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>. Нажимая \"Продолжить\", вы соглашаетесь с обновленными условиями."
+    }
+  }
+}

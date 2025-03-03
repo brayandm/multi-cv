@@ -10,7 +10,11 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";
 import { useTranslations } from "next-intl";
 
-const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
+const Experience: React.FC<IExperienceProps> = ({
+  formData,
+  setFormData,
+  width,
+}) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
   const [experiences, setExperiences] = useState<Array<IExperience>>(
@@ -71,10 +75,14 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
 
       debounceTimeout = setTimeout(() => {
         if (scrollRef.current) {
-          console.log((scrollRef.current.scrollLeft - 400) / 416 + 2);
+          console.log(
+            (scrollRef.current.scrollLeft - width) / (width + 16) + 2
+          );
 
           setCurrentExperience(
-            Math.round((scrollRef.current.scrollLeft - 400) / 416 + 2)
+            Math.round(
+              (scrollRef.current.scrollLeft - width) / (width + 16) + 2
+            )
           );
         }
       }, 50);
@@ -90,11 +98,8 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
   /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
   return (
-    <section className={`w-full flex flex-col`}>
-      <div
-        ref={scrollRef}
-        className="w-[400px] overflow-hidden snap-x snap-mandatory"
-      >
+    <section className={` flex flex-col`}>
+      <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
         <div ref={childRef} className="flex gap-2">
           {experiences.map((experience, index) => {
             const isPresentJob = (): IDynamicInput<boolean> => {
@@ -160,7 +165,10 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
             ];
 
             return (
-              <div key={index} className="min-w-[400px] mb-4 mr-2 snap-center">
+              <div
+                key={index}
+                className={`min-w-[${width - 30}px] mb-4 mr-2 snap-center`}
+              >
                 <DynamicInputs isPresentJob={isPresentJob()} inputs={inputs} />
               </div>
             );
