@@ -1,4 +1,5 @@
 const hostList = ["linkedin.com", "infojobs.net"];
+const IFRAME_WIDTH = "440px";
 
 const button = (() => {
   const button = document.createElement("div");
@@ -30,8 +31,8 @@ const iframe = (() => {
   iframe.src = "https://multicv.space";
   iframe.style.position = "fixed";
   iframe.style.top = "0";
-  iframe.style.right = "-310px";
-  iframe.style.width = "300px";
+  iframe.style.right = `-${IFRAME_WIDTH}`;
+  iframe.style.width = IFRAME_WIDTH;
   iframe.style.height = "100vh";
   iframe.style.border = "none";
   iframe.style.zIndex = "10000";
@@ -90,29 +91,25 @@ const tooltip = (() => {
     let isIframeOpen = false;
 
     button.addEventListener("mouseenter", () => {
-      if (!isIframeOpen) {
-        button.style.right = "0px";
-      } else {
-        button.style.right = "285px";
-      }
+      button.style.right = isIframeOpen
+        ? `calc(${IFRAME_WIDTH} - 15px)`
+        : "0px";
     });
 
     button.addEventListener("mouseleave", () => {
-      if (!isIframeOpen) {
-        button.style.right = "-5px";
-      } else {
-        button.style.right = "290px";
-      }
+      button.style.right = isIframeOpen
+        ? `calc(${IFRAME_WIDTH} - 10px)`
+        : "-5px";
     });
 
     button.addEventListener("click", () => {
       if (isIframeOpen) {
-        iframe.style.right = "-310px";
-        button.style.right = "0";
+        iframe.style.right = `-${IFRAME_WIDTH}`;
+        button.style.right = "0px";
         button.innerText = "◀";
       } else {
         iframe.style.right = "0";
-        button.style.right = "295px";
+        button.style.right = `calc(${IFRAME_WIDTH} - 5px)`;
         button.innerText = "▶";
       }
       isIframeOpen = !isIframeOpen;
