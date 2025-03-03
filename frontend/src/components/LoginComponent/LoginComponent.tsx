@@ -40,45 +40,44 @@ export default function LoginComponent() {
     }
   };
 
-  const t = useTranslations("LoginPage");
-  const tCommon = useTranslations();
+  const t = useTranslations();
 
   return (
     <form
       className="flex flex-col gap-2 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-center">{tCommon("login")}</h1>
-      <p>{t("description")}</p>
+      <h1 className="text-center">{t("common.auth.login")}</h1>
+      <p>{t("pages.login.description")}</p>
       <div className="flex flex-col gap-3">
         <Input
-          label={tCommon("email")}
-          placeholder={tCommon("enter-email")}
+          label={t("common.form.email")}
+          placeholder={t("common.placeholders.enter_email")}
           type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
         />
         <Input
-          label={tCommon("password")}
-          placeholder={tCommon("enter-password")}
+          label={t("common.form.password")}
+          placeholder={t("common.placeholders.enter_password")}
           type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}
         />
         <Button color="primary" type="submit">
-          {tCommon("login")}
+          {t("common.auth.login")}
         </Button>
       </div>
       <Divider className="my-4"></Divider>
       <p>
-        {tCommon("other-method")} |{" "}
+        {t("common.auth.use_other_method")} |{" "}
         <span
           className="text-primary cursor-pointer"
           onClick={() => router.push("/register")}
         >
-          {tCommon("register")}
+          {t("common.auth.register")}
         </span>
       </p>
       <div>

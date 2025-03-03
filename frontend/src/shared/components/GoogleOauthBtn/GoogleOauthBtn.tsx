@@ -24,7 +24,7 @@ export default function GoogleOauthBtn({ ...props }: ButtonProps) {
         variant="bordered"
         {...props}
       >
-        {tCommon("google-login")}
+        {tCommon("common.auth.google_sign_in")}
       </Button>
     </div>
   );
