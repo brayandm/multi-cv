@@ -3,6 +3,11 @@
     "name": "MultiCV"
   },
   "common": {
+    "menu": {
+      "home": "Inicio",
+      "change_password": "Cambiar Contraseña",
+      "profile": "Perfil"
+    },
     "auth": {
       "login": "Iniciar sesión",
       "register": "Registrarse",
