@@ -73,7 +73,7 @@
       "too_many_requests": "Too many requests, try in 24 hours"
     },
     "welcome": {
-      "title": "Welcome to {app_name}",
+      "title": "Welcome to <appName></appName>",
       "description": "Create unique CVs for unique job offers."
     },
     "home": {

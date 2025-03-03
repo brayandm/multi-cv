@@ -73,7 +73,7 @@
       "too_many_requests": "Demasiadas solicitudes, inténtalo en 24 horas"
     },
     "welcome": {
-      "title": "Bienvenido a {app_name}",
+      "title": "Bienvenido a <appName></appName>",
       "description": "Crea CVs únicos para ofertas de trabajo únicas."
     },
     "home": {
