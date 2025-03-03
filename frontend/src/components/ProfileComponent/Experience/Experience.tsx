@@ -17,7 +17,7 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
     formData.experience
   );
   const [currentExperience, setCurrentExperience] = useState<number>(1);
-  const t = useTranslations("ProfilePage.Experience");
+  const t = useTranslations();
   function onExperienceChange(
     index: number,
     key: keyof IExperience,
@@ -99,7 +99,7 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
           {experiences.map((experience, index) => {
             const isPresentJob = (): IDynamicInput<boolean> => {
               return {
-                label: t("is-present"), // Nueva clave para "I'm currently working here"
+                label: t("pages.profile.sections.experience.is_present"),
                 type: "is_present",
                 onValueChange: (value: boolean) =>
                   onExperienceChange(index, "is_present", value),
@@ -109,47 +109,47 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
 
             const inputs: IDynamicInputArray<string & boolean> = [
               {
-                label: t("company.label"),
+                label: t("common.form.company_name"),
                 type: "text",
-                placeholder: t("company.placeholder"),
+                placeholder: t("common.placeholders.enter_company_name"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "company", value),
                 value: experience?.company || "",
               },
               {
-                label: t("role.label"),
+                label: t("common.form.role"),
                 type: "text",
-                placeholder: t("role.placeholder"),
+                placeholder: t("common.placeholders.enter_role"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "role", value),
                 value: experience?.role || "",
               },
               {
-                label: t("description.label"),
+                label: t("common.form.company_description"),
                 type: "textarea",
-                placeholder: t("description.placeholder"),
+                placeholder: t("common.placeholders.enter_company_description"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "description", value),
                 value: experience?.description || "",
               },
               {
-                label: t("country-city.label"),
+                label: t("common.form.company_location"),
                 type: "text",
-                placeholder: t("country-city.placeholder"),
+                placeholder: t("common.placeholders.enter_company_location"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "location", value),
                 value: experience?.location || "",
               },
               [
                 {
-                  label: t("start-date.label"),
+                  label: t("common.form.company_start_date"),
                   type: "start_date",
                   onValueChange: (value: string) =>
                     onExperienceChange(index, "start_date", value),
                   value: experience?.start_date || "",
                 },
                 {
-                  label: t("end-date.label"),
+                  label: t("common.form.company_end_date"),
                   type: "end_date",
                   onValueChange: (value: string) =>
                     onExperienceChange(index, "end_date", value),
@@ -185,7 +185,7 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
         </div>
       )}
       <Button variant="bordered" color="primary" onPress={addNewExperience}>
-        {t("add-button")}
+        {t("pages.profile.sections.experience.add_experience")}
       </Button>
     </section>
   );

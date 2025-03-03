@@ -23,20 +23,26 @@ const ProfileComponent: React.FC = () => {
     }
   }, [formData]);
 
-  const t = useTranslations("ProfilePage");
+  const t = useTranslations();
 
   return (
     <main className="flex justify-center">
       <div className="w-full max-w-[450px] px-5">
         <form>
           <Tabs aria-label="Options">
-            <Tab key="basic-user-info" title={t("BasicUserInfo.category-name")}>
+            <Tab
+              key="basic-user-info"
+              title={t("pages.profile.sections.basic_info.title")}
+            >
               <BasicUserInfo
                 formData={formData}
                 setFormData={setFormData}
               ></BasicUserInfo>
             </Tab>
-            <Tab key="experiences" title={t("Experience.category-name")}>
+            <Tab
+              key="experiences"
+              title={t("pages.profile.sections.experience.title")}
+            >
               <Experience
                 formData={formData}
                 setFormData={setFormData}

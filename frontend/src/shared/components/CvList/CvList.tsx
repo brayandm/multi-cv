@@ -9,10 +9,10 @@ interface CvListProps {
 }
 
 const CvList: React.FC<CvListProps> = ({ cvs }) => {
-  const t = useTranslations("HomePage");
+  const t = useTranslations();
   return (
     <div className="px-2 flex flex-col gap-2">
-      <h2 className="">{t("your-resumes")}</h2>
+      <h2 className="">{t("pages.home.your_resumes")}</h2>
       {cvs.map((cv, key) => (
         <CvComponent {...cv} key={key}></CvComponent>
       ))}
