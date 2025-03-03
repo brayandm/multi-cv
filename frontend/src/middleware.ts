@@ -112,6 +112,7 @@ export const config = {
     "/register",
     "/accept-terms",
     "/home",
+    "/profile",
     "/password",
     "/email/:path*",
   ],
