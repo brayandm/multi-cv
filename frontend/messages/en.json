@@ -18,7 +18,8 @@
     "buttons": {
       "continue": "Continue",
       "add": "Add",
-      "resend_email": "Resend email"
+      "resend_email": "Resend email",
+      "change_password": "Change password"
     },
     "form": {
       "full_name": "Full Name",
