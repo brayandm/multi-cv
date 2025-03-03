@@ -5,7 +5,7 @@
   "common": {
     "menu": {
       "home": "Inicio",
-      "change_password": "Cambiar Contraseña",
+      "change_password": "Cambiar contraseña",
       "profile": "Perfil"
     },
     "auth": {
@@ -17,8 +17,8 @@
     },
     "buttons": {
       "continue": "Continuar",
-      "add": "Añadir",
-      "resend_email": "Reenviar correo electrónico",
+      "add": "Agregar",
+      "resend_email": "Reenviar correo",
       "change_password": "Cambiar contraseña"
     },
     "form": {
@@ -30,7 +30,7 @@
       "repeat_password": "Repetir contraseña",
       "country": "País",
       "phone": "Número de teléfono",
-      "about": "Acerca de ti",
+      "about": "Sobre ti",
       "company_name": "Empresa",
       "role": "Cargo",
       "company_description": "Descripción de la empresa",
@@ -47,7 +47,7 @@
       "enter_password_again": "Introduce tu contraseña nuevamente",
       "enter_country": "Introduce tu país",
       "enter_phone": "Introduce tu número de teléfono",
-      "enter_about": "Soy un ...",
+      "enter_about": "Soy un/a ...",
       "enter_company_name": "Nombre de la empresa",
       "enter_role": "Tu cargo en la empresa",
       "enter_company_description": "Ubicación del trabajo, también puedes escribir \"Remoto\""
@@ -64,11 +64,11 @@
       "title": "Verificación de Correo Electrónico",
       "already_verified": {
         "title": "Correo Electrónico Ya Verificado",
-        "message": "Tu correo electrónico ya ha sido verificado."
+        "message": "Tu correo ya ha sido verificado."
       },
       "success": {
         "title": "Verificación de Correo Electrónico Exitosa",
-        "message": "Tu correo electrónico ha sido verificado."
+        "message": "Tu correo ha sido verificado."
       },
       "expired": {
         "title": "Verificación de Correo Electrónico Expirada",
@@ -80,7 +80,7 @@
     },
     "welcome": {
       "title": "Bienvenido a <appName></appName>",
-      "description": "Crea CVs únicos para ofertas de trabajo únicas."
+      "description": "Crea CV únicos para ofertas de trabajo únicas."
     },
     "home": {
       "your_resumes": "Tus CVs"
@@ -94,11 +94,11 @@
     "profile": {
       "sections": {
         "basic_info": {
-          "title": "Información Personal"
+          "title": "Personal"
         },
         "experience": {
           "title": "Experiencia",
-          "add_experience": "Añadir Experiencia",
+          "add_experience": "Agregar experiencia",
           "is_present": "Actualmente trabajo aquí"
         }
       }
@@ -106,8 +106,8 @@
     "terms_and_conditions": {
       "title": "Política de Privacidad y Términos y Condiciones",
       "description_first_time": "Por favor, léelos y acéptalos.",
-      "updating_notice": "Estamos actualizando nuestros {terms}. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para su revisión antes de esa fecha. Tómate un momento para revisar los próximos cambios.",
-      "accept_terms": "Al hacer clic en \"Continuar\", aceptas los términos actualizados."
+      "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para revisión antes de esa fecha. Tómate un momento para revisar los próximos cambios.",
+      "accept_terms": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Al hacer clic en \"Continuar\", aceptas los términos actualizados."
     }
   }
 }

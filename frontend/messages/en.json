@@ -106,8 +106,8 @@
     "terms_and_conditions": {
       "title": "Privacy Policy and Terms & Conditions",
       "description_first_time": "Please read and accept.",
-      "updating_notice": "We are updating our {terms}. The new terms will take effect in one month and will be available for review before then. Please take a moment to review the upcoming changes.",
-      "accept_terms": "By clicking \"Continue\", you agree to the updated terms."
+      "updating_notice": "We are updating our <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>. The new terms will take effect in one month and will be available for review before then. Please take a moment to review the upcoming changes.",
+      "accept_terms": "We are updating our <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>. By clicking \"Continue\", you agree to the updated terms."
     }
   }
 }
