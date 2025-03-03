@@ -63,7 +63,7 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
           </p>
         </div>
         <div className="flex gap-1">
-          <p className="flex text-default-500 text-small ">
+          <span className="flex text-default-500 text-small ">
             {t.rich("components.cv.to_expire", {
               days: () => (
                 <>
@@ -73,7 +73,7 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
                 </>
               ),
             })}
-          </p>
+          </span>
         </div>
       </CardFooter>
     </Card>
