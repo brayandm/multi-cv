@@ -9,7 +9,7 @@ import CountryList from "country-list";
 
 type AutocompleteCountryProps = Omit<AutocompleteProps, "children">;
 
-const countries = CountryList.getData(); // Obtenemos la lista de países
+const countries = CountryList.getData();
 
 const SelectCountry: React.FC<AutocompleteCountryProps> = (props) => {
   return (

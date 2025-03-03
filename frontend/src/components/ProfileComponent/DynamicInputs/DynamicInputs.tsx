@@ -20,7 +20,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
   ): IDynamicInput<T> => {
     return inputs.find((input) => {
       if (Array.isArray(input)) {
-        return getSelectedCountry(input); // <- Aquí hay un problema
+        return getSelectedCountry(input); // <- There is a problem here
       } else {
         return input.type === "country_code" && input.value !== null;
       }

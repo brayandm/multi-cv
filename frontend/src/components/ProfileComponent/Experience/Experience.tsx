@@ -99,7 +99,7 @@ const Experience: React.FC<IExperienceProps> = ({ formData, setFormData }) => {
           {experiences.map((experience, index) => {
             const isPresentJob = (): IDynamicInput<boolean> => {
               return {
-                label: t("is-present"), // Nueva clave para "I'm currently working here"
+                label: t("is-present"),
                 type: "is_present",
                 onValueChange: (value: boolean) =>
                   onExperienceChange(index, "is_present", value),
