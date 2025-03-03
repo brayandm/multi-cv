@@ -33,6 +33,8 @@
       "about": "Sobre ti",
       "company_name": "Empresa",
       "role": "Cargo",
+      "phone_number": "Número de teléfono",
+      "country_code": "Código de país",
       "company_description": "Descripción de la empresa",
       "company_location": "País/Ciudad",
       "company_start_date": "Fecha de inicio",
@@ -47,10 +49,11 @@
       "enter_password_again": "Introduce tu contraseña nuevamente",
       "enter_country": "Introduce tu país",
       "enter_phone": "Introduce tu número de teléfono",
-      "enter_about": "Soy un/a ...",
+      "enter_about": "Soy un ...",
       "enter_company_name": "Nombre de la empresa",
       "enter_role": "Tu cargo en la empresa",
-      "enter_company_description": "Ubicación del trabajo, también puedes escribir \"Remoto\""
+      "enter_company_description": "Una descripción de tus deberes y responsabilidades en el trabajo",
+      "enter_company_location": "Ubicación del trabajo, también puedes escribir \"Remoto\""
     },
     "legal": {
       "terms_conditions": "Términos y Condiciones",
@@ -64,23 +67,23 @@
       "title": "Verificación de Correo Electrónico",
       "already_verified": {
         "title": "Correo Electrónico Ya Verificado",
-        "message": "Tu correo ya ha sido verificado."
+        "message": "Tu correo electrónico ya ha sido verificado."
       },
       "success": {
         "title": "Verificación de Correo Electrónico Exitosa",
-        "message": "Tu correo ha sido verificado."
+        "message": "Tu correo electrónico ha sido verificado."
       },
       "expired": {
         "title": "Verificación de Correo Electrónico Expirada",
-        "message": "El enlace de verificación ha expirado."
+        "message": "El enlace de verificación de tu correo ha expirado."
       },
       "instructions": "Te hemos enviado un correo con un enlace de verificación.",
       "resend_in": "Reenviar en {timeleft}s",
-      "too_many_requests": "Demasiadas solicitudes, inténtalo en 24 horas"
+      "too_many_requests": "Demasiadas solicitudes, intenta en 24 horas"
     },
     "welcome": {
       "title": "Bienvenido a <appName></appName>",
-      "description": "Crea CV únicos para ofertas de trabajo únicas."
+      "description": "Crea CVs únicos para ofertas de trabajo únicas."
     },
     "home": {
       "your_resumes": "Tus CVs"
@@ -98,7 +101,7 @@
         },
         "experience": {
           "title": "Experiencia",
-          "add_experience": "Agregar experiencia",
+          "add_experience": "Agregar Experiencia",
           "is_present": "Actualmente trabajo aquí"
         }
       }
@@ -106,7 +109,7 @@
     "terms_and_conditions": {
       "title": "Política de Privacidad y Términos y Condiciones",
       "description_first_time": "Por favor, léelos y acéptalos.",
-      "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para revisión antes de esa fecha. Tómate un momento para revisar los próximos cambios.",
+      "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para su revisión antes de esa fecha. Tómate un momento para revisar los próximos cambios.",
       "accept_terms": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Al hacer clic en \"Continuar\", aceptas los términos actualizados."
     }
   }

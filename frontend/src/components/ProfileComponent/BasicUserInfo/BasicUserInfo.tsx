@@ -40,7 +40,7 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
   const inputs: IDynamicInputArray<string> = [
     {
       label: t("common.form.full_name"),
-      placeholder: t("common.form.enter_full_name"),
+      placeholder: t("common.placeholders.enter_full_name"),
       type: "text",
       value: fullName,
       onValueChange: setFullName,

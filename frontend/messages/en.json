@@ -52,7 +52,8 @@
       "enter_about": "I am a ...",
       "enter_company_name": "Company name",
       "enter_role": "Your role in the company",
-      "enter_company_description": "he job location, you can also type \"Remote\""
+      "enter_company_description": "A description of your duties and responsabilities in the job",
+      "enter_company_location": "The job location, you can also type \"Remote\""
     },
     "legal": {
       "terms_conditions": "Terms & Conditions",
