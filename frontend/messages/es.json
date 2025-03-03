@@ -62,6 +62,13 @@
       "accept_terms": "Acepto los <termsConditions></termsConditions> y la <privacyPolicy></privacyPolicy>"
     }
   },
+  "components": {
+    "cv": {
+      "download": "Descargar",
+      "to_expire": "<days></days> Por expirar",
+      "days": "{count, plural, =1 {1 dia} other {# dias}}"
+    }
+  },
   "pages": {
     "email_verification": {
       "title": "Verificación de Correo Electrónico",

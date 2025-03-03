@@ -62,6 +62,13 @@
       "accept_terms": "I accept the <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>"
     }
   },
+  "components": {
+    "cv": {
+      "download": "Download",
+      "to_expire": "<days></days> To expire",
+      "days": "{count, plural, =1 {1 day} other {# days}}"
+    }
+  },
   "pages": {
     "email_verification": {
       "title": "Email Verification",

@@ -8,6 +8,7 @@ import {
   Button,
 } from "@heroui/react";
 import { CV as CvComponentProps } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 const CvComponent: React.FC<CvComponentProps> = (props) => {
   const [isDownloaded, setIsDownloaded] = React.useState(false);
@@ -18,6 +19,9 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
       setIsDownloaded(false);
     }, 2000);
   };
+
+  const t = useTranslations();
+
   return (
     <Card className="max-w-[340px]">
       <CardHeader className="justify-between">
@@ -44,7 +48,9 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
           variant={isDownloaded ? "bordered" : "solid"}
           onPress={handleDownload}
         >
-          {isDownloaded ? "Download" : "Download"}
+          {isDownloaded
+            ? t("components.cv.download")
+            : t("components.cv.download")}
         </Button>
       </CardHeader>
       <CardBody className="px-3 py-0 text-small text-default-600">
@@ -57,10 +63,17 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
           </p>
         </div>
         <div className="flex gap-1">
-          <p className="font-semibold text-default-400 text-small">
-            {props.days_to_expire} days
+          <p className="flex text-default-500 text-small ">
+            {t.rich("components.cv.to_expire", {
+              days: () => (
+                <>
+                  <p className="font-semibold text-default-400 text-small mr-2">
+                    {t("components.cv.days", { count: props.days_to_expire })}
+                  </p>
+                </>
+              ),
+            })}
           </p>
-          <p className="text-default-500 text-small">To expire</p>
         </div>
       </CardFooter>
     </Card>
