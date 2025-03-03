@@ -50,7 +50,7 @@
       "terms_conditions": "Terms & Conditions",
       "privacy_policy": "Privacy Policy",
       "confirm_age": "I confirm that I am over 18 years old",
-      "accept_terms": "I accept the {terms} and {privacy}"
+      "accept_terms": "I accept the <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>"
     }
   },
   "pages": {

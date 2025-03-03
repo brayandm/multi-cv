@@ -26,7 +26,7 @@
       "phone": "Número de teléfono",
       "about": "Acerca de ti",
       "company_name": "Empresa",
-      "role": "Puesto",
+      "role": "Cargo",
       "company_description": "Descripción de la empresa",
       "company_location": "País/Ciudad",
       "company_start_date": "Fecha de inicio",
@@ -43,32 +43,32 @@
       "enter_phone": "Introduce tu número de teléfono",
       "enter_about": "Soy un ...",
       "enter_company_name": "Nombre de la empresa",
-      "enter_role": "Tu puesto en la empresa",
+      "enter_role": "Tu cargo en la empresa",
       "enter_company_description": "Ubicación del trabajo, también puedes escribir \"Remoto\""
     },
     "legal": {
       "terms_conditions": "Términos y Condiciones",
       "privacy_policy": "Política de Privacidad",
       "confirm_age": "Confirmo que tengo más de 18 años",
-      "accept_terms": "Acepto los {terms} y la {privacy}"
+      "accept_terms": "Acepto los <termsConditions></termsConditions> y la <privacyPolicy></privacyPolicy>"
     }
   },
   "pages": {
     "email_verification": {
-      "title": "Verificación de correo electrónico",
+      "title": "Verificación de Correo Electrónico",
       "already_verified": {
-        "title": "Correo ya verificado",
+        "title": "Correo Electrónico Ya Verificado",
         "message": "Tu correo electrónico ya ha sido verificado."
       },
       "success": {
-        "title": "Verificación exitosa",
+        "title": "Verificación de Correo Electrónico Exitosa",
         "message": "Tu correo electrónico ha sido verificado."
       },
       "expired": {
-        "title": "Verificación expirada",
-        "message": "El enlace de verificación de tu correo ha expirado."
+        "title": "Verificación de Correo Electrónico Expirada",
+        "message": "El enlace de verificación ha expirado."
       },
-      "instructions": "Te hemos enviado un correo electrónico con un enlace de verificación.",
+      "instructions": "Te hemos enviado un correo con un enlace de verificación.",
       "resend_in": "Reenviar en {timeleft}s",
       "too_many_requests": "Demasiadas solicitudes, inténtalo en 24 horas"
     },
@@ -88,11 +88,11 @@
     "profile": {
       "sections": {
         "basic_info": {
-          "title": "Personal"
+          "title": "Información Personal"
         },
         "experience": {
           "title": "Experiencia",
-          "add_experience": "Añadir experiencia",
+          "add_experience": "Añadir Experiencia",
           "is_present": "Actualmente trabajo aquí"
         }
       }
@@ -100,7 +100,7 @@
     "terms_and_conditions": {
       "title": "Política de Privacidad y Términos y Condiciones",
       "description_first_time": "Por favor, léelos y acéptalos.",
-      "updating_notice": "Estamos actualizando nuestros {terms}. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para revisión antes de esa fecha. Por favor, tómate un momento para revisar los cambios próximos.",
+      "updating_notice": "Estamos actualizando nuestros {terms}. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para su revisión antes de esa fecha. Tómate un momento para revisar los próximos cambios.",
       "accept_terms": "Al hacer clic en \"Continuar\", aceptas los términos actualizados."
     }
   }
