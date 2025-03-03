@@ -53,60 +53,65 @@ export default function AcceptTermsComponent({
     }
   };
 
-  const t = useTranslations("TermsAndConditionsPage");
-  const tCommon = useTranslations();
+  const t = useTranslations();
 
   return (
     <form
       className="flex flex-col gap-2 text-center w-[250px] mx-auto"
       onSubmit={handleSubmit}
     >
-      <h1 className="text-center">{t("title")}</h1>
+      <h1 className="text-center">{t("pages.terms_and_conditions.title")}</h1>
       {acceptTerms === null ? (
-        <p> {t("description-first-time")}</p>
+        <p> {t("pages.terms_and_conditions.description_first_time")}</p>
       ) : (
         <>
           {noticeTerms ? (
             <span>
               <p>
-                {t("we-are-updating")}{" "}
-                <Link
-                  href="/privacy-policy.html"
-                  target="_blank"
-                  className="text-primary underline"
-                >
-                  {tCommon("privacy-policy")}
-                </Link>{" "}
-                {tCommon("and")}{" "}
-                <Link
-                  href="/terms-and-conditions.html"
-                  target="_blank"
-                  className="text-primary underline"
-                >
-                  {tCommon("terms-and-conditions")}
-                </Link>
-                . {t("notification")}{" "}
+                {t.rich("pages.terms_and_conditions.updating_notice", {
+                  termsConditions: () => (
+                    <Link
+                      href="/terms-and-conditions.html"
+                      target="_blank"
+                      className="text-primary underline"
+                    >
+                      {t("common.legal.terms_conditions")}
+                    </Link>
+                  ),
+                  privacyPolicy: () => (
+                    <Link
+                      href="/privacy-policy.html"
+                      target="_blank"
+                      className="text-primary underline"
+                    >
+                      {t("common.legal.privacy_policy")}
+                    </Link>
+                  ),
+                })}
               </p>
             </span>
           ) : (
             <p>
-              {t("we-are-updating")}{" "}
-              <Link
-                href="/privacy-policy.html"
-                target="_blank"
-                className="text-primary underline"
-              >
-                {tCommon("privacy-policy")}
-              </Link>{" "}
-              {tCommon("and")}{" "}
-              <Link
-                href="/terms-and-conditions.html"
-                target="_blank"
-                className="text-primary underline"
-              >
-                {tCommon("terms-and-conditions")}
-              </Link>
-              . {t("by-clicking")}
+              {t.rich("pages.terms_and_conditions.accept_terms", {
+                termsConditions: () => (
+                  <Link
+                    href="/terms-and-conditions.html"
+                    target="_blank"
+                    className="text-primary underline"
+                  >
+                    {t("common.legal.terms_conditions")}
+                  </Link>
+                ),
+                privacyPolicy: () => (
+                  <Link
+                    href="/privacy-policy.html"
+                    target="_blank"
+                    className="text-primary underline"
+                  >
+                    {t("common.legal.privacy_policy")}
+                  </Link>
+                ),
+              })}
             </p>
           )}
         </>
@@ -124,7 +129,7 @@ export default function AcceptTermsComponent({
               className="text-[9px] text-gray-600
           "
             >
-              {tCommon("confirm-age")}
+              {t("common.legal.confirm_age")}
             </span>
           </div>
         )}
@@ -137,22 +142,26 @@ export default function AcceptTermsComponent({
               size="sm"
             />
             <span className="text-[9px] text-gray-600 text-left">
-              {tCommon("i-accept")}{" "}
-              <Link
-                href="/terms-and-conditions.html"
-                target="_blank"
-                className="text-primary underline"
-              >
-                {tCommon("terms-and-conditions")}
-              </Link>{" "}
-              {tCommon("and")}{" "}
-              <Link
-                href="/privacy-policy.html"
-                target="_blank"
-                className="text-primary underline"
-              >
-                {tCommon("privacy-policy")}
-              </Link>
+              {t.rich("common.legal.accept_terms", {
+                termsConditions: () => (
+                  <Link
+                    href="/terms-and-conditions.html"
+                    target="_blank"
+                    className="text-primary underline"
+                  >
+                    {t("common.legal.terms_conditions")}
+                  </Link>
+                ),
+                privacyPolicy: () => (
+                  <Link
+                    href="/privacy-policy.html"
+                    target="_blank"
+                    className="text-primary underline"
+                  >
+                    {t("common.legal.privacy_policy")}
+                  </Link>
+                ),
+              })}
             </span>
           </div>
         )}
@@ -164,7 +173,7 @@ export default function AcceptTermsComponent({
             (acceptTerms === null && !formData.underAge)
           }
         >
-          {tCommon("continue")}
+          {t("common.buttons.continue")}
         </Button>
       </div>
     </form>

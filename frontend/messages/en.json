@@ -1,111 +1,116 @@
 {
-  "app-name": "MultiCV",
-  "login": "Login",
-  "register": "Register",
-  "logout": "Log out",
-  "home": "Home",
-  "profile": "Profile",
-  "change-password": "Change password",
-  "full-name": "Full Name",
-  "enter-full-name": "Enter your full name",
-  "email": "Email",
-  "enter-email": "Enter your email",
-  "password": "Password",
-  "current-password": "Current password",
-  "enter-password": "Enter your password",
-  "enter-current-password": "Enter your current password",
-  "enter-new-password": "Enter your new password",
-  "enter-password-again": "Enter your password again",
-  "repeat-password": "Repeat the password",
-  "google-login": "Sign in with Google",
-  "other-method": "Use another method",
-  "terms-and-conditions": "Terms & Conditions",
-  "privacy-policy": "Privacy Policy",
-  "confirm-age": "I confirm that I am over 18 years old",
-  "i-accept": "I accept the",
-  "and": "and",
-  "continue": "Continue",
-  "EmailVerificationPage": {
-    "resend-email": "Resend email",
-    "resend-email-timeleft": "Resend in {timeleft}s",
-    "try-other-day": "Too many requests, try in 24 hours",
-    "verification-title": "Email Verification",
-    "already-verified-title": "Email Verification Already Verified",
-    "success-title": "Email Verification Success",
-    "expired-title": "Email Verification Expired",
-    "verification-text": "We have sent you an email with a verification link.",
-    "already-verified-text": "Your email has already been verified.",
-    "success-text": "Your email has been verified.",
-    "expired-text": "Your email verification link has expired."
+  "app": {
+    "name": "MultiCV"
   },
-  "WelcomePage": {
-    "welcome-to": "Welcome to",
-    "description": "Create unique CVs for unique job offers."
-  },
-  "HomePage": {
-    "your-resumes": "Your Resumes"
-  },
-  "LoginPage": {
-    "description": "Please enter your credentials"
-  },
-  "RegisterPage": {
-    "description": "Introduce yourself"
-  },
-  "ProfilePage": {
-    "BasicUserInfo": {
-      "category-name": "Personal",
-      "full-name": {
-        "label": "Full Name",
-        "placeholder": "John Doe"
-      },
-      "email": {
-        "label": "Email",
-        "placeholder": "john@example.doe"
-      },
-      "country": {
-        "label": "Country"
-      },
-      "phone": {
-        "label": "Phone number"
-      },
-      "about": {
-        "label": "About you",
-        "placeholder": "I am a ..."
-      }
+  "common": {
+    "menu": {
+      "home": "Home",
+      "change_password": "Change Password",
+      "profile": "Profile"
     },
-    "Experience": {
-      "category-name": "Experience",
-      "add-button": "Add Experience",
-      "is-present": "I'm currently working here",
-      "company": {
-        "label": "Company",
-        "placeholder": "Company name"
-      },
-      "role": {
-        "label": "Role",
-        "placeholder": "Your role in the company"
-      },
-      "description": {
-        "label": "Description",
-        "placeholder": "A description of your duties and responsabilities in the job"
-      },
-      "country-city": {
-        "label": "Country/City",
-        "placeholder": "The job location, you can also type \"Remote\""
-      },
-      "start-date": {
-        "label": "Start Date"
-      },
-      "end-date": {
-        "label": "End Date"
-      }
+    "auth": {
+      "login": "Login",
+      "register": "Register",
+      "logout": "Log out",
+      "google_sign_in": "Sign in with Google",
+      "use_other_method": "Use another method"
+    },
+    "buttons": {
+      "continue": "Continue",
+      "add": "Add",
+      "resend_email": "Resend email",
+      "change_password": "Change password"
+    },
+    "form": {
+      "full_name": "Full Name",
+      "email": "Email",
+      "password": "Password",
+      "current_password": "Current password",
+      "new_password": "New password",
+      "repeat_password": "Repeat password",
+      "country": "Country",
+      "phone": "Phone number",
+      "about": "About you",
+      "company_name": "Company",
+      "role": "Role",
+      "phone_number": "Phone number",
+      "country_code": "Country code",
+      "company_description": "Company description",
+      "company_location": "Country/City",
+      "company_start_date": "Start date",
+      "company_end_date": "End date"
+    },
+    "placeholders": {
+      "enter_full_name": "Enter your full name",
+      "enter_email": "Enter your email",
+      "enter_password": "Enter your password",
+      "enter_current_password": "Enter your current password",
+      "enter_new_password": "Enter your new password",
+      "enter_password_again": "Enter your password again",
+      "enter_country": "Enter your country",
+      "enter_phone": "Enter your phone number",
+      "enter_about": "I am a ...",
+      "enter_company_name": "Company name",
+      "enter_role": "Your role in the company",
+      "enter_company_description": "A description of your duties and responsabilities in the job",
+      "enter_company_location": "The job location, you can also type \"Remote\""
+    },
+    "legal": {
+      "terms_conditions": "Terms & Conditions",
+      "privacy_policy": "Privacy Policy",
+      "confirm_age": "I confirm that I am over 18 years old",
+      "accept_terms": "I accept the <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>"
     }
   },
-  "TermsAndConditionsPage": {
-    "title": "Privacy Policy and Terms & Conditions",
-    "description-first-time": "Please read and accept.",
-    "we-are-updating": "We are updating our",
-    "notification": "The new terms will take effect in one month and will be available for review before then. Please take a moment to review the upcoming changes.",
-    "by-clicking": "By clicking \"Continue\", you agree to the updated terms."
+  "pages": {
+    "email_verification": {
+      "title": "Email Verification",
+      "already_verified": {
+        "title": "Email Verification Already Verified",
+        "message": "Your email has already been verified."
+      },
+      "success": {
+        "title": "Email Verification Success",
+        "message": "Your email has been verified."
+      },
+      "expired": {
+        "title": "Email Verification Expired",
+        "message": "Your email verification link has expired."
+      },
+      "instructions": "We have sent you an email with a verification link.",
+      "resend_in": "Resend in {timeleft}s",
+      "too_many_requests": "Too many requests, try in 24 hours"
+    },
+    "welcome": {
+      "title": "Welcome to <appName></appName>",
+      "description": "Create unique CVs for unique job offers."
+    },
+    "home": {
+      "your_resumes": "Your Resumes"
+    },
+    "login": {
+      "description": "Please enter your credentials"
+    },
+    "register": {
+      "description": "Introduce yourself"
+    },
+    "profile": {
+      "sections": {
+        "basic_info": {
+          "title": "Personal"
+        },
+        "experience": {
+          "title": "Experience",
+          "add_experience": "Add Experience",
+          "is_present": "I'm currently working here"
+        }
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Privacy Policy and Terms & Conditions",
+      "description_first_time": "Please read and accept.",
+      "updating_notice": "We are updating our <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>. The new terms will take effect in one month and will be available for review before then. Please take a moment to review the upcoming changes.",
+      "accept_terms": "We are updating our <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>. By clicking \"Continue\", you agree to the updated terms."
+    }
   }
 }

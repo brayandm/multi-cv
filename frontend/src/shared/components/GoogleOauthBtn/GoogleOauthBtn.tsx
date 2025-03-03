@@ -14,7 +14,7 @@ export const GoogleIcon = ({}) => {
 };
 
 export default function GoogleOauthBtn({ ...props }: ButtonProps) {
-  const tCommon = useTranslations();
+  const t = useTranslations();
   return (
     <div className="w-full gap-4 items-center">
       <Button
@@ -24,7 +24,7 @@ export default function GoogleOauthBtn({ ...props }: ButtonProps) {
         variant="bordered"
         {...props}
       >
-        {tCommon("google-login")}
+        {t("common.auth.google_sign_in")}
       </Button>
     </div>
   );

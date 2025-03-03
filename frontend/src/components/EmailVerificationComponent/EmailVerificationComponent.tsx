@@ -103,8 +103,7 @@ export default function EmailVerificationComponent({
     router.push("/home");
   };
 
-  const t = useTranslations("EmailVerificationPage");
-  const tCommon = useTranslations();
+  const t = useTranslations();
 
   return (
     <>
@@ -113,19 +112,21 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={resendEmail}
         >
-          <h1 className="text-center">{t("verification-title")}</h1>
-          <p>{t("verification-text")}</p>
+          <h1 className="text-center">{t("pages.email_verification.title")}</h1>
+          <p>{t("pages.email_verification.instructions")}</p>
           {displayResendButton && (
             <Button
               color="primary"
               type="submit"
               isDisabled={isCooldown || tryOtherDay}
             >
-              {tryOtherDay && t("try-other-day")}
+              {tryOtherDay && t("pages.email_verification.too_many_requests")}
               {!tryOtherDay &&
                 (isCooldown
-                  ? t("resend-email-timeleft", { timeleft: timeLeft })
-                  : t("resend-email"))}
+                  ? t("pages.email_verification.resend_in", {
+                      timeleft: timeLeft,
+                    })
+                  : t("common.buttons.resend_email"))}
             </Button>
           )}
         </form>
@@ -135,10 +136,12 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={handleContinue}
         >
-          <h1 className="text-center">{t("already-verified-title")}</h1>
-          <p>{t("already-verified-text")}</p>
+          <h1 className="text-center">
+            {t("pages.email_verification.already_verified.title")}
+          </h1>
+          <p>{t("pages.email_verification.already_verified.message")}</p>
           <Button color="primary" type="submit">
-            {tCommon("continue")}
+            {t("common.buttons.continue")}
           </Button>
         </form>
       )}
@@ -147,10 +150,12 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={handleContinue}
         >
-          <h1 className="text-center">{t("success-title")}</h1>
-          <p>{t("success-text")}</p>
+          <h1 className="text-center">
+            {t("pages.email_verification.success.title")}
+          </h1>
+          <p>{t("pages.email_verification.success.message")}</p>
           <Button color="primary" type="submit">
-            {tCommon("continue")}
+            {t("common.buttons.continue")}
           </Button>
         </form>
       )}
@@ -159,19 +164,23 @@ export default function EmailVerificationComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={resendEmail}
         >
-          <h1 className="text-center">{t("expired-title")}</h1>
-          <p>{t("expired-text")}</p>
+          <h1 className="text-center">
+            {t("pages.email_verification.expired.title")}
+          </h1>
+          <p>{t("pages.email_verification.expired.message")}</p>
           {displayResendButton && (
             <Button
               color="primary"
               type="submit"
               isDisabled={isCooldown || tryOtherDay}
             >
-              {tryOtherDay && t("try-other-day")}
+              {tryOtherDay && t("pages.email_verification.too_many_requests")}
               {!tryOtherDay &&
                 (isCooldown
-                  ? t("resend-email-timeleft", { timeleft: timeLeft })
-                  : t("resend-email"))}
+                  ? t("pages.email_verification.resend_in", {
+                      timeleft: timeLeft,
+                    })
+                  : t("common.buttons.resend_email"))}
             </Button>
           )}
         </form>

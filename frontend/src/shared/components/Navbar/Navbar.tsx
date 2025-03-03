@@ -37,7 +37,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
     }
   };
 
-  const tCommon = useTranslations();
+  const t = useTranslations();
 
   return (
     <>
@@ -49,7 +49,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             size="sm"
             onPress={() => router.push("/home")}
           >
-            {tCommon("home")}
+            {t("common.menu.home")}
           </Link>
         </NavbarMenuItem>
       )}
@@ -61,7 +61,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             size="sm"
             onPress={() => router.push("/password")}
           >
-            {tCommon("change-password")}
+            {t("common.menu.change_password")}
           </Link>
         </NavbarMenuItem>
       )}
@@ -73,7 +73,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             color={"foreground"}
             onPress={() => router.push("/profile")}
           >
-            {tCommon("profile")}
+            {t("common.menu.profile")}
           </Link>
         </NavbarMenuItem>
       )}
@@ -85,7 +85,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             size="sm"
             onPress={() => logout()}
           >
-            {tCommon("logout")}
+            {t("common.auth.logout")}
           </Link>
         </NavbarMenuItem>
       )}
@@ -102,7 +102,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const router = useRouter();
 
-  const tCommon = useTranslations();
+  const t = useTranslations();
 
   return (
     <NavbarUI onMenuOpenChange={setIsMenuOpen} style={{ overflow: "hidden" }}>
@@ -113,7 +113,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
         />
         <NavbarBrand>
           <Link onPress={() => router.push("/")} className="cursor-pointer">
-            <p className="font-bold text-inherit">{tCommon("app-name")}</p>
+            <p className="font-bold text-inherit">{t("app.name")}</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>
