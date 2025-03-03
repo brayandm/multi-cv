@@ -21,7 +21,7 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
   const [countryCode, setCountryCode] = useState<string>(
     props.formData.basicInfo.country_code
   );
-  const t = useTranslations("ProfilePage.BasicUserInfo");
+  const t = useTranslations();
 
   useEffect(() => {
     props.setFormData({
@@ -39,28 +39,28 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
 
   const inputs: IDynamicInputArray<string> = [
     {
-      label: t("full-name.label"),
-      placeholder: t("full-name.placeholder"),
+      label: t("common.form.full_name"),
+      placeholder: t("common.form.enter_full_name"),
       type: "text",
       value: fullName,
       onValueChange: setFullName,
     },
     {
-      label: t("email.label"),
-      placeholder: t("email.placeholder"),
+      label: t("common.form.email"),
+      placeholder: t("common.placeholders.enter_email"),
       type: "email",
       value: email,
       onValueChange: setEmail,
     },
     [
       {
-        label: t("country.label"),
+        label: t("common.form.country_code"),
         type: "country_code",
         value: countryCode,
         onValueChange: setCountryCode,
       },
       {
-        label: t("phone.label"),
+        label: t("common.form.phone_number"),
         placeholder: "XXXXXXXXX",
         type: "phone_number",
         value: phoneNumber,
@@ -68,8 +68,8 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
       },
     ],
     {
-      label: t("about.label"),
-      placeholder: t("about.placeholder"),
+      label: t("common.form.about"),
+      placeholder: t("common.placeholders.enter_about"),
       type: "textarea",
       value: about,
       onValueChange: setAbout,

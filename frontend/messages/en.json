@@ -33,6 +33,8 @@
       "about": "About you",
       "company_name": "Company",
       "role": "Role",
+      "phone_number": "Phone number",
+      "country_code": "Country code",
       "company_description": "Company description",
       "company_location": "Country/City",
       "company_start_date": "Start date",
