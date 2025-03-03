@@ -105,7 +105,11 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
   const t = useTranslations();
 
   return (
-    <NavbarUI onMenuOpenChange={setIsMenuOpen} style={{ overflow: "hidden" }}>
+    <NavbarUI
+      onMenuOpenChange={setIsMenuOpen}
+      className="overflow-hidden"
+      maxWidth="full"
+    >
       <NavbarContent>
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
