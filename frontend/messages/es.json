@@ -66,7 +66,7 @@
     "cv": {
       "download": "Descargar",
       "to_expire": "<days></days> Por expirar",
-      "days": "{count, plural, =1 {1 dia} other {# dias}}"
+      "days": "{count, plural, =1 {1 día} other {# días}}"
     }
   },
   "pages": {
