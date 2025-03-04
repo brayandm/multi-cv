@@ -148,14 +148,5 @@ const tooltip = (() => {
     });
 
     observerUrl.observe(document.body, { childList: true, subtree: true });
-
-    if (
-      window.location.href.includes(
-        "linkedin.com/jobs/collections/recommended"
-      ) &&
-      button.innerText === "◀"
-    ) {
-      showTooltip();
-    }
   }
 })();
