@@ -19,7 +19,7 @@ const button = (() => {
   button.style.justifyContent = "center";
   button.style.cursor = "pointer";
   button.style.fontSize = "16px";
-  button.style.zIndex = "9999";
+  button.style.zIndex = "10000";
   button.style.transition = "right 0.3s ease";
 
   return button;
@@ -35,7 +35,7 @@ const iframe = (() => {
   iframe.style.width = IFRAME_WIDTH;
   iframe.style.height = "100vh";
   iframe.style.border = "none";
-  iframe.style.zIndex = "10000";
+  iframe.style.zIndex = "10001";
   iframe.style.transition = "right 0.3s ease";
 
   return iframe;
@@ -59,7 +59,7 @@ const tooltip = (() => {
   tooltip.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.2)";
   tooltip.style.fontSize = "14px";
   tooltip.style.fontWeight = "bold";
-  tooltip.style.zIndex = "10001";
+  tooltip.style.zIndex = "9999";
   tooltip.style.opacity = "0";
   tooltip.style.transition = "opacity 0.3s ease";
   tooltip.style.cursor = "pointer";
@@ -128,8 +128,20 @@ const tooltip = (() => {
       }, 1000);
     };
 
+    const observer = new MutationObserver(() => {
+      if (button.innerText !== "◀") {
+        tooltip.style.opacity = "0";
+        tooltip.style.display = "none";
+      }
+    });
+
+    observer.observe(button, { childList: true, subtree: true });
+
     if (
-      window.location.href.includes("linkedin.com/jobs/collections/recommended")
+      window.location.href.includes(
+        "linkedin.com/jobs/collections/recommended"
+      ) &&
+      button.innerText === "◀"
     ) {
       showTooltip();
     }
