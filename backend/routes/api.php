@@ -29,7 +29,8 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('/user-status', 'App\Http\Controllers\AuthController@userStatus');
 
-    Route::post('/password/email', 'App\Http\Controllers\PasswordRecoveryController@sendResetLink');
+    Route::post('/password/email', 'App\Http\Controllers\PasswordRecoveryController@sendResetLink')
+        ->middleware('throttle:password-reset-email-per-day');
 
     Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
 
