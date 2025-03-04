@@ -119,7 +119,7 @@ export default function PasswordRecoveryComponent({
                 ? t("common.buttons.resend_in", {
                     timeleft: timeLeft,
                   })
-                : t("common.buttons.resend_email"))}
+                : t("common.buttons.send_email"))}
           </Button>
         </form>
       )}
@@ -157,7 +157,7 @@ export default function PasswordRecoveryComponent({
                 ? t("common.buttons.resend_in", {
                     timeleft: timeLeft,
                   })
-                : t("common.buttons.resend_email"))}
+                : t("common.buttons.send_email"))}
           </Button>
         </form>
       )}
