@@ -120,10 +120,10 @@ export default function EmailVerificationComponent({
               type="submit"
               isDisabled={isCooldown || tryOtherDay}
             >
-              {tryOtherDay && t("pages.email_verification.too_many_requests")}
+              {tryOtherDay && t("common.buttons.too_many_requests")}
               {!tryOtherDay &&
                 (isCooldown
-                  ? t("pages.email_verification.resend_in", {
+                  ? t("common.buttons.resend_in", {
                       timeleft: timeLeft,
                     })
                   : t("common.buttons.resend_email"))}
@@ -174,10 +174,10 @@ export default function EmailVerificationComponent({
               type="submit"
               isDisabled={isCooldown || tryOtherDay}
             >
-              {tryOtherDay && t("pages.email_verification.too_many_requests")}
+              {tryOtherDay && t("common.buttons.too_many_requests")}
               {!tryOtherDay &&
                 (isCooldown
-                  ? t("pages.email_verification.resend_in", {
+                  ? t("common.buttons.resend_in", {
                       timeleft: timeLeft,
                     })
                   : t("common.buttons.resend_email"))}

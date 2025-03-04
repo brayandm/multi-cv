@@ -19,7 +19,10 @@
       "continue": "Continue",
       "add": "Add",
       "resend_email": "Resend email",
-      "change_password": "Change password"
+      "send_email": "Send email",
+      "change_password": "Change password",
+      "resend_in": "Resend in {timeleft}s",
+      "too_many_requests": "Too many requests, try in 24 hours"
     },
     "form": {
       "full_name": "Full Name",
@@ -84,9 +87,7 @@
         "title": "Email Verification Expired",
         "message": "Your email verification link has expired."
       },
-      "instructions": "We have sent you an email with a verification link.",
-      "resend_in": "Resend in {timeleft}s",
-      "too_many_requests": "Too many requests, try in 24 hours"
+      "instructions": "We have sent you an email with a verification link."
     },
     "password_recovery": {
       "title": "Password Recovery",
@@ -98,9 +99,7 @@
         "title": "Password Recovery Expired",
         "message": "Your password recovery link has expired."
       },
-      "instructions": "We have sent you an email with a password recovery link.",
-      "resend_in": "Resend in {timeleft}s",
-      "too_many_requests": "Too many requests, try in 24 hours"
+      "instructions": "We have sent you an email with a password recovery link."
     },
     "welcome": {
       "title": "Welcome to <appName></appName>",

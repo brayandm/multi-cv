@@ -2,41 +2,28 @@
 
 import { useState, useEffect } from "react";
 import { resendEmailApi } from "@/lib/backendService";
-import { Button } from "@heroui/react";
+import { Button, Input } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 interface IPasswordRecoveryComponentProps {
   type: "success" | "expired" | "recovery";
-  email?: string;
 }
 
 export default function PasswordRecoveryComponent({
   type,
-  email,
 }: IPasswordRecoveryComponentProps) {
   const router = useRouter();
   const [isCooldown, setIsCooldown] = useState(false);
   const [timeLeft, setTimeLeft] = useState(0);
   const [tryOtherDay, setTryOtherDay] = useState(false);
-  const [displayResendButton, setDisplayResendButton] = useState(false);
+
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
-    const firstTimeResend = localStorage.getItem(email + ":firstTimeResend");
-    if (!firstTimeResend) {
-      localStorage.setItem(email + ":firstTimeResend", "true");
-      localStorage.setItem(
-        email + ":lastEmailResendTime",
-        Date.now().toString()
-      );
-      setIsCooldown(true);
-      setTimeLeft(90);
-      setDisplayResendButton(true);
-    }
-  }, [email]);
-
-  useEffect(() => {
-    const lastSentTime = localStorage.getItem(email + ":lastEmailResendTime");
+    const lastSentTime = localStorage.getItem(
+      "passwordRecovery:lastEmailResendTime"
+    );
     if (lastSentTime) {
       const elapsedTime = Math.floor(
         (Date.now() - parseInt(lastSentTime)) / 1000
@@ -48,8 +35,7 @@ export default function PasswordRecoveryComponent({
         setTimeLeft(remainingTime);
       }
     }
-    setDisplayResendButton(true);
-  }, [email]);
+  }, []);
 
   useEffect(() => {
     if (isCooldown) {
@@ -78,7 +64,7 @@ export default function PasswordRecoveryComponent({
 
       if (response.status === 200) {
         localStorage.setItem(
-          email + ":lastEmailResendTime",
+          "passwordRecovery:lastEmailResendTime",
           Date.now().toString()
         );
         setIsCooldown(true);
@@ -112,23 +98,29 @@ export default function PasswordRecoveryComponent({
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={resendEmail}
         >
-          <h1 className="text-center">{t("pages.email_verification.title")}</h1>
-          <p>{t("pages.email_verification.instructions")}</p>
-          {displayResendButton && (
-            <Button
-              color="primary"
-              type="submit"
-              isDisabled={isCooldown || tryOtherDay}
-            >
-              {tryOtherDay && t("pages.email_verification.too_many_requests")}
-              {!tryOtherDay &&
-                (isCooldown
-                  ? t("pages.email_verification.resend_in", {
-                      timeleft: timeLeft,
-                    })
-                  : t("common.buttons.resend_email"))}
-            </Button>
-          )}
+          <h1 className="text-center">{t("pages.password_recovery.title")}</h1>
+          <p>{t("pages.password_recovery.instructions")}</p>
+          <Input
+            label={t("common.form.email")}
+            placeholder={t("common.placeholders.enter_email")}
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Button
+            color="primary"
+            type="submit"
+            isDisabled={isCooldown || tryOtherDay}
+          >
+            {tryOtherDay && t("common.buttons.too_many_requests")}
+            {!tryOtherDay &&
+              (isCooldown
+                ? t("common.buttons.resend_in", {
+                    timeleft: timeLeft,
+                  })
+                : t("common.buttons.resend_email"))}
+          </Button>
         </form>
       )}
       {type === "success" && (
@@ -137,9 +129,9 @@ export default function PasswordRecoveryComponent({
           onSubmit={handleContinue}
         >
           <h1 className="text-center">
-            {t("pages.email_verification.success.title")}
+            {t("pages.password_recovery.success.title")}
           </h1>
-          <p>{t("pages.email_verification.success.message")}</p>
+          <p>{t("pages.password_recovery.success.message")}</p>
           <Button color="primary" type="submit">
             {t("common.buttons.continue")}
           </Button>
@@ -151,24 +143,22 @@ export default function PasswordRecoveryComponent({
           onSubmit={resendEmail}
         >
           <h1 className="text-center">
-            {t("pages.email_verification.expired.title")}
+            {t("pages.password_recovery.expired.title")}
           </h1>
-          <p>{t("pages.email_verification.expired.message")}</p>
-          {displayResendButton && (
-            <Button
-              color="primary"
-              type="submit"
-              isDisabled={isCooldown || tryOtherDay}
-            >
-              {tryOtherDay && t("pages.email_verification.too_many_requests")}
-              {!tryOtherDay &&
-                (isCooldown
-                  ? t("pages.email_verification.resend_in", {
-                      timeleft: timeLeft,
-                    })
-                  : t("common.buttons.resend_email"))}
-            </Button>
-          )}
+          <p>{t("pages.password_recovery.expired.message")}</p>
+          <Button
+            color="primary"
+            type="submit"
+            isDisabled={isCooldown || tryOtherDay}
+          >
+            {tryOtherDay && t("common.buttons.too_many_requests")}
+            {!tryOtherDay &&
+              (isCooldown
+                ? t("common.buttons.resend_in", {
+                    timeleft: timeLeft,
+                  })
+                : t("common.buttons.resend_email"))}
+          </Button>
         </form>
       )}
     </>
