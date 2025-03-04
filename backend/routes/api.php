@@ -29,6 +29,10 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('/user-status', 'App\Http\Controllers\AuthController@userStatus');
 
+    Route::post('/password/email', 'App\Http\Controllers\PasswordRecoveryController@sendResetLink');
+
+    Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
+
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
 
         Route::get('/email/verify', 'App\Http\Controllers\EmailVerificationController@verify')
