@@ -111,7 +111,7 @@ export default function PasswordRecoveryComponent({
           <Button
             color="primary"
             type="submit"
-            isDisabled={isCooldown || tryOtherDay}
+            isDisabled={isCooldown || tryOtherDay || !email}
           >
             {tryOtherDay && t("common.buttons.too_many_requests")}
             {!tryOtherDay &&
