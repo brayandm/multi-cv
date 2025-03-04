@@ -9,6 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useRefreshOnVisibility } from "@/hooks/useRefreshOnVisibility";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -16,6 +17,8 @@ export default function LoginComponent() {
     email: "",
     password: "",
   });
+
+  useRefreshOnVisibility();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
