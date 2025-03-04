@@ -7,7 +7,7 @@ import Experience from "./Experience";
 import { useTranslations } from "next-intl";
 
 const ProfileComponent: React.FC = () => {
-  const width = 340;
+  const width = 320;
   const [formData, setFormData] = useState<IProfileFrom>({
     basicInfo: {
       about: "",
@@ -30,7 +30,7 @@ const ProfileComponent: React.FC = () => {
     <main className="flex justify-center">
       <div className={`max-w-[${width}px]`}>
         <form className="flex flex-col gap-2">
-          <Card className={``}>
+          <Card>
             <CardHeader className="flex flex-col items-start">
               <h1>{t("common.menu.profile")}</h1>
               <p>{t("pages.profile.subtitle")}</p>

@@ -23,7 +23,7 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
   const t = useTranslations();
 
   return (
-    <Card className="max-w-[340px]">
+    <Card className="max-w-[320px]">
       <CardHeader className="justify-between">
         <div className="flex gap-5">
           <Avatar isBordered radius="full" size="md" src={props.image} />
