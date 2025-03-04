@@ -136,14 +136,18 @@ const tooltip = (() => {
 
     observer.observe(button, { childList: true, subtree: true });
 
+    let previousUrl = null;
+
     const observerUrl = new MutationObserver(() => {
+      const currentUrl = window.location.href;
+
       if (
-        window.location.href.includes(
-          "linkedin.com/jobs/collections/recommended"
-        ) &&
-        button.innerText === "◀"
+        currentUrl.includes("linkedin.com/jobs/collections/recommended") &&
+        button.innerText === "◀" &&
+        currentUrl !== previousUrl
       ) {
         showTooltip();
+        previousUrl = currentUrl;
       }
     });
 
