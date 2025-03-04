@@ -139,7 +139,7 @@ const tooltip = (() => {
     let previousUrl = null;
 
     const observerUrl = new MutationObserver(() => {
-      const currentUrl = window.location.href;
+      const currentUrl = window.location.origin + window.location.pathname;
 
       if (
         currentUrl.includes("linkedin.com/jobs/collections/recommended") &&
