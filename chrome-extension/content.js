@@ -123,7 +123,6 @@ const tooltip = (() => {
         setTimeout(() => {
           tooltip.style.opacity = "0";
           tooltip.style.display = "none";
-          setTimeout(() => tooltip.remove(), 300);
         }, 5000);
       }, 1000);
     };
@@ -136,6 +135,19 @@ const tooltip = (() => {
     });
 
     observer.observe(button, { childList: true, subtree: true });
+
+    const observerUrl = new MutationObserver(() => {
+      if (
+        window.location.href.includes(
+          "linkedin.com/jobs/collections/recommended"
+        ) &&
+        button.innerText === "◀"
+      ) {
+        showTooltip();
+      }
+    });
+
+    observerUrl.observe(document.body, { childList: true, subtree: true });
 
     if (
       window.location.href.includes(
