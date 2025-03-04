@@ -88,6 +88,20 @@
       "resend_in": "Resend in {timeleft}s",
       "too_many_requests": "Too many requests, try in 24 hours"
     },
+    "password_recovery": {
+      "title": "Password Recovery",
+      "success": {
+        "title": "Password Recovery Success",
+        "message": "Your password has been changed."
+      },
+      "expired": {
+        "title": "Password Recovery Expired",
+        "message": "Your password recovery link has expired."
+      },
+      "instructions": "We have sent you an email with a password recovery link.",
+      "resend_in": "Resend in {timeleft}s",
+      "too_many_requests": "Too many requests, try in 24 hours"
+    },
     "welcome": {
       "title": "Welcome to <appName></appName>",
       "description": "Create unique CVs for unique job offers."

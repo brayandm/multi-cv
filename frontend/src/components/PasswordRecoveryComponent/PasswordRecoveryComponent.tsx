@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 interface IPasswordRecoveryComponentProps {
-  type: "already-verified" | "success" | "expired" | "verification";
-  email: string;
+  type: "success" | "expired" | "recovery";
+  email?: string;
 }
 
 export default function PasswordRecoveryComponent({
@@ -107,7 +107,7 @@ export default function PasswordRecoveryComponent({
 
   return (
     <>
-      {type === "verification" && (
+      {type === "recovery" && (
         <form
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={resendEmail}
@@ -129,20 +129,6 @@ export default function PasswordRecoveryComponent({
                   : t("common.buttons.resend_email"))}
             </Button>
           )}
-        </form>
-      )}
-      {type === "already-verified" && (
-        <form
-          className="flex flex-col gap-2 text-center w-[250px] mx-auto"
-          onSubmit={handleContinue}
-        >
-          <h1 className="text-center">
-            {t("pages.email_verification.already_verified.title")}
-          </h1>
-          <p>{t("pages.email_verification.already_verified.message")}</p>
-          <Button color="primary" type="submit">
-            {t("common.buttons.continue")}
-          </Button>
         </form>
       )}
       {type === "success" && (
