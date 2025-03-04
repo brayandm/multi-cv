@@ -32,7 +32,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/password/email', 'App\Http\Controllers\PasswordRecoveryController@sendResetLink')
         ->middleware('throttle:password-reset-email-per-day');
 
-    Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
+    Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword')
+        ->name('password.reset');
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
 
