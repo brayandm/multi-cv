@@ -42,7 +42,6 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('/email/resend', 'App\Http\Controllers\EmailVerificationController@resend')
             ->name('verification.resend')
-            ->middleware('throttle:resend-verification-email-per-minute')
             ->middleware('throttle:resend-verification-email-per-day');
     });
 
