@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { logoutApi } from "@/lib/backendService";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Navbar as NavbarUI,
   NavbarBrand,
@@ -104,11 +104,15 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
 
   const t = useTranslations();
 
-  const noContent =
-    passwordLink === false &&
-    logoutLink === false &&
-    homeLink === false &&
-    profileLink === false;
+  const [noContent, setNoContent] = React.useState(true);
+
+  useEffect(() => {
+    if (!passwordLink && !logoutLink && !profileLink && !homeLink) {
+      setNoContent(false);
+    } else {
+      setNoContent(true);
+    }
+  }, [passwordLink, logoutLink, profileLink, homeLink]);
 
   return (
     <NavbarUI
