@@ -104,6 +104,12 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
 
   const t = useTranslations();
 
+  const noContent =
+    passwordLink === false &&
+    logoutLink === false &&
+    homeLink === false &&
+    profileLink === false;
+
   return (
     <NavbarUI
       onMenuOpenChange={setIsMenuOpen}
@@ -111,10 +117,12 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
       maxWidth="full"
     >
       <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
+        {noContent && (
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="sm:hidden"
+          />
+        )}
         <NavbarBrand>
           <Link onPress={() => router.push("/")} className="cursor-pointer">
             <p className="font-bold text-inherit">{t("app.name")}</p>
