@@ -56,7 +56,7 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
       <CardBody className="px-3 py-0 text-small text-default-600">
         <p>{props.job_description}</p>
       </CardBody>
-      <CardFooter className="gap-3">
+      <CardFooter className="gap-3 flex justify-between">
         <div className="flex gap-1">
           <p className="font-semibold text-default-400 text-small">
             {props.pdf_file}
