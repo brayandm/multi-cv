@@ -58,8 +58,7 @@ class PasswordRecoveryController extends Controller
             }
         );
 
-        if($status === Password::PASSWORD_RESET)
-        {
+        if ($status === Password::PASSWORD_RESET) {
             $user = User::where('email', $request->email)->first();
 
             $token = $this->userService->createUserToken($user);
