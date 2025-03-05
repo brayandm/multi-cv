@@ -43,13 +43,14 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('/email/resend', 'App\Http\Controllers\EmailVerificationController@resend')
             ->name('verification.resend');
-    });
-
-    Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {
 
         Route::post('/logout', 'App\Http\Controllers\AuthController@logout');
 
         Route::post('/logoutall', 'App\Http\Controllers\AuthController@logoutall');
+    });
+
+    Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {
+
 
         Route::get('/user', 'App\Http\Controllers\AuthController@getUser');
 
