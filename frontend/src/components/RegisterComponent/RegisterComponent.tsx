@@ -156,7 +156,8 @@ export default function RegisterComponent() {
             !formData.email ||
             !formData.password ||
             !formData.repeatPassword ||
-            formData.password !== formData.repeatPassword
+            formData.password !== formData.repeatPassword ||
+            formData.password.length < 8
           }
         >
           {t("common.auth.register")}

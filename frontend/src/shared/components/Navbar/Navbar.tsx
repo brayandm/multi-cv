@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { logoutApi } from "@/lib/backendService";
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Navbar as NavbarUI,
   NavbarBrand,
@@ -104,6 +104,16 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
 
   const t = useTranslations();
 
+  const [noContent, setNoContent] = React.useState(true);
+
+  useEffect(() => {
+    if (!passwordLink && !logoutLink && !profileLink && !homeLink) {
+      setNoContent(false);
+    } else {
+      setNoContent(true);
+    }
+  }, [passwordLink, logoutLink, profileLink, homeLink]);
+
   return (
     <NavbarUI
       onMenuOpenChange={setIsMenuOpen}
@@ -111,10 +121,12 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
       maxWidth="full"
     >
       <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
+        {noContent && (
+          <NavbarMenuToggle
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            className="sm:hidden"
+          />
+        )}
         <NavbarBrand>
           <Link onPress={() => router.push("/")} className="cursor-pointer">
             <p className="font-bold text-inherit">{t("app.name")}</p>

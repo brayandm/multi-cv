@@ -72,6 +72,12 @@ export default function LoginComponent() {
         <Button color="primary" type="submit">
           {t("common.auth.login")}
         </Button>
+        <p
+          className="text-primary cursor-pointer text-sm mt-1"
+          onClick={() => router.push("/password/recovery")}
+        >
+          {t("common.auth.forgot_password")}
+        </p>
       </div>
       <Divider className="my-4"></Divider>
       <p>

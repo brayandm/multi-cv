@@ -30,6 +30,14 @@ export interface ResendEmailResponse {
   message: string;
 }
 
+export interface PasswordRecoveryEmailResponse {
+  message: string;
+}
+
+export interface PasswordRecoveryResetResponse {
+  message: string;
+}
+
 export interface GoogleLoginResponse {
   is_local?: boolean;
   url?: string;

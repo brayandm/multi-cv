@@ -13,13 +13,18 @@
       "register": "Register",
       "logout": "Log out",
       "google_sign_in": "Sign in with Google",
-      "use_other_method": "Use another method"
+      "use_other_method": "Use another method",
+      "forgot_password": "Forgot your password?"
     },
     "buttons": {
       "continue": "Continue",
       "add": "Add",
       "resend_email": "Resend email",
-      "change_password": "Change password"
+      "send_email": "Send email",
+      "change_password": "Change password",
+      "resend_in": "Resend in {timeleft}s",
+      "try_again": "Try again",
+      "too_many_requests": "Too many requests, try in 24 hours"
     },
     "form": {
       "full_name": "Full Name",
@@ -84,9 +89,19 @@
         "title": "Email Verification Expired",
         "message": "Your email verification link has expired."
       },
-      "instructions": "We have sent you an email with a verification link.",
-      "resend_in": "Resend in {timeleft}s",
-      "too_many_requests": "Too many requests, try in 24 hours"
+      "instructions": "We have sent you an email with a verification link."
+    },
+    "password_recovery": {
+      "title": "Password Recovery",
+      "success": {
+        "title": "Password Recovery Success",
+        "message": "Your password has been changed."
+      },
+      "fail": {
+        "title": "Password Recovery Invalid or Expired",
+        "message": "Your password recovery link is invalid or has expired."
+      },
+      "instructions": "We will send you an email with a link to reset your password."
     },
     "welcome": {
       "title": "Welcome to <appName></appName>",

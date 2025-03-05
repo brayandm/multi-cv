@@ -29,11 +29,12 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::get('/user-status', 'App\Http\Controllers\AuthController@userStatus');
 
-    Route::post('/password/email', 'App\Http\Controllers\PasswordRecoveryController@sendResetLink')
-        ->middleware('throttle:password-reset-email-per-day');
+    Route::post('/password/email', 'App\Http\Controllers\PasswordRecoveryController@sendResetLink');
 
-    Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword')
+    Route::get('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@redirectToResetPassword')
         ->name('password.reset');
+
+    Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
 
@@ -41,9 +42,7 @@ Route::group(['prefix' => 'v1'], function () {
             ->name('verification.verify');
 
         Route::post('/email/resend', 'App\Http\Controllers\EmailVerificationController@resend')
-            ->name('verification.resend')
-            ->middleware('throttle:resend-verification-email-per-minute')
-            ->middleware('throttle:resend-verification-email-per-day');
+            ->name('verification.resend');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {

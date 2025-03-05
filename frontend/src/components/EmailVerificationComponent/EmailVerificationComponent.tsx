@@ -20,6 +20,7 @@ export default function EmailVerificationComponent({
   const [timeLeft, setTimeLeft] = useState(0);
   const [tryOtherDay, setTryOtherDay] = useState(false);
   const [displayResendButton, setDisplayResendButton] = useState(false);
+  const resendTime = 60;
 
   useEffect(() => {
     const firstTimeResend = localStorage.getItem(email + ":firstTimeResend");
@@ -30,7 +31,7 @@ export default function EmailVerificationComponent({
         Date.now().toString()
       );
       setIsCooldown(true);
-      setTimeLeft(90);
+      setTimeLeft(resendTime);
       setDisplayResendButton(true);
     }
   }, [email]);
@@ -82,7 +83,7 @@ export default function EmailVerificationComponent({
           Date.now().toString()
         );
         setIsCooldown(true);
-        setTimeLeft(90);
+        setTimeLeft(resendTime);
       }
     } catch (error: unknown) {
       console.log(error);
@@ -120,13 +121,13 @@ export default function EmailVerificationComponent({
               type="submit"
               isDisabled={isCooldown || tryOtherDay}
             >
-              {tryOtherDay && t("pages.email_verification.too_many_requests")}
+              {tryOtherDay && t("common.buttons.too_many_requests")}
               {!tryOtherDay &&
                 (isCooldown
-                  ? t("pages.email_verification.resend_in", {
+                  ? t("common.buttons.resend_in", {
                       timeleft: timeLeft,
                     })
-                  : t("common.buttons.resend_email"))}
+                  : t("common.buttons.send_email"))}
             </Button>
           )}
         </form>
@@ -174,13 +175,13 @@ export default function EmailVerificationComponent({
               type="submit"
               isDisabled={isCooldown || tryOtherDay}
             >
-              {tryOtherDay && t("pages.email_verification.too_many_requests")}
+              {tryOtherDay && t("common.buttons.too_many_requests")}
               {!tryOtherDay &&
                 (isCooldown
-                  ? t("pages.email_verification.resend_in", {
+                  ? t("common.buttons.resend_in", {
                       timeleft: timeLeft,
                     })
-                  : t("common.buttons.resend_email"))}
+                  : t("common.buttons.send_email"))}
             </Button>
           )}
         </form>
