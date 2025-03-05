@@ -36,7 +36,7 @@ class EmailVerificationController extends Controller
         $action = 'resend-verification-email';
         $userId = $request->user()->id;
 
-        if(! $userId) {
+        if (! $userId) {
             return response()->json(['message' => 'User not found.'], 404);
         }
 

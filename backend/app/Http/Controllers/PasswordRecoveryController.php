@@ -28,7 +28,7 @@ class PasswordRecoveryController extends Controller
         $action = 'password-recovery';
         $userId = User::where('email', $request->email)->first()->id;
 
-        if(! $userId) {
+        if (! $userId) {
             return response()->json(['message' => 'User not found.'], 404);
         }
 
