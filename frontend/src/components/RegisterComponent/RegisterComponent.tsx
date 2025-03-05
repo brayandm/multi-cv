@@ -71,7 +71,6 @@ export default function RegisterComponent() {
       <div className="flex flex-col gap-3">
         <Input
           label={t("common.form.full_name")}
-          variant="faded"
           color="default"
           placeholder={t("common.placeholders.enter_full_name")}
           type="text"
@@ -81,7 +80,6 @@ export default function RegisterComponent() {
         />
         <Input
           label={t("common.form.email")}
-          variant="faded"
           color="default"
           placeholder={t("common.placeholders.enter_email")}
           type="email"
@@ -91,7 +89,6 @@ export default function RegisterComponent() {
         />
         <Input
           label={t("common.form.password")}
-          variant="faded"
           color="default"
           placeholder={t("common.placeholders.enter_password")}
           type="password"
@@ -101,7 +98,6 @@ export default function RegisterComponent() {
         />
         <Input
           label={t("common.form.repeat_password")}
-          variant="faded"
           color="default"
           placeholder={t("common.placeholders.enter_password_again")}
           type="password"

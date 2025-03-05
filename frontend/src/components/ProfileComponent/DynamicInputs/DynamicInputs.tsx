@@ -64,7 +64,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
         let isInvalid = false;
         let errorMessage = "";
         let color: "default" | "danger" = "default";
-        const variant: "flat" | "bordered" | "underlined" | "faded" = "faded";
+        const variant: "flat" | "bordered" | "underlined" | "faded" = "flat";
 
         if (input.type === "email") {
           isInvalid =
@@ -83,7 +83,8 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
                 input.onValueChange as IDynamicOnValueChange<Key | null>
               }
               selectedKey={input.value as string}
-              className="mb-2 "
+              className="mb-2"
+              color={color}
               startContent={
                 <Flag className="w-6 h-6" code={input.value as string}></Flag>
               }
@@ -169,6 +170,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               placeholder={input.placeholder}
               type={"date"}
               value={input.value as string}
+              color={color}
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
@@ -186,6 +188,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               placeholder={input.placeholder}
               type={"date"}
               value={input.value as string}
+              color={color}
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }

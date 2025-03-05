@@ -16,6 +16,7 @@ export default {
     heroui({
       themes: {
         light: {
+          // ...
           colors: {
             background: {
               DEFAULT: "#f8fafc",
@@ -28,13 +29,6 @@ export default {
             },
             secondary: {
               DEFAULT: "#64748b",
-            },
-            default: {
-              100: "#f5f5f5", // input background
-              600: "#2563eb", // input labels
-              200: "#f4f4f4", // input border
-              400: "#2563ebaa", // input border hover
-              foreground: "#2563ebaa", // input border focus
             },
           },
         },

@@ -94,7 +94,6 @@ export default function PasswordComponent({
         {!userData?.is_password_null && !passwordRecovery && (
           <Input
             label={t("common.form.current_password")}
-            variant="faded"
             color="default"
             placeholder={t("common.placeholders.enter_current_password")}
             type="password"
@@ -105,7 +104,6 @@ export default function PasswordComponent({
         )}
         <Input
           label={t("common.form.password")}
-          variant="faded"
           color="default"
           placeholder={t("common.placeholders.enter_password")}
           type="password"
@@ -115,7 +113,6 @@ export default function PasswordComponent({
         />
         <Input
           label={t("common.form.repeat_password")}
-          variant="faded"
           color="default"
           placeholder={t("common.placeholders.enter_password_again")}
           type="password"

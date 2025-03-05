@@ -55,7 +55,6 @@ export default function LoginComponent() {
       <div className="flex flex-col gap-3">
         <Input
           label={t("common.form.email")}
-          variant="faded"
           color="default"
           placeholder={t("common.placeholders.enter_email")}
           type="email"
@@ -65,7 +64,6 @@ export default function LoginComponent() {
         />
         <Input
           label={t("common.form.password")}
-          variant="faded"
           color="default"
           placeholder={t("common.placeholders.enter_password")}
           type="password"
