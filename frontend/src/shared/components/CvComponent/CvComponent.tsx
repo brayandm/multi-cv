@@ -24,7 +24,7 @@ const CvComponent: React.FC<CvComponentProps> = (props) => {
 
   return (
     <Card className="max-w-[320px]">
-      <CardHeader className="justify-between">
+      <CardHeader className="justify-between flex gap-1">
         <div className="flex gap-5">
           <Avatar isBordered radius="full" size="md" src={props.image} />
           <div className="flex flex-col gap-1 items-start justify-center">
