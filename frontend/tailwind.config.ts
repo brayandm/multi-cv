@@ -30,9 +30,9 @@ export default {
               DEFAULT: "#64748b",
             },
             default: {
-              100: "#f8f8f8", // input background
+              100: "#f5f5f5", // input background
               600: "#2563eb", // input labels
-              200: "#fafafa", // input border
+              200: "#f4f4f4", // input border
               400: "#2563ebaa", // input border focus
             },
           },
