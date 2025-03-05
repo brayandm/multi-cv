@@ -66,6 +66,10 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
         let color: "default" | "danger" = "default";
         const variant: "flat" | "bordered" | "underlined" | "faded" = "flat";
 
+        const customStyles = {
+          label: "group-data-[filled-within=true]:text-primary",
+        };
+
         if (input.type === "email") {
           isInvalid =
             input.value !== "" && !validateEmail(input.value as string);
@@ -84,6 +88,9 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               }
               selectedKey={input.value as string}
               className="mb-2"
+              inputProps={{
+                classNames: customStyles,
+              }}
               color={color}
               startContent={
                 <Flag className="w-6 h-6" code={input.value as string}></Flag>
@@ -108,6 +115,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               errorMessage={errorMessage}
               className="mb-2"
               startContent={PhoneNumberStartContent()}
+              classNames={customStyles}
             />
           );
         }
@@ -126,6 +134,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               color={color}
               errorMessage={errorMessage}
               className="mb-2"
+              classNames={customStyles}
             />
           );
         }
@@ -175,6 +184,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               className="mb-2"
+              classNames={customStyles}
             ></Input>
           );
         }
@@ -194,6 +204,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               }
               isDisabled={isDisabled}
               className="mb-2"
+              classNames={customStyles}
             ></Input>
           );
         }
@@ -211,6 +222,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
             isInvalid={isInvalid}
             errorMessage={errorMessage}
             className="mb-2"
+            classNames={customStyles}
             startContent={input.startContent}
           />
         );
