@@ -12,7 +12,11 @@ import Flag from "react-world-flags";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 import { dynamicInputsStyles } from "@/lib/customStyles";
 
-const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
+const DynamicInputs = <T,>({
+  inputs,
+  isPresentJob,
+  horizontal = false,
+}: DynamicInputsProps<T>) => {
   const validateEmail = (email: string): boolean => {
     return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
   };
@@ -52,12 +56,18 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
   };
 
   return (
-    <>
+    <div
+      className={`flex ${horizontal ? "flex-row" : "flex-col"} gap-2 w-full`}
+    >
       {inputs.map((input, index) => {
         if (Array.isArray(input)) {
           return (
             <div key={index} className="flex gap-2">
-              <DynamicInputs isPresentJob={isPresentJob} inputs={input} />
+              <DynamicInputs
+                isPresentJob={isPresentJob}
+                inputs={input}
+                horizontal={true}
+              />
             </div>
           );
         }
@@ -86,7 +96,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
                 input.onValueChange as IDynamicOnValueChange<Key | null>
               }
               selectedKey={input.value as string}
-              className="mb-2"
               inputProps={{
                 classNames: customStyles,
               }}
@@ -112,7 +121,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               color={color}
               isInvalid={isInvalid}
               errorMessage={errorMessage}
-              className="mb-2"
               startContent={PhoneNumberStartContent()}
               classNames={customStyles}
             />
@@ -132,7 +140,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               }
               color={color}
               errorMessage={errorMessage}
-              className="mb-2"
               classNames={customStyles}
             />
           );
@@ -146,7 +153,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<boolean>
               }
-              className="mb-2"
             >
               {input.label}
             </Checkbox>
@@ -162,7 +168,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               }
               value={input.value as string}
               defaultSelected={input.selected}
-              className="mb-2"
             >
               {input.label}
             </Checkbox>
@@ -182,7 +187,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
-              className="mb-2"
               classNames={customStyles}
             ></Input>
           );
@@ -202,7 +206,6 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               isDisabled={isDisabled}
-              className="mb-2"
               classNames={customStyles}
             ></Input>
           );
@@ -220,13 +223,12 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
             color={color}
             isInvalid={isInvalid}
             errorMessage={errorMessage}
-            className="mb-2"
             classNames={customStyles}
             startContent={input.startContent}
           />
         );
       })}
-    </>
+    </div>
   );
 };
 
