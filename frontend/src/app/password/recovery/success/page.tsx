@@ -1,3 +1,5 @@
+import PasswordRecoveryComponent from "@/components/PasswordRecoveryComponent";
+
 export default function PasswordRecoverySuccess() {
-  return <>Hello</>;
+  return <PasswordRecoveryComponent type={"success"} />;
 }

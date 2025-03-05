@@ -6,6 +6,7 @@ import {
   logoutApiLink,
   notifiedTermsVersionApiLink,
   passwordRecoveryEmailApiLink,
+  passwordRecoveryResetApiLink,
   registerApiLink,
   resendEmailApiLink,
   updatePasswordApiLink,
@@ -23,6 +24,7 @@ import {
   ResendEmailResponse,
   GoogleLoginResponse,
   PasswordRecoveryEmailResponse,
+  PasswordRecoveryResetResponse,
 } from "./types";
 
 const isServer = typeof window === "undefined";
@@ -69,6 +71,27 @@ export const passwordRecoveryEmailApi = async (
     passwordRecoveryEmailApiLink,
     {
       email: email,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};
+export const passwordRecoveryResetApi = async (data: {
+  email: string;
+  password: string;
+  password_confirmation: string;
+  token: string;
+}): Promise<AxiosResponse<PasswordRecoveryResetResponse>> => {
+  return await api.post(
+    passwordRecoveryResetApiLink,
+    {
+      email: data.email,
+      password: data.password,
+      password_confirmation: data.password_confirmation,
+      token: data.token,
     },
     {
       headers: {

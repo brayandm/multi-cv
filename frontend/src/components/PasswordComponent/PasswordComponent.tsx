@@ -4,16 +4,32 @@ import { useState } from "react";
 import { Button, Input } from "@heroui/react";
 import useSWR from "swr";
 import { userApiLink } from "@/lib/links";
-import { fetcherApi, updatePasswordApi } from "@/lib/backendService";
+import {
+  fetcherApi,
+  passwordRecoveryResetApi,
+  updatePasswordApi,
+} from "@/lib/backendService";
 import { UserResponse } from "@/lib/types";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
-export default function PasswordComponent() {
+interface IPasswordComponentProps {
+  passwordRecovery?: {
+    email: string;
+    token: string;
+  };
+}
+
+export default function PasswordComponent({
+  passwordRecovery,
+}: IPasswordComponentProps) {
   const [formData, setFormData] = useState({
     currentPassword: "",
     password: "",
     repeatPassword: "",
   });
+
+  const router = useRouter();
 
   const t = useTranslations();
 
@@ -37,12 +53,25 @@ export default function PasswordComponent() {
     e.preventDefault();
 
     try {
-      const updatePasswordResponse = await updatePasswordApi({
-        currentPassword: formData.currentPassword,
-        password: formData.password,
-      });
+      if (passwordRecovery) {
+        const passwordRecoveryResetResponse = await passwordRecoveryResetApi({
+          email: passwordRecovery.email,
+          token: passwordRecovery.token,
+          password: formData.password,
+          password_confirmation: formData.repeatPassword,
+        });
 
-      if (updatePasswordResponse.status === 200) {
+        if (passwordRecoveryResetResponse.status === 200) {
+          router.push("/password/recovery/success");
+        }
+      } else {
+        const updatePasswordResponse = await updatePasswordApi({
+          currentPassword: formData.currentPassword,
+          password: formData.password,
+        });
+
+        if (updatePasswordResponse.status === 200) {
+        }
       }
     } catch (error) {
       console.log(error);
