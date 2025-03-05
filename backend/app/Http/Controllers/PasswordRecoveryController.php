@@ -12,7 +12,7 @@ class PasswordRecoveryController extends Controller
     public function sendResetLink(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|string|email|max:255|exists:users,email',
         ]);
 
         Password::resetUrl(function ($notifiable, $token) {
@@ -41,9 +41,9 @@ class PasswordRecoveryController extends Controller
     public function resetPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|string|email|max:255|exists:users,email',
             'token' => 'required',
-            'password' => 'required|min:6|confirmed',
+            'password' => 'required|string|min:8|max:255|confirmed',
         ]);
 
         $status = Password::reset(
