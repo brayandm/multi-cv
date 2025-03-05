@@ -119,7 +119,8 @@ export default function PasswordComponent({
             (!userData?.is_password_null && !formData.currentPassword) ||
             !formData.password ||
             !formData.repeatPassword ||
-            formData.password !== formData.repeatPassword
+            formData.password !== formData.repeatPassword ||
+            formData.password.length < 8
           }
         >
           {t("common.buttons.change_password")}
