@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\UserService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 
 class PasswordRecoveryController extends Controller
 {
+    private UserService $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function sendResetLink(Request $request)
     {
         $request->validate([
@@ -50,8 +58,16 @@ class PasswordRecoveryController extends Controller
             }
         );
 
-        return $status === Password::PASSWORD_RESET
-            ? response()->json(['message' => 'Password reset successfully.'])
-            : response()->json(['message' => 'Invalid or expired token.'], 400);
+        if($status === Password::PASSWORD_RESET)
+        {
+            $user = User::where('email', $request->email)->first();
+
+            $token = $this->userService->createUserToken($user);
+
+            return response()->json(['message' => 'Password reset successfully.'])
+                ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+        }
+
+        return response()->json(['message' => 'Invalid or expired token.'], 400);
     }
 }
