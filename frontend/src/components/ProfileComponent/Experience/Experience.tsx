@@ -75,15 +75,11 @@ const Experience: React.FC<IExperienceProps> = ({
 
       debounceTimeout = setTimeout(() => {
         if (scrollRef.current) {
-          console.log(
-            (scrollRef.current.scrollLeft - width) / (width + 16) + 2
-          );
+          console.log((scrollRef.current.scrollLeft - width) / width + 2);
 
-          setCurrentExperience(
-            Math.round(
-              (scrollRef.current.scrollLeft - width) / (width + 16) + 2
-            )
-          );
+          // setCurrentExperience(
+          //   Math.round((scrollRef.current.scrollLeft - width) / width + 2)
+          // );
         }
       }, 50);
     };
@@ -165,7 +161,13 @@ const Experience: React.FC<IExperienceProps> = ({
             ];
 
             return (
-              <div key={index} className={`w-full mb-4 snap-center`}>
+              <div
+                key={index}
+                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 snap-center`}
+                style={
+                  { "--initialWidth": `${width}px` } as React.CSSProperties
+                }
+              >
                 <DynamicInputs isPresentJob={isPresentJob()} inputs={inputs} />
               </div>
             );
