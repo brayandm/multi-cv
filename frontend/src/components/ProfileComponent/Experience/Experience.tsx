@@ -181,6 +181,7 @@ const Experience: React.FC<IExperienceProps> = ({
               setCurrentExperience(page);
             }}
             className="mb-2"
+            size="sm"
             isCompact
             showControls
             initialPage={1}
