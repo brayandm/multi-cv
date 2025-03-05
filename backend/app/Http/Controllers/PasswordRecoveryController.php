@@ -16,7 +16,7 @@ class PasswordRecoveryController extends Controller
         ]);
 
         Password::resetUrl(function ($notifiable, $token) {
-            return config('app.frontend_url') . "/password/recovery/new?token={$token}&email=" . urlencode($notifiable->email);
+            return config('app.frontend_url')."/password/recovery/new?token={$token}&email=".urlencode($notifiable->email);
         });
 
         $status = Password::sendResetLink($request->only('email'));
@@ -31,11 +31,11 @@ class PasswordRecoveryController extends Controller
         $token = request()->query('token');
         $email = request()->query('email');
 
-        if (!$token || !$email) {
+        if (! $token || ! $email) {
             abort(400, 'Invalid reset link');
         }
 
-        return redirect(config('app.frontend_url') . "/password/recovery/new?token={$token}&email={$email}");
+        return redirect(config('app.frontend_url')."/password/recovery/new?token={$token}&email={$email}");
     }
 
     public function resetPassword(Request $request)
