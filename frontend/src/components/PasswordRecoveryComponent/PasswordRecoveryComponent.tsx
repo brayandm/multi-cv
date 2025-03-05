@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 interface IPasswordRecoveryComponentProps {
-  type: "success" | "expired" | "recovery";
+  type: "success" | "fail" | "recovery";
 }
 
 export default function PasswordRecoveryComponent({
@@ -139,15 +139,15 @@ export default function PasswordRecoveryComponent({
           </Button>
         </form>
       )}
-      {type === "expired" && (
+      {type === "fail" && (
         <form
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
           onSubmit={resendEmail}
         >
           <h1 className="text-center">
-            {t("pages.password_recovery.expired.title")}
+            {t("pages.password_recovery.fail.title")}
           </h1>
-          <p>{t("pages.password_recovery.expired.message")}</p>
+          <p>{t("pages.password_recovery.fail.message")}</p>
           <Button
             color="primary"
             type="submit"

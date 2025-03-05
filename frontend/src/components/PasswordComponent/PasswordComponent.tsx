@@ -52,8 +52,8 @@ export default function PasswordComponent({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    try {
-      if (passwordRecovery) {
+    if (passwordRecovery) {
+      try {
         const passwordRecoveryResetResponse = await passwordRecoveryResetApi({
           email: passwordRecovery.email,
           token: passwordRecovery.token,
@@ -64,7 +64,12 @@ export default function PasswordComponent({
         if (passwordRecoveryResetResponse.status === 200) {
           router.push("/password/recovery/success");
         }
-      } else {
+      } catch (error) {
+        console.log(error);
+        router.push("/password/recovery/fail");
+      }
+    } else {
+      try {
         const updatePasswordResponse = await updatePasswordApi({
           currentPassword: formData.currentPassword,
           password: formData.password,
@@ -72,9 +77,9 @@ export default function PasswordComponent({
 
         if (updatePasswordResponse.status === 200) {
         }
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
     }
   };
 

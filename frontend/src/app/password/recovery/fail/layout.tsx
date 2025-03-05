@@ -1,4 +1,4 @@
-export default function PasswordRecoveryExpiredLayout({
+export default function PasswordRecoveryFailLayout({
   children,
 }: {
   children: React.ReactNode;
