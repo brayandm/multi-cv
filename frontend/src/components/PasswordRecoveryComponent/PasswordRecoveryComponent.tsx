@@ -109,6 +109,8 @@ export default function PasswordRecoveryComponent({
           <p>{t("pages.password_recovery.instructions")}</p>
           <Input
             label={t("common.form.email")}
+            variant="faded"
+            color="default"
             placeholder={t("common.placeholders.enter_email")}
             type="email"
             name="email"
