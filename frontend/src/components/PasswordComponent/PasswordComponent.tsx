@@ -86,7 +86,7 @@ export default function PasswordComponent({
       <h1 className="text-center">{t("common.form.new_password")}</h1>
       <p>{t("common.placeholders.enter_new_password")}</p>
       <div className="flex flex-col gap-3">
-        {!userData?.is_password_null && (
+        {!userData?.is_password_null && !passwordRecovery && (
           <Input
             label={t("common.form.current_password")}
             placeholder={t("common.placeholders.enter_current_password")}
@@ -116,7 +116,9 @@ export default function PasswordComponent({
           color="primary"
           type="submit"
           isDisabled={
-            (!userData?.is_password_null && !formData.currentPassword) ||
+            (!userData?.is_password_null &&
+              !passwordRecovery &&
+              !formData.currentPassword) ||
             !formData.password ||
             !formData.repeatPassword ||
             formData.password !== formData.repeatPassword ||
