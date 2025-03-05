@@ -1,7 +1,17 @@
+import { NavbarWrapper } from "@/app/main.styles";
+import Navbar from "@/shared/components/Navbar";
+
 export default function PasswordRecoveryLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <NavbarWrapper>
+        <Navbar />
+      </NavbarWrapper>
+      {children}
+    </>
+  );
 }
