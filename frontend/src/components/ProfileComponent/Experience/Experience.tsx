@@ -77,9 +77,9 @@ const Experience: React.FC<IExperienceProps> = ({
         if (scrollRef.current) {
           console.log((scrollRef.current.scrollLeft - width) / width + 2);
 
-          // setCurrentExperience(
-          //   Math.round((scrollRef.current.scrollLeft - width) / width + 2)
-          // );
+          setCurrentExperience(
+            Math.round((scrollRef.current.scrollLeft - width) / width + 2)
+          );
         }
       }, 50);
     };
