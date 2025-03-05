@@ -165,10 +165,7 @@ const Experience: React.FC<IExperienceProps> = ({
             ];
 
             return (
-              <div
-                key={index}
-                className={`min-w-[${width - 30}px] mb-4 mr-2 snap-center`}
-              >
+              <div key={index} className={`w-full mb-4 snap-center`}>
                 <DynamicInputs isPresentJob={isPresentJob()} inputs={inputs} />
               </div>
             );
