@@ -10,6 +10,7 @@ import {
 import SelectCountry from "@/shared/components/SelectCountry";
 import Flag from "react-world-flags";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
+import { dynamicInputsStyles } from "@/lib/customStyles";
 
 const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
   const validateEmail = (email: string): boolean => {
@@ -66,9 +67,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
         let color: "default" | "danger" = "default";
         const variant: "flat" | "bordered" | "underlined" | "faded" = "flat";
 
-        const customStyles = {
-          label: "group-data-[filled-within=true]:text-primary",
-        };
+        const customStyles = dynamicInputsStyles;
 
         if (input.type === "email") {
           isInvalid =
