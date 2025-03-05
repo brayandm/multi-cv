@@ -96,7 +96,7 @@
         "message": "Your password has been changed."
       },
       "expired": {
-        "title": "Password Recovery Expired",
+        "title": "Password Recovery Invalid or Expired",
         "message": "Your password recovery link has expired."
       },
       "instructions": "We will send you an email with a link to reset your password."
