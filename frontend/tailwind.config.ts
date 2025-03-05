@@ -16,16 +16,15 @@ export default {
     heroui({
       themes: {
         light: {
-          // ...
           colors: {
             background: {
-              DEFAULT: "#fff",
+              DEFAULT: "#f8fafc",
+            },
+            foreground: {
+              DEFAULT: "#334155",
             },
             primary: {
-              DEFAULT: "#0e76a8",
-            },
-            secondary: {
-              DEFAULT: "#000",
+              DEFAULT: "#2563eb",
             },
           },
         },
