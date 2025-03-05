@@ -91,6 +91,11 @@ export default function PasswordRecoveryComponent({
     router.push("/home");
   };
 
+  const handleTryAgain = (e: React.FormEvent) => {
+    e.preventDefault();
+    router.push("/password/recovery");
+  };
+
   const t = useTranslations();
 
   return (
@@ -142,24 +147,14 @@ export default function PasswordRecoveryComponent({
       {type === "fail" && (
         <form
           className="flex flex-col gap-2 text-center w-[250px] mx-auto"
-          onSubmit={resendEmail}
+          onSubmit={handleTryAgain}
         >
           <h1 className="text-center">
             {t("pages.password_recovery.fail.title")}
           </h1>
           <p>{t("pages.password_recovery.fail.message")}</p>
-          <Button
-            color="primary"
-            type="submit"
-            isDisabled={isCooldown || tryOtherDay}
-          >
-            {tryOtherDay && t("common.buttons.too_many_requests")}
-            {!tryOtherDay &&
-              (isCooldown
-                ? t("common.buttons.resend_in", {
-                    timeleft: timeLeft,
-                  })
-                : t("common.buttons.send_email"))}
+          <Button color="primary" type="submit">
+            {t("common.buttons.try_again")}
           </Button>
         </form>
       )}

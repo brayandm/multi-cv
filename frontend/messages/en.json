@@ -23,6 +23,7 @@
       "send_email": "Send email",
       "change_password": "Change password",
       "resend_in": "Resend in {timeleft}s",
+      "try_again": "Try again",
       "too_many_requests": "Too many requests, try in 24 hours"
     },
     "form": {
