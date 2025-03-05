@@ -60,7 +60,7 @@ const ProfileComponent: React.FC = () => {
               </Tabs>
             </CardBody>
           </Card>
-          <Card>
+          <Card className="mb-3">
             <Button color="primary">Next</Button>
           </Card>
         </form>
