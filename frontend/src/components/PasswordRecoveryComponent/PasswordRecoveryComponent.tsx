@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { resendEmailApi } from "@/lib/backendService";
+import { passwordRecoveryEmailApi } from "@/lib/backendService";
 import { Button, Input } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -62,7 +62,7 @@ export default function PasswordRecoveryComponent({
     if (isCooldown) return;
 
     try {
-      const response = await resendEmailApi();
+      const response = await passwordRecoveryEmailApi(email);
 
       if (response.status === 200) {
         localStorage.setItem(
