@@ -20,6 +20,8 @@ export default function PasswordRecoveryComponent({
 
   const [email, setEmail] = useState("");
 
+  const resendTime = 60;
+
   useEffect(() => {
     const lastSentTime = localStorage.getItem(
       "passwordRecovery:lastEmailResendTime"
@@ -68,7 +70,7 @@ export default function PasswordRecoveryComponent({
           Date.now().toString()
         );
         setIsCooldown(true);
-        setTimeLeft(90);
+        setTimeLeft(resendTime);
       }
     } catch (error: unknown) {
       console.log(error);
