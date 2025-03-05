@@ -51,7 +51,6 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {
 
-
         Route::get('/user', 'App\Http\Controllers\AuthController@getUser');
 
         Route::put('/user/update/profile', 'App\Http\Controllers\AuthController@updateProfile');
