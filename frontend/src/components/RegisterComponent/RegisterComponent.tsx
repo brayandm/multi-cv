@@ -9,6 +9,7 @@ import { handleGoogleSignIn } from "@/lib/oauth";
 import GoogleOauthBtn from "../../shared/components/GoogleOauthBtn";
 import { useTranslations } from "next-intl";
 import { useRefreshOnVisibility } from "@/hooks/useRefreshOnVisibility";
+import { generalInputsStyles } from "@/lib/customStyles";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -77,6 +78,7 @@ export default function RegisterComponent() {
           name="name"
           value={formData.name}
           onChange={handleChange}
+          classNames={generalInputsStyles}
         />
         <Input
           label={t("common.form.email")}
@@ -86,6 +88,7 @@ export default function RegisterComponent() {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          classNames={generalInputsStyles}
         />
         <Input
           label={t("common.form.password")}
@@ -95,6 +98,7 @@ export default function RegisterComponent() {
           name="password"
           value={formData.password}
           onChange={handleChange}
+          classNames={generalInputsStyles}
         />
         <Input
           label={t("common.form.repeat_password")}
@@ -104,6 +108,7 @@ export default function RegisterComponent() {
           name="repeatPassword"
           value={formData.repeatPassword}
           onChange={handleChange}
+          classNames={generalInputsStyles}
         />
         <div className="flex items-start gap-1">
           <Checkbox

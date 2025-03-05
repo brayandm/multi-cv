@@ -5,6 +5,7 @@ import { passwordRecoveryEmailApi } from "@/lib/backendService";
 import { Button, Input } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { generalInputsStyles } from "@/lib/customStyles";
 
 interface IPasswordRecoveryComponentProps {
   type: "success" | "fail" | "recovery";
@@ -115,6 +116,7 @@ export default function PasswordRecoveryComponent({
             name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            classNames={generalInputsStyles}
           />
           <Button
             color="primary"

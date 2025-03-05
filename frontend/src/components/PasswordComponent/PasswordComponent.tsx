@@ -12,6 +12,7 @@ import {
 import { UserResponse } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import { generalInputsStyles } from "@/lib/customStyles";
 
 interface IPasswordComponentProps {
   passwordRecovery?: {
@@ -100,6 +101,7 @@ export default function PasswordComponent({
             name="currentPassword"
             value={formData.currentPassword}
             onChange={handleChange}
+            classNames={generalInputsStyles}
           />
         )}
         <Input
@@ -110,6 +112,7 @@ export default function PasswordComponent({
           name="password"
           value={formData.password}
           onChange={handleChange}
+          classNames={generalInputsStyles}
         />
         <Input
           label={t("common.form.repeat_password")}
@@ -119,6 +122,7 @@ export default function PasswordComponent({
           name="repeatPassword"
           value={formData.repeatPassword}
           onChange={handleChange}
+          classNames={generalInputsStyles}
         />
         <Button
           color="primary"
