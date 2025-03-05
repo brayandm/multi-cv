@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { useRefreshOnVisibility } from "@/hooks/useRefreshOnVisibility";
+import { generalInputsStyles } from "@/lib/customStyles";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -61,6 +62,7 @@ export default function LoginComponent() {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          classNames={generalInputsStyles}
         />
         <Input
           label={t("common.form.password")}
@@ -70,6 +72,7 @@ export default function LoginComponent() {
           name="password"
           value={formData.password}
           onChange={handleChange}
+          classNames={generalInputsStyles}
         />
         <Button color="primary" type="submit">
           {t("common.auth.login")}
