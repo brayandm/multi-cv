@@ -7,7 +7,7 @@ import Experience from "./Experience";
 import { useTranslations } from "next-intl";
 
 const ProfileComponent: React.FC = () => {
-  const width = 320;
+  const width = 340;
   const [formData, setFormData] = useState<IProfileFrom>({
     basicInfo: {
       about: "",

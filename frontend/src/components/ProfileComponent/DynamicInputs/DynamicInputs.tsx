@@ -187,7 +187,7 @@ const DynamicInputs = <T,>({
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
-              classNames={{ ...customStyles, input: "w-[100px]" }}
+              classNames={{ ...customStyles, base: "w-[150px]" }}
             ></Input>
           );
         }
@@ -206,7 +206,7 @@ const DynamicInputs = <T,>({
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               isDisabled={isDisabled}
-              classNames={{ ...customStyles, input: "w-[100px]" }}
+              classNames={{ ...customStyles, base: "w-[150px]" }}
             ></Input>
           );
         }
