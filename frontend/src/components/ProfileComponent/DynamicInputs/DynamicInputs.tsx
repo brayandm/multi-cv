@@ -64,6 +64,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
         let isInvalid = false;
         let errorMessage = "";
         let color: "default" | "danger" = "default";
+        const variant: "flat" | "bordered" | "underlined" | "faded" = "faded";
 
         if (input.type === "email") {
           isInvalid =
@@ -76,6 +77,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
           return (
             <SelectCountry
               key={index}
+              variant={variant}
               label={input.label}
               onSelectionChange={
                 input.onValueChange as IDynamicOnValueChange<Key | null>
@@ -92,6 +94,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
           return (
             <Input
               key={index}
+              variant={variant}
               label={input.label}
               placeholder={input.placeholder}
               type={"text"}
@@ -112,6 +115,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
           return (
             <Textarea
               key={index}
+              variant={variant}
               label={input.label}
               placeholder={input.placeholder}
               value={input.value as string}
@@ -160,6 +164,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
           return (
             <Input
               key={index}
+              variant={variant}
               label={input.label}
               placeholder={input.placeholder}
               type={"date"}
@@ -176,6 +181,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
           return (
             <Input
               key={index}
+              variant={variant}
               label={input.label}
               placeholder={input.placeholder}
               type={"date"}
@@ -192,6 +198,7 @@ const DynamicInputs = <T,>({ inputs, isPresentJob }: DynamicInputsProps<T>) => {
         return (
           <Input
             key={index}
+            variant={variant}
             label={input.label}
             placeholder={input.placeholder}
             type={input.type}

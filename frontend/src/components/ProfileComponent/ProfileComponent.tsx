@@ -36,7 +36,7 @@ const ProfileComponent: React.FC = () => {
               <p>{t("pages.profile.subtitle")}</p>
             </CardHeader>
             <CardBody>
-              <Tabs aria-label="Options">
+              <Tabs aria-label="Options" color="primary">
                 <Tab
                   key="basic-user-info"
                   title={t("pages.profile.sections.basic_info.title")}

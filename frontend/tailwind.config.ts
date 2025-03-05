@@ -29,6 +29,12 @@ export default {
             secondary: {
               DEFAULT: "#64748b",
             },
+            default: {
+              100: "#f8f8f8", // input background
+              600: "#2563eb", // input labels
+              200: "#fafafa", // input border
+              400: "#2563ebaa", // input border focus
+            },
           },
         },
         dark: {
