@@ -119,6 +119,9 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
       onMenuOpenChange={setIsMenuOpen}
       className="overflow-hidden"
       maxWidth="full"
+      classNames={{
+        base: "shadow-md bg-default-50",
+      }}
     >
       <NavbarContent>
         {noContent && (
