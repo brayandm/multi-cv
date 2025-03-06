@@ -7,7 +7,7 @@ import Experience from "./Experience";
 import { useTranslations } from "next-intl";
 
 const ProfileComponent: React.FC = () => {
-  const width = 340;
+  const width = 350;
   const [formData, setFormData] = useState<IProfileFrom>({
     basicInfo: {
       about: "",
@@ -36,7 +36,11 @@ const ProfileComponent: React.FC = () => {
               <p>{t("pages.profile.subtitle")}</p>
             </CardHeader>
             <CardBody>
-              <Tabs aria-label="Options" color="primary">
+              <Tabs
+                aria-label="Options"
+                color="primary"
+                classNames={{ base: "p-2" }}
+              >
                 <Tab
                   key="basic-user-info"
                   title={t("pages.profile.sections.basic_info.title")}

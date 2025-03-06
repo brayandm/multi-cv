@@ -163,7 +163,7 @@ const Experience: React.FC<IExperienceProps> = ({
             return (
               <div
                 key={index}
-                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 snap-center`}
+                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 p-1 snap-center`}
                 style={
                   { "--initialWidth": `${width}px` } as React.CSSProperties
                 }
