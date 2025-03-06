@@ -29,7 +29,7 @@ export default {
               DEFAULT: "#2563eb",
             },
             secondary: {
-              DEFAULT: "#64748b",
+              DEFAULT: "#1d4e89",
             },
           },
         },
