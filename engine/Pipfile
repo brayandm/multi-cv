@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 fastapi = "*"
 uvicorn = "*"
+langchain = "*"
+celery = "*"
 
 [dev-packages]
 black = "*"
