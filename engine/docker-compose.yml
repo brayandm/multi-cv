@@ -23,7 +23,7 @@ services:
     networks:
       - multi-cv-local
     working_dir: /app
-    command: sh -c "pipenv install --dev && pipenv run celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
+    command: sh -c "pipenv install --dev && pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
 
   engine_redis:
     restart: always
