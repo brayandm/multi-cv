@@ -24,6 +24,24 @@ rm -rf .git/hooks/*
 echo "Removing docker network..."
 docker network rm multi-cv-local > /dev/null 2>&1 || true
 
+pushd engine/ > /dev/null
+
+echo "Removing python dependencies..."
+rm -rf .venv
+
+echo "Removing engine .env file..."
+rm -f .env
+
+echo "Stopping and removing engine containers..."
+if [ "$REMOVE_VOLUMES" = true ]; then
+  echo -e "\e[31mRemoving Docker volumes for engine...\e[0m"
+  docker compose down -v > /dev/null 2>&1
+else
+  docker compose down > /dev/null 2>&1
+fi
+
+popd > /dev/null
+
 pushd backend/ > /dev/null
 
 echo "Removing composer dependencies..."
