@@ -6,11 +6,14 @@ services:
     volumes:
       - .:/app
     ports:
-      - 3000:3000
+      - 91:90
     networks:
       - multi-cv-local
     working_dir: /app
-    command: uvicorn main:app --reload
+    environment:
+      - PIPENV_VENV_IN_PROJECT=1
+    command: sh -c "pipenv run uvicorn main:app --reload --host 0.0.0.0 --port 90"
+
 
 networks:
   multi-cv-local:
