@@ -6,6 +6,7 @@ celery = Celery(
     "engine",
     backend=RESULT_BACKEND,
     broker=CELERY_BROKER_URL,
+    include=["app.tasks"],
 )
 
 celery.conf.update(
@@ -13,3 +14,7 @@ celery.conf.update(
         "tasks.send_to_openai": {"queue": "openai_queue"},
     }
 )
+
+celery.conf.task_queues = {
+    "openai_queue",
+}
