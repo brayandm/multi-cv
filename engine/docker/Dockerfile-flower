@@ -1,28 +1,11 @@
-FROM python:3.8.17-alpine3.18
+FROM brayand/fullstack-project-template-python:1.0.0
 
-RUN apk add --no-cache ca-certificates tzdata && update-ca-certificates
-
-RUN apk add build-base
+RUN apt-get update && apt-get install -y ca-certificates tzdata && update-ca-certificates && rm -rf /var/lib/apt/lists/*
 
 RUN pip install --no-cache-dir redis flower amqp
 
 ENV PYTHONUNBUFFERED=1 PYTHONHASHSEED=random PYTHONDONTWRITEBYTECODE=1
 
 EXPOSE 5555
-
-ENV FLOWER_DATA_DIR /data
-ENV PYTHONPATH ${FLOWER_DATA_DIR}
-
-WORKDIR $FLOWER_DATA_DIR
-
-RUN set -eux; \
-    addgroup -g 1000 flower; \
-    adduser -u 1000 -G flower flower -D; \
-    mkdir -p "$FLOWER_DATA_DIR"; \
-    chown flower:flower "$FLOWER_DATA_DIR"
-    
-USER flower
-
-VOLUME $FLOWER_DATA_DIR
 
 CMD ["celery", "flower"]
