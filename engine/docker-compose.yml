@@ -1,0 +1,18 @@
+services:
+  engine:
+    user: "${UID:-1000}:${GID:-1000}"
+    image: brayand/fullstack-project-template-python:1.0.0
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    networks:
+      - multi-cv-local
+    working_dir: /app
+    command: python3 -v
+
+networks:
+  multi-cv-local:
+    driver: bridge
+    external: true

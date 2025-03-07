@@ -11,6 +11,24 @@ echo "Creating docker network..."
 docker network create multi-cv-local > /dev/null 2>&1 || true 
 
 
+pushd engine/ > /dev/null
+
+echo "Installing python dependencies..."
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/app \
+    -w /app \
+    brayand/fullstack-project-template-python:1.0.0 \
+    sh -c "pipenv --python 3.13 && pipenv install && pipenv install --dev" > /dev/null 2>&1
+
+echo "Copying engine .env file..."
+cp .env.example .env
+
+echo "Starting engine..."
+docker compose up --build --force-recreate --remove-orphans -d > /dev/null 2>&1
+
+popd > /dev/null
+
 pushd backend/ > /dev/null
 
 echo "Installing composer dependencies..."
