@@ -3,4 +3,4 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile
-    image: multi-cv-frontend
+    image: multi-cv-engine
