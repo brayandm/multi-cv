@@ -1,11 +1,1 @@
-FROM brayand/fullstack-project-template-python:1.0.0
-
-RUN apt-get update && apt-get install -y ca-certificates tzdata && update-ca-certificates && rm -rf /var/lib/apt/lists/*
-
-RUN pip install --no-cache-dir redis flower amqp
-
-ENV PYTHONUNBUFFERED=1 PYTHONHASHSEED=random PYTHONDONTWRITEBYTECODE=1
-
-EXPOSE 5555
-
-CMD ["celery", "flower"]
+FROM brayand/fullstack-project-template-flower:1.0.0
