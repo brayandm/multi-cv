@@ -95,13 +95,6 @@ services:
         restart: always
         volumes:
             - engine-redis:/data
-        healthcheck:
-            test:
-                - CMD
-                - redis-cli
-                - ping
-            retries: 3
-            timeout: 5s
 
     rabbitmq:
         image: multi-cv-rabbitmq
