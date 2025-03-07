@@ -20,8 +20,7 @@ pyenv local
 4 - Setup environment & dependencies
 
 ```bash
-pipenv install
-pipenv install --dev
+PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
 ```
 
 3 - Copy the `.env.example` file to `.env`:

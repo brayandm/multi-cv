@@ -10,7 +10,7 @@ services:
     networks:
       - multi-cv-local
     working_dir: /app
-    command: python3 -v
+    command: uvicorn main:app --reload
 
 networks:
   multi-cv-local:
