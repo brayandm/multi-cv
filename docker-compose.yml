@@ -114,7 +114,7 @@ services:
     flower:
         image: multi-cv-flower
         ports:
-            - "5555:5555"
+            - "${FLOWER_PORT:-49163}:5555"
         restart: always
         depends_on:
             celery:
