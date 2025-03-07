@@ -9,6 +9,11 @@ services:
       - 91:90
     networks:
       - multi-cv-local
+    depends_on:
+      engine_redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
     working_dir: /app
     environment:
       - export PIPENV_VENV_IN_PROJECT=0
@@ -22,6 +27,11 @@ services:
       - .:/app
     networks:
       - multi-cv-local
+    depends_on:
+      engine_redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
     working_dir: /app
     command: sh -c "pipenv install --dev && pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
 
@@ -57,6 +67,28 @@ services:
         test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
         timeout: 5s
         retries: 3
+
+  engine_flower:
+    build:
+        context: .
+        dockerfile: docker/Dockerfile-flower
+    ports:
+        - "5555:5555"
+    networks:
+        - multi-cv-local
+    environment:
+        FLOWER_BASIC_AUTH: ${FLOWER_USER}:${FLOWER_PASSWORD}
+        FLOWER_BROKER_API: http://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:15672/api/
+        CELERY_BROKER_URL: amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:${RABBITMQ_PORT}/${RABBITMQ_VHOST}
+        CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB_NUMBER}
+    depends_on:
+        celery:
+            condition: service_started
+        engine_redis:
+            condition: service_healthy
+        rabbitmq:
+            condition: service_healthy
+    restart: always
 
 
 networks:
