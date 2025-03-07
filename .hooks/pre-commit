@@ -14,8 +14,8 @@ cd ..
 cd frontend
 docker run --rm \
     -u "$(id -u):$(id -g)" \
-    -v $(pwd):/var/www/html \
-    -w /var/www/html \
+    -v $(pwd):/app \
+    -w /app \
     brayand/fullstack-project-template-frontend:1.0.0 \
     sh -c "npx prettier --write . && npm run lint"
 cd ..
@@ -23,8 +23,18 @@ cd ..
 cd chrome-extension
 docker run --rm \
     -u "$(id -u):$(id -g)" \
-    -v $(pwd):/var/www/html \
-    -w /var/www/html \
+    -v $(pwd):/app \
+    -w /app \
     brayand/fullstack-project-template-frontend:1.0.0 \
     sh -c "npx prettier --write ."
 cd ..
+
+cd engine
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/app \
+    -w /app \
+    brayand/fullstack-project-template-python:1.0.0 \
+    sh -c "pipenv run black . && pipenv run isort . && pipenv run flake8 . && pipenv run mypy ."
+cd ..
+

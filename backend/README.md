@@ -48,3 +48,14 @@ docker compose exec backend php artisan migrate
 ```bash
 docker compose -f docker-compose.build.yml build --compress --force-rm --no-cache --parallel --pull
 ```
+
+## Install dependencies
+
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/var/www/html \
+    -w /var/www/html \
+    brayand/fullstack-project-template-composer:1.0.0 \
+    composer require [package-name]
+```

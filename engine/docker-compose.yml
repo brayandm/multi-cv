@@ -1,0 +1,21 @@
+services:
+  engine:
+    user: "${UID:-1000}:${GID:-1000}"
+    image: brayand/fullstack-project-template-python:1.0.0
+    restart: always
+    volumes:
+      - .:/app
+    ports:
+      - 91:90
+    networks:
+      - multi-cv-local
+    working_dir: /app
+    environment:
+      - PIPENV_VENV_IN_PROJECT=1
+    command: sh -c "pipenv --rm && pipenv install --dev && pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
+
+
+networks:
+  multi-cv-local:
+    driver: bridge
+    external: true

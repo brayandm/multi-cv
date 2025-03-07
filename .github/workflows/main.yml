@@ -16,6 +16,8 @@ jobs:
               run: echo "${{ vars.PROD_FRONTEND }}" > frontend/.env
             - name: Copying .env to backend project
               run: echo "${{ vars.PROD_BACKEND }}" > backend/.env
+            - name: Copying .env to engine project
+              run: echo "${{ vars.PROD_ENGINE }}" > engine/.env
             - name: Building the containers
               run: bash build.sh
 

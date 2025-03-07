@@ -1,9 +1,10 @@
-FROM python:3.13
+# FROM python:3.13
+FROM brayand/fullstack-project-template-python:1.0.0
 
-ENV LANG=C.UTF-8
+ENV PIPENV_VENV_IN_PROJECT=1
+
+COPY . /app
 
 WORKDIR /app
 
-RUN pip install --no-cache-dir pipenv
-
-ENV PIPENV_VENV_IN_PROJECT=1
+RUN pipenv install --dev
