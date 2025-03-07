@@ -16,7 +16,7 @@ services:
                 condition: service_healthy
         working_dir: /app
         environment:
-            - export PIPENV_VENV_IN_PROJECT=0
+            - WORKON_HOME=/app/.venvs/engine
         command: sh -c "pipenv install --dev && pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
 
     celery:
@@ -33,6 +33,8 @@ services:
             rabbitmq:
                 condition: service_healthy
         working_dir: /app
+        environment:
+            - WORKON_HOME=/app/.venvs/celery
         command: sh -c "pipenv install --dev && pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
 
     engine_redis:
