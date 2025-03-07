@@ -1,0 +1,1 @@
+FROM brayand/fullstack-project-template-rabbitmq:1.0.0

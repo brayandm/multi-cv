@@ -1,97 +1,96 @@
 services:
-  engine:
-    user: "${UID:-1000}:${GID:-1000}"
-    image: brayand/fullstack-project-template-python:1.0.0
-    restart: always
-    volumes:
-      - .:/app
-    ports:
-      - 91:90
-    networks:
-      - multi-cv-local
-    depends_on:
-      engine_redis:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-    working_dir: /app
-    environment:
-      - export PIPENV_VENV_IN_PROJECT=0
-    command: sh -c "pipenv install --dev && pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
-  
-  celery:
-    user: "${UID:-1000}:${GID:-1000}"
-    image: brayand/fullstack-project-template-python:1.0.0
-    restart: always
-    volumes:
-      - .:/app
-    networks:
-      - multi-cv-local
-    depends_on:
-      engine_redis:
-        condition: service_healthy
-      rabbitmq:
-        condition: service_healthy
-    working_dir: /app
-    command: sh -c "pipenv install --dev && pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
+    engine:
+        user: "${UID:-1000}:${GID:-1000}"
+        image: brayand/fullstack-project-template-python:1.0.0
+        restart: always
+        volumes:
+            - .:/app
+        ports:
+            - 91:90
+        networks:
+            - multi-cv-local
+        depends_on:
+            engine_redis:
+                condition: service_healthy
+            rabbitmq:
+                condition: service_healthy
+        working_dir: /app
+        environment:
+            - export PIPENV_VENV_IN_PROJECT=0
+        command: sh -c "pipenv install --dev && pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
 
-  engine_redis:
-    restart: always
-    build:
-      context: .
-      dockerfile: docker/Dockerfile-redis
-      args:
-          REDIS_PASSWORD: ${REDIS_PASSWORD}
-    ports:
-        - '127.0.0.1:${FORWARD_REDIS_PORT:-6379}:6379'
-    networks:
-        - multi-cv-local
-    healthcheck:
-        test:
-            - CMD
-            - redis-cli
-            - ping
-        retries: 3
-        timeout: 5s
+    celery:
+        user: "${UID:-1000}:${GID:-1000}"
+        image: brayand/fullstack-project-template-python:1.0.0
+        restart: always
+        volumes:
+            - .:/app
+        networks:
+            - multi-cv-local
+        depends_on:
+            engine_redis:
+                condition: service_healthy
+            rabbitmq:
+                condition: service_healthy
+        working_dir: /app
+        command: sh -c "pipenv install --dev && pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
 
-  rabbitmq:
-    image: brayand/fullstack-project-template-rabbitmq:1.0.0
-    networks:
-        - multi-cv-local
-    restart: always
-    environment:
-        - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
-        - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
-        - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_VHOST}
-    healthcheck:
-        test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
-        timeout: 5s
-        retries: 3
+    engine_redis:
+        restart: always
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-redis
+            args:
+                REDIS_PASSWORD: ${REDIS_PASSWORD}
+        ports:
+            - "127.0.0.1:${FORWARD_REDIS_PORT:-6379}:6379"
+        networks:
+            - multi-cv-local
+        healthcheck:
+            test:
+                - CMD
+                - redis-cli
+                - ping
+            retries: 3
+            timeout: 5s
 
-  flower:
-    build:
-        context: .
-        dockerfile: docker/Dockerfile-flower
-    ports:
-        - "5555:5555"
-    networks:
-        - multi-cv-local
-    environment:
-        FLOWER_BASIC_AUTH: ${FLOWER_USER}:${FLOWER_PASSWORD}
-        FLOWER_BROKER_API: http://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:15672/api/
-        CELERY_BROKER_URL: amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:${RABBITMQ_PORT}/${RABBITMQ_VHOST}
-        CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB_NUMBER}
-    depends_on:
-        celery:
-            condition: service_started
-        engine_redis:
-            condition: service_healthy
-        rabbitmq:
-            condition: service_healthy
-    restart: always
+    rabbitmq:
+        image: brayand/fullstack-project-template-rabbitmq:1.0.0
+        networks:
+            - multi-cv-local
+        restart: always
+        environment:
+            - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+            - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+            - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_VHOST}
+        healthcheck:
+            test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+            timeout: 5s
+            retries: 3
 
+    flower:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-flower
+        ports:
+            - "5555:5555"
+        networks:
+            - multi-cv-local
+        environment:
+            FLOWER_BASIC_AUTH: ${FLOWER_USER}:${FLOWER_PASSWORD}
+            FLOWER_BROKER_API: http://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:15672/api/
+            CELERY_BROKER_URL: amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:${RABBITMQ_PORT}/${RABBITMQ_VHOST}
+            CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB_NUMBER}
+        depends_on:
+            celery:
+                condition: service_started
+            engine_redis:
+                condition: service_healthy
+            rabbitmq:
+                condition: service_healthy
+        restart: always
 
 networks:
-  multi-cv-local:
-    driver: bridge
-    external: true
+    multi-cv-local:
+        driver: bridge
+        external: true

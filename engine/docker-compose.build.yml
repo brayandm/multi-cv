@@ -1,6 +1,40 @@
 services:
-  engine:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile
-    image: multi-cv-engine
+    engine:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        image: multi-cv-engine
+
+    celery:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        image: multi-cv-celery
+
+    engine_redis:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-redis
+            args:
+                REDIS_PASSWORD: ${REDIS_PASSWORD}
+        image: multi-cv-engine-redis
+
+    rabbitmq:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-rabbitmq
+        environment:
+            - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+            - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+            - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_VHOST}
+        image: multi-cv-rabbitmq
+
+    flower:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile-flower
+        environment:
+            FLOWER_BASIC_AUTH: ${FLOWER_USER}:${FLOWER_PASSWORD}
+            FLOWER_BROKER_API: http://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:15672/api/
+            CELERY_BROKER_URL: amqp://${RABBITMQ_USER}:${RABBITMQ_PASSWORD}@${RABBITMQ_HOST}:${RABBITMQ_PORT}/${RABBITMQ_VHOST}
+            CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD}@${REDIS_HOST}:${REDIS_PORT}/${REDIS_DB_NUMBER}
