@@ -5,16 +5,16 @@
 -   [pyenv](https://github.com/pyenv/pyenv#installation)
 -   [pipenv](https://pypi.org/project/pipenv/)
 
-2 - Install python 3.13
+2 - Install python 3.13.2
 
 ```bash
-pyenv install 3.13
+pyenv install
 ```
 
-3 - Setup python 3.13 as the local version
+3 - Setup python 3.13.2 as the local version
 
 ```bash
-pyenv local 3.13
+pyenv local
 ```
 
 4 - Setup environment & dependencies
