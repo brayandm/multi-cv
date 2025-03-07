@@ -15,6 +15,7 @@ async def ping() -> Dict[str, str]:
 async def hello(user_input: str) -> Dict[str, str]:
 
     task = send_to_openai.delay(user_input)
+
     return {
         "message": "Request received. Processing in background.",
         "task_id": task.id,
