@@ -28,8 +28,10 @@ services:
   engine_redis:
     restart: always
     build:
-        context: .
-        dockerfile: docker/Dockerfile-redis
+      context: .
+      dockerfile: docker/Dockerfile-redis
+      args:
+          REDIS_PASSWORD: ${REDIS_PASSWORD}
     ports:
         - '127.0.0.1:${FORWARD_REDIS_PORT:-6379}:6379'
     networks:
