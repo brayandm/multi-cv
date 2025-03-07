@@ -1,6 +1,6 @@
-from celery import Celery
+from celery import Celery  # type: ignore
 
-from .config import RESULT_BACKEND, CELERY_BROKER_URL
+from .config import CELERY_BROKER_URL, RESULT_BACKEND  # type: ignore
 
 celery = Celery(
     "engine",
