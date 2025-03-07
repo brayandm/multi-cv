@@ -10,8 +10,8 @@ langchain = "*"
 celery = "*"
 redis = "*"
 watchdog = "*"
-openai = "*"
 langchain-community = "*"
+langchain-openai = "*"
 
 [dev-packages]
 black = "*"

@@ -1,7 +1,7 @@
 import requests  # type: ignore
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage
-from celery import celery  # type: ignore
+from .celery import celery  # type: ignore
 
 WEBHOOK_URL = "https://webhook.site/fcd06ee9-af22-4a21-b127-6a47095e9f41"
 
