@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from tasks import send_to_openai
+from .tasks import send_to_openai
 from typing import Dict
 
 

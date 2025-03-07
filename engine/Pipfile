@@ -11,6 +11,7 @@ celery = "*"
 redis = "*"
 watchdog = "*"
 openai = "*"
+langchain-community = "*"
 
 [dev-packages]
 black = "*"
