@@ -8,6 +8,7 @@ fastapi = "*"
 uvicorn = "*"
 langchain = "*"
 celery = "*"
+redis = "*"
 
 [dev-packages]
 black = "*"
