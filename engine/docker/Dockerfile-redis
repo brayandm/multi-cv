@@ -1,10 +1,12 @@
 # FROM redis:alpine
 FROM brayand/fullstack-project-template-redis:1.0.0
 
+ARG REDIS_PASSWORD=""
+
 RUN mkdir -p /usr/local/etc/redis
 
 COPY docker/redis/redis.conf /usr/local/etc/redis/redis.conf
 
+RUN sed -i "s/# requirepass foobared/requirepass $REDIS_PASSWORD/" /usr/local/etc/redis/redis.conf
+
 CMD ["redis-server", "/usr/local/etc/redis/redis.conf"]
-
-
