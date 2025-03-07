@@ -7,3 +7,9 @@ celery = Celery(
     backend=RESULT_BACKEND,
     broker=CELERY_BROKER_URL,
 )
+
+celery.conf.update(
+    task_routes={
+        "tasks.send_to_openai": {"queue": "openai_queue"},
+    }
+)

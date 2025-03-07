@@ -18,6 +18,7 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/app \
     -w /app \
+    -e PIPENV_VENV_IN_PROJECT=1 \
     brayand/fullstack-project-template-python:1.0.0 \
     sh -c "pipenv --python 3.13 && pipenv install && pipenv install --dev" > /dev/null 2>&1
 
