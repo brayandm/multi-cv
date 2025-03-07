@@ -1,5 +1,5 @@
 import requests  # type: ignore
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.schema import HumanMessage
 from .celery import celery  # type: ignore
 
