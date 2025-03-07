@@ -9,6 +9,7 @@ uvicorn = "*"
 langchain = "*"
 celery = "*"
 redis = "*"
+watchdog = "*"
 
 [dev-packages]
 black = "*"

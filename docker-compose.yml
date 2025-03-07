@@ -1,77 +1,132 @@
 services:
-  backend:
-    image: multi-cv-backend
-    restart: always
-    volumes:
-      - backend-storage:/var/www/storage
-      - backend-app:/var/www
-    depends_on:
-      - mysql
-      - redis
-    command: /docker-start.sh
+    backend:
+        image: multi-cv-backend
+        restart: always
+        volumes:
+            - backend-storage:/var/www/storage
+            - backend-app:/var/www
+        depends_on:
+            - mysql
+            - redis
+            - engine
+        command: /docker-start.sh
 
-  mysql:
-    image: multi-cv-mysql
-    restart: always
-    volumes:
-      - 'backend-mysql:/var/lib/mysql'
+    mysql:
+        image: multi-cv-mysql
+        restart: always
+        volumes:
+            - "backend-mysql:/var/lib/mysql"
 
-  redis:
-    image: multi-cv-redis
-    restart: always
-    volumes:
-        - 'backend-redis:/data'
-    healthcheck:
-        test:
-            - CMD
-            - redis-cli
-            - ping
-        retries: 20
-        timeout: 20s
+    redis:
+        image: multi-cv-redis
+        restart: always
+        volumes:
+            - "backend-redis:/data"
+        healthcheck:
+            test:
+                - CMD
+                - redis-cli
+                - ping
+            retries: 20
+            timeout: 20s
 
-  frontend:
-    image: multi-cv-frontend
-    restart: always
-    ports:
-      - ${APP_PORT:-49160}:3000
-    depends_on:
-      nginx:
-        condition: service_healthy
-    command: npm run start
+    frontend:
+        image: multi-cv-frontend
+        restart: always
+        ports:
+            - ${APP_PORT:-49160}:3000
+        depends_on:
+            nginx:
+                condition: service_healthy
+        command: npm run start
 
-  nginx:
-    image: multi-cv-nginx
-    restart: always
-    depends_on:
-      - backend
-    ports:
-      - "${NGINX_PORT:-49161}:80"
-    volumes:
-      - backend-app:/var/www
-    healthcheck:
-      test: [ "CMD-SHELL", "curl -f http://localhost:80/api/v1/ping || exit 1" ]
-      interval: 5s
-      timeout: 10s
-      retries: 20
-      start_period: 20s
+    nginx:
+        image: multi-cv-nginx
+        restart: always
+        depends_on:
+            - backend
+        ports:
+            - "${NGINX_PORT:-49161}:80"
+        volumes:
+            - backend-app:/var/www
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "curl -f http://localhost:80/api/v1/ping || exit 1",
+                ]
+            interval: 5s
+            timeout: 10s
+            retries: 20
+            start_period: 20s
 
-  phpmyadmin:
-    image: brayand/fullstack-project-template-phpmyadmin:1.0.0
-    restart: always
-    environment:
-        PMA_HOST: mysql
-    ports:
-    - '${PHPMYADMIN_PORT:-49162}:80'
-    depends_on:
-      - mysql
+    phpmyadmin:
+        image: brayand/fullstack-project-template-phpmyadmin:1.0.0
+        restart: always
+        environment:
+            PMA_HOST: mysql
+        ports:
+            - "${PHPMYADMIN_PORT:-49162}:80"
+        depends_on:
+            - mysql
 
-  engine:
-    image: multi-cv-engine
-    restart: always
-    command: sh -c "pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
+    engine:
+        image: multi-cv-engine
+        restart: always
+        command: sh -c "pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
+        depends_on:
+            engine_redis:
+                condition: service_healthy
+            rabbitmq:
+                condition: service_healthy
+
+    celery:
+        image: multi-cv-celery
+        restart: always
+        depends_on:
+            engine_redis:
+                condition: service_healthy
+            rabbitmq:
+                condition: service_healthy
+        command: sh -c "pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
+
+    engine_redis:
+        image: multi-cv-engine-redis
+        restart: always
+        volumes:
+            - engine-redis:/data
+        healthcheck:
+            test:
+                - CMD
+                - redis-cli
+                - ping
+            retries: 3
+            timeout: 5s
+
+    rabbitmq:
+        image: multi-cv-rabbitmq
+        restart: always
+        healthcheck:
+            test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+            timeout: 5s
+            retries: 3
+
+    flower:
+        image: multi-cv-flower
+        ports:
+            - "${FLOWER_PORT:-49163}:5555"
+        restart: always
+        depends_on:
+            celery:
+                condition: service_started
+            engine_redis:
+                condition: service_healthy
+            rabbitmq:
+                condition: service_healthy
 
 volumes:
-  backend-mysql:
-  backend-redis:
-  backend-storage:
-  backend-app:
+    backend-mysql:
+    backend-redis:
+    backend-storage:
+    backend-app:
+    engine-redis:
