@@ -13,6 +13,7 @@ services:
     environment:
       - PIPENV_VENV_IN_PROJECT=1
     command: sh -c "pipenv --rm && pipenv install --dev && pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
+  
   redis:
     restart: always
     build:
@@ -29,6 +30,20 @@ services:
             - ping
         retries: 3
         timeout: 5s
+
+  rabbitmq:
+    image: rabbitmq:3.10.7-management-alpine
+    networks:
+        - multi-cv-local
+    restart: always
+    environment:
+        - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+        - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
+        - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_VHOST}
+    healthcheck:
+        test: [ "CMD", "rabbitmq-diagnostics", "-q", "ping" ]
+        timeout: 5s
+        retries: 3
 
 
 networks:
