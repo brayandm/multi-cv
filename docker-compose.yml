@@ -8,6 +8,7 @@ services:
     depends_on:
       - mysql
       - redis
+      - engine
     command: /docker-start.sh
 
   mysql:

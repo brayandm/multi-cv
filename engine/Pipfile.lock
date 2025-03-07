@@ -654,6 +654,15 @@
             "markers": "python_version >= '3.8'",
             "version": "==6.0.2"
         },
+        "redis": {
+            "hashes": [
+                "sha256:16f2e22dff21d5125e8481515e386711a34cbec50f0e44413dd7d9c060a54e0f",
+                "sha256:ee7e1056b9aea0f04c6c2ed59452947f34c4940ee025f5dd83e6a6418b6989e4"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.8'",
+            "version": "==5.2.1"
+        },
         "requests": {
             "hashes": [
                 "sha256:55365417734eb18255590a9ff9eb97e9e1da868d4ccd6402399eaf68af20a760",

@@ -13,6 +13,22 @@ services:
     environment:
       - PIPENV_VENV_IN_PROJECT=1
     command: sh -c "pipenv --rm && pipenv install --dev && pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
+  redis:
+    restart: always
+    build:
+        context: .
+        dockerfile: docker/Dockerfile-redis
+    ports:
+        - '127.0.0.1:${FORWARD_REDIS_PORT:-6379}:6379'
+    networks:
+        - multi-cv-local
+    healthcheck:
+        test:
+            - CMD
+            - redis-cli
+            - ping
+        retries: 3
+        timeout: 5s
 
 
 networks:
