@@ -35,6 +35,6 @@ docker run --rm \
     -v $(pwd):/app \
     -w /app \
     brayand/fullstack-project-template-python:1.0.0 \
-    pipenv run pre-commit run --all-files
+    sh -c "pipenv run black . && pipenv run isort . && pipenv run flake8 . && pipenv run mypy ."
 cd ..
 
