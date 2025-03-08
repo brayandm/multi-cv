@@ -12,7 +12,7 @@ class GenerateCVPipeline(Pipeline):
     def run(self, cv: Cv, cv_template: CvTemplate) -> str:
 
         env = Environment(loader=FileSystemLoader("./app/templates/cv/"))
-        template = env.get_template(f"{cv_template.id}.tex")
+        template = env.get_template(f"{cv_template.id}.jinja")
 
         cv_uuid = str(uuid.uuid4())
         cv_folder = f"./app/templates/generated/{cv_uuid}/"
