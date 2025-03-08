@@ -63,7 +63,7 @@ popd > /dev/null
 pushd engine/ > /dev/null
 
 echo "Removing python dependencies..."
-rm -rf .venv
+rm -rf .venvs
 
 echo "Removing engine .env file..."
 rm -f .env
