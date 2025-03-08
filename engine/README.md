@@ -20,7 +20,7 @@ pyenv local
 4 - Setup environment & dependencies
 
 ```bash
-WORKON_HOME=.venvs/local pipenv install --dev
+PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
 ```
 
 3 - Copy the `.env.example` file to `.env`:
@@ -52,11 +52,5 @@ docker compose -f docker-compose.build.yml build --compress --force-rm --no-cach
 ## Install dependencies
 
 ```bash
-docker run --rm \
-    -u "$(id -u):$(id -g)" \
-    -v $(pwd):/app \
-    -w /app \
-    -e WORKON_HOME=/app/.venvs/local \
-    brayand/fullstack-project-template-python:1.0.0 \
-    pipenv install [package-name]
+pipenv install [package-name]
 ```
