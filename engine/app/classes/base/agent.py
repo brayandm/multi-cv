@@ -1,14 +1,12 @@
-import os
 from abc import ABC
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
+from app.config import OPENAI_API_KEY
 
 
 class Agent(ABC):
 
     def __init__(self) -> None:
-
-        OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 
         self.chat = ChatOpenAI(
             api_key=SecretStr(OPENAI_API_KEY),

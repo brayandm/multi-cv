@@ -4,8 +4,7 @@ from app.celery import celery  # type: ignore
 from typing import Any, Dict
 import importlib
 import requests  # type: ignore
-
-WEBHOOK_URL = os.getenv("WEBHOOK_URL", "")
+from app.config import WEBHOOK_URL
 
 
 @celery.task(name="execute_pipeline")  # type: ignore

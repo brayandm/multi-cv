@@ -1,10 +1,9 @@
 from pydantic import BaseModel
-from pydantic.networks import EmailStr
 
 
 class Person(BaseModel):
     nombre: str
-    email: EmailStr
+    email: str
     about: str
 
 
