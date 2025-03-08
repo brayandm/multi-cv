@@ -5,6 +5,7 @@ services:
         restart: always
         volumes:
             - .:/app
+            - ../backend/storage/app/documents:/app/storage/documents
         ports:
             - 91:90
         networks:

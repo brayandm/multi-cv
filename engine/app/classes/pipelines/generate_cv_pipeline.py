@@ -37,6 +37,11 @@ class GenerateCVPipeline(Pipeline):
 
         fs = Filesystem.get_filesystem()
 
+        dest_folder = "/documents"
+
+        if not fs.exists(dest_folder):
+            fs.makedirs(dest_folder)
+
         with open(pdf_path, "rb") as f:
             fs.writebytes(f"/documents/{cv_uuid}.pdf", f.read())
 
