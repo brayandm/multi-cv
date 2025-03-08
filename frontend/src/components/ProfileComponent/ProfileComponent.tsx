@@ -65,7 +65,7 @@ const ProfileComponent: React.FC = () => {
             </CardBody>
           </Card>
           <Card className="mb-3">
-            <Button color="primary">Next</Button>
+            <Button color="primary">{t("common.buttons.next")}</Button>
           </Card>
         </form>
       </div>
