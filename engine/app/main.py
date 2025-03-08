@@ -1,11 +1,10 @@
 from typing import Dict
 
 from fastapi import FastAPI
-from app.models import Message
-
-from app.classes.queue_manager import QueueManager
 
 from app.classes.pipelines.basic_pipeline import BasicPipeline
+from app.classes.queue_manager import QueueManager
+from app.models import Message
 
 app = FastAPI()
 

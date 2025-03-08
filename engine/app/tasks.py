@@ -1,9 +1,10 @@
+import importlib
 import os
+from typing import Any, Dict
+
+import requests  # type: ignore
 
 from app.celery import celery  # type: ignore
-from typing import Any, Dict
-import importlib
-import requests  # type: ignore
 from app.config import WEBHOOK_URL
 
 

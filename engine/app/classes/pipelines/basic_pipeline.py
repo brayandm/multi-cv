@@ -1,5 +1,5 @@
-from app.classes.base.pipeline import Pipeline
 from app.classes.agents.basic_agent import BasicAgent
+from app.classes.base.pipeline import Pipeline
 
 
 class BasicPipeline(Pipeline):

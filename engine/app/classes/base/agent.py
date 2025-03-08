@@ -1,6 +1,8 @@
 from abc import ABC
+
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
+
 from app.config import OPENAI_API_KEY
 
 

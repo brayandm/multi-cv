@@ -25,4 +25,4 @@ RESULT_BACKEND = "redis://:{password}@{host}:{port}/{db}".format(**REDIS)
 
 WEBHOOK_URL = os.environ.get("WEBHOOK_URL")
 
-OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
