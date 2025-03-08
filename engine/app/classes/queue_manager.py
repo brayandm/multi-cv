@@ -29,7 +29,7 @@ class QueueManager:
             args=[
                 f"{pipeline_class.__module__}.{pipeline_class.__name__}",
                 action,
-                inputs,
+                {key: value.dict() for key, value in inputs.items()},
             ],
             queue=queue_name,
         )
