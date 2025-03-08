@@ -26,10 +26,10 @@ export default {
               DEFAULT: "#334155",
             },
             primary: {
-              DEFAULT: "#2563eb",
+              DEFAULT: "#03a9f4",
             },
             secondary: {
-              DEFAULT: "#1d4e89",
+              DEFAULT: "#9C7BD8",
             },
           },
         },
