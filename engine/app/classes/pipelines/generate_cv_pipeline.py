@@ -40,4 +40,4 @@ class GenerateCVPipeline(Pipeline):
         with open(pdf_path, "rb") as f:
             fs.writebytes(f"/documents/{cv_uuid}.pdf", f.read())
 
-        return "CV generated successfully."
+        return f"/documents/{cv_uuid}.pdf"
