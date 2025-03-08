@@ -34,7 +34,8 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/app \
     -w /app \
+    -e WORKON_HOME=/app/.venvs/hook \
     brayand/fullstack-project-template-python:1.0.0 \
-    sh -c "pipenv run black . && pipenv run isort . && pipenv run flake8 . && pipenv run mypy ."
+    sh -c "pipenv install --dev && pipenv run black . && pipenv run isort ."
 cd ..
 

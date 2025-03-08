@@ -13,3 +13,4 @@ warn_unused_ignores = false
 [tool.isort]
 profile = "black"
 line_length = 79
+skip = [".venvs"]

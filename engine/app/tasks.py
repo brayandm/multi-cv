@@ -1,9 +1,11 @@
-import requests  # type: ignore
-from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage
-from pydantic import SecretStr
-from .celery import celery  # type: ignore
 import os
+
+import requests  # type: ignore
+from langchain.schema import HumanMessage
+from langchain_openai import ChatOpenAI
+from pydantic import SecretStr
+
+from .celery import celery  # type: ignore
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 

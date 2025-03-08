@@ -1,8 +1,9 @@
-from fastapi import FastAPI
-from .tasks import send_to_openai  # type: ignore
 from typing import Dict
+
+from fastapi import FastAPI
 from pydantic import BaseModel
 
+from .tasks import send_to_openai  # type: ignore
 
 app = FastAPI()
 
