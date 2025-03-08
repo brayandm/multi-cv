@@ -9,7 +9,7 @@ from .celery import celery  # type: ignore
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 
-WEBHOOK_URL = "https://webhook.site/fcd06ee9-af22-4a21-b127-6a47095e9f41"
+WEBHOOK_URL = os.getenv("WEBHOOK_URL", "")
 
 
 @celery.task(name="tasks.send_to_openai")  # type: ignore
