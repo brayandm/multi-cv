@@ -1,5 +1,5 @@
 # FROM python:3.13
-FROM brayand/fullstack-project-template-python:1.0.0
+FROM brayand/fullstack-project-template-python-latex:1.0.0
 
 ENV PIPENV_VENV_IN_PROJECT=1
 

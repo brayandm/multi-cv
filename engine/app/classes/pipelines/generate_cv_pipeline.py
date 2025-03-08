@@ -25,7 +25,13 @@ class GenerateCVPipeline(Pipeline):
             f.write(template.render(cv=cv.model_dump()))
 
         subprocess.run(
-            ["pdflatex", "-output-directory", cv_folder, tex_path], check=True
+            [
+                "pdflatex",
+                "-output-directory",
+                cv_folder,
+                tex_path,
+            ],
+            check=True,
         )
 
         return "CV generated successfully."
