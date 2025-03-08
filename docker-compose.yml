@@ -73,7 +73,7 @@ services:
     engine:
         image: multi-cv-engine
         restart: always
-        command: sh -c "pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90"
+        command: sh -c "pipenv run uvicorn app.main:app --host 0.0.0.0 --port 90"
         depends_on:
             engine_redis:
                 condition: service_started
@@ -88,7 +88,7 @@ services:
                 condition: service_started
             rabbitmq:
                 condition: service_healthy
-        command: sh -c "pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
+        command: sh -c "pipenv run celery -A app.celery worker --loglevel=info --pool=threads --concurrency=100"
 
     engine_redis:
         image: multi-cv-engine-redis
