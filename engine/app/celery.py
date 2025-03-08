@@ -14,7 +14,3 @@ celery.conf.update(
         "tasks.send_to_openai": {"queue": "openai_queue"},
     }
 )
-
-celery.conf.task_queues = {
-    "openai_queue",
-}
