@@ -2,7 +2,7 @@ from pydantic import BaseModel
 from app.classes.models.experience import Experience
 
 
-class CV(BaseModel):
+class Cv(BaseModel):
     name: str
     email: str
     phone: str

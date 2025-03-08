@@ -1,3 +1,4 @@
+{% raw %}
 \documentclass[letterpaper,11pt]{article}
 
 \usepackage{latexsym}
@@ -69,19 +70,7 @@
 \newcommand{\resumeItemListStart}{\begin{itemize}}
 \newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
 
-% My Variables
-
-\newcommand{\firstBackend}{Laravel (PHP)}
-\newcommand{\secondBackend}{Django (Python)}
-\newcommand{\thirdBackend}{Node.js (JavaScript)}
-\newcommand{\fourthBackend}{Flask (Python)}
-\newcommand{\mainFrontend}{React (JavaScript)}
-\newcommand{\mainSSR}{Next.js (JavaScript)}
-\newcommand{\mainTitle}{Software Developer}
-\newcommand{\mainTitleIntern}{Web Development Intern}
-\newcommand{\seniority}{}
-\renewcommand{\seniority}{defined}
-\newcommand{\harbourSpaceDegree}{B.Eng}
+{% endraw %}
 
 \begin{document}
 
@@ -89,7 +78,7 @@
 \begin{center}
   \textbf{\Huge {{ cv.name }}} \\ \vspace{5pt}
   \small {{ cv.phone }} $|$
-  \href{mailto:{{ cv.email }}}{\underline{{ cv.email }}}
+  \href{mailto:{{ cv.email }}}{\underline{ {{ cv.email }} }}
 \end{center}
 
 % SUMMARY
@@ -104,7 +93,7 @@
 { {{ exp.position }} }
 { {{ exp.start_date }} -- {{ exp.end_date }} }
 { {{ exp.company }} }
-{ }
+{ {{ exp.location }} }
 \resumeItemListStart
   {% for desc in exp.description %}
   \resumeItem{ {{ desc }} }
