@@ -1,4 +1,3 @@
-import json
 from langchain.schema import HumanMessage
 from app.classes.base import Agent
 from app.classes.models import Person
@@ -7,9 +6,9 @@ from app.classes.models import Person
 class SummaryAgent(Agent):
 
     def run(self, person: Person) -> str:
-        person_json = json.dumps(person.dict(), indent=2, ensure_ascii=False)
+        person_json = person.model_dump_json()
 
-        message = f"""
+        input = f"""
         Here is the information about the person in JSON format:
 
         ```json
@@ -19,6 +18,6 @@ class SummaryAgent(Agent):
         Please generate a summary of this information.
         """
 
-        response = str(self.chat([HumanMessage(content=message)]).content)
+        response = str(self.chat([HumanMessage(content=input)]).content)
 
         return response
