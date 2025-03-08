@@ -14,7 +14,10 @@ class QueueManager:
         self.pipeline_queues[pipeline_class.__name__] = queue_name
 
     def execute(
-        self, pipeline_class: Type[Pipeline], inputs: Dict[str, Any]
+        self,
+        pipeline_class: Type[Pipeline],
+        action: str,
+        inputs: Dict[str, Any],
     ) -> None:
 
         queue_name = self.pipeline_queues.get(
@@ -24,6 +27,7 @@ class QueueManager:
         execute_pipeline.apply_async(
             args=[
                 f"{pipeline_class.__module__}.{pipeline_class.__name__}",
+                action,
                 inputs,
             ],
             queue=queue_name,
