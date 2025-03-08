@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   IDynamicInput,
   IDynamicInputArray,
@@ -66,31 +66,32 @@ const Experience: React.FC<IExperienceProps> = ({
     }, 200);
   }
 
+  // Commented out because this causes the bug where pages are not aligned properly
   /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-  useEffect(() => {
-    let debounceTimeout: ReturnType<typeof setTimeout>;
+  // useEffect(() => {
+  //   let debounceTimeout: ReturnType<typeof setTimeout>;
 
-    const handleScroll = () => {
-      if (debounceTimeout) clearTimeout(debounceTimeout);
+  //   const handleScroll = () => {
+  //     if (debounceTimeout) clearTimeout(debounceTimeout);
 
-      debounceTimeout = setTimeout(() => {
-        if (scrollRef.current) {
-          console.log((scrollRef.current.scrollLeft - width) / width + 2);
+  //     debounceTimeout = setTimeout(() => {
+  //       if (scrollRef.current) {
+  //         console.log((scrollRef.current.scrollLeft - width) / width + 2);
 
-          setCurrentExperience(
-            Math.round((scrollRef.current.scrollLeft - width) / width + 2)
-          );
-        }
-      }, 50);
-    };
-    const element = scrollRef.current;
-    element?.addEventListener("scroll", handleScroll);
+  //         setCurrentExperience(
+  //           Math.round((scrollRef.current.scrollLeft - width) / width + 2)
+  //         );
+  //       }
+  //     }, 50);
+  //   };
+  //   const element = scrollRef.current;
+  //   element?.addEventListener("scroll", handleScroll);
 
-    return () => {
-      element?.removeEventListener("scroll", handleScroll);
-      if (debounceTimeout) clearTimeout(debounceTimeout);
-    };
-  }, []);
+  //   return () => {
+  //     element?.removeEventListener("scroll", handleScroll);
+  //     if (debounceTimeout) clearTimeout(debounceTimeout);
+  //   };
+  // }, []);
   /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
   return (
