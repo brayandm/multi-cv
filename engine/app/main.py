@@ -1,11 +1,14 @@
 from typing import Dict
 
 from fastapi import FastAPI
-from pydantic import BaseModel
 
-from .tasks import send_to_openai  # type: ignore
+from app.classes.pipelines import BasicPipeline, SummaryPipeline
+from app.classes.queue_manager import QueueManager
+from app.models import Message, Person
 
 app = FastAPI()
+
+queue_manager = QueueManager(default_queue="openai_queue")
 
 
 @app.get("/ping")
@@ -13,16 +16,21 @@ async def ping() -> Dict[str, str]:
     return {"message": "pong"}
 
 
-class InputData(BaseModel):
-    user_input: str
+@app.post("/message")
+async def message(message: Message) -> Dict[str, str]:
 
-
-@app.post("/hello")
-async def hello(data: InputData) -> Dict[str, str]:
-
-    task = send_to_openai.delay(data.user_input)
+    queue_manager.execute(BasicPipeline, "message", {"message": message})
 
     return {
         "message": "Request received. Processing in background.",
-        "task_id": task.id,
+    }
+
+
+@app.post("/summary")
+async def summary(person: Person) -> Dict[str, str]:
+
+    queue_manager.execute(SummaryPipeline, "summary", {"person": person})
+
+    return {
+        "message": "Request received. Processing in background.",
     }

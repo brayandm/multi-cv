@@ -1,28 +1,26 @@
-import os
+import importlib
+from typing import Any, Dict
 
 import requests  # type: ignore
-from langchain.schema import HumanMessage
-from langchain_openai import ChatOpenAI
-from pydantic import SecretStr
 
-from .celery import celery  # type: ignore
-
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
-
-WEBHOOK_URL = os.getenv("WEBHOOK_URL", "")
+from app.celery import celery  # type: ignore
+from app.config import WEBHOOK_URL
 
 
-@celery.task(name="tasks.send_to_openai")  # type: ignore
-def send_to_openai(user_input: str) -> str:
-    chat = ChatOpenAI(
-        api_key=SecretStr(OPENAI_API_KEY),
-        model="gpt-4o-mini",
-        temperature=0.7,
-    )
+@celery.task(name="execute_pipeline")  # type: ignore
+def execute_pipeline(
+    pipeline_path: str,
+    action: str,
+    inputs: Dict[str, Any],
+) -> Any:
 
-    response = str(chat([HumanMessage(content=user_input)]).content)
+    module_name, class_name = pipeline_path.rsplit(".", 1)
+    module = importlib.import_module(module_name)
+    pipeline_class = getattr(module, class_name)
 
-    payload = {"user_input": user_input, "response": response}
-    requests.post(WEBHOOK_URL, json=payload)
+    pipeline_instance = pipeline_class()
+    result = pipeline_instance.run(**inputs)
 
-    return response
+    requests.post(WEBHOOK_URL, json={"action": action, "result": result})
+
+    return {"action": action, "result": "success"}
