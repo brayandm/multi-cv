@@ -8,8 +8,8 @@ from app.config import WEBHOOK_URL
 from app.worker.utils import deserialize, format_result
 
 
-@celery.task(name="execute_pipeline")  # type: ignore
-def execute_pipeline(
+@celery.task(name="execute_pipeline_task")  # type: ignore
+def execute_pipeline_task(
     pipeline_path: str,
     action: str,
     inputs: Dict[str, Any],

@@ -1,6 +1,6 @@
 from typing import Any, Dict, Type
 from app.classes.base import Pipeline
-from app.worker.tasks import execute_pipeline
+from app.worker.tasks import execute_pipeline_task
 from app.worker.utils import serialize
 
 
@@ -14,7 +14,7 @@ class QueueManager:
     ) -> None:
         self.pipeline_queues[pipeline_class.__name__] = queue_name
 
-    def execute(
+    def execute_pipeline(
         self,
         pipeline_class: Type[Pipeline],
         action: str,
@@ -32,7 +32,7 @@ class QueueManager:
             key: serialize(value) for key, value in inputs_dict.items()
         }
 
-        execute_pipeline.apply_async(
+        execute_pipeline_task.apply_async(
             args=[
                 f"{pipeline_class.__module__}.{pipeline_class.__name__}",
                 action,
