@@ -9,7 +9,7 @@ from app.classes.pipelines import (
     GenerateCVPipeline,
 )
 from app.worker.queue_manager import QueueManager
-from app.classes.models import Message, Person, CV
+from app.classes.models import Message, Person, Cv, CvTemplate
 
 app = FastAPI()
 
@@ -54,9 +54,11 @@ async def improve_about(person: Person, message: Message) -> Dict[str, str]:
 
 
 @app.post("/generate/cv")
-async def generate_cv(cv: CV) -> Dict[str, str]:
+async def generate_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
 
-    queue_manager.execute_pipeline(GenerateCVPipeline, "generate_cv", cv)
+    queue_manager.execute_pipeline(
+        GenerateCVPipeline, "generate_cv", cv, cv_template
+    )
 
     return {
         "message": "Request received. Processing in background.",
