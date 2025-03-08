@@ -23,6 +23,16 @@ CELERY_BROKER_URL = (
 
 RESULT_BACKEND = "redis://:{password}@{host}:{port}/{db}".format(**REDIS)
 
+DOCUMENTS_DISK = os.environ.get("DOCUMENTS_DISK", "local")
+
+STORAGE_PATH = os.environ.get("STORAGE_PATH", "/var/app/media")
+
+AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_DEFAULT_REGION = os.environ.get("AWS_DEFAULT_REGION")
+AWS_BUCKET = os.environ.get("AWS_BUCKET")
+AWS_USE_PATH_STYLE_ENDPOINT = os.environ.get("AWS_USE_PATH_STYLE_ENDPOINT")
+
 WEBHOOK_URL = os.environ.get("WEBHOOK_URL")
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
