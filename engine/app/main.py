@@ -3,8 +3,8 @@ from typing import Dict
 from fastapi import FastAPI
 
 from app.classes.pipelines import BasicPipeline, SummaryPipeline
-from app.classes.queue_manager import QueueManager
-from app.models import Message, Person
+from engine.app.worker.queue_manager import QueueManager
+from app.classes.models import Message, Person
 
 app = FastAPI()
 

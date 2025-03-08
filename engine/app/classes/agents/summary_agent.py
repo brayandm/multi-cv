@@ -1,7 +1,7 @@
 import json
 from langchain.schema import HumanMessage
 from app.classes.base import Agent
-from app.models import Person
+from app.classes.models import Person
 
 
 class SummaryAgent(Agent):

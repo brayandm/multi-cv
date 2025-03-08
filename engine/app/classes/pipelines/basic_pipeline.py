@@ -1,6 +1,6 @@
 from app.classes.agents import BasicAgent
 from app.classes.base import Pipeline
-from app.models import Message
+from app.classes.models import Message
 
 
 class BasicPipeline(Pipeline):

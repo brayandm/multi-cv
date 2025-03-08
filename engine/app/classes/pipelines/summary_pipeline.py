@@ -1,6 +1,6 @@
 from app.classes.agents import SummaryAgent
 from app.classes.base import Pipeline
-from app.models import Person
+from app.classes.models import Person
 
 
 class SummaryPipeline(Pipeline):
