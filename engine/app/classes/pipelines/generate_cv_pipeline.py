@@ -9,7 +9,7 @@ class GenerateCVPipeline(Pipeline):
 
     def run(self, cv: Cv, cv_template: CvTemplate) -> str:
 
-        env = Environment(loader=FileSystemLoader("../../templates/cv"))
+        env = Environment(loader=FileSystemLoader("./app/templates/cv/"))
         template = env.get_template(f"{cv_template.id}.tex")
 
         output_tex = "cv_generated.tex"
@@ -17,7 +17,5 @@ class GenerateCVPipeline(Pipeline):
             f.write(template.render(cv=cv.model_dump()))
 
         subprocess.run(["pdflatex", output_tex])
-
-        print("Generating CV...")
 
         return "CV generated successfully."
