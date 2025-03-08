@@ -25,11 +25,16 @@ class QueueManager:
             pipeline_class.__name__, self.default_queue
         )
 
+        def transform(value: Any) -> Any:
+            if hasattr(value, "dict"):
+                return value.dict()
+            return value
+
         execute_pipeline.apply_async(
             args=[
                 f"{pipeline_class.__module__}.{pipeline_class.__name__}",
                 action,
-                {key: value.dict() for key, value in inputs.items()},
+                {key: transform(value) for key, value in inputs.items()},
             ],
             queue=queue_name,
         )
