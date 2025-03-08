@@ -26,6 +26,7 @@ services:
         restart: always
         volumes:
             - .:/app
+            - ../backend/storage/app/documents:/app/storage/documents
         networks:
             - multi-cv-local
         depends_on:

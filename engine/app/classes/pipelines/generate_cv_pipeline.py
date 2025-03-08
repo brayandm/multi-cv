@@ -5,6 +5,7 @@ from jinja2 import Environment, FileSystemLoader
 import subprocess
 import os
 import uuid
+from app.helpers.filesystem import Filesystem
 
 
 class GenerateCVPipeline(Pipeline):
@@ -19,19 +20,24 @@ class GenerateCVPipeline(Pipeline):
         os.makedirs(cv_folder, exist_ok=True)
 
         tex_path = os.path.join(cv_folder, "cv_generated.tex")
-        # pdf_path = os.path.join(cv_folder, "cv_generated.pdf")
+        pdf_path = os.path.join(cv_folder, "cv_generated.pdf")
 
         with open(tex_path, "w", encoding="utf-8") as f:
             f.write(template.render(cv=cv.model_dump()))
 
-        subprocess.run(
-            [
-                "pdflatex",
-                "-output-directory",
-                cv_folder,
-                tex_path,
-            ],
-            check=True,
-        )
+        try:
+            subprocess.run(
+                ["pdflatex", "-output-directory", cv_folder, tex_path],
+                check=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+            )
+        except subprocess.CalledProcessError as e:
+            return f"Error while generating CV: {e.stderr.decode()}"
+
+        fs = Filesystem.get_filesystem()
+
+        with open(pdf_path, "rb") as f:
+            fs.writebytes(f"/{cv_uuid}.pdf", f.read())
 
         return "CV generated successfully."
