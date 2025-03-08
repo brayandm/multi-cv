@@ -5,7 +5,7 @@ services:
         restart: always
         volumes:
             - .:/app
-            - ../backend/storage/app/documents:/app/storage/documents
+            - ../backend/storage/app/private/documents:/app/storage/documents
         ports:
             - 91:90
         networks:
@@ -27,7 +27,7 @@ services:
         restart: always
         volumes:
             - .:/app
-            - ../backend/storage/app/documents:/app/storage/documents
+            - ../backend/storage/app/private/documents:/app/storage/documents
         networks:
             - multi-cv-local
         depends_on:
