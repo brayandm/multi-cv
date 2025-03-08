@@ -1,6 +1,7 @@
 from typing import Any, Dict, Type
 from app.classes.base import Pipeline
 from app.worker.tasks import execute_pipeline
+from app.worker.utils import serialize
 
 
 class QueueManager:
@@ -23,23 +24,8 @@ class QueueManager:
             pipeline_class.__name__, self.default_queue
         )
 
-        def transform(value: Any) -> Dict[str, Any]:
-            if hasattr(value, "dict"):
-                vtype = (
-                    f"{value.__class__.__module__}.{value.__class__.__name__}"
-                )
-
-                return {
-                    "__type__": vtype,
-                    "data": value.dict(),
-                }
-            return {
-                "__type__": "primitive",
-                "data": value,
-            }
-
         serialized_inputs = {
-            key: transform(value) for key, value in inputs.items()
+            key: serialize(value) for key, value in inputs.items()
         }
 
         execute_pipeline.apply_async(
