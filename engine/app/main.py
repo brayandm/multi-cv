@@ -23,7 +23,7 @@ async def ping() -> Dict[str, str]:
 @app.post("/message")
 async def message(message: Message) -> Dict[str, str]:
 
-    queue_manager.execute(BasicPipeline, "message", {"message": message})
+    queue_manager.execute(BasicPipeline, "message", message)
 
     return {
         "message": "Request received. Processing in background.",
@@ -33,7 +33,7 @@ async def message(message: Message) -> Dict[str, str]:
 @app.post("/summary")
 async def summary(person: Person) -> Dict[str, str]:
 
-    queue_manager.execute(SummaryPipeline, "summary", {"person": person})
+    queue_manager.execute(SummaryPipeline, "summary", person)
 
     return {
         "message": "Request received. Processing in background.",
@@ -43,9 +43,7 @@ async def summary(person: Person) -> Dict[str, str]:
 @app.post("/improve/about")
 async def improve_about(person: Person, message: Message) -> Dict[str, str]:
 
-    queue_manager.execute(
-        ImproveAboutPipeline, "summary", {"person": person, "message": message}
-    )
+    queue_manager.execute(ImproveAboutPipeline, "summary", person, message)
 
     return {
         "message": "Request received. Processing in background.",

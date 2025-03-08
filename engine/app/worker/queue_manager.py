@@ -18,14 +18,18 @@ class QueueManager:
         self,
         pipeline_class: Type[Pipeline],
         action: str,
-        inputs: Dict[str, Any],
+        *inputs: Any,
     ) -> None:
         queue_name = self.pipeline_queues.get(
             pipeline_class.__name__, self.default_queue
         )
 
+        inputs_dict = {
+            f"arg{i}": input_value for i, input_value in enumerate(inputs)
+        }
+
         serialized_inputs = {
-            key: serialize(value) for key, value in inputs.items()
+            key: serialize(value) for key, value in inputs_dict.items()
         }
 
         execute_pipeline.apply_async(

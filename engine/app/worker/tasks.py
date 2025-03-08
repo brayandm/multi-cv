@@ -15,16 +15,16 @@ def execute_pipeline(
     inputs: Dict[str, Any],
 ) -> Any:
 
-    deserialized_inputs = {
-        key: deserialize(value) for key, value in inputs.items()
-    }
+    deserialized_inputs = [
+        deserialize(value) for key, value in sorted(inputs.items())
+    ]
 
     module_name, class_name = pipeline_path.rsplit(".", 1)
     module = importlib.import_module(module_name)
     pipeline_class = getattr(module, class_name)
 
     pipeline_instance = pipeline_class()
-    result = pipeline_instance.run(**deserialized_inputs)
+    result = pipeline_instance.run(*deserialized_inputs)
 
     requests.post(
         WEBHOOK_URL, json={"action": action, "result": format_result(result)}
