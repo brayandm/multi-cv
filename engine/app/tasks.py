@@ -22,3 +22,5 @@ def execute_pipeline(
     result = pipeline_instance.run(**inputs)
 
     requests.post(WEBHOOK_URL, json={"action": action, "result": result})
+
+    return {"action": action, "result": "success"}
