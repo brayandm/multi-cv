@@ -20,7 +20,7 @@ async def ping() -> Dict[str, str]:
 @app.post("/message")
 async def message(data: Message) -> Dict[str, str]:
 
-    queue_manager.execute(BasicPipeline, {"nombre": "Brayan", "edad": 25})
+    queue_manager.execute(BasicPipeline, {"message:": data.message})
 
     return {
         "message": "Request received. Processing in background.",
