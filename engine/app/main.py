@@ -29,7 +29,7 @@ async def message(message: Message) -> Dict[str, str]:
 @app.post("/summary")
 async def summary(person: Person) -> Dict[str, str]:
 
-    queue_manager.execute(SummaryPipeline, "message", {"person": person})
+    queue_manager.execute(SummaryPipeline, "summary", {"person": person})
 
     return {
         "message": "Request received. Processing in background.",
