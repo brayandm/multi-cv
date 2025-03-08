@@ -1,9 +1,10 @@
 from typing import Dict
 
 from fastapi import FastAPI
-from pydantic import BaseModel
+from .models import Message
+from .models import Person
 
-from .tasks import send_to_openai  # type: ignore
+from .tasks import message_task  # type: ignore
 
 app = FastAPI()
 
@@ -13,16 +14,19 @@ async def ping() -> Dict[str, str]:
     return {"message": "pong"}
 
 
-class InputData(BaseModel):
-    user_input: str
+@app.post("/message")
+async def message(data: Message) -> Dict[str, str]:
 
-
-@app.post("/hello")
-async def hello(data: InputData) -> Dict[str, str]:
-
-    task = send_to_openai.delay(data.user_input)
+    message_task.delay(data.message)
 
     return {
         "message": "Request received. Processing in background.",
-        "task_id": task.id,
+    }
+
+
+@app.post("/person/summary")
+async def person_summary(data: Person) -> Dict[str, str]:
+
+    return {
+        "message": "Request received. Processing in background.",
     }
