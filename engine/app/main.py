@@ -2,9 +2,9 @@ from typing import Dict
 
 from fastapi import FastAPI
 
-from app.classes.pipelines.basic_pipeline import BasicPipeline
+from app.classes.pipelines import BasicPipeline, SummaryPipeline
 from app.classes.queue_manager import QueueManager
-from app.models import Message
+from app.models import Message, Person
 
 app = FastAPI()
 
@@ -20,6 +20,16 @@ async def ping() -> Dict[str, str]:
 async def message(data: Message) -> Dict[str, str]:
 
     queue_manager.execute(BasicPipeline, "message", {"message": data.message})
+
+    return {
+        "message": "Request received. Processing in background.",
+    }
+
+
+@app.post("/summary")
+async def summary(person: Person) -> Dict[str, str]:
+
+    queue_manager.execute(SummaryPipeline, "message", {"person": person})
 
     return {
         "message": "Request received. Processing in background.",

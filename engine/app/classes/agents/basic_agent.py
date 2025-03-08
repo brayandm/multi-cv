@@ -1,6 +1,6 @@
 from langchain.schema import HumanMessage
 
-from app.classes.base.agent import Agent
+from app.classes.base import Agent
 
 
 class BasicAgent(Agent):

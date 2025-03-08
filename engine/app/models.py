@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 
 class Person(BaseModel):
-    nombre: str
+    name: str
     email: str
     about: str
 

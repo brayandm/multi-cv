@@ -1,6 +1,6 @@
 from typing import Any, Dict, Type
 
-from app.classes.base.pipeline import Pipeline
+from app.classes.base import Pipeline
 from app.tasks import execute_pipeline
 
 
