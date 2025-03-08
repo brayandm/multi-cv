@@ -37,7 +37,7 @@ services:
         environment:
             - WORKON_HOME=/app/.venvs/celery
             - PIPENV_VENV_IN_PROJECT=0
-        command: sh -c "pipenv install --dev && pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.celery worker --loglevel=info -Q openai_queue --pool=threads --concurrency=100"
+        command: sh -c "pipenv install --dev && pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- celery -A app.worker.celery worker --loglevel=info -Q openai_queue --pool=threads --concurrency=100"
 
     engine_redis:
         restart: always

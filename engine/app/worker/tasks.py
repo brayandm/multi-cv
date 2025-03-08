@@ -3,7 +3,7 @@ from typing import Any, Dict
 
 import requests  # type: ignore
 
-from app.celery import celery  # type: ignore
+from app.worker.celery import celery  # type: ignore
 from app.config import WEBHOOK_URL
 
 
