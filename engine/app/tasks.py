@@ -14,7 +14,7 @@ WEBHOOK_URL = "https://webhook.site/fcd06ee9-af22-4a21-b127-6a47095e9f41"
 def send_to_openai(user_input: str) -> str:
     chat = ChatOpenAI(
         api_key=SecretStr(OPENAI_API_KEY),
-        model="gpt-3.5-turbo",
+        model="gpt-4o-mini",
         temperature=0.7,
     )
 
