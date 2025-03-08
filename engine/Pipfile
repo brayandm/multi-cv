@@ -12,6 +12,8 @@ redis = "*"
 watchdog = "*"
 langchain-community = "*"
 langchain-openai = "*"
+jinja2 = "*"
+pdflatex = "*"
 
 [dev-packages]
 black = "*"
