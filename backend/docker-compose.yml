@@ -1,7 +1,6 @@
 services:
     backend:
         image: brayand/fullstack-project-template-sail:1.0.0
-        user: "${UID:-1000}:${GID:-1000}"
         restart: always
         ports:
             - "${APP_PORT:-80}:80"
