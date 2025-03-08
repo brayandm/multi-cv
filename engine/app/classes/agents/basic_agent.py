@@ -1,4 +1,4 @@
-from ..base.agent import Agent
+from app.classes.base.agent import Agent
 from langchain.schema import HumanMessage
 
 

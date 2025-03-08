@@ -1,12 +1,15 @@
 from typing import Dict
 
 from fastapi import FastAPI
-from .models import Message
-from .models import Person
+from app.models import Message
 
-from .tasks import message_task  # type: ignore
+from app.classes.queue_manager import QueueManager
+
+from app.classes.pipelines.basic_pipeline import BasicPipeline
 
 app = FastAPI()
+
+queue_manager = QueueManager(default_queue="openai_queue")
 
 
 @app.get("/ping")
@@ -17,15 +20,7 @@ async def ping() -> Dict[str, str]:
 @app.post("/message")
 async def message(data: Message) -> Dict[str, str]:
 
-    message_task.delay(data.message)
-
-    return {
-        "message": "Request received. Processing in background.",
-    }
-
-
-@app.post("/person/summary")
-async def person_summary(data: Person) -> Dict[str, str]:
+    queue_manager.execute(BasicPipeline, {"nombre": "Brayan", "edad": 25})
 
     return {
         "message": "Request received. Processing in background.",

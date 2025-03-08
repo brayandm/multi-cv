@@ -1,6 +1,6 @@
-from ..tasks import execute_pipeline
+from app.tasks import execute_pipeline
 from typing import Any, Dict, Type
-from .base.pipeline import Pipeline
+from app.classes.base.pipeline import Pipeline
 
 
 class QueueManager:

@@ -1,6 +1,6 @@
 import os
 
-from .celery import celery  # type: ignore
+from app.celery import celery  # type: ignore
 from typing import Any, Dict
 import importlib
 
