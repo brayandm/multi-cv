@@ -12,7 +12,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
 WEBHOOK_URL = "https://webhook.site/fcd06ee9-af22-4a21-b127-6a47095e9f41"
 
 
-@celery.task(name="tasks.send_to_openai")
+@celery.task(name="tasks.send_to_openai")  # type: ignore
 def send_to_openai(user_input: str) -> str:
     chat = ChatOpenAI(
         api_key=SecretStr(OPENAI_API_KEY),

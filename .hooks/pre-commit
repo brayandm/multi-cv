@@ -35,6 +35,7 @@ docker run --rm \
     -v $(pwd):/app \
     -w /app \
     -e WORKON_HOME=/app/.venvs/hook \
+    -e PIPENV_VENV_IN_PROJECT=0 \
     brayand/fullstack-project-template-python:1.0.0 \
     sh -c "pipenv install --dev && pipenv run black . && pipenv run isort ."
 cd ..
