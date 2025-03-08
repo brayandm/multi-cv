@@ -11,6 +11,6 @@ celery = Celery(
 
 celery.conf.update(
     task_routes={
-        "tasks.send_to_openai": {"queue": "openai_queue"},
+        "*": {"queue": "openai_queue"},
     }
 )
