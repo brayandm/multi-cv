@@ -88,7 +88,7 @@ services:
                 condition: service_started
             rabbitmq:
                 condition: service_healthy
-        command: sh -c "pipenv run celery -A app.worker.celery worker --loglevel=info --pool=threads --concurrency=100"
+        command: sh -c "pipenv run celery -A app.worker.celery worker --loglevel=info -Q openai_queue --pool=threads --concurrency=100"
 
     engine_redis:
         image: multi-cv-engine-redis
