@@ -8,6 +8,7 @@ import {
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Avatar, Image, Select, SelectItem } from "@heroui/react";
+import { SelectIconInputsStyles } from "@/lib/customStyles";
 
 export const socials = [
   {
@@ -86,9 +87,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
   return (
     <div className="px-1">
       <Select
-        classNames={{
-          trigger: "min-h-12 py-2",
-        }}
+        classNames={SelectIconInputsStyles}
         className="mb-2"
         isMultiline={true}
         items={socials}
