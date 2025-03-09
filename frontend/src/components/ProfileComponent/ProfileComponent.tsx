@@ -1,6 +1,6 @@
 "use client";
 import { Button, Card, CardBody, CardHeader, Tab, Tabs } from "@heroui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
 import { IProfileFrom } from "./ProfileComponent.types";
 import Experience from "./Experience";
@@ -33,6 +33,38 @@ const ProfileComponent: React.FC = () => {
 
   const t = useTranslations();
 
+  const [selectedTab, setSelectedTab] =
+    useState<keyof typeof mapPosition>("basic-user-info");
+
+  const mapPosition = React.useMemo(
+    () => ({
+      "basic-user-info": 0,
+      socials: 1,
+      experiences: 2,
+      projects: 3,
+      skills: 4,
+    }),
+    []
+  );
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    console.log(selectedTab, ref);
+
+    const index = mapPosition[selectedTab] - 1;
+
+    if (index < 0) return;
+    if (ref.current === null) return;
+    if (ref.current.children === null) return;
+
+    const positionChild =
+      ref.current.children[index].getBoundingClientRect().left;
+    const positionParent = ref.current.getBoundingClientRect().left;
+
+    ref.current.scrollLeft += positionChild - positionParent;
+  }, [selectedTab, mapPosition]);
+
   return (
     <main className="flex justify-center">
       <div className={`max-w-[${width}px]`}>
@@ -48,7 +80,12 @@ const ProfileComponent: React.FC = () => {
               <Tabs
                 aria-label="Options"
                 color="primary"
-                classNames={{ base: "p-2" }}
+                classNames={{ base: "p-2", tabList: "" }}
+                selectedKey={selectedTab}
+                onSelectionChange={(key) => {
+                  setSelectedTab(key as keyof typeof mapPosition);
+                }}
+                ref={ref}
               >
                 <Tab
                   key="basic-user-info"
