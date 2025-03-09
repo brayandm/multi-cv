@@ -12,11 +12,11 @@ class GenerateCVPipeline(Pipeline):
 
     def run(self, cv: Cv, cv_template: CvTemplate) -> str:
 
-        env = Environment(loader=FileSystemLoader("./app/templates/cv/"))
+        env = Environment(loader=FileSystemLoader("./app/templates/latex/cv/"))
         template = env.get_template(f"{cv_template.id}.tex.jinja2")
 
         cv_uuid = str(uuid.uuid4())
-        cv_folder = f"./app/templates/generated/{cv_uuid}/"
+        cv_folder = f"./app/templates/latex/generated/{cv_uuid}/"
         os.makedirs(cv_folder, exist_ok=True)
 
         tex_path = os.path.join(cv_folder, "cv_generated.tex")
