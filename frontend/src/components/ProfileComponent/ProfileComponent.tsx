@@ -14,6 +14,7 @@ const ProfileComponent: React.FC = () => {
   const [selectedSocials, setSelectedSocials] = useState<Array<string>>([]);
   const [formData, setFormData] = useState<IProfileFrom>({
     basicInfo: {
+      location: "",
       about: "",
       email: "",
       full_name: "",
@@ -46,6 +47,10 @@ const ProfileComponent: React.FC = () => {
     }),
     []
   );
+  const positions = Object.keys(mapPosition) as Array<keyof typeof mapPosition>;
+  const nextPositionIsAvailable = () => {
+    return mapPosition[selectedTab] + 1 < positions.length;
+  };
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -93,7 +98,7 @@ const ProfileComponent: React.FC = () => {
     <main className="flex justify-center">
       <div className={`max-w-[${width}px]`}>
         <form className="flex flex-col gap-2">
-          <Card>
+          <Card className="min-h-[75vh]">
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
                 <h1>{t("common.menu.profile")}</h1>
@@ -167,7 +172,16 @@ const ProfileComponent: React.FC = () => {
             </CardBody>
           </Card>
           <Card className="mb-3">
-            <Button color="primary">{t("common.buttons.next")}</Button>
+            {nextPositionIsAvailable() && (
+              <Button
+                onPress={() =>
+                  setSelectedTab(positions[mapPosition[selectedTab] + 1])
+                }
+                color="primary"
+              >
+                {t("common.buttons.next")}
+              </Button>
+            )}
           </Card>
         </form>
       </div>
