@@ -19,5 +19,5 @@ class DocumentGenerator(ABC):
         pass
 
     @abstractmethod
-    def store(self) -> str:
+    def store_cv(self) -> str:
         pass

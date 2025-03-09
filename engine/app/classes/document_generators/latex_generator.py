@@ -34,7 +34,7 @@ class LatexGenerator(DocumentGenerator):
         except subprocess.CalledProcessError as e:
             raise e
 
-    def store(self) -> str:
+    def store_cv(self) -> str:
         fs = FilesystemFacade.get_filesystem()
         dest_folder = "/documents"
 
