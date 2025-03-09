@@ -1,6 +1,6 @@
 import os
-import uuid
 import subprocess
+import uuid
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -8,7 +8,6 @@ from app.classes.base.document_generator import (
     DocumentGenerator,
 )
 from app.classes.models import Cv, CvTemplate
-
 from app.facades.filesystem_facade import FilesystemFacade
 
 
