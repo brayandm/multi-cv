@@ -9,8 +9,8 @@ from app.classes.pipelines import (
     ImproveAboutPipeline,
     SummaryPipeline,
 )
-from app.worker.queue_manager import QueueManager
 from app.facades.document_generator_facade import DocumentGeneratorFacade
+from app.worker.queue_manager import QueueManager
 
 app = FastAPI()
 
