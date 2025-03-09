@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from app.classes.models.experience import Experience
+from app.classes.models.experience import CvExperience
 
 
 class Cv(BaseModel):
@@ -8,4 +8,4 @@ class Cv(BaseModel):
     email: str
     phone: str
     summary: str
-    experiences: list[Experience]
+    experiences: list[CvExperience]

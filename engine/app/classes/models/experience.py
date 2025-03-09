@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class Experience(BaseModel):
+class CvExperience(BaseModel):
     company: str
     position: str
     location: str
