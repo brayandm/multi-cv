@@ -3,8 +3,6 @@ name: multi-cv
 on:
     push:
         branches: ["main"]
-    pull_request:
-        branches: ["main"]
 
 jobs:
     build:
@@ -43,5 +41,11 @@ jobs:
               run: docker volume rm multi-cv_backend-app || true
             - name: Starting the containers
               run: docker compose  up -d
+
+    clean:
+        runs-on:
+            - self-hosted
+        if: always()
+        steps:
             - name: Removing unused docker images
               run: docker image prune -f
