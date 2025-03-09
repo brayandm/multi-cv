@@ -1,5 +1,6 @@
-from app.classes.models.cv_experience import CvExperience
 from pydantic import BaseModel
+
+from app.classes.models.cv_experience import CvExperience
 
 
 class Cv(BaseModel):

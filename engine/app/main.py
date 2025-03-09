@@ -1,6 +1,6 @@
 from typing import Dict
 
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 
 from app.classes.models import Cv, CvTemplate, Message, Person
 from app.classes.pipelines import (
@@ -15,13 +15,15 @@ app = FastAPI()
 
 queue_manager = QueueManager(default_queue="openai_queue")
 
+router = APIRouter(prefix="/api/v1")
 
-@app.get("/ping")
+
+@router.get("/ping")
 async def ping() -> Dict[str, str]:
     return {"message": "pong"}
 
 
-@app.post("/message")
+@router.post("/message")
 async def message(message: Message) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(BasicPipeline, "message", message)
@@ -31,7 +33,7 @@ async def message(message: Message) -> Dict[str, str]:
     }
 
 
-@app.post("/summary")
+@router.post("/summary")
 async def summary(person: Person) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(SummaryPipeline, "summary", person)
@@ -41,7 +43,7 @@ async def summary(person: Person) -> Dict[str, str]:
     }
 
 
-@app.post("/improve/about")
+@router.post("/improve/about")
 async def improve_about(person: Person, message: Message) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(
@@ -53,7 +55,7 @@ async def improve_about(person: Person, message: Message) -> Dict[str, str]:
     }
 
 
-@app.post("/generate/cv")
+@router.post("/generate/cv")
 async def generate_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(
@@ -63,3 +65,6 @@ async def generate_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
     return {
         "message": "Request received. Processing in background.",
     }
+
+
+app.include_router(router)
