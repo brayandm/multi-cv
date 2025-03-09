@@ -15,10 +15,24 @@ export interface IExperience {
   role: string;
   is_present: boolean;
 }
+export interface IProject {
+  name: string;
+  end_date: string;
+  start_date: string;
+  description: string;
+  link: string;
+}
+export interface ISocial {
+  name: string;
+  link: string;
+}
 
 export interface IProfileFrom {
   basicInfo: BasicInfo;
+  socials: ISocial[];
   experience: IExperience[];
+  projects: IProject[];
+  skills: string[];
 }
 
 export interface IExperienceProps {
@@ -29,6 +43,7 @@ export interface IExperienceProps {
 
 /* --------------------------------------------------------------- */
 export type IDynamicOnValueChange<T> = (value: T) => void;
+export type IDynamicOnPress = () => void;
 
 export interface IDynamicInput<T> {
   label: string;
@@ -45,11 +60,22 @@ export interface IDynamicInput<T> {
     | "checkbox"
     | "is_present"
     | "phone_number"
-    | "country_code";
-  value: unknown;
+    | "country_code"
+    | "button";
+  value?: unknown;
   selected?: boolean;
+  color?:
+    | "default"
+    | "danger"
+    | "primary"
+    | "secondary"
+    | "success"
+    | "warning"
+    | undefined;
   startContent?: React.ReactNode;
-  onValueChange: IDynamicOnValueChange<T>;
+  endContent?: React.ReactNode;
+  onValueChange?: IDynamicOnValueChange<T>;
+  onPress?: IDynamicOnPress;
 }
 
 export type IDynamicInputArray<T> = Array<

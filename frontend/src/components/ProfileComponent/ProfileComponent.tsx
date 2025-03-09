@@ -5,9 +5,13 @@ import BasicUserInfo from "./BasicUserInfo";
 import { IProfileFrom } from "./ProfileComponent.types";
 import Experience from "./Experience";
 import { useTranslations } from "next-intl";
+import Skills from "./Skills";
+import Projects from "./Projects";
+import Socials from "./Socials";
 
 const ProfileComponent: React.FC = () => {
   const width = 350;
+  const [selectedSocials, setSelectedSocials] = useState<Array<string>>([]);
   const [formData, setFormData] = useState<IProfileFrom>({
     basicInfo: {
       about: "",
@@ -16,7 +20,10 @@ const ProfileComponent: React.FC = () => {
       country_code: "",
       phone_number: "",
     },
+    socials: [],
+    projects: [],
     experience: [],
+    skills: [],
   });
   useEffect(() => {
     {
@@ -31,9 +38,11 @@ const ProfileComponent: React.FC = () => {
       <div className={`max-w-[${width}px]`}>
         <form className="flex flex-col gap-2">
           <Card>
-            <CardHeader className="flex flex-col items-start">
-              <h1>{t("common.menu.profile")}</h1>
-              <p>{t("pages.profile.subtitle")}</p>
+            <CardHeader className="pb-0 flex flex-col items-start">
+              <div className="px-1 py-1">
+                <h1>{t("common.menu.profile")}</h1>
+                <p>{t("pages.profile.subtitle")}</p>
+              </div>
             </CardHeader>
             <CardBody>
               <Tabs
@@ -52,6 +61,18 @@ const ProfileComponent: React.FC = () => {
                   ></BasicUserInfo>
                 </Tab>
                 <Tab
+                  key="socials"
+                  title={t("pages.profile.sections.socials.title")}
+                >
+                  <Socials
+                    formData={formData}
+                    setFormData={setFormData}
+                    width={width}
+                    selectedSocials={selectedSocials}
+                    setSelectedSocials={setSelectedSocials}
+                  ></Socials>
+                </Tab>
+                <Tab
                   key="experiences"
                   title={t("pages.profile.sections.experience.title")}
                 >
@@ -60,6 +81,26 @@ const ProfileComponent: React.FC = () => {
                     formData={formData}
                     setFormData={setFormData}
                   ></Experience>
+                </Tab>
+                <Tab
+                  key="projects"
+                  title={t("pages.profile.sections.projects.title")}
+                >
+                  <Projects
+                    width={width}
+                    formData={formData}
+                    setFormData={setFormData}
+                  ></Projects>
+                </Tab>
+                <Tab
+                  key="skills"
+                  title={t("pages.profile.sections.skills.title")}
+                >
+                  <Skills
+                    width={width}
+                    formData={formData}
+                    setFormData={setFormData}
+                  ></Skills>
                 </Tab>
               </Tabs>
             </CardBody>

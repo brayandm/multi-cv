@@ -1,5 +1,5 @@
 "use client";
-import { Checkbox, Input, Textarea } from "@heroui/react";
+import { Button, Checkbox, Input, Textarea } from "@heroui/react";
 import React, { Key } from "react";
 import {
   DynamicInputsProps,
@@ -86,6 +86,18 @@ const DynamicInputs = <T,>({
           if (isInvalid) color = "danger";
         }
 
+        if (input.type === "button") {
+          return (
+            <Button
+              key={index}
+              variant={variant}
+              onPress={input.onPress}
+              color={input.color}
+            >
+              {input.label}
+            </Button>
+          );
+        }
         if (input.type === "country_code") {
           return (
             <SelectCountry
@@ -225,6 +237,7 @@ const DynamicInputs = <T,>({
             errorMessage={errorMessage}
             classNames={customStyles}
             startContent={input.startContent}
+            endContent={input.endContent}
           />
         );
       })}
