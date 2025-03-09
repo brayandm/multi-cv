@@ -37,13 +37,18 @@
       "phone": "Phone number",
       "about": "About you",
       "company_name": "Company",
+      "skill": "Skill",
       "role": "Role",
       "phone_number": "Phone number",
       "country_code": "Country code",
       "company_description": "Company description",
       "company_location": "Country/City",
       "company_start_date": "Start date",
-      "company_end_date": "End date"
+      "company_end_date": "End date",
+      "project_name": "Project name",
+      "project_description": "Project description",
+      "project_link": "Link",
+      "socials_select": "Select socials"
     },
     "placeholders": {
       "enter_full_name": "Enter your full name",
@@ -53,12 +58,17 @@
       "enter_new_password": "Enter your new password",
       "enter_password_again": "Enter your password again",
       "enter_country": "Enter your country",
+      "enter_skill": "Enter a new skill",
       "enter_phone": "Enter your phone number",
       "enter_about": "I am a ...",
       "enter_company_name": "Company name",
       "enter_role": "Your role in the company",
       "enter_company_description": "A description of your duties and responsabilities in the job",
-      "enter_company_location": "The job location, you can also type \"Remote\""
+      "enter_company_location": "The job location, you can also type \"Remote\"",
+      "enter_project_name": "Enter the project name",
+      "enter_project_description": "Enter a briew description",
+      "enter_project_link": "Link to your project",
+      "socials_select": "Click to select"
     },
     "legal": {
       "terms_conditions": "Terms & Conditions",
@@ -121,6 +131,16 @@
       "sections": {
         "basic_info": {
           "title": "Personal"
+        },
+        "socials": {
+          "title": "Socials"
+        },
+        "skills": {
+          "title": "Skills"
+        },
+        "projects": {
+          "title": "Projects",
+          "add_project": "Add Project"
         },
         "experience": {
           "title": "Experience",
