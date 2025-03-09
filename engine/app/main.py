@@ -10,6 +10,7 @@ from app.classes.pipelines import (
     SummaryPipeline,
 )
 from app.worker.queue_manager import QueueManager
+from app.facades.document_generator_facade import DocumentGeneratorFacade
 
 app = FastAPI()
 
@@ -65,6 +66,16 @@ async def generate_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
     return {
         "message": "Request received. Processing in background.",
     }
+
+
+@router.post("/generate/cv/inline")
+async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> bytes:
+
+    document_generator = DocumentGeneratorFacade.get_generator()
+
+    document_generator.generate_cv(cv, cv_template)
+
+    return document_generator.get_cv()
 
 
 app.include_router(router)
