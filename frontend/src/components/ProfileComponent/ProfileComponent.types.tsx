@@ -5,6 +5,7 @@ export type BasicInfo = {
   about: string;
   country_code: string;
   phone_number: string;
+  location: string;
 };
 export interface IExperience {
   company: string;
