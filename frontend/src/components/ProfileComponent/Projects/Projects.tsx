@@ -46,16 +46,19 @@ const Projects: React.FC<IExperienceProps> = ({
     }
   };
   function addNewProject() {
-    setProjects([
-      ...projects,
-      {
-        name: "",
-        description: "",
-        end_date: "",
-        start_date: "",
-        link: "",
-      },
-    ]);
+    const project = {
+      name: "",
+      description: "",
+      end_date: "",
+      start_date: "",
+      link: "",
+    };
+
+    setProjects([...projects, project]);
+    setFormData({
+      ...formData,
+      projects: [...projects, project],
+    });
     setTimeout(() => {
       scrollToPage(projects.length + 1);
       setCurrentPage(projects.length + 1);

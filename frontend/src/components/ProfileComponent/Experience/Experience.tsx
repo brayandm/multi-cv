@@ -49,18 +49,21 @@ const Experience: React.FC<IExperienceProps> = ({
     }
   };
   function addNewExperience() {
-    setExperiences([
-      ...experiences,
-      {
-        company: "",
-        description: "",
-        end_date: "",
-        start_date: "",
-        is_present: false,
-        location: "",
-        role: "",
-      },
-    ]);
+    const experience = {
+      company: "",
+      description: "",
+      end_date: "",
+      start_date: "",
+      is_present: false,
+      location: "",
+      role: "",
+    };
+
+    setExperiences([...experiences, experience]);
+    setFormData({
+      ...formData,
+      experience: [...experiences, experience],
+    });
     setTimeout(() => {
       scrollToPage(experiences.length + 1);
       setCurrentpage(experiences.length + 1);
