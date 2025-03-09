@@ -16,6 +16,14 @@ export interface IExperience {
   role: string;
   is_present: boolean;
 }
+export interface IEducation {
+  institution: string;
+  end_date: string;
+  start_date: string;
+  location: string;
+  career: string;
+  is_present: boolean;
+}
 export interface IProject {
   name: string;
   end_date: string;
@@ -32,6 +40,7 @@ export interface IProfileFrom {
   basicInfo: BasicInfo;
   socials: ISocial[];
   experience: IExperience[];
+  education: IEducation[];
   projects: IProject[];
   skills: string[];
 }

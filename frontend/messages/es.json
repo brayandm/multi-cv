@@ -35,10 +35,10 @@
       "role": "Cargo",
       "phone_number": "Número de teléfono",
       "country_code": "Código de país",
-      "company_description": "Descripción de la empresa",
-      "company_location": "País/Ciudad",
-      "company_start_date": "Fecha de inicio",
-      "company_end_date": "Fecha de finalización"
+      "description": "Descripción de la empresa",
+      "location": "País/Ciudad",
+      "start_date": "Fecha de inicio",
+      "end_date": "Fecha de finalización"
     },
     "placeholders": {
       "enter_full_name": "Introduce tu nombre completo",
@@ -52,8 +52,8 @@
       "enter_about": "Soy un ...",
       "enter_company_name": "Nombre de la empresa",
       "enter_role": "Tu cargo en la empresa",
-      "enter_company_description": "Una descripción de tus deberes y responsabilidades en el trabajo",
-      "enter_company_location": "Ubicación del trabajo, también puedes escribir \"Remoto\""
+      "enter_job_description": "Una descripción de tus deberes y responsabilidades en el trabajo",
+      "enter_location": "Ubicación del trabajo, también puedes escribir \"Remoto\""
     },
     "legal": {
       "terms_conditions": "Términos y Condiciones",

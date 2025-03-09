@@ -89,14 +89,14 @@ const Projects: React.FC<IExperienceProps> = ({
               },
               [
                 {
-                  label: t("common.form.company_start_date"),
+                  label: t("common.form.start_date"),
                   type: "start_date",
                   onValueChange: (value: string) =>
                     onProjectChange(index, "start_date", value),
                   value: project?.start_date || "",
                 },
                 {
-                  label: t("common.form.company_end_date"),
+                  label: t("common.form.end_date"),
                   type: "end_date",
                   onValueChange: (value: string) =>
                     onProjectChange(index, "end_date", value),
