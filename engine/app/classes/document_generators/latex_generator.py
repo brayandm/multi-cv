@@ -9,20 +9,26 @@ from app.classes.base.document_generator import (
 )
 from app.classes.models import Cv, CvTemplate
 from app.facades.filesystem_facade import FilesystemFacade
+import shutil
 
 
 class LatexGenerator(DocumentGenerator):
 
     def __init__(self) -> None:
         self.cv_uuid = str(uuid.uuid4())
-        self.cv_folder = f"./app/templates/latex/generated/{self.cv_uuid}/"
+        self.working_dir = "./app/templates/latex/"
+        self.cv_template = f"{self.working_dir}/cv/"
+        self.cv_folder = f"{self.working_dir}/generated/{self.cv_uuid}/"
         self.tex_path = os.path.join(self.cv_folder, "cv_generated.tex")
         self.pdf_path = os.path.join(self.cv_folder, "cv_generated.pdf")
         os.makedirs(self.cv_folder, exist_ok=True)
 
+    def cleanup(self) -> None:
+        shutil.rmtree(self.cv_folder, ignore_errors=True)
+
     def generate_cv(self, cv: Cv, cv_template: CvTemplate) -> None:
 
-        env = Environment(loader=FileSystemLoader("./app/templates/latex/cv/"))
+        env = Environment(loader=FileSystemLoader(self.cv_template))
         template = env.get_template(f"{cv_template.id}.tex.jinja2")
 
         with open(self.tex_path, "w", encoding="utf-8") as f:
@@ -41,6 +47,7 @@ class LatexGenerator(DocumentGenerator):
                 stderr=subprocess.PIPE,
             )
         except subprocess.CalledProcessError as e:
+            self.cleanup()
             raise e
 
     def store_cv(self) -> str:
@@ -52,5 +59,7 @@ class LatexGenerator(DocumentGenerator):
 
         with open(self.pdf_path, "rb") as f:
             fs.writebytes(f"/documents/{self.cv_uuid}.pdf", f.read())
+
+        self.cleanup()
 
         return f"/documents/{self.cv_uuid}.pdf"
