@@ -1,3 +1,5 @@
+import os
+import uuid
 import subprocess
 
 from jinja2 import Environment, FileSystemLoader
@@ -6,10 +8,18 @@ from app.classes.base.document_generator import (
     DocumentGenerator,
 )
 from app.classes.models import Cv, CvTemplate
+
 from app.facades import FilesystemFacade
 
 
 class LatexGenerator(DocumentGenerator):
+
+    def __init__(self) -> None:
+        self.cv_uuid = str(uuid.uuid4())
+        self.cv_folder = f"./app/templates/latex/generated/{self.cv_uuid}/"
+        self.tex_path = os.path.join(self.cv_folder, "cv_generated.tex")
+        self.pdf_path = os.path.join(self.cv_folder, "cv_generated.pdf")
+        os.makedirs(self.cv_folder, exist_ok=True)
 
     def generate_cv(self, cv: Cv, cv_template: CvTemplate) -> None:
 
