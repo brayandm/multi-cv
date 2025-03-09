@@ -169,7 +169,12 @@ const Projects: React.FC<IExperienceProps> = ({
           />
         </div>
       )}
-      <Button variant="bordered" color="primary" onPress={addNewProject}>
+      <Button
+        variant="bordered"
+        color="primary"
+        onPress={addNewProject}
+        className="mx-1"
+      >
         {t("pages.profile.sections.projects.add_project")}
       </Button>
     </section>

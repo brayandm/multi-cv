@@ -84,7 +84,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
   }, [socialsArray, props.selectedSocials]);
 
   return (
-    <div>
+    <div className="px-1">
       <Select
         classNames={{
           trigger: "min-h-12 py-2",

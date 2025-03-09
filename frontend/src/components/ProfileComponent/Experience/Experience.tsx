@@ -95,7 +95,7 @@ const Experience: React.FC<IExperienceProps> = ({
   /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
   return (
-    <section className={` flex flex-col`}>
+    <section className={`flex flex-col`}>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
         <div ref={childRef} className="flex gap-2">
           {experiences.map((experience, index) => {
@@ -164,7 +164,7 @@ const Experience: React.FC<IExperienceProps> = ({
             return (
               <div
                 key={index}
-                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 p-1 snap-center`}
+                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 px-1 snap-center`}
                 style={
                   { "--initialWidth": `${width}px` } as React.CSSProperties
                 }
@@ -193,7 +193,12 @@ const Experience: React.FC<IExperienceProps> = ({
           />
         </div>
       )}
-      <Button variant="bordered" color="primary" onPress={addNewExperience}>
+      <Button
+        variant="bordered"
+        color="primary"
+        onPress={addNewExperience}
+        className="mx-1"
+      >
         {t("pages.profile.sections.experience.add_experience")}
       </Button>
     </section>
