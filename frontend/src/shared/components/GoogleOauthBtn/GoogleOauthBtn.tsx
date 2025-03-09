@@ -18,7 +18,7 @@ export default function GoogleOauthBtn({ ...props }: ButtonProps) {
   return (
     <div className="w-full gap-4 items-center">
       <Button
-        className="w-full bg-white shadow-md"
+        className="w-full bg-white shadow-md !font-light"
         startContent={<GoogleIcon />}
         color="default"
         {...props}
