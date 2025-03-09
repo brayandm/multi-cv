@@ -9,6 +9,10 @@ class GenerateCVPipeline(Pipeline):
 
     def run(self, cv: Cv, cv_template: CvTemplate) -> str:
 
-        generator = DocumentGeneratorFacade.get_generator(cv, cv_template)
+        generator = DocumentGeneratorFacade.get_generator()
 
-        return generator.store()
+        generator.generate_cv(cv, cv_template)
+
+        path = generator.store_cv()
+
+        return path
