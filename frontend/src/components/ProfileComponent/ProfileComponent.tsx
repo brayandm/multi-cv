@@ -84,7 +84,7 @@ const ProfileComponent: React.FC = () => {
       ref.current.children[index].getBoundingClientRect().left;
     const positionParent = ref.current.getBoundingClientRect().left;
     const targetScroll =
-      ref.current.scrollLeft + (positionChild - positionParent);
+      ref.current.scrollLeft + (positionChild - positionParent - 4);
 
     smoothScroll(ref.current.scrollLeft, targetScroll, 700);
   }, [selectedTab, mapPosition]);
