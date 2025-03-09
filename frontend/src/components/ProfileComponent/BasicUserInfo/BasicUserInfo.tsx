@@ -78,7 +78,7 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
   ];
 
   return (
-    <div>
+    <div className="p-1">
       <DynamicInputs inputs={inputs}></DynamicInputs>
     </div>
   );

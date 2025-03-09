@@ -1,0 +1,56 @@
+## How to run (Docker)
+
+1 - Install pyenv & pipenv on your system
+
+-   [pyenv](https://github.com/pyenv/pyenv#installation)
+-   [pipenv](https://pypi.org/project/pipenv/)
+
+2 - Install python 3.13.2
+
+```bash
+pyenv install
+```
+
+3 - Setup python 3.13.2 as the local version
+
+```bash
+pyenv local
+```
+
+4 - Setup environment & dependencies
+
+```bash
+PIPENV_VENV_IN_PROJECT=1 pipenv install --dev
+```
+
+3 - Copy the `.env.example` file to `.env`:
+
+```bash
+cp .env.example .env
+```
+
+4 - Create Docker Network:
+
+```bash
+docker network create multi-cv-local
+```
+
+5 - Start the container:
+
+```bash
+docker compose up -d
+```
+
+## How to build (Docker)
+
+1 - Build the Docker image:
+
+```bash
+docker compose -f docker-compose.build.yml build --compress --force-rm --no-cache --parallel --pull
+```
+
+## Install dependencies
+
+```bash
+pipenv install [package-name]
+```

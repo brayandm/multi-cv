@@ -10,3 +10,7 @@ p {
   font-size: 0.9rem;
   font-weight: 200;
 }
+
+button {
+  font-weight: 500 !important;
+}

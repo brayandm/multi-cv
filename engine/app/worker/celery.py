@@ -1,0 +1,16 @@
+from celery import Celery  # type: ignore
+
+from app.config import CELERY_BROKER_URL, RESULT_BACKEND  # type: ignore
+
+celery = Celery(
+    "engine",
+    backend=RESULT_BACKEND,
+    broker=CELERY_BROKER_URL,
+    include=["app.worker.tasks"],
+)
+
+celery.conf.update(
+    task_routes={
+        "*": {"queue": "openai_queue"},
+    }
+)

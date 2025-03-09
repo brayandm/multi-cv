@@ -3,35 +3,35 @@ services:
         image: brayand/fullstack-project-template-sail:1.0.0
         restart: always
         ports:
-            - '${APP_PORT:-80}:80'
-            - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
+            - "${APP_PORT:-80}:80"
+            - "${VITE_PORT:-5173}:${VITE_PORT:-5173}"
         environment:
-            WWWUSER: '${WWWUSER}'
+            WWWUSER: "${WWWUSER}"
             LARAVEL_SAIL: 1
-            XDEBUG_MODE: '${SAIL_XDEBUG_MODE:-off}'
-            XDEBUG_CONFIG: '${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}'
-            IGNITION_LOCAL_SITES_PATH: '${PWD}'
+            XDEBUG_MODE: "${SAIL_XDEBUG_MODE:-off}"
+            XDEBUG_CONFIG: "${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}"
+            IGNITION_LOCAL_SITES_PATH: "${PWD}"
         volumes:
-            - '.:/var/www/html'
+            - ".:/var/www/html"
         networks:
             - multi-cv-local
         depends_on:
             - mysql
     mysql:
-        image: 'brayand/fullstack-project-template-mysql:1.0.0'
+        image: "brayand/fullstack-project-template-mysql:1.0.0"
         restart: always
         ports:
-            - '${FORWARD_DB_PORT:-3306}:3306'
+            - "${FORWARD_DB_PORT:-3306}:3306"
         environment:
-            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-            MYSQL_ROOT_HOST: '%'
-            MYSQL_DATABASE: '${DB_DATABASE}'
-            MYSQL_USER: '${DB_USERNAME}'
-            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}"
+            MYSQL_ROOT_HOST: "%"
+            MYSQL_DATABASE: "${DB_DATABASE}"
+            MYSQL_USER: "${DB_USERNAME}"
+            MYSQL_PASSWORD: "${DB_PASSWORD}"
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
-            - 'sail-mysql:/var/lib/mysql'
-            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+            - "sail-mysql:/var/lib/mysql"
+            - "./vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh"
         networks:
             - multi-cv-local
         healthcheck:
@@ -39,7 +39,7 @@ services:
                 - CMD
                 - mysqladmin
                 - ping
-                - '-p${DB_PASSWORD}'
+                - "-p${DB_PASSWORD}"
             retries: 3
             timeout: 5s
 
@@ -53,7 +53,7 @@ services:
         depends_on:
             - mysql
         ports:
-        - '${FORWARD_PHPMYADMIN_PORT:-3406}:80'
+            - "${FORWARD_PHPMYADMIN_PORT:-3406}:80"
 
     redis:
         restart: always
@@ -61,9 +61,9 @@ services:
             context: .
             dockerfile: docker/Dockerfile-redis
         ports:
-            - '127.0.0.1:${FORWARD_REDIS_PORT:-6379}:6379'
+            - "127.0.0.1:${FORWARD_REDIS_PORT:-6379}:6379"
         volumes:
-            - 'sail-redis:/data'
+            - "sail-redis:/data"
         networks:
             - multi-cv-local
         healthcheck:
@@ -82,7 +82,7 @@ services:
         depends_on:
             - redis
         ports:
-            - '127.0.0.1:${FORWARD_REDIS_INSIGHT_PORT:-5540}:5540'
+            - "127.0.0.1:${FORWARD_REDIS_INSIGHT_PORT:-5540}:5540"
         volumes:
             - redis_insight_data:/db
 
@@ -90,11 +90,10 @@ services:
         image: brayand/fullstack-project-template-mailhog:1.0.0
         restart: always
         ports:
-            - '${FORWARD_MAILHOG_PORT:-1025}:1025'
-            - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
+            - "${FORWARD_MAILHOG_PORT:-1025}:1025"
+            - "${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025"
         networks:
             - multi-cv-local
-
 
 networks:
     multi-cv-local:

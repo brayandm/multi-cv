@@ -10,7 +10,7 @@ import Projects from "./Projects";
 import Socials from "./Socials";
 
 const ProfileComponent: React.FC = () => {
-  const width = 340;
+  const width = 350;
 
   const [selectedSocials, setSelectedSocials] = useState<Array<string>>([]);
   const [formData, setFormData] = useState<IProfileFrom>({
@@ -46,7 +46,11 @@ const ProfileComponent: React.FC = () => {
               </div>
             </CardHeader>
             <CardBody>
-              <Tabs className="px-1" aria-label="Options" color="primary">
+              <Tabs
+                aria-label="Options"
+                color="primary"
+                classNames={{ base: "p-2" }}
+              >
                 <Tab
                   key="basic-user-info"
                   title={t("pages.profile.sections.basic_info.title")}
@@ -103,7 +107,7 @@ const ProfileComponent: React.FC = () => {
             </CardBody>
           </Card>
           <Card className="mb-3">
-            <Button color="primary">Next</Button>
+            <Button color="primary">{t("common.buttons.next")}</Button>
           </Card>
         </form>
       </div>

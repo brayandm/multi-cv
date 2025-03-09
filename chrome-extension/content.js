@@ -10,7 +10,7 @@ const button = (() => {
   button.style.right = "-5px";
   button.style.width = "45px";
   button.style.height = "80px";
-  button.style.background = "#2563eb";
+  button.style.background = "#03a9f4";
   button.style.color = "#fff";
   button.style.borderRadius = "10px 0 0 10px";
   button.style.display = "flex";

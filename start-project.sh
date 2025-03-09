@@ -11,6 +11,16 @@ echo "Creating docker network..."
 docker network create multi-cv-local > /dev/null 2>&1 || true 
 
 
+pushd engine/ > /dev/null
+
+echo "Copying engine .env file..."
+cp .env.example .env
+
+echo "Starting engine..."
+docker compose up --build --force-recreate --remove-orphans -d > /dev/null 2>&1
+
+popd > /dev/null
+
 pushd backend/ > /dev/null
 
 echo "Installing composer dependencies..."

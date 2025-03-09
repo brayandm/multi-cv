@@ -43,3 +43,14 @@ open http://localhost:3000
 ```bash
 docker compose -f docker-compose.build.yml build --compress --force-rm --no-cache --parallel --pull
 ```
+
+## Install dependencies
+
+```bash
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v $(pwd):/app \
+    -w /app \
+    brayand/fullstack-project-template-frontend:1.0.0 \
+    npm install [package-name]
+```
