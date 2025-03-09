@@ -1,6 +1,6 @@
 "use client";
 import { Button, Card, CardBody, CardHeader, Tab, Tabs } from "@heroui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
 import { IProfileFrom } from "./ProfileComponent.types";
 import Experience from "./Experience";
@@ -33,6 +33,62 @@ const ProfileComponent: React.FC = () => {
 
   const t = useTranslations();
 
+  const [selectedTab, setSelectedTab] =
+    useState<keyof typeof mapPosition>("basic-user-info");
+
+  const mapPosition = React.useMemo(
+    () => ({
+      "basic-user-info": 0,
+      socials: 1,
+      experiences: 2,
+      projects: 3,
+      skills: 4,
+    }),
+    []
+  );
+
+  const ref = useRef<HTMLDivElement>(null);
+
+  const smoothScroll = (start: number, end: number, duration: number) => {
+    let startTime: number | null = null;
+
+    function animationStep(timestamp: number) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const easeInOutQuad =
+        progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+      if (ref.current) {
+        ref.current.scrollLeft = start + (end - start) * easeInOutQuad;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animationStep);
+      }
+    }
+
+    requestAnimationFrame(animationStep);
+  };
+
+  useEffect(() => {
+    if (!ref.current) return;
+
+    const index = mapPosition[selectedTab] - 1;
+    if (index < 0) return;
+
+    const positionChild =
+      ref.current.children[index].getBoundingClientRect().left;
+    const positionParent = ref.current.getBoundingClientRect().left;
+    const targetScroll =
+      ref.current.scrollLeft + (positionChild - positionParent - 4);
+
+    smoothScroll(ref.current.scrollLeft, targetScroll, 700);
+  }, [selectedTab, mapPosition]);
+
   return (
     <main className="flex justify-center">
       <div className={`max-w-[${width}px]`}>
@@ -48,7 +104,12 @@ const ProfileComponent: React.FC = () => {
               <Tabs
                 aria-label="Options"
                 color="primary"
-                classNames={{ base: "p-2" }}
+                classNames={{ base: "p-2", tabList: "" }}
+                selectedKey={selectedTab}
+                onSelectionChange={(key) => {
+                  setSelectedTab(key as keyof typeof mapPosition);
+                }}
+                ref={ref}
               >
                 <Tab
                   key="basic-user-info"

@@ -5,7 +5,7 @@ from jinja2 import Environment, FileSystemLoader
 import subprocess
 import os
 import uuid
-from app.helpers.filesystem import Filesystem
+from app.facades.filesystem import Filesystem
 
 
 class GenerateCVPipeline(Pipeline):

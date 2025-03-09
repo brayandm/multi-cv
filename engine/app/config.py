@@ -25,7 +25,7 @@ RESULT_BACKEND = "redis://:{password}@{host}:{port}/{db}".format(**REDIS)
 
 DOCUMENTS_DISK = os.environ.get("DOCUMENTS_DISK", "local")
 
-STORAGE_PATH = os.environ.get("STORAGE_PATH")
+STORAGE_PATH = os.environ.get("STORAGE_PATH", "/tmp")
 
 AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")

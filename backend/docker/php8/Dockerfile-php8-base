@@ -24,3 +24,5 @@ RUN apt install -y cron
 RUN apt install -y supervisor
 
 RUN apt install -y curl
+
+RUN curl -sLS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
