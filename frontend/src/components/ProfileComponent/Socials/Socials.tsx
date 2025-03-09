@@ -92,6 +92,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
         className="mb-2"
         isMultiline={true}
         items={socials}
+        selectedKeys={props.selectedSocials}
         label={t("common.form.socials_select")}
         placeholder={t("common.placeholders.socials_select")}
         renderValue={(items) => {
