@@ -58,6 +58,7 @@ const Projects: React.FC<IExperienceProps> = ({
     ]);
     setTimeout(() => {
       scrollToPage(projects.length + 1);
+      setCurrentPage(projects.length + 1);
     }, 200);
   }
 

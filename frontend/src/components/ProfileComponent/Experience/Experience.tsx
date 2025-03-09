@@ -20,7 +20,7 @@ const Experience: React.FC<IExperienceProps> = ({
   const [experiences, setExperiences] = useState<Array<IExperience>>(
     formData.experience
   );
-  const [currentExperience, setCurrentExperience] = useState<number>(1);
+  const [currentExperience, setCurrentpage] = useState<number>(1);
   const t = useTranslations();
   function onExperienceChange(
     index: number,
@@ -37,7 +37,7 @@ const Experience: React.FC<IExperienceProps> = ({
     });
   }
 
-  const scrollToExperience = (page: number) => {
+  const scrollToPage = (page: number) => {
     if (!childRef.current) return;
     const children = childRef.current.children;
     const targetChild = children[page - 1] as HTMLElement;
@@ -62,7 +62,8 @@ const Experience: React.FC<IExperienceProps> = ({
       },
     ]);
     setTimeout(() => {
-      scrollToExperience(experiences.length + 1);
+      scrollToPage(experiences.length + 1);
+      setCurrentpage(experiences.length + 1);
     }, 200);
   }
 
@@ -152,8 +153,8 @@ const Experience: React.FC<IExperienceProps> = ({
         <div className="flex justify-center">
           <Pagination
             onChange={(page) => {
-              scrollToExperience(page);
-              setCurrentExperience(page);
+              scrollToPage(page);
+              setCurrentpage(page);
             }}
             className="mb-2"
             size="sm"
