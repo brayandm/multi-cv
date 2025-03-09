@@ -66,34 +66,6 @@ const Experience: React.FC<IExperienceProps> = ({
     }, 200);
   }
 
-  // Commented out because this causes the bug where pages are not aligned properly
-  /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-  // useEffect(() => {
-  //   let debounceTimeout: ReturnType<typeof setTimeout>;
-
-  //   const handleScroll = () => {
-  //     if (debounceTimeout) clearTimeout(debounceTimeout);
-
-  //     debounceTimeout = setTimeout(() => {
-  //       if (scrollRef.current) {
-  //         console.log((scrollRef.current.scrollLeft - width) / width + 2);
-
-  //         setCurrentExperience(
-  //           Math.round((scrollRef.current.scrollLeft - width) / width + 2)
-  //         );
-  //       }
-  //     }, 50);
-  //   };
-  //   const element = scrollRef.current;
-  //   element?.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     element?.removeEventListener("scroll", handleScroll);
-  //     if (debounceTimeout) clearTimeout(debounceTimeout);
-  //   };
-  // }, []);
-  /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
   return (
     <section className={`flex flex-col`}>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">

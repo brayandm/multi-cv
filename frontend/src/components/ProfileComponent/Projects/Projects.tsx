@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   IDynamicInputArray,
   IProject,
@@ -60,33 +60,6 @@ const Projects: React.FC<IExperienceProps> = ({
       scrollToPage(projects.length + 1);
     }, 200);
   }
-
-  /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-  useEffect(() => {
-    let debounceTimeout: ReturnType<typeof setTimeout>;
-
-    const handleScroll = () => {
-      if (debounceTimeout) clearTimeout(debounceTimeout);
-
-      debounceTimeout = setTimeout(() => {
-        if (scrollRef.current) {
-          console.log((scrollRef.current.scrollLeft - width) / width + 2);
-
-          setCurrentPage(
-            Math.round((scrollRef.current.scrollLeft - width) / width + 2)
-          );
-        }
-      }, 50);
-    };
-    const element = scrollRef.current;
-    element?.addEventListener("scroll", handleScroll);
-
-    return () => {
-      element?.removeEventListener("scroll", handleScroll);
-      if (debounceTimeout) clearTimeout(debounceTimeout);
-    };
-  }, []);
-  /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
   return (
     <section className={` flex flex-col`}>
