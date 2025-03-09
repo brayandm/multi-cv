@@ -49,20 +49,44 @@ const ProfileComponent: React.FC = () => {
 
   const ref = useRef<HTMLDivElement>(null);
 
+  const smoothScroll = (start: number, end: number, duration: number) => {
+    let startTime: number | null = null;
+
+    function animationStep(timestamp: number) {
+      if (!startTime) startTime = timestamp;
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      const easeInOutQuad =
+        progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+      if (ref.current) {
+        ref.current.scrollLeft = start + (end - start) * easeInOutQuad;
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animationStep);
+      }
+    }
+
+    requestAnimationFrame(animationStep);
+  };
+
   useEffect(() => {
-    console.log(selectedTab, ref);
+    if (!ref.current) return;
 
     const index = mapPosition[selectedTab] - 1;
-
     if (index < 0) return;
-    if (ref.current === null) return;
-    if (ref.current.children === null) return;
 
     const positionChild =
       ref.current.children[index].getBoundingClientRect().left;
     const positionParent = ref.current.getBoundingClientRect().left;
+    const targetScroll =
+      ref.current.scrollLeft + (positionChild - positionParent);
 
-    ref.current.scrollLeft += positionChild - positionParent;
+    smoothScroll(ref.current.scrollLeft, targetScroll, 700);
   }, [selectedTab, mapPosition]);
 
   return (
