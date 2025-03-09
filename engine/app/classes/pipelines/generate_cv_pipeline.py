@@ -1,6 +1,6 @@
 from app.classes.base import Pipeline
 from app.classes.models import Cv, CvTemplate
-from app.facades import (
+from app.facades.document_generator_facade import (
     DocumentGeneratorFacade,
 )
 

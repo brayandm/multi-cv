@@ -9,7 +9,7 @@ from app.classes.base.document_generator import (
 )
 from app.classes.models import Cv, CvTemplate
 
-from app.facades import FilesystemFacade
+from app.facades.filesystem_facade import FilesystemFacade
 
 
 class LatexGenerator(DocumentGenerator):
