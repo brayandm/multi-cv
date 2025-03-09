@@ -1,4 +1,5 @@
 from typing import Any, Dict, Type
+
 from app.classes.base import Pipeline
 from app.worker.tasks import execute_pipeline_task
 from app.worker.utils import serialize

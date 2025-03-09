@@ -1,5 +1,5 @@
-from typing import Any, Dict
 import importlib
+from typing import Any, Dict
 
 
 def serialize(value: Any) -> Dict[str, Any]:

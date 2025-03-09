@@ -2,14 +2,14 @@ from typing import Dict
 
 from fastapi import FastAPI
 
+from app.classes.models import Cv, CvTemplate, Message, Person
 from app.classes.pipelines import (
     BasicPipeline,
-    SummaryPipeline,
-    ImproveAboutPipeline,
     GenerateCVPipeline,
+    ImproveAboutPipeline,
+    SummaryPipeline,
 )
 from app.worker.queue_manager import QueueManager
-from app.classes.models import Message, Person, Cv, CvTemplate
 
 app = FastAPI()
 
