@@ -68,6 +68,15 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
         onValueChange: setPhoneNumber,
       },
     ],
+    [
+      {
+        label: t("common.form.your_location"),
+        placeholder: t("common.placeholders.enter_location"),
+        type: "text",
+        value: fullName,
+        onValueChange: setFullName,
+      },
+    ],
     {
       label: t("common.form.about"),
       placeholder: t("common.placeholders.enter_about"),
