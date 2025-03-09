@@ -1,6 +1,6 @@
 from .cv import Cv
 from .cv_template import CvTemplate
-from .experience import CvExperience
+from .cv_experience import CvExperience
 from .message import Message
 from .person import Person
 
