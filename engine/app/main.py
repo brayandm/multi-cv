@@ -1,6 +1,7 @@
 from typing import Dict
 
 from fastapi import APIRouter, FastAPI
+from fastapi.responses import Response
 
 from app.classes.models import Cv, CvTemplate, Message, Person
 from app.classes.pipelines import (
@@ -69,13 +70,15 @@ async def generate_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
 
 
 @router.post("/generate/cv/inline")
-async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> bytes:
+async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
     document_generator = DocumentGeneratorFacade.get_generator()
 
     document_generator.generate_cv(cv, cv_template)
 
-    return document_generator.get_cv()
+    pdf_bytes = document_generator.get_cv()
+
+    return Response(content=pdf_bytes, media_type="application/pdf")
 
 
 app.include_router(router)
