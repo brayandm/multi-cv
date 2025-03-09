@@ -136,7 +136,9 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
           {
             label: social?.name || "",
             type: "text",
-            placeholder: t("common.placeholders.enter_company_name"),
+            placeholder: t("common.placeholders.enter_your_link", {
+              field: social?.name,
+            }),
             onValueChange: (value: string) =>
               onSocialChange(index, "link", value),
             value: social?.link || "",

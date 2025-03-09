@@ -69,7 +69,8 @@
       "enter_project_name": "Enter the project name",
       "enter_project_description": "Enter a briew description",
       "enter_project_link": "Link to your project",
-      "socials_select": "Click to select"
+      "socials_select": "Click to select",
+      "enter_your_link": "Enter your {field} link"
     },
     "legal": {
       "terms_conditions": "Terms & Conditions",
