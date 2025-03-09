@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   IDynamicInputArray,
   IProject,
@@ -46,52 +46,29 @@ const Projects: React.FC<IExperienceProps> = ({
     }
   };
   function addNewProject() {
-    setProjects([
-      ...projects,
-      {
-        name: "",
-        description: "",
-        end_date: "",
-        start_date: "",
-        link: "",
-      },
-    ]);
+    const project = {
+      name: "",
+      description: "",
+      end_date: "",
+      start_date: "",
+      link: "",
+    };
+
+    setProjects([...projects, project]);
+    setFormData({
+      ...formData,
+      projects: [...projects, project],
+    });
     setTimeout(() => {
       scrollToPage(projects.length + 1);
+      setCurrentPage(projects.length + 1);
     }, 200);
   }
-
-  /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-  useEffect(() => {
-    let debounceTimeout: ReturnType<typeof setTimeout>;
-
-    const handleScroll = () => {
-      if (debounceTimeout) clearTimeout(debounceTimeout);
-
-      debounceTimeout = setTimeout(() => {
-        if (scrollRef.current) {
-          console.log((scrollRef.current.scrollLeft - width) / width + 2);
-
-          setCurrentPage(
-            Math.round((scrollRef.current.scrollLeft - width) / width + 2)
-          );
-        }
-      }, 50);
-    };
-    const element = scrollRef.current;
-    element?.addEventListener("scroll", handleScroll);
-
-    return () => {
-      element?.removeEventListener("scroll", handleScroll);
-      if (debounceTimeout) clearTimeout(debounceTimeout);
-    };
-  }, []);
-  /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 
   return (
     <section className={` flex flex-col`}>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
-        <div ref={childRef} className="flex gap-2">
+        <div ref={childRef} className="flex">
           {projects.map((project, index) => {
             const inputs: IDynamicInputArray<string & boolean> = [
               {
@@ -140,7 +117,7 @@ const Projects: React.FC<IExperienceProps> = ({
             return (
               <div
                 key={index}
-                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 snap-center`}
+                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 px-1 snap-center`}
                 style={
                   { "--initialWidth": `${width}px` } as React.CSSProperties
                 }
@@ -169,7 +146,12 @@ const Projects: React.FC<IExperienceProps> = ({
           />
         </div>
       )}
-      <Button variant="bordered" color="primary" onPress={addNewProject}>
+      <Button
+        variant="bordered"
+        color="primary"
+        onPress={addNewProject}
+        className="mx-1"
+      >
         {t("pages.profile.sections.projects.add_project")}
       </Button>
     </section>

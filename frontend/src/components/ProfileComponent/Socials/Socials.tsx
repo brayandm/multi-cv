@@ -84,7 +84,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
   }, [socialsArray, props.selectedSocials]);
 
   return (
-    <div>
+    <div className="px-1">
       <Select
         classNames={{
           trigger: "min-h-12 py-2",
@@ -92,6 +92,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
         className="mb-2"
         isMultiline={true}
         items={socials}
+        selectedKeys={props.selectedSocials}
         label={t("common.form.socials_select")}
         placeholder={t("common.placeholders.socials_select")}
         renderValue={(items) => {
@@ -136,7 +137,9 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
           {
             label: social?.name || "",
             type: "text",
-            placeholder: t("common.placeholders.enter_company_name"),
+            placeholder: t("common.placeholders.enter_your_link", {
+              field: social?.name,
+            }),
             onValueChange: (value: string) =>
               onSocialChange(index, "link", value),
             value: social?.link || "",

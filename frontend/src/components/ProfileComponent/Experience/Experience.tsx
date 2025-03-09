@@ -20,7 +20,7 @@ const Experience: React.FC<IExperienceProps> = ({
   const [experiences, setExperiences] = useState<Array<IExperience>>(
     formData.experience
   );
-  const [currentExperience, setCurrentExperience] = useState<number>(1);
+  const [currentExperience, setCurrentpage] = useState<number>(1);
   const t = useTranslations();
   function onExperienceChange(
     index: number,
@@ -37,7 +37,7 @@ const Experience: React.FC<IExperienceProps> = ({
     });
   }
 
-  const scrollToExperience = (page: number) => {
+  const scrollToPage = (page: number) => {
     if (!childRef.current) return;
     const children = childRef.current.children;
     const targetChild = children[page - 1] as HTMLElement;
@@ -49,55 +49,31 @@ const Experience: React.FC<IExperienceProps> = ({
     }
   };
   function addNewExperience() {
-    setExperiences([
-      ...experiences,
-      {
-        company: "",
-        description: "",
-        end_date: "",
-        start_date: "",
-        is_present: false,
-        location: "",
-        role: "",
-      },
-    ]);
+    const experience = {
+      company: "",
+      description: "",
+      end_date: "",
+      start_date: "",
+      is_present: false,
+      location: "",
+      role: "",
+    };
+
+    setExperiences([...experiences, experience]);
+    setFormData({
+      ...formData,
+      experience: [...experiences, experience],
+    });
     setTimeout(() => {
-      scrollToExperience(experiences.length + 1);
+      scrollToPage(experiences.length + 1);
+      setCurrentpage(experiences.length + 1);
     }, 200);
   }
 
-  // Commented out because this causes the bug where pages are not aligned properly
-  /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-  // useEffect(() => {
-  //   let debounceTimeout: ReturnType<typeof setTimeout>;
-
-  //   const handleScroll = () => {
-  //     if (debounceTimeout) clearTimeout(debounceTimeout);
-
-  //     debounceTimeout = setTimeout(() => {
-  //       if (scrollRef.current) {
-  //         console.log((scrollRef.current.scrollLeft - width) / width + 2);
-
-  //         setCurrentExperience(
-  //           Math.round((scrollRef.current.scrollLeft - width) / width + 2)
-  //         );
-  //       }
-  //     }, 50);
-  //   };
-  //   const element = scrollRef.current;
-  //   element?.addEventListener("scroll", handleScroll);
-
-  //   return () => {
-  //     element?.removeEventListener("scroll", handleScroll);
-  //     if (debounceTimeout) clearTimeout(debounceTimeout);
-  //   };
-  // }, []);
-  /* Handle scroll events  - - - - - - - - - - - - - - - - - - - - - - - - - -  */
-
   return (
-    <section className={` flex flex-col`}>
+    <section className={`flex flex-col`}>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
-        <div ref={childRef} className="flex gap-2">
+        <div ref={childRef} className="flex">
           {experiences.map((experience, index) => {
             const isPresentJob = (): IDynamicInput<boolean> => {
               return {
@@ -164,7 +140,7 @@ const Experience: React.FC<IExperienceProps> = ({
             return (
               <div
                 key={index}
-                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 p-1 snap-center`}
+                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 px-1 snap-center`}
                 style={
                   { "--initialWidth": `${width}px` } as React.CSSProperties
                 }
@@ -180,8 +156,8 @@ const Experience: React.FC<IExperienceProps> = ({
         <div className="flex justify-center">
           <Pagination
             onChange={(page) => {
-              scrollToExperience(page);
-              setCurrentExperience(page);
+              scrollToPage(page);
+              setCurrentpage(page);
             }}
             className="mb-2"
             size="sm"
@@ -193,7 +169,12 @@ const Experience: React.FC<IExperienceProps> = ({
           />
         </div>
       )}
-      <Button variant="bordered" color="primary" onPress={addNewExperience}>
+      <Button
+        variant="bordered"
+        color="primary"
+        onPress={addNewExperience}
+        className="mx-1"
+      >
         {t("pages.profile.sections.experience.add_experience")}
       </Button>
     </section>

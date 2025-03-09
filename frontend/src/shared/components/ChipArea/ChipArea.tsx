@@ -16,7 +16,10 @@ const ChipArea: React.FC<IChipAreaProps> = (props) => {
         {props.chips.map((chip, index) => (
           <Chip
             key={index}
-            className="bg-primary-400 text-white"
+            className="bg-secondary text-white"
+            classNames={{
+              content: "font-medium",
+            }}
             onClose={() => removeChip(index)}
           >
             {chip}

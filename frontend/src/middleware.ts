@@ -111,8 +111,8 @@ export const config = {
     "/login",
     "/register",
     "/accept-terms",
-    "/home" /* 
-    "/profile", */,
+    "/home",
+    "/profile",
     "/password",
     "/email/:path*",
   ],

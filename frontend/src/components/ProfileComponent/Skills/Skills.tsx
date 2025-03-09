@@ -72,7 +72,7 @@ const Skills: React.FC<IBasicUserInfoProps> = (props) => {
   ];
 
   return (
-    <div>
+    <div className="px-1">
       <DynamicInputs inputs={inputs}></DynamicInputs>
       <ChipArea chips={skillsArray} setChips={setSkillsArray}></ChipArea>
     </div>

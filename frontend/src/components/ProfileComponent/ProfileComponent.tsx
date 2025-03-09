@@ -11,7 +11,6 @@ import Socials from "./Socials";
 
 const ProfileComponent: React.FC = () => {
   const width = 350;
-
   const [selectedSocials, setSelectedSocials] = useState<Array<string>>([]);
   const [formData, setFormData] = useState<IProfileFrom>({
     basicInfo: {
