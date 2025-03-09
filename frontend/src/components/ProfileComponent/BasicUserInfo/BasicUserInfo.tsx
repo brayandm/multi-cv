@@ -14,6 +14,9 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
   const [fullName, setFullName] = useState<string>(
     props.formData.basicInfo.full_name
   );
+  const [location, setLocation] = useState<string>(
+    props.formData.basicInfo.location
+  );
   const [about, setAbout] = useState<string>(props.formData.basicInfo.about);
   const [email, setEmail] = useState<string>(props.formData.basicInfo.email);
   const [phoneNumber, setPhoneNumber] = useState<string>(
@@ -28,6 +31,7 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
     props.setFormData({
       ...props.formData,
       basicInfo: {
+        location,
         about,
         email,
         full_name: fullName,
@@ -36,7 +40,7 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
       },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, fullName, about, phoneNumber, countryCode]);
+  }, [email, fullName, about, phoneNumber, countryCode, location]);
 
   const inputs: IDynamicInputArray<string> = [
     {
@@ -73,8 +77,8 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
         label: t("common.form.your_location"),
         placeholder: t("common.placeholders.enter_location"),
         type: "text",
-        value: fullName,
-        onValueChange: setFullName,
+        value: location,
+        onValueChange: setLocation,
       },
     ],
     {
