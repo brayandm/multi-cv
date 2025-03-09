@@ -1,6 +1,7 @@
-from abc import ABC, abstractmethod
 import os
 import uuid
+from abc import ABC, abstractmethod
+
 from app.classes.models import Cv, CvTemplate
 
 

@@ -1,6 +1,6 @@
 from .agent import Agent
-from .pipeline import Pipeline
 from .document_generator import DocumentGenerator
+from .pipeline import Pipeline
 
 __all__ = [
     "Agent",

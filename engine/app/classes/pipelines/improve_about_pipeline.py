@@ -1,6 +1,6 @@
 from app.classes.agents import ImproveAboutAgent
 from app.classes.base import Pipeline
-from app.classes.models import Person, Message
+from app.classes.models import Message, Person
 
 
 class ImproveAboutPipeline(Pipeline):

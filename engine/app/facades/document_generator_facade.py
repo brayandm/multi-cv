@@ -1,5 +1,5 @@
-from app.classes.models import Cv, CvTemplate
 from app.classes.document_generators.latex_generator import LatexGenerator
+from app.classes.models import Cv, CvTemplate
 
 
 class DocumentGeneratorFacade:

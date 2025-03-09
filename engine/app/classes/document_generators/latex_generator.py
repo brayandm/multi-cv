@@ -1,10 +1,12 @@
-from app.classes.models import Cv, CvTemplate
-from app.facades import FilesystemFacade
+import subprocess
+
 from jinja2 import Environment, FileSystemLoader
+
 from app.classes.base.document_generator import (
     DocumentGenerator,
 )
-import subprocess
+from app.classes.models import Cv, CvTemplate
+from app.facades import FilesystemFacade
 
 
 class LatexGenerator(DocumentGenerator):
