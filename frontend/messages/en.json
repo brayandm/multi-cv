@@ -43,7 +43,7 @@
       "phone_number": "Phone number",
       "country_code": "Country code",
       "company_description": "Company description",
-      "company_location": "Country/City",
+      "company_location": "City/Country",
       "company_start_date": "Start date",
       "company_end_date": "End date",
       "project_name": "Project name",
