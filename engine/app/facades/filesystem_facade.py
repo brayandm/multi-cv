@@ -12,7 +12,7 @@ from app.config import (
 )
 
 
-class Filesystem:
+class FilesystemFacade:
 
     @staticmethod
     def get_filesystem() -> FS:
@@ -20,9 +20,9 @@ class Filesystem:
         storage_type = DOCUMENTS_DISK
 
         if storage_type == "s3":
-            return Filesystem.get_s3_filesystem()  # type: ignore
+            return FilesystemFacade.get_s3_filesystem()  # type: ignore
 
-        return Filesystem.get_local_filesystem()
+        return FilesystemFacade.get_local_filesystem()
 
     @staticmethod
     def get_local_filesystem() -> OSFS:
