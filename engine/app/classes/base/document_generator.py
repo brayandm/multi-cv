@@ -12,3 +12,7 @@ class DocumentGenerator(ABC):
     @abstractmethod
     def store_cv(self) -> str:
         pass
+
+    @abstractmethod
+    def get_cv(self) -> bytes:
+        pass

@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 import uuid
 
@@ -9,7 +10,6 @@ from app.classes.base.document_generator import (
 )
 from app.classes.models import Cv, CvTemplate
 from app.facades.filesystem_facade import FilesystemFacade
-import shutil
 
 
 class LatexGenerator(DocumentGenerator):
@@ -63,3 +63,12 @@ class LatexGenerator(DocumentGenerator):
         self.cleanup()
 
         return f"/documents/{self.cv_uuid}.pdf"
+
+    def get_cv(self) -> bytes:
+
+        with open(self.pdf_path, "rb") as f:
+            pdf_content = f.read()
+
+        self.cleanup()
+
+        return pdf_content
