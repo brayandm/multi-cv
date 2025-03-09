@@ -64,7 +64,7 @@ const Projects: React.FC<IExperienceProps> = ({
   return (
     <section className={` flex flex-col`}>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
-        <div ref={childRef} className="flex gap-2">
+        <div ref={childRef} className="flex">
           {projects.map((project, index) => {
             const inputs: IDynamicInputArray<string & boolean> = [
               {
@@ -113,7 +113,7 @@ const Projects: React.FC<IExperienceProps> = ({
             return (
               <div
                 key={index}
-                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 snap-center`}
+                className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 px-1 snap-center`}
                 style={
                   { "--initialWidth": `${width}px` } as React.CSSProperties
                 }

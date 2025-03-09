@@ -69,7 +69,7 @@ const Experience: React.FC<IExperienceProps> = ({
   return (
     <section className={`flex flex-col`}>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
-        <div ref={childRef} className="flex gap-2">
+        <div ref={childRef} className="flex">
           {experiences.map((experience, index) => {
             const isPresentJob = (): IDynamicInput<boolean> => {
               return {
