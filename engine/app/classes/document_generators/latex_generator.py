@@ -1,5 +1,5 @@
 from app.classes.models import Cv, CvTemplate
-from engine.app.facades.filesystem_facade import FilesystemFacade
+from app.facades import FilesystemFacade
 from jinja2 import Environment, FileSystemLoader
 from app.classes.base.document_generator import (
     DocumentGenerator,
