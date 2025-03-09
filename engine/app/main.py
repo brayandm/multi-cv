@@ -1,6 +1,6 @@
 from typing import Dict
 
-from fastapi import FastAPI, APIRouter
+from fastapi import APIRouter, FastAPI
 
 from app.classes.models import Cv, CvTemplate, Message, Person
 from app.classes.pipelines import (
