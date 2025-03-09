@@ -8,6 +8,7 @@ import { useTranslations } from "next-intl";
 import Skills from "./Skills";
 import Projects from "./Projects";
 import Socials from "./Socials";
+import Education from "./Education";
 
 const ProfileComponent: React.FC = () => {
   const width = 350;
@@ -21,6 +22,7 @@ const ProfileComponent: React.FC = () => {
       country_code: "",
       phone_number: "",
     },
+    education: [],
     socials: [],
     projects: [],
     experience: [],
@@ -42,8 +44,9 @@ const ProfileComponent: React.FC = () => {
       "basic-user-info": 0,
       socials: 1,
       experiences: 2,
-      projects: 3,
-      skills: 4,
+      educations: 3,
+      projects: 4,
+      skills: 5,
     }),
     []
   );
@@ -147,6 +150,16 @@ const ProfileComponent: React.FC = () => {
                     formData={formData}
                     setFormData={setFormData}
                   ></Experience>
+                </Tab>
+                <Tab
+                  key="educations"
+                  title={t("pages.profile.sections.education.title")}
+                >
+                  <Education
+                    width={width}
+                    formData={formData}
+                    setFormData={setFormData}
+                  ></Education>
                 </Tab>
                 <Tab
                   key="projects"

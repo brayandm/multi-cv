@@ -103,31 +103,31 @@ const Experience: React.FC<IExperienceProps> = ({
                 value: experience?.role || "",
               },
               {
-                label: t("common.form.company_description"),
+                label: t("common.form.description"),
                 type: "textarea",
-                placeholder: t("common.placeholders.enter_company_description"),
+                placeholder: t("common.placeholders.enter_job_description"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "description", value),
                 value: experience?.description || "",
               },
               {
-                label: t("common.form.company_location"),
+                label: t("common.form.location"),
                 type: "text",
-                placeholder: t("common.placeholders.enter_company_location"),
+                placeholder: t("common.placeholders.enter_location"),
                 onValueChange: (value: string) =>
                   onExperienceChange(index, "location", value),
                 value: experience?.location || "",
               },
               [
                 {
-                  label: t("common.form.company_start_date"),
+                  label: t("common.form.start_date"),
                   type: "start_date",
                   onValueChange: (value: string) =>
                     onExperienceChange(index, "start_date", value),
                   value: experience?.start_date || "",
                 },
                 {
-                  label: t("common.form.company_end_date"),
+                  label: t("common.form.end_date"),
                   type: "end_date",
                   onValueChange: (value: string) =>
                     onExperienceChange(index, "end_date", value),

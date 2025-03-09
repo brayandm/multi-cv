@@ -35,10 +35,10 @@
       "role": "Должность",
       "phone_number": "Номер телефона",
       "country_code": "Код страны",
-      "company_description": "Описание компании",
-      "company_location": "Страна/Город",
-      "company_start_date": "Дата начала",
-      "company_end_date": "Дата окончания"
+      "description": "Описание компании",
+      "location": "Страна/Город",
+      "start_date": "Дата начала",
+      "end_date": "Дата окончания"
     },
     "placeholders": {
       "enter_full_name": "Введите ваше полное имя",
@@ -52,8 +52,8 @@
       "enter_about": "Я ...",
       "enter_company_name": "Название компании",
       "enter_role": "Ваша должность в компании",
-      "enter_company_description": "Описание ваших обязанностей и ответственности на работе",
-      "enter_company_location": "Местоположение работы, можно указать \"Удаленно\""
+      "enter_job_description": "Описание ваших обязанностей и ответственности на работе",
+      "enter_location": "Местоположение работы, можно указать \"Удаленно\""
     },
     "legal": {
       "terms_conditions": "Условия и положения",

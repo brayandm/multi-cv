@@ -35,10 +35,10 @@
       "role": "Bhumika",
       "phone_number": "Phone number",
       "country_code": "Desh ka code",
-      "company_description": "Company ka varnan",
-      "company_location": "Desh/Sheher",
-      "company_start_date": "Shuru tareekh",
-      "company_end_date": "Antim tareekh"
+      "description": "Company ka varnan",
+      "location": "Desh/Sheher",
+      "start_date": "Shuru tareekh",
+      "end_date": "Antim tareekh"
     },
     "placeholders": {
       "enter_full_name": "Apna pura naam likhein",
@@ -52,8 +52,8 @@
       "enter_about": "Main ek ... hoon",
       "enter_company_name": "Company ka naam likhein",
       "enter_role": "Company mein aapki bhumika",
-      "enter_company_description": "Aapki zimmedariyon aur kartavyon ka varnan",
-      "enter_company_location": "Naukri ki jagah, aap 'Remote' bhi likh sakte hain"
+      "enter_job_description": "Aapki zimmedariyon aur kartavyon ka varnan",
+      "enter_location": "Naukri ki jagah, aap 'Remote' bhi likh sakte hain"
     },
     "legal": {
       "terms_conditions": "Shartein aur Niyam",
