@@ -155,7 +155,7 @@
         },
         "education": {
           "title": "Education",
-          "add": "Add Education",
+          "add_education": "Add Education",
           "is_present": "I'm currently studing here"
         }
       }
