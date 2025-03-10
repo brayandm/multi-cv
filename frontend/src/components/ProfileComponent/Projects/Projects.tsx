@@ -6,11 +6,7 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
-interface IProjectsProps {
-  width: number;
-}
-
-const Projects: React.FC<IProjectsProps> = ({ width }) => {
+const Projects: React.FC = () => {
   const { profile, updateProfile } = useProfile();
   const t = useTranslations();
   function onProjectChange(
@@ -94,11 +90,7 @@ const Projects: React.FC<IProjectsProps> = ({ width }) => {
         ];
 
         return (
-          <div
-            key={index}
-            className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 px-1 snap-center`}
-            style={{ "--initialWidth": `${width}px` } as React.CSSProperties}
-          >
+          <div key={index} className={`mb-4 px-1 snap-center`}>
             <DynamicInputs inputs={inputs} />
           </div>
         );

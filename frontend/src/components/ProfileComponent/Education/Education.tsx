@@ -9,11 +9,7 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
-interface IEducationProps {
-  width: number;
-}
-
-const Education: React.FC<IEducationProps> = ({ width }) => {
+const Education: React.FC = () => {
   const { profile, updateProfile } = useProfile();
   const t = useTranslations();
   function onEducationChange(
@@ -108,11 +104,7 @@ const Education: React.FC<IEducationProps> = ({ width }) => {
         ];
 
         return (
-          <div
-            key={index}
-            className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 px-1 snap-center`}
-            style={{ "--initialWidth": `${width}px` } as React.CSSProperties}
-          >
+          <div key={index} className={`mb-4 px-1 snap-center`}>
             <DynamicInputs isPresentJob={isPresentJob()} inputs={inputs} />
           </div>
         );

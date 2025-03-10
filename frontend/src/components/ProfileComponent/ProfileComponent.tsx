@@ -113,19 +113,19 @@ const ProfileComponent: React.FC = () => {
                   key="experiences"
                   title={t("pages.profile.sections.experience.title")}
                 >
-                  <Experience></Experience>
+                  <Experience />
                 </Tab>
                 <Tab
                   key="educations"
                   title={t("pages.profile.sections.education.title")}
                 >
-                  <Education width={width}></Education>
+                  <Education />
                 </Tab>
                 <Tab
                   key="projects"
                   title={t("pages.profile.sections.projects.title")}
                 >
-                  <Projects width={width}></Projects>
+                  <Projects />
                 </Tab>
                 <Tab
                   key="skills"
