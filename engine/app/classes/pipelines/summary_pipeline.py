@@ -8,5 +8,5 @@ class SummaryPipeline(Pipeline):
     def __init__(self) -> None:
         self.agent = SummaryAgent()
 
-    def run(self, person: Profile) -> str:
-        return self.agent.run(person)
+    def run(self, profile: Profile) -> str:
+        return self.agent.run(profile)

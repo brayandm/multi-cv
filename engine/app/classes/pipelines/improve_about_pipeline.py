@@ -8,10 +8,10 @@ class ImproveAboutPipeline(Pipeline):
     def __init__(self) -> None:
         self.agent = ImproveAboutAgent()
 
-    def run(self, person: Profile, message: Message) -> Profile:
+    def run(self, profile: Profile, message: Message) -> Profile:
 
-        result = self.agent.run(person, message)
+        result = self.agent.run(profile, message)
 
-        person.about = result
+        profile.about = result
 
-        return person
+        return profile

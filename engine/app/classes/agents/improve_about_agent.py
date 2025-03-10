@@ -6,14 +6,14 @@ from app.classes.models import Message, Profile
 
 class ImproveAboutAgent(Agent):
 
-    def run(self, person: Profile, message: Message) -> str:
-        person_json = person.model_dump_json()
+    def run(self, profile: Profile, message: Message) -> str:
+        profile_json = profile.model_dump_json()
 
         input = f"""
         Here is the information about the person in JSON format:
 
         ```json
-        {person_json}
+        {profile_json}
         ```
 
          Here is extra information about the person:

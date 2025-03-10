@@ -6,14 +6,14 @@ from app.classes.models import Profile
 
 class SummaryAgent(Agent):
 
-    def run(self, person: Profile) -> str:
-        person_json = person.model_dump_json()
+    def run(self, profile: Profile) -> str:
+        profile_json = profile.model_dump_json()
 
         input = f"""
         Here is the information about the person in JSON format:
 
         ```json
-        {person_json}
+        {profile_json}
         ```
 
         Please generate a summary of this information.

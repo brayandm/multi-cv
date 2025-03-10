@@ -36,9 +36,9 @@ async def message(message: Message) -> Dict[str, str]:
 
 
 @router.post("/summary")
-async def summary(person: Profile) -> Dict[str, str]:
+async def summary(profile: Profile) -> Dict[str, str]:
 
-    queue_manager.execute_pipeline(SummaryPipeline, "summary", person)
+    queue_manager.execute_pipeline(SummaryPipeline, "summary", profile)
 
     return {
         "message": "Request received. Processing in background.",
@@ -46,10 +46,10 @@ async def summary(person: Profile) -> Dict[str, str]:
 
 
 @router.post("/improve/about")
-async def improve_about(person: Profile, message: Message) -> Dict[str, str]:
+async def improve_about(profile: Profile, message: Message) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(
-        ImproveAboutPipeline, "summary", person, message
+        ImproveAboutPipeline, "summary", profile, message
     )
 
     return {
