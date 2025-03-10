@@ -6,7 +6,7 @@ import {
   IDynamicInput,
   IDynamicInputArray,
   IDynamicOnValueChange,
-} from "../ProfileComponent.types";
+} from "./DynamicInputs.types";
 import SelectCountry from "@/shared/components/SelectCountry";
 import Flag from "react-world-flags";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";

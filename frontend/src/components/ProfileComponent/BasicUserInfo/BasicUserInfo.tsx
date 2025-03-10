@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { IDynamicInputArray, IProfileFrom } from "../ProfileComponent.types";
+import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
+import { IProfile } from "@/lib/profileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 
 interface IBasicUserInfoProps {
-  formData: IProfileFrom;
-  setFormData: React.Dispatch<React.SetStateAction<IProfileFrom>>;
+  formData: IProfile;
+  setFormData: React.Dispatch<React.SetStateAction<IProfile>>;
   width: number;
 }
 

@@ -1,15 +1,13 @@
 "use client";
 import React, { useRef, useState } from "react";
-import {
-  IDynamicInputArray,
-  IProject,
-  IExperienceProps,
-} from "../ProfileComponent.types";
+import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
+import { IProject } from "@/lib/profileContext";
+import { IPaginatorProps } from "../Paginator/Paginator.types";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";
 import { useTranslations } from "next-intl";
 
-const Projects: React.FC<IExperienceProps> = ({
+const Projects: React.FC<IPaginatorProps> = ({
   formData,
   setFormData,
   width,

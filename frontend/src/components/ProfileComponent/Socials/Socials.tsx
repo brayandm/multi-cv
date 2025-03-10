@@ -1,10 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  IDynamicInputArray,
-  IProfileFrom,
-  ISocial,
-} from "../ProfileComponent.types";
+import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
+import { IProfile, ISocial } from "@/lib/profileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Avatar, Image, Select, SelectItem } from "@heroui/react";
@@ -29,10 +26,10 @@ export const socials = [
 ];
 
 interface IBasicUserInfoProps {
-  formData: IProfileFrom;
+  formData: IProfile;
   selectedSocials: Array<string>;
   width: number;
-  setFormData: React.Dispatch<React.SetStateAction<IProfileFrom>>;
+  setFormData: React.Dispatch<React.SetStateAction<IProfile>>;
   setSelectedSocials: React.Dispatch<React.SetStateAction<Array<string>>>;
 }
 

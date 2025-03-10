@@ -3,14 +3,14 @@ import React, { useRef, useState } from "react";
 import {
   IDynamicInput,
   IDynamicInputArray,
-  IExperience,
-  IExperienceProps,
-} from "../ProfileComponent.types";
+} from "../DynamicInputs/DynamicInputs.types";
+import { IExperience } from "@/lib/profileContext";
+import { IPaginatorProps } from "../Paginator/Paginator.types";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";
 import { useTranslations } from "next-intl";
 
-const Experience: React.FC<IExperienceProps> = ({
+const Experience: React.FC<IPaginatorProps> = ({
   formData,
   setFormData,
   width,

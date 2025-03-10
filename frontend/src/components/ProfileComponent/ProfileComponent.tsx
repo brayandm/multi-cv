@@ -2,7 +2,7 @@
 import { Button, Card, CardBody, CardHeader, Tab, Tabs } from "@heroui/react";
 import React, { useEffect, useRef, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
-import { IProfileFrom } from "./ProfileComponent.types";
+import { IProfile } from "@/lib/profileContext";
 import Experience from "./Experience";
 import { useTranslations } from "next-intl";
 import Skills from "./Skills";
@@ -13,7 +13,7 @@ import Education from "./Education";
 const ProfileComponent: React.FC = () => {
   const width = 350;
   const [selectedSocials, setSelectedSocials] = useState<Array<string>>([]);
-  const [formData, setFormData] = useState<IProfileFrom>({
+  const [formData, setFormData] = useState<IProfile>({
     basicInfo: {
       location: "",
       about: "",
