@@ -27,16 +27,17 @@ export const socials = [
 
 interface IBasicUserInfoProps {
   formData: IProfile;
-  selectedSocials: Array<string>;
   width: number;
   setFormData: (newProfile: Partial<IProfile>) => void;
-  setSelectedSocials: React.Dispatch<React.SetStateAction<Array<string>>>;
 }
 
 const Socials: React.FC<IBasicUserInfoProps> = (props) => {
   const [socialsArray, setSocialsArray] = useState<ISocial[]>(
     props.formData.socials
   );
+
+  const [selectedSocials, setSelectedSocials] = useState<Array<string>>([]);
+
   const t = useTranslations();
   function onSocialChange(
     index: number,
@@ -74,12 +75,12 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
       ...props.formData,
       socials: [
         ...socialsArray.filter((social) =>
-          props.selectedSocials.includes(social.name)
+          selectedSocials.includes(social.name)
         ),
       ],
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socialsArray, props.selectedSocials]);
+  }, [socialsArray, selectedSocials]);
 
   return (
     <div className="px-1">
@@ -88,7 +89,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
         className="mb-2"
         isMultiline={true}
         items={socials}
-        selectedKeys={props.selectedSocials}
+        selectedKeys={selectedSocials}
         label={t("common.form.socials_select")}
         placeholder={t("common.placeholders.socials_select")}
         renderValue={(items) => {
@@ -106,7 +107,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
           );
         }}
         onSelectionChange={(e) => {
-          props.setSelectedSocials(() => [...e] as string[]);
+          setSelectedSocials(() => [...e] as string[]);
           updateSocialsArray([...e] as string[]);
         }}
         selectionMode="multiple"

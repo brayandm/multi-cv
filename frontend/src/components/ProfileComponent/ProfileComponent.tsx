@@ -12,7 +12,6 @@ import Education from "./Education";
 
 const ProfileComponent: React.FC = () => {
   const width = 350;
-  const [selectedSocials, setSelectedSocials] = useState<Array<string>>([]);
 
   const { profile, updateProfile } = useProfile();
 
@@ -119,8 +118,6 @@ const ProfileComponent: React.FC = () => {
                     formData={profile}
                     setFormData={updateProfile}
                     width={width}
-                    selectedSocials={selectedSocials}
-                    setSelectedSocials={setSelectedSocials}
                   ></Socials>
                 </Tab>
                 <Tab
