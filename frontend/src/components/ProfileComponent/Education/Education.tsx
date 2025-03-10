@@ -52,7 +52,6 @@ const Education: React.FC<IEducationProps> = ({ width }) => {
       onNewPage={addNewEducation}
       buttonLabel={t("pages.profile.sections.education.add_education")}
     >
-      {" "}
       {profile.education.map((education, index) => {
         const isPresentJob = (): IDynamicInput<boolean> => {
           return {
