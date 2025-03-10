@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, ReactNode } from "react";
 
-export type BasicInfo = {
+export type IBasicInfo = {
   full_name: string;
   email: string;
   about: string;
@@ -44,7 +44,7 @@ export interface ISocial {
 }
 
 export interface IProfile {
-  basicInfo: BasicInfo;
+  basicInfo: IBasicInfo;
   socials: ISocial[];
   experience: IExperience[];
   education: IEducation[];
