@@ -16,6 +16,7 @@ jinja2 = "*"
 pdflatex = "*"
 fs-s3fs = "*"
 fs = "*"
+pydantic = {extras = ["email"], version = "*"}
 
 [dev-packages]
 black = "*"
