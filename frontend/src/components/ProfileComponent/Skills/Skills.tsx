@@ -23,23 +23,18 @@ const InputButton: React.FC<InputButtonProps> = (props) => {
 const Skills: React.FC = () => {
   const { profile, updateProfile } = useProfile();
   const [inputSkill, setInputSkill] = useState<string>("");
-  const [skillsArray, setSkillsArray] = useState<Array<string>>(profile.skills);
+
   const t = useTranslations();
 
   const addSkill = useCallback(() => {
     if (inputSkill === "") return;
 
-    setSkillsArray((prevSkills) => [...prevSkills, inputSkill]);
-    setInputSkill("");
-  }, [inputSkill]);
-
-  useEffect(() => {
     updateProfile({
       ...profile,
-      skills: [...skillsArray],
+      skills: [...profile.skills, inputSkill],
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skillsArray]);
+    setInputSkill("");
+  }, [inputSkill, profile, updateProfile]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -68,7 +63,10 @@ const Skills: React.FC = () => {
   return (
     <div className="px-1">
       <DynamicInputs inputs={inputs}></DynamicInputs>
-      <ChipArea chips={skillsArray} setChips={setSkillsArray}></ChipArea>
+      <ChipArea
+        chips={profile.skills}
+        setChips={(skills) => updateProfile({ ...profile, skills })}
+      ></ChipArea>
     </div>
   );
 };
