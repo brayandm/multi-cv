@@ -38,14 +38,14 @@ export interface IProject {
   link: string;
 }
 
-export interface ISocial {
+export interface IProfessionalLinks {
   name: string;
   link: string;
 }
 
 export interface IProfile {
   basic_info: IBasicInfo;
-  socials: ISocial[];
+  professional_links: IProfessionalLinks[];
   experience: IExperience[];
   education: IEducation[];
   projects: IProject[];
@@ -69,7 +69,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       phone_number: "",
       location: "",
     },
-    socials: [],
+    professional_links: [],
     experience: [],
     education: [],
     projects: [],

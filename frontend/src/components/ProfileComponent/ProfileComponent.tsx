@@ -6,7 +6,7 @@ import Experience from "./Experience";
 import { useTranslations } from "next-intl";
 import Skills from "./Skills";
 import Projects from "./Projects";
-import Socials from "./Socials";
+import ProfessionalLinks from "./ProfessionalLinks";
 import Education from "./Education";
 
 const ProfileComponent: React.FC = () => {
@@ -20,7 +20,7 @@ const ProfileComponent: React.FC = () => {
   const mapPosition = React.useMemo(
     () => ({
       "basic-user-info": 0,
-      socials: 1,
+      "professional-links": 1,
       experiences: 2,
       educations: 3,
       projects: 4,
@@ -104,10 +104,10 @@ const ProfileComponent: React.FC = () => {
                   <BasicUserInfo />
                 </Tab>
                 <Tab
-                  key="socials"
-                  title={t("pages.profile.sections.socials.title")}
+                  key="professional-links-select"
+                  title={t("pages.profile.sections.professional_links.title")}
                 >
-                  <Socials />
+                  <ProfessionalLinks />
                 </Tab>
                 <Tab
                   key="experiences"

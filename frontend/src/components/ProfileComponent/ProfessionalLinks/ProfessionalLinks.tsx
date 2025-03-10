@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
-import { ISocial, useProfile } from "@/lib/ProfileContext";
+import { IProfessionalLinks, useProfile } from "@/lib/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Avatar, Image, Select, SelectItem } from "@heroui/react";
 import { SelectIconInputsStyles } from "@/lib/customStyles";
 
-export const socials = [
+export const professionalLinks = [
   {
     name: "Github",
     avatar: "icons/companies/github.png",
@@ -25,33 +25,38 @@ export const socials = [
   },
 ];
 
-const Socials: React.FC = () => {
+const ProfessionalLinks: React.FC = () => {
   const { profile, updateProfile } = useProfile();
 
   const t = useTranslations();
   function onSocialChange(
     index: number,
-    key: keyof ISocial,
+    key: keyof IProfessionalLinks,
     value: string | boolean
   ) {
-    const updatedSocials = [...profile.socials];
-    updatedSocials[index] = { ...updatedSocials[index], [key]: value };
+    const updatedProfessionalLinks = [...profile.professional_links];
+    updatedProfessionalLinks[index] = {
+      ...updatedProfessionalLinks[index],
+      [key]: value,
+    };
 
     updateProfile({
       ...profile,
-      socials: updatedSocials,
+      professional_links: updatedProfessionalLinks,
     });
   }
 
-  function updateSocials(newSelectedSocials: string[]) {
-    const updatedSocials = newSelectedSocials.map((social) => {
-      const found = profile.socials.find((s) => s.name === social);
-      return found || { name: social, link: "" };
-    });
+  function updateProfessionalLinks(newSelectedProfessionalLinks: string[]) {
+    const updatedProfessionalLinks = newSelectedProfessionalLinks.map(
+      (social) => {
+        const found = profile.professional_links.find((s) => s.name === social);
+        return found || { name: social, link: "" };
+      }
+    );
 
     updateProfile({
       ...profile,
-      socials: updatedSocials,
+      professional_links: updatedProfessionalLinks,
     });
   }
 
@@ -61,10 +66,10 @@ const Socials: React.FC = () => {
         classNames={SelectIconInputsStyles}
         className="mb-2"
         isMultiline={true}
-        items={socials}
-        selectedKeys={profile.socials.map((social) => social.name)}
-        label={t("common.form.socials_select")}
-        placeholder={t("common.placeholders.socials_select")}
+        items={professionalLinks}
+        selectedKeys={profile.professional_links.map((social) => social.name)}
+        label={t("common.form.professional_links_select")}
+        placeholder={t("common.placeholders.professional_links_select")}
         renderValue={(items) => {
           return (
             <div className="flex flex-wrap gap-2">
@@ -80,7 +85,7 @@ const Socials: React.FC = () => {
           );
         }}
         onSelectionChange={(e) => {
-          updateSocials([...e] as string[]);
+          updateProfessionalLinks([...e] as string[]);
         }}
         selectionMode="multiple"
       >
@@ -101,7 +106,7 @@ const Socials: React.FC = () => {
           </SelectItem>
         )}
       </Select>
-      {profile.socials.map((social, index) => {
+      {profile.professional_links.map((social, index) => {
         const inputs: IDynamicInputArray<string & boolean> = [
           {
             label: social?.name || "",
@@ -125,4 +130,4 @@ const Socials: React.FC = () => {
   );
 };
 
-export default Socials;
+export default ProfessionalLinks;
