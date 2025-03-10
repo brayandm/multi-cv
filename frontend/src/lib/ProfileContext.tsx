@@ -44,7 +44,7 @@ export interface ISocial {
 }
 
 export interface IProfile {
-  basicInfo: IBasicInfo;
+  basic_info: IBasicInfo;
   socials: ISocial[];
   experience: IExperience[];
   education: IEducation[];
@@ -61,7 +61,7 @@ const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<IProfile>({
-    basicInfo: {
+    basic_info: {
       full_name: "",
       email: "",
       about: "",

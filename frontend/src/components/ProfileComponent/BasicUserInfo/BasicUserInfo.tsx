@@ -14,11 +14,11 @@ const BasicUserInfo: React.FC = () => {
     key: keyof IBasicInfo,
     value: string | boolean
   ) {
-    const updatedBasicInfo = { ...profile.basicInfo, [key]: value };
+    const updatedBasicInfo = { ...profile.basic_info, [key]: value };
 
     updateProfile({
       ...profile,
-      basicInfo: updatedBasicInfo,
+      basic_info: updatedBasicInfo,
     });
   }
 
@@ -27,7 +27,7 @@ const BasicUserInfo: React.FC = () => {
       label: t("common.form.full_name"),
       placeholder: t("common.placeholders.enter_full_name"),
       type: "text",
-      value: profile.basicInfo.full_name,
+      value: profile.basic_info.full_name,
       onValueChange: (value: string) => {
         onBasicUserInfoChange("full_name", value);
       },
@@ -36,7 +36,7 @@ const BasicUserInfo: React.FC = () => {
       label: t("common.form.email"),
       placeholder: t("common.placeholders.enter_email"),
       type: "email",
-      value: profile.basicInfo.email,
+      value: profile.basic_info.email,
       onValueChange: (value: string) => {
         onBasicUserInfoChange("email", value);
       },
@@ -45,7 +45,7 @@ const BasicUserInfo: React.FC = () => {
       {
         label: t("common.form.country_code"),
         type: "country_code",
-        value: profile.basicInfo.country_code,
+        value: profile.basic_info.country_code,
         onValueChange: (value: string) => {
           onBasicUserInfoChange("country_code", value);
         },
@@ -54,7 +54,7 @@ const BasicUserInfo: React.FC = () => {
         label: t("common.form.phone_number"),
         placeholder: "XXXXXXXXX",
         type: "phone_number",
-        value: profile.basicInfo.phone_number,
+        value: profile.basic_info.phone_number,
         onValueChange: (value: string) => {
           onBasicUserInfoChange("phone_number", value);
         },
@@ -65,7 +65,7 @@ const BasicUserInfo: React.FC = () => {
         label: t("common.form.your_location"),
         placeholder: t("common.placeholders.enter_location"),
         type: "text",
-        value: profile.basicInfo.location,
+        value: profile.basic_info.location,
         onValueChange: (value: string) => {
           onBasicUserInfoChange("location", value);
         },
@@ -75,7 +75,7 @@ const BasicUserInfo: React.FC = () => {
       label: t("common.form.about"),
       placeholder: t("common.placeholders.enter_about"),
       type: "textarea",
-      value: profile.basicInfo.about,
+      value: profile.basic_info.about,
       onValueChange: (value: string) => {
         onBasicUserInfoChange("about", value);
       },
