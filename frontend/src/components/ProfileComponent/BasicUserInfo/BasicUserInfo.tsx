@@ -4,11 +4,8 @@ import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { useProfile } from "@/lib/ProfileContext";
-interface IBasicUserInfoProps {
-  width: number;
-}
 
-const BasicUserInfo: React.FC<IBasicUserInfoProps> = () => {
+const BasicUserInfo: React.FC = () => {
   const { profile, updateProfile } = useProfile();
 
   const [fullName, setFullName] = useState<string>(profile.basicInfo.full_name);

@@ -20,11 +20,7 @@ const InputButton: React.FC<InputButtonProps> = (props) => {
   );
 };
 
-interface IBasicUserInfoProps {
-  width: number;
-}
-
-const Skills: React.FC<IBasicUserInfoProps> = () => {
+const Skills: React.FC = () => {
   const { profile, updateProfile } = useProfile();
   const [inputSkill, setInputSkill] = useState<string>("");
   const [skillsArray, setSkillsArray] = useState<Array<string>>(profile.skills);

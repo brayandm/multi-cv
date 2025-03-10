@@ -25,11 +25,7 @@ export const socials = [
   },
 ];
 
-interface IBasicUserInfoProps {
-  width: number;
-}
-
-const Socials: React.FC<IBasicUserInfoProps> = () => {
+const Socials: React.FC = () => {
   const { profile, updateProfile } = useProfile();
 
   const [socialsArray, setSocialsArray] = useState<ISocial[]>(profile.socials);

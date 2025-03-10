@@ -101,13 +101,13 @@ const ProfileComponent: React.FC = () => {
                   key="basic-user-info"
                   title={t("pages.profile.sections.basic_info.title")}
                 >
-                  <BasicUserInfo width={width}></BasicUserInfo>
+                  <BasicUserInfo />
                 </Tab>
                 <Tab
                   key="socials"
                   title={t("pages.profile.sections.socials.title")}
                 >
-                  <Socials width={width}></Socials>
+                  <Socials />
                 </Tab>
                 <Tab
                   key="experiences"
@@ -131,7 +131,7 @@ const ProfileComponent: React.FC = () => {
                   key="skills"
                   title={t("pages.profile.sections.skills.title")}
                 >
-                  <Skills width={width}></Skills>
+                  <Skills />
                 </Tab>
               </Tabs>
             </CardBody>
