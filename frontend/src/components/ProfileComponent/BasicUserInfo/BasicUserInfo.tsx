@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 
 interface IBasicUserInfoProps {
   formData: IProfile;
-  setFormData: React.Dispatch<React.SetStateAction<IProfile>>;
+  setFormData: (newProfile: Partial<IProfile>) => void;
   width: number;
 }
 

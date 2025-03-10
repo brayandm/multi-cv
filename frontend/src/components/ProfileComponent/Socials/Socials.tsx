@@ -29,7 +29,7 @@ interface IBasicUserInfoProps {
   formData: IProfile;
   selectedSocials: Array<string>;
   width: number;
-  setFormData: React.Dispatch<React.SetStateAction<IProfile>>;
+  setFormData: (newProfile: Partial<IProfile>) => void;
   setSelectedSocials: React.Dispatch<React.SetStateAction<Array<string>>>;
 }
 
