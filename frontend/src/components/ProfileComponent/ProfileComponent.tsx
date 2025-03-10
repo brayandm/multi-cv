@@ -2,7 +2,7 @@
 import { Button, Card, CardBody, CardHeader, Tab, Tabs } from "@heroui/react";
 import React, { useEffect, useRef, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
-import { IProfile } from "@/lib/profileContext";
+import { IProfile } from "@/lib/ProfileContext";
 import Experience from "./Experience";
 import { useTranslations } from "next-intl";
 import Skills from "./Skills";

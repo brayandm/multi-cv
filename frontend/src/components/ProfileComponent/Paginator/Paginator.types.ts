@@ -1,4 +1,4 @@
-import { IProfile } from "@/lib/profileContext";
+import { IProfile } from "@/lib/ProfileContext";
 export interface IPaginatorProps {
   width: number;
   formData: IProfile;

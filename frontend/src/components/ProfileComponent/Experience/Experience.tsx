@@ -4,7 +4,7 @@ import {
   IDynamicInput,
   IDynamicInputArray,
 } from "../DynamicInputs/DynamicInputs.types";
-import { IExperience } from "@/lib/profileContext";
+import { IExperience } from "@/lib/ProfileContext";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";

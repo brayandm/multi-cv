@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
-import { IProject } from "@/lib/profileContext";
+import { IProject } from "@/lib/ProfileContext";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";

@@ -1,6 +1,7 @@
+"use client";
+
 import { createContext, useContext, useState, ReactNode } from "react";
 
-// Define types
 export type BasicInfo = {
   full_name: string;
   email: string;
@@ -51,16 +52,13 @@ export interface IProfile {
   skills: string[];
 }
 
-// Define context type
 interface ProfileContextType {
   profile: IProfile;
   updateProfile: (newProfile: Partial<IProfile>) => void;
 }
 
-// Create context
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
-// Provider component
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [profile, setProfile] = useState<IProfile>({
     basicInfo: {
@@ -89,7 +87,6 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-// Custom hook for consuming the context
 export const useProfile = () => {
   const context = useContext(ProfileContext);
   if (!context) {
