@@ -1,9 +1,11 @@
-from pydantic import BaseModel
 from typing import List
+
+from pydantic import BaseModel
+
 from .basic_info import BasicInfo
-from .professional_link import ProfessionalLink
-from .experience import Experience
 from .education import Education
+from .experience import Experience
+from .professional_link import ProfessionalLink
 from .project import Project
 
 

@@ -1,13 +1,13 @@
+from .basic_info import BasicInfo
 from .cv import Cv
 from .cv_experience import CvExperience
 from .cv_template import CvTemplate
-from .message import Message
-from .profile import Profile
-from .basic_info import BasicInfo
 from .education import Education
 from .experience import Experience
-from .project import Project
+from .message import Message
 from .professional_link import ProfessionalLink
+from .profile import Profile
+from .project import Project
 
 __all__ = [
     "Message",
