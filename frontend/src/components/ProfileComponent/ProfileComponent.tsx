@@ -104,7 +104,7 @@ const ProfileComponent: React.FC = () => {
                   <BasicUserInfo />
                 </Tab>
                 <Tab
-                  key="professional-links-select"
+                  key="professional-links"
                   title={t("pages.profile.sections.professional_links.title")}
                 >
                   <ProfessionalLinks />
