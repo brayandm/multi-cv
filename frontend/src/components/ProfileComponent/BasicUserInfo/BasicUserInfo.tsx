@@ -1,75 +1,63 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { IDynamicInputArray, IProfileFrom } from "../ProfileComponent.types";
+import React from "react";
+import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
+import { IBasicInfo, useProfile } from "@/lib/ProfileContext";
 
-interface IBasicUserInfoProps {
-  formData: IProfileFrom;
-  setFormData: React.Dispatch<React.SetStateAction<IProfileFrom>>;
-  width: number;
-}
+const BasicUserInfo: React.FC = () => {
+  const { profile, updateProfile } = useProfile();
 
-const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
-  const [fullName, setFullName] = useState<string>(
-    props.formData.basicInfo.full_name
-  );
-  const [location, setLocation] = useState<string>(
-    props.formData.basicInfo.location
-  );
-  const [about, setAbout] = useState<string>(props.formData.basicInfo.about);
-  const [email, setEmail] = useState<string>(props.formData.basicInfo.email);
-  const [phoneNumber, setPhoneNumber] = useState<string>(
-    props.formData.basicInfo.phone_number
-  );
-  const [countryCode, setCountryCode] = useState<string>(
-    props.formData.basicInfo.country_code
-  );
   const t = useTranslations();
 
-  useEffect(() => {
-    props.setFormData({
-      ...props.formData,
-      basicInfo: {
-        location,
-        about,
-        email,
-        full_name: fullName,
-        phone_number: phoneNumber,
-        country_code: countryCode,
-      },
+  function onBasicUserInfoChange(
+    key: keyof IBasicInfo,
+    value: string | boolean
+  ) {
+    const updatedBasicInfo = { ...profile.basicInfo, [key]: value };
+
+    updateProfile({
+      ...profile,
+      basicInfo: updatedBasicInfo,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, fullName, about, phoneNumber, countryCode, location]);
+  }
 
   const inputs: IDynamicInputArray<string> = [
     {
       label: t("common.form.full_name"),
       placeholder: t("common.placeholders.enter_full_name"),
       type: "text",
-      value: fullName,
-      onValueChange: setFullName,
+      value: profile.basicInfo.full_name,
+      onValueChange: (value: string) => {
+        onBasicUserInfoChange("full_name", value);
+      },
     },
     {
       label: t("common.form.email"),
       placeholder: t("common.placeholders.enter_email"),
       type: "email",
-      value: email,
-      onValueChange: setEmail,
+      value: profile.basicInfo.email,
+      onValueChange: (value: string) => {
+        onBasicUserInfoChange("email", value);
+      },
     },
     [
       {
         label: t("common.form.country_code"),
         type: "country_code",
-        value: countryCode,
-        onValueChange: setCountryCode,
+        value: profile.basicInfo.country_code,
+        onValueChange: (value: string) => {
+          onBasicUserInfoChange("country_code", value);
+        },
       },
       {
         label: t("common.form.phone_number"),
         placeholder: "XXXXXXXXX",
         type: "phone_number",
-        value: phoneNumber,
-        onValueChange: setPhoneNumber,
+        value: profile.basicInfo.phone_number,
+        onValueChange: (value: string) => {
+          onBasicUserInfoChange("phone_number", value);
+        },
       },
     ],
     [
@@ -77,16 +65,20 @@ const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
         label: t("common.form.your_location"),
         placeholder: t("common.placeholders.enter_location"),
         type: "text",
-        value: location,
-        onValueChange: setLocation,
+        value: profile.basicInfo.location,
+        onValueChange: (value: string) => {
+          onBasicUserInfoChange("location", value);
+        },
       },
     ],
     {
       label: t("common.form.about"),
       placeholder: t("common.placeholders.enter_about"),
       type: "textarea",
-      value: about,
-      onValueChange: setAbout,
+      value: profile.basicInfo.about,
+      onValueChange: (value: string) => {
+        onBasicUserInfoChange("about", value);
+      },
     },
   ];
 

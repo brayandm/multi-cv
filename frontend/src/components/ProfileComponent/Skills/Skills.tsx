@@ -1,6 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
-import { IDynamicInputArray, IProfileFrom } from "../ProfileComponent.types";
+import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
+import { useProfile } from "@/lib/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Button } from "@heroui/react";
@@ -19,33 +20,21 @@ const InputButton: React.FC<InputButtonProps> = (props) => {
   );
 };
 
-interface IBasicUserInfoProps {
-  formData: IProfileFrom;
-  setFormData: React.Dispatch<React.SetStateAction<IProfileFrom>>;
-  width: number;
-}
-
-const Skills: React.FC<IBasicUserInfoProps> = (props) => {
+const Skills: React.FC = () => {
+  const { profile, updateProfile } = useProfile();
   const [inputSkill, setInputSkill] = useState<string>("");
-  const [skillsArray, setSkillsArray] = useState<Array<string>>(
-    props.formData.skills
-  );
+
   const t = useTranslations();
 
   const addSkill = useCallback(() => {
     if (inputSkill === "") return;
 
-    setSkillsArray((prevSkills) => [...prevSkills, inputSkill]);
-    setInputSkill("");
-  }, [inputSkill]);
-
-  useEffect(() => {
-    props.setFormData({
-      ...props.formData,
-      skills: [...skillsArray],
+    updateProfile({
+      ...profile,
+      skills: [...profile.skills, inputSkill],
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skillsArray]);
+    setInputSkill("");
+  }, [inputSkill, profile, updateProfile]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -74,7 +63,10 @@ const Skills: React.FC<IBasicUserInfoProps> = (props) => {
   return (
     <div className="px-1">
       <DynamicInputs inputs={inputs}></DynamicInputs>
-      <ChipArea chips={skillsArray} setChips={setSkillsArray}></ChipArea>
+      <ChipArea
+        chips={profile.skills}
+        setChips={(skills) => updateProfile({ ...profile, skills })}
+      ></ChipArea>
     </div>
   );
 };

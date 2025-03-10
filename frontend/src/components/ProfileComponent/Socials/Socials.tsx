@@ -1,10 +1,7 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import {
-  IDynamicInputArray,
-  IProfileFrom,
-  ISocial,
-} from "../ProfileComponent.types";
+import React from "react";
+import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
+import { ISocial, useProfile } from "@/lib/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Avatar, Image, Select, SelectItem } from "@heroui/react";
@@ -28,61 +25,35 @@ export const socials = [
   },
 ];
 
-interface IBasicUserInfoProps {
-  formData: IProfileFrom;
-  selectedSocials: Array<string>;
-  width: number;
-  setFormData: React.Dispatch<React.SetStateAction<IProfileFrom>>;
-  setSelectedSocials: React.Dispatch<React.SetStateAction<Array<string>>>;
-}
+const Socials: React.FC = () => {
+  const { profile, updateProfile } = useProfile();
 
-const Socials: React.FC<IBasicUserInfoProps> = (props) => {
-  const [socialsArray, setSocialsArray] = useState<ISocial[]>(
-    props.formData.socials
-  );
   const t = useTranslations();
   function onSocialChange(
     index: number,
     key: keyof ISocial,
     value: string | boolean
   ) {
-    const updatedSocials = [...socialsArray];
+    const updatedSocials = [...profile.socials];
     updatedSocials[index] = { ...updatedSocials[index], [key]: value };
 
-    setSocialsArray(updatedSocials);
-    props.setFormData({
-      ...props.formData,
+    updateProfile({
+      ...profile,
       socials: updatedSocials,
     });
   }
 
-  function updateSocialsArray(newSelectedSocials: string[]) {
-    const newSocialsArray: ISocial[] = [];
-    newSelectedSocials.map((selectedSocial) => {
-      if (!socialsArray.find((social) => social.name === selectedSocial)) {
-        newSocialsArray.push({ link: "", name: selectedSocial });
-      }
+  function updateSocials(newSelectedSocials: string[]) {
+    const updatedSocials = newSelectedSocials.map((social) => {
+      const found = profile.socials.find((s) => s.name === social);
+      return found || { name: social, link: "" };
     });
 
-    setSocialsArray([
-      ...socialsArray.filter((social) =>
-        newSelectedSocials.includes(social.name)
-      ),
-      ...newSocialsArray,
-    ]);
+    updateProfile({
+      ...profile,
+      socials: updatedSocials,
+    });
   }
-
-  useEffect(() => {
-    props.setFormData({
-      ...props.formData,
-      socials: [
-        ...socialsArray.filter((social) =>
-          props.selectedSocials.includes(social.name)
-        ),
-      ],
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socialsArray, props.selectedSocials]);
 
   return (
     <div className="px-1">
@@ -91,7 +62,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
         className="mb-2"
         isMultiline={true}
         items={socials}
-        selectedKeys={props.selectedSocials}
+        selectedKeys={profile.socials.map((social) => social.name)}
         label={t("common.form.socials_select")}
         placeholder={t("common.placeholders.socials_select")}
         renderValue={(items) => {
@@ -109,8 +80,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
           );
         }}
         onSelectionChange={(e) => {
-          props.setSelectedSocials(() => [...e] as string[]);
-          updateSocialsArray([...e] as string[]);
+          updateSocials([...e] as string[]);
         }}
         selectionMode="multiple"
       >
@@ -131,7 +101,7 @@ const Socials: React.FC<IBasicUserInfoProps> = (props) => {
           </SelectItem>
         )}
       </Select>
-      {socialsArray.map((social, index) => {
+      {profile.socials.map((social, index) => {
         const inputs: IDynamicInputArray<string & boolean> = [
           {
             label: social?.name || "",

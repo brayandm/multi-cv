@@ -2,7 +2,6 @@
 import { Button, Card, CardBody, CardHeader, Tab, Tabs } from "@heroui/react";
 import React, { useEffect, useRef, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
-import { IProfileFrom } from "./ProfileComponent.types";
 import Experience from "./Experience";
 import { useTranslations } from "next-intl";
 import Skills from "./Skills";
@@ -12,27 +11,6 @@ import Education from "./Education";
 
 const ProfileComponent: React.FC = () => {
   const width = 350;
-  const [selectedSocials, setSelectedSocials] = useState<Array<string>>([]);
-  const [formData, setFormData] = useState<IProfileFrom>({
-    basicInfo: {
-      location: "",
-      about: "",
-      email: "",
-      full_name: "",
-      country_code: "",
-      phone_number: "",
-    },
-    education: [],
-    socials: [],
-    projects: [],
-    experience: [],
-    skills: [],
-  });
-  useEffect(() => {
-    {
-      console.log(formData);
-    }
-  }, [formData]);
 
   const t = useTranslations();
 
@@ -123,63 +101,37 @@ const ProfileComponent: React.FC = () => {
                   key="basic-user-info"
                   title={t("pages.profile.sections.basic_info.title")}
                 >
-                  <BasicUserInfo
-                    formData={formData}
-                    setFormData={setFormData}
-                    width={width}
-                  ></BasicUserInfo>
+                  <BasicUserInfo />
                 </Tab>
                 <Tab
                   key="socials"
                   title={t("pages.profile.sections.socials.title")}
                 >
-                  <Socials
-                    formData={formData}
-                    setFormData={setFormData}
-                    width={width}
-                    selectedSocials={selectedSocials}
-                    setSelectedSocials={setSelectedSocials}
-                  ></Socials>
+                  <Socials />
                 </Tab>
                 <Tab
                   key="experiences"
                   title={t("pages.profile.sections.experience.title")}
                 >
-                  <Experience
-                    width={width}
-                    formData={formData}
-                    setFormData={setFormData}
-                  ></Experience>
+                  <Experience width={width}></Experience>
                 </Tab>
                 <Tab
                   key="educations"
                   title={t("pages.profile.sections.education.title")}
                 >
-                  <Education
-                    width={width}
-                    formData={formData}
-                    setFormData={setFormData}
-                  ></Education>
+                  <Education width={width}></Education>
                 </Tab>
                 <Tab
                   key="projects"
                   title={t("pages.profile.sections.projects.title")}
                 >
-                  <Projects
-                    width={width}
-                    formData={formData}
-                    setFormData={setFormData}
-                  ></Projects>
+                  <Projects width={width}></Projects>
                 </Tab>
                 <Tab
                   key="skills"
                   title={t("pages.profile.sections.skills.title")}
                 >
-                  <Skills
-                    width={width}
-                    formData={formData}
-                    setFormData={setFormData}
-                  ></Skills>
+                  <Skills />
                 </Tab>
               </Tabs>
             </CardBody>
