@@ -78,6 +78,10 @@ const ProfileComponent: React.FC = () => {
     smoothScroll(ref.current.scrollLeft, targetScroll, 700);
   }, [selectedTab, mapPosition]);
 
+  useEffect(() => {
+    console.log("profile", profile);
+  }, [profile]);
+
   return (
     <main className="flex justify-center">
       <div className={`max-w-[${width}px]`}>
