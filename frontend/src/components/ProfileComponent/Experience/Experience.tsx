@@ -10,11 +10,7 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
-interface IExperienceProps {
-  width: number;
-}
-
-const Experience: React.FC<IExperienceProps> = ({ width }) => {
+const Experience: React.FC = () => {
   const { profile, updateProfile } = useProfile();
 
   const t = useTranslations();
@@ -119,11 +115,7 @@ const Experience: React.FC<IExperienceProps> = ({ width }) => {
         ];
 
         return (
-          <div
-            key={index}
-            className={`w-[calc(var(--initialWidth)-2*0.75rem-2*0.25rem)] mb-4 px-1 snap-center`}
-            style={{ "--initialWidth": `${width}px` } as React.CSSProperties}
-          >
+          <div key={index} className={`mb-4 px-1 snap-center`}>
             <DynamicInputs isPresentJob={isPresentJob()} inputs={inputs} />
           </div>
         );
