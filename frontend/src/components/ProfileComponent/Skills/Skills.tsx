@@ -1,7 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
-import { IProfile } from "@/lib/ProfileContext";
+import { useProfile } from "@/lib/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Button } from "@heroui/react";
@@ -21,16 +21,13 @@ const InputButton: React.FC<InputButtonProps> = (props) => {
 };
 
 interface IBasicUserInfoProps {
-  formData: IProfile;
-  setFormData: (newProfile: Partial<IProfile>) => void;
   width: number;
 }
 
-const Skills: React.FC<IBasicUserInfoProps> = (props) => {
+const Skills: React.FC<IBasicUserInfoProps> = () => {
+  const { profile, updateProfile } = useProfile();
   const [inputSkill, setInputSkill] = useState<string>("");
-  const [skillsArray, setSkillsArray] = useState<Array<string>>(
-    props.formData.skills
-  );
+  const [skillsArray, setSkillsArray] = useState<Array<string>>(profile.skills);
   const t = useTranslations();
 
   const addSkill = useCallback(() => {
@@ -41,8 +38,8 @@ const Skills: React.FC<IBasicUserInfoProps> = (props) => {
   }, [inputSkill]);
 
   useEffect(() => {
-    props.setFormData({
-      ...props.formData,
+    updateProfile({
+      ...profile,
       skills: [...skillsArray],
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

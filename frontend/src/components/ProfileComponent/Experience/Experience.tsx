@@ -4,21 +4,18 @@ import {
   IDynamicInput,
   IDynamicInputArray,
 } from "../DynamicInputs/DynamicInputs.types";
-import { IExperience } from "@/lib/ProfileContext";
+import { IExperience, useProfile } from "@/lib/ProfileContext";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";
 import { useTranslations } from "next-intl";
 
-const Experience: React.FC<IPaginatorProps> = ({
-  formData,
-  setFormData,
-  width,
-}) => {
+const Experience: React.FC<IPaginatorProps> = ({ width }) => {
+  const { profile, updateProfile } = useProfile();
   const scrollRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
   const [experiences, setExperiences] = useState<Array<IExperience>>(
-    formData.experience
+    profile.experience
   );
   const [currentExperience, setCurrentpage] = useState<number>(1);
   const t = useTranslations();
@@ -31,8 +28,8 @@ const Experience: React.FC<IPaginatorProps> = ({
     updatedExperiences[index] = { ...updatedExperiences[index], [key]: value };
 
     setExperiences(updatedExperiences);
-    setFormData({
-      ...formData,
+    updateProfile({
+      ...profile,
       experience: updatedExperiences,
     });
   }
@@ -60,8 +57,8 @@ const Experience: React.FC<IPaginatorProps> = ({
     };
 
     setExperiences([...experiences, experience]);
-    setFormData({
-      ...formData,
+    updateProfile({
+      ...profile,
       experience: [...experiences, experience],
     });
     setTimeout(() => {

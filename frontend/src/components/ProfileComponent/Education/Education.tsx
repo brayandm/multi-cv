@@ -5,20 +5,17 @@ import {
   IDynamicInputArray,
 } from "../DynamicInputs/DynamicInputs.types";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
-import { IEducation } from "@/lib/ProfileContext";
+import { IEducation, useProfile } from "@/lib/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";
 import { useTranslations } from "next-intl";
 
-const Education: React.FC<IPaginatorProps> = ({
-  formData,
-  setFormData,
-  width,
-}) => {
+const Education: React.FC<IPaginatorProps> = ({ width }) => {
+  const { profile, updateProfile } = useProfile();
   const scrollRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
   const [educations, setEducations] = useState<Array<IEducation>>(
-    formData.education
+    profile.education
   );
   const [currentEducation, setCurrentpage] = useState<number>(1);
   const t = useTranslations();
@@ -31,8 +28,8 @@ const Education: React.FC<IPaginatorProps> = ({
     updatedEducations[index] = { ...updatedEducations[index], [key]: value };
 
     setEducations(updatedEducations);
-    setFormData({
-      ...formData,
+    updateProfile({
+      ...profile,
       education: updatedEducations,
     });
   }
@@ -59,8 +56,8 @@ const Education: React.FC<IPaginatorProps> = ({
     };
 
     setEducations([...educations, education]);
-    setFormData({
-      ...formData,
+    updateProfile({
+      ...profile,
       education: [...educations, education],
     });
     setTimeout(() => {

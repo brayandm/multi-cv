@@ -2,7 +2,6 @@
 import { Button, Card, CardBody, CardHeader, Tab, Tabs } from "@heroui/react";
 import React, { useEffect, useRef, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
-import { useProfile } from "@/lib/ProfileContext";
 import Experience from "./Experience";
 import { useTranslations } from "next-intl";
 import Skills from "./Skills";
@@ -12,8 +11,6 @@ import Education from "./Education";
 
 const ProfileComponent: React.FC = () => {
   const width = 350;
-
-  const { profile, updateProfile } = useProfile();
 
   const t = useTranslations();
 
@@ -78,10 +75,6 @@ const ProfileComponent: React.FC = () => {
     smoothScroll(ref.current.scrollLeft, targetScroll, 700);
   }, [selectedTab, mapPosition]);
 
-  useEffect(() => {
-    console.log("profile", profile);
-  }, [profile]);
-
   return (
     <main className="flex justify-center">
       <div className={`max-w-[${width}px]`}>
@@ -108,61 +101,37 @@ const ProfileComponent: React.FC = () => {
                   key="basic-user-info"
                   title={t("pages.profile.sections.basic_info.title")}
                 >
-                  <BasicUserInfo
-                    formData={profile}
-                    setFormData={updateProfile}
-                    width={width}
-                  ></BasicUserInfo>
+                  <BasicUserInfo width={width}></BasicUserInfo>
                 </Tab>
                 <Tab
                   key="socials"
                   title={t("pages.profile.sections.socials.title")}
                 >
-                  <Socials
-                    formData={profile}
-                    setFormData={updateProfile}
-                    width={width}
-                  ></Socials>
+                  <Socials width={width}></Socials>
                 </Tab>
                 <Tab
                   key="experiences"
                   title={t("pages.profile.sections.experience.title")}
                 >
-                  <Experience
-                    width={width}
-                    formData={profile}
-                    setFormData={updateProfile}
-                  ></Experience>
+                  <Experience width={width}></Experience>
                 </Tab>
                 <Tab
                   key="educations"
                   title={t("pages.profile.sections.education.title")}
                 >
-                  <Education
-                    width={width}
-                    formData={profile}
-                    setFormData={updateProfile}
-                  ></Education>
+                  <Education width={width}></Education>
                 </Tab>
                 <Tab
                   key="projects"
                   title={t("pages.profile.sections.projects.title")}
                 >
-                  <Projects
-                    width={width}
-                    formData={profile}
-                    setFormData={updateProfile}
-                  ></Projects>
+                  <Projects width={width}></Projects>
                 </Tab>
                 <Tab
                   key="skills"
                   title={t("pages.profile.sections.skills.title")}
                 >
-                  <Skills
-                    width={width}
-                    formData={profile}
-                    setFormData={updateProfile}
-                  ></Skills>
+                  <Skills width={width}></Skills>
                 </Tab>
               </Tabs>
             </CardBody>

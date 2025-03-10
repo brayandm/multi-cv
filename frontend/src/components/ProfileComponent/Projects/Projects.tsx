@@ -1,20 +1,17 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
-import { IProject } from "@/lib/ProfileContext";
+import { IProject, useProfile } from "@/lib/ProfileContext";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { Button, Pagination } from "@heroui/react";
 import { useTranslations } from "next-intl";
 
-const Projects: React.FC<IPaginatorProps> = ({
-  formData,
-  setFormData,
-  width,
-}) => {
+const Projects: React.FC<IPaginatorProps> = ({ width }) => {
+  const { profile, updateProfile } = useProfile();
   const scrollRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
-  const [projects, setProjects] = useState<Array<IProject>>(formData.projects);
+  const [projects, setProjects] = useState<Array<IProject>>(profile.projects);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const t = useTranslations();
   function onProjectChange(
@@ -26,8 +23,8 @@ const Projects: React.FC<IPaginatorProps> = ({
     updatedProjects[index] = { ...updatedProjects[index], [key]: value };
 
     setProjects(updatedProjects);
-    setFormData({
-      ...formData,
+    updateProfile({
+      ...profile,
       projects: updatedProjects,
     });
   }
@@ -53,8 +50,8 @@ const Projects: React.FC<IPaginatorProps> = ({
     };
 
     setProjects([...projects, project]);
-    setFormData({
-      ...formData,
+    updateProfile({
+      ...profile,
       projects: [...projects, project],
     });
     setTimeout(() => {

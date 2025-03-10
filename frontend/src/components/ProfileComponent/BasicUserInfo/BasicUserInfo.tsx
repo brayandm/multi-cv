@@ -1,36 +1,31 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
-import { IProfile } from "@/lib/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
-
+import { useProfile } from "@/lib/ProfileContext";
 interface IBasicUserInfoProps {
-  formData: IProfile;
-  setFormData: (newProfile: Partial<IProfile>) => void;
   width: number;
 }
 
-const BasicUserInfo: React.FC<IBasicUserInfoProps> = (props) => {
-  const [fullName, setFullName] = useState<string>(
-    props.formData.basicInfo.full_name
-  );
-  const [location, setLocation] = useState<string>(
-    props.formData.basicInfo.location
-  );
-  const [about, setAbout] = useState<string>(props.formData.basicInfo.about);
-  const [email, setEmail] = useState<string>(props.formData.basicInfo.email);
+const BasicUserInfo: React.FC<IBasicUserInfoProps> = () => {
+  const { profile, updateProfile } = useProfile();
+
+  const [fullName, setFullName] = useState<string>(profile.basicInfo.full_name);
+  const [location, setLocation] = useState<string>(profile.basicInfo.location);
+  const [about, setAbout] = useState<string>(profile.basicInfo.about);
+  const [email, setEmail] = useState<string>(profile.basicInfo.email);
   const [phoneNumber, setPhoneNumber] = useState<string>(
-    props.formData.basicInfo.phone_number
+    profile.basicInfo.phone_number
   );
   const [countryCode, setCountryCode] = useState<string>(
-    props.formData.basicInfo.country_code
+    profile.basicInfo.country_code
   );
   const t = useTranslations();
 
   useEffect(() => {
-    props.setFormData({
-      ...props.formData,
+    updateProfile({
+      ...profile,
       basicInfo: {
         location,
         about,
