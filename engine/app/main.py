@@ -3,7 +3,7 @@ from typing import Dict
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import Response
 
-from app.classes.models import Cv, CvTemplate, Message, Person
+from app.classes.models import Cv, CvTemplate, Message, Profile
 from app.classes.pipelines import (
     BasicPipeline,
     GenerateCVPipeline,
@@ -36,7 +36,7 @@ async def message(message: Message) -> Dict[str, str]:
 
 
 @router.post("/summary")
-async def summary(person: Person) -> Dict[str, str]:
+async def summary(person: Profile) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(SummaryPipeline, "summary", person)
 
@@ -46,7 +46,7 @@ async def summary(person: Person) -> Dict[str, str]:
 
 
 @router.post("/improve/about")
-async def improve_about(person: Person, message: Message) -> Dict[str, str]:
+async def improve_about(person: Profile, message: Message) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(
         ImproveAboutPipeline, "summary", person, message

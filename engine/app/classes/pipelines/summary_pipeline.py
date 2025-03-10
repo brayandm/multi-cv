@@ -1,6 +1,6 @@
 from app.classes.agents import SummaryAgent
 from app.classes.base import Pipeline
-from app.classes.models import Person
+from app.classes.models import Profile
 
 
 class SummaryPipeline(Pipeline):
@@ -8,5 +8,5 @@ class SummaryPipeline(Pipeline):
     def __init__(self) -> None:
         self.agent = SummaryAgent()
 
-    def run(self, person: Person) -> str:
+    def run(self, person: Profile) -> str:
         return self.agent.run(person)

@@ -1,0 +1,9 @@
+from pydantic import BaseModel
+
+
+class Project(BaseModel):
+    name: str
+    end_date: str
+    start_date: str
+    description: str
+    link: str

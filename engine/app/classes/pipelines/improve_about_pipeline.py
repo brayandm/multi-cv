@@ -1,6 +1,6 @@
 from app.classes.agents import ImproveAboutAgent
 from app.classes.base import Pipeline
-from app.classes.models import Message, Person
+from app.classes.models import Message, Profile
 
 
 class ImproveAboutPipeline(Pipeline):
@@ -8,7 +8,7 @@ class ImproveAboutPipeline(Pipeline):
     def __init__(self) -> None:
         self.agent = ImproveAboutAgent()
 
-    def run(self, person: Person, message: Message) -> Person:
+    def run(self, person: Profile, message: Message) -> Profile:
 
         result = self.agent.run(person, message)
 

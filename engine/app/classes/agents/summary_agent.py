@@ -1,12 +1,12 @@
 from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
-from app.classes.models import Person
+from app.classes.models import Profile
 
 
 class SummaryAgent(Agent):
 
-    def run(self, person: Person) -> str:
+    def run(self, person: Profile) -> str:
         person_json = person.model_dump_json()
 
         input = f"""
