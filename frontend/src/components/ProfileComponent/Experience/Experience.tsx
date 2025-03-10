@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   IDynamicInput,
   IDynamicInputArray,
@@ -16,19 +16,16 @@ interface IExperienceProps {
 
 const Experience: React.FC<IExperienceProps> = ({ width }) => {
   const { profile, updateProfile } = useProfile();
-  const [experiences, setExperiences] = useState<Array<IExperience>>(
-    profile.experience
-  );
+
   const t = useTranslations();
   function onExperienceChange(
     index: number,
     key: keyof IExperience,
     value: string | boolean
   ) {
-    const updatedExperiences = [...experiences];
+    const updatedExperiences = [...profile.experience];
     updatedExperiences[index] = { ...updatedExperiences[index], [key]: value };
 
-    setExperiences(updatedExperiences);
     updateProfile({
       ...profile,
       experience: updatedExperiences,
@@ -46,20 +43,19 @@ const Experience: React.FC<IExperienceProps> = ({ width }) => {
       role: "",
     };
 
-    setExperiences([...experiences, experience]);
     updateProfile({
       ...profile,
-      experience: [...experiences, experience],
+      experience: [...profile.experience, experience],
     });
   }
 
   return (
     <Paginator
-      total={experiences.length}
+      total={profile.experience.length}
       onNewPage={addNewExperience}
       buttonLabel={t("pages.profile.sections.experience.add_experience")}
     >
-      {experiences.map((experience, index) => {
+      {profile.experience.map((experience, index) => {
         const isPresentJob = (): IDynamicInput<boolean> => {
           return {
             label: t("pages.profile.sections.experience.is_present"),

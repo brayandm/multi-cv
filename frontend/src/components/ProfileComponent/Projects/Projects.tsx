@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { IProject, useProfile } from "@/lib/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
@@ -12,17 +12,15 @@ interface IProjectsProps {
 
 const Projects: React.FC<IProjectsProps> = ({ width }) => {
   const { profile, updateProfile } = useProfile();
-  const [projects, setProjects] = useState<Array<IProject>>(profile.projects);
   const t = useTranslations();
   function onProjectChange(
     index: number,
     key: keyof IProject,
     value: string | boolean
   ) {
-    const updatedProjects = [...projects];
+    const updatedProjects = [...profile.projects];
     updatedProjects[index] = { ...updatedProjects[index], [key]: value };
 
-    setProjects(updatedProjects);
     updateProfile({
       ...profile,
       projects: updatedProjects,
@@ -38,20 +36,19 @@ const Projects: React.FC<IProjectsProps> = ({ width }) => {
       link: "",
     };
 
-    setProjects([...projects, project]);
     updateProfile({
       ...profile,
-      projects: [...projects, project],
+      projects: [...profile.projects, project],
     });
   }
 
   return (
     <Paginator
-      total={projects.length}
+      total={profile.projects.length}
       onNewPage={addNewProject}
       buttonLabel={t("pages.profile.sections.projects.add_project")}
     >
-      {projects.map((project, index) => {
+      {profile.projects.map((project, index) => {
         const inputs: IDynamicInputArray<string & boolean> = [
           {
             label: t("common.form.project_name"),

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import {
   IDynamicInput,
   IDynamicInputArray,
@@ -15,19 +15,15 @@ interface IEducationProps {
 
 const Education: React.FC<IEducationProps> = ({ width }) => {
   const { profile, updateProfile } = useProfile();
-  const [educations, setEducations] = useState<Array<IEducation>>(
-    profile.education
-  );
   const t = useTranslations();
   function onEducationChange(
     index: number,
     key: keyof IEducation,
     value: string | boolean
   ) {
-    const updatedEducations = [...educations];
+    const updatedEducations = [...profile.education];
     updatedEducations[index] = { ...updatedEducations[index], [key]: value };
 
-    setEducations(updatedEducations);
     updateProfile({
       ...profile,
       education: updatedEducations,
@@ -44,21 +40,20 @@ const Education: React.FC<IEducationProps> = ({ width }) => {
       career: "",
     };
 
-    setEducations([...educations, education]);
     updateProfile({
       ...profile,
-      education: [...educations, education],
+      education: [...profile.education, education],
     });
   }
 
   return (
     <Paginator
-      total={educations.length}
+      total={profile.education.length}
       onNewPage={addNewEducation}
       buttonLabel={t("pages.profile.sections.education.add_education")}
     >
       {" "}
-      {educations.map((education, index) => {
+      {profile.education.map((education, index) => {
         const isPresentJob = (): IDynamicInput<boolean> => {
           return {
             label: t("pages.profile.sections.education.is_present"),
