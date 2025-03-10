@@ -12,113 +12,159 @@
       "login": "Iniciar sesión",
       "register": "Registrarse",
       "logout": "Cerrar sesión",
-      "google_sign_in": "Iniciar sesión con Google",
-      "use_other_method": "Usar otro método"
+      "google_sign_in": "Ingresar con Google",
+      "use_other_method": "Usar otro método",
+      "forgot_password": "¿Olvidaste tu contraseña?"
     },
     "buttons": {
       "continue": "Continuar",
-      "add": "Agregar",
-      "resend_email": "Reenviar correo",
-      "change_password": "Cambiar contraseña"
+      "add": "Añadir",
+      "resend_email": "Reenviar email",
+      "send_email": "Enviar email",
+      "change_password": "Cambiar contraseña",
+      "resend_in": "Reenviar en {timeleft}s",
+      "try_again": "Intentar de nuevo",
+      "too_many_requests": "Demasiados intentos, prueba en 24h",
+      "next": "Siguiente"
     },
     "form": {
       "full_name": "Nombre completo",
-      "email": "Correo electrónico",
+      "email": "Correo",
       "password": "Contraseña",
       "current_password": "Contraseña actual",
       "new_password": "Nueva contraseña",
-      "repeat_password": "Repetir contraseña",
-      "country": "País",
-      "phone": "Número de teléfono",
+      "repeat_password": "Repite contraseña",
+      "your_location": "Ubicación",
+      "phone": "Teléfono",
       "about": "Sobre ti",
       "company_name": "Empresa",
-      "role": "Cargo",
+      "institution": "Institución",
+      "career": "Carrera",
+      "skill": "Habilidad",
+      "role": "Rol",
       "phone_number": "Número de teléfono",
-      "country_code": "Código de país",
-      "description": "Descripción de la empresa",
-      "location": "País/Ciudad",
-      "start_date": "Fecha de inicio",
-      "end_date": "Fecha de finalización"
+      "country_code": "Código país",
+      "description": "Descripción empresa",
+      "location": "Ubicación",
+      "start_date": "Fecha inicio",
+      "end_date": "Fecha fin",
+      "project_name": "Nombre del proyecto",
+      "project_description": "Descripción proyecto",
+      "project_link": "Enlace",
+      "professional_links_select": "Selecciona un enlace"
     },
     "placeholders": {
-      "enter_full_name": "Introduce tu nombre completo",
-      "enter_email": "Introduce tu correo electrónico",
-      "enter_password": "Introduce tu contraseña",
-      "enter_current_password": "Introduce tu contraseña actual",
-      "enter_new_password": "Introduce tu nueva contraseña",
-      "enter_password_again": "Introduce tu contraseña nuevamente",
-      "enter_country": "Introduce tu país",
-      "enter_phone": "Introduce tu número de teléfono",
-      "enter_about": "Soy un ...",
-      "enter_company_name": "Nombre de la empresa",
-      "enter_role": "Tu cargo en la empresa",
-      "enter_job_description": "Una descripción de tus deberes y responsabilidades en el trabajo",
-      "enter_location": "Ubicación del trabajo, también puedes escribir \"Remoto\""
+      "enter_full_name": "Ingresa tu nombre completo",
+      "enter_email": "Ingresa tu correo",
+      "enter_password": "Ingresa tu contraseña",
+      "enter_current_password": "Ingresa tu contraseña actual",
+      "enter_new_password": "Ingresa nueva contraseña",
+      "enter_password_again": "Repite tu contraseña",
+      "enter_skill": "Añadir habilidad",
+      "enter_phone": "Ingresa tu teléfono",
+      "enter_about": "Soy ...",
+      "enter_company_name": "Nombre de empresa",
+      "enter_institution_name": "Nombre de institución",
+      "enter_career": "Título estudiado",
+      "enter_role": "Tu rol en la empresa",
+      "enter_job_description": "Descripción del trabajo",
+      "enter_location": "Ciudad / País o \"Remoto\"",
+      "enter_institution_location": "Ciudad / País o \"Remoto\"",
+      "enter_project_name": "Nombre del proyecto",
+      "enter_project_description": "Breve descripción",
+      "enter_project_link": "Enlace al proyecto",
+      "professional_links_select": "Clic para seleccionar",
+      "enter_your_link": "Ingresa tu enlace de {field}"
     },
     "legal": {
       "terms_conditions": "Términos y Condiciones",
       "privacy_policy": "Política de Privacidad",
-      "confirm_age": "Confirmo que tengo más de 18 años",
-      "accept_terms": "Acepto los <termsConditions></termsConditions> y la <privacyPolicy></privacyPolicy>"
+      "confirm_age": "Confirmo que soy mayor de 18 años",
+      "accept_terms": "Acepto los <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>"
     }
   },
   "components": {
     "cv": {
       "download": "Descargar",
-      "to_expire": "<days></days> Por expirar",
+      "to_expire": "Expira en <days></days>",
       "days": "{count, plural, =1 {1 día} other {# días}}"
     }
   },
   "pages": {
     "email_verification": {
-      "title": "Verificación de Correo Electrónico",
+      "title": "Verificación de Email",
       "already_verified": {
-        "title": "Correo Electrónico Ya Verificado",
-        "message": "Tu correo electrónico ya ha sido verificado."
+        "title": "Email ya verificado",
+        "message": "Tu email ya ha sido verificado."
       },
       "success": {
-        "title": "Verificación de Correo Electrónico Exitosa",
-        "message": "Tu correo electrónico ha sido verificado."
+        "title": "Verificación exitosa",
+        "message": "Tu email ha sido verificado."
       },
       "expired": {
-        "title": "Verificación de Correo Electrónico Expirada",
-        "message": "El enlace de verificación de tu correo ha expirado."
+        "title": "Verificación expirada",
+        "message": "El enlace ha expirado."
       },
-      "instructions": "Te hemos enviado un correo con un enlace de verificación.",
-      "resend_in": "Reenviar en {timeleft}s",
-      "too_many_requests": "Demasiadas solicitudes, intenta en 24 horas"
+      "instructions": "Te enviamos un email con un enlace de verificación."
+    },
+    "password_recovery": {
+      "title": "Recuperación de contraseña",
+      "success": {
+        "title": "Contraseña cambiada",
+        "message": "Tu contraseña ha sido actualizada."
+      },
+      "fail": {
+        "title": "Enlace inválido o expirado",
+        "message": "El enlace de recuperación no es válido o ha expirado."
+      },
+      "instructions": "Te enviaremos un email para restablecer tu contraseña."
     },
     "welcome": {
       "title": "Bienvenido a <appName></appName>",
-      "description": "Crea CVs únicos para ofertas de trabajo únicas."
+      "description": "Crea CVs únicos para ofertas únicas."
     },
     "home": {
       "your_resumes": "Tus CVs"
     },
     "login": {
-      "description": "Por favor, introduce tus credenciales"
+      "description": "Ingresa tus credenciales"
     },
     "register": {
       "description": "Preséntate"
     },
     "profile": {
-      "subtitle": "Esta información es necesaria para crear correctamente tu CV.",
+      "subtitle": "Esta información es necesaria para tu CV.",
       "sections": {
         "basic_info": {
           "title": "Personal"
         },
+        "professional_links": {
+          "title": "Enlaces"
+        },
+        "skills": {
+          "title": "Habilidades"
+        },
+        "projects": {
+          "title": "Proyectos",
+          "add_project": "Añadir proyecto"
+        },
         "experience": {
           "title": "Experiencia",
-          "add_experience": "Agregar Experiencia",
-          "is_present": "Actualmente trabajo aquí"
+          "add_experience": "Añadir experiencia",
+          "is_present": "Trabajo aquí actualmente"
+        },
+        "education": {
+          "title": "Educación",
+          "add_education": "Añadir educación",
+          "is_present": "Estudio aquí actualmente"
         }
       }
     },
     "terms_and_conditions": {
-      "title": "Política de Privacidad y Términos y Condiciones",
-      "description_first_time": "Por favor, léelos y acéptalos.",
-      "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para su revisión antes de esa fecha. Tómate un momento para revisar los próximos cambios.",
-      "accept_terms": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Al hacer clic en \"Continuar\", aceptas los términos actualizados."
+      "title": "Política de Privacidad y Términos",
+      "description_first_time": "Lee y acepta.",
+      "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Entrarán en vigor en un mes. Revísalos antes.",
+      "accept_terms": "Al hacer clic en \"Continuar\", aceptas los nuevos términos."
     }
   }
 }
