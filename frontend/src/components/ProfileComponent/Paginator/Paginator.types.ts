@@ -1,3 +1,6 @@
 export interface IPaginatorProps {
-  width: number;
+  onNewPage: () => void;
+  total: number;
+  buttonLabel: string;
+  children: React.ReactNode;
 }
