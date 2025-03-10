@@ -78,6 +78,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
 
   const updateProfile = (newProfile: Partial<IProfile>) => {
     setProfile((prev) => ({ ...prev, ...newProfile }));
+    console.log("Profile updated", newProfile);
   };
 
   return (

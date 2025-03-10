@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { ISocial, useProfile } from "@/lib/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
@@ -28,47 +28,32 @@ export const socials = [
 const Socials: React.FC = () => {
   const { profile, updateProfile } = useProfile();
 
-  const [socialsArray, setSocialsArray] = useState<ISocial[]>(profile.socials);
-
   const t = useTranslations();
   function onSocialChange(
     index: number,
     key: keyof ISocial,
     value: string | boolean
   ) {
-    const updatedSocials = [...socialsArray];
+    const updatedSocials = [...profile.socials];
     updatedSocials[index] = { ...updatedSocials[index], [key]: value };
 
-    setSocialsArray(updatedSocials);
     updateProfile({
       ...profile,
       socials: updatedSocials,
     });
   }
 
-  function updateSocialsArray(newSelectedSocials: string[]) {
-    const newSocialsArray: ISocial[] = [];
-    newSelectedSocials.map((selectedSocial) => {
-      if (!socialsArray.find((social) => social.name === selectedSocial)) {
-        newSocialsArray.push({ link: "", name: selectedSocial });
-      }
+  function updateSocials(newSelectedSocials: string[]) {
+    const updatedSocials = newSelectedSocials.map((social) => {
+      const found = profile.socials.find((s) => s.name === social);
+      return found || { name: social, link: "" };
     });
 
-    setSocialsArray([
-      ...socialsArray.filter((social) =>
-        newSelectedSocials.includes(social.name)
-      ),
-      ...newSocialsArray,
-    ]);
-  }
-
-  useEffect(() => {
     updateProfile({
       ...profile,
-      socials: [...socialsArray],
+      socials: updatedSocials,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socialsArray]);
+  }
 
   return (
     <div className="px-1">
@@ -77,7 +62,7 @@ const Socials: React.FC = () => {
         className="mb-2"
         isMultiline={true}
         items={socials}
-        selectedKeys={socialsArray.map((social) => social.name)}
+        selectedKeys={profile.socials.map((social) => social.name)}
         label={t("common.form.socials_select")}
         placeholder={t("common.placeholders.socials_select")}
         renderValue={(items) => {
@@ -95,7 +80,7 @@ const Socials: React.FC = () => {
           );
         }}
         onSelectionChange={(e) => {
-          updateSocialsArray([...e] as string[]);
+          updateSocials([...e] as string[]);
         }}
         selectionMode="multiple"
       >
@@ -116,7 +101,7 @@ const Socials: React.FC = () => {
           </SelectItem>
         )}
       </Select>
-      {socialsArray.map((social, index) => {
+      {profile.socials.map((social, index) => {
         const inputs: IDynamicInputArray<string & boolean> = [
           {
             label: social?.name || "",
