@@ -14,7 +14,13 @@ interface InputButtonProps {
 
 const InputButton: React.FC<InputButtonProps> = (props) => {
   return (
-    <Button variant="shadow" isIconOnly onPress={props.onPress} color="primary">
+    <Button
+      variant="shadow"
+      className="shadow-md"
+      isIconOnly
+      onPress={props.onPress}
+      color="primary"
+    >
       <AddIcon></AddIcon>
     </Button>
   );
