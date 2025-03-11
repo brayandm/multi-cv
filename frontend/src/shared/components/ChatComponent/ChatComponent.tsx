@@ -24,6 +24,11 @@ export default function ChatComponent() {
     { text: "", isBot: true, isLoading: true },
   ]);
 
+  const isMobile =
+    /Mobi|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone|webOS|Opera Mini|IEMobile|Kindle|Silk|SamsungBrowser|PlayStation Vita/i.test(
+      navigator.userAgent
+    );
+
   const [input, setInput] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -81,7 +86,11 @@ export default function ChatComponent() {
             </div>
             <h2 className="font-semibold text-white">AI Assistant</h2>
           </div>
-          <div className="h-full overflow-y-scroll overflow-x-hidden p-4 pr-1 space-y-3">
+          <div
+            className={`h-full overflow-y-scroll overflow-x-hidden p-4 ${
+              !isMobile && "pr-1"
+            } space-y-3`}
+          >
             {messages.map((msg, index) => (
               <div key={index} className="flex flex-col items-start">
                 <div
