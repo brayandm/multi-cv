@@ -28,9 +28,9 @@ class CookiesHelper
             '/',
             null,
             true, // Secure
-            true, // HttpOnly
+            false, // HttpOnly
             false, // Raw
-            'None' // SameSite
+            'Strict' // SameSite
         );
     }
 }
