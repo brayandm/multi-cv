@@ -48,7 +48,7 @@ export default function ChatComponent() {
         </div>
         <h2 className="font-semibold text-gray-800">Chat Assistant</h2>
       </div>
-      <div className="h-80 overflow-y-auto p-3 space-y-3">
+      <div className="h-96 overflow-y-auto p-3 space-y-3">
         {messages.map((msg, index) => (
           <div key={index} className="flex flex-col items-start">
             <div
@@ -71,7 +71,7 @@ export default function ChatComponent() {
           minRows={1}
           maxRows={8}
           placeholder="Type a message..."
-          className="flex-1 overflow-y-auto"
+          className="flex-1"
         />
         <Button
           color={"primary"}
