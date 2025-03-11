@@ -1,7 +1,10 @@
 import { useCallback, useEffect, useState } from "react";
-import { Input } from "@heroui/react";
+import { Textarea } from "@heroui/react";
 import { Button } from "@heroui/react";
-import { ChatBubbleLeftEllipsisIcon } from "@heroicons/react/24/solid";
+import {
+  ChatBubbleLeftEllipsisIcon,
+  PaperAirplaneIcon,
+} from "@heroicons/react/24/solid";
 
 interface Message {
   text: string;
@@ -26,7 +29,7 @@ export default function ChatComponent() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
         sendMessage();
       }
@@ -61,19 +64,23 @@ export default function ChatComponent() {
           </div>
         ))}
       </div>
-      <div className="flex items-center px-4 pb-4 space-x-2 border-t pt-3 shadow-lg">
-        <Input
+      <div className="flex flex-row items-end px-4 pb-4 space-x-2 border-t pt-3 shadow-lg">
+        <Textarea
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          minRows={1}
+          maxRows={8}
           placeholder="Type a message..."
-          className="flex-1"
+          className="flex-1 overflow-y-auto"
         />
         <Button
           color={"primary"}
           onPress={sendMessage}
           isDisabled={!input.trim()}
+          className="p-2"
+          isIconOnly
         >
-          Send
+          <PaperAirplaneIcon className="w-5 h-5" />
         </Button>
       </div>
     </div>
