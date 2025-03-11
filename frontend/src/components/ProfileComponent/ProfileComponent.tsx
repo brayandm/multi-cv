@@ -8,6 +8,7 @@ import Skills from "./Skills";
 import Projects from "./Projects";
 import ProfessionalLinks from "./ProfessionalLinks";
 import Education from "./Education";
+import ChatComponent from "@/shared/components/ChatComponent";
 
 const ProfileComponent: React.FC = () => {
   const width = 350;
@@ -77,6 +78,7 @@ const ProfileComponent: React.FC = () => {
 
   return (
     <main className="flex justify-center">
+      <ChatComponent />
       <div className={`max-w-[${width}px]`}>
         <form className="flex flex-col gap-2">
           <Card className="min-h-[75vh]">
