@@ -31,6 +31,12 @@ button {
   animation: bounce-custom 0.6s infinite;
 }
 
+/* Custom Scrollbar */
+
+body {
+  scrollbar-gutter: stable;
+}
+
 ::-webkit-scrollbar {
   width: 4px;
   height: 4px;
