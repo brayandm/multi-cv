@@ -38,8 +38,8 @@ export default function ChatComponent() {
   }, [sendMessage]);
 
   return (
-    <div className="fixed bottom-4 right-4 max-w-xs w-full p-4 bg-white shadow-lg rounded-3xl border z-50">
-      <div className="flex items-center space-x-3 border-b pb-3">
+    <div className="fixed bottom-4 right-4 max-w-xs w-full bg-white shadow-lg rounded-3xl border z-50 overflow-hidden">
+      <div className="flex px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
         <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
           <ChatBubbleLeftEllipsisIcon className="w-6 h-6 text-gray-600" />
         </div>
@@ -61,7 +61,7 @@ export default function ChatComponent() {
           </div>
         ))}
       </div>
-      <div className="flex items-center space-x-2 border-t pt-3">
+      <div className="flex items-center px-4 pb-4 space-x-2 border-t pt-3 shadow-lg">
         <Input
           value={input}
           onChange={(e) => setInput(e.target.value)}
