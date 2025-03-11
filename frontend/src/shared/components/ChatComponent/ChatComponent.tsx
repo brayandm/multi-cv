@@ -57,13 +57,12 @@ export default function ChatComponent() {
 
   return (
     <>
-      {isChatOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300"
-          onClick={() => setIsChatOpen(false)}
-        />
-      )}
-
+      <div
+        className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${
+          !isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+        onClick={() => setIsChatOpen(false)}
+      />
       <div
         className={`fixed bottom-4 right-4 max-w-xs w-full bg-white shadow-lg rounded-3xl z-50 transition-opacity duration-300 ${
           !isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
