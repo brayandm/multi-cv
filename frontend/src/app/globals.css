@@ -14,3 +14,19 @@ p {
 button {
   font-weight: 500 !important;
 }
+
+@keyframes bounce-custom {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-bounce-custom {
+  animation: bounce-custom 0.6s infinite;
+}

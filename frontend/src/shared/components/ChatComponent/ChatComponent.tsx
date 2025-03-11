@@ -9,6 +9,7 @@ import {
 interface Message {
   text: string;
   isBot: boolean;
+  isLoading?: boolean;
 }
 
 export default function ChatComponent() {
@@ -16,6 +17,7 @@ export default function ChatComponent() {
     { text: "Hello! How can I assist you today?", isBot: true },
     { text: "Can you help me with my account?", isBot: false },
     { text: "Of course! What issue are you experiencing?", isBot: true },
+    { text: "", isBot: true, isLoading: true },
   ]);
 
   const [input, setInput] = useState("");
@@ -52,14 +54,30 @@ export default function ChatComponent() {
         {messages.map((msg, index) => (
           <div key={index} className="flex flex-col items-start">
             <div
-              key={index}
-              className={`text-small font-medium p-3 rounded-3xl w-5/6 ${
+              className={`text-small font-medium p-3 rounded-3xl ${
                 msg.isBot
                   ? "bg-secondary text-white self-start"
                   : "bg-primary text-white self-end"
-              }`}
+              } ${msg.isLoading ? "w-auto" : "w-5/6"}`}
             >
-              {msg.text}
+              {msg.isLoading ? (
+                <div className="flex space-x-2">
+                  <div
+                    className="h-1.5 w-1.5 bg-white rounded-full animate-bounce-custom"
+                    style={{ animationDelay: "0ms" }}
+                  ></div>
+                  <div
+                    className="h-1.5 w-1.5 bg-white rounded-full animate-bounce-custom"
+                    style={{ animationDelay: "100ms" }}
+                  ></div>
+                  <div
+                    className="h-1.5 w-1.5 bg-white rounded-full animate-bounce-custom"
+                    style={{ animationDelay: "200ms" }}
+                  ></div>
+                </div>
+              ) : (
+                msg.text
+              )}
             </div>
           </div>
         ))}
