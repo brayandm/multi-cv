@@ -5,6 +5,7 @@ import {
   ChatBubbleLeftEllipsisIcon,
   PaperAirplaneIcon,
   XMarkIcon,
+  UserIcon,
 } from "@heroicons/react/24/solid";
 
 interface Message {
@@ -61,17 +62,17 @@ export default function ChatComponent() {
         }`}
       >
         <button
-          className="absolute -left-10 bg-primary text-white rounded-full w-8 h-8 flex items-center justify-center shadow-md"
+          className="absolute -top-1 -left-10 bg-danger-300 text-white rounded-full w-8 h-8 flex items-center justify-center shadow-md"
           onClick={() => setIsChatOpen(false)}
         >
           <XMarkIcon className="w-5 h-5" />
         </button>
-        <div className="h-[35rem] flex flex-col overflow-hidden">
-          <div className="flex px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
-            <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
-              <ChatBubbleLeftEllipsisIcon className="w-6 h-6 text-white" />
+        <div className="h-[35rem] flex flex-col rounded-3xl overflow-hidden">
+          <div className="flex bg-primary px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
+            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
+              <UserIcon className="w-6 h-6 text-primary" />
             </div>
-            <h2 className="font-semibold text-gray-800">Chat Assistant</h2>
+            <h2 className="font-semibold text-white">AI Assistant</h2>
           </div>
           <div className="h-full overflow-y-auto p-3 space-y-3">
             {messages.map((msg, index) => (
@@ -128,7 +129,7 @@ export default function ChatComponent() {
         </div>
       </div>
       <button
-        className={`fixed bottom-6 right-6 bg-primary text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50 transition-opacity duration-300 ${
+        className={`fixed bottom-6 right-6 bg-secondary text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50 transition-opacity duration-300 ${
           isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         onClick={() => setIsChatOpen(true)}
