@@ -1,6 +1,12 @@
 const hostList = ["linkedin.com", "infojobs.net"];
 const IFRAME_WIDTH = "360px";
 
+window.addEventListener("message", (event) => {
+  if (event.origin !== "https://multicv.space") return;
+
+  console.log("Message received", event.data);
+});
+
 const button = (() => {
   const button = document.createElement("div");
   button.classList.add("custom-button");
