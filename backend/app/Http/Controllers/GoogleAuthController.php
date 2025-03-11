@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ResponseHelper;
+use App\Helpers\CookiesHelper;
 use App\Models\User;
 use App\Services\GoogleOauthService;
 use App\Services\UserService;
@@ -33,10 +33,10 @@ class GoogleAuthController extends Controller
         $token = $this->userService->createUserToken($user);
 
         if ($extension) {
-            return ResponseHelper::addAuthCookie(response()->json(['is_local' => true]), $token);
+            return CookiesHelper::addAuthCookie(response()->json(['is_local' => true]), $token);
         }
 
-        return ResponseHelper::addAuthCookie(response()->json(['is_local' => true]), $token);
+        return CookiesHelper::addAuthCookie(response()->json(['is_local' => true]), $token);
     }
 
     public function redirectToGoogle(Request $request)
@@ -84,9 +84,9 @@ class GoogleAuthController extends Controller
         $token = $this->userService->createUserToken($user);
 
         if ($extension) {
-            return ResponseHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back'), $token);
+            return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back'), $token);
         }
 
-        return ResponseHelper::addAuthCookie(redirect(config('app.frontend_url').'/home'), $token);
+        return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/home'), $token);
     }
 }

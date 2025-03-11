@@ -5,14 +5,15 @@ namespace App\Helpers;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
+use Laravel\Sanctum\NewAccessToken;
 
-class ResponseHelper
+class CookiesHelper
 {
     /**
      * Add the authentication cookie to the response.
      *
      * @param  Response|JsonResponse|RedirectResponse  $response
-     * @param  string  $token
+     * @param  NewAccessToken $token
      * @return Response|JsonResponse|RedirectResponse
      */
     public static function addAuthCookie($response, $token)
@@ -22,7 +23,7 @@ class ResponseHelper
 
         return $response->cookie(
             $cookieName,
-            $token,
+            $token->plainTextToken,
             $expiration,
             '/',
             null,

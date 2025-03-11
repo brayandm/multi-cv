@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\ResponseHelper;
+use App\Helpers\CookiesHelper;
 use App\Models\User;
 use App\Services\UserService;
 use Carbon\Carbon;
@@ -100,7 +100,7 @@ class AuthController extends Controller
 
         $token = $this->userService->createUserToken($user);
 
-        return ResponseHelper::addAuthCookie(response()->json(['message' => 'Login successful']), $token);
+        return CookiesHelper::addAuthCookie(response()->json(['message' => 'Login successful']), $token);
     }
 
     public function userStatus(Request $request)
