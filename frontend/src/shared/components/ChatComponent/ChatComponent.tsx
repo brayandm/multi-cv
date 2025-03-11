@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Textarea } from "@heroui/react";
 import { Button } from "@heroui/react";
 import {
@@ -22,6 +22,11 @@ export default function ChatComponent() {
   ]);
 
   const [input, setInput] = useState("");
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const sendMessage = useCallback(() => {
     if (!input.trim()) return;
@@ -29,6 +34,10 @@ export default function ChatComponent() {
     setMessages((prev) => [...prev, { text: input, isBot: false }]);
     setInput("");
   }, [input]);
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -82,6 +91,7 @@ export default function ChatComponent() {
             </div>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
       <div className="flex flex-row items-end px-4 pb-4 space-x-2 border-t pt-3 shadow-lg">
         <Textarea
