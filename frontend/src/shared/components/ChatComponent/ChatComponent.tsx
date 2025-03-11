@@ -5,8 +5,9 @@ import {
   ChatBubbleLeftEllipsisIcon,
   PaperAirplaneIcon,
   XMarkIcon,
-  UserIcon,
 } from "@heroicons/react/24/solid";
+
+import BotIcon from "@/shared/icons/BotIcon/BotIcon";
 
 interface Message {
   text: string;
@@ -68,9 +69,9 @@ export default function ChatComponent() {
           <XMarkIcon className="w-5 h-5" />
         </button>
         <div className="h-[35rem] flex flex-col rounded-3xl overflow-hidden">
-          <div className="flex bg-primary px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
+          <div className="flex bg-primary-600 px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-              <UserIcon className="w-6 h-6 text-primary" />
+              <BotIcon className="w-6 h-6 text-primary-600" />
             </div>
             <h2 className="font-semibold text-white">AI Assistant</h2>
           </div>
