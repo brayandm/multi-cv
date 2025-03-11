@@ -55,11 +55,11 @@ export default function ChatComponent() {
         {messages.map((msg, index) => (
           <div key={index} className="flex flex-col items-start">
             <div
-              className={`text-small font-medium " ${
+              className={`text-small font-medium max-w-[80%] rounded-3xl p-3 ${
                 msg.isBot
                   ? "bg-secondary text-white self-start"
                   : "bg-primary text-white self-end"
-              } max-w-[80%] rounded-3xl p-3`}
+              } `}
             >
               {msg.isLoading ? (
                 <div className="flex space-x-2">
