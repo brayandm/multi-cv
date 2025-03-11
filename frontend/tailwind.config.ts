@@ -31,6 +31,9 @@ export default {
             secondary: {
               DEFAULT: "#9C7BD8",
             },
+            focus: {
+              DEFAULT: "#ffffff00", // transparent
+            },
           },
         },
         dark: {
