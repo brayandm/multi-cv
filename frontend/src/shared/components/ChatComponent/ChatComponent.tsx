@@ -17,6 +17,7 @@ export default function ChatComponent() {
     { text: "Hello! How can I assist you today?", isBot: true },
     { text: "Can you help me with my account?", isBot: false },
     { text: "Of course! What issue are you experiencing?", isBot: true },
+    { text: "I can't seem to log in.", isBot: false },
     { text: "", isBot: true, isLoading: true },
   ]);
 
@@ -45,8 +46,8 @@ export default function ChatComponent() {
   return (
     <div className="h-[35rem] flex flex-col fixed bottom-4 right-4 max-w-xs w-full bg-white shadow-lg rounded-3xl border z-50 overflow-hidden">
       <div className="flex px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
-        <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-          <ChatBubbleLeftEllipsisIcon className="w-6 h-6 text-gray-600" />
+        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+          <ChatBubbleLeftEllipsisIcon className="w-6 h-6 text-white" />
         </div>
         <h2 className="font-semibold text-gray-800">Chat Assistant</h2>
       </div>
