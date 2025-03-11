@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\ResponseHelper;
 use App\Models\User;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -83,8 +84,7 @@ class PasswordRecoveryController extends Controller
 
             $token = $this->userService->createUserToken($user);
 
-            return response()->json(['message' => 'Password reset successfully.'])
-                ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+            return ResponseHelper::addAuthCookie(response()->json(['message' => 'Password reset successfully.']), $token);
         }
 
         return response()->json(['message' => 'Invalid or expired token.'], 400);
