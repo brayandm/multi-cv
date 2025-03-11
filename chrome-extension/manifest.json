@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "Multicv is an extension that able you to create personalized cv for diferent jobs offers",
   "permissions": ["activeTab"],
+  "externally_connectable": {
+    "matches": ["https://multicv.space/*"]
+  },
   "host_permissions": [
     "https://multicv.space/*",
     "https://www.linkedin.com/*",
