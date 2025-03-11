@@ -116,7 +116,7 @@ export default function ChatComponent() {
             ))}
             <div ref={messagesEndRef} />
           </div>
-          <div className="flex flex-row items-end px-4 pb-4 space-x-2 border-t pt-3 shadow-lg">
+          <div className="flex flex-row items-end px-4 pb-4 space-x-2 border-t-2 pt-3 shadow-lg">
             <Textarea
               value={input}
               onChange={(e) => setInput(e.target.value)}
