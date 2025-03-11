@@ -69,15 +69,15 @@ export default function ChatComponent() {
         }`}
       >
         <button
-          className="absolute -top-2 -left-7 bg-danger-300 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md"
+          className="absolute -top-2 -left-7 bg-primary-800 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md"
           onClick={() => setIsChatOpen(false)}
         >
           <XMarkIcon className="w-5 h-5" />
         </button>
         <div className="h-[35rem] flex flex-col rounded-3xl overflow-hidden">
-          <div className="flex bg-primary-600 px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
+          <div className="flex bg-primary-400 px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
             <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-              <BotIcon className="w-6 h-6 text-primary-600" />
+              <BotIcon className="w-6 h-6 text-primary-400" />
             </div>
             <h2 className="font-semibold text-white">AI Assistant</h2>
           </div>
@@ -94,7 +94,7 @@ export default function ChatComponent() {
                   } `}
                 >
                   {msg.isLoading ? (
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-1">
                       <div
                         className="h-1.5 w-1.5 bg-white rounded-full animate-bounce-custom"
                         style={{ animationDelay: "0ms" }}
@@ -124,6 +124,9 @@ export default function ChatComponent() {
               maxRows={8}
               placeholder="Type a message..."
               className="flex-1"
+              classNames={{
+                inputWrapper: "rounded-3xl shadow-lg",
+              }}
             />
             <Button
               color={"primary"}
