@@ -132,7 +132,7 @@ export default function ChatComponent() {
               color={"primary"}
               onPress={sendMessage}
               isDisabled={!input.trim()}
-              className="p-2"
+              className="p-2 rounded-full"
               isIconOnly
             >
               <PaperAirplaneIcon className="w-5 h-5" />
