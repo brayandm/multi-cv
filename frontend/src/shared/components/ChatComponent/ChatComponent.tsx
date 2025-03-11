@@ -41,14 +41,14 @@ export default function ChatComponent() {
   }, [sendMessage]);
 
   return (
-    <div className="fixed bottom-4 right-4 max-w-xs w-full bg-white shadow-lg rounded-3xl border z-50 overflow-hidden">
+    <div className="h-[35rem] flex flex-col fixed bottom-4 right-4 max-w-xs w-full bg-white shadow-lg rounded-3xl border z-50 overflow-hidden">
       <div className="flex px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
         <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
           <ChatBubbleLeftEllipsisIcon className="w-6 h-6 text-gray-600" />
         </div>
         <h2 className="font-semibold text-gray-800">Chat Assistant</h2>
       </div>
-      <div className="h-96 overflow-y-auto p-3 space-y-3">
+      <div className="h-full overflow-y-auto p-3 space-y-3">
         {messages.map((msg, index) => (
           <div key={index} className="flex flex-col items-start">
             <div
