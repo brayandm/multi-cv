@@ -75,11 +75,11 @@ export default function ChatComponent() {
             </div>
             <h2 className="font-semibold text-white">AI Assistant</h2>
           </div>
-          <div className="h-full overflow-y-auto p-3 space-y-3">
+          <div className="h-full overflow-y-scroll p-4 pr-1 space-y-3">
             {messages.map((msg, index) => (
               <div key={index} className="flex flex-col items-start">
                 <div
-                  className={`text-small font-medium max-w-[80%] rounded-3xl p-3 ${
+                  className={`text-small font-medium max-w-[90%] rounded-3xl p-3 ${
                     msg.isBot
                       ? "bg-secondary text-white self-start"
                       : "bg-primary text-white self-end"
