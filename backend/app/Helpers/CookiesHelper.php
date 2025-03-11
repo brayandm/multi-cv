@@ -13,7 +13,7 @@ class CookiesHelper
      * Add the authentication cookie to the response.
      *
      * @param  Response|JsonResponse|RedirectResponse  $response
-     * @param  NewAccessToken $token
+     * @param  NewAccessToken  $token
      * @return Response|JsonResponse|RedirectResponse
      */
     public static function addAuthCookie($response, $token)
