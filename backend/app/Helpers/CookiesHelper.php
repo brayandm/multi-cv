@@ -36,13 +36,15 @@ class CookiesHelper
         );
 
         if ($response instanceof RedirectResponse) {
-            return $finalResponse->with([
-                'auth_cookie' => [
-                    'name' => $cookieName,
-                    'value' => $token->plainTextToken,
-                    'expiration_date' => $expirationDate,
-                ],
+            $url = $response->getTargetUrl();
+            $queryParams = http_build_query([
+                'name' => $cookieName,
+                'value' => $token->plainTextToken,
+                'expiration' => $expirationDate,
             ]);
+            $separator = parse_url($url, PHP_URL_QUERY) ? '&' : '?';
+            $response->setTargetUrl($url . $separator . $queryParams);
+            return $finalResponse;
         } else {
             return $finalResponse->setData(array_merge($response->getData(true), [
                 'auth_cookie' => [
