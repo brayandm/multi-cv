@@ -3,10 +3,23 @@ const isIframe = window.self !== window.top;
 shouldInject = false;
 
 isMultiCvIFrame = false;
+isMultiCvWebsite = false;
 
-if (isIframe && window.location.href.includes("https://dev.multicv.space")) {
+if (
+  isIframe &&
+  (window.location.href.includes("https://dev.multicv.space") ||
+    window.location.href.includes("https://multicv.space"))
+) {
   shouldInject = true;
   isMultiCvIFrame = true;
+}
+
+if (
+  isIframe &&
+  (window.location.href.includes("https://dev.multicv.space") ||
+    window.location.href.includes("https://multicv.space"))
+) {
+  isMultiCvWebsite = true;
 }
 
 if (!isIframe) {
@@ -17,7 +30,7 @@ if (shouldInject) {
   const hostList = ["linkedin.com", "infojobs.net"];
   const IFRAME_WIDTH = "360px";
 
-  if (isMultiCvIFrame) {
+  if (isMultiCvIFrame || isMultiCvWebsite) {
     window.addEventListener("message", (event) => {
       if (event.data.action == "setAuthCookie") {
         chrome.storage.local.set(
@@ -137,7 +150,7 @@ if (shouldInject) {
     }
   })();
 
-  if (isMultiCvIFrame) {
+  if (isMultiCvIFrame || isMultiCvWebsite) {
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.action === "responseAuthCookie") {
         const token = request.content;
