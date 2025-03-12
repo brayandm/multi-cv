@@ -8,7 +8,8 @@
     "matches": ["https://dev.multicv.space/*", "https://multicv.space/*"]
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "persistent": true
   },
   "host_permissions": [
     "https://dev.multicv.space/*",

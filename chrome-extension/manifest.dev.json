@@ -12,7 +12,8 @@
     ]
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "persistent": true
   },
   "host_permissions": [
     "http://localhost:3000/*",

@@ -126,12 +126,21 @@ const tooltip = (() => {
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "refreshPage") {
-    const iframe = document.querySelector(".multicv-iframe");
-
-    if (iframe) {
-      iframe.contentWindow.location.reload;
-    }
+    iframe.contentWindow.postMessage(
+      {
+        action: "refreshPage",
+      },
+      "*"
+    );
   }
 });
+
+const handleVisibilityChange = () => {
+  if (document.visibilityState === "visible") {
+    chrome.runtime.sendMessage({ action: "setAuthCookie" });
+  }
+};
+
+document.addEventListener("visibilitychange", handleVisibilityChange);
 
 chrome.runtime.sendMessage({ action: "setAuthCookie" });
