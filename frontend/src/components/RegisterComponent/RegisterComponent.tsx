@@ -10,6 +10,7 @@ import GoogleOauthBtn from "../../shared/components/GoogleOauthBtn";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { useRefreshPage } from "@/hooks/useRefreshPage";
+import { syncCookies } from "@/lib/syncCookies";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -53,8 +54,14 @@ export default function RegisterComponent() {
           password: formData.password,
         });
 
-        if (loginResponse.status === 200) {
-          router.push("/home");
+        const auth_cookie = loginResponse.data.auth_cookie;
+
+        if (auth_cookie) {
+          syncCookies(auth_cookie, () => {
+            if (loginResponse.status === 200) {
+              router.push("/home");
+            }
+          });
         }
       }
     } catch (error) {

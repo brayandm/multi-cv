@@ -35,13 +35,13 @@ export default function LoginComponent() {
     try {
       axios.defaults.withCredentials = true;
 
-      const Loginresponse = await loginApi(formData);
+      const loginresponse = await loginApi(formData);
 
-      const auth_cookie = Loginresponse.data.auth_cookie;
+      const auth_cookie = loginresponse.data.auth_cookie;
 
       if (auth_cookie) {
         syncCookies(auth_cookie, () => {
-          if (Loginresponse.status === 200) {
+          if (loginresponse.status === 200) {
             router.push("/home");
           }
         });
