@@ -31,6 +31,11 @@ class UserService
         return $user->createToken(config('auth.cookie_name'), [], Carbon::now()->addSeconds(config('auth.token_expiration')));
     }
 
+    public function getUserToken($user)
+    {
+        return $user->tokens()->first();
+    }
+
     public function findUserByEmail($email)
     {
         return User::where('email', $email)->firstOrFail();

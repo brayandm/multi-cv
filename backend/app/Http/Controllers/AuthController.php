@@ -103,6 +103,17 @@ class AuthController extends Controller
         return CookiesHelper::addAuthCookie(response()->json(['message' => 'Login successful']), $token);
     }
 
+    public function setAuthCookie(Request $request)
+    {
+        $user = $request->user();
+
+        $token = $this->userService->getUserToken($user);
+
+        $token->plainTextToken = $request->bearerToken();
+
+        return CookiesHelper::addAuthCookie(response()->json(['message' => 'Cookie set successfully']), $token);
+    }
+
     public function userStatus(Request $request)
     {
         $access_token = $request->bearerToken();

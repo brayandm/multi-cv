@@ -6,6 +6,10 @@ export interface UserStatusResponse {
   email?: string;
 }
 
+export interface SetAuthCookieResponse {
+  message: string;
+}
+
 export interface LoginResponse {
   message: string;
   auth_cookie?: AuthCookie;

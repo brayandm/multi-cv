@@ -32,7 +32,7 @@ class CookiesHelper
             true, // Secure
             false, // HttpOnly
             false, // Raw
-            'Strict' // SameSite
+            'None' // SameSite
         );
 
         if ($response instanceof RedirectResponse) {
