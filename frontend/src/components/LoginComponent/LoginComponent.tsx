@@ -90,7 +90,14 @@ export default function LoginComponent() {
         </Button>
         <p
           className="text-primary cursor-pointer text-sm mt-1"
-          onClick={() => router.push("/password/recovery")}
+          onClick={() => {
+            const iframe = window.self !== window.top;
+            if (iframe) {
+              window.open("/password/recovery", "_blank");
+            } else {
+              router.push("/password/recovery");
+            }
+          }}
         >
           {t("common.auth.forgot_password")}
         </p>
