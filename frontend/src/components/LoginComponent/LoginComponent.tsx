@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { useRefreshPage } from "@/hooks/useRefreshPage";
+import { syncCookies } from "@/lib/syncCookies";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -36,8 +37,14 @@ export default function LoginComponent() {
 
       const Loginresponse = await loginApi(formData);
 
-      if (Loginresponse.status === 200) {
-        router.push("/home");
+      const auth_cookie = Loginresponse.data.auth_cookie;
+
+      if (auth_cookie) {
+        syncCookies(auth_cookie, () => {
+          if (Loginresponse.status === 200) {
+            router.push("/home");
+          }
+        });
       }
     } catch (error) {
       console.log(error);

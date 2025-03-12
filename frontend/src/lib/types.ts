@@ -8,6 +8,7 @@ export interface UserStatusResponse {
 
 export interface LoginResponse {
   message: string;
+  auth_cookie?: AuthCookie;
 }
 
 export interface LogoutResponse {
@@ -36,6 +37,7 @@ export interface PasswordRecoveryEmailResponse {
 
 export interface PasswordRecoveryResetResponse {
   message: string;
+  auth_cookie?: AuthCookie;
 }
 
 export interface AuthCookie {
