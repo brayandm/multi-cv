@@ -12,16 +12,16 @@ class CookiesHelper
     /**
      * Add the authentication cookie to the response.
      *
-     * @param  Response|JsonResponse|RedirectResponse  $response
+     * @param  JsonResponse|RedirectResponse  $response
      * @param  NewAccessToken  $token
-     * @return Response|JsonResponse|RedirectResponse
+     * @return JsonResponse|RedirectResponse
      */
     public static function addAuthCookie($response, $token)
     {
         $cookieName = config('auth.cookie_name');
         $expiration = config('auth.token_expiration') / 60; // Convert seconds to minutes
 
-        return $response->cookie(
+        $finalResponse = $response->cookie(
             $cookieName,
             $token->plainTextToken,
             $expiration,
@@ -32,5 +32,24 @@ class CookiesHelper
             false, // Raw
             'Strict' // SameSite
         );
+
+        if ($response instanceof RedirectResponse) {
+            return $finalResponse->with([
+                'auth_cookie' => [
+                    'name' => $cookieName,
+                    'value' => $token->plainTextToken,
+                    'expiration_minutes' => $expiration,
+                ],
+            ]);
+        }
+        else {
+            return $finalResponse->setData(array_merge($response->getData(true), [
+                'auth_cookie' => [
+                    'name' => $cookieName,
+                    'value' => $token->plainTextToken,
+                    'expiration_minutes' => $expiration,
+                ],
+            ]));
+        }
     }
 }
