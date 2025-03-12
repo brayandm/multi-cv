@@ -69,7 +69,7 @@ export default function ChatComponent() {
         }`}
       >
         <button
-          className="absolute -top-2 -left-7 bg-primary-800 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md"
+          className="absolute -top-7 -left-3 bg-primary-800 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md"
           onClick={() => setIsChatOpen(false)}
         >
           <XMarkIcon className="w-5 h-5" />
