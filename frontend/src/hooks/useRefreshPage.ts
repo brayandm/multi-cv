@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { setAuthCookieApi } from "@/lib/backendService";
+import { setCookie } from "cookies-next";
 
 export const useRefreshPage = () => {
   const router = useRouter();
@@ -14,7 +14,13 @@ export const useRefreshPage = () => {
           expiration_date: number;
         };
 
-        await setAuthCookieApi(cookie.value);
+        setCookie(cookie.name, cookie.value, {
+          secure: true,
+          sameSite: "none",
+          path: "/",
+          maxAge: 60 * 60 * 24,
+          partitioned: true,
+        });
 
         router.refresh();
       }
