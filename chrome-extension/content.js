@@ -2,8 +2,11 @@ const isIframe = window.self !== window.top;
 
 shouldInject = false;
 
+isMultiCvIFrame = false;
+
 if (isIframe && window.location.href.includes("https://dev.multicv.space")) {
   shouldInject = true;
+  isMultiCvIFrame = true;
 }
 
 if (!isIframe) {
@@ -14,22 +17,24 @@ if (shouldInject) {
   const hostList = ["linkedin.com", "infojobs.net"];
   const IFRAME_WIDTH = "360px";
 
-  window.addEventListener("message", (event) => {
-    if (event.data.action == "setAuthCookie") {
-      chrome.storage.local.set(
-        { auth_cookie: event.data.content },
-        function () {
-          window.postMessage(
-            {
-              action: "responseSetAuthCookie",
-              content: 200,
-            },
-            event.origin
-          );
-        }
-      );
-    }
-  });
+  if (isMultiCvIFrame) {
+    window.addEventListener("message", (event) => {
+      if (event.data.action == "setAuthCookie") {
+        chrome.storage.local.set(
+          { auth_cookie: event.data.content },
+          function () {
+            window.postMessage(
+              {
+                action: "responseSetAuthCookie",
+                content: 200,
+              },
+              event.origin
+            );
+          }
+        );
+      }
+    });
+  }
 
   const button = (() => {
     const button = document.createElement("div");
@@ -132,24 +137,26 @@ if (shouldInject) {
     }
   })();
 
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === "responseAuthCookie") {
-      const token = request.content;
+  if (isMultiCvIFrame) {
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      if (request.action === "responseAuthCookie") {
+        const token = request.content;
 
-      iframe.contentWindow.postMessage({
-        action: "responseAuthCookie",
-        content: token,
-      });
-    }
-  });
+        window.postMessage({
+          action: "responseAuthCookie",
+          content: token,
+        });
+      }
+    });
 
-  const handleVisibilityChange = () => {
-    if (document.visibilityState === "visible") {
-      chrome.runtime.sendMessage({ action: "getAuthCookie" });
-    }
-  };
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        chrome.runtime.sendMessage({ action: "getAuthCookie" });
+      }
+    };
 
-  document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
-  chrome.runtime.sendMessage({ action: "getAuthCookie" });
+    chrome.runtime.sendMessage({ action: "getAuthCookie" });
+  }
 }
