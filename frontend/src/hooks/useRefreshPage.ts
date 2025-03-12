@@ -14,11 +14,13 @@ export const useRefreshPage = () => {
           expiration_date: number;
         };
 
+        const maxAge = Math.floor((cookie.expiration_date - Date.now()) / 1000);
+
         setCookie(cookie.name, cookie.value, {
           secure: true,
           sameSite: "none",
           path: "/",
-          maxAge: 60 * 60 * 24,
+          maxAge: maxAge,
           partitioned: true,
         });
 
