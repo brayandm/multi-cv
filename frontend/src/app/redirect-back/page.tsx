@@ -18,7 +18,12 @@ export default function RedirectBack() {
         searchParams.get("expiration_date")
       );
 
-      if (authCookieName && authCookieValue && authCookieExpirationDate) {
+      if (
+        extension &&
+        authCookieName &&
+        authCookieValue &&
+        authCookieExpirationDate
+      ) {
         const auth_cookie: AuthCookie = {
           name: authCookieName,
           value: authCookieValue,
@@ -26,12 +31,10 @@ export default function RedirectBack() {
         };
 
         syncCookies(auth_cookie, () => {
-          if (extension) {
-            window.close();
-          } else {
-            window.location.href = "/home";
-          }
+          window.close();
         });
+      } else {
+        window.location.href = "/home";
       }
     }
   }, [searchParams]);

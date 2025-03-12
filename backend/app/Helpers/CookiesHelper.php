@@ -17,7 +17,7 @@ class CookiesHelper
      * @param  NewAccessToken  $token
      * @return JsonResponse|RedirectResponse
      */
-    public static function addAuthCookie($response, $token)
+    public static function addAuthCookie($response, $token, $sendCookieData = false)
     {
         $cookieName = config('auth.cookie_name');
         $expiration = config('auth.token_expiration');
@@ -34,6 +34,10 @@ class CookiesHelper
             false, // Raw
             'Strict' // SameSite
         );
+
+        if(! $sendCookieData) {
+            return $finalResponse;
+        }
 
         if ($response instanceof RedirectResponse) {
             $url = $response->getTargetUrl();
