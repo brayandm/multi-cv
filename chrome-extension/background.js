@@ -8,8 +8,9 @@ function setCookieFromStorage() {
           value: result.auth_cookie.value,
           expirationDate: result.auth_cookie.expiration_date,
           secure: true,
-          domain: "multicv.space",
+          domain: ".multicv.space",
           path: "/",
+          sameSite: "no_restriction",
         },
         function (cookie) {
           if (!cookie) {
