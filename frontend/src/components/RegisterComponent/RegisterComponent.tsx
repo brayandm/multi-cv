@@ -56,12 +56,16 @@ export default function RegisterComponent() {
 
         const auth_cookie = loginResponse.data.auth_cookie;
 
-        if (auth_cookie) {
+        const isIframe = window.self !== window.top;
+
+        if (isIframe && auth_cookie) {
           syncCookies(auth_cookie, () => {
             if (loginResponse.status === 200) {
               router.push("/home");
             }
           });
+        } else {
+          router.push("/home");
         }
       }
     } catch (error) {

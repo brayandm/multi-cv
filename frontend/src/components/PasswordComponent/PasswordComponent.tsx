@@ -13,7 +13,6 @@ import { UserResponse } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { generalInputsStyles } from "@/lib/customStyles";
-import { syncCookies } from "@/lib/syncCookies";
 
 interface IPasswordComponentProps {
   passwordRecovery?: {
@@ -63,14 +62,8 @@ export default function PasswordComponent({
           password_confirmation: formData.repeatPassword,
         });
 
-        const auth_cookie = passwordRecoveryResetResponse.data.auth_cookie;
-
-        if (auth_cookie) {
-          syncCookies(auth_cookie, () => {
-            if (passwordRecoveryResetResponse.status === 200) {
-              router.push("/password/recovery/success");
-            }
-          });
+        if (passwordRecoveryResetResponse.status === 200) {
+          router.push("/password/recovery/success");
         }
       } catch (error) {
         console.log(error);

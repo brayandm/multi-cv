@@ -35,7 +35,7 @@ class CookiesHelper
             'Strict' // SameSite
         );
 
-        if(! $sendCookieData) {
+        if (! $sendCookieData) {
             return $finalResponse;
         }
 

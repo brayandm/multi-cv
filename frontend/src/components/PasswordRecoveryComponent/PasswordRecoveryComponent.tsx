@@ -89,7 +89,13 @@ export default function PasswordRecoveryComponent({
 
   const handleContinue = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/home");
+    const isIframe = window.self !== window.top;
+
+    if (isIframe) {
+      window.close();
+    } else {
+      router.push("/home");
+    }
   };
 
   const handleTryAgain = (e: React.FormEvent) => {
