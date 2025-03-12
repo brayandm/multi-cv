@@ -10,7 +10,7 @@ export default function RedirectBack() {
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const extension = searchParams.get("extension");
+      const extension = searchParams.get("extension") === "true";
 
       const authCookieName = searchParams.get("name");
       const authCookieVBalue = searchParams.get("value");

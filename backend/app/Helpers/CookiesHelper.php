@@ -43,7 +43,8 @@ class CookiesHelper
                 'expiration' => $expirationDate,
             ]);
             $separator = parse_url($url, PHP_URL_QUERY) ? '&' : '?';
-            $response->setTargetUrl($url . $separator . $queryParams);
+            $response->setTargetUrl($url.$separator.$queryParams);
+
             return $finalResponse;
         } else {
             return $finalResponse->setData(array_merge($response->getData(true), [
