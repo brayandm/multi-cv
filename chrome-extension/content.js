@@ -1,7 +1,18 @@
+const isIframe = window.self !== window.top;
+
+shouldInject = false;
+
+if (isIframe && window.location.href.includes("https://dev.multicv.space")) {
+  shouldInject = true;
+}
+
+if (!isIframe) {
+  shouldInject = true;
+}
+
+// if (shouldInject) {
 const hostList = ["linkedin.com", "infojobs.net"];
 const IFRAME_WIDTH = "360px";
-
-console.log("MultiCV extension loaded");
 
 window.addEventListener("message", (event) => {
   if (event.data.action == "setAuthCookie") {
@@ -29,7 +40,7 @@ const iframe = (() => {
   iframe.classList.add("multicv-iframe");
   iframe.style.right = `-${IFRAME_WIDTH}`;
   iframe.style.width = IFRAME_WIDTH;
-  iframe.src = "https://multicv.space";
+  iframe.src = "https://dev.multicv.space";
   return iframe;
 })();
 
@@ -122,13 +133,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "responseAuthCookie") {
     const token = request.content;
 
-    iframe.contentWindow.postMessage(
-      {
-        action: "responseAuthCookie",
-        content: token,
-      },
-      "*"
-    );
+    iframe.contentWindow.postMessage({
+      action: "responseAuthCookie",
+      content: token,
+    });
   }
 });
 
@@ -141,3 +149,4 @@ const handleVisibilityChange = () => {
 document.addEventListener("visibilitychange", handleVisibilityChange);
 
 chrome.runtime.sendMessage({ action: "getAuthCookie" });
+// }
