@@ -80,11 +80,7 @@ class PasswordRecoveryController extends Controller
         );
 
         if ($status === Password::PASSWORD_RESET) {
-            $user = User::where('email', $request->email)->first();
-
-            $token = $this->userService->createUserToken($user);
-
-            return CookiesHelper::addAuthCookie(response()->json(['message' => 'Password reset successfully.']), $token);
+            return response()->json(['message' => 'Password reset successfully.'], 200);
         }
 
         return response()->json(['message' => 'Invalid or expired token.'], 400);

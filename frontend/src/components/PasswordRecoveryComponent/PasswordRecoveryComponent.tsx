@@ -87,11 +87,6 @@ export default function PasswordRecoveryComponent({
     }
   };
 
-  const handleContinue = (e: React.FormEvent) => {
-    e.preventDefault();
-    router.push("/home");
-  };
-
   const handleTryAgain = (e: React.FormEvent) => {
     e.preventDefault();
     router.push("/password/recovery");
@@ -134,17 +129,11 @@ export default function PasswordRecoveryComponent({
         </form>
       )}
       {type === "success" && (
-        <form
-          className="flex flex-col gap-2 text-center w-[250px] mx-auto"
-          onSubmit={handleContinue}
-        >
+        <form className="flex flex-col gap-2 text-center w-[250px] mx-auto">
           <h1 className="text-center">
             {t("pages.password_recovery.success.title")}
           </h1>
           <p>{t("pages.password_recovery.success.message")}</p>
-          <Button color="primary" type="submit">
-            {t("common.buttons.continue")}
-          </Button>
         </form>
       )}
       {type === "fail" && (
