@@ -4,12 +4,6 @@ const IFRAME_WIDTH = "360px";
 console.log("MultiCV extension loaded");
 
 window.addEventListener("message", (event) => {
-  if (
-    event.origin !== "https://multicv.space" &&
-    event.origin !== "https://dev.multicv.space"
-  )
-    return;
-
   if (event.data.action == "setAuthCookie") {
     chrome.storage.local.set({ auth_cookie: event.data.content }, function () {
       window.postMessage(
@@ -125,10 +119,13 @@ const tooltip = (() => {
 })();
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "refreshPage") {
+  if (request.action === "responseAuthCookie") {
+    const token = request.content;
+
     iframe.contentWindow.postMessage(
       {
-        action: "refreshPage",
+        action: "responseAuthCookie",
+        content: token,
       },
       "*"
     );
@@ -137,10 +134,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 const handleVisibilityChange = () => {
   if (document.visibilityState === "visible") {
-    chrome.runtime.sendMessage({ action: "setAuthCookie" });
+    chrome.runtime.sendMessage({ action: "getAuthCookie" });
   }
 };
 
 document.addEventListener("visibilitychange", handleVisibilityChange);
 
-chrome.runtime.sendMessage({ action: "setAuthCookie" });
+chrome.runtime.sendMessage({ action: "getAuthCookie" });

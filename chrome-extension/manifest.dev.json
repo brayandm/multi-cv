@@ -6,9 +6,10 @@
   "permissions": ["cookies", "activeTab", "storage"],
   "externally_connectable": {
     "matches": [
-      "http://localhost:3000/*",
       "https://dev.multicv.space/*",
-      "https://multicv.space/*"
+      "https://multicv.space/*",
+      "https://www.linkedin.com/*",
+      "https://www.infojobs.net/*"
     ]
   },
   "background": {
@@ -37,7 +38,8 @@
         "https://www.infojobs.net/*"
       ],
       "js": ["content.js"],
-      "css": ["styles.css"]
+      "css": ["styles.css"],
+      "all_frames": true
     }
   ]
 }
