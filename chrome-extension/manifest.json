@@ -3,9 +3,12 @@
   "name": "MultiCV",
   "version": "1.0.0",
   "description": "Multicv is an extension that able you to create personalized cv for diferent jobs offers",
-  "permissions": ["activeTab"],
+  "permissions": ["cookies", "activeTab", "storage"],
   "externally_connectable": {
     "matches": ["https://multicv.space/*"]
+  },
+  "background": {
+    "service_worker": "background.js"
   },
   "host_permissions": [
     "https://multicv.space/*",

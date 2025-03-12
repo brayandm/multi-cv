@@ -1,10 +1,22 @@
 const hostList = ["linkedin.com", "infojobs.net"];
 const IFRAME_WIDTH = "360px";
 
+console.log("MultiCV extension loaded");
+
 window.addEventListener("message", (event) => {
   if (event.origin !== "https://multicv.space") return;
 
-  console.log("Message received", event.data);
+  if (event.data.type == "set_auth_cookie") {
+    chrome.storage.local.set({ auth_cookie: event.data.content }, function () {
+      window.postMessage(
+        {
+          type: "response_set_auth_cookie",
+          content: 200,
+        },
+        event.origin
+      );
+    });
+  }
 });
 
 const button = (() => {
