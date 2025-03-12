@@ -1,84 +1,49 @@
 const hostList = ["linkedin.com", "infojobs.net"];
 const IFRAME_WIDTH = "360px";
 
+console.log("MultiCV extension loaded");
+
+window.addEventListener("message", (event) => {
+  if (event.origin !== "https://multicv.space") return;
+
+  if (event.data.type == "set_auth_cookie") {
+    chrome.storage.local.set({ auth_cookie: event.data.content }, function () {
+      window.postMessage(
+        {
+          type: "response_set_auth_cookie",
+          content: 200,
+        },
+        event.origin
+      );
+    });
+  }
+});
+
 const button = (() => {
   const button = document.createElement("div");
-
+  button.classList.add("custom-button");
   button.innerText = "◀";
-  button.style.position = "fixed";
-  button.style.top = "50%";
-  button.style.right = "-5px";
-  button.style.width = "45px";
-  button.style.height = "80px";
-  button.style.background = "#03a9f4";
-  button.style.color = "#fff";
-  button.style.borderRadius = "10px 0 0 10px";
-  button.style.display = "flex";
-  button.style.alignItems = "center";
-  button.style.paddingRight = "5px";
-  button.style.justifyContent = "center";
-  button.style.cursor = "pointer";
-  button.style.fontSize = "16px";
-  button.style.zIndex = "10000";
-  button.style.transition = "right 0.3s ease";
-
   return button;
 })();
 
 const iframe = (() => {
   const iframe = document.createElement("iframe");
-
-  iframe.src = "https://multicv.space";
-  iframe.style.position = "fixed";
-  iframe.style.top = "0";
+  iframe.classList.add("custom-iframe");
   iframe.style.right = `-${IFRAME_WIDTH}`;
   iframe.style.width = IFRAME_WIDTH;
-  iframe.style.height = "100vh";
-  iframe.style.border = "none";
-  iframe.style.zIndex = "10001";
-  iframe.style.transition = "right 0.3s ease";
-
+  iframe.src = "https://multicv.space";
   return iframe;
 })();
 
 const tooltip = (() => {
   const tooltip = document.createElement("div");
+  tooltip.classList.add("custom-tooltip");
   tooltip.innerText = "Summarize and generate CV for this position!";
-  tooltip.style.position = "fixed";
-  tooltip.style.display = "none";
-  tooltip.style.alignItems = "center";
-  tooltip.style.justifyContent = "center";
-  tooltip.style.top = "calc(50% - 100px)";
-  tooltip.style.right = "60px";
-  tooltip.style.width = "200px";
-  tooltip.style.height = "100px";
-  tooltip.style.padding = "10px 15px";
-  tooltip.style.background = "#fff";
-  tooltip.style.color = "#000";
-  tooltip.style.borderRadius = "8px";
-  tooltip.style.boxShadow = "0px 4px 8px rgba(0, 0, 0, 0.2)";
-  tooltip.style.fontSize = "14px";
-  tooltip.style.fontWeight = "bold";
-  tooltip.style.zIndex = "9999";
-  tooltip.style.opacity = "0";
-  tooltip.style.transition = "opacity 0.3s ease";
-  tooltip.style.cursor = "pointer";
-  tooltip.style.textAlign = "center";
 
   const arrow = document.createElement("div");
-  arrow.style.position = "absolute";
-  arrow.style.right = "-10px";
-  arrow.style.bottom = "-18px";
-  arrow.style.transform = "translateY(-50%)";
-  arrow.style.width = "0";
-  arrow.style.rotate = "45deg";
-  arrow.style.height = "0";
-  arrow.style.borderLeft = "30px solid #fff";
-  arrow.style.borderTop = "10px solid transparent";
-  arrow.style.borderBottom = "10px solid transparent";
+  arrow.classList.add("tooltip-arrow");
 
   tooltip.appendChild(arrow);
-
   return tooltip;
 })();
 
@@ -154,3 +119,5 @@ const tooltip = (() => {
     observerUrl.observe(document.body, { childList: true, subtree: true });
   }
 })();
+
+chrome.runtime.sendMessage({ action: "setAuthCookie" });

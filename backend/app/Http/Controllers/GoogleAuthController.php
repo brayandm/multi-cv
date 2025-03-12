@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\CookiesHelper;
 use App\Models\User;
 use App\Services\GoogleOauthService;
 use App\Services\UserService;
@@ -31,13 +32,7 @@ class GoogleAuthController extends Controller
 
         $token = $this->userService->createUserToken($user);
 
-        if ($extension) {
-            return response()->json(['is_local' => true])
-                ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
-        }
-
-        return response()->json(['is_local' => true])
-            ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+        return CookiesHelper::addAuthCookie(response()->json(['is_local' => true]), $token);
     }
 
     public function redirectToGoogle(Request $request)
@@ -85,11 +80,9 @@ class GoogleAuthController extends Controller
         $token = $this->userService->createUserToken($user);
 
         if ($extension) {
-            return redirect(config('app.frontend_url').'/redirect-back')
-                ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+            return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back?extension=true'), $token);
         }
 
-        return redirect(config('app.frontend_url').'/home')
-            ->cookie(config('auth.cookie_name'), $token->plainTextToken, config('auth.token_expiration') / 60, '/', null, true, true, false, 'None');
+        return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back'), $token);
     }
 }

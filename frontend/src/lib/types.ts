@@ -38,9 +38,16 @@ export interface PasswordRecoveryResetResponse {
   message: string;
 }
 
+export interface AuthCookie {
+  name: string;
+  value: string;
+  expiration_date: number;
+}
+
 export interface GoogleLoginResponse {
   is_local?: boolean;
   url?: string;
+  auth_cookie?: AuthCookie;
 }
 export interface UserResponse {
   id: number;
