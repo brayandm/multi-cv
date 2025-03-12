@@ -1,4 +1,5 @@
 import { googleLoginApi } from "./backendService";
+import { syncCookies } from "./syncCookies";
 
 export const handleGoogleSignIn = async () => {
   const isIframe = window.self !== window.top;
@@ -11,24 +12,14 @@ export const handleGoogleSignIn = async () => {
     const redirectUrl = response.data.url;
     const auth_cookie = response.data.auth_cookie;
 
-    window.postMessage(
-      {
-        type: "set_auth_cookie",
-        content: auth_cookie,
-      },
-      process.env.NEXT_PUBLIC_FRONTEND_URL!
-    );
-
-    window.addEventListener("message", (event) => {
-      if (event.origin !== process.env.NEXT_PUBLIC_FRONTEND_URL) return;
-
-      if (
-        event.data.type === "response_set_auth_cookie" &&
-        event.data.content === 200
-      ) {
-        if (isLocal) window.location.href = "/home";
-        if (redirectUrl) window.location.href = redirectUrl;
+    if (isLocal) {
+      if (auth_cookie) {
+        syncCookies(auth_cookie, () => {
+          window.location.href = "/home";
+        });
       }
-    });
+    } else {
+      if (redirectUrl) window.location.href = redirectUrl;
+    }
   }
 };

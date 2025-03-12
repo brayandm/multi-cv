@@ -32,10 +32,6 @@ class GoogleAuthController extends Controller
 
         $token = $this->userService->createUserToken($user);
 
-        if ($extension) {
-            return CookiesHelper::addAuthCookie(response()->json(['is_local' => true]), $token);
-        }
-
         return CookiesHelper::addAuthCookie(response()->json(['is_local' => true]), $token);
     }
 
@@ -84,9 +80,9 @@ class GoogleAuthController extends Controller
         $token = $this->userService->createUserToken($user);
 
         if ($extension) {
-            return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back'), $token);
+            return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back?extension=true'), $token);
         }
 
-        return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/home'), $token);
+        return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back'), $token);
     }
 }

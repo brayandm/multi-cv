@@ -4,7 +4,7 @@ function setCookieFromStorage() {
       chrome.cookies.set(
         {
           url: "https://multicv.space",
-          name: "x" + result.auth_cookie.name,
+          name: result.auth_cookie.name,
           value: result.auth_cookie.value,
           expirationDate: result.auth_cookie.expiration_date,
           secure: true,
