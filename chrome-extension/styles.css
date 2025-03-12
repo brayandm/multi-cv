@@ -3,7 +3,7 @@ iframe {
   background-color: white !important;
 }
 
-.custom-button {
+.multicv-button {
   position: fixed;
   top: 50%;
   right: -5px;
@@ -22,7 +22,7 @@ iframe {
   transition: right 0.3s ease;
 }
 
-.custom-iframe {
+.multicv-iframe {
   position: fixed;
   top: 0;
   height: 100vh;
@@ -31,7 +31,7 @@ iframe {
   transition: right 0.3s ease;
 }
 
-.custom-tooltip {
+.multicv-tooltip {
   position: fixed;
   display: none;
   align-items: center;
@@ -54,7 +54,7 @@ iframe {
   text-align: center;
 }
 
-.tooltip-arrow {
+.multicv-tooltip-arrow {
   position: absolute;
   right: -10px;
   bottom: -18px;

@@ -25,14 +25,14 @@ window.addEventListener("message", (event) => {
 
 const button = (() => {
   const button = document.createElement("div");
-  button.classList.add("custom-button");
+  button.classList.add("multicv-button");
   button.innerText = "◀";
   return button;
 })();
 
 const iframe = (() => {
   const iframe = document.createElement("iframe");
-  iframe.classList.add("custom-iframe");
+  iframe.classList.add("multicv-iframe");
   iframe.style.right = `-${IFRAME_WIDTH}`;
   iframe.style.width = IFRAME_WIDTH;
   iframe.src = "https://multicv.space";
@@ -41,11 +41,11 @@ const iframe = (() => {
 
 const tooltip = (() => {
   const tooltip = document.createElement("div");
-  tooltip.classList.add("custom-tooltip");
+  tooltip.classList.add("multicv-tooltip");
   tooltip.innerText = "Summarize and generate CV for this position!";
 
   const arrow = document.createElement("div");
-  arrow.classList.add("tooltip-arrow");
+  arrow.classList.add("multicv-tooltip-arrow");
 
   tooltip.appendChild(arrow);
   return tooltip;
@@ -123,5 +123,15 @@ const tooltip = (() => {
     observerUrl.observe(document.body, { childList: true, subtree: true });
   }
 })();
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.action === "refreshPage") {
+    const iframe = document.querySelector(".multicv-iframe");
+
+    if (iframe) {
+      iframe.contentWindow.location.reload;
+    }
+  }
+});
 
 chrome.runtime.sendMessage({ action: "setAuthCookie" });
