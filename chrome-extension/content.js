@@ -15,7 +15,7 @@ if (
 }
 
 if (
-  isIframe &&
+  !isIframe &&
   (window.location.href.includes("https://dev.multicv.space") ||
     window.location.href.includes("https://multicv.space"))
 ) {
