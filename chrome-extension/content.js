@@ -4,7 +4,11 @@ const IFRAME_WIDTH = "360px";
 console.log("MultiCV extension loaded");
 
 window.addEventListener("message", (event) => {
-  if (event.origin !== "https://multicv.space") return;
+  if (
+    event.origin !== "https://multicv.space" &&
+    event.origin !== "https://dev.multicv.space"
+  )
+    return;
 
   if (event.data.type == "set_auth_cookie") {
     chrome.storage.local.set({ auth_cookie: event.data.content }, function () {

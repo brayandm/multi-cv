@@ -5,12 +5,13 @@
   "description": "Multicv is an extension that able you to create personalized cv for diferent jobs offers",
   "permissions": ["cookies", "activeTab", "storage"],
   "externally_connectable": {
-    "matches": ["https://multicv.space/*"]
+    "matches": ["https://dev.multicv.space/*", "https://multicv.space/*"]
   },
   "background": {
     "service_worker": "background.js"
   },
   "host_permissions": [
+    "https://dev.multicv.space/*",
     "https://multicv.space/*",
     "https://www.linkedin.com/*",
     "https://www.infojobs.net/*"
@@ -23,6 +24,7 @@
   "content_scripts": [
     {
       "matches": [
+        "https://dev.multicv.space/*",
         "https://multicv.space/*",
         "https://www.linkedin.com/*",
         "https://www.infojobs.net/*"
