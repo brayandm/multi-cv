@@ -6,7 +6,7 @@ export const useRefreshPage = () => {
 
   useEffect(() => {
     const handleActionRefreshPage = (event: MessageEvent) => {
-      if (event.data.action === "refreshPage") {
+      if (event.data.action === "responseAuthCookie") {
         router.refresh();
       }
     };
