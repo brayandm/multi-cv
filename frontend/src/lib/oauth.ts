@@ -19,7 +19,16 @@ export const handleGoogleSignIn = async () => {
       process.env.NEXT_PUBLIC_FRONTEND_URL!
     );
 
-    if (isLocal) window.location.href = "/home";
-    if (redirectUrl) window.location.href = redirectUrl;
+    window.addEventListener("message", (event) => {
+      if (event.origin !== process.env.NEXT_PUBLIC_FRONTEND_URL) return;
+
+      if (
+        event.data.type === "response_set_auth_cookie" &&
+        event.data.content === 200
+      ) {
+        if (isLocal) window.location.href = "/home";
+        if (redirectUrl) window.location.href = redirectUrl;
+      }
+    });
   }
 };

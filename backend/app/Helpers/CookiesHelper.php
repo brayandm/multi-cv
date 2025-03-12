@@ -21,7 +21,7 @@ class CookiesHelper
     {
         $cookieName = config('auth.cookie_name');
         $expiration = config('auth.token_expiration');
-        $expirationDate = Carbon::now()->addSeconds($expiration)->toIso8601String();
+        $expirationDate = Carbon::now()->addSeconds($expiration)->timestamp;
 
         $finalResponse = $response->cookie(
             $cookieName,
