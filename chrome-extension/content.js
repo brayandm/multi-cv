@@ -119,3 +119,5 @@ const tooltip = (() => {
     observerUrl.observe(document.body, { childList: true, subtree: true });
   }
 })();
+
+chrome.runtime.sendMessage({ action: "setAuthCookie" });

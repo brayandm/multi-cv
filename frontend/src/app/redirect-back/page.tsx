@@ -13,15 +13,15 @@ export default function RedirectBack() {
       const extension = searchParams.get("extension") === "true";
 
       const authCookieName = searchParams.get("name");
-      const authCookieVBalue = searchParams.get("value");
+      const authCookieValue = searchParams.get("value");
       const authCookieExpirationDate = Number(
         searchParams.get("expiration_date")
       );
 
-      if (authCookieName && authCookieVBalue && authCookieExpirationDate) {
+      if (authCookieName && authCookieValue && authCookieExpirationDate) {
         const auth_cookie: AuthCookie = {
           name: authCookieName,
-          value: authCookieVBalue,
+          value: authCookieValue,
           expiration_date: authCookieExpirationDate,
         };
 

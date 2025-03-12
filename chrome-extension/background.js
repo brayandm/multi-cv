@@ -1,5 +1,5 @@
 function setCookieFromStorage() {
-  chrome.storage.local.get(["auth_cookie"], function (result) {
+  chrome.storage.local.get("auth_cookie", function (result) {
     if (result.auth_cookie) {
       chrome.cookies.set(
         {
@@ -12,7 +12,9 @@ function setCookieFromStorage() {
           path: "/",
         },
         function (cookie) {
-          if (chrome.runtime.lastError) {
+          if (!cookie) {
+            console.error("Failed to set cookie.");
+          } else if (chrome.runtime.lastError) {
             console.error(
               "Error setting the cookie:",
               chrome.runtime.lastError
@@ -31,6 +33,13 @@ function setCookieFromStorage() {
 chrome.storage.onChanged.addListener((changes, area) => {
   if (area === "local" && changes.auth_cookie) {
     console.log("auth_cookie changed, updating the cookie...");
+    setCookieFromStorage();
+  }
+});
+
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === "setAuthCookie") {
+    console.log("Received request to set auth cookie from content script.");
     setCookieFromStorage();
   }
 });
