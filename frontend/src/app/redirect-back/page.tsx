@@ -7,7 +7,6 @@ export default function RedirectBack() {
     if (typeof window !== "undefined") {
       window.postMessage(
         {
-          type: "HELLO_EXTENSION",
           content: "Hello World",
         },
         process.env.NEXT_PUBLIC_FRONTEND_URL!
