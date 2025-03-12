@@ -35,7 +35,7 @@ export default function PasswordComponent({
   const t = useTranslations();
 
   const { data: userData, isLoading: isUserDataLoading } = useSWR<UserResponse>(
-    userApiLink,
+    passwordRecovery ? null : userApiLink,
     fetcherApi
   );
 
