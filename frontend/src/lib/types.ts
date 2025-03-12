@@ -44,7 +44,7 @@ export interface GoogleLoginResponse {
   auth_cookie?: {
     name: string;
     value: string;
-    expiration_minutes: number;
+    expiration_date: string;
   };
 }
 export interface UserResponse {

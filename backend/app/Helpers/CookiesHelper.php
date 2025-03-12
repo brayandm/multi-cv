@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
@@ -19,12 +20,13 @@ class CookiesHelper
     public static function addAuthCookie($response, $token)
     {
         $cookieName = config('auth.cookie_name');
-        $expiration = config('auth.token_expiration') / 60; // Convert seconds to minutes
+        $expiration = config('auth.token_expiration');
+        $expirationDate = Carbon::now()->addSeconds($expiration)->toIso8601String();
 
         $finalResponse = $response->cookie(
             $cookieName,
             $token->plainTextToken,
-            $expiration,
+            $expiration / 60, // Convert seconds to minutes
             '/',
             null,
             true, // Secure
@@ -38,16 +40,15 @@ class CookiesHelper
                 'auth_cookie' => [
                     'name' => $cookieName,
                     'value' => $token->plainTextToken,
-                    'expiration_minutes' => $expiration,
+                    'expiration_date' => $expirationDate,
                 ],
             ]);
-        }
-        else {
+        } else {
             return $finalResponse->setData(array_merge($response->getData(true), [
                 'auth_cookie' => [
                     'name' => $cookieName,
                     'value' => $token->plainTextToken,
-                    'expiration_minutes' => $expiration,
+                    'expiration_date' => $expirationDate,
                 ],
             ]));
         }
