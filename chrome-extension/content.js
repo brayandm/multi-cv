@@ -10,11 +10,11 @@ window.addEventListener("message", (event) => {
   )
     return;
 
-  if (event.data.type == "set_auth_cookie") {
+  if (event.data.action == "setAuthCookie") {
     chrome.storage.local.set({ auth_cookie: event.data.content }, function () {
       window.postMessage(
         {
-          type: "response_set_auth_cookie",
+          action: "responseSetAuthCookie",
           content: 200,
         },
         event.origin

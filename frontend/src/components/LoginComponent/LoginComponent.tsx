@@ -9,7 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useRefreshOnVisibility } from "@/hooks/useRefreshOnVisibility";
+import { useRefreshPage } from "@/hooks/useRefreshPage";
 import { generalInputsStyles } from "@/lib/customStyles";
 
 export default function LoginComponent() {
@@ -19,7 +19,7 @@ export default function LoginComponent() {
     password: "",
   });
 
-  useRefreshOnVisibility();
+  useRefreshPage();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

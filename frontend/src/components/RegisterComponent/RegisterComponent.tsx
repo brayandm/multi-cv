@@ -8,7 +8,7 @@ import Link from "next/link";
 import { handleGoogleSignIn } from "@/lib/oauth";
 import GoogleOauthBtn from "../../shared/components/GoogleOauthBtn";
 import { useTranslations } from "next-intl";
-import { useRefreshOnVisibility } from "@/hooks/useRefreshOnVisibility";
+import { useRefreshPage } from "@/hooks/useRefreshPage";
 import { generalInputsStyles } from "@/lib/customStyles";
 
 export default function RegisterComponent() {
@@ -25,7 +25,7 @@ export default function RegisterComponent() {
     underAge: false,
   });
 
-  useRefreshOnVisibility();
+  useRefreshPage();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

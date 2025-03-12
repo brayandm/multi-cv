@@ -3,13 +3,13 @@
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useRefreshOnVisibility } from "@/hooks/useRefreshOnVisibility";
+import { useRefreshPage } from "@/hooks/useRefreshPage";
 
 export default function WelcomeComponent() {
   const router = useRouter();
   const t = useTranslations();
 
-  useRefreshOnVisibility();
+  useRefreshPage();
 
   return (
     <div className="flex flex-col mt-40 w-[280px] mx-auto">

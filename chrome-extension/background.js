@@ -22,6 +22,10 @@ function setCookieFromStorage() {
             );
           } else {
             console.log("Cookie set successfully:", cookie);
+
+            window.postMessage({
+              action: "refreshPage",
+            });
           }
         }
       );
@@ -31,18 +35,9 @@ function setCookieFromStorage() {
   });
 }
 
-chrome.storage.onChanged.addListener((changes, area) => {
-  if (area === "local" && changes.auth_cookie) {
-    console.log("auth_cookie changed, updating the cookie...");
-    setCookieFromStorage();
-  }
-});
-
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "setAuthCookie") {
     console.log("Received request to set auth cookie from content script.");
     setCookieFromStorage();
   }
 });
-
-setCookieFromStorage();
