@@ -7,3 +7,4 @@ class Project(BaseModel):
     start_date: str
     description: str
     link: str
+    notes: str

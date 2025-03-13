@@ -9,3 +9,4 @@ class Experience(BaseModel):
     description: str
     role: str
     is_present: bool
+    notes: str

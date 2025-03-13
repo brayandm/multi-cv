@@ -16,3 +16,4 @@ class Profile(BaseModel):
     education: List[Education]
     projects: List[Project]
     skills: List[str]
+    general_notes: str
