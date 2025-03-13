@@ -31,10 +31,20 @@ export const useRefreshPage = () => {
       }
     };
 
-    window.addEventListener("message", handleActionRefreshPage);
+    const isIframe = window.self !== window.top;
+
+    if (isIframe) {
+      window.addEventListener("message", handleActionRefreshPage);
+
+      window.postMessage({ action: "applicationStarted" });
+
+      console.log("Application started");
+    }
 
     return () => {
-      window.removeEventListener("message", handleActionRefreshPage);
+      if (isIframe) {
+        window.removeEventListener("message", handleActionRefreshPage);
+      }
     };
   }, [router]);
 };

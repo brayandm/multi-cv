@@ -47,6 +47,32 @@ if (shouldInject) {
         );
       }
     });
+
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+      if (request.action === "responseAuthCookie") {
+        const token = request.content;
+
+        window.postMessage({
+          action: "responseAuthCookie",
+          content: token,
+        });
+      }
+    });
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        chrome.runtime.sendMessage({ action: "getAuthCookie" });
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    window.addEventListener("message", (event) => {
+      if (event.data.action == "applicationStarted") {
+        console.log("Message received from iframe");
+        chrome.runtime.sendMessage({ action: "getAuthCookie" });
+      }
+    });
   }
 
   const button = (() => {
@@ -149,27 +175,4 @@ if (shouldInject) {
       observerUrl.observe(document.body, { childList: true, subtree: true });
     }
   })();
-
-  if (isMultiCvIFrame || isMultiCvWebsite) {
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      if (request.action === "responseAuthCookie") {
-        const token = request.content;
-
-        window.postMessage({
-          action: "responseAuthCookie",
-          content: token,
-        });
-      }
-    });
-
-    const handleVisibilityChange = () => {
-      if (document.visibilityState === "visible") {
-        chrome.runtime.sendMessage({ action: "getAuthCookie" });
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-
-    chrome.runtime.sendMessage({ action: "getAuthCookie" });
-  }
 }
