@@ -1,10 +1,11 @@
-from pydantic import BaseModel
 from typing import List
+
+from pydantic import BaseModel
 
 
 class SkillNote(BaseModel):
     name: str
-    experience: float
+    experience_years: float
 
 
 class Skills(BaseModel):
