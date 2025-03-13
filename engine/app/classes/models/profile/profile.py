@@ -7,6 +7,7 @@ from .education import Education
 from .experience import Experience
 from .professional_link import ProfessionalLink
 from .project import Project
+from .skills import Skills
 
 
 class Profile(BaseModel):
@@ -15,5 +16,5 @@ class Profile(BaseModel):
     experience: List[Experience]
     education: List[Education]
     projects: List[Project]
-    skills: List[str]
+    skills: List[Skills]
     general_notes: str
