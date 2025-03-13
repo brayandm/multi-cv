@@ -39,7 +39,7 @@ if (shouldInject) {
         chrome.storage.local.set({ key: value }, function () {
           window.postMessage(
             {
-              action: "responsesetValue",
+              action: "responseSetValue",
               content: 200,
             },
             event.origin
