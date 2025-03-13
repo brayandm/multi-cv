@@ -51,6 +51,12 @@ export const useRefreshPage = () => {
       }
     };
 
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        router.refresh();
+      }
+    };
+
     const isIframe = window.self !== window.top;
 
     if (isIframe) {
@@ -59,11 +65,18 @@ export const useRefreshPage = () => {
       window.postMessage({ action: "applicationStarted" });
 
       console.log("Application started");
+    } else {
+      document.addEventListener("visibilitychange", handleVisibilityChange);
     }
 
     return () => {
       if (isIframe) {
         window.removeEventListener("message", handleActionRefreshPage);
+      } else {
+        document.removeEventListener(
+          "visibilitychange",
+          handleVisibilityChange
+        );
       }
     };
   }, [router]);
