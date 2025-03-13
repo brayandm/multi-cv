@@ -13,6 +13,7 @@
       "register": "Регистрация",
       "logout": "Выйти",
       "google_sign_in": "Войти через Google",
+      "google_sign_up": "Регистрация через Google",
       "use_other_method": "Другой способ",
       "forgot_password": "Забыли пароль?"
     },

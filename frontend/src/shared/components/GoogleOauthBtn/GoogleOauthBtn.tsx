@@ -13,7 +13,11 @@ export const GoogleIcon = ({}) => {
   );
 };
 
-export default function GoogleOauthBtn({ ...props }: ButtonProps) {
+interface GoogleOauthBtnProps extends ButtonProps {
+  mode: "login" | "register";
+}
+
+export default function GoogleOauthBtn({ ...props }: GoogleOauthBtnProps) {
   const t = useTranslations();
   return (
     <div className="w-full gap-4 items-center">
@@ -23,7 +27,9 @@ export default function GoogleOauthBtn({ ...props }: ButtonProps) {
         color="default"
         {...props}
       >
-        {t("common.auth.google_sign_in")}
+        {props.mode === "login"
+          ? t("common.auth.google_sign_in")
+          : t("common.auth.google_sign_up")}
       </Button>
     </div>
   );

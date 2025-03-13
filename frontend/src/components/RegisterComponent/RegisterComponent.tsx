@@ -195,6 +195,7 @@ export default function RegisterComponent() {
       </p>
 
       <GoogleOauthBtn
+        mode="register"
         onPress={() => {
           setTimeout(() => {
             handleGoogleSignIn();

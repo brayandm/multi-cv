@@ -13,6 +13,7 @@
       "register": "Registrarse",
       "logout": "Cerrar sesión",
       "google_sign_in": "Ingresar con Google",
+      "google_sign_up": "Registrarse con Google",
       "use_other_method": "Usar otro método",
       "forgot_password": "¿Olvidaste tu contraseña?"
     },

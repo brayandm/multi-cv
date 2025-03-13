@@ -114,6 +114,7 @@ export default function LoginComponent() {
       </p>
       <div>
         <GoogleOauthBtn
+          mode="login"
           onPress={() => {
             setTimeout(() => {
               handleGoogleSignIn();
