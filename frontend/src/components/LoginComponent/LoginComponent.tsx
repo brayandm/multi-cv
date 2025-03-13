@@ -11,7 +11,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { useRefreshPage } from "@/hooks/useRefreshPage";
-import { syncCookies } from "@/lib/syncCookies";
+import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -42,7 +42,7 @@ export default function LoginComponent() {
       const isIframe = window.self !== window.top;
 
       if (isIframe && auth_cookie) {
-        syncCookies(auth_cookie, () => {
+        storeExtensionStorageValue("auth_cookie", auth_cookie, () => {
           if (loginresponse.status === 200) {
             router.push("/home");
           }

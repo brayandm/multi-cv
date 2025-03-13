@@ -10,7 +10,7 @@ import GoogleOauthBtn from "../../shared/components/GoogleOauthBtn";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { useRefreshPage } from "@/hooks/useRefreshPage";
-import { syncCookies } from "@/lib/syncCookies";
+import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -59,7 +59,7 @@ export default function RegisterComponent() {
         const isIframe = window.self !== window.top;
 
         if (isIframe && auth_cookie) {
-          syncCookies(auth_cookie, () => {
+          storeExtensionStorageValue("auth_cookie", auth_cookie, () => {
             if (loginResponse.status === 200) {
               router.push("/home");
             }

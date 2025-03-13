@@ -1,10 +1,12 @@
-import { AuthCookie } from "./types";
-
-export const syncCookies = (auth_cookie: AuthCookie, callback?: () => void) => {
+export const storeExtensionStorageValue = (
+  key: string,
+  value: unknown,
+  callback?: () => void
+) => {
   window.postMessage({
     action: "setValue",
-    key: "auth_cookie",
-    value: auth_cookie,
+    key: key,
+    value: value,
   });
 
   window.addEventListener("message", (event) => {

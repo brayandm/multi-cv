@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import { syncCookies } from "@/lib/syncCookies";
+import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { AuthCookie } from "@/lib/types";
 
 export default function RedirectBack() {
@@ -30,7 +30,7 @@ export default function RedirectBack() {
           expiration_date: authCookieExpirationDate,
         };
 
-        syncCookies(auth_cookie, () => {
+        storeExtensionStorageValue("auth_cookie", auth_cookie, () => {
           window.close();
         });
       } else {
