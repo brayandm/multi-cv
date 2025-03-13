@@ -6,6 +6,7 @@ from pydantic import BaseModel
 class SkillNote(BaseModel):
     name: str
     experience_years: float
+    description: str
 
 
 class Skills(BaseModel):
