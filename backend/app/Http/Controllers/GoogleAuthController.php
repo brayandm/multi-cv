@@ -80,7 +80,7 @@ class GoogleAuthController extends Controller
         $token = $this->userService->createUserToken($user);
 
         if ($extension) {
-            return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back?extension=true'), $token, true);
+            return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back?extension=true'), $token);
         }
 
         return CookiesHelper::addAuthCookie(redirect(config('app.frontend_url').'/redirect-back'), $token);

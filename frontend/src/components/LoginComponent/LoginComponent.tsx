@@ -11,6 +11,7 @@ import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
+import { setCookieClient } from "@/lib/setCookieClient";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -38,13 +39,23 @@ export default function LoginComponent() {
 
       const isIframe = window.self !== window.top;
 
-      if (isIframe && auth_cookie) {
+      if (!auth_cookie) {
+        router.push("/");
+        return;
+      }
+
+      if (isIframe) {
         storeExtensionStorageValue("auth_cookie", auth_cookie, () => {
           if (loginresponse.status === 200) {
             router.push("/home");
           }
         });
       } else {
+        setCookieClient(
+          auth_cookie.name,
+          auth_cookie.value,
+          auth_cookie.expiration_date
+        );
         router.push("/home");
       }
     } catch (error) {
