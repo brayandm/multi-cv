@@ -17,23 +17,29 @@ class CookiesHelper
      * @param  NewAccessToken  $token
      * @return JsonResponse|RedirectResponse
      */
-    public static function addAuthCookie($response, $token)
+    public static function addAuthCookie($response, $token, $noCookies = false)
     {
         $cookieName = config('auth.cookie_name');
         $expiration = config('auth.token_expiration');
         $expirationDate = Carbon::now()->addSeconds($expiration)->timestamp;
 
-        $finalResponse = $response->cookie(
-            $cookieName,
-            $token->plainTextToken,
-            $expiration / 60, // Convert seconds to minutes
-            '/',
-            null,
-            true, // Secure
-            false, // HttpOnly
-            false, // Raw
-            'None' // SameSite
-        );
+        if($noCookies) {
+            $finalResponse = $response;
+        }
+        else
+        {
+            $finalResponse = $response->cookie(
+                $cookieName,
+                $token->plainTextToken,
+                $expiration / 60, // Convert seconds to minutes
+                '/',
+                null,
+                true, // Secure
+                false, // HttpOnly
+                false, // Raw
+                'None' // SameSite
+            );
+        }
 
         if ($response instanceof RedirectResponse) {
             $url = $response->getTargetUrl();
