@@ -36,7 +36,7 @@ if (shouldInject) {
         const key = event.data.key;
         const value = event.data.value;
 
-        chrome.storage.local.set({ key: value }, function () {
+        chrome.storage.local.set({ [key]: value }, function () {
           window.postMessage(
             {
               action: "responseSetValue",
