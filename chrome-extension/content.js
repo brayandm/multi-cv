@@ -32,28 +32,28 @@ if (shouldInject) {
 
   if (isMultiCvIFrame || isMultiCvWebsite) {
     window.addEventListener("message", (event) => {
-      if (event.data.action == "setAuthCookie") {
-        chrome.storage.local.set(
-          { auth_cookie: event.data.content },
-          function () {
-            window.postMessage(
-              {
-                action: "responseSetAuthCookie",
-                content: 200,
-              },
-              event.origin
-            );
-          }
-        );
+      if (event.data.action == "setValue") {
+        const key = event.data.key;
+        const value = event.data.value;
+
+        chrome.storage.local.set({ key: value }, function () {
+          window.postMessage(
+            {
+              action: "responsesetValue",
+              content: 200,
+            },
+            event.origin
+          );
+        });
       }
     });
 
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-      if (request.action === "responseAuthCookie") {
+      if (request.action === "responseExtensionStorage") {
         const token = request.content;
 
         window.postMessage({
-          action: "responseAuthCookie",
+          action: "responseExtensionStorage",
           content: token,
         });
       }
@@ -61,7 +61,7 @@ if (shouldInject) {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
-        chrome.runtime.sendMessage({ action: "getAuthCookie" });
+        chrome.runtime.sendMessage({ action: "getExtensionStorage" });
       }
     };
 
@@ -70,7 +70,7 @@ if (shouldInject) {
     window.addEventListener("message", (event) => {
       if (event.data.action == "applicationStarted") {
         console.log("Message received from iframe");
-        chrome.runtime.sendMessage({ action: "getAuthCookie" });
+        chrome.runtime.sendMessage({ action: "getExtensionStorage" });
       }
     });
   }

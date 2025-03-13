@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { setCookie } from "cookies-next";
@@ -7,25 +9,32 @@ export const useRefreshPage = () => {
 
   useEffect(() => {
     const handleActionRefreshPage = async (event: MessageEvent) => {
-      if (event.data.action === "responseAuthCookie") {
-        const cookie = event.data.content as {
-          name: string;
-          value: string;
-          expiration_date: number;
+      if (event.data.action === "responseExtensionStorage") {
+        const content = event.data.content as {
+          locale?: string;
+          auth_cookie?: {
+            name: string;
+            value: string;
+            expiration_date: number;
+          };
         };
 
-        const maxAge = Math.floor(
-          (cookie.expiration_date * 1000 - Date.now()) / 1000
-        );
+        const cookie = content.auth_cookie;
 
-        setCookie(cookie.name, cookie.value, {
-          secure: true,
-          sameSite: "none",
-          domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
-          path: "/",
-          maxAge: maxAge,
-          partitioned: true,
-        });
+        if (cookie) {
+          const maxAge = Math.floor(
+            (cookie.expiration_date * 1000 - Date.now()) / 1000
+          );
+
+          setCookie(cookie.name, cookie.value, {
+            secure: true,
+            sameSite: "none",
+            domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
+            path: "/",
+            maxAge: maxAge,
+            partitioned: true,
+          });
+        }
 
         router.refresh();
       }
