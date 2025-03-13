@@ -34,6 +34,7 @@ export default function LanguageToggle() {
       path: "/",
       sameSite: "none",
       secure: true,
+      partitioned: true,
     });
     setLocale(newLocale);
     router.refresh();
