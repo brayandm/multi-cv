@@ -10,7 +10,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
-import { useRefreshPage } from "@/hooks/useRefreshPage";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 
 export default function LoginComponent() {
@@ -19,8 +18,6 @@ export default function LoginComponent() {
     email: "",
     password: "",
   });
-
-  useRefreshPage();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

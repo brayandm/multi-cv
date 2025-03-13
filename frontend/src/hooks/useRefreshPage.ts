@@ -20,6 +20,17 @@ export const useRefreshPage = () => {
         };
 
         const cookie = content.auth_cookie;
+        const locale = content.locale;
+
+        if (locale) {
+          setCookie("locale", locale, {
+            secure: true,
+            sameSite: "none",
+            domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
+            path: "/",
+            partitioned: true,
+          });
+        }
 
         if (cookie) {
           const maxAge = Math.floor(

@@ -12,6 +12,7 @@ import {
   DropdownItem,
 } from "@heroui/dropdown";
 import { Link } from "@heroui/react";
+import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 
 const languages = [
   { code: "en", label: "English" },
@@ -39,6 +40,9 @@ export default function LanguageToggle() {
     });
 
     setLocale(newLocale);
+
+    storeExtensionStorageValue("locale", newLocale, () => {});
+
     router.refresh();
   };
 

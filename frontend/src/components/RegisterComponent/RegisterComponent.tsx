@@ -9,15 +9,12 @@ import { handleGoogleSignIn } from "@/lib/oauth";
 import GoogleOauthBtn from "../../shared/components/GoogleOauthBtn";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
-import { useRefreshPage } from "@/hooks/useRefreshPage";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 
 export default function RegisterComponent() {
   const router = useRouter();
 
   const t = useTranslations();
-
-  useRefreshPage();
 
   const [formData, setFormData] = useState({
     name: "",

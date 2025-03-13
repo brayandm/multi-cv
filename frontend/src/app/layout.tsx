@@ -6,6 +6,7 @@ import { MarginTopContainer } from "./main.styles";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { ProfileProvider } from "@/lib/ProfileContext";
+import { ClientLayout } from "./ClientLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,7 +61,9 @@ export default async function RootLayout({
         <HeroUIProvider>
           <NextIntlClientProvider messages={messages}>
             <ProfileProvider>
-              <MarginTopContainer>{children}</MarginTopContainer>
+              <ClientLayout>
+                <MarginTopContainer>{children}</MarginTopContainer>
+              </ClientLayout>
             </ProfileProvider>
           </NextIntlClientProvider>
         </HeroUIProvider>
