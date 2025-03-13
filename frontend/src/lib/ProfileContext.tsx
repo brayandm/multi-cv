@@ -9,7 +9,6 @@ export type IBasicInfo = {
   country_code: string;
   phone_number: string;
   location: string;
-  notes: string;
 };
 
 export interface IExperience {
@@ -20,7 +19,6 @@ export interface IExperience {
   description: string;
   role: string;
   is_present: boolean;
-  notes: string;
 }
 
 export interface IEducation {
@@ -30,7 +28,6 @@ export interface IEducation {
   location: string;
   career: string;
   is_present: boolean;
-  notes: string;
 }
 
 export interface IProject {
@@ -39,12 +36,15 @@ export interface IProject {
   start_date: string;
   description: string;
   link: string;
-  notes: string;
 }
 
 export interface IProfessionalLinks {
   name: string;
   link: string;
+}
+
+export interface ISkills {
+  list: string[];
 }
 
 export interface IProfile {
@@ -53,8 +53,7 @@ export interface IProfile {
   experience: IExperience[];
   education: IEducation[];
   projects: IProject[];
-  skills: string[];
-  general_notes: string;
+  skills: ISkills;
 }
 
 interface ProfileContextType {
@@ -73,14 +72,14 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       country_code: "",
       phone_number: "",
       location: "",
-      notes: "",
     },
     professional_links: [],
     experience: [],
     education: [],
     projects: [],
-    skills: [],
-    general_notes: "",
+    skills: {
+      list: [],
+    },
   });
 
   const updateProfile = (newProfile: Partial<IProfile>) => {

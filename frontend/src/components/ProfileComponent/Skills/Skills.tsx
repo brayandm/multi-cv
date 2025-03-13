@@ -31,7 +31,9 @@ const Skills: React.FC = () => {
 
     updateProfile({
       ...profile,
-      skills: [...profile.skills, inputSkill],
+      skills: {
+        list: [...profile.skills.list, inputSkill],
+      },
     });
     setInputSkill("");
   }, [inputSkill, profile, updateProfile]);
@@ -64,8 +66,10 @@ const Skills: React.FC = () => {
     <div className="px-1">
       <DynamicInputs inputs={inputs}></DynamicInputs>
       <ChipArea
-        chips={profile.skills}
-        setChips={(skills) => updateProfile({ ...profile, skills })}
+        chips={profile.skills.list}
+        setChips={(skills) =>
+          updateProfile({ ...profile, skills: { list: skills } })
+        }
       ></ChipArea>
     </div>
   );
