@@ -28,17 +28,11 @@ export async function middleware(req: NextRequest) {
 
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
 
-  let data;
-  try {
-    data = await api.get<UserStatusResponse>(userStatusApiLink, {
-      headers: {
-        Authorization: `Bearer ${authToken || ""}`,
-      },
-    });
-  } catch (error) {
-    console.error("Error fetching user status", error);
-    return NextResponse.redirect(new URL("/", req.url));
-  }
+  const data = await api.get<UserStatusResponse>(userStatusApiLink, {
+    headers: {
+      Authorization: `Bearer ${authToken || ""}`,
+    },
+  });
 
   const isAuthenticated =
     data.status === 200 && data.data.authenticated === true;

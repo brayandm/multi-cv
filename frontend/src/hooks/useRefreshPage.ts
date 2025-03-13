@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { setCookie } from "cookies-next";
+import { setCookieClient } from "@/lib/setCookieClient";
 
 export const useRefreshPage = () => {
   const router = useRouter();
@@ -23,28 +23,11 @@ export const useRefreshPage = () => {
         const locale = content.locale;
 
         if (locale) {
-          setCookie("locale", locale, {
-            secure: true,
-            sameSite: "none",
-            domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
-            path: "/",
-            partitioned: true,
-          });
+          setCookieClient("locale", locale);
         }
 
         if (cookie) {
-          const maxAge = Math.floor(
-            (cookie.expiration_date * 1000 - Date.now()) / 1000
-          );
-
-          setCookie(cookie.name, cookie.value, {
-            secure: true,
-            sameSite: "none",
-            domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
-            path: "/",
-            maxAge: maxAge,
-            partitioned: true,
-          });
+          setCookieClient(cookie.name, cookie.value, cookie.expiration_date);
         }
 
         router.refresh();

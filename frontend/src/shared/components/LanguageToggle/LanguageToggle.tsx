@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { setCookie, getCookie } from "cookies-next";
+import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import {
@@ -13,6 +13,7 @@ import {
 } from "@heroui/dropdown";
 import { Link } from "@heroui/react";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
+import { setCookieClient } from "@/lib/setCookieClient";
 
 const languages = [
   { code: "en", label: "English" },
@@ -31,13 +32,7 @@ export default function LanguageToggle() {
   }, []);
 
   const changeLanguage = (newLocale: string) => {
-    setCookie("locale", newLocale, {
-      secure: true,
-      sameSite: "none",
-      domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
-      path: "/",
-      partitioned: true,
-    });
+    setCookieClient("locale", newLocale);
 
     setLocale(newLocale);
 
