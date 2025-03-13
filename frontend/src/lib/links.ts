@@ -10,4 +10,3 @@ export const notifiedTermsVersionApiLink = `/user/notified-terms-version`;
 export const resendEmailApiLink = `/email/resend`;
 export const passwordRecoveryEmailApiLink = "/password/email";
 export const passwordRecoveryResetApiLink = "/password/reset";
-export const setAuthCookieApiLink = "/set-auth-cookie";

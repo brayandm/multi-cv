@@ -23,11 +23,9 @@ class CookiesHelper
         $expiration = config('auth.token_expiration');
         $expirationDate = Carbon::now()->addSeconds($expiration)->timestamp;
 
-        if($noCookies) {
+        if ($noCookies) {
             $finalResponse = $response;
-        }
-        else
-        {
+        } else {
             $finalResponse = $response->cookie(
                 $cookieName,
                 $token->plainTextToken,

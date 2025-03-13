@@ -47,8 +47,6 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/logout', 'App\Http\Controllers\AuthController@logout');
 
         Route::post('/logoutall', 'App\Http\Controllers\AuthController@logoutall');
-
-        Route::get('/set-auth-cookie', 'App\Http\Controllers\AuthController@setAuthCookie');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {

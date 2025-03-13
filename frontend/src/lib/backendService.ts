@@ -9,7 +9,6 @@ import {
   passwordRecoveryResetApiLink,
   registerApiLink,
   resendEmailApiLink,
-  setAuthCookieApiLink,
   updatePasswordApiLink,
   userApiLink,
   userStatusApiLink,
@@ -166,16 +165,6 @@ export const userStatusApi = async (): Promise<
   AxiosResponse<UserStatusResponse>
 > => {
   return await api.get(userStatusApiLink);
-};
-
-export const setAuthCookieApi = async (
-  authToken: string
-): Promise<AxiosResponse<UserStatusResponse>> => {
-  return await api.get(setAuthCookieApiLink, {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  });
 };
 
 export const updatePasswordApi = async (formData: {
