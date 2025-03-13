@@ -21,6 +21,7 @@ export const useRefreshPage = () => {
         setCookie(cookie.name, cookie.value, {
           secure: true,
           sameSite: "none",
+          domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
           path: "/",
           maxAge: maxAge,
           partitioned: true,

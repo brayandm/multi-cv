@@ -31,11 +31,13 @@ export default function LanguageToggle() {
 
   const changeLanguage = (newLocale: string) => {
     setCookie("locale", newLocale, {
-      path: "/",
-      sameSite: "none",
       secure: true,
+      sameSite: "none",
+      domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
+      path: "/",
       partitioned: true,
     });
+
     setLocale(newLocale);
     router.refresh();
   };
