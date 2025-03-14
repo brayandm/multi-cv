@@ -1,7 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import {
@@ -14,6 +12,7 @@ import {
 import { Link } from "@heroui/react";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { setCookieClient } from "@/lib/setCookieClient";
+import { useLocale } from "@/contexts/LocaleContext";
 
 const languages = [
   { code: "en", label: "English" },
@@ -24,19 +23,18 @@ const languages = [
 
 export default function LanguageToggle() {
   const router = useRouter();
-  const [locale, setLocale] = useState("en");
-
-  useEffect(() => {
-    const savedLocale = (getCookie("locale") as string) || "en";
-    setLocale(savedLocale);
-  }, []);
+  const { locale, updateLocale } = useLocale();
 
   const changeLanguage = (newLocale: string) => {
     setCookieClient("locale", newLocale);
 
-    setLocale(newLocale);
+    updateLocale(newLocale);
 
-    storeExtensionStorageValue("locale", newLocale, () => {});
+    const isIframe = window.self !== window.top;
+
+    if (isIframe) {
+      storeExtensionStorageValue("locale", newLocale, () => {});
+    }
 
     router.refresh();
   };
@@ -57,7 +55,7 @@ export default function LanguageToggle() {
           {languages.map((lang) => (
             <DropdownItem
               key={lang.code}
-              onClick={() => changeLanguage(lang.code)}
+              onPress={() => changeLanguage(lang.code)}
               className={`cursor-pointer ${
                 locale === lang.code ? "font-bold" : ""
               }`}

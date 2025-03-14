@@ -7,6 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { ProfileProvider } from "@/contexts/ProfileContext";
 import { ClientLayout } from "./ClientLayout";
+import { LocaleProvider } from "@/contexts/LocaleContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,11 +61,13 @@ export default async function RootLayout({
       >
         <HeroUIProvider>
           <NextIntlClientProvider messages={messages}>
-            <ProfileProvider>
-              <ClientLayout>
-                <MarginTopContainer>{children}</MarginTopContainer>
-              </ClientLayout>
-            </ProfileProvider>
+            <LocaleProvider>
+              <ProfileProvider>
+                <ClientLayout>
+                  <MarginTopContainer>{children}</MarginTopContainer>
+                </ClientLayout>
+              </ProfileProvider>
+            </LocaleProvider>
           </NextIntlClientProvider>
         </HeroUIProvider>
       </body>

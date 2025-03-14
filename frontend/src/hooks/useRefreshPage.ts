@@ -3,9 +3,12 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { setCookieClient } from "@/lib/setCookieClient";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export const useRefreshPage = () => {
   const router = useRouter();
+
+  const { updateLocale } = useLocale();
 
   useEffect(() => {
     const handleActionRefreshPage = async (event: MessageEvent) => {
@@ -24,6 +27,7 @@ export const useRefreshPage = () => {
 
         if (locale) {
           setCookieClient("locale", locale);
+          updateLocale(locale);
         }
 
         if (cookie) {
