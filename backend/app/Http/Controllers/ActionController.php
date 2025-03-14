@@ -16,14 +16,14 @@ class ActionController extends Controller
     public function consumeAction()
     {
         return response()->json([
-            'code' => 200,
+            'code' => 403,
         ]);
     }
 
     public function rollback()
     {
         return response()->json([
-            'code' => 200,
+            'code' => 403,
         ]);
     }
 }
