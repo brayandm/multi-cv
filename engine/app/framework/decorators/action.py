@@ -10,6 +10,8 @@ from app.config import (
     INTER_COMMUNICATION_TOKEN,
 )
 
+from app.framework.logging import logger
+
 
 def action(action: str) -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
@@ -47,11 +49,29 @@ def action(action: str) -> Callable[..., Any]:
                 return await func(request, *args, **kwargs)
 
             except Exception as e:
+                logger.error(e)
                 response = requests.post(
                     f"{BACKEND_API_URL}/action/rollback",
-                    json={"token": authorization, "action": action},
-                    headers={"X-API-Key": INTER_COMMUNICATION_TOKEN},
+                    json={"action": action},
+                    headers={
+                        "X-API-Key": INTER_COMMUNICATION_TOKEN,
+                        "Authorization": authorization,
+                    },
                 )
+                if (
+                    response.status_code != 200
+                    or response.json().get("code") != 200
+                ):
+                    logger.error(
+                        "Rollback failed for action: %s",
+                        action,
+                    )
+                else:
+                    logger.info(
+                        "Rollback successful for action: %s",
+                        action,
+                    )
+
                 raise e
 
         return wrapper
