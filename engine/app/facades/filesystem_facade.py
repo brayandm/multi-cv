@@ -7,7 +7,6 @@ from app.config import (
     AWS_BUCKET,
     AWS_DEFAULT_REGION,
     AWS_SECRET_ACCESS_KEY,
-    AWS_USE_PATH_STYLE_ENDPOINT,
     DOCUMENTS_DISK,
     STORAGE_PATH,
 )
@@ -39,7 +38,6 @@ class FilesystemFacade:
                 aws_access_key_id=AWS_ACCESS_KEY_ID,
                 aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
                 region=AWS_DEFAULT_REGION,
-                root_path=STORAGE_PATH,
-                use_path_style=AWS_USE_PATH_STYLE_ENDPOINT == "true",
+                dir_path=STORAGE_PATH,
             )
         return cls._s3_filesystem

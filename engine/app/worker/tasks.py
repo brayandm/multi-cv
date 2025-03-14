@@ -3,7 +3,7 @@ from typing import Any, Dict
 
 import requests  # type: ignore
 
-from app.config import WEBHOOK_URL
+from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
 
@@ -27,7 +27,9 @@ def execute_pipeline_task(
     result = pipeline_instance.run(*deserialized_inputs)
 
     requests.post(
-        WEBHOOK_URL, json={"action": action, "result": format_result(result)}
+        WEBHOOK_URL,
+        json={"action": action, "result": format_result(result)},
+        headers={"X-API-Token": INTER_COMMUNICATION_TOKEN},
     )
 
     return {"action": action, "result": "success"}
