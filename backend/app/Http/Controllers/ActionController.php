@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Services\ActionService;
 
 class ActionController extends Controller

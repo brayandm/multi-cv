@@ -12,5 +12,9 @@ celery = Celery(
 celery.conf.update(
     task_routes={
         "*": {"queue": "openai_queue"},
-    }
+    },
+    task_default_retry_delay=10,
+    task_max_retries=3,
+    task_soft_time_limit=60,
+    task_time_limit=65,
 )

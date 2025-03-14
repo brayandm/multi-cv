@@ -3,10 +3,9 @@ from typing import Any, Dict
 
 import requests  # type: ignore
 
-from app.config import WEBHOOK_URL
+from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
-from app.config import INTER_COMMUNICATION_TOKEN
 
 
 @celery.task(name="execute_pipeline_task")  # type: ignore
