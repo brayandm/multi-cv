@@ -5,7 +5,6 @@ import requests  # type: ignore
 from fastapi import HTTPException, Request
 
 from app.config import (
-    AUTH_COOKIE_NAME,
     BACKEND_API_URL,
     INTER_COMMUNICATION_TOKEN,
 )
@@ -16,7 +15,7 @@ def action(action: str) -> Callable[..., Any]:
         @wraps(func)
         async def wrapper(request: Request, *args: Any, **kwargs: Any) -> Any:
 
-            authorization = request.cookies.get(AUTH_COOKIE_NAME)
+            authorization = request.headers.get("Authorization")
 
             if not authorization:
                 raise HTTPException(
@@ -26,8 +25,11 @@ def action(action: str) -> Callable[..., Any]:
 
             response = requests.post(
                 f"{BACKEND_API_URL}/action/consume",
-                json={"token": authorization, "action": action},
-                headers={"X-API-Key": INTER_COMMUNICATION_TOKEN},
+                json={"action": action},
+                headers={
+                    "X-API-Key": INTER_COMMUNICATION_TOKEN,
+                    "Authorization": authorization,
+                },
             )
 
             if (

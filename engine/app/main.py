@@ -15,7 +15,13 @@ from app.framework.decorators import action, validate_api_token
 from app.framework.logging import logger
 from app.worker.queue_manager import QueueManager
 
+
+from app.framework.middlewares import (
+    AuthCookieToBearerMiddleware,
+)
+
 app = FastAPI()
+app.add_middleware(AuthCookieToBearerMiddleware)
 
 queue_manager = QueueManager(default_queue="openai_queue")
 
