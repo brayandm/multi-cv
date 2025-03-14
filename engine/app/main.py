@@ -11,9 +11,8 @@ from app.classes.pipelines import (
     SummaryPipeline,
 )
 from app.facades.document_generator_facade import DocumentGeneratorFacade
-from app.worker.queue_manager import QueueManager
-
 from app.logger import logger
+from app.worker.queue_manager import QueueManager
 
 app = FastAPI()
 
@@ -88,7 +87,7 @@ async def webhook(payload: WebhookPayload) -> Dict[str, str]:
     action = payload.action
     result = payload.result
 
-    print(f"Received webhook with action: {action} and result: {result}")
+    logger.info(f"Received webhook with action: {action} and result: {result}")
 
     return {"message": "Webhook processed successfully."}
 
