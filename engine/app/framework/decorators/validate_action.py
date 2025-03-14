@@ -5,9 +5,9 @@ import requests  # type: ignore
 from fastapi import HTTPException, Request
 
 from app.config import (
+    AUTH_COOKIE_NAME,
     BACKEND_API_URL,
     INTER_COMMUNICATION_TOKEN,
-    AUTH_COOKIE_NAME,
 )
 
 
