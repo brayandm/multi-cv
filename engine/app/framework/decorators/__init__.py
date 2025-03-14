@@ -1,3 +1,3 @@
-from .validate import validate
+from .validate_action import validate_action
 
-__all__ = ["validate"]
+__all__ = ["validate_action"]

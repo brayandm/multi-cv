@@ -35,8 +35,10 @@ AWS_USE_PATH_STYLE_ENDPOINT = os.environ.get("AWS_USE_PATH_STYLE_ENDPOINT")
 
 WEBHOOK_URL = os.environ.get("WEBHOOK_URL")
 
-BACKEND_API_URL = os.environ.get("BACKEND_API_URL")
+BACKEND_API_URL = os.environ.get("BACKEND_API_URL", "")
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY", "")
 
 INTER_COMMUNICATION_TOKEN = os.environ.get("INTER_COMMUNICATION_TOKEN", "")
+
+AUTH_COOKIE_NAME = os.environ.get("AUTH_COOKIE_NAME", "auth_token")
