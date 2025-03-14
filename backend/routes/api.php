@@ -37,8 +37,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
 
     Route::middleware(['check.constant.connection', 'auth.inter.communication'])->group(function () {
-        Route::get('/action/consume', 'App\Http\Controllers\ActionController@consumeAction');
-        Route::get('/action/rollback', 'App\Http\Controllers\ActionController@rollbackAction');
+        Route::post('/action/consume', 'App\Http\Controllers\ActionController@consumeAction');
+        Route::post('/action/rollback', 'App\Http\Controllers\ActionController@rollbackAction');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {

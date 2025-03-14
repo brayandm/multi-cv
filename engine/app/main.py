@@ -13,12 +13,10 @@ from app.classes.pipelines import (
 from app.facades.document_generator_facade import DocumentGeneratorFacade
 from app.framework.decorators import action, validate_api_token
 from app.framework.logging import logger
-from app.worker.queue_manager import QueueManager
-
-
 from app.framework.middlewares import (
     AuthCookieToBearerMiddleware,
 )
+from app.worker.queue_manager import QueueManager
 
 app = FastAPI()
 app.add_middleware(AuthCookieToBearerMiddleware)

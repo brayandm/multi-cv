@@ -1,6 +1,8 @@
+from typing import Any, Callable
+
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
-from typing import Callable, Any
+
 from app.config import AUTH_COOKIE_NAME
 
 

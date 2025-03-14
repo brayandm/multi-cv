@@ -13,10 +13,12 @@ export default function RedirectBack() {
     if (typeof window !== "undefined") {
       const extension = searchParams.get("extension") === "true";
 
-      const authCookieName = searchParams.get("name");
-      const authCookieValue = searchParams.get("value");
+      const authCookieName = decodeURIComponent(searchParams.get("name") || "");
+      const authCookieValue = decodeURIComponent(
+        searchParams.get("value") || ""
+      );
       const authCookieExpirationDate = Number(
-        searchParams.get("expiration_date")
+        decodeURIComponent(searchParams.get("expiration_date") || "")
       );
 
       if (!authCookieName || !authCookieValue || !authCookieExpirationDate) {
