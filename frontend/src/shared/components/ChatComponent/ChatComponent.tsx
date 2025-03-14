@@ -130,8 +130,7 @@ export default function ChatComponent() {
             />
             <Button
               color={"primary"}
-              onPress={sendMessage}
-              onTouchStart={sendMessage}
+              onPressStart={sendMessage}
               isDisabled={!input.trim()}
               className="p-2 rounded-full"
               isIconOnly
