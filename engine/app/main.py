@@ -11,7 +11,7 @@ from app.classes.pipelines import (
     SummaryPipeline,
 )
 from app.facades.document_generator_facade import DocumentGeneratorFacade
-from app.framework.decorators import validate_api_token, action
+from app.framework.decorators import action, validate_api_token
 from app.framework.logging import logger
 from app.worker.queue_manager import QueueManager
 

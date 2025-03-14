@@ -15,11 +15,15 @@ class ActionController extends Controller
 
     public function consumeAction()
     {
-        return null;
+        return response()->json([
+            'code' => 200,
+        ]);
     }
 
     public function rollback()
     {
-        return null;
+        return response()->json([
+            'code' => 200,
+        ]);
     }
 }

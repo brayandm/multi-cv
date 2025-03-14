@@ -1,5 +1,6 @@
 from functools import wraps
 from typing import Any, Callable
+
 import requests  # type: ignore
 from fastapi import HTTPException, Request
 
@@ -29,8 +30,9 @@ def action(action: str) -> Callable[..., Any]:
                 headers={"X-API-Key": INTER_COMMUNICATION_TOKEN},
             )
 
-            if response.status_code != 200 or not response.json().get(
-                "valid", False
+            if (
+                response.status_code != 200
+                or response.json().get("code") != 200
             ):
                 raise HTTPException(status_code=403, detail="Unauthorized")
 
