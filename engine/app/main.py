@@ -11,7 +11,7 @@ from app.classes.pipelines import (
     SummaryPipeline,
 )
 from app.facades.document_generator_facade import DocumentGeneratorFacade
-from app.logger import logger
+from app.framework.logger import logger
 from app.worker.queue_manager import QueueManager
 
 app = FastAPI()
