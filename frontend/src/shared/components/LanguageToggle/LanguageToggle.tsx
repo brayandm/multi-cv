@@ -22,10 +22,10 @@ const languages = [
 
 export default function LanguageToggle() {
   const router = useRouter();
-  const { locale, updateLocale } = useLocale();
+  const { locale, syncLocale } = useLocale();
 
   const changeLanguage = (newLocale: string) => {
-    updateLocale(newLocale);
+    syncLocale(newLocale);
 
     const isIframe = window.self !== window.top;
 

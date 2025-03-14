@@ -13,6 +13,7 @@ import {
 interface LocaleContextType {
   locale: string;
   updateLocale: (newLocale: string) => void;
+  syncLocale: (newLocale: string) => void;
 }
 
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
@@ -24,12 +25,16 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     setLocale(newLocale);
   };
 
+  const syncLocale = (newLocale: string) => {
+    setLocale(newLocale);
+  };
+
   useEffect(() => {
     setCookieClient("locale", locale);
   }, [locale]);
 
   return (
-    <LocaleContext.Provider value={{ locale, updateLocale }}>
+    <LocaleContext.Provider value={{ locale, updateLocale, syncLocale }}>
       {children}
     </LocaleContext.Provider>
   );
