@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
-import { IProfessionalLinks, useProfile } from "@/lib/ProfileContext";
+import { IProfessionalLinks, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Avatar, Image, Select, SelectItem } from "@heroui/react";

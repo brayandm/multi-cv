@@ -4,7 +4,7 @@ import {
   IDynamicInput,
   IDynamicInputArray,
 } from "../DynamicInputs/DynamicInputs.types";
-import { IEducation, useProfile } from "@/lib/ProfileContext";
+import { IEducation, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";

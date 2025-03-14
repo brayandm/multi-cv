@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
-import { IProject, useProfile } from "@/lib/ProfileContext";
+import { IProject, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";

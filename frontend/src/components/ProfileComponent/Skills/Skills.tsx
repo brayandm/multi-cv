@@ -1,7 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
-import { useProfile } from "@/lib/ProfileContext";
+import { useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Button } from "@heroui/react";

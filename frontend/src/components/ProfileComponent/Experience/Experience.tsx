@@ -4,7 +4,7 @@ import {
   IDynamicInput,
   IDynamicInputArray,
 } from "../DynamicInputs/DynamicInputs.types";
-import { IExperience, useProfile } from "@/lib/ProfileContext";
+import { IExperience, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 
 import { useTranslations } from "next-intl";

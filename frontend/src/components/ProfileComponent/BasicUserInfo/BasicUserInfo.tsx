@@ -3,7 +3,7 @@ import React from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
-import { IBasicInfo, useProfile } from "@/lib/ProfileContext";
+import { IBasicInfo, useProfile } from "@/contexts/ProfileContext";
 
 const BasicUserInfo: React.FC = () => {
   const { profile, updateProfile } = useProfile();

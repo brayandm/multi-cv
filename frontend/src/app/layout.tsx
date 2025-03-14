@@ -5,7 +5,7 @@ import { HeroUIProvider } from "@/providers/HeroUIProvider";
 import { MarginTopContainer } from "./main.styles";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import { ProfileProvider } from "@/lib/ProfileContext";
+import { ProfileProvider } from "@/contexts/ProfileContext";
 import { ClientLayout } from "./ClientLayout";
 
 const geistSans = Geist({
