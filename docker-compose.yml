@@ -66,7 +66,7 @@ services:
         environment:
             PMA_HOST: mysql
         ports:
-            - "${PHPMYADMIN_PORT:-49162}:80"
+            - "${PHPMYADMIN_PORT:-49163}:80"
         depends_on:
             - mysql
 
@@ -74,6 +74,8 @@ services:
         image: multi-cv-engine
         restart: always
         command: sh -c "pipenv run uvicorn app.main:app --host 0.0.0.0 --port 90"
+        ports:
+            - "${ENGINE_PORT:-49162}:90"
         depends_on:
             engine_redis:
                 condition: service_started
@@ -107,7 +109,7 @@ services:
     flower:
         image: multi-cv-flower
         ports:
-            - "${FLOWER_PORT:-49163}:5555"
+            - "${FLOWER_PORT:-49164}:5555"
         restart: always
         depends_on:
             celery:

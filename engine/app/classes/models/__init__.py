@@ -7,6 +7,7 @@ from .profile.education import Education
 from .profile.experience import Experience
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
+from .webhook_payload import WebhookPayload
 
 __all__ = [
     "Message",
@@ -19,4 +20,5 @@ __all__ = [
     "CvExperience",
     "Cv",
     "CvTemplate",
+    "WebhookPayload",
 ]

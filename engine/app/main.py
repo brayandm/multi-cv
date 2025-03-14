@@ -3,7 +3,7 @@ from typing import Dict
 from fastapi import APIRouter, FastAPI
 from fastapi.responses import Response
 
-from app.classes.models import Cv, CvTemplate, Message, Profile
+from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
 from app.classes.pipelines import (
     BasicPipeline,
     GenerateCVPipeline,
@@ -79,6 +79,16 @@ async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
     pdf_bytes = document_generator.get_cv()
 
     return Response(content=pdf_bytes, media_type="application/pdf")
+
+
+@router.post("/webhook")
+async def webhook(payload: WebhookPayload) -> Dict[str, str]:
+    action = payload.action
+    result = payload.result
+
+    print(f"Received webhook with action: {action} and result: {result}")
+
+    return {"message": "Webhook processed successfully."}
 
 
 app.include_router(router)
