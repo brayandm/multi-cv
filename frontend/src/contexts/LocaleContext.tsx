@@ -34,7 +34,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     try {
       userLocaleResponse = await userLocaleApi();
     } catch (error) {
-      console.error("Error getting user locale", error);
+      console.log("Error getting user locale", error);
     }
 
     if (userLocaleResponse?.data?.locale) {
@@ -44,12 +44,16 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const syncLocale = (newLocale: string) => {
+  const updateLocaleServer = async (newLocale: string) => {
     try {
-      userSetLocaleApi(newLocale);
+      await userSetLocaleApi(newLocale);
     } catch (error) {
-      console.error("Error setting user locale", error);
+      console.log("Error setting user locale", error);
     }
+  };
+
+  const syncLocale = (newLocale: string) => {
+    updateLocaleServer(newLocale);
     setLocale(newLocale);
   };
 
