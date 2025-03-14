@@ -5,6 +5,8 @@ shouldInject = false;
 isMultiCvIFrame = false;
 isMultiCvWebsite = false;
 
+applicationStarted = false;
+
 if (
   isIframe &&
   (window.location.href.includes("https://dev.multicv.space") ||
@@ -69,8 +71,10 @@ if (shouldInject) {
 
     window.addEventListener("message", (event) => {
       if (event.data.action == "applicationStarted") {
-        console.log("Message received from iframe");
-        chrome.runtime.sendMessage({ action: "getExtensionStorage" });
+        if (!applicationStarted) {
+          applicationStarted = true;
+          chrome.runtime.sendMessage({ action: "getExtensionStorage" });
+        }
       }
     });
   }
