@@ -1,6 +1,5 @@
 from functools import wraps
 from typing import Any, Callable
-
 import requests  # type: ignore
 from fastapi import HTTPException, Request
 
@@ -11,7 +10,7 @@ from app.config import (
 )
 
 
-def validate_action(action: str) -> Callable[..., Any]:
+def action(action: str) -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
         async def wrapper(request: Request, *args: Any, **kwargs: Any) -> Any:
@@ -25,7 +24,7 @@ def validate_action(action: str) -> Callable[..., Any]:
                 )
 
             response = requests.post(
-                BACKEND_API_URL + "/action/consume",
+                f"{BACKEND_API_URL}/action/consume",
                 json={"token": authorization, "action": action},
                 headers={"X-API-Key": INTER_COMMUNICATION_TOKEN},
             )
@@ -35,7 +34,16 @@ def validate_action(action: str) -> Callable[..., Any]:
             ):
                 raise HTTPException(status_code=403, detail="Unauthorized")
 
-            return await func(request, *args, **kwargs)
+            try:
+                return await func(request, *args, **kwargs)
+
+            except Exception as e:
+                response = requests.post(
+                    f"{BACKEND_API_URL}/action/rollback",
+                    json={"token": authorization, "action": action},
+                    headers={"X-API-Key": INTER_COMMUNICATION_TOKEN},
+                )
+                raise e
 
         return wrapper
 

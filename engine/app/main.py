@@ -11,7 +11,7 @@ from app.classes.pipelines import (
     SummaryPipeline,
 )
 from app.facades.document_generator_facade import DocumentGeneratorFacade
-from app.framework.decorators import validate_action, validate_api_token
+from app.framework.decorators import validate_api_token, action
 from app.framework.logging import logger
 from app.worker.queue_manager import QueueManager
 
@@ -28,7 +28,7 @@ async def ping() -> Dict[str, str]:
 
 
 @router.post("/message")
-@validate_action("message")
+@action("message")
 async def message(request: Request, message: Message) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(BasicPipeline, "message", message)
@@ -39,7 +39,7 @@ async def message(request: Request, message: Message) -> Dict[str, str]:
 
 
 @router.post("/summary")
-@validate_action("summary")
+@action("summary")
 async def summary(request: Request, profile: Profile) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(SummaryPipeline, "summary", profile)
@@ -50,7 +50,7 @@ async def summary(request: Request, profile: Profile) -> Dict[str, str]:
 
 
 @router.post("/improve/about")
-@validate_action("improve_about")
+@action("improve_about")
 async def improve_about(
     request: Request, profile: Profile, message: Message
 ) -> Dict[str, str]:
@@ -65,7 +65,7 @@ async def improve_about(
 
 
 @router.post("/generate/cv")
-@validate_action("generate_cv")
+@action("generate_cv")
 async def generate_cv(
     request: Request, cv: Cv, cv_template: CvTemplate
 ) -> Dict[str, str]:
@@ -80,7 +80,7 @@ async def generate_cv(
 
 
 @router.post("/generate/cv/inline")
-@validate_action("generate_cv_inline")
+@action("generate_cv_inline")
 async def generate_cv_inline(
     request: Request, cv: Cv, cv_template: CvTemplate
 ) -> Response:
