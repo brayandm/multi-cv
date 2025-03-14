@@ -1,7 +1,14 @@
 "use client";
 
+import { setCookieClient } from "@/lib/setCookieClient";
 import { getCookie } from "cookies-next";
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 interface LocaleContextType {
   locale: string;
@@ -16,6 +23,11 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const updateLocale = (newLocale: string) => {
     setLocale(newLocale);
   };
+
+  useEffect(() => {
+    setCookieClient("locale", locale);
+  }, [locale]);
+
   return (
     <LocaleContext.Provider value={{ locale, updateLocale }}>
       {children}

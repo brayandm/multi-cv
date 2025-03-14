@@ -11,7 +11,6 @@ import {
 } from "@heroui/dropdown";
 import { Link } from "@heroui/react";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
-import { setCookieClient } from "@/lib/setCookieClient";
 import { useLocale } from "@/contexts/LocaleContext";
 
 const languages = [
@@ -26,8 +25,6 @@ export default function LanguageToggle() {
   const { locale, updateLocale } = useLocale();
 
   const changeLanguage = (newLocale: string) => {
-    setCookieClient("locale", newLocale);
-
     updateLocale(newLocale);
 
     const isIframe = window.self !== window.top;

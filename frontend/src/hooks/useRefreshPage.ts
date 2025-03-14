@@ -26,7 +26,6 @@ export const useRefreshPage = () => {
         const locale = content.locale;
 
         if (locale) {
-          setCookieClient("locale", locale);
           updateLocale(locale);
         }
 
@@ -66,5 +65,5 @@ export const useRefreshPage = () => {
         );
       }
     };
-  }, [router]);
+  }, [router, updateLocale]);
 };
