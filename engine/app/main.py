@@ -13,6 +13,8 @@ from app.classes.pipelines import (
 from app.facades.document_generator_facade import DocumentGeneratorFacade
 from app.worker.queue_manager import QueueManager
 
+from app.logger import logger
+
 app = FastAPI()
 
 queue_manager = QueueManager(default_queue="openai_queue")
@@ -92,3 +94,5 @@ async def webhook(payload: WebhookPayload) -> Dict[str, str]:
 
 
 app.include_router(router)
+
+logger.info("FastAPI application started!")
