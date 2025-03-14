@@ -11,7 +11,7 @@ from app.classes.pipelines import (
     SummaryPipeline,
 )
 from app.facades.document_generator_facade import DocumentGeneratorFacade
-from app.framework.decorators import validate_action
+from app.framework.decorators import validate_action, validate_api_token
 from app.framework.logging import logger
 from app.worker.queue_manager import QueueManager
 
@@ -95,6 +95,7 @@ async def generate_cv_inline(
 
 
 @router.post("/webhook")
+@validate_api_token()
 async def webhook(request: Request, payload: WebhookPayload) -> Dict[str, str]:
     action = payload.action
     result = payload.result
