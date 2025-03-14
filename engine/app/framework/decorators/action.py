@@ -9,7 +9,6 @@ from app.config import (
     BACKEND_API_URL,
     INTER_COMMUNICATION_TOKEN,
 )
-
 from app.framework.logging import logger
 
 
