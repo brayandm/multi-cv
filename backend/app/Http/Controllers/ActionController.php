@@ -18,7 +18,7 @@ class ActionController extends Controller
         return null;
     }
 
-    public function cancelAction()
+    public function rollback()
     {
         return null;
     }
