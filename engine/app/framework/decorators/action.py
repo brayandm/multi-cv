@@ -4,6 +4,8 @@ from typing import Any, Callable
 import requests  # type: ignore
 from fastapi import HTTPException, Request
 
+import urllib.parse
+
 from app.config import (
     BACKEND_API_URL,
     INTER_COMMUNICATION_TOKEN,
@@ -16,6 +18,10 @@ def action(action: str) -> Callable[..., Any]:
         async def wrapper(request: Request, *args: Any, **kwargs: Any) -> Any:
 
             authorization = request.headers.get("Authorization")
+
+            authorization = (
+                urllib.parse.unquote(authorization) if authorization else None
+            )
 
             if not authorization:
                 raise HTTPException(
