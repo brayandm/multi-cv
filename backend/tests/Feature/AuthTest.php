@@ -108,7 +108,15 @@ class AuthTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertCookie(config('auth.cookie_name'));
+
+        $response->assertJsonStructure([
+            'message',
+            'auth_cookie' => [
+                'name',
+                'value',
+                'expiration_date',
+            ],
+        ]);
 
         $this->app->get('auth')->forgetGuards();
     }
