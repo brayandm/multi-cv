@@ -61,6 +61,15 @@ class AuthController extends Controller
         return $validator;
     }
 
+    public function validateLocale($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'locale' => 'required|string|max:255',
+        ]);
+
+        return $validator;
+    }
+
     public function register(Request $request)
     {
         $validator = $this->validateCorrectRegisterUser($request);
@@ -101,6 +110,30 @@ class AuthController extends Controller
         $token = $this->userService->createUserToken($user);
 
         return CookiesHelper::addAuthCookie(response()->json(['message' => 'Login successful']), $token);
+    }
+
+    public function updateLocale(Request $request)
+    {
+        $user = $request->user();
+
+        $validator = $this->validateLocale($request);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $user->update([
+            'locale' => $request->locale,
+        ]);
+
+        return response()->json(['message' => 'Locale updated successfully']);
+    }
+
+    public function getLocale(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json(['locale' => $user->locale]);
     }
 
     public function userStatus(Request $request)

@@ -64,6 +64,14 @@ export interface UserResponse {
   notice_new_terms_version: boolean | null;
 }
 
+export interface UserSetLocaleResponse {
+  message: string;
+}
+
+export interface UserLocaleResponse {
+  locale: string;
+}
+
 export interface CV {
   id: number;
   company: string;

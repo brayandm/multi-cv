@@ -49,8 +49,6 @@ export const useRefreshPage = () => {
       window.addEventListener("message", handleActionRefreshPage);
 
       window.postMessage({ action: "applicationStarted" });
-
-      console.log("Application started");
     } else {
       document.addEventListener("visibilitychange", handleVisibilityChange);
     }

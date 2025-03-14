@@ -11,6 +11,8 @@ import {
   resendEmailApiLink,
   updatePasswordApiLink,
   userApiLink,
+  userLocaleApiLink,
+  userSetLocaleApiLink,
   userStatusApiLink,
 } from "./links";
 import {
@@ -25,6 +27,8 @@ import {
   GoogleLoginResponse,
   PasswordRecoveryEmailResponse,
   PasswordRecoveryResetResponse,
+  UserSetLocaleResponse,
+  UserLocaleResponse,
 } from "./types";
 
 const isServer = typeof window === "undefined";
@@ -183,4 +187,26 @@ export const updatePasswordApi = async (formData: {
       },
     }
   );
+};
+
+export const userSetLocaleApi = async (
+  locale: string
+): Promise<AxiosResponse<UserSetLocaleResponse>> => {
+  return await api.put(
+    userSetLocaleApiLink,
+    {
+      locale,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};
+
+export const userLocaleApi = async (): Promise<
+  AxiosResponse<UserLocaleResponse>
+> => {
+  return await api.get(userLocaleApiLink);
 };

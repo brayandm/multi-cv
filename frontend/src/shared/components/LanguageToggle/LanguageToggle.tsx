@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import {
   Dropdown,
@@ -21,7 +20,6 @@ const languages = [
 ];
 
 export default function LanguageToggle() {
-  const router = useRouter();
   const { locale, syncLocale } = useLocale();
 
   const changeLanguage = (newLocale: string) => {
@@ -32,8 +30,6 @@ export default function LanguageToggle() {
     if (isIframe) {
       storeExtensionStorageValue("locale", newLocale, () => {});
     }
-
-    router.refresh();
   };
 
   return (

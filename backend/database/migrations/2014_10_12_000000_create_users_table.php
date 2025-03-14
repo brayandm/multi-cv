@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->timestamp('accepted_terms_at')->nullable();
             $table->timestamp('notified_terms_at')->nullable();
+            $table->string('locale')->default('en');
             $table->rememberToken();
             $table->timestamps();
         });

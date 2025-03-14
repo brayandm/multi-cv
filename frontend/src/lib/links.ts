@@ -10,3 +10,5 @@ export const notifiedTermsVersionApiLink = `/user/notified-terms-version`;
 export const resendEmailApiLink = `/email/resend`;
 export const passwordRecoveryEmailApiLink = "/password/email";
 export const passwordRecoveryResetApiLink = "/password/reset";
+export const userSetLocaleApiLink = "/user/set-locale";
+export const userLocaleApiLink = "/user/locale";

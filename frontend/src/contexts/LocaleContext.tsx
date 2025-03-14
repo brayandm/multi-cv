@@ -1,7 +1,9 @@
 "use client";
 
+import { userLocaleApi, userSetLocaleApi } from "@/lib/backendService";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 import {
   createContext,
   useContext,
@@ -19,19 +21,42 @@ interface LocaleContextType {
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
-  const [locale, setLocale] = useState((getCookie("locale") as string) || "en");
+  const router = useRouter();
+  const [locale, setLocale] = useState("en");
 
-  const updateLocale = (newLocale: string) => {
-    setLocale(newLocale);
+  useEffect(() => {
+    setLocale((getCookie("locale") as string) || "en");
+  }, []);
+
+  const updateLocale = async (newLocale: string) => {
+    let userLocaleResponse;
+
+    try {
+      userLocaleResponse = await userLocaleApi();
+    } catch (error) {
+      console.error("Error getting user locale", error);
+    }
+
+    if (userLocaleResponse?.data?.locale) {
+      setLocale(userLocaleResponse.data.locale);
+    } else {
+      setLocale(newLocale);
+    }
   };
 
   const syncLocale = (newLocale: string) => {
+    try {
+      userSetLocaleApi(newLocale);
+    } catch (error) {
+      console.error("Error setting user locale", error);
+    }
     setLocale(newLocale);
   };
 
   useEffect(() => {
     setCookieClient("locale", locale);
-  }, [locale]);
+    router.refresh();
+  }, [locale, router]);
 
   return (
     <LocaleContext.Provider value={{ locale, updateLocale, syncLocale }}>

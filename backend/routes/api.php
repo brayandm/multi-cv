@@ -47,6 +47,10 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/logout', 'App\Http\Controllers\AuthController@logout');
 
         Route::post('/logoutall', 'App\Http\Controllers\AuthController@logoutall');
+
+        Route::put('/user/set-locale', 'App\Http\Controllers\AuthController@updateLocale');
+
+        Route::get('/user/locale', 'App\Http\Controllers\AuthController@getLocale');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {

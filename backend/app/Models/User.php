@@ -26,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'accepted_terms_at',
         'notified_terms_at',
         'email_verified_at',
+        'locale',
     ];
 
     /**
