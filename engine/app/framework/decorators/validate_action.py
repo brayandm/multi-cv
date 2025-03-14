@@ -25,9 +25,9 @@ def validate_action(action: str) -> Callable[..., Any]:
                 )
 
             response = requests.post(
-                BACKEND_API_URL + "/validate/action",
+                BACKEND_API_URL + "/action/consume",
                 json={"token": authorization, "action": action},
-                headers={"x-api-key": INTER_COMMUNICATION_TOKEN},
+                headers={"X-API-Key": INTER_COMMUNICATION_TOKEN},
             )
 
             if response.status_code != 200 or not response.json().get(
