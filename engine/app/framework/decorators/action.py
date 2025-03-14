@@ -1,10 +1,9 @@
+import urllib.parse
 from functools import wraps
 from typing import Any, Callable
 
 import requests  # type: ignore
 from fastapi import HTTPException, Request
-
-import urllib.parse
 
 from app.config import (
     BACKEND_API_URL,
