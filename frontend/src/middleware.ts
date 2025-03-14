@@ -30,7 +30,7 @@ export async function middleware(req: NextRequest) {
 
   const data = await api.get<UserStatusResponse>(userStatusApiLink, {
     headers: {
-      Authorization: `Bearer ${authToken || ""}`,
+      Authorization: `Bearer ${authToken?.value || ""}`,
     },
   });
 
