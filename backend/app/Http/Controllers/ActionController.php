@@ -33,11 +33,22 @@ class ActionController extends Controller
 
         $user = auth()->user();
 
-        if(!$user->id) {
+        if (! $user->id) {
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        $this->actionService->consumeAction($user->id, 'generate_cv');
+        $result = $this->actionService->consumeAction($user->id, 'generate_cv');
+
+        if (! $result) {
+            return response()->json([
+                "code" => 403
+            ]);
+        }
+
+        return response()->json([
+            "code" => 200,
+            "user_id" => $user->id,
+        ]);
     }
 
     public function rollbackAction($request)
@@ -50,10 +61,21 @@ class ActionController extends Controller
 
         $user = auth()->user();
 
-        if(!$user->id) {
+        if (! $user->id) {
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        $this->actionService->rollbackAction($user->id, 'generate_cv');
+        $result = $this->actionService->rollbackAction($user->id, 'generate_cv');
+
+        if (! $result) {
+            return response()->json([
+                "code" => 403
+            ]);
+        }
+
+        return response()->json([
+            "code" => 200,
+            "user_id" => $user->id,
+        ]);
     }
 }
