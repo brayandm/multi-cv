@@ -7,7 +7,7 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
     -w /var/www/html \
-    brayand/fullstack-project-template-php:1.0.0 \
+    brayand/fullstack-project-template-php-git:1.0.0 \
     vendor/bin/pint
 cd ..
 
@@ -16,7 +16,7 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/app \
     -w /app \
-    brayand/fullstack-project-template-frontend:1.0.0 \
+    brayand/fullstack-project-template-frontend-git:1.0.0 \
     sh -c "npx prettier --write . && npm run lint"
 cd ..
 
@@ -25,7 +25,7 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/app \
     -w /app \
-    brayand/fullstack-project-template-frontend:1.0.0 \
+    brayand/fullstack-project-template-frontend-git:1.0.0 \
     sh -c "npx prettier --write ."
 cd ..
 
