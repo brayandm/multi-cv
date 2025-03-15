@@ -1,10 +1,9 @@
 from typing import Any, Dict, Type
 
 from app.classes.base import Pipeline
+from app.framework.decorators.action import authorization_var
 from app.worker.tasks import execute_pipeline_task
 from app.worker.utils import serialize
-
-from app.framework.decorators.action import authorization_var
 
 
 class QueueManager:

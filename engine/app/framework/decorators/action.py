@@ -1,4 +1,5 @@
 import urllib.parse
+from contextvars import ContextVar
 from functools import wraps
 from typing import Any, Callable
 
@@ -10,8 +11,6 @@ from app.config import (
     INTER_COMMUNICATION_TOKEN,
 )
 from app.framework.logging import logger
-
-from contextvars import ContextVar
 
 authorization_var: ContextVar[str | None] = ContextVar(
     "authorization", default=None

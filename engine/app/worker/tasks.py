@@ -2,16 +2,13 @@ import importlib
 from typing import Any, Dict, Tuple
 
 import requests  # type: ignore
+from celery.exceptions import TaskError  # type: ignore
 
 from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
+from app.framework.decorators.action import rollback
 from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
-
-
-from celery.exceptions import TaskError  # type: ignore
-
-from app.framework.decorators.action import rollback
 
 
 def rollback_task(
