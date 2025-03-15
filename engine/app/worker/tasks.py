@@ -2,6 +2,7 @@ import importlib
 from typing import Any, Dict, Tuple
 
 import requests  # type: ignore
+from celery import Task  # type: ignore
 from celery.exceptions import TaskError  # type: ignore
 
 from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
@@ -9,8 +10,6 @@ from app.framework.decorators.action import rollback
 from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
-
-from celery import Task  # type: ignore
 
 
 def rollback_task(
@@ -43,6 +42,11 @@ def execute_pipeline_task(
     authorization: str | None,
     inputs: Dict[str, Any],
 ) -> Any:
+
+    retry_count = self.request.retries
+
+    if retry_count > 0:
+        logger.info("Retrying #%s for action: %s", retry_count, action)
 
     deserialized_inputs = [
         deserialize(value) for key, value in sorted(inputs.items())
