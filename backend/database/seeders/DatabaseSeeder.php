@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         ];
 
         foreach ($emails as $email) {
-            $this->command->info('Creating user ' . $email);
+            $this->command->info('Creating user '.$email);
             $user = User::firstOrCreate(
                 ['email' => $email],
                 [
