@@ -17,7 +17,7 @@ class ActionController extends Controller
     {
         $user = auth()->user();
 
-        if($user->email === 'admin@multicv.space') {
+        if ($user->email === 'admin@multicv.space') {
             return response()->json([
                 'code' => 200,
             ]);
@@ -32,7 +32,7 @@ class ActionController extends Controller
     {
         $user = auth()->user();
 
-        if($user->email === 'admin@multicv.space') {
+        if ($user->email === 'admin@multicv.space') {
             return response()->json([
                 'code' => 200,
             ]);
