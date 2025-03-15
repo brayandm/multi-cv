@@ -34,6 +34,7 @@ def rollback_task(
     name="execute_pipeline_task",
     bind=True,
     autoretry_for=(Exception,),
+    retry_kwargs={"max_retries": 1, "countdown": 5},
 )  # type: ignore
 def execute_pipeline_task(
     self: Task,
