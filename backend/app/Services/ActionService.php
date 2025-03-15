@@ -10,8 +10,6 @@ class ActionService
     /**
      * Consumes an action from the user's quota.
      *
-     * @param int $user_id
-     * @param string $action
      * @return bool Indicates whether the operation was successful.
      */
     public function consumeAction(int $user_id, string $action): bool
@@ -22,7 +20,7 @@ class ActionService
                 ->lockForUpdate()
                 ->first();
 
-            if (!$quota || $quota->left <= 0) {
+            if (! $quota || $quota->left <= 0) {
                 return false;
             }
 
@@ -36,8 +34,6 @@ class ActionService
     /**
      * Rolls back the consumption of an action from the user's quota.
      *
-     * @param int $user_id
-     * @param string $action
      * @return bool Indicates whether the rollback was successful.
      */
     public function rollbackAction(int $user_id, string $action): bool
@@ -48,12 +44,13 @@ class ActionService
                 ->lockForUpdate()
                 ->first();
 
-            if (!$quota || $quota->left >= $quota->quota) {
+            if (! $quota || $quota->left >= $quota->quota) {
                 return false;
             }
 
             $quota->increment('left');
             $quota->increment('failed');
+
             return true;
         });
     }

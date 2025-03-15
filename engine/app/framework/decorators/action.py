@@ -87,12 +87,15 @@ def action(action: str) -> Callable[..., Any]:
                 },
             )
 
+            if response.status_code != 200:
+                raise HTTPException(status_code=403, detail="Unauthorized")
+
             data = response.json()
 
             code: int = data.get("code")
             user_id: int = data.get("user_id")
 
-            if response.status_code != 200 or code != 200 or not user_id:
+            if code != 200 or not user_id:
                 raise HTTPException(status_code=403, detail="Unauthorized")
 
             user_id_var.set(user_id)

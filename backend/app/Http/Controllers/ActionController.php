@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\ActionService;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class ActionController extends Controller
 {
@@ -14,7 +15,7 @@ class ActionController extends Controller
         $this->actionService = $actionService;
     }
 
-    public function validateAction($request)
+    public function validateAction(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'action' => 'required|string',
@@ -23,7 +24,7 @@ class ActionController extends Controller
         return $validator;
     }
 
-    public function consumeAction($request)
+    public function consumeAction(Request $request)
     {
         $validator = $this->validateAction($request);
 
@@ -41,17 +42,17 @@ class ActionController extends Controller
 
         if (! $result) {
             return response()->json([
-                "code" => 403
+                'code' => 403,
             ]);
         }
 
         return response()->json([
-            "code" => 200,
-            "user_id" => $user->id,
+            'code' => 200,
+            'user_id' => $user->id,
         ]);
     }
 
-    public function rollbackAction($request)
+    public function rollbackAction(Request $request)
     {
         $validator = $this->validateAction($request);
 
@@ -69,13 +70,13 @@ class ActionController extends Controller
 
         if (! $result) {
             return response()->json([
-                "code" => 403
+                'code' => 403,
             ]);
         }
 
         return response()->json([
-            "code" => 200,
-            "user_id" => $user->id,
+            'code' => 200,
+            'user_id' => $user->id,
         ]);
     }
 }
