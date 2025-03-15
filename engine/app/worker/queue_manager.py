@@ -4,6 +4,8 @@ from app.classes.base import Pipeline
 from app.worker.tasks import execute_pipeline_task
 from app.worker.utils import serialize
 
+from app.framework.decorators.action import authorization_var
+
 
 class QueueManager:
     def __init__(self, default_queue: str = "default_queue") -> None:
@@ -33,10 +35,13 @@ class QueueManager:
             key: serialize(value) for key, value in inputs_dict.items()
         }
 
+        authorization = authorization_var.get()
+
         execute_pipeline_task.apply_async(
             args=[
                 f"{pipeline_class.__module__}.{pipeline_class.__name__}",
                 action,
+                authorization,
                 serialized_inputs,
             ],
             queue=queue_name,

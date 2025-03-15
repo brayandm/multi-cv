@@ -11,6 +11,12 @@ from app.config import (
 )
 from app.framework.logging import logger
 
+from contextvars import ContextVar
+
+authorization_var: ContextVar[str | None] = ContextVar(
+    "authorization", default=None
+)
+
 
 def rollback(action: str, authorization: str) -> None:
 
@@ -54,6 +60,8 @@ def action(action: str) -> Callable[..., Any]:
             authorization = (
                 urllib.parse.unquote(authorization) if authorization else None
             )
+
+            authorization_var.set(authorization)
 
             if not authorization:
                 raise HTTPException(

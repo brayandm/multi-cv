@@ -1,5 +1,5 @@
 import importlib
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 
 import requests  # type: ignore
 
@@ -9,10 +9,34 @@ from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
 
 
+from celery.exceptions import TaskError  # type: ignore
+
+from app.framework.decorators.action import rollback
+
+
+def rollback_task(
+    exc: TaskError,
+    task_id: str,
+    args: Tuple[Any, ...],
+    kwargs: Dict[str, Any],
+    einfo: Any,
+) -> None:
+
+    action = kwargs.get("action")
+    authorization = kwargs.get("authorization")
+
+    if not action or not authorization:
+        logger.error("The action or authorization is missing")
+        return
+
+    rollback(action, authorization)
+
+
 @celery.task(name="execute_pipeline_task")  # type: ignore
 def execute_pipeline_task(
     pipeline_path: str,
     action: str,
+    authorization: str | None,
     inputs: Dict[str, Any],
 ) -> Any:
 
@@ -51,3 +75,6 @@ def execute_pipeline_task(
         raise e
 
     return {"action": action, "result": "success"}
+
+
+execute_pipeline_task.on_failure = rollback_task
