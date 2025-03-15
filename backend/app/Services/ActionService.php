@@ -76,7 +76,10 @@ class ActionService
                 return false; // No quota record found
             }
 
-            $lastReset = $quota->last_reset_at ? Carbon::parse($quota->last_reset_at) : null;
+            $lastReset = $quota->last_reset_at
+            ? Carbon::parse($quota->last_reset_at)
+            : Carbon::parse($quota->created_at);
+
             $now = Carbon::now();
 
             if ($this->shouldResetQuota($quota->frequency, $lastReset, $now)) {
@@ -99,12 +102,8 @@ class ActionService
     /**
      * Determines the number of missed reset periods since last_reset_at.
      */
-    private function getMissedResetPeriods(string $frequency, ?Carbon $lastReset, Carbon $now): int
+    private function getMissedResetPeriods(string $frequency, Carbon $lastReset, Carbon $now): int
     {
-        if (!$lastReset) {
-            return 1; // If never reset before, treat as one period.
-        }
-
         switch ($frequency) {
             case 'minutes':
                 return $lastReset->diffInMinutes($now);
@@ -128,14 +127,11 @@ class ActionService
     /**
      * Determines if the quota should be reset based on frequency.
      */
-    private function shouldResetQuota(string $frequency, ?Carbon $lastReset, Carbon $now): bool
+    private function shouldResetQuota(string $frequency, Carbon $lastReset, Carbon $now): bool
     {
-        if (!$lastReset) {
-            return true; // First-time reset
-        }
-
         // If at least one period has passed, reset the quota
         $missedPeriods = $this->getMissedResetPeriods($frequency, $lastReset, $now);
+
         return $missedPeriods > 0;
     }
 }
