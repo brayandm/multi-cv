@@ -1,7 +1,7 @@
 from typing import Any, Dict, Type
 
 from app.classes.base import Pipeline
-from app.framework.decorators.action import authorization_var
+from app.framework.decorators.action import get_authorization, get_user_id
 from app.worker.tasks import execute_pipeline_task
 from app.worker.utils import serialize
 
@@ -34,13 +34,16 @@ class QueueManager:
             key: serialize(value) for key, value in inputs_dict.items()
         }
 
-        authorization = authorization_var.get()
+        authorization = get_authorization()
+
+        user_id = get_user_id()
 
         execute_pipeline_task.apply_async(
             args=[
                 f"{pipeline_class.__module__}.{pipeline_class.__name__}",
                 action,
                 authorization,
+                user_id,
                 serialized_inputs,
             ],
             queue=queue_name,

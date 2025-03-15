@@ -41,6 +41,7 @@ def execute_pipeline_task(
     pipeline_path: str,
     action: str,
     authorization: str | None,
+    user_id: int | None,
     inputs: Dict[str, Any],
 ) -> Any:
 
@@ -72,7 +73,11 @@ def execute_pipeline_task(
     try:
         requests.post(
             WEBHOOK_URL,
-            json={"action": action, "result": format_result(result)},
+            json={
+                "user_id": user_id,
+                "action": action,
+                "result": format_result(result),
+            },
             headers={"X-API-Token": INTER_COMMUNICATION_TOKEN},
         )
     except Exception as e:

@@ -101,10 +101,14 @@ async def generate_cv_inline(
 @router.post("/webhook")
 @validate_api_token()
 async def webhook(request: Request, payload: WebhookPayload) -> Dict[str, str]:
+    user_id = payload.user_id
     action = payload.action
     result = payload.result
 
-    logger.info(f"Received webhook with action: {action} and result: {result}")
+    logger.info(
+        f"Received webhook with action: {action} for user: {user_id} "
+        f"with result: {result}"
+    )
 
     return {"message": "Webhook processed successfully."}
 

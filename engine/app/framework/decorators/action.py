@@ -16,6 +16,16 @@ authorization_var: ContextVar[str | None] = ContextVar(
     "authorization", default=None
 )
 
+user_id_var: ContextVar[int | None] = ContextVar("user_id", default=None)
+
+
+def get_user_id() -> int | None:
+    return user_id_var.get()
+
+
+def get_authorization() -> str | None:
+    return authorization_var.get()
+
 
 def rollback(action: str, authorization: str) -> None:
 
@@ -77,11 +87,15 @@ def action(action: str) -> Callable[..., Any]:
                 },
             )
 
-            if (
-                response.status_code != 200
-                or response.json().get("code") != 200
-            ):
+            data = response.json()
+
+            code: int = data.get("code")
+            user_id: int = data.get("user_id")
+
+            if response.status_code != 200 or code != 200 or not user_id:
                 raise HTTPException(status_code=403, detail="Unauthorized")
+
+            user_id_var.set(user_id)
 
             try:
                 return await func(request, *args, **kwargs)

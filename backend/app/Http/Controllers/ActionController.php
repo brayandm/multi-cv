@@ -25,6 +25,7 @@ class ActionController extends Controller
         if (in_array($user->email, $this->allowed_emails)) {
             return response()->json([
                 'code' => 200,
+                'user_id' => $user->id,
             ]);
         }
 
@@ -40,6 +41,7 @@ class ActionController extends Controller
         if (in_array($user->email, $this->allowed_emails)) {
             return response()->json([
                 'code' => 200,
+                'user_id' => $user->id,
             ]);
         }
 
