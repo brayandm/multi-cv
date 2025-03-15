@@ -56,6 +56,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Quota::class);
     }
 
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new \App\Notifications\VerifyEmailQueued);
+    }
+
     protected static function boot()
     {
         parent::boot();
