@@ -17,4 +17,6 @@ celery.conf.update(
     task_max_retries=3,
     task_soft_time_limit=60,
     task_time_limit=65,
+    task_acks_late=True,
+    task_reject_on_worker_lost=True,
 )

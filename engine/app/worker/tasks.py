@@ -10,6 +10,8 @@ from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
 
+from celery import Task  # type: ignore
+
 
 def rollback_task(
     exc: TaskError,
@@ -29,8 +31,13 @@ def rollback_task(
     rollback(action, authorization)
 
 
-@celery.task(name="execute_pipeline_task")  # type: ignore
+@celery.task(
+    name="execute_pipeline_task",
+    bind=True,
+    autoretry_for=(Exception,),
+)  # type: ignore
 def execute_pipeline_task(
+    self: Task,
     pipeline_path: str,
     action: str,
     authorization: str | None,
