@@ -8,6 +8,11 @@ class ActionController extends Controller
 {
     private ActionService $actionService;
 
+    private $allowed_emails = [
+        'admin@multicv.space',
+        'hello.multicv@gmail.com',
+    ];
+
     public function __construct(ActionService $actionService)
     {
         $this->actionService = $actionService;
@@ -17,7 +22,7 @@ class ActionController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->email === 'admin@multicv.space') {
+        if (in_array($user->email, $this->allowed_emails)) {
             return response()->json([
                 'code' => 200,
             ]);
@@ -32,7 +37,7 @@ class ActionController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->email === 'admin@multicv.space') {
+        if (in_array($user->email, $this->allowed_emails)) {
             return response()->json([
                 'code' => 200,
             ]);
