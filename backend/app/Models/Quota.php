@@ -19,13 +19,13 @@ class Quota extends Model
         'frequency',
         'cumulative',
         'last_used_at',
-        'last_reset_at'
+        'last_reset_at',
     ];
 
     protected $casts = [
         'cumulative' => 'boolean',
         'last_used_at' => 'datetime',
-        'last_reset_at' => 'datetime'
+        'last_reset_at' => 'datetime',
     ];
 
     public function user()
