@@ -23,9 +23,9 @@ class GoogleAuthController extends Controller
     public function fakeLocalUser($extension = false)
     {
         $user = User::firstOrCreate(
-            ['email' => 'user@example.com'],
+            ['email' => 'admin@multicv.space'],
             [
-                'name' => 'John Doe',
+                'name' => 'Admin',
                 'email_verified_at' => now(),
             ]
         );

@@ -15,13 +15,29 @@ class ActionController extends Controller
 
     public function consumeAction()
     {
+        $user = auth()->user();
+
+        if($user->email === 'admin@multicv.space') {
+            return response()->json([
+                'code' => 200,
+            ]);
+        }
+
         return response()->json([
             'code' => 403,
         ]);
     }
 
-    public function rollback()
+    public function rollbackAction()
     {
+        $user = auth()->user();
+
+        if($user->email === 'admin@multicv.space') {
+            return response()->json([
+                'code' => 200,
+            ]);
+        }
+
         return response()->json([
             'code' => 403,
         ]);
