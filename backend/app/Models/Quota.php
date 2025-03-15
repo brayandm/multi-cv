@@ -12,15 +12,15 @@ class Quota extends Model
     protected $fillable = [
         'user_id',
         'action',
-        'left',
         'quota',
+        'frequency',
+        'cumulative',
+        'left',
         'pending',
         'max_pending',
         'failed',
         'max_failed',
         'succeeded',
-        'frequency',
-        'cumulative',
         'last_used_at',
         'last_reset_at',
     ];

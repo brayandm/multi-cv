@@ -15,15 +15,15 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained();
             $table->string('action');
-            $table->integer('left');
             $table->integer('quota');
+            $table->string('frequency');
+            $table->boolean('cumulative')->default(false);
+            $table->integer('left');
             $table->integer('pending')->default(0);
             $table->integer('max_pending')->default(-1);
             $table->integer('failed')->default(0);
             $table->integer('max_failed')->default(-1);
             $table->integer('succeeded')->default(0);
-            $table->string('frequency');
-            $table->boolean('cumulative')->default(false);
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('last_reset_at')->nullable();
             $table->timestamps();
