@@ -18,6 +18,7 @@ class Quota extends Model
         'max_pending',
         'failed',
         'max_failed',
+        'succeeded',
         'frequency',
         'cumulative',
         'last_used_at',

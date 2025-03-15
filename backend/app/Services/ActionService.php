@@ -48,7 +48,10 @@ class ActionService
                 return false;
             }
 
-            $quota->increment('left');
+            if ($quota->failed < $quota->max_failed || $quota->max_failed === -1) {
+                $quota->increment('left');
+            }
+
             $quota->increment('failed');
 
             return true;
