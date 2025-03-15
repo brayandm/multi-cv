@@ -44,6 +44,20 @@ class DatabaseSeeder extends Seeder
                 'cumulative' => false,
                 'last_reset_at' => now(),
             ]);
+
+            Quota::create([
+                'user_id' => $user->id,
+                'action' => 'generate_cv_inline',
+                'left' => 100,
+                'quota' => 100,
+                'pending' => 0,
+                'max_pending' => -1,
+                'failed' => 0,
+                'max_failed' => 10,
+                'frequency' => 'daily',
+                'cumulative' => false,
+                'last_reset_at' => now(),
+            ]);
         }
 
     }
