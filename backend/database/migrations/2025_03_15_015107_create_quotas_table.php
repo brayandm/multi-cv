@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('quota');
             $table->string('frequency');
             $table->boolean('cumulative')->default(false);
-            $table->integer('left');
+            $table->integer('left')->default(0);
             $table->integer('max_left')->default(-1);
             $table->integer('pending')->default(0);
             $table->integer('max_pending')->default(-1);
