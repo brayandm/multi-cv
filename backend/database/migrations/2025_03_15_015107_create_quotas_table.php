@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('frequency');
             $table->boolean('cumulative')->default(false);
             $table->integer('left');
+            $table->integer('max_left')->default(-1);
             $table->integer('pending')->default(0);
             $table->integer('max_pending')->default(-1);
             $table->integer('failed')->default(0);

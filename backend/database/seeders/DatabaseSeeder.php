@@ -34,29 +34,20 @@ class DatabaseSeeder extends Seeder
             Quota::create([
                 'user_id' => $user->id,
                 'action' => 'generate_cv',
-                'left' => 10,
                 'quota' => 10,
-                'pending' => 0,
-                'max_pending' => -1,
-                'failed' => 0,
+                'max_left' => 50,
                 'max_failed' => 10,
-                'frequency' => 'daily',
-                'cumulative' => false,
-                'last_reset_at' => now(),
+                'frequency' => 'minutes',
+                'cumulative' => true,
             ]);
 
             Quota::create([
                 'user_id' => $user->id,
                 'action' => 'generate_cv_inline',
-                'left' => 100,
                 'quota' => 100,
-                'pending' => 0,
-                'max_pending' => -1,
-                'failed' => 0,
                 'max_failed' => 10,
-                'frequency' => 'daily',
+                'frequency' => 'minutes',
                 'cumulative' => false,
-                'last_reset_at' => now(),
             ]);
         }
 

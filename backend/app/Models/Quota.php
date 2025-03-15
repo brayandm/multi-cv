@@ -16,6 +16,7 @@ class Quota extends Model
         'frequency',
         'cumulative',
         'left',
+        'max_left',
         'pending',
         'max_pending',
         'failed',
