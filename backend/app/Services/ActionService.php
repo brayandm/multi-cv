@@ -34,6 +34,7 @@ class ActionService
             });
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return false;
         }
     }
@@ -66,6 +67,7 @@ class ActionService
             });
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return false;
         }
     }
@@ -111,6 +113,7 @@ class ActionService
             });
         } catch (\Exception $e) {
             Log::error($e->getMessage());
+
             return false;
         }
     }
