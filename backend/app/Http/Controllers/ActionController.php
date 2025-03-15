@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Services\ActionService;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ActionController extends Controller
 {
@@ -38,7 +38,9 @@ class ActionController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        $result = $this->actionService->consumeAction($user->id, 'generate_cv');
+        $action = $validator->validated()['action'];
+
+        $result = $this->actionService->consumeAction($user->id, $action);
 
         if (! $result) {
             return response()->json([
@@ -66,7 +68,9 @@ class ActionController extends Controller
             return response()->json(['error' => 'User not found'], 404);
         }
 
-        $result = $this->actionService->rollbackAction($user->id, 'generate_cv');
+        $action = $validator->validated()['action'];
+
+        $result = $this->actionService->rollbackAction($user->id, $action);
 
         if (! $result) {
             return response()->json([
