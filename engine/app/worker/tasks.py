@@ -19,8 +19,8 @@ def rollback_task(
     einfo: Any,
 ) -> None:
 
-    action = kwargs.get("action")
-    authorization = kwargs.get("authorization")
+    action = args[1]
+    authorization = args[2]
 
     if not action or not authorization:
         logger.error("The action or authorization is missing")
