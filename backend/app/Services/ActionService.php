@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Quota;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class ActionService
 {
@@ -15,21 +16,26 @@ class ActionService
      */
     public function consumeAction(int $user_id, string $action): bool
     {
-        return DB::transaction(function () use ($user_id, $action) {
-            $quota = Quota::where('user_id', $user_id)
-                ->where('action', $action)
-                ->lockForUpdate()
-                ->first();
+        try {
+            return DB::transaction(function () use ($user_id, $action) {
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->lockForUpdate()
+                    ->first();
 
-            if (! $quota || $quota->left <= 0) {
-                return false;
-            }
+                if (! $quota || $quota->left <= 0) {
+                    return false;
+                }
 
-            $quota->decrement('left');
-            $quota->update(['last_used_at' => now()]);
+                $quota->decrement('left');
+                $quota->update(['last_used_at' => now()]);
 
-            return true;
-        });
+                return true;
+            });
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
     /**
@@ -39,24 +45,29 @@ class ActionService
      */
     public function rollbackAction(int $user_id, string $action): bool
     {
-        return DB::transaction(function () use ($user_id, $action) {
-            $quota = Quota::where('user_id', $user_id)
-                ->where('action', $action)
-                ->lockForUpdate()
-                ->first();
+        try {
+            return DB::transaction(function () use ($user_id, $action) {
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->lockForUpdate()
+                    ->first();
 
-            if (! $quota || $quota->left >= $quota->quota) {
-                return false;
-            }
+                if (! $quota || $quota->left >= $quota->quota) {
+                    return false;
+                }
 
-            if ($quota->failed < $quota->max_failed || $quota->max_failed === -1) {
-                $quota->increment('left');
-            }
+                if ($quota->failed < $quota->max_failed || $quota->max_failed === -1) {
+                    $quota->increment('left');
+                }
 
-            $quota->increment('failed');
+                $quota->increment('failed');
 
-            return true;
-        });
+                return true;
+            });
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
     /**
@@ -66,37 +77,42 @@ class ActionService
      */
     public function resetQuota(int $user_id, string $action): bool
     {
-        return DB::transaction(function () use ($user_id, $action) {
-            $quota = Quota::where('user_id', $user_id)
-                ->where('action', $action)
-                ->lockForUpdate()
-                ->first();
+        try {
+            return DB::transaction(function () use ($user_id, $action) {
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->lockForUpdate()
+                    ->first();
 
-            if (! $quota) {
-                return false; // No quota record found
-            }
+                if (! $quota) {
+                    return false; // No quota record found
+                }
 
-            $lastReset = $quota->last_reset_at
-            ? Carbon::parse($quota->last_reset_at)
-            : Carbon::parse($quota->created_at);
+                $lastReset = $quota->last_reset_at
+                ? Carbon::parse($quota->last_reset_at)
+                : Carbon::parse($quota->created_at);
 
-            $now = Carbon::now();
+                $now = Carbon::now();
 
-            if ($this->shouldResetQuota($quota->frequency, $lastReset, $now)) {
-                $missedPeriods = $this->getMissedResetPeriods($quota->frequency, $lastReset, $now);
+                if ($this->shouldResetQuota($quota->frequency, $lastReset, $now)) {
+                    $missedPeriods = $this->getMissedResetPeriods($quota->frequency, $lastReset, $now);
 
-                $newLeft = $quota->cumulative
-                    ? min($quota->left + ($missedPeriods * $quota->quota), $quota->max_left) // Accumulate up to max_left
-                    : $quota->quota; // Reset quota to default
+                    $newLeft = $quota->cumulative
+                        ? min($quota->left + ($missedPeriods * $quota->quota), $quota->max_left) // Accumulate up to max_left
+                        : $quota->quota; // Reset quota to default
 
-                $quota->update([
-                    'left' => $newLeft,
-                    'last_reset_at' => $now,
-                ]);
-            }
+                    $quota->update([
+                        'left' => $newLeft,
+                        'last_reset_at' => $now,
+                    ]);
+                }
 
-            return true;
-        });
+                return true;
+            });
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return false;
+        }
     }
 
     /**

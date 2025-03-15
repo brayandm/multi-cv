@@ -40,6 +40,14 @@ class ActionController extends Controller
 
         $action = $validator->validated()['action'];
 
+        $result = $this->actionService->resetQuota($user->id, $action);
+
+        if (! $result) {
+            return response()->json([
+                'code' => 403,
+            ]);
+        }
+
         $result = $this->actionService->consumeAction($user->id, $action);
 
         if (! $result) {
@@ -69,6 +77,14 @@ class ActionController extends Controller
         }
 
         $action = $validator->validated()['action'];
+
+        $result = $this->actionService->resetQuota($user->id, $action);
+
+        if (! $result) {
+            return response()->json([
+                'code' => 403,
+            ]);
+        }
 
         $result = $this->actionService->rollbackAction($user->id, $action);
 
