@@ -4,10 +4,9 @@ from typing import Any, Dict
 import requests  # type: ignore
 
 from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
+from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
-
-from app.framework.logging import logger
 
 
 @celery.task(name="execute_pipeline_task")  # type: ignore
