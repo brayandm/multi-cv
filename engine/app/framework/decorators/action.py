@@ -12,6 +12,38 @@ from app.config import (
 from app.framework.logging import logger
 
 
+def rollback(action: str, authorization: str) -> None:
+
+    try:
+        response = requests.post(
+            f"{BACKEND_API_URL}/action/rollback",
+            json={"action": action},
+            headers={
+                "X-API-Key": INTER_COMMUNICATION_TOKEN,
+                "Authorization": authorization,
+            },
+        )
+
+    except Exception as e:
+        logger.error(
+            "Rollback failed for action: %s with error: %s",
+            action,
+            e,
+        )
+        raise e
+
+    if response.status_code != 200 or response.json().get("code") != 200:
+        logger.error(
+            "Rollback failed for action: %s",
+            action,
+        )
+    else:
+        logger.info(
+            "Rollback successful for action: %s",
+            action,
+        )
+
+
 def action(action: str) -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
@@ -49,27 +81,8 @@ def action(action: str) -> Callable[..., Any]:
 
             except Exception as e:
                 logger.error(e)
-                response = requests.post(
-                    f"{BACKEND_API_URL}/action/rollback",
-                    json={"action": action},
-                    headers={
-                        "X-API-Key": INTER_COMMUNICATION_TOKEN,
-                        "Authorization": authorization,
-                    },
-                )
-                if (
-                    response.status_code != 200
-                    or response.json().get("code") != 200
-                ):
-                    logger.error(
-                        "Rollback failed for action: %s",
-                        action,
-                    )
-                else:
-                    logger.info(
-                        "Rollback successful for action: %s",
-                        action,
-                    )
+
+                rollback(action, authorization)
 
                 raise e
 

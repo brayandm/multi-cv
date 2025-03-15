@@ -7,6 +7,8 @@ from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
 
+from app.framework.logging import logger
+
 
 @celery.task(name="execute_pipeline_task")  # type: ignore
 def execute_pipeline_task(
@@ -24,12 +26,29 @@ def execute_pipeline_task(
     pipeline_class = getattr(module, class_name)
 
     pipeline_instance = pipeline_class()
-    result = pipeline_instance.run(*deserialized_inputs)
 
-    requests.post(
-        WEBHOOK_URL,
-        json={"action": action, "result": format_result(result)},
-        headers={"X-API-Token": INTER_COMMUNICATION_TOKEN},
-    )
+    try:
+        result = pipeline_instance.run(*deserialized_inputs)
+    except Exception as e:
+        logger.error(
+            "Pipeline failed for action: %s with error: %s",
+            action,
+            e,
+        )
+        raise e
+
+    try:
+        requests.post(
+            WEBHOOK_URL,
+            json={"action": action, "result": format_result(result)},
+            headers={"X-API-Token": INTER_COMMUNICATION_TOKEN},
+        )
+    except Exception as e:
+        logger.error(
+            "Webhook failed for action: %s with error: %s",
+            action,
+            e,
+        )
+        raise e
 
     return {"action": action, "result": "success"}
