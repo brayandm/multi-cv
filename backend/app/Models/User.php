@@ -51,6 +51,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+    public function quotas()
+    {
+        return $this->hasMany(Quota::class);
+    }
+
     protected static function boot()
     {
         parent::boot();

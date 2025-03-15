@@ -1,0 +1,35 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Quota extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'action',
+        'left',
+        'quota',
+        'pending',
+        'failed',
+        'frequency',
+        'cumulative',
+        'last_used_at',
+        'last_reset_at'
+    ];
+
+    protected $casts = [
+        'cumulative' => 'boolean',
+        'last_used_at' => 'datetime',
+        'last_reset_at' => 'datetime'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
