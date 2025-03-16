@@ -42,7 +42,7 @@ class ActionService
                         ->lockForUpdate()
                         ->first();
 
-                    if (!$quota || $quota->pending >= $quota->max_pending) {
+                    if (! $quota || $quota->pending >= $quota->max_pending) {
                         return null;
                     }
                 }
