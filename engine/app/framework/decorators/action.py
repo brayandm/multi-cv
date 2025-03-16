@@ -21,7 +21,13 @@ def get_action_id() -> str | None:
     return action_id_var.get()
 
 
-def commit(action_id: str) -> None:
+def set_action_id(action_id: str) -> None:
+    action_id_var.set(action_id)
+
+
+def commit_action() -> None:
+
+    action_id = get_action_id()
 
     try:
         response = requests.post(
@@ -51,7 +57,7 @@ def commit(action_id: str) -> None:
         )
 
 
-def rollback(action_id: str) -> None:
+def rollback_action(action_id: str) -> None:
 
     try:
         response = requests.post(
@@ -81,7 +87,7 @@ def rollback(action_id: str) -> None:
         )
 
 
-def action(action: str) -> Callable[..., Any]:
+def consume_action(action: str) -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
         async def wrapper(*args: Any, **kwargs: Any) -> Any:
@@ -125,7 +131,7 @@ def action(action: str) -> Callable[..., Any]:
             if code != 200 or not user_id or not action_id:
                 raise HTTPException(status_code=403, detail="Unauthorized")
 
-            action_id_var.set(action_id)
+            set_action_id(action_id)
 
             try:
                 return await func(*args, **kwargs)
@@ -133,7 +139,7 @@ def action(action: str) -> Callable[..., Any]:
             except Exception as e:
                 logger.error(e)
 
-                rollback(action_id)
+                rollback_action(action_id)
 
                 raise e
 

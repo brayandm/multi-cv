@@ -6,7 +6,7 @@ from celery import Task  # type: ignore
 from celery.exceptions import TaskError  # type: ignore
 
 from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
-from app.framework.decorators.action import rollback
+from app.framework.decorators.action import rollback_action
 from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
@@ -26,7 +26,7 @@ def rollback_task(
         logger.error("Action ID is missing for rollback")
         return
 
-    rollback(action_id)
+    rollback_action(action_id)
 
 
 @celery.task(
