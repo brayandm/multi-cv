@@ -25,6 +25,19 @@ class ActionService
                     ->lockForUpdate()
                     ->first();
 
+                if($this->shouldResetQuota($quota->frequency, $quota->last_reset_at, Carbon::now())) {
+                    $result = $this->resetQuota($user_id, $action);
+
+                    if(! $result) {
+                        return null;
+                    }
+
+                    $quota = Quota::where('user_id', $user_id)
+                        ->where('action', $action)
+                        ->lockForUpdate()
+                        ->first();
+                }
+
                 if (! $quota || $quota->left <= 0) {
                     return null;
                 }
