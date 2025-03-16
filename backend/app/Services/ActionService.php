@@ -278,4 +278,21 @@ class ActionService
 
         return $missedPeriods > 0;
     }
+
+    public function getQuotaInfo(int $user_id, string $action): array
+    {
+        $quota = Quota::where('user_id', $user_id)
+            ->where('action', $action)
+            ->first();
+
+        if(! $quota) {
+            throw new \Exception('Quota not found');
+        }
+
+        return [
+            'quota' => $quota->quota,
+            'frequency' => $quota->frequency,
+            'left' => $quota->left,
+        ];
+    }
 }

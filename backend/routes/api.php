@@ -45,6 +45,10 @@ Route::group(['prefix' => 'v1'], function () {
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
+        Route::post('/quota/info', 'App\Http\Controllers\ActionController@getQuotaInfo');
+    });
+
+    Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
 
         Route::get('/email/verify', 'App\Http\Controllers\EmailVerificationController@verify')
             ->name('verification.verify');
