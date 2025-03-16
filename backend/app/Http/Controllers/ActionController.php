@@ -45,9 +45,9 @@ class ActionController extends Controller
 
         $action = $validator->validated()['action'];
 
-        $result = $this->actionService->consumeAction($user->id, $action);
+        $action_id = $this->actionService->consumeAction($user->id, $action);
 
-        if (! $result) {
+        if (! $action_id) {
             return response()->json([
                 'code' => 403,
             ]);
@@ -56,6 +56,7 @@ class ActionController extends Controller
         return response()->json([
             'code' => 200,
             'user_id' => $user->id,
+            'action_id' => $action_id,
         ]);
     }
 

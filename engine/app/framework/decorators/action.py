@@ -20,44 +20,48 @@ authorization_var: ContextVar[str | None] = ContextVar(
 
 user_id_var: ContextVar[int | None] = ContextVar("user_id", default=None)
 
-
-def get_user_id() -> int | None:
-    return user_id_var.get()
+action_id_var: ContextVar[str | None] = ContextVar("action_id", default=None)
 
 
 def get_authorization() -> str | None:
     return authorization_var.get()
 
 
-def rollback(action: str, authorization: str) -> None:
+def get_user_id() -> int | None:
+    return user_id_var.get()
+
+
+def get_action_id() -> str | None:
+    return action_id_var.get()
+
+
+def rollback(action_id: str) -> None:
 
     try:
         response = requests.post(
             f"{BACKEND_API_URL}/action/rollback",
-            json={"action": action},
+            json={"action_id": action_id},
             headers={
                 "X-API-Key": INTER_COMMUNICATION_TOKEN,
-                "Authorization": authorization,
             },
         )
 
     except Exception as e:
         logger.error(
-            "Rollback failed for action: %s with error: %s",
-            action,
+            "Rollback failed with error %s",
             e,
         )
         raise e
 
     if response.status_code != 200 or response.json().get("code") != 200:
         logger.error(
-            "Rollback failed for action: %s",
-            action,
+            "Rollback failed for action_id %s",
+            action_id,
         )
     else:
         logger.info(
-            "Rollback successful for action: %s",
-            action,
+            "Rollback successful for action_id %s",
+            action_id,
         )
 
 
@@ -102,11 +106,13 @@ def action(action: str) -> Callable[..., Any]:
 
             code: int = data.get("code")
             user_id: int = data.get("user_id")
+            action_id: str = data.get("action_id")
 
-            if code != 200 or not user_id:
+            if code != 200 or not user_id or not action_id:
                 raise HTTPException(status_code=403, detail="Unauthorized")
 
             user_id_var.set(user_id)
+            action_id_var.set(action_id)
 
             try:
                 return await func(*args, **kwargs)
@@ -114,7 +120,7 @@ def action(action: str) -> Callable[..., Any]:
             except Exception as e:
                 logger.error(e)
 
-                rollback(action, authorization)
+                rollback(action_id)
 
                 raise e
 
