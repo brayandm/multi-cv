@@ -21,6 +21,36 @@ def get_action_id() -> str | None:
     return action_id_var.get()
 
 
+def commit(action_id: str) -> None:
+
+    try:
+        response = requests.post(
+            f"{BACKEND_API_URL}/action/commit",
+            json={"action_id": action_id},
+            headers={
+                "X-API-Key": INTER_COMMUNICATION_TOKEN,
+            },
+        )
+
+    except Exception as e:
+        logger.error(
+            "Commit failed with error %s",
+            e,
+        )
+        raise e
+
+    if response.status_code != 200 or response.json().get("code") != 200:
+        logger.error(
+            "Commit failed for action_id %s",
+            action_id,
+        )
+    else:
+        logger.info(
+            "Commit successful for action_id %s",
+            action_id,
+        )
+
+
 def rollback(action_id: str) -> None:
 
     try:
