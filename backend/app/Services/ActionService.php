@@ -142,6 +142,54 @@ class ActionService
     }
 
     /**
+     * Commits the consumption of an action from the user's quota.
+     *
+     * @return bool Indicates whether the commit was successful.
+     */
+    public function commitAction(string $action_id): bool
+    {
+        try {
+            return DB::transaction(function () use ($action_id) {
+                $actionRecord = Action::where('action_id', $action_id)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $actionRecord) {
+                    return false;
+                }
+
+                $action = $actionRecord->action;
+                $user_id = $actionRecord->user_id;
+
+                $actionRecord->delete();
+
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $quota) {
+                    return false;
+                }
+
+                $newPending = max(0, $quota->pending - 1);
+                $newTotalSucceeded = $quota->total_succeeded + 1;
+
+                $quota->update([
+                    'pending' => $newPending,
+                    'total_succeeded' => $newTotalSucceeded,
+                ]);
+
+                return true;
+            });
+        } catch (\Throwable $e) {
+            Log::error($e->getMessage());
+
+            return false;
+        }
+    }
+
+    /**
      * Cleans up pending actions for a specific user and action that are older than 5 minutes.
      *
      * @return bool Returns true if the cleanup was successful, false otherwise.
@@ -285,7 +333,7 @@ class ActionService
             ->where('action', $action)
             ->first();
 
-        if(! $quota) {
+        if (! $quota) {
             throw new \Exception('Quota not found');
         }
 
