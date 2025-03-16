@@ -14,21 +14,7 @@ from app.framework.middlewares.request_handle_middleware import (
     request_var,
 )
 
-authorization_var: ContextVar[str | None] = ContextVar(
-    "authorization", default=None
-)
-
-user_id_var: ContextVar[int | None] = ContextVar("user_id", default=None)
-
 action_id_var: ContextVar[str | None] = ContextVar("action_id", default=None)
-
-
-def get_authorization() -> str | None:
-    return authorization_var.get()
-
-
-def get_user_id() -> int | None:
-    return user_id_var.get()
 
 
 def get_action_id() -> str | None:
@@ -79,8 +65,6 @@ def action(action: str) -> Callable[..., Any]:
 
             authorization = request.headers.get("Authorization")
 
-            authorization_var.set(authorization)
-
             if not authorization:
                 raise HTTPException(
                     status_code=401,
@@ -111,7 +95,6 @@ def action(action: str) -> Callable[..., Any]:
             if code != 200 or not user_id or not action_id:
                 raise HTTPException(status_code=403, detail="Unauthorized")
 
-            user_id_var.set(user_id)
             action_id_var.set(action_id)
 
             try:
