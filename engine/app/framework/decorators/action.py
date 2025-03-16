@@ -11,7 +11,6 @@ from app.config import (
     INTER_COMMUNICATION_TOKEN,
 )
 from app.framework.logging import logger
-
 from app.framework.middlewares.auth_cookie_to_bearer import request_var
 
 authorization_var: ContextVar[str | None] = ContextVar(

@@ -1,11 +1,10 @@
+from contextvars import ContextVar
 from typing import Any, Callable
 
 from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.config import AUTH_COOKIE_NAME
-
-from contextvars import ContextVar
 
 request_var: ContextVar[Request | None] = ContextVar("request", default=None)
 
