@@ -59,24 +59,36 @@ class ActionService
      *
      * @return bool Indicates whether the rollback was successful.
      */
-    public function rollbackAction(int $user_id, string $action): bool
+    public function rollbackAction(string $action_id): bool
     {
         try {
-            return DB::transaction(function () use ($user_id, $action) {
-                $quota = Quota::where('user_id', $user_id)
-                    ->where('action', $action)
+            return DB::transaction(function () use ($action_id) {
+                $action = Action::where('action_id', $action_id)
                     ->lockForUpdate()
                     ->first();
 
-                if (! $quota || $quota->left >= $quota->quota) {
-                    return false;
+                if (! $action) {
+                    return true;
                 }
+
+                $quota = Quota::where('user_id', $action->user_id)
+                    ->where('action', $action->action)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $quota) {
+                    return true;
+                }
+
+                $action->delete();
 
                 if ($quota->failed < $quota->max_failed || $quota->max_failed === -1) {
                     $quota->increment('left');
                 }
 
                 $quota->increment('failed');
+
+                $quota->decrement('pending');
 
                 return true;
             });

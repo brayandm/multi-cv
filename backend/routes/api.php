@@ -38,6 +38,9 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'auth.inter.communication'])->group(function () {
         Route::post('/action/consume', 'App\Http\Controllers\ActionController@consumeAction');
+    });
+
+    Route::middleware(['auth.inter.communication'])->group(function () {
         Route::post('/action/rollback', 'App\Http\Controllers\ActionController@rollbackAction');
     });
 

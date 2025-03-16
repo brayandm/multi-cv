@@ -24,6 +24,15 @@ class ActionController extends Controller
         return $validator;
     }
 
+    public function validateActionId(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'action_id' => 'required|string',
+        ]);
+
+        return $validator;
+    }
+
     public function consumeAction(Request $request)
     {
         $validator = $this->validateAction($request);
@@ -34,19 +43,7 @@ class ActionController extends Controller
 
         $user = auth()->user();
 
-        if (! $user->id) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-
         $action = $validator->validated()['action'];
-
-        $result = $this->actionService->resetQuota($user->id, $action);
-
-        if (! $result) {
-            return response()->json([
-                'code' => 403,
-            ]);
-        }
 
         $result = $this->actionService->consumeAction($user->id, $action);
 
@@ -64,39 +61,24 @@ class ActionController extends Controller
 
     public function rollbackAction(Request $request)
     {
-        $validator = $this->validateAction($request);
+        $validator = $this->validateActionId($request);
 
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 400);
         }
 
-        $user = auth()->user();
+        $action_id = $validator->validated()['action_id'];
 
-        if (! $user->id) {
-            return response()->json(['error' => 'User not found'], 404);
-        }
-
-        $action = $validator->validated()['action'];
-
-        $result = $this->actionService->resetQuota($user->id, $action);
+        $result = $this->actionService->rollbackAction($action_id);
 
         if (! $result) {
             return response()->json([
-                'code' => 403,
-            ]);
-        }
-
-        $result = $this->actionService->rollbackAction($user->id, $action);
-
-        if (! $result) {
-            return response()->json([
-                'code' => 403,
+                'code' => 500,
             ]);
         }
 
         return response()->json([
             'code' => 200,
-            'user_id' => $user->id,
         ]);
     }
 }
