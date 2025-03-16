@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
                 'quota' => 10,
                 'max_left' => 50,
                 'max_failed' => 10,
+                'max_pending' => 3,
                 'frequency' => 'minutes',
                 'cumulative' => true,
             ]);
@@ -46,6 +47,7 @@ class DatabaseSeeder extends Seeder
                 'action' => 'generate_cv_inline',
                 'quota' => 100,
                 'max_failed' => 10,
+                'max_pending' => 3,
                 'frequency' => 'minutes',
                 'cumulative' => false,
             ]);
