@@ -14,7 +14,7 @@ class ActionService
     /**
      * Consumes an action from the user's quota.
      *
-     * @return bool Indicates whether the operation was successful.
+     * @return string|null Returns the action_id if the action was consumed successfully, null otherwise.
      */
     public function consumeAction(int $user_id, string $action): ?string
     {
@@ -87,6 +87,51 @@ class ActionService
         }
     }
 
+
+    /**
+     * Cleans up pending actions for a specific user and action that are older than 5 minutes.
+     *
+     * @return bool Returns true if the cleanup was successful, false otherwise.
+     */
+    public function cleanupUserPendingActions(int $user_id, string $action): bool
+    {
+        try {
+            return DB::transaction(function () use ($user_id, $action) {
+
+                $threshold = Carbon::now()->subMinutes(5);
+
+                $actions = Action::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->where('created_at', '<', $threshold)
+                    ->get();
+
+                if ($actions->isEmpty()) {
+                    return true;
+                }
+
+                $count = $actions->count();
+
+                Action::whereIn('id', $actions->pluck('id'))->delete();
+
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->lockForUpdate()
+                    ->first();
+
+                if ($quota) {
+                    $newPending = max(0, $quota->pending - $count);
+                    $quota->update(['pending' => $newPending]);
+                }
+
+                return true;
+            });
+        } catch (\Throwable $e) {
+            Log::error("Error cleaning up user pending actions: {$e->getMessage()}");
+            return false;
+        }
+    }
+
+
     /**
      * Resets the user's quota based on frequency.
      *
@@ -102,7 +147,7 @@ class ActionService
                     ->first();
 
                 if (! $quota) {
-                    return false; // No quota record found
+                    return false;
                 }
 
                 $lastReset = $quota->last_reset_at
