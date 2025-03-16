@@ -28,7 +28,7 @@ return new class extends Migration
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('last_reset_at')->nullable();
             $table->timestamps();
-            $table->index(['user_id', 'action']);
+            $table->unique(['user_id', 'action']);
         });
     }
 
