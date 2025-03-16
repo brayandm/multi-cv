@@ -33,7 +33,7 @@ class ActionService
                     return null;
                 }
 
-                $action = Action::create([
+                $actionRecord = Action::create([
                     'user_id' => $user_id,
                     'action' => $action,
                     'action_id' => Str::uuid(),
@@ -48,7 +48,7 @@ class ActionService
                     'last_used_at' => Carbon::now(),
                 ]);
 
-                return $action->action_id;
+                return $actionRecord->action_id;
             });
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -66,24 +66,27 @@ class ActionService
     {
         try {
             return DB::transaction(function () use ($action_id) {
-                $action = Action::where('action_id', $action_id)
+                $actionRecord = Action::where('action_id', $action_id)
                     ->lockForUpdate()
                     ->first();
 
-                if (! $action) {
+                if (! $actionRecord) {
                     return true;
                 }
 
-                $quota = Quota::where('user_id', $action->user_id)
-                    ->where('action', $action->action)
+                $action = $actionRecord->action;
+                $user_id = $actionRecord->user_id;
+
+                $actionRecord->delete();
+
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
                     ->lockForUpdate()
                     ->first();
 
                 if (! $quota) {
                     return true;
                 }
-
-                $action->delete();
 
                 $newLeft = $quota->left;
 
@@ -123,18 +126,18 @@ class ActionService
 
                 $threshold = Carbon::now()->subMinutes(5);
 
-                $actions = Action::where('user_id', $user_id)
+                $actionRecords = Action::where('user_id', $user_id)
                     ->where('action', $action)
                     ->where('created_at', '<', $threshold)
                     ->get();
 
-                if ($actions->isEmpty()) {
+                if ($actionRecords->isEmpty()) {
                     return true;
                 }
 
-                $count = $actions->count();
+                $count = $actionRecords->count();
 
-                Action::whereIn('id', $actions->pluck('id'))->delete();
+                Action::whereIn('id', $actionRecords->pluck('id'))->delete();
 
                 $quota = Quota::where('user_id', $user_id)
                     ->where('action', $action)
