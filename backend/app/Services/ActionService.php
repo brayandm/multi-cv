@@ -25,7 +25,11 @@ class ActionService
                     ->lockForUpdate()
                     ->first();
 
-                if ($this->shouldResetQuota($quota->frequency, $quota->last_reset_at, Carbon::now())) {
+                $lastReset = $quota->last_reset_at
+                    ? Carbon::parse($quota->last_reset_at)
+                    : Carbon::parse($quota->created_at);
+
+                if ($this->shouldResetQuota($quota->frequency, $lastReset, Carbon::now())) {
                     $result = $this->resetQuota($user_id, $action);
 
                     if (! $result) {
