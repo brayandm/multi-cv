@@ -83,11 +83,14 @@ def action(action: str) -> Callable[..., Any]:
                     detail="Authorization is required.",
                 )
 
+            client_ip = request.client.host if request.client else "unknown"
+
             response = requests.post(
                 f"{BACKEND_API_URL}/action/consume",
                 json={"action": action},
                 headers={
                     "X-API-Key": INTER_COMMUNICATION_TOKEN,
+                    "X-Client-IP": client_ip,
                     "Authorization": authorization,
                 },
             )
