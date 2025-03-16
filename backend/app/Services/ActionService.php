@@ -2,10 +2,12 @@
 
 namespace App\Services;
 
+use App\Models\Action;
 use App\Models\Quota;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class ActionService
 {
@@ -14,7 +16,7 @@ class ActionService
      *
      * @return bool Indicates whether the operation was successful.
      */
-    public function consumeAction(int $user_id, string $action): bool
+    public function consumeAction(int $user_id, string $action): ?string
     {
         try {
             return DB::transaction(function () use ($user_id, $action) {
@@ -24,18 +26,27 @@ class ActionService
                     ->first();
 
                 if (! $quota || $quota->left <= 0) {
-                    return false;
+                    return null;
                 }
 
-                $quota->decrement('left');
-                $quota->update(['last_used_at' => now()]);
+                $action = Action::create([
+                    'user_id' => $user_id,
+                    'action' => $action,
+                    'action_id' => Str::uuid(),
+                ]);
 
-                return true;
+                $quota->decrement('left', 1, [
+                    'last_used_at' => now(),
+                ]);
+
+                $quota->increment('pending');
+
+                return $action->action_id;
             });
         } catch (\Exception $e) {
             Log::error($e->getMessage());
 
-            return false;
+            return null;
         }
     }
 
