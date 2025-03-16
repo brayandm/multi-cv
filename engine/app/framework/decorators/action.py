@@ -1,4 +1,3 @@
-import urllib.parse
 from contextvars import ContextVar
 from functools import wraps
 from typing import Any, Callable
@@ -75,10 +74,6 @@ def action(action: str) -> Callable[..., Any]:
                 )
 
             authorization = request.headers.get("Authorization")
-
-            authorization = (
-                urllib.parse.unquote(authorization) if authorization else None
-            )
 
             authorization_var.set(authorization)
 
