@@ -87,7 +87,6 @@ class ActionService
         }
     }
 
-
     /**
      * Cleans up pending actions for a specific user and action that are older than 5 minutes.
      *
@@ -127,10 +126,10 @@ class ActionService
             });
         } catch (\Throwable $e) {
             Log::error("Error cleaning up user pending actions: {$e->getMessage()}");
+
             return false;
         }
     }
-
 
     /**
      * Resets the user's quota based on frequency.
