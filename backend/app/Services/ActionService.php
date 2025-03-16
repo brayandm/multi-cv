@@ -202,6 +202,7 @@ class ActionService
 
                     $quota->update([
                         'left' => $newLeft,
+                        'failed' => 0,
                         'last_reset_at' => $now,
                     ]);
                 }
