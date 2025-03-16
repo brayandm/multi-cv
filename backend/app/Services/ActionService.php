@@ -30,7 +30,21 @@ class ActionService
                 }
 
                 if ($quota->max_pending != -1 && $quota->pending >= $quota->max_pending) {
-                    return null;
+
+                    $result = $this->cleanupUserPendingActions($user_id, $action);
+
+                    if (! $result) {
+                        return null;
+                    }
+
+                    $quota = Quota::where('user_id', $user_id)
+                        ->where('action', $action)
+                        ->lockForUpdate()
+                        ->first();
+
+                    if (!$quota || $quota->pending >= $quota->max_pending) {
+                        return null;
+                    }
                 }
 
                 $actionRecord = Action::create([
@@ -50,7 +64,7 @@ class ActionService
 
                 return $actionRecord->action_id;
             });
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error($e->getMessage());
 
             return null;
@@ -107,7 +121,7 @@ class ActionService
 
                 return true;
             });
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error($e->getMessage());
 
             return false;
@@ -209,7 +223,7 @@ class ActionService
 
                 return true;
             });
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error($e->getMessage());
 
             return false;
