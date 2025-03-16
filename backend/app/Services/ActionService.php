@@ -39,11 +39,14 @@ class ActionService
                     'action_id' => Str::uuid(),
                 ]);
 
-                $quota->decrement('left', 1, [
-                    'last_used_at' => now(),
-                ]);
+                $newLeft = $quota->left - 1;
+                $newPending = $quota->pending + 1;
 
-                $quota->increment('pending');
+                $quota->update([
+                    'left' => $newLeft,
+                    'pending' => $newPending,
+                    'last_used_at' => Carbon::now(),
+                ]);
 
                 return $action->action_id;
             });
@@ -82,13 +85,22 @@ class ActionService
 
                 $action->delete();
 
+                $newLeft = $quota->left;
+
                 if ($quota->failed < $quota->max_failed || $quota->max_failed === -1) {
-                    $quota->increment('left');
+                    $newLeft = $quota->left + 1;
                 }
 
-                $quota->increment('failed');
+                $newPending = max(0, $quota->pending - 1);
+                $newFailed = $quota->failed + 1;
+                $newTotalFailed = $quota->total_failed + 1;
 
-                $quota->decrement('pending');
+                $quota->update([
+                    'left' => $newLeft,
+                    'pending' => $newPending,
+                    'failed' => $newFailed,
+                    'total_failed' => $newTotalFailed,
+                ]);
 
                 return true;
             });
@@ -135,11 +147,13 @@ class ActionService
 
                     $leftToIncrement = min($newFailed, $quota->max_failed) - $quota->failed;
                     $newLeft = $quota->left + $leftToIncrement;
+                    $newTotalFailed = $quota->total_failed + $count;
 
                     $quota->update([
+                        'left' => $newLeft,
                         'pending' => $newPending,
                         'failed' => $newFailed,
-                        'left' => $newLeft
+                        'total_failed' => $newTotalFailed,
                     ]);
                 }
 
