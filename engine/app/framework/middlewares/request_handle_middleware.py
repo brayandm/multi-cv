@@ -3,7 +3,7 @@ from contextvars import ContextVar
 from typing import Any, Callable
 
 from fastapi import Request
-from starlette.datastructures import Headers
+from starlette.datastructures import MutableHeaders
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.config import AUTH_COOKIE_NAME
@@ -17,17 +17,18 @@ class RequestHandleMiddleware(BaseHTTPMiddleware):
     ) -> Any:
         request_var.set(request)
 
-        auth_token = request.cookies.get(AUTH_COOKIE_NAME)
+        auth_token = request.headers.get("Authorization")
 
         if not auth_token:
-            auth_token = request.headers.get("Authorization")
+            auth_token = request.cookies.get(AUTH_COOKIE_NAME)
 
         if auth_token:
             auth_token = urllib.parse.unquote(auth_token)
 
-            headers = dict(request.headers)
-            headers["Authorization"] = f"Bearer {auth_token}"
-            request._headers = Headers(headers)
+            new_header = MutableHeaders(request._headers)
+            new_header["Authorization"] = auth_token
+            request._headers = new_header
+            request.scope.update(headers=request.headers.raw)
 
         response = await call_next(request)
         return response
