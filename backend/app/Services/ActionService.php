@@ -29,6 +29,10 @@ class ActionService
                     return null;
                 }
 
+                if ($quota->max_pending != -1 && $quota->pending >= $quota->max_pending) {
+                    return null;
+                }
+
                 $action = Action::create([
                     'user_id' => $user_id,
                     'action' => $action,
