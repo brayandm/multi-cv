@@ -5,11 +5,17 @@ from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.config import AUTH_COOKIE_NAME
 
+from contextvars import ContextVar
+
+request_var: ContextVar[Request | None] = ContextVar("request", default=None)
+
 
 class AuthCookieToBearerMiddleware(BaseHTTPMiddleware):
     async def dispatch(
         self, request: Request, call_next: Callable[..., Any]
     ) -> Any:
+        request_var.set(request)
+
         auth_token = request.cookies.get(AUTH_COOKIE_NAME)
 
         if auth_token:

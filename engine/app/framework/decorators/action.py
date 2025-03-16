@@ -4,13 +4,15 @@ from functools import wraps
 from typing import Any, Callable
 
 import requests  # type: ignore
-from fastapi import HTTPException, Request
+from fastapi import HTTPException
 
 from app.config import (
     BACKEND_API_URL,
     INTER_COMMUNICATION_TOKEN,
 )
 from app.framework.logging import logger
+
+from app.framework.middlewares.auth_cookie_to_bearer import request_var
 
 authorization_var: ContextVar[str | None] = ContextVar(
     "authorization", default=None
@@ -62,7 +64,14 @@ def rollback(action: str, authorization: str) -> None:
 def action(action: str) -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)
-        async def wrapper(request: Request, *args: Any, **kwargs: Any) -> Any:
+        async def wrapper(*args: Any, **kwargs: Any) -> Any:
+
+            request = request_var.get()
+
+            if request is None:
+                raise HTTPException(
+                    status_code=500, detail="Request context is missing."
+                )
 
             authorization = request.headers.get("Authorization")
 
@@ -101,7 +110,7 @@ def action(action: str) -> Callable[..., Any]:
             user_id_var.set(user_id)
 
             try:
-                return await func(request, *args, **kwargs)
+                return await func(*args, **kwargs)
 
             except Exception as e:
                 logger.error(e)
