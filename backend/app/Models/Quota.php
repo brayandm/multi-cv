@@ -21,7 +21,8 @@ class Quota extends Model
         'max_pending',
         'failed',
         'max_failed',
-        'succeeded',
+        'total_failed',
+        'total_succeeded',
         'last_used_at',
         'last_reset_at',
     ];
