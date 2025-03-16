@@ -9,7 +9,7 @@ from app.config import AUTH_COOKIE_NAME
 request_var: ContextVar[Request | None] = ContextVar("request", default=None)
 
 
-class AuthCookieToBearerMiddleware(BaseHTTPMiddleware):
+class RequestHandleMiddleware(BaseHTTPMiddleware):
     async def dispatch(
         self, request: Request, call_next: Callable[..., Any]
     ) -> Any:

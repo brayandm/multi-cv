@@ -1,6 +1,6 @@
 from typing import Dict
 
-from fastapi import APIRouter, FastAPI, Request
+from fastapi import APIRouter, FastAPI
 from fastapi.responses import Response
 
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
@@ -14,12 +14,12 @@ from app.facades.document_generator_facade import DocumentGeneratorFacade
 from app.framework.decorators import action, validate_api_token
 from app.framework.logging import logger
 from app.framework.middlewares import (
-    AuthCookieToBearerMiddleware,
+    RequestHandleMiddleware,
 )
 from app.worker.queue_manager import QueueManager
 
 app = FastAPI()
-app.add_middleware(AuthCookieToBearerMiddleware)
+app.add_middleware(RequestHandleMiddleware)
 
 queue_manager = QueueManager(default_queue="openai_queue")
 
@@ -33,7 +33,7 @@ async def ping() -> Dict[str, str]:
 
 @router.post("/message")
 @action("message")
-async def message(request: Request, message: Message) -> Dict[str, str]:
+async def message(message: Message) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(BasicPipeline, "message", message)
 
@@ -44,7 +44,7 @@ async def message(request: Request, message: Message) -> Dict[str, str]:
 
 @router.post("/summary")
 @action("summary")
-async def summary(request: Request, profile: Profile) -> Dict[str, str]:
+async def summary(profile: Profile) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(SummaryPipeline, "summary", profile)
 
@@ -55,9 +55,7 @@ async def summary(request: Request, profile: Profile) -> Dict[str, str]:
 
 @router.post("/improve/about")
 @action("improve_about")
-async def improve_about(
-    request: Request, profile: Profile, message: Message
-) -> Dict[str, str]:
+async def improve_about(profile: Profile, message: Message) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(
         ImproveAboutPipeline, "improve_about", profile, message
@@ -70,9 +68,7 @@ async def improve_about(
 
 @router.post("/generate/cv")
 @action("generate_cv")
-async def generate_cv(
-    request: Request, cv: Cv, cv_template: CvTemplate
-) -> Dict[str, str]:
+async def generate_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(
         GenerateCVPipeline, "generate_cv", cv, cv_template
@@ -85,9 +81,7 @@ async def generate_cv(
 
 @router.post("/generate/cv/inline")
 @action("generate_cv_inline")
-async def generate_cv_inline(
-    request: Request, cv: Cv, cv_template: CvTemplate
-) -> Response:
+async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
     document_generator = DocumentGeneratorFacade.get_generator()
 
@@ -100,7 +94,7 @@ async def generate_cv_inline(
 
 @router.post("/webhook")
 @validate_api_token()
-async def webhook(request: Request, payload: WebhookPayload) -> Dict[str, str]:
+async def webhook(payload: WebhookPayload) -> Dict[str, str]:
     user_id = payload.user_id
     action = payload.action
     result = payload.result
