@@ -17,6 +17,7 @@ pdflatex = "*"
 fs-s3fs = "*"
 fs = "*"
 pydantic = {extras = ["email"], version = "*"}
+motor = "*"
 
 [dev-packages]
 black = "*"

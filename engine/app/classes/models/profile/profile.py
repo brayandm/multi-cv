@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -17,4 +17,4 @@ class Profile(BaseModel):
     education: List[Education]
     projects: List[Project]
     skills: List[Skills]
-    general_notes: str
+    general_notes: Optional[str] = None

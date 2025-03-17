@@ -17,6 +17,14 @@ REDIS = {
     "db": os.environ.get("REDIS_DB_NUMBER"),
 }
 
+MONGO_DB = {
+    "username": os.environ.get("MONGO_DB_USERNAME", ""),
+    "password": os.environ.get("MONGO_DB_PASSWORD", ""),
+    "host": os.environ.get("MONGO_DB_HOST", ""),
+    "port": os.environ.get("MONGO_DB_PORT", ""),
+    "name": os.environ.get("MONGO_DB_NAME", ""),
+}
+
 CELERY_BROKER_URL = (
     "amqp://{username}:{password}@{host}:{port}/{vhost}".format(**AMQP),
 )

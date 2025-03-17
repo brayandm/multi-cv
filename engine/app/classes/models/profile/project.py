@@ -1,3 +1,5 @@
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -7,4 +9,4 @@ class Project(BaseModel):
     start_date: str
     description: str
     link: str
-    notes: str
+    notes: Optional[str] = None

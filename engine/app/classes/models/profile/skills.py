@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -11,4 +11,4 @@ class SkillNote(BaseModel):
 
 class Skills(BaseModel):
     list: list[str]
-    notes: List[SkillNote]
+    notes: Optional[List[SkillNote]] = None

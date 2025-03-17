@@ -1,6 +1,6 @@
 from typing import Dict
 
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, Depends, FastAPI
 from fastapi.responses import Response
 
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
@@ -10,16 +10,24 @@ from app.classes.pipelines import (
     ImproveAboutPipeline,
     SummaryPipeline,
 )
+from app.database.mongodb import lifespan
 from app.facades.document_generator_facade import DocumentGeneratorFacade
-from app.framework.decorators import consume_action, validate_api_token
+from app.framework.decorators import (
+    authenticate,
+    consume_action,
+    validate_api_token,
+)
 from app.framework.decorators.action import commit_action
+from app.framework.decorators.authenticate import get_user_id
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
+from app.services.profile_service import ProfileService, get_profile_service
 from app.worker.queue_manager import QueueManager
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
+
 app.add_middleware(RequestHandleMiddleware)
 
 queue_manager = QueueManager(default_queue="openai_queue")
@@ -93,6 +101,20 @@ async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
     commit_action()
 
     return Response(content=pdf_bytes, media_type="application/pdf")
+
+
+@router.post("/profile/sync")
+@authenticate()
+async def store_profile(
+    profile: Profile,
+    profile_service: ProfileService = Depends(get_profile_service),
+) -> Dict[str, str]:
+
+    user_id = get_user_id()
+
+    await profile_service.sync_profile(user_id, profile)
+
+    return {"message": "Profile synced successfully."}
 
 
 @router.post("/webhook")
