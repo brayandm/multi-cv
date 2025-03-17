@@ -2,6 +2,7 @@
 
 import { fetcherApi, generateCvInlineEngine } from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
+import { saveAs } from "file-saver";
 
 import useSWR from "swr";
 // import CvList from "../../shared/components/CvList";
@@ -51,16 +52,25 @@ export default function HomeComponent() {
   //   },
   // ];
 
+  const handleDownload = async () => {
+    try {
+      const response = await generateCvInlineEngine();
+
+      const blob = new Blob([response.data], {
+        type: "application/pdf",
+      });
+
+      saveAs(blob, "cv.pdf");
+    } catch (error) {
+      console.error("Error while generating CV", error);
+    }
+  };
+
   return (
     <main className="">
       <div className="flex justify-center">
         {/* <CvList cvs={cvs}></CvList> */}
-        <Button
-          color="primary"
-          onPress={() => {
-            generateCvInlineEngine();
-          }}
-        >
+        <Button color="primary" onPress={handleDownload}>
           Generate CV
         </Button>
       </div>
