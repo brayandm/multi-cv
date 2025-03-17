@@ -44,7 +44,7 @@
       "skill": "Навык",
       "role": "Роль",
       "phone_number": "Телефон",
-      "country_code": "Код страны",
+      "phone_country_code": "Код страны",
       "description": "Описание компании",
       "location": "Местоположение",
       "start_date": "Дата начала",

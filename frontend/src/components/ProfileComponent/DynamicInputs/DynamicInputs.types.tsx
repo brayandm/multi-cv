@@ -16,7 +16,7 @@ export interface IDynamicInput<T> {
     | "checkbox"
     | "is_present"
     | "phone_number"
-    | "country_code"
+    | "phone_country_code"
     | "button";
   value?: unknown;
   selected?: boolean;

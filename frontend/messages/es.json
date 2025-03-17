@@ -44,7 +44,7 @@
       "skill": "Habilidad",
       "role": "Rol",
       "phone_number": "Número de teléfono",
-      "country_code": "Código país",
+      "phone_country_code": "Código país",
       "description": "Descripción empresa",
       "location": "Ubicación",
       "start_date": "Fecha inicio",

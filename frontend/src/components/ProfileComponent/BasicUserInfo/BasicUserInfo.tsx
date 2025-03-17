@@ -43,11 +43,11 @@ const BasicUserInfo: React.FC = () => {
     },
     [
       {
-        label: t("common.form.country_code"),
-        type: "country_code",
-        value: profile.basic_info.country_code,
+        label: t("common.form.phone_country_code"),
+        type: "phone_country_code",
+        value: profile.basic_info.phone_country_code,
         onValueChange: (value: string) => {
-          onBasicUserInfoChange("country_code", value);
+          onBasicUserInfoChange("phone_country_code", value);
         },
       },
       {

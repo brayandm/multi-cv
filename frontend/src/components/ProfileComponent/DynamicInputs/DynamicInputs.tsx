@@ -27,7 +27,7 @@ const DynamicInputs = <T,>({
       if (Array.isArray(input)) {
         return getSelectedCountry(input); // <- There is a problem here
       } else {
-        return input.type === "country_code" && input.value !== null;
+        return input.type === "phone_country_code" && input.value !== null;
       }
     }) as IDynamicInput<T>;
   };
@@ -98,7 +98,7 @@ const DynamicInputs = <T,>({
             </Button>
           );
         }
-        if (input.type === "country_code") {
+        if (input.type === "phone_country_code") {
           return (
             <SelectCountry
               key={index}

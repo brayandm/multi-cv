@@ -13,7 +13,7 @@ export type IBasicInfo = {
   full_name: string;
   email: string;
   about: string;
-  country_code: string;
+  phone_country_code: string;
   phone_number: string;
   location: string;
 };
@@ -77,7 +77,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       full_name: "",
       email: "",
       about: "",
-      country_code: "",
+      phone_country_code: "",
       phone_number: "",
       location: "",
     },

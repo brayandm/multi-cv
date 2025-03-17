@@ -44,7 +44,7 @@
       "skill": "Skill",
       "role": "Role",
       "phone_number": "Phone number",
-      "country_code": "Country code",
+      "phone_country_code": "Country code",
       "description": "Company description",
       "location": "Location",
       "start_date": "Start date",
