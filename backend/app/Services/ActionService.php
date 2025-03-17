@@ -2,19 +2,21 @@
 
 namespace App\Services;
 
+use App\Models\Action;
 use App\Models\Quota;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class ActionService
 {
     /**
      * Consumes an action from the user's quota.
      *
-     * @return bool Indicates whether the operation was successful.
+     * @return string|null Returns the action_id if the action was consumed successfully, null otherwise.
      */
-    public function consumeAction(int $user_id, string $action): bool
+    public function consumeAction(int $user_id, string $action): ?string
     {
         try {
             return DB::transaction(function () use ($user_id, $action) {
@@ -23,19 +25,66 @@ class ActionService
                     ->lockForUpdate()
                     ->first();
 
-                if (! $quota || $quota->left <= 0) {
-                    return false;
+                $lastReset = $quota->last_reset_at
+                    ? Carbon::parse($quota->last_reset_at)
+                    : Carbon::parse($quota->created_at);
+
+                if ($this->shouldResetQuota($quota->frequency, $lastReset, Carbon::now())) {
+                    $result = $this->resetQuota($user_id, $action);
+
+                    if (! $result) {
+                        return null;
+                    }
+
+                    $quota = Quota::where('user_id', $user_id)
+                        ->where('action', $action)
+                        ->lockForUpdate()
+                        ->first();
                 }
 
-                $quota->decrement('left');
-                $quota->update(['last_used_at' => now()]);
+                if (! $quota || $quota->left <= 0) {
+                    return null;
+                }
 
-                return true;
+                if ($quota->max_pending != -1 && $quota->pending >= $quota->max_pending) {
+
+                    $result = $this->cleanupUserPendingActions($user_id, $action);
+
+                    if (! $result) {
+                        return null;
+                    }
+
+                    $quota = Quota::where('user_id', $user_id)
+                        ->where('action', $action)
+                        ->lockForUpdate()
+                        ->first();
+
+                    if (! $quota || $quota->pending >= $quota->max_pending) {
+                        return null;
+                    }
+                }
+
+                $actionRecord = Action::create([
+                    'user_id' => $user_id,
+                    'action' => $action,
+                    'action_id' => Str::uuid(),
+                ]);
+
+                $newLeft = $quota->left - 1;
+                $newPending = $quota->pending + 1;
+
+                $quota->update([
+                    'left' => $newLeft,
+                    'pending' => $newPending,
+                    'last_used_at' => Carbon::now(),
+                ]);
+
+                return $actionRecord->action_id;
             });
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error($e->getMessage());
 
-            return false;
+            return null;
         }
     }
 
@@ -44,29 +93,156 @@ class ActionService
      *
      * @return bool Indicates whether the rollback was successful.
      */
-    public function rollbackAction(int $user_id, string $action): bool
+    public function rollbackAction(string $action_id): bool
     {
         try {
-            return DB::transaction(function () use ($user_id, $action) {
+            return DB::transaction(function () use ($action_id) {
+                $actionRecord = Action::where('action_id', $action_id)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $actionRecord) {
+                    return true;
+                }
+
+                $action = $actionRecord->action;
+                $user_id = $actionRecord->user_id;
+
+                $actionRecord->delete();
+
                 $quota = Quota::where('user_id', $user_id)
                     ->where('action', $action)
                     ->lockForUpdate()
                     ->first();
 
-                if (! $quota || $quota->left >= $quota->quota) {
-                    return false;
+                if (! $quota) {
+                    return true;
                 }
+
+                $newLeft = $quota->left;
 
                 if ($quota->failed < $quota->max_failed || $quota->max_failed === -1) {
-                    $quota->increment('left');
+                    $newLeft = $quota->left + 1;
                 }
 
-                $quota->increment('failed');
+                $newPending = max(0, $quota->pending - 1);
+                $newFailed = $quota->failed + 1;
+                $newTotalFailed = $quota->total_failed + 1;
+
+                $quota->update([
+                    'left' => $newLeft,
+                    'pending' => $newPending,
+                    'failed' => $newFailed,
+                    'total_failed' => $newTotalFailed,
+                ]);
 
                 return true;
             });
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error($e->getMessage());
+
+            return false;
+        }
+    }
+
+    /**
+     * Commits the consumption of an action from the user's quota.
+     *
+     * @return bool Indicates whether the commit was successful.
+     */
+    public function commitAction(string $action_id): bool
+    {
+        try {
+            return DB::transaction(function () use ($action_id) {
+                $actionRecord = Action::where('action_id', $action_id)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $actionRecord) {
+                    return false;
+                }
+
+                $action = $actionRecord->action;
+                $user_id = $actionRecord->user_id;
+
+                $actionRecord->delete();
+
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $quota) {
+                    return false;
+                }
+
+                $newPending = max(0, $quota->pending - 1);
+                $newTotalSucceeded = $quota->total_succeeded + 1;
+
+                $quota->update([
+                    'pending' => $newPending,
+                    'total_succeeded' => $newTotalSucceeded,
+                ]);
+
+                return true;
+            });
+        } catch (\Throwable $e) {
+            Log::error($e->getMessage());
+
+            return false;
+        }
+    }
+
+    /**
+     * Cleans up pending actions for a specific user and action that are older than 5 minutes.
+     *
+     * @return bool Returns true if the cleanup was successful, false otherwise.
+     */
+    public function cleanupUserPendingActions(int $user_id, string $action): bool
+    {
+        try {
+            return DB::transaction(function () use ($user_id, $action) {
+
+                $threshold = Carbon::now()->subMinutes(5);
+
+                $actionRecords = Action::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->where('created_at', '<', $threshold)
+                    ->get();
+
+                if ($actionRecords->isEmpty()) {
+                    return true;
+                }
+
+                $count = $actionRecords->count();
+
+                Action::whereIn('id', $actionRecords->pluck('id'))->delete();
+
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->lockForUpdate()
+                    ->first();
+
+                if ($quota) {
+                    $newPending = max(0, $quota->pending - $count);
+                    $newFailed = $quota->failed + $count;
+
+                    $leftToIncrement = min($newFailed, $quota->max_failed) - $quota->failed;
+                    $newLeft = $quota->left + $leftToIncrement;
+                    $newTotalFailed = $quota->total_failed + $count;
+
+                    $quota->update([
+                        'left' => $newLeft,
+                        'pending' => $newPending,
+                        'failed' => $newFailed,
+                        'total_failed' => $newTotalFailed,
+                    ]);
+                }
+
+                return true;
+            });
+        } catch (\Throwable $e) {
+            Log::error("Error cleaning up user pending actions: {$e->getMessage()}");
 
             return false;
         }
@@ -87,7 +263,7 @@ class ActionService
                     ->first();
 
                 if (! $quota) {
-                    return false; // No quota record found
+                    return false;
                 }
 
                 $lastReset = $quota->last_reset_at
@@ -105,13 +281,14 @@ class ActionService
 
                     $quota->update([
                         'left' => $newLeft,
+                        'failed' => 0,
                         'last_reset_at' => $now,
                     ]);
                 }
 
                 return true;
             });
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             Log::error($e->getMessage());
 
             return false;
@@ -152,5 +329,22 @@ class ActionService
         $missedPeriods = $this->getMissedResetPeriods($frequency, $lastReset, $now);
 
         return $missedPeriods > 0;
+    }
+
+    public function getQuotaInfo(int $user_id, string $action): array
+    {
+        $quota = Quota::where('user_id', $user_id)
+            ->where('action', $action)
+            ->first();
+
+        if (! $quota) {
+            throw new \Exception('Quota not found');
+        }
+
+        return [
+            'quota' => $quota->quota,
+            'frequency' => $quota->frequency,
+            'left' => $quota->left,
+        ];
     }
 }

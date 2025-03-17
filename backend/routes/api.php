@@ -38,7 +38,15 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'auth.inter.communication'])->group(function () {
         Route::post('/action/consume', 'App\Http\Controllers\ActionController@consumeAction');
+    });
+
+    Route::middleware(['auth.inter.communication'])->group(function () {
         Route::post('/action/rollback', 'App\Http\Controllers\ActionController@rollbackAction');
+        Route::post('/action/commit', 'App\Http\Controllers\ActionController@commitAction');
+    });
+
+    Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
+        Route::post('/quota/info', 'App\Http\Controllers\ActionController@getQuotaInfo');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {

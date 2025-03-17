@@ -16,15 +16,15 @@ FRONTEND_FILES=()
 CHROME_EXTENSION_FILES=()
 ENGINE_FILES=()
 
-# Classify files by directory
+# Classify files by directory and extension
 for file in $STAGED_FILES; do
-    if [[ $file == backend/* ]]; then
+    if [[ $file == backend/*.php ]]; then
         BACKEND_FILES+=("${file#backend/}")
-    elif [[ $file == frontend/* ]]; then
+    elif [[ $file == frontend/* && ($file == *.js || $file == *.ts || $file == *.tsx) ]]; then
         FRONTEND_FILES+=("${file#frontend/}")
-    elif [[ $file == chrome-extension/* ]]; then
+    elif [[ $file == chrome-extension/* && ($file == *.js || $file == *.ts || $file == *.tsx) ]]; then
         CHROME_EXTENSION_FILES+=("${file#chrome-extension/}")
-    elif [[ $file == engine/* ]]; then
+    elif [[ $file == engine/*.py ]]; then
         ENGINE_FILES+=("${file#engine/}")
     fi
 done

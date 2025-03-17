@@ -6,7 +6,7 @@ from celery import Task  # type: ignore
 from celery.exceptions import TaskError  # type: ignore
 
 from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
-from app.framework.decorators.action import rollback
+from app.framework.decorators.action import rollback_action
 from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
@@ -20,14 +20,13 @@ def rollback_task(
     einfo: Any,
 ) -> None:
 
-    action = args[1]
-    authorization = args[2]
+    action_id = args[1]
 
-    if not action or not authorization:
-        logger.error("The action or authorization is missing")
+    if not action_id:
+        logger.error("Action ID is missing for rollback")
         return
 
-    rollback(action, authorization)
+    rollback_action(action_id)
 
 
 @celery.task(
@@ -40,8 +39,7 @@ def execute_pipeline_task(
     self: Task,
     pipeline_path: str,
     action: str,
-    authorization: str | None,
-    user_id: int | None,
+    action_id: str,
     inputs: Dict[str, Any],
 ) -> Any:
 
@@ -74,7 +72,7 @@ def execute_pipeline_task(
         requests.post(
             WEBHOOK_URL,
             json={
-                "user_id": user_id,
+                "action_id": action_id,
                 "action": action,
                 "result": format_result(result),
             },

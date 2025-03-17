@@ -1,3 +1,3 @@
-from .auth_cookie_to_bearer import AuthCookieToBearerMiddleware
+from .request_handle_middleware import RequestHandleMiddleware
 
-__all__ = ["AuthCookieToBearerMiddleware"]
+__all__ = ["RequestHandleMiddleware"]

@@ -12,6 +12,6 @@ class ImproveAboutPipeline(Pipeline):
 
         result = self.agent.run(profile, message)
 
-        profile.about = result
+        profile.basic_info.about = result
 
         return profile
