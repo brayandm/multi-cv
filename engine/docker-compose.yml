@@ -56,7 +56,8 @@ services:
         networks:
             - multi-cv-local
         healthcheck:
-            test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')"]
+            test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+            interval: 10s
             timeout: 5s
             retries: 3
 
