@@ -13,6 +13,7 @@ class Cv(BaseModel):
     email: Optional[str] = None
     phone: Optional[str] = None
     linkedin: Optional[str] = None
+    github: Optional[str] = None
     location: Optional[str] = None
     summary: Optional[str] = None
     experiences: Optional[list[CvExperience]] = None

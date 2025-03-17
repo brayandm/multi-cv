@@ -78,12 +78,12 @@
 \begin{center}
   \textbf{\Huge {{ cv.name }}} \\ \vspace{5pt}
   \small
-  {% set details = [] %}
-  {% if cv.phone %}{{ details.append(cv.phone) }}{% endif %}
-  {% if cv.location %}{{ details.append(cv.location) }}{% endif %}
-  {% if cv.email %}{{ details.append("\\href{mailto:" ~ cv.email ~ "}{\\underline{" ~ cv.email ~ "}}") }}{% endif %}
-  {% if cv.linkedin %}{{ details.append("\\href{https://" ~ cv.linkedin ~ "}{\\underline{" ~ cv.linkedin ~ "}}") }}{% endif %}
-  {{ details | join(" $|$ ") }}
+  {% set separator = " $|$ " %}
+  {% if cv.location %}{{ cv.location }}{% set sep = separator %}{% endif %}
+  {% if cv.phone %}{{ sep | default('') }}{{ cv.phone }}{% set sep = separator %}{% endif %}
+  {% if cv.email %}{{ sep | default('') }}\href{mailto:{{ cv.email }}}{\underline{ {{ cv.email }} }}{% set sep = separator %}{% endif %}
+  {% if cv.linkedin %}{{ sep | default('') }}\href{https://{{ cv.linkedin }}}{\underline{ {{ cv.linkedin }} }}{% set sep = separator %}{% endif %}
+  {% if cv.github %}{{ sep | default('') }}\href{https://{{ cv.github }}}{\underline{ {{ cv.github }} }}{% endif %}
 \end{center}
 
 % SUMMARY
