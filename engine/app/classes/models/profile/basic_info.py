@@ -1,4 +1,5 @@
 from pydantic import BaseModel, EmailStr
+from typing import Optional
 
 
 class BasicInfo(BaseModel):
@@ -8,4 +9,4 @@ class BasicInfo(BaseModel):
     country_code: str
     phone_number: str
     location: str
-    notes: str
+    notes: Optional[str] = None

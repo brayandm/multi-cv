@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class Experience(BaseModel):
@@ -9,4 +10,4 @@ class Experience(BaseModel):
     description: str
     role: str
     is_present: bool
-    notes: str
+    notes: Optional[str] = None
