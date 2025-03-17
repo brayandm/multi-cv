@@ -27,6 +27,8 @@ from app.framework.middlewares import (
 from app.services.profile_service import ProfileService, get_profile_service
 from app.worker.queue_manager import QueueManager
 
+from app.classes.pipelines.generate_cv_pipeline import GenerateCvPipeline
+
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
@@ -95,6 +97,25 @@ async def render_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
     return {
         "message": "Request received. Processing in background.",
     }
+
+
+@router.post("/generate/cv/inline")
+@consume_action("generate_cv_inline")
+async def generate_cv_inline(profile: Profile) -> Response:
+
+    cv_template = CvTemplate(id="default")
+
+    cv = GenerateCvPipeline().run(profile)
+
+    document_render = DocumentRenderFacade.get_render()
+
+    document_render.render_cv(cv, cv_template)
+
+    pdf_bytes = document_render.get_cv()
+
+    commit_action()
+
+    return Response(content=pdf_bytes, media_type="application/pdf")
 
 
 @router.post("/render/cv/inline")
