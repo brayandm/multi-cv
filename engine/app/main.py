@@ -12,6 +12,7 @@ from app.classes.pipelines import (
 )
 from app.facades.document_generator_facade import DocumentGeneratorFacade
 from app.framework.decorators import consume_action, validate_api_token
+from app.framework.decorators.action import commit_action
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
@@ -103,6 +104,8 @@ async def webhook(payload: WebhookPayload) -> Dict[str, str]:
         f"Received webhook with action: {action} with id: {action_id} "
         f"with result: {result}"
     )
+
+    commit_action()
 
     return {"message": "Webhook processed successfully."}
 

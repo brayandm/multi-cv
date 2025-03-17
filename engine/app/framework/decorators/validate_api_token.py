@@ -8,6 +8,8 @@ from app.config import (
 )
 from app.framework.middlewares.request_handle_middleware import request_var
 
+from app.framework.decorators.action import set_action_id
+
 
 def validate_api_token() -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
@@ -15,6 +17,15 @@ def validate_api_token() -> Callable[..., Any]:
         async def wrapper(*args: Any, **kwargs: Any) -> Any:
 
             request = request_var.get()
+
+            action_id = kwargs.get("payload", {}).action_id
+
+            if not action_id:
+                raise HTTPException(
+                    status_code=400, detail="Action ID is missing."
+                )
+
+            set_action_id(action_id)
 
             if request is None:
                 raise HTTPException(
