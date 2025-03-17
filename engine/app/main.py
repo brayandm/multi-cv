@@ -13,9 +13,9 @@ from app.classes.pipelines import (
 from app.database.mongodb import lifespan
 from app.facades.document_generator_facade import DocumentGeneratorFacade
 from app.framework.decorators import (
+    authenticate,
     consume_action,
     validate_api_token,
-    authenticate,
 )
 from app.framework.decorators.action import commit_action
 from app.framework.decorators.authenticate import get_user_id
