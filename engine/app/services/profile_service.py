@@ -1,8 +1,10 @@
+from typing import Any
+
 from fastapi import Depends
 from pymongo.database import Database
-from typing import Any
-from app.main import get_database
+
 from app.classes.models import Profile
+from app.main import get_database
 
 
 class ProfileService:

@@ -1,7 +1,10 @@
-from typing import Dict, Any, AsyncGenerator
+from contextlib import asynccontextmanager
+from typing import Any, AsyncGenerator, Dict
 
-from fastapi import APIRouter, FastAPI, Depends
+from fastapi import APIRouter, Depends, FastAPI
 from fastapi.responses import Response
+from pymongo import MongoClient
+from pymongo.database import Database
 
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
 from app.classes.pipelines import (
@@ -10,6 +13,7 @@ from app.classes.pipelines import (
     ImproveAboutPipeline,
     SummaryPipeline,
 )
+from app.config import MONGO_DB
 from app.facades.document_generator_facade import DocumentGeneratorFacade
 from app.framework.decorators import consume_action, validate_api_token
 from app.framework.decorators.action import commit_action
@@ -17,17 +21,8 @@ from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
-from app.worker.queue_manager import QueueManager
-
-from contextlib import asynccontextmanager
-
-from pymongo.database import Database
-
-from app.config import MONGO_DB
-
-from pymongo import MongoClient
-
 from app.services.profile_service import ProfileService
+from app.worker.queue_manager import QueueManager
 
 
 @asynccontextmanager
