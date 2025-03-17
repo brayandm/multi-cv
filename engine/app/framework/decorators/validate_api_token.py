@@ -6,9 +6,8 @@ from fastapi import HTTPException
 from app.config import (
     INTER_COMMUNICATION_TOKEN,
 )
-from app.framework.middlewares.request_handle_middleware import request_var
-
 from app.framework.decorators.action import set_action_id
+from app.framework.middlewares.request_handle_middleware import request_var
 
 
 def validate_api_token() -> Callable[..., Any]:
