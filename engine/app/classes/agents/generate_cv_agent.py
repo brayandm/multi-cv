@@ -1,7 +1,9 @@
 import json
+
 from langchain.schema import HumanMessage
+
 from app.classes.base import Agent
-from app.classes.models import Profile, Cv
+from app.classes.models import Cv, Profile
 
 
 class GenerateCvAgent(Agent):

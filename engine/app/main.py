@@ -11,6 +11,7 @@ from app.classes.pipelines import (
     RenderCVPipeline,
     SummaryPipeline,
 )
+from app.classes.pipelines.generate_cv_pipeline import GenerateCvPipeline
 from app.database.mongodb import lifespan
 from app.facades.document_render_facade import DocumentRenderFacade
 from app.framework.decorators import (
@@ -26,8 +27,6 @@ from app.framework.middlewares import (
 )
 from app.services.profile_service import ProfileService, get_profile_service
 from app.worker.queue_manager import QueueManager
-
-from app.classes.pipelines.generate_cv_pipeline import GenerateCvPipeline
 
 app = FastAPI(lifespan=lifespan)
 
