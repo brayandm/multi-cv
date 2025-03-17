@@ -7,8 +7,8 @@ from fastapi.responses import Response
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
 from app.classes.pipelines import (
     BasicPipeline,
-    RenderCVPipeline,
     ImproveAboutPipeline,
+    RenderCVPipeline,
     SummaryPipeline,
 )
 from app.database.mongodb import lifespan

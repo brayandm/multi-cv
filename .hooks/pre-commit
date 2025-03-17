@@ -3,7 +3,7 @@
 set -e
 
 # Get staged files
-STAGED_FILES=$(git diff --name-only --cached)
+STAGED_FILES=$(git diff --name-only --cached --diff-filter=d)
 
 if [ -z "$STAGED_FILES" ]; then
     echo "No files to lint"
