@@ -11,6 +11,34 @@ from app.classes.base.document_render import (
 from app.classes.models import Cv, CvTemplate
 from app.facades.filesystem_facade import FilesystemFacade
 
+from typing import Any, Dict, List, Union
+
+import re
+
+
+def escape_latex(text: str) -> str:
+    if not isinstance(text, str):
+        return text
+
+    latex_escape_dict = {
+        "&": r"\&",
+        "%": r"\%",
+        "$": r"\$",
+        "#": r"\#",
+        "_": r"\_",
+        "{": r"\{",
+        "}": r"\}",
+        "~": r"\textasciitilde{}",
+        "^": r"\textasciicircum{}",
+        "\\": r"\textbackslash{}",
+    }
+
+    return re.sub(
+        r"([&%$#{}_~^\\])",
+        lambda match: latex_escape_dict[match.group()],
+        text,
+    )
+
 
 class LatexRender(DocumentRender):
 
@@ -26,13 +54,36 @@ class LatexRender(DocumentRender):
     def cleanup(self) -> None:
         shutil.rmtree(self.cv_folder, ignore_errors=True)
 
-    def render_cv(self, cv: Cv, cv_template: CvTemplate) -> None:
+    def sanitize_cv(self, cv: Cv) -> Dict[str, Any]:
+        sanitized_cv = cv.model_dump()
 
+        def sanitize_data(
+            data: Union[Dict[str, Any], List[Any], str, Any],
+        ) -> Union[Dict[str, Any], List[Any], str, Any]:
+
+            if isinstance(data, str):
+                return escape_latex(data)
+
+            elif isinstance(data, list):
+                return [sanitize_data(item) for item in data]
+
+            elif isinstance(data, dict):
+                return {
+                    key: sanitize_data(value) for key, value in data.items()
+                }
+
+            return data
+
+        return sanitize_data(sanitized_cv)  # type: ignore
+
+    def render_cv(self, cv: Cv, cv_template: CvTemplate) -> None:
         env = Environment(loader=FileSystemLoader(self.cv_template))
         template = env.get_template(f"{cv_template.id}.tex.jinja2")
 
+        sanitized_cv = self.sanitize_cv(cv)
+
         with open(self.tex_path, "w", encoding="utf-8") as f:
-            f.write(template.render(cv=cv.model_dump()))
+            f.write(template.render(cv=sanitized_cv))
 
         try:
             subprocess.run(
