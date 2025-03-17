@@ -1,6 +1,6 @@
-from typing import Dict
+from typing import Dict, Any, AsyncGenerator
 
-from fastapi import APIRouter, FastAPI
+from fastapi import APIRouter, FastAPI, Depends
 from fastapi.responses import Response
 
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
@@ -19,12 +19,47 @@ from app.framework.middlewares import (
 )
 from app.worker.queue_manager import QueueManager
 
-app = FastAPI()
+from contextlib import asynccontextmanager
+
+from pymongo.database import Database
+
+from app.config import MONGO_DB
+
+from pymongo import MongoClient
+
+from app.services.profile_service import ProfileService
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    uri = (
+        f"mongodb://{MONGO_DB['username']}:{MONGO_DB['password']}@"
+        f"{MONGO_DB['host']}:{MONGO_DB['port']}/"
+        f"{MONGO_DB['name']}?authSource=admin"
+    )
+    client: MongoClient[Any] = MongoClient(uri)
+    db = client[MONGO_DB["name"]]
+
+    app.state.db = db
+    print("✅ Connection opened")
+
+    yield
+
+    client.close()
+    print("✅ Connection closed")
+
+
+app = FastAPI(lifespan=lifespan)
+
 app.add_middleware(RequestHandleMiddleware)
 
 queue_manager = QueueManager(default_queue="openai_queue")
 
 router = APIRouter(prefix="/api/v1")
+
+
+def get_database() -> Database[Any]:
+    return app.state.db  # type: ignore
 
 
 @router.get("/ping")
@@ -93,6 +128,15 @@ async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
     commit_action()
 
     return Response(content=pdf_bytes, media_type="application/pdf")
+
+
+@router.post("/profile/sync")
+async def store_profile(
+    profile: Profile, profile_service: ProfileService = Depends()
+) -> Dict[str, str]:
+    profile_service.sync_profile(profile)
+
+    return {"message": "Profile synced successfully."}
 
 
 @router.post("/webhook")
