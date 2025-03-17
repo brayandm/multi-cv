@@ -11,8 +11,17 @@ class ProfileService:
     def __init__(self, db: AgnosticDatabase[Any]):
         self.db = db
 
-    async def sync_profile(self, profile: Profile) -> Profile:
-        await self.db.profiles.insert_one(profile.model_dump())
+    async def sync_profile(self, user_id: int, profile: Profile) -> Profile:
+        profile_data = profile.model_dump()
+
+        profile_data["user_id"] = user_id
+
+        await self.db.profiles.update_one(
+            {"user_id": user_id},
+            {"$set": profile_data},
+            upsert=True,
+        )
+
         return profile
 
 

@@ -12,8 +12,13 @@ from app.classes.pipelines import (
 )
 from app.database.mongodb import lifespan
 from app.facades.document_generator_facade import DocumentGeneratorFacade
-from app.framework.decorators import consume_action, validate_api_token
+from app.framework.decorators import (
+    consume_action,
+    validate_api_token,
+    authenticate,
+)
 from app.framework.decorators.action import commit_action
+from app.framework.decorators.authenticate import get_user_id
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
@@ -99,11 +104,15 @@ async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
 
 @router.post("/profile/sync")
+@authenticate()
 async def store_profile(
     profile: Profile,
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Dict[str, str]:
-    profile_service.sync_profile(profile)
+
+    user_id = get_user_id()
+
+    await profile_service.sync_profile(user_id, profile)
 
     return {"message": "Profile synced successfully."}
 

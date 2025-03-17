@@ -2,8 +2,8 @@ from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator
 
 from fastapi import FastAPI, Request
-from motor.motor_asyncio import AsyncIOMotorClient
 from motor.core import AgnosticDatabase
+from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.config import MONGO_DB
 

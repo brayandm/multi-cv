@@ -112,6 +112,16 @@ class AuthController extends Controller
         return CookiesHelper::addAuthCookie(response()->json(['message' => 'Login successful']), $token);
     }
 
+    public function getId(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json([
+            'code' => 200,
+            'user_id' => $user->id,
+        ]);
+    }
+
     public function updateLocale(Request $request)
     {
         $user = $request->user();
