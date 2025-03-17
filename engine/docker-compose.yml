@@ -52,7 +52,7 @@ services:
             - MONGO_INITDB_ROOT_USERNAME=${MONGO_DB_USERNAME}
             - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITMONGO_DB_PASSWORDDB_ROOT_PASSWORD}
         volumes:
-            - mongo_data:/data/db
+            - mongo-data:/data/db
         networks:
             - multi-cv-local
         healthcheck:
@@ -86,6 +86,8 @@ services:
             - "127.0.0.1:${FORWARD_REDIS_PORT:-6379}:6379"
         networks:
             - multi-cv-local
+        volumes:
+            - redis-data:/data
         healthcheck:
             test:
                 - CMD
@@ -107,6 +109,8 @@ services:
             test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
             timeout: 5s
             retries: 3
+        volumes:
+            - rabbitmq-data:/var/lib/rabbitmq
 
     flower:
         build:
@@ -134,3 +138,8 @@ networks:
     multi-cv-local:
         driver: bridge
         external: true
+
+volumes:
+    mongo-data:
+    redis-data:
+    rabbitmq-data:

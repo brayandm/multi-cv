@@ -105,6 +105,8 @@ services:
             test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
             timeout: 5s
             retries: 3
+        volumes:
+            - engine-rabbitmq:/var/lib/rabbitmq
 
     flower:
         image: multi-cv-flower
@@ -125,3 +127,4 @@ volumes:
     backend-storage:
     backend-app:
     engine-redis:
+    engine-rabbitmq:
