@@ -1,9 +1,11 @@
 from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator
-from pymongo import MongoClient
+
 from fastapi import FastAPI, Request
-from app.config import MONGO_DB
+from pymongo import MongoClient
 from pymongo.database import Database
+
+from app.config import MONGO_DB
 
 
 @asynccontextmanager

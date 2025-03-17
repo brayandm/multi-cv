@@ -3,7 +3,6 @@ from typing import Dict
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.responses import Response
 
-
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
 from app.classes.pipelines import (
     BasicPipeline,
@@ -11,6 +10,7 @@ from app.classes.pipelines import (
     ImproveAboutPipeline,
     SummaryPipeline,
 )
+from app.database.mongodb import lifespan
 from app.facades.document_generator_facade import DocumentGeneratorFacade
 from app.framework.decorators import consume_action, validate_api_token
 from app.framework.decorators.action import commit_action
@@ -18,13 +18,8 @@ from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
-from app.services.profile_service import ProfileService
+from app.services.profile_service import ProfileService, get_profile_service
 from app.worker.queue_manager import QueueManager
-
-from app.database.mongodb import lifespan
-
-from app.services.profile_service import get_profile_service
-
 
 app = FastAPI(lifespan=lifespan)
 
