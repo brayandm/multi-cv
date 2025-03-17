@@ -90,6 +90,8 @@ async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
     pdf_bytes = document_generator.get_cv()
 
+    commit_action()
+
     return Response(content=pdf_bytes, media_type="application/pdf")
 
 
