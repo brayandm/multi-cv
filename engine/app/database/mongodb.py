@@ -2,8 +2,8 @@ from contextlib import asynccontextmanager
 from typing import Any, AsyncGenerator
 
 from fastapi import FastAPI, Request
-from pymongo import MongoClient
-from pymongo.database import Database
+from motor.motor_asyncio import AsyncIOMotorClient
+from motor.core import AgnosticDatabase
 
 from app.config import MONGO_DB
 
@@ -15,17 +15,17 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
         f"{MONGO_DB['host']}:{MONGO_DB['port']}/"
         f"{MONGO_DB['name']}?authSource=admin"
     )
-    client: MongoClient[Any] = MongoClient(uri)
-    db = client[MONGO_DB["name"]]
+    client: AsyncIOMotorClient[Any] = AsyncIOMotorClient(uri)
+    db: AgnosticDatabase[Any] = client[MONGO_DB["name"]]
 
     app.state.db = db
-    print("✅ Connection opened")
+    print("✅ Connection to MongoDB established")
 
     yield
 
     client.close()
-    print("✅ Connection closed")
+    print("✅ MongoDB connection closed")
 
 
-def get_database(request: Request) -> Database[Any]:
+def get_database(request: Request) -> AgnosticDatabase[Any]:
     return request.app.state.db  # type: ignore

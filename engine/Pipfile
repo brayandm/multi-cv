@@ -17,7 +17,7 @@ pdflatex = "*"
 fs-s3fs = "*"
 fs = "*"
 pydantic = {extras = ["email"], version = "*"}
-pymongo = "*"
+motor = "*"
 
 [dev-packages]
 black = "*"
