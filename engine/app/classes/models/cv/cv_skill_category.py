@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 
 
-class CvSkillGroup(BaseModel):
+class CvSkillCategory(BaseModel):
+    category: str
     list: list[str]

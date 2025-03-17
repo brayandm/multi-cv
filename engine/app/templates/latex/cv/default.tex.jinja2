@@ -77,8 +77,13 @@
 % HEADER
 \begin{center}
   \textbf{\Huge {{ cv.name }}} \\ \vspace{5pt}
-  \small {{ cv.phone }} $|$
-  \href{mailto:{{ cv.email }}}{\underline{ {{ cv.email }} }}
+  \small
+  {% set details = [] %}
+  {% if cv.phone %}{{ details.append(cv.phone) }}{% endif %}
+  {% if cv.location %}{{ details.append(cv.location) }}{% endif %}
+  {% if cv.email %}{{ details.append("\\href{mailto:" ~ cv.email ~ "}{\\underline{" ~ cv.email ~ "}}") }}{% endif %}
+  {% if cv.linkedin %}{{ details.append("\\href{https://" ~ cv.linkedin ~ "}{\\underline{" ~ cv.linkedin ~ "}}") }}{% endif %}
+  {{ details | join(" $|$ ") }}
 \end{center}
 
 % SUMMARY
@@ -104,6 +109,19 @@
 {% endif %}
 {% endfor %}
 \resumeSubHeadingListEnd
+{% endif %}
+
+% TECHNICAL SKILLS
+{% if cv.skill_categories %}
+\section{Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+    \setstretch{1.2}
+    \small{\item{
+        {% for skill in cv.skill_categories %}
+            \textbf{ {{-skill.category-}} }:{ {{ skill.list | join(', ') }} } \\
+        {% endfor %}
+    }}
+\end{itemize}
 {% endif %}
 
 

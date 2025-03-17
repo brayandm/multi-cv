@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from .cv_education import CvEducation
 from .cv_experience import CvExperience
 from .cv_project import CvProject
-from .cv_skill_group import CvSkillGroup
+from .cv_skill_category import CvSkillCategory
 
 
 class Cv(BaseModel):
@@ -16,6 +16,6 @@ class Cv(BaseModel):
     location: Optional[str] = None
     summary: Optional[str] = None
     experiences: Optional[list[CvExperience]] = None
-    skills: Optional[list[CvSkillGroup]] = None
+    skill_categories: Optional[list[CvSkillCategory]] = None
     educations: Optional[list[CvEducation]] = None
     projects: Optional[list[CvProject]] = None

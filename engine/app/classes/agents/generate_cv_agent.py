@@ -1,7 +1,5 @@
 import json
-
 from langchain.schema import HumanMessage
-
 from app.classes.base import Agent
 from app.classes.models import Cv, Profile
 
@@ -26,21 +24,53 @@ class GenerateCvAgent(Agent):
               "end_date": "string",
               "description": ["string"]
             }
+          ],
+          "education": [
+            {
+              "institution": "string",
+              "career": "string",
+              "location": "string",
+              "start_date": "string",
+              "end_date": "string"
+            }
+          ],
+          "skill_categories": [
+            {
+              "category": "string",
+              "list": ["string"]
+            }
           ]
         }
         """
 
-        input = f"""
-        You are an AI assistant that generates JSON-formatted resumes. Your
-        task is to generate a CV strictly in the JSON format provided below.
+        input_prompt = f"""
+        You are an AI assistant that generates JSON-formatted resumes.
+        Your task is to generate a CV strictly in the JSON format provided
+        below.
 
-        Do not include any additional text, comments, or explanations before
+        **Requirements:**
+        - Ensure the CV is well-written, formatted correctly, and
+        professionally structured.
+        - Improve and enhance the provided information where possible (e.g.,
+        refining job descriptions, making summaries more compelling, ensuring
+        education details are clear).
+        - If any information is missing, intelligently infer reasonable values
+        based on the context.
+        - Do not include any additional text, comments, or explanations before
         or after the JSON output.
 
-        Here is the input data in JSON format:
+        **Skills Section Guidelines:**
+        - The skills should be categorized into meaningful groups. Each group
+        should have:
+        - A `category` name describing the type of skills (e.g., "Programming
+        Languages", "Frameworks & Libraries", "Databases", "DevOps Tools").
+        - A `list` of specific skills within that category.
+        - Avoid duplicate categories and ensure a logical grouping of skills.
+
+        **Input Profile (JSON format):**
         {profile_json}
 
-        The expected JSON output format is:
+        **Expected JSON Output Format:**
         {cv_structure}
 
         Respond with ONLY the JSON output, enclosed between the following
@@ -51,7 +81,7 @@ class GenerateCvAgent(Agent):
         END_JSON
         """
 
-        response = str(self.chat([HumanMessage(content=input)]).content)
+        response = str(self.chat([HumanMessage(content=input_prompt)]).content)
 
         try:
             json_start = response.find("BEGIN_JSON") + len("BEGIN_JSON")
