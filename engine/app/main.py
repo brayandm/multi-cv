@@ -7,12 +7,12 @@ from fastapi.responses import Response
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
 from app.classes.pipelines import (
     BasicPipeline,
-    GenerateCVPipeline,
+    RenderCVPipeline,
     ImproveAboutPipeline,
     SummaryPipeline,
 )
 from app.database.mongodb import lifespan
-from app.facades.document_generator_facade import DocumentGeneratorFacade
+from app.facades.document_render_facade import DocumentRenderFacade
 from app.framework.decorators import (
     authenticate,
     consume_action,
@@ -84,12 +84,12 @@ async def improve_about(profile: Profile, message: Message) -> Dict[str, str]:
     }
 
 
-@router.post("/generate/cv")
-@consume_action("generate_cv")
-async def generate_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
+@router.post("/render/cv")
+@consume_action("render_cv")
+async def render_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(
-        GenerateCVPipeline, "generate_cv", cv, cv_template
+        RenderCVPipeline, "render_cv", cv, cv_template
     )
 
     return {
@@ -97,15 +97,15 @@ async def generate_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
     }
 
 
-@router.post("/generate/cv/inline")
-@consume_action("generate_cv_inline")
-async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
+@router.post("/render/cv/inline")
+@consume_action("render_cv_inline")
+async def render_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
-    document_generator = DocumentGeneratorFacade.get_generator()
+    document_render = DocumentRenderFacade.get_render()
 
-    document_generator.generate_cv(cv, cv_template)
+    document_render.render_cv(cv, cv_template)
 
-    pdf_bytes = document_generator.get_cv()
+    pdf_bytes = document_render.get_cv()
 
     commit_action()
 

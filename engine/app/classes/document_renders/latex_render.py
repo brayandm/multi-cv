@@ -5,28 +5,28 @@ import uuid
 
 from jinja2 import Environment, FileSystemLoader
 
-from app.classes.base.document_generator import (
-    DocumentGenerator,
+from app.classes.base.document_render import (
+    DocumentRender,
 )
 from app.classes.models import Cv, CvTemplate
 from app.facades.filesystem_facade import FilesystemFacade
 
 
-class LatexGenerator(DocumentGenerator):
+class LatexRender(DocumentRender):
 
     def __init__(self) -> None:
         self.cv_uuid = str(uuid.uuid4())
         self.working_dir = "./app/templates/latex/"
         self.cv_template = f"{self.working_dir}/cv/"
-        self.cv_folder = f"{self.working_dir}/generated/{self.cv_uuid}/"
-        self.tex_path = os.path.join(self.cv_folder, "cv_generated.tex")
-        self.pdf_path = os.path.join(self.cv_folder, "cv_generated.pdf")
+        self.cv_folder = f"{self.working_dir}/rendered/{self.cv_uuid}/"
+        self.tex_path = os.path.join(self.cv_folder, "cv_rendered.tex")
+        self.pdf_path = os.path.join(self.cv_folder, "cv_rendered.pdf")
         os.makedirs(self.cv_folder, exist_ok=True)
 
     def cleanup(self) -> None:
         shutil.rmtree(self.cv_folder, ignore_errors=True)
 
-    def generate_cv(self, cv: Cv, cv_template: CvTemplate) -> None:
+    def render_cv(self, cv: Cv, cv_template: CvTemplate) -> None:
 
         env = Environment(loader=FileSystemLoader(self.cv_template))
         template = env.get_template(f"{cv_template.id}.tex.jinja2")
