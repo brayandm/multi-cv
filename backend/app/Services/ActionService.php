@@ -227,10 +227,9 @@ class ActionService
                     $newPending = max(0, $quota->pending - $count);
                     $newFailed = $quota->failed + $count;
 
-                    if($quota->max_failed != -1) {
+                    if ($quota->max_failed != -1) {
                         $leftToIncrement = min($newFailed, $quota->max_failed) - $quota->failed;
-                    }
-                    else {
+                    } else {
                         $leftToIncrement = $count;
                     }
 
