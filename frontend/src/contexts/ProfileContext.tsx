@@ -94,10 +94,15 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    getProfileEngine().then((response) => {
-      setProfile(response.data);
-      setIsLoaded(true);
-    });
+    getProfileEngine()
+      .then((response) => {
+        setProfile(response.data);
+        setIsLoaded(true);
+      })
+      .catch((error) => {
+        console.error(error);
+        setIsLoaded(true);
+      });
   }, []);
 
   const updateProfile = (newProfile: Partial<IProfile>) => {
