@@ -8,15 +8,14 @@ from app.config import (
     BACKEND_API_URL,
     INTER_COMMUNICATION_TOKEN,
 )
-from app.framework.logging import logger
-from app.framework.middlewares.request_handle_middleware import (
-    request_var,
-)
-
 from app.framework.decorators.context_vars import (
     get_action_id,
     set_action_id,
     set_user_id,
+)
+from app.framework.logging import logger
+from app.framework.middlewares.request_handle_middleware import (
+    request_var,
 )
 
 
