@@ -86,6 +86,7 @@
 {{ cv.summary }}
 
 % PROFESSIONAL EXPERIENCE
+{% if cv.experiences %}
 \section{Experience}
 \resumeSubHeadingListStart
 {% for exp in cv.experiences %}
@@ -101,6 +102,7 @@
 \resumeItemListEnd
 {% endfor %}
 \resumeSubHeadingListEnd
+{% endif %}
 
 
 \end{document}
