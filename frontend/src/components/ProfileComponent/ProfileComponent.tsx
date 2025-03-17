@@ -14,7 +14,7 @@ import { useProfile } from "@/contexts/ProfileContext";
 const ProfileComponent: React.FC = () => {
   const width = 350;
 
-  const { syncProfile } = useProfile();
+  const { isLoaded, syncProfile } = useProfile();
 
   const t = useTranslations();
 
@@ -92,53 +92,56 @@ const ProfileComponent: React.FC = () => {
               </div>
             </CardHeader>
             <CardBody>
-              <Tabs
-                aria-label="Options"
-                color="primary"
-                classNames={{ base: "p-2", tabList: "" }}
-                selectedKey={selectedTab}
-                onSelectionChange={(key) => {
-                  setSelectedTab(key as keyof typeof mapPosition);
-                }}
-                ref={ref}
-              >
-                <Tab
-                  key="basic-user-info"
-                  title={t("pages.profile.sections.basic_info.title")}
+              {isLoaded && (
+                <Tabs
+                  aria-label="Options"
+                  color="primary"
+                  classNames={{ base: "p-2", tabList: "" }}
+                  selectedKey={selectedTab}
+                  onSelectionChange={(key) => {
+                    setSelectedTab(key as keyof typeof mapPosition);
+                    syncProfile();
+                  }}
+                  ref={ref}
                 >
-                  <BasicUserInfo />
-                </Tab>
-                <Tab
-                  key="professional-links"
-                  title={t("pages.profile.sections.professional_links.title")}
-                >
-                  <ProfessionalLinks />
-                </Tab>
-                <Tab
-                  key="experiences"
-                  title={t("pages.profile.sections.experience.title")}
-                >
-                  <Experience />
-                </Tab>
-                <Tab
-                  key="educations"
-                  title={t("pages.profile.sections.education.title")}
-                >
-                  <Education />
-                </Tab>
-                <Tab
-                  key="projects"
-                  title={t("pages.profile.sections.projects.title")}
-                >
-                  <Projects />
-                </Tab>
-                <Tab
-                  key="skills"
-                  title={t("pages.profile.sections.skills.title")}
-                >
-                  <Skills />
-                </Tab>
-              </Tabs>
+                  <Tab
+                    key="basic-user-info"
+                    title={t("pages.profile.sections.basic_info.title")}
+                  >
+                    <BasicUserInfo />
+                  </Tab>
+                  <Tab
+                    key="professional-links"
+                    title={t("pages.profile.sections.professional_links.title")}
+                  >
+                    <ProfessionalLinks />
+                  </Tab>
+                  <Tab
+                    key="experiences"
+                    title={t("pages.profile.sections.experience.title")}
+                  >
+                    <Experience />
+                  </Tab>
+                  <Tab
+                    key="educations"
+                    title={t("pages.profile.sections.education.title")}
+                  >
+                    <Education />
+                  </Tab>
+                  <Tab
+                    key="projects"
+                    title={t("pages.profile.sections.projects.title")}
+                  >
+                    <Projects />
+                  </Tab>
+                  <Tab
+                    key="skills"
+                    title={t("pages.profile.sections.skills.title")}
+                  >
+                    <Skills />
+                  </Tab>
+                </Tabs>
+              )}
             </CardBody>
           </Card>
           <Card className="mb-3">

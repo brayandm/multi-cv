@@ -65,6 +65,7 @@ export interface IProfile {
 
 interface ProfileContextType {
   profile: IProfile;
+  isLoaded: boolean;
   updateProfile: (newProfile: Partial<IProfile>) => void;
   syncProfile: () => void;
 }
@@ -90,9 +91,12 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     },
   });
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     getProfileEngine().then((response) => {
       setProfile(response.data);
+      setIsLoaded(true);
     });
   }, []);
 
@@ -105,7 +109,9 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <ProfileContext.Provider value={{ profile, updateProfile, syncProfile }}>
+    <ProfileContext.Provider
+      value={{ profile, isLoaded, updateProfile, syncProfile }}
+    >
       {children}
     </ProfileContext.Provider>
   );
