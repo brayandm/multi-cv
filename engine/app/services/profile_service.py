@@ -5,7 +5,6 @@ from motor.core import AgnosticDatabase
 
 from app.classes.models import Profile
 from app.database.mongodb import get_database
-
 from app.utils.merger import merge_dicts
 
 
