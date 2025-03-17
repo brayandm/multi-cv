@@ -1,4 +1,3 @@
-from contextvars import ContextVar
 from functools import wraps
 from typing import Any, Callable
 
@@ -14,15 +13,11 @@ from app.framework.middlewares.request_handle_middleware import (
     request_var,
 )
 
-action_id_var: ContextVar[str | None] = ContextVar("action_id", default=None)
-
-
-def get_action_id() -> str | None:
-    return action_id_var.get()
-
-
-def set_action_id(action_id: str) -> None:
-    action_id_var.set(action_id)
+from app.framework.decorators.context_vars import (
+    get_action_id,
+    set_action_id,
+    set_user_id,
+)
 
 
 def commit_action() -> None:
@@ -132,6 +127,8 @@ def consume_action(action: str) -> Callable[..., Any]:
                 raise HTTPException(status_code=403, detail="Unauthorized")
 
             set_action_id(action_id)
+
+            set_user_id(user_id)
 
             try:
                 return await func(*args, **kwargs)

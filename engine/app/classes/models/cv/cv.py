@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
-from .cv_experience import CvExperience
 from .cv_education import CvEducation
+from .cv_experience import CvExperience
 from .cv_project import CvProject
 from .cv_skill_group import CvSkillGroup
 

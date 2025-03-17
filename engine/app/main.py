@@ -20,7 +20,7 @@ from app.framework.decorators import (
     validate_api_token,
 )
 from app.framework.decorators.action import commit_action
-from app.framework.decorators.authenticate import get_user_id
+from app.framework.decorators.context_vars import get_user_id
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
@@ -100,7 +100,11 @@ async def render_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
 
 @router.post("/generate/cv/inline")
 @consume_action("generate_cv_inline")
-async def generate_cv_inline(profile: Profile) -> Response:
+async def generate_cv_inline(
+    profile_service: ProfileService = Depends(get_profile_service),
+) -> Response:
+
+    profile = await profile_service.get_profile(get_user_id())
 
     cv_template = CvTemplate(id="default")
 

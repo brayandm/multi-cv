@@ -1,4 +1,3 @@
-from contextvars import ContextVar
 from functools import wraps
 from typing import Any, Callable
 
@@ -14,15 +13,7 @@ from app.framework.middlewares.request_handle_middleware import (
     request_var,
 )
 
-user_id_var: ContextVar[int] = ContextVar("user_id")
-
-
-def get_user_id() -> int:
-    return user_id_var.get()
-
-
-def set_user_id(user_id: int) -> None:
-    user_id_var.set(user_id)
+from app.framework.decorators.context_vars import set_user_id
 
 
 def authenticate() -> Callable[..., Any]:

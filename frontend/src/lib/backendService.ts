@@ -16,6 +16,7 @@ import {
   userSetLocaleApiLink,
   userStatusApiLink,
   getProfileEngineLink,
+  generateCvInlineEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -231,4 +232,12 @@ export const profileSyncEngine = async (
 
 export const getProfileEngine = async (): Promise<AxiosResponse<IProfile>> => {
   return await engine.get(getProfileEngineLink);
+};
+
+export const generateCvInlineEngine = async (): Promise<
+  AxiosResponse<Blob>
+> => {
+  return await engine.post(generateCvInlineEngineLink, {
+    responseType: "blob",
+  });
 };
