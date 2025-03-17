@@ -12,4 +12,5 @@ export const passwordRecoveryEmailApiLink = "/password/email";
 export const passwordRecoveryResetApiLink = "/password/reset";
 export const userSetLocaleApiLink = "/user/set-locale";
 export const userLocaleApiLink = "/user/locale";
-export const profileSyncEngineLink = "profile/sync";
+export const profileSyncEngineLink = "/profile/sync";
+export const getProfileEngineLink = "/profile";

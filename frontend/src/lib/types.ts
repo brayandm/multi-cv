@@ -72,6 +72,10 @@ export interface UserLocaleResponse {
   locale: string;
 }
 
+export interface ProfileSyncResponse {
+  message: string;
+}
+
 export interface CV {
   id: number;
   company: string;

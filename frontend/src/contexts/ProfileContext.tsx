@@ -1,7 +1,13 @@
 "use client";
 
-import { syncProfileEngine } from "@/lib/backendService";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { getProfileEngine, profileSyncEngine } from "@/lib/backendService";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  useEffect,
+} from "react";
 
 export type IBasicInfo = {
   full_name: string;
@@ -84,12 +90,18 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     },
   });
 
+  useEffect(() => {
+    getProfileEngine().then((response) => {
+      setProfile(response.data);
+    });
+  }, []);
+
   const updateProfile = (newProfile: Partial<IProfile>) => {
     setProfile((prev) => ({ ...prev, ...newProfile }));
   };
 
   const syncProfile = () => {
-    syncProfileEngine(profile);
+    profileSyncEngine(profile);
   };
 
   return (

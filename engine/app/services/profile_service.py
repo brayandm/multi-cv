@@ -34,6 +34,14 @@ class ProfileService:
 
         return profile
 
+    async def get_profile(self, user_id: int) -> Profile:
+        profile = await self.db.profiles.find_one({"user_id": user_id})
+
+        if profile is None:
+            raise ValueError("Profile not found for the given user_id")
+
+        return Profile(**profile)
+
 
 def get_profile_service(
     db: AgnosticDatabase[Any] = Depends(get_database),

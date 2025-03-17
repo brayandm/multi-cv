@@ -15,6 +15,7 @@ import {
   userLocaleApiLink,
   userSetLocaleApiLink,
   userStatusApiLink,
+  getProfileEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -30,6 +31,7 @@ import {
   PasswordRecoveryResetResponse,
   UserSetLocaleResponse,
   UserLocaleResponse,
+  ProfileSyncResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 
@@ -221,6 +223,12 @@ export const userLocaleApi = async (): Promise<
   return await api.get(userLocaleApiLink);
 };
 
-export const syncProfileEngine = async (profile: IProfile): Promise<void> => {
-  await engine.put(profileSyncEngineLink, profile);
+export const profileSyncEngine = async (
+  profile: IProfile
+): Promise<AxiosResponse<ProfileSyncResponse>> => {
+  return await engine.put(profileSyncEngineLink, profile);
+};
+
+export const getProfileEngine = async (): Promise<AxiosResponse<IProfile>> => {
+  return await engine.get(getProfileEngineLink);
 };

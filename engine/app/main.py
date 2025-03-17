@@ -126,6 +126,19 @@ async def store_profile(
     return {"message": "Profile synced successfully."}
 
 
+@router.get("/profile")
+@authenticate()
+async def get_profile(
+    profile_service: ProfileService = Depends(get_profile_service),
+) -> Profile:
+
+    user_id = get_user_id()
+
+    profile = await profile_service.get_profile(user_id)
+
+    return profile
+
+
 @router.post("/webhook")
 @validate_api_token()
 async def webhook(payload: WebhookPayload) -> Dict[str, str]:
