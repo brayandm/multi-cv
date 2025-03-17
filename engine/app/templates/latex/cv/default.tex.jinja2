@@ -95,11 +95,13 @@
 { {{ exp.start_date }} -- {{ exp.end_date }} }
 { {{ exp.company }} }
 { {{ exp.location }} }
-\resumeItemListStart
-  {% for desc in exp.description %}
-  \resumeItem{ {{ desc }} }
-  {% endfor %}
-\resumeItemListEnd
+{% if exp.description %}
+  \resumeItemListStart
+    {% for desc in exp.description %}
+    \resumeItem{ {{ desc }} }
+    {% endfor %}
+  \resumeItemListEnd
+{% endif %}
 {% endfor %}
 \resumeSubHeadingListEnd
 {% endif %}
