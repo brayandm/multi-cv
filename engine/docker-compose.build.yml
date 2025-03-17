@@ -58,6 +58,7 @@ services:
                 ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_DB_PASSWORD}
                 ME_CONFIG_MONGODB_PORT: ${MONGO_DB_PORT}
                 ME_CONFIG_MONGODB_SERVER: ${MONGO_DB_HOST}
+                ME_CONFIG_MONGODB_URL: "mongodb://${MONGO_DB_USERNAME}:${MONGO_DB_PASSWORD}@mongodb:${MONGO_DB_PORT}/admin"
                 ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_EXPRESS_USERNAME}
                 ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_EXPRESS_PASSWORD}
         image: multi-cv-mongo-express
