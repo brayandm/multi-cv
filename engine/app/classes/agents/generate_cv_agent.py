@@ -31,26 +31,34 @@ class GenerateCvAgent(Agent):
         """
 
         input = f"""
-        Here is the information about the person in JSON format:
+        You are an AI assistant that generates JSON-formatted resumes. Your
+        task is to generate a CV strictly in the JSON format provided below.
 
-        ```json
+        Do not include any additional text, comments, or explanations before
+        or after the JSON output.
+
+        Here is the input data in JSON format:
         {profile_json}
-        ```
 
-        The expected output format for the CV is:
-
-        ```json
+        The expected JSON output format is:
         {cv_structure}
-        ```
 
-        Please generate a CV in the expected JSON format using the provided
-        information.
+        Respond with ONLY the JSON output, enclosed between the following
+        markers:
+
+        BEGIN_JSON
+        <valid JSON response>
+        END_JSON
         """
 
         response = str(self.chat([HumanMessage(content=input)]).content)
 
         try:
-            cv_data = json.loads(response)
+            json_start = response.find("BEGIN_JSON") + len("BEGIN_JSON")
+            json_end = response.find("END_JSON")
+            json_content = response[json_start:json_end].strip()
+
+            cv_data = json.loads(json_content)
             return Cv(**cv_data)
         except json.JSONDecodeError as e:
             raise ValueError(f"Failed to parse response as JSON: {e}")
