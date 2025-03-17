@@ -1,6 +1,6 @@
 "use client";
 
-import { engine } from "@/lib/backendService";
+import { syncProfileEngine } from "@/lib/backendService";
 import { createContext, useContext, useState, ReactNode } from "react";
 
 export type IBasicInfo = {
@@ -89,7 +89,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const syncProfile = () => {
-    engine.put("/sync/profile", profile);
+    syncProfileEngine(profile);
   };
 
   return (

@@ -16,5 +16,5 @@ class Profile(BaseModel):
     experience: List[Experience]
     education: List[Education]
     projects: List[Project]
-    skills: List[Skills]
+    skills: Skills
     general_notes: Optional[str] = None

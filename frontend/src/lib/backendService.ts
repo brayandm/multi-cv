@@ -9,7 +9,7 @@ import {
   passwordRecoveryResetApiLink,
   registerApiLink,
   resendEmailApiLink,
-  syncProfileEngineLink,
+  profileSyncEngineLink,
   updatePasswordApiLink,
   userApiLink,
   userLocaleApiLink,
@@ -222,5 +222,5 @@ export const userLocaleApi = async (): Promise<
 };
 
 export const syncProfileEngine = async (profile: IProfile): Promise<void> => {
-  await engine.put(syncProfileEngineLink, profile);
+  await engine.put(profileSyncEngineLink, profile);
 };

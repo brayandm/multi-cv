@@ -12,4 +12,4 @@ export const passwordRecoveryEmailApiLink = "/password/email";
 export const passwordRecoveryResetApiLink = "/password/reset";
 export const userSetLocaleApiLink = "/user/set-locale";
 export const userLocaleApiLink = "/user/locale";
-export const syncProfileEngineLink = "/sync/profile";
+export const profileSyncEngineLink = "profile/sync";
