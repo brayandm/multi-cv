@@ -1,7 +1,9 @@
 import os
+import re
 import shutil
 import subprocess
 import uuid
+from typing import Any, Dict, List, Union
 
 from jinja2 import Environment, FileSystemLoader
 
@@ -10,10 +12,6 @@ from app.classes.base.document_render import (
 )
 from app.classes.models import Cv, CvTemplate
 from app.facades.filesystem_facade import FilesystemFacade
-
-from typing import Any, Dict, List, Union
-
-import re
 
 
 def escape_latex(text: str) -> str:
