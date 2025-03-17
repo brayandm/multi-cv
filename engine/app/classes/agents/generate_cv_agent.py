@@ -56,8 +56,10 @@ class GenerateCvAgent(Agent):
         - Improve and enhance the provided information where possible (e.g.,
         refining job descriptions, making summaries more compelling, ensuring
         education details are clear).
-        - If any information is missing, intelligently infer reasonable values
-        based on the context.
+        - Use only the information provided in the input profile.
+        - Do NOT infer or generate missing data.
+        - If any field is missing, omit it instead of filling it with
+        placeholders.
         - Do not include any additional text, comments, or explanations before
         or after the JSON output.
 
