@@ -124,5 +124,19 @@
 \end{itemize}
 {% endif %}
 
+% EDUCATION
+{% if cv.educations %}
+\section{Education}
+
+\resumeSubHeadingListStart
+
+{% for edu in cv.educations %}
+\resumeSubheading
+{ {{ edu.institution }} }  { {{ edu.start_date }} -- {{ edu.end_date }} }
+{ {{ edu.career }} }  { {{ edu.location }} }
+{% endfor %}
+
+\resumeSubHeadingListEnd
+{% endif %}
 
 \end{document}
