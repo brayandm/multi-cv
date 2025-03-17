@@ -21,12 +21,14 @@ class RequestHandleMiddleware(BaseHTTPMiddleware):
 
         if not auth_token:
             auth_token = request.cookies.get(AUTH_COOKIE_NAME)
+        else:
+            auth_token = auth_token.replace("Bearer ", "")
 
         if auth_token:
             auth_token = urllib.parse.unquote(auth_token)
 
             new_header = MutableHeaders(request._headers)
-            new_header["Authorization"] = auth_token
+            new_header["Authorization"] = f"Bearer {auth_token}"
             request._headers = new_header
             request.scope.update(headers=request.headers.raw)
 

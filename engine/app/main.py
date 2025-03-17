@@ -1,6 +1,7 @@
 from typing import Dict
 
 from fastapi import APIRouter, Depends, FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
@@ -25,8 +26,6 @@ from app.framework.middlewares import (
 )
 from app.services.profile_service import ProfileService, get_profile_service
 from app.worker.queue_manager import QueueManager
-
-from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(lifespan=lifespan)
 
