@@ -121,6 +121,36 @@ services:
             rabbitmq:
                 condition: service_healthy
 
+    mongodb:
+        image: multi-cv-mongodb
+        restart: always
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_DB_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_DB_PASSWORD}
+        volumes:
+            - engine-mongo:/data/db
+        healthcheck:
+            test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+            interval: 10s
+            timeout: 5s
+            retries: 3
+
+    mongo-express:
+        image: multi-cv-mongo-express
+        restart: always
+        ports:
+            - "${MONGO_EXPRESS_PORT:-49165}:8081"
+        environment:
+            - ME_CONFIG_MONGODB_ADMINUSERNAME=${MONGO_DB_USERNAME}
+            - ME_CONFIG_MONGODB_ADMINPASSWORD=${MONGO_DB_PASSWORD}
+            - ME_CONFIG_MONGODB_PORT=${MONGO_DB_PORT}
+            - ME_CONFIG_MONGODB_SERVER=${MONGO_DB_HOST}
+            - ME_CONFIG_BASICAUTH_USERNAME=${MONGO_EXPRESS_USERNAME}
+            - ME_CONFIG_BASICAUTH_PASSWORD=${MONGO_EXPRESS_PASSWORD}
+        depends_on:
+            mongodb:
+                condition: service_healthy
+
 volumes:
     backend-mysql:
     backend-redis:
@@ -128,3 +158,4 @@ volumes:
     backend-app:
     engine-redis:
     engine-rabbitmq:
+    engine-mongo:
