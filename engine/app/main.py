@@ -1,10 +1,8 @@
-from contextlib import asynccontextmanager
-from typing import Any, AsyncGenerator, Dict
+from typing import Dict
 
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.responses import Response
-from pymongo import MongoClient
-from pymongo.database import Database
+
 
 from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
 from app.classes.pipelines import (
@@ -13,7 +11,6 @@ from app.classes.pipelines import (
     ImproveAboutPipeline,
     SummaryPipeline,
 )
-from app.config import MONGO_DB
 from app.facades.document_generator_facade import DocumentGeneratorFacade
 from app.framework.decorators import consume_action, validate_api_token
 from app.framework.decorators.action import commit_action
@@ -24,24 +21,9 @@ from app.framework.middlewares import (
 from app.services.profile_service import ProfileService
 from app.worker.queue_manager import QueueManager
 
+from app.database.mongodb import lifespan
 
-@asynccontextmanager
-async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    uri = (
-        f"mongodb://{MONGO_DB['username']}:{MONGO_DB['password']}@"
-        f"{MONGO_DB['host']}:{MONGO_DB['port']}/"
-        f"{MONGO_DB['name']}?authSource=admin"
-    )
-    client: MongoClient[Any] = MongoClient(uri)
-    db = client[MONGO_DB["name"]]
-
-    app.state.db = db
-    print("✅ Connection opened")
-
-    yield
-
-    client.close()
-    print("✅ Connection closed")
+from app.services.profile_service import get_profile_service
 
 
 app = FastAPI(lifespan=lifespan)
@@ -51,10 +33,6 @@ app.add_middleware(RequestHandleMiddleware)
 queue_manager = QueueManager(default_queue="openai_queue")
 
 router = APIRouter(prefix="/api/v1")
-
-
-def get_database() -> Database[Any]:
-    return app.state.db  # type: ignore
 
 
 @router.get("/ping")
@@ -127,7 +105,8 @@ async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
 @router.post("/profile/sync")
 async def store_profile(
-    profile: Profile, profile_service: ProfileService = Depends()
+    profile: Profile,
+    profile_service: ProfileService = Depends(get_profile_service),
 ) -> Dict[str, str]:
     profile_service.sync_profile(profile)
 
