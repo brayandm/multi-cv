@@ -1,5 +1,6 @@
 "use client";
 
+import { engine } from "@/lib/backendService";
 import { createContext, useContext, useState, ReactNode } from "react";
 
 export type IBasicInfo = {
@@ -59,6 +60,7 @@ export interface IProfile {
 interface ProfileContextType {
   profile: IProfile;
   updateProfile: (newProfile: Partial<IProfile>) => void;
+  syncProfile: () => void;
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -86,8 +88,12 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     setProfile((prev) => ({ ...prev, ...newProfile }));
   };
 
+  const syncProfile = () => {
+    engine.put("/sync/profile", profile);
+  };
+
   return (
-    <ProfileContext.Provider value={{ profile, updateProfile }}>
+    <ProfileContext.Provider value={{ profile, updateProfile, syncProfile }}>
       {children}
     </ProfileContext.Provider>
   );

@@ -9,9 +9,12 @@ import Projects from "./Projects";
 import ProfessionalLinks from "./ProfessionalLinks";
 import Education from "./Education";
 import ChatComponent from "@/shared/components/ChatComponent";
+import { useProfile } from "@/contexts/ProfileContext";
 
 const ProfileComponent: React.FC = () => {
   const width = 350;
+
+  const { syncProfile } = useProfile();
 
   const t = useTranslations();
 
@@ -141,9 +144,10 @@ const ProfileComponent: React.FC = () => {
           <Card className="mb-3">
             {nextPositionIsAvailable() && (
               <Button
-                onPress={() =>
-                  setSelectedTab(positions[mapPosition[selectedTab] + 1])
-                }
+                onPress={() => {
+                  setSelectedTab(positions[mapPosition[selectedTab] + 1]);
+                  syncProfile();
+                }}
                 color="primary"
               >
                 {t("common.buttons.next")}

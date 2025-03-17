@@ -103,7 +103,7 @@ async def generate_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
     return Response(content=pdf_bytes, media_type="application/pdf")
 
 
-@router.post("/profile/sync")
+@router.put("/profile/sync")
 @authenticate()
 async def store_profile(
     profile: Profile,

@@ -9,6 +9,7 @@ import {
   passwordRecoveryResetApiLink,
   registerApiLink,
   resendEmailApiLink,
+  syncProfileEngineLink,
   updatePasswordApiLink,
   userApiLink,
   userLocaleApiLink,
@@ -30,6 +31,7 @@ import {
   UserSetLocaleResponse,
   UserLocaleResponse,
 } from "./types";
+import { IProfile } from "@/contexts/ProfileContext";
 
 const isServer = typeof window === "undefined";
 
@@ -38,7 +40,15 @@ export const api = axios.create({
   withCredentials: true,
 });
 
+export const engine = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_ENGINE_URL,
+  withCredentials: true,
+});
+
 export const fetcherApi = (url: string) => api.get(url).then((res) => res.data);
+
+export const fetcherEngine = (url: string) =>
+  engine.get(url).then((res) => res.data);
 
 export const loginApi = async (formData: {
   email: string;
@@ -209,4 +219,8 @@ export const userLocaleApi = async (): Promise<
   AxiosResponse<UserLocaleResponse>
 > => {
   return await api.get(userLocaleApiLink);
+};
+
+export const syncProfileEngine = async (profile: IProfile): Promise<void> => {
+  await engine.put(syncProfileEngineLink, profile);
 };
