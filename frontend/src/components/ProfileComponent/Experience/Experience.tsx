@@ -32,12 +32,13 @@ const Experience: React.FC = () => {
     const experience = {
       id: crypto.randomUUID(),
       company: "",
-      description: "",
-      end_date: "",
-      start_date: "",
-      is_present: false,
-      location: "",
+      link: "",
       role: "",
+      location: "",
+      description: "",
+      start_date: "",
+      end_date: "",
+      is_present: false,
     };
 
     updateProfile({

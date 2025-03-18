@@ -30,11 +30,12 @@ const Education: React.FC = () => {
     const education: IEducation = {
       id: crypto.randomUUID(),
       institution: "",
-      end_date: "",
-      start_date: "",
-      is_present: false,
-      location: "",
+      link: "",
       career: "",
+      location: "",
+      start_date: "",
+      end_date: "",
+      is_present: false,
     };
 
     updateProfile({

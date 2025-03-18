@@ -27,10 +27,10 @@ const Projects: React.FC = () => {
     const project = {
       id: crypto.randomUUID(),
       name: "",
-      description: "",
-      end_date: "",
-      start_date: "",
       link: "",
+      description: "",
+      start_date: "",
+      end_date: "",
     };
 
     updateProfile({
