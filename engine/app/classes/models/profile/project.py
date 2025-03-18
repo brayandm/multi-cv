@@ -10,4 +10,5 @@ class Project(BaseModel):
     description: str
     start_date: str
     end_date: str
+    is_present: bool
     notes: Optional[str] = None
