@@ -14,20 +14,22 @@ class ProfileService:
 
     async def sync_profile(self, user_id: int, profile: Profile) -> Profile:
         existing_profile = (
-            await self.db.profiles.find_one({"user_id": user_id}) or {}
+            await self.db.profiles.find_one({"user_id": user_id}) or None
         )
 
-        preserve_notes(
-            profile,
-            Profile(**existing_profile),
-        )
+        if existing_profile is not None:
 
-        profile = profile.model_dump()
-        profile["user_id"] = user_id
+            preserve_notes(
+                profile,
+                Profile(**existing_profile),
+            )
+
+        new_profile = profile.model_dump()
+        new_profile["user_id"] = user_id
 
         await self.db.profiles.update_one(
             {"user_id": user_id},
-            {"$set": profile},
+            {"$set": new_profile},
             upsert=True,
         )
 
