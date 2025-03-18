@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Divider, Input, Checkbox, addToast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { loginApi, registerApi } from "@/lib/backendService";
@@ -42,8 +42,34 @@ export default function RegisterComponent() {
     });
   };
 
+  useEffect(() => {
+    if (formData.underAge) {
+      setUnderAgeError(false);
+    }
+    if (formData.acceptTerms) {
+      setAcceptTermsError(false);
+    }
+  }, [formData.underAge, formData.acceptTerms]);
+
+  const [underAgeError, setUnderAgeError] = useState(false);
+  const [acceptTermsError, setAcceptTermsError] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setUnderAgeError(false);
+
+    if (!formData.underAge) {
+      setUnderAgeError(true);
+    }
+
+    if (!formData.acceptTerms) {
+      setAcceptTermsError(true);
+    }
+
+    if (!formData.underAge || !formData.acceptTerms) {
+      return;
+    }
 
     setOnRegister(true);
 
@@ -170,7 +196,6 @@ export default function RegisterComponent() {
             checked={formData.underAge}
             onChange={handleCheckboxChange}
             size="sm"
-            isRequired
           />
           <span
             className="text-[9px] text-gray-600
@@ -179,6 +204,11 @@ export default function RegisterComponent() {
             {t("common.legal.confirm_age")}
           </span>
         </div>
+        {underAgeError && (
+          <p className="text-left text-danger text-[9px]">
+            {t("common.errors.under_age")}
+          </p>
+        )}
 
         <div className="flex items-start gap-1">
           <Checkbox
@@ -186,7 +216,6 @@ export default function RegisterComponent() {
             checked={formData.acceptTerms}
             onChange={handleCheckboxChange}
             size="sm"
-            isRequired
           />
           <span className="text-[9px] text-gray-600 text-left">
             {t.rich("common.legal.accept_terms", {
@@ -211,6 +240,11 @@ export default function RegisterComponent() {
             })}
           </span>
         </div>
+        {acceptTermsError && (
+          <p className="text-left text-danger text-[9px]">
+            {t("common.errors.accept_terms")}
+          </p>
+        )}
         <Button color="primary" type="submit" isLoading={onRegister}>
           {t("common.auth.register")}
         </Button>
