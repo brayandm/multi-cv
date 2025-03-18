@@ -11,12 +11,15 @@ import SelectCountry from "@/shared/components/SelectCountry";
 import Flag from "react-world-flags";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 import { dynamicInputsStyles } from "@/lib/customStyles";
+import { useProfile } from "@/contexts/ProfileContext";
 
 const DynamicInputs = <T,>({
   inputs,
   isPresent,
   horizontal = false,
 }: DynamicInputsProps<T>) => {
+  const { syncProfile } = useProfile();
+
   const validateEmail = (email: string): boolean => {
     return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
   };
@@ -104,9 +107,12 @@ const DynamicInputs = <T,>({
               key={index}
               variant={variant}
               label={input.label}
-              onSelectionChange={
-                input.onValueChange as IDynamicOnValueChange<Key | null>
-              }
+              onSelectionChange={(value) => {
+                (input.onValueChange as IDynamicOnValueChange<Key | null>)(
+                  value
+                );
+                syncProfile();
+              }}
               selectedKey={input.value as string}
               inputProps={{
                 classNames: customStyles,
@@ -135,6 +141,7 @@ const DynamicInputs = <T,>({
               errorMessage={errorMessage}
               startContent={PhoneNumberStartContent()}
               classNames={customStyles}
+              onBlur={() => syncProfile()}
             />
           );
         }
@@ -153,6 +160,7 @@ const DynamicInputs = <T,>({
               color={color}
               errorMessage={errorMessage}
               classNames={customStyles}
+              onBlur={() => syncProfile()}
             />
           );
         }
@@ -162,9 +170,10 @@ const DynamicInputs = <T,>({
             <Checkbox
               key={index}
               isSelected={input.value as boolean}
-              onValueChange={
-                input.onValueChange as IDynamicOnValueChange<boolean>
-              }
+              onValueChange={(value) => {
+                (input.onValueChange as IDynamicOnValueChange<boolean>)(value);
+                syncProfile();
+              }}
             >
               {input.label}
             </Checkbox>
@@ -175,9 +184,10 @@ const DynamicInputs = <T,>({
           return (
             <Checkbox
               key={index}
-              onValueChange={
-                input.onValueChange as IDynamicOnValueChange<boolean>
-              }
+              onValueChange={(value) => {
+                (input.onValueChange as IDynamicOnValueChange<boolean>)(value);
+                syncProfile();
+              }}
               value={input.value as string}
               defaultSelected={input.selected}
             >
@@ -200,6 +210,7 @@ const DynamicInputs = <T,>({
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               classNames={{ ...customStyles, base: "w-[150px]" }}
+              onBlur={() => syncProfile()}
             ></Input>
           );
         }
@@ -219,6 +230,7 @@ const DynamicInputs = <T,>({
               }
               isDisabled={isDisabled}
               classNames={{ ...customStyles, base: "w-[150px]" }}
+              onBlur={() => syncProfile()}
             ></Input>
           );
         }
@@ -238,6 +250,7 @@ const DynamicInputs = <T,>({
             classNames={customStyles}
             startContent={input.startContent}
             endContent={input.endContent}
+            onBlur={() => syncProfile()}
           />
         );
       })}

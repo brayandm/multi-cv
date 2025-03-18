@@ -24,6 +24,8 @@ const Skills: React.FC = () => {
   const { profile, updateProfile } = useProfile();
   const [inputSkill, setInputSkill] = useState<string>("");
 
+  const { syncProfile } = useProfile();
+
   const t = useTranslations();
 
   const addSkill = useCallback(() => {
@@ -42,6 +44,7 @@ const Skills: React.FC = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         e.preventDefault();
+        syncProfile();
         addSkill();
       }
     };
@@ -49,7 +52,7 @@ const Skills: React.FC = () => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [addSkill]);
+  }, [addSkill, syncProfile]);
 
   const inputs: IDynamicInputArray<string> = [
     {
