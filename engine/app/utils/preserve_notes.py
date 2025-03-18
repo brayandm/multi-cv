@@ -1,5 +1,6 @@
-from app.classes.models import Profile
 from typing import Any
+
+from app.classes.models import Profile
 
 
 def preserve_notes_list(new_list: list[Any], existing_list: list[Any]) -> None:
