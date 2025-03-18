@@ -7,6 +7,8 @@ from app.classes.models import Profile
 from app.database.mongodb import get_database
 from app.utils.preserve_notes import preserve_notes
 
+from typing import Optional
+
 
 class ProfileService:
     def __init__(self, db: AgnosticDatabase[Any]):
@@ -35,11 +37,11 @@ class ProfileService:
 
         return profile
 
-    async def get_profile(self, user_id: int) -> Profile:
+    async def get_profile(self, user_id: int) -> Optional[Profile]:
         profile = await self.db.profiles.find_one({"user_id": user_id})
 
         if profile is None:
-            raise ValueError("Profile not found for the given user_id")
+            return None
 
         return Profile(**profile)
 

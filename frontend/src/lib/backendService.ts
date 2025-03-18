@@ -238,7 +238,9 @@ export const profileSyncEngine = async (
   return await engine.put(profileSyncEngineLink, profile);
 };
 
-export const getProfileEngine = async (): Promise<AxiosResponse<IProfile>> => {
+export const getProfileEngine = async (): Promise<
+  AxiosResponse<IProfile | null>
+> => {
   return await engine.get(getProfileEngineLink);
 };
 

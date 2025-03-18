@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Optional
 
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -106,6 +106,12 @@ async def generate_cv_inline(
 
     profile = await profile_service.get_profile(get_user_id())
 
+    if profile is None:
+        return Response(
+            content="Profile not found.",
+            status_code=404,
+        )
+
     cv_template = CvTemplate(id="default")
 
     cv = GenerateCvPipeline().run(profile)
@@ -154,7 +160,7 @@ async def store_profile(
 @authenticate()
 async def get_profile(
     profile_service: ProfileService = Depends(get_profile_service),
-) -> Profile:
+) -> Optional[Profile]:
 
     user_id = get_user_id()
 

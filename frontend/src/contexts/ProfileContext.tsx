@@ -101,7 +101,9 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     getProfileEngine()
       .then((response) => {
-        setProfile(response.data);
+        if (response.data) {
+          setProfile(response.data);
+        }
         setIsLoaded(true);
       })
       .catch((error) => {
