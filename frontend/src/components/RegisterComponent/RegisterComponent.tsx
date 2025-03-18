@@ -26,6 +26,8 @@ export default function RegisterComponent() {
     underAge: false,
   });
 
+  const [onRegister, setOnRegister] = useState(false);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
@@ -42,6 +44,8 @@ export default function RegisterComponent() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setOnRegister(true);
 
     try {
       const registerResponse = await registerApi(formData);
@@ -96,6 +100,8 @@ export default function RegisterComponent() {
         });
       }
     }
+
+    setOnRegister(false);
   };
 
   return (
@@ -151,6 +157,12 @@ export default function RegisterComponent() {
           classNames={generalInputsStyles}
           isRequired
           minLength={8}
+          isInvalid={formData.password !== formData.repeatPassword}
+          errorMessage={
+            formData.password !== formData.repeatPassword
+              ? t("common.errors.passwords_not_match")
+              : ""
+          }
         />
         <div className="flex items-start gap-1">
           <Checkbox
@@ -199,7 +211,7 @@ export default function RegisterComponent() {
             })}
           </span>
         </div>
-        <Button color="primary" type="submit">
+        <Button color="primary" type="submit" isLoading={onRegister}>
           {t("common.auth.register")}
         </Button>
       </div>
