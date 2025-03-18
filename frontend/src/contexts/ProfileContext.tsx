@@ -19,6 +19,7 @@ export type IBasicInfo = {
 };
 
 export interface IExperience {
+  id: string;
   company: string;
   end_date: string;
   start_date: string;
@@ -29,6 +30,7 @@ export interface IExperience {
 }
 
 export interface IEducation {
+  id: string;
   institution: string;
   end_date: string;
   start_date: string;
@@ -38,6 +40,7 @@ export interface IEducation {
 }
 
 export interface IProject {
+  id: string;
   name: string;
   end_date: string;
   start_date: string;

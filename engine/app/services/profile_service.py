@@ -5,7 +5,7 @@ from motor.core import AgnosticDatabase
 
 from app.classes.models import Profile
 from app.database.mongodb import get_database
-from app.utils.merger import merge_dicts
+from app.utils.preserve_notes import preserve_notes
 
 
 class ProfileService:
@@ -13,22 +13,21 @@ class ProfileService:
         self.db = db
 
     async def sync_profile(self, user_id: int, profile: Profile) -> Profile:
-        profile_data = profile.model_dump()
-        profile_data["user_id"] = user_id
-
         existing_profile = (
             await self.db.profiles.find_one({"user_id": user_id}) or {}
         )
 
-        new_profile = merge_dicts(
-            existing_profile,
-            profile_data,
-            preserve_keys=["notes", "general_notes"],
+        preserve_notes(
+            profile,
+            Profile(**existing_profile),
         )
+
+        profile = profile.model_dump()
+        profile["user_id"] = user_id
 
         await self.db.profiles.update_one(
             {"user_id": user_id},
-            {"$set": new_profile},
+            {"$set": profile},
             upsert=True,
         )
 

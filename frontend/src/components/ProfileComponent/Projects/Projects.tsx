@@ -25,6 +25,7 @@ const Projects: React.FC = () => {
 
   function addNewProject() {
     const project = {
+      id: crypto.randomUUID(),
       name: "",
       description: "",
       end_date: "",

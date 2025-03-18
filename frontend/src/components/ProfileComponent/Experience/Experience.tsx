@@ -30,6 +30,7 @@ const Experience: React.FC = () => {
 
   function addNewExperience() {
     const experience = {
+      id: crypto.randomUUID(),
       company: "",
       description: "",
       end_date: "",

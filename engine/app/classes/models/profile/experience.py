@@ -4,6 +4,7 @@ from pydantic import BaseModel
 
 
 class Experience(BaseModel):
+    id: str
     company: str
     end_date: str
     start_date: str

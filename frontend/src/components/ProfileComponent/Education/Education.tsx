@@ -28,6 +28,7 @@ const Education: React.FC = () => {
 
   function addNewEducation() {
     const education: IEducation = {
+      id: crypto.randomUUID(),
       institution: "",
       end_date: "",
       start_date: "",
