@@ -6,8 +6,8 @@ from pydantic import BaseModel
 class Project(BaseModel):
     id: str
     name: str
-    end_date: str
-    start_date: str
-    description: str
     link: str
+    description: str
+    start_date: str
+    end_date: str
     notes: Optional[str] = None
