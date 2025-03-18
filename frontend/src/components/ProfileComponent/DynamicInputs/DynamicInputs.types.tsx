@@ -40,6 +40,6 @@ export type IDynamicInputArray<T> = Array<
 
 export interface DynamicInputsProps<T> {
   inputs: IDynamicInputArray<T>;
-  isPresentJob?: IDynamicInput<T>;
+  isPresent?: IDynamicInput<T>;
   horizontal?: boolean;
 }

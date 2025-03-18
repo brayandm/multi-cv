@@ -48,6 +48,7 @@ export interface IProject {
   description: string;
   start_date: string;
   end_date: string;
+  is_present: boolean;
 }
 
 export interface IProfessionalLinks {

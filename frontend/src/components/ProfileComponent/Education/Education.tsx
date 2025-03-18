@@ -51,7 +51,7 @@ const Education: React.FC = () => {
       buttonLabel={t("pages.profile.sections.education.add_education")}
     >
       {profile.education.map((education, index) => {
-        const isPresentJob = (): IDynamicInput<boolean> => {
+        const isPresent = (): IDynamicInput<boolean> => {
           return {
             label: t("pages.profile.sections.education.is_present"),
             type: "is_present",
@@ -110,12 +110,12 @@ const Education: React.FC = () => {
               value: education?.end_date || "",
             },
           ],
-          isPresentJob(),
+          isPresent(),
         ];
 
         return (
           <div key={index} className={`mb-4 px-1 snap-center`}>
-            <DynamicInputs isPresentJob={isPresentJob()} inputs={inputs} />
+            <DynamicInputs isPresent={isPresent()} inputs={inputs} />
           </div>
         );
       })}

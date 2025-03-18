@@ -149,7 +149,8 @@
         },
         "projects": {
           "title": "Projects",
-          "add_project": "Naya Project Jodo"
+          "add_project": "Naya Project Jodo",
+          "is_present": "Main is project par kaam kar raha hoon"
         },
         "experience": {
           "title": "Anubhav",

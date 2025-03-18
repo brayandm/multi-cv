@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
-import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
+import {
+  IDynamicInput,
+  IDynamicInputArray,
+} from "../DynamicInputs/DynamicInputs.types";
 import { IProject, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
@@ -31,6 +34,7 @@ const Projects: React.FC = () => {
       description: "",
       start_date: "",
       end_date: "",
+      is_present: false,
     };
 
     updateProfile({
@@ -46,6 +50,16 @@ const Projects: React.FC = () => {
       buttonLabel={t("pages.profile.sections.projects.add_project")}
     >
       {profile.projects.map((project, index) => {
+        const isPresent = (): IDynamicInput<boolean> => {
+          return {
+            label: t("pages.profile.sections.projects.is_present"),
+            type: "is_present",
+            onValueChange: (value: boolean) =>
+              onProjectChange(index, "is_present", value),
+            value: project?.is_present || "",
+          };
+        };
+
         const inputs: IDynamicInputArray<string & boolean> = [
           {
             label: t("common.form.project_name"),
@@ -87,11 +101,12 @@ const Projects: React.FC = () => {
               value: project?.end_date || "",
             },
           ],
+          isPresent(),
         ];
 
         return (
           <div key={index} className={`mb-4 px-1 snap-center`}>
-            <DynamicInputs inputs={inputs} />
+            <DynamicInputs isPresent={isPresent()} inputs={inputs} />
           </div>
         );
       })}

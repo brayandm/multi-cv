@@ -149,7 +149,8 @@
         },
         "projects": {
           "title": "Проекты",
-          "add_project": "Добавить проект"
+          "add_project": "Добавить проект",
+          "is_present": "Я работаю над этим проектом"
         },
         "experience": {
           "title": "Опыт",

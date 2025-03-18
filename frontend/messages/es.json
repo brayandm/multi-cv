@@ -149,7 +149,8 @@
         },
         "projects": {
           "title": "Proyectos",
-          "add_project": "Añadir proyecto"
+          "add_project": "Añadir proyecto",
+          "is_present": "Estoy trabajando en este proyecto actualmente"
         },
         "experience": {
           "title": "Experiencia",

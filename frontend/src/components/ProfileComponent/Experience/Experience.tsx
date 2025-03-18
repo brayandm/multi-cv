@@ -54,7 +54,7 @@ const Experience: React.FC = () => {
       buttonLabel={t("pages.profile.sections.experience.add_experience")}
     >
       {profile.experience.map((experience, index) => {
-        const isPresentJob = (): IDynamicInput<boolean> => {
+        const isPresent = (): IDynamicInput<boolean> => {
           return {
             label: t("pages.profile.sections.experience.is_present"),
             type: "is_present",
@@ -121,12 +121,12 @@ const Experience: React.FC = () => {
               value: experience?.end_date || "",
             },
           ],
-          isPresentJob(),
+          isPresent(),
         ];
 
         return (
           <div key={index} className={`mb-4 px-1 snap-center`}>
-            <DynamicInputs isPresentJob={isPresentJob()} inputs={inputs} />
+            <DynamicInputs isPresent={isPresent()} inputs={inputs} />
           </div>
         );
       })}

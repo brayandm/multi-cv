@@ -14,7 +14,7 @@ import { dynamicInputsStyles } from "@/lib/customStyles";
 
 const DynamicInputs = <T,>({
   inputs,
-  isPresentJob,
+  isPresent,
   horizontal = false,
 }: DynamicInputsProps<T>) => {
   const validateEmail = (email: string): boolean => {
@@ -64,7 +64,7 @@ const DynamicInputs = <T,>({
           return (
             <div key={index} className="flex gap-2">
               <DynamicInputs
-                isPresentJob={isPresentJob}
+                isPresent={isPresent}
                 inputs={input}
                 horizontal={true}
               />
@@ -204,7 +204,7 @@ const DynamicInputs = <T,>({
           );
         }
         if (input.type === "end_date") {
-          const isDisabled = isPresentJob?.value ? true : false;
+          const isDisabled = isPresent?.value ? true : false;
           return (
             <Input
               key={index}
