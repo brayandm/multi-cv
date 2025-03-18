@@ -82,9 +82,6 @@ export default function RegisterComponent() {
           response?: { data?: { errors?: { email?: string[] } } };
         }
       )?.response?.data?.errors?.email?.[0];
-      console.log("xxx");
-      console.log(message);
-      console.log("xxx");
       if (message === "The email has already been taken.") {
         addToast({
           title: t("common.errors.register"),
