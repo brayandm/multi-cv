@@ -32,7 +32,8 @@
       "login": "Login failed",
       "login_description": "The email or password is incorrect.",
       "register": "Registration failed",
-      "register_description": "The email is already in use."
+      "register_description": "The email is already in use.",
+      "server": "Server error"
     },
     "form": {
       "full_name": "Full Name",

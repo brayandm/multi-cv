@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Divider, Input, Checkbox } from "@heroui/react";
+import { Button, Divider, Input, Checkbox, addToast } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { loginApi, registerApi } from "@/lib/backendService";
 import Link from "next/link";
@@ -76,8 +76,28 @@ export default function RegisterComponent() {
           router.push("/home");
         }
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: unknown) {
+      const message = (
+        error as unknown as {
+          response?: { data?: { errors?: { email?: string[] } } };
+        }
+      )?.response?.data?.errors?.email?.[0];
+      console.log("xxx");
+      console.log(message);
+      console.log("xxx");
+      if (message === "The email has already been taken.") {
+        addToast({
+          title: t("common.errors.register"),
+          description: t("common.errors.register_description"),
+          color: "danger",
+        });
+      } else {
+        addToast({
+          title: t("common.errors.register"),
+          description: t("common.errors.server"),
+          color: "danger",
+        });
+      }
     }
   };
 
@@ -98,6 +118,7 @@ export default function RegisterComponent() {
           value={formData.name}
           onChange={handleChange}
           classNames={generalInputsStyles}
+          isRequired
         />
         <Input
           label={t("common.form.email")}
@@ -108,6 +129,7 @@ export default function RegisterComponent() {
           value={formData.email}
           onChange={handleChange}
           classNames={generalInputsStyles}
+          isRequired
         />
         <Input
           label={t("common.form.password")}
@@ -118,6 +140,8 @@ export default function RegisterComponent() {
           value={formData.password}
           onChange={handleChange}
           classNames={generalInputsStyles}
+          isRequired
+          minLength={8}
         />
         <Input
           label={t("common.form.repeat_password")}
@@ -128,6 +152,8 @@ export default function RegisterComponent() {
           value={formData.repeatPassword}
           onChange={handleChange}
           classNames={generalInputsStyles}
+          isRequired
+          minLength={8}
         />
         <div className="flex items-start gap-1">
           <Checkbox
@@ -135,6 +161,7 @@ export default function RegisterComponent() {
             checked={formData.underAge}
             onChange={handleCheckboxChange}
             size="sm"
+            isRequired
           />
           <span
             className="text-[9px] text-gray-600
@@ -150,6 +177,7 @@ export default function RegisterComponent() {
             checked={formData.acceptTerms}
             onChange={handleCheckboxChange}
             size="sm"
+            isRequired
           />
           <span className="text-[9px] text-gray-600 text-left">
             {t.rich("common.legal.accept_terms", {
@@ -174,20 +202,7 @@ export default function RegisterComponent() {
             })}
           </span>
         </div>
-        <Button
-          color="primary"
-          type="submit"
-          isDisabled={
-            !formData.acceptTerms ||
-            !formData.underAge ||
-            !formData.name ||
-            !formData.email ||
-            !formData.password ||
-            !formData.repeatPassword ||
-            formData.password !== formData.repeatPassword ||
-            formData.password.length < 8
-          }
-        >
+        <Button color="primary" type="submit">
           {t("common.auth.register")}
         </Button>
       </div>
