@@ -346,6 +346,22 @@ class ActionService
             throw new \Exception('Quota not found');
         }
 
+        $lastReset = $quota->last_reset_at
+            ? Carbon::parse($quota->last_reset_at)
+            : Carbon::parse($quota->created_at);
+
+        if ($this->shouldResetQuota($quota->frequency, $lastReset, Carbon::now())) {
+            $result = $this->resetQuota($user_id, $action);
+
+            if (! $result) {
+                throw new \Exception('Failed to reset quota');
+            }
+
+            $quota = Quota::where('user_id', $user_id)
+                ->where('action', $action)
+                ->first();
+        }
+
         return [
             'quota' => $quota->quota,
             'frequency' => $quota->frequency,
