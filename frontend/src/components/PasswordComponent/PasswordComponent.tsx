@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Button, Input } from "@heroui/react";
+import { addToast, Button, Input } from "@heroui/react";
 import useSWR from "swr";
 import { userApiLink } from "@/lib/links";
 import {
@@ -30,6 +30,8 @@ export default function PasswordComponent({
     repeatPassword: "",
   });
 
+  const [onPasswordChange, setOnPasswordChange] = useState(false);
+
   const router = useRouter();
 
   const t = useTranslations();
@@ -52,6 +54,8 @@ export default function PasswordComponent({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    setOnPasswordChange(true);
 
     if (passwordRecovery) {
       try {
@@ -77,11 +81,36 @@ export default function PasswordComponent({
         });
 
         if (updatePasswordResponse.status === 200) {
+          addToast({
+            title: t("common.success.password_change"),
+            description: t("common.success.password_change_description"),
+            color: "success",
+          });
         }
       } catch (error) {
         console.log(error);
+        const message = (
+          error as unknown as {
+            response?: { data?: { errors: string } };
+          }
+        )?.response?.data?.errors;
+        if (message === "Old password is incorrect") {
+          addToast({
+            title: t("common.errors.password_change"),
+            description: t("common.errors.old_password_incorrect"),
+            color: "danger",
+          });
+        } else {
+          addToast({
+            title: t("common.errors.password_change"),
+            description: t("common.errors.server"),
+            color: "danger",
+          });
+        }
       }
     }
+
+    setOnPasswordChange(false);
   };
 
   return (
@@ -101,7 +130,9 @@ export default function PasswordComponent({
             name="currentPassword"
             value={formData.currentPassword}
             onChange={handleChange}
+            isRequired
             classNames={generalInputsStyles}
+            minLength={8}
           />
         )}
         <Input
@@ -112,7 +143,9 @@ export default function PasswordComponent({
           name="password"
           value={formData.password}
           onChange={handleChange}
+          isRequired
           classNames={generalInputsStyles}
+          minLength={8}
         />
         <Input
           label={t("common.form.repeat_password")}
@@ -122,21 +155,17 @@ export default function PasswordComponent({
           name="repeatPassword"
           value={formData.repeatPassword}
           onChange={handleChange}
+          isRequired
+          minLength={8}
           classNames={generalInputsStyles}
-        />
-        <Button
-          color="primary"
-          type="submit"
-          isDisabled={
-            (!userData?.is_password_null &&
-              !passwordRecovery &&
-              !formData.currentPassword) ||
-            !formData.password ||
-            !formData.repeatPassword ||
-            formData.password !== formData.repeatPassword ||
-            formData.password.length < 8
+          isInvalid={formData.password !== formData.repeatPassword}
+          errorMessage={
+            formData.password !== formData.repeatPassword
+              ? t("common.errors.passwords_not_match")
+              : ""
           }
-        >
+        />
+        <Button color="primary" type="submit" isLoading={onPasswordChange}>
           {t("common.buttons.change_password")}
         </Button>
       </div>

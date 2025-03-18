@@ -34,9 +34,15 @@
       "register": "Registration failed",
       "register_description": "The email is already in use.",
       "passwords_not_match": "Passwords do not match",
+      "password_change": "Password change failed",
+      "old_password_incorrect": "The current password is incorrect",
       "server": "Server error",
       "under_age": "You must be over 18 years old",
       "accept_terms": "You must accept the terms and conditions"
+    },
+    "success": {
+      "password_change": "Password changed",
+      "password_change_description": "Your password has been changed successfully."
     },
     "form": {
       "full_name": "Full Name",
