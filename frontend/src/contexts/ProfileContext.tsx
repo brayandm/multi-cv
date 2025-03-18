@@ -21,31 +21,33 @@ export type IBasicInfo = {
 export interface IExperience {
   id: string;
   company: string;
-  end_date: string;
-  start_date: string;
+  link: string;
+  role: string;
   location: string;
   description: string;
-  role: string;
+  start_date: string;
+  end_date: string;
   is_present: boolean;
 }
 
 export interface IEducation {
   id: string;
   institution: string;
-  end_date: string;
-  start_date: string;
-  location: string;
+  link: string;
   career: string;
+  location: string;
+  start_date: string;
+  end_date: string;
   is_present: boolean;
 }
 
 export interface IProject {
   id: string;
   name: string;
-  end_date: string;
-  start_date: string;
-  description: string;
   link: string;
+  description: string;
+  start_date: string;
+  end_date: string;
 }
 
 export interface IProfessionalLinks {
