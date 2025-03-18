@@ -18,11 +18,8 @@ const DynamicInputs = <T,>({
   isPresent,
   horizontal = false,
 }: DynamicInputsProps<T>) => {
-  const { syncProfile } = useProfile();
+  const { syncProfile, profileErrors } = useProfile();
 
-  const validateEmail = (email: string): boolean => {
-    return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(email);
-  };
   const getSelectedCountry = (
     inputs: IDynamicInputArray<T>
   ): IDynamicInput<T> => {
@@ -83,10 +80,10 @@ const DynamicInputs = <T,>({
         const customStyles = dynamicInputsStyles;
 
         if (input.type === "email") {
-          isInvalid =
-            input.value !== "" && !validateEmail(input.value as string);
-          errorMessage = isInvalid ? "Please enter a valid email" : "";
-          if (isInvalid) color = "danger";
+          isInvalid = profileErrors?.email?.invalid || false;
+          errorMessage = profileErrors?.email?.message || "";
+          if (isInvalid)
+            color = profileErrors?.email?.invalid ? "danger" : "default";
         }
 
         if (input.type === "button") {

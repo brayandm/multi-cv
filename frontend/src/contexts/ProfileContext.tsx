@@ -1,6 +1,7 @@
 "use client";
 
 import { getProfileEngine, profileSyncEngine } from "@/lib/backendService";
+import { validateEmail } from "@/lib/validators";
 import {
   createContext,
   useContext,
@@ -74,6 +75,14 @@ interface ProfileContextType {
   isLoaded: boolean;
   updateProfile: (newProfile: Partial<IProfile>) => void;
   syncProfile: () => void;
+  profileErrors?: IProfileErrors;
+}
+
+interface IProfileErrors {
+  email?: {
+    invalid: boolean;
+    message: string;
+  };
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -96,6 +105,28 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       list: [],
     },
   });
+
+  const [profileErrors, setProfileErrors] = useState<IProfileErrors>();
+
+  useEffect(() => {
+    if (!validateEmail(profile.basic_info.email)) {
+      setProfileErrors((prev) => ({
+        ...prev,
+        email: {
+          invalid: true,
+          message: "Invalid email",
+        },
+      }));
+    } else {
+      setProfileErrors((prev) => ({
+        ...prev,
+        email: {
+          invalid: false,
+          message: "",
+        },
+      }));
+    }
+  }, [profile]);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -123,7 +154,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <ProfileContext.Provider
-      value={{ profile, isLoaded, updateProfile, syncProfile }}
+      value={{ profile, isLoaded, updateProfile, syncProfile, profileErrors }}
     >
       {children}
     </ProfileContext.Provider>
