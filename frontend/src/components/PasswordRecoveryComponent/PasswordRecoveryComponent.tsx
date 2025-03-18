@@ -114,6 +114,7 @@ export default function PasswordRecoveryComponent({
             placeholder={t("common.placeholders.enter_email")}
             type="email"
             name="email"
+            isRequired
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             classNames={generalInputsStyles}
@@ -121,7 +122,7 @@ export default function PasswordRecoveryComponent({
           <Button
             color="primary"
             type="submit"
-            isDisabled={isCooldown || tryOtherDay || !email}
+            isDisabled={isCooldown || tryOtherDay}
           >
             {tryOtherDay && t("common.buttons.too_many_requests")}
             {!tryOtherDay &&
