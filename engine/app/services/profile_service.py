@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 from fastapi import Depends
 from motor.core import AgnosticDatabase
@@ -6,8 +6,6 @@ from motor.core import AgnosticDatabase
 from app.classes.models import Profile
 from app.database.mongodb import get_database
 from app.utils.preserve_notes import preserve_notes
-
-from typing import Optional
 
 
 class ProfileService:
