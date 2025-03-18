@@ -4,7 +4,7 @@ import GoogleOauthBtn from "@/shared/components/GoogleOauthBtn";
 import { loginApi } from "@/lib/backendService";
 import { handleGoogleSignIn } from "@/lib/oauth";
 
-import { Button, Divider, Input } from "@heroui/react";
+import { addToast, Button, Divider, Input } from "@heroui/react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -19,6 +19,7 @@ export default function LoginComponent() {
     email: "",
     password: "",
   });
+  const [onLogin, setOnLogin] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -29,6 +30,7 @@ export default function LoginComponent() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setOnLogin(true);
 
     try {
       axios.defaults.withCredentials = true;
@@ -60,7 +62,13 @@ export default function LoginComponent() {
       }
     } catch (error) {
       console.log(error);
+      addToast({
+        title: t("common.errors.login"),
+        description: t("common.errors.login_description"),
+        color: "danger",
+      });
     }
+    setOnLogin(false);
   };
 
   const t = useTranslations();
@@ -82,6 +90,7 @@ export default function LoginComponent() {
           value={formData.email}
           onChange={handleChange}
           classNames={generalInputsStyles}
+          isRequired
         />
         <Input
           label={t("common.form.password")}
@@ -92,8 +101,9 @@ export default function LoginComponent() {
           value={formData.password}
           onChange={handleChange}
           classNames={generalInputsStyles}
+          isRequired
         />
-        <Button color="primary" type="submit">
+        <Button color="primary" type="submit" isLoading={onLogin}>
           {t("common.auth.login")}
         </Button>
         <p

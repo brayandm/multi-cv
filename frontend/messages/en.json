@@ -28,6 +28,12 @@
       "too_many_requests": "Too many requests, try in 24 hours",
       "next": "Next"
     },
+    "errors": {
+      "login": "Login failed",
+      "login_description": "The email or password is incorrect.",
+      "register": "Registration failed",
+      "register_description": "The email is already in use."
+    },
     "form": {
       "full_name": "Full Name",
       "email": "Email",

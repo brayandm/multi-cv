@@ -8,6 +8,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { ProfileProvider } from "@/contexts/ProfileContext";
 import { ClientLayout } from "./ClientLayout";
 import { LocaleProvider } from "@/contexts/LocaleContext";
+import { ToastProvider } from "@/providers/ToastProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,6 +61,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex-grow `}
       >
         <HeroUIProvider>
+          <ToastProvider />
           <NextIntlClientProvider messages={messages}>
             <LocaleProvider>
               <ProfileProvider>
