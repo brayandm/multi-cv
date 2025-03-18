@@ -56,6 +56,14 @@ const Projects: React.FC = () => {
             value: project?.name || "",
           },
           {
+            label: t("common.form.link"),
+            type: "text",
+            placeholder: t("common.placeholders.enter_project_link"),
+            onValueChange: (value: string) =>
+              onProjectChange(index, "link", value),
+            value: project?.link || "",
+          },
+          {
             label: t("common.form.project_description"),
             type: "textarea",
             placeholder: t("common.placeholders.enter_project_description"),
@@ -79,15 +87,6 @@ const Projects: React.FC = () => {
               value: project?.end_date || "",
             },
           ],
-
-          {
-            label: t("common.form.project_link"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_project_link"),
-            onValueChange: (value: string) =>
-              onProjectChange(index, "link", value),
-            value: project?.link || "",
-          },
         ];
 
         return (

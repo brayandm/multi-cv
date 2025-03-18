@@ -74,6 +74,14 @@ const Experience: React.FC = () => {
             value: experience?.company || "",
           },
           {
+            label: t("common.form.link"),
+            type: "text",
+            placeholder: t("common.placeholders.enter_company_link"),
+            onValueChange: (value: string) =>
+              onExperienceChange(index, "link", value),
+            value: experience?.link || "",
+          },
+          {
             label: t("common.form.role"),
             type: "text",
             placeholder: t("common.placeholders.enter_role"),

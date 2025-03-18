@@ -51,7 +51,7 @@
       "end_date": "Antim Tarikh",
       "project_name": "Project Naam",
       "project_description": "Project Varnan",
-      "project_link": "Project Link",
+      "link": "Project Link",
       "professional_links_select": "Link Chuno"
     },
     "placeholders": {
@@ -74,6 +74,8 @@
       "enter_project_name": "Project naam likho",
       "enter_project_description": "Chhota varnan likho",
       "enter_project_link": "Project link likho",
+      "enter_institution_link": "Sanstha link likho",
+      "enter_company_link": "Company link likho",
       "professional_links_select": "Select karne ke liye click karo",
       "enter_your_link": "Aapka {field} link likho"
     },

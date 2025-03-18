@@ -71,6 +71,14 @@ const Education: React.FC = () => {
             value: education?.institution || "",
           },
           {
+            label: t("common.form.link"),
+            type: "text",
+            placeholder: t("common.placeholders.enter_institution_link"),
+            onValueChange: (value: string) =>
+              onEducationChange(index, "link", value),
+            value: education?.link || "",
+          },
+          {
             label: t("common.form.career"),
             type: "text",
             placeholder: t("common.placeholders.enter_career"),

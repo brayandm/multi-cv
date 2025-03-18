@@ -51,7 +51,7 @@
       "end_date": "Дата окончания",
       "project_name": "Название проекта",
       "project_description": "Описание проекта",
-      "project_link": "Ссылка",
+      "link": "Ссылка",
       "professional_links_select": "Выберите ссылку"
     },
     "placeholders": {
@@ -74,6 +74,8 @@
       "enter_project_name": "Название проекта",
       "enter_project_description": "Краткое описание",
       "enter_project_link": "Ссылка на проект",
+      "enter_institution_link": "Ссылка на учебное заведение",
+      "enter_company_link": "Ссылка на компанию",
       "professional_links_select": "Нажмите для выбора",
       "enter_your_link": "Введите ссылку {field}"
     },

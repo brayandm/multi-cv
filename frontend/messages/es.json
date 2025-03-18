@@ -51,7 +51,7 @@
       "end_date": "Fecha fin",
       "project_name": "Nombre del proyecto",
       "project_description": "Descripción proyecto",
-      "project_link": "Enlace",
+      "link": "Enlace",
       "professional_links_select": "Selecciona un enlace"
     },
     "placeholders": {
@@ -74,6 +74,8 @@
       "enter_project_name": "Nombre del proyecto",
       "enter_project_description": "Breve descripción",
       "enter_project_link": "Enlace al proyecto",
+      "enter_institution_link": "Enlace a la institución",
+      "enter_company_link": "Enlace a la empresa",
       "professional_links_select": "Clic para seleccionar",
       "enter_your_link": "Ingresa tu enlace de {field}"
     },
