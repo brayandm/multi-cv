@@ -72,6 +72,12 @@ export interface UserLocaleResponse {
   locale: string;
 }
 
+export interface GetQuotaInfoResponse {
+  quota: number;
+  frequency: string;
+  left: number;
+}
+
 export interface ProfileSyncResponse {
   message: string;
 }

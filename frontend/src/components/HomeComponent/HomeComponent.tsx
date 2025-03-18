@@ -1,6 +1,10 @@
 "use client";
 
-import { fetcherApi, generateCvInlineEngine } from "@/lib/backendService";
+import {
+  fetcherApi,
+  generateCvInlineEngine,
+  getQuotaInfoApi,
+} from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
 import { saveAs } from "file-saver";
 
@@ -8,11 +12,40 @@ import useSWR from "swr";
 // import CvList from "../../shared/components/CvList";
 // import { CV } from "@/lib/types";
 import { Button } from "@heroui/react";
+import { useEffect, useState } from "react";
+import { GetQuotaInfoResponse } from "@/lib/types";
+import { AxiosResponse } from "axios";
 
 export default function HomeComponent() {
   const { isLoading: isUserDataLoading } = useSWR(userApiLink, fetcherApi);
 
-  if (isUserDataLoading) {
+  const [isQuotaInfoLoading, setIsQuotaInfoLoading] = useState(false);
+  const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
+
+  const getQuota = () => {
+    getQuotaInfoApi("generate_cv_inline")
+      .then((response: AxiosResponse<GetQuotaInfoResponse>) => {
+        setQuotaInfo(response.data);
+      })
+      .catch((error: unknown) => {
+        if (error instanceof Error) {
+          console.error("Error while fetching quota info", error.message);
+        } else {
+          console.error("Error while fetching quota info", error);
+        }
+      })
+      .finally(() => {
+        setIsQuotaInfoLoading(false);
+      });
+  };
+
+  useEffect(() => {
+    getQuota();
+  }, []);
+
+  const [isCvLoading, setIsCvLoading] = useState(false);
+
+  if (isUserDataLoading || isQuotaInfoLoading) {
     return null;
   }
 
@@ -54,6 +87,7 @@ export default function HomeComponent() {
 
   const handleDownload = async () => {
     try {
+      setIsCvLoading(true);
       const response = await generateCvInlineEngine();
 
       const blob = new Blob([response.data], {
@@ -64,16 +98,35 @@ export default function HomeComponent() {
     } catch (error) {
       console.error("Error while generating CV", error);
     }
+    setIsCvLoading(false);
+    getQuota();
   };
 
   return (
     <main className="">
       <div className="flex justify-center">
         {/* <CvList cvs={cvs}></CvList> */}
-        <Button color="primary" onPress={handleDownload}>
+      </div>
+      <div className="flex justify-center">
+        <Button
+          color="primary"
+          onPress={handleDownload}
+          isDisabled={isCvLoading}
+          isLoading={isCvLoading}
+        >
           Generate CV
         </Button>
       </div>
+      {quotaInfo && (
+        <div className="mt-4 text-center">
+          <p>
+            <strong>Quota Info:</strong>
+          </p>
+          <p>
+            Used: {quotaInfo.left} / {quotaInfo.quota}
+          </p>
+        </div>
+      )}
     </main>
   );
 }
