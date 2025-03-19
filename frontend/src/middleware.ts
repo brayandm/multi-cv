@@ -107,7 +107,7 @@ export const config = {
     "/register",
     "/accept-terms",
     "/home",
-    "/profile",
+    "/profile/:path*",
     "/password",
     "/email/:path*",
   ],

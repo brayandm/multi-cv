@@ -148,8 +148,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     setProfile((prev) => ({ ...prev, ...newProfile }));
   };
 
-  const syncProfile = () => {
-    profileSyncEngine(profile);
+  const syncProfile = async () => {
+    await profileSyncEngine(profile);
   };
 
   return (

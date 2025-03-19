@@ -11,6 +11,7 @@ import Education from "./Education";
 import ChatComponent from "@/shared/components/ChatComponent";
 import { useProfile } from "@/contexts/ProfileContext";
 import { useRouter } from "next/navigation";
+import { finishFirstLoginApi } from "@/lib/backendService";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
@@ -154,13 +155,15 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
           <Card className="mb-3">
             {(isFirstLogin || nextPositionIsAvailable()) && (
               <Button
-                onPress={() => {
-                  syncProfile();
+                onPress={async () => {
                   if (isFirstLogin && !nextPositionIsAvailable()) {
+                    await syncProfile();
+                    await finishFirstLoginApi();
                     router.push("/profile/success");
                     return;
                   }
                   setSelectedTab(positions[mapPosition[selectedTab] + 1]);
+                  syncProfile();
                 }}
                 color="primary"
               >

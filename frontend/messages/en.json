@@ -26,7 +26,8 @@
       "resend_in": "Resend in {timeleft}s",
       "try_again": "Try again",
       "too_many_requests": "Too many requests, try in 24 hours",
-      "next": "Next"
+      "next": "Next",
+      "go_home": "Go Home"
     },
     "errors": {
       "login": "Login failed",
@@ -178,6 +179,10 @@
           "add_education": "Add Education",
           "is_present": "I'm currently studying here"
         }
+      },
+      "success": {
+        "title": "Registration Completed",
+        "message": "Your account is ready. You can now access all the platform's features."
       }
     },
     "terms_and_conditions": {
