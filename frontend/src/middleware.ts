@@ -6,6 +6,10 @@ import { UserStatusResponse } from "./lib/types";
 const authPages = ["/", "/login", "/register"];
 const unProtectedPages: string[] = [];
 const badEmailVerificationPages = ["/email/verify", "/email/verify/expired"];
+const goodEmailVerificationPages = [
+  "/email/verify/success",
+  "/email/verify/already-verified",
+];
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
@@ -15,6 +19,10 @@ export async function middleware(req: NextRequest) {
     !unProtectedPages.includes(url.pathname);
   const isAcceptTermsPage = url.pathname === "/accept-terms";
   const isBadEmailVerificationPage = badEmailVerificationPages.includes(
+    url.pathname
+  );
+
+  const isGoodEmailVerificationPage = goodEmailVerificationPages.includes(
     url.pathname
   );
 
@@ -74,6 +82,10 @@ export async function middleware(req: NextRequest) {
       if (isBadEmailVerificationPage) {
         url.pathname = "/home";
         return NextResponse.redirect(url);
+      }
+
+      if (isGoodEmailVerificationPage) {
+        return NextResponse.next();
       }
     } else {
       if (isBadEmailVerificationPage) {
