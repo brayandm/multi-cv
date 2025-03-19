@@ -6,7 +6,7 @@ from fastapi import HTTPException
 from app.config import (
     INTER_COMMUNICATION_TOKEN,
 )
-from app.framework.decorators.action import set_action_id
+from app.framework.decorators.context_vars import set_action_id
 from app.framework.middlewares.request_handle_middleware import request_var
 
 
