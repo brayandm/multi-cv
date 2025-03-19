@@ -48,10 +48,22 @@ const Education: React.FC = () => {
     });
   }
 
+  function onRemovePage(index: number) {
+    const updatedEducations = profile.education.filter(
+      (_, educationIndex) => educationIndex !== index
+    );
+
+    updateProfile({
+      ...profile,
+      education: updatedEducations,
+    });
+  }
+
   return (
     <Paginator
       total={profile.education.length}
       onNewPage={addNewEducation}
+      onRemovePage={onRemovePage}
       buttonLabel={t("pages.profile.sections.education.add_education")}
     >
       {profile.education.map((education, index) => {

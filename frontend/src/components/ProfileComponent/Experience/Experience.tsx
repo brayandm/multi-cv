@@ -51,10 +51,22 @@ const Experience: React.FC = () => {
     });
   }
 
+  function onRemovePage(index: number) {
+    const updatedExperiences = profile.experience.filter(
+      (_, experienceIndex) => experienceIndex !== index
+    );
+
+    updateProfile({
+      ...profile,
+      experience: updatedExperiences,
+    });
+  }
+
   return (
     <Paginator
       total={profile.experience.length}
       onNewPage={addNewExperience}
+      onRemovePage={onRemovePage}
       buttonLabel={t("pages.profile.sections.experience.add_experience")}
     >
       {profile.experience.map((experience, index) => {

@@ -47,10 +47,22 @@ const Projects: React.FC = () => {
     });
   }
 
+  function onRemovePage(index: number) {
+    const updatedProjects = profile.projects.filter(
+      (_, projectsIndex) => projectsIndex !== index
+    );
+
+    updateProfile({
+      ...profile,
+      projects: updatedProjects,
+    });
+  }
+
   return (
     <Paginator
       total={profile.projects.length}
       onNewPage={addNewProject}
+      onRemovePage={onRemovePage}
       buttonLabel={t("pages.profile.sections.projects.add_project")}
     >
       {profile.projects.map((project, index) => {
