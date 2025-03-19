@@ -29,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'notified_terms_at',
         'email_verified_at',
         'locale',
+        'is_first_login',
     ];
 
     /**
@@ -51,6 +52,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'accepted_terms_at' => 'datetime',
         'notified_terms_at' => 'datetime',
         'password' => 'hashed',
+        'is_first_login' => 'boolean',
     ];
 
     public function quotas()

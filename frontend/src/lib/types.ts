@@ -4,6 +4,7 @@ export interface UserStatusResponse {
   notice_new_terms_version?: boolean;
   email_verified?: boolean;
   email?: string;
+  is_first_login?: boolean;
 }
 
 export interface LoginResponse {
@@ -79,6 +80,10 @@ export interface GetQuotaInfoResponse {
 }
 
 export interface ProfileSyncResponse {
+  message: string;
+}
+
+export interface FinishFirstLoginResponse {
   message: string;
 }
 

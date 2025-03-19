@@ -46,61 +46,63 @@ export async function middleware(req: NextRequest) {
   const isEmailVerified =
     data.status === 200 && data.data.email_verified === true;
 
+  // const isFirstLogin = data.status === 200 && data.data.is_first_login === true;
+
   let isNoticeTermsVersion = null;
 
   if (data.status === 200) {
     isNoticeTermsVersion = data.data.notice_new_terms_version;
   }
 
-  if (isAuthenticated && isAuthPage) {
-    url.pathname = "/home";
-    return NextResponse.redirect(url);
-  }
+  if (isAuthenticated) {
+    if (isAuthPage) {
+      url.pathname = "/home";
+      return NextResponse.redirect(url);
+    }
 
-  if (!isAuthenticated && isProtectedPage) {
-    url.pathname = "/";
-    return NextResponse.redirect(url);
-  }
+    if (isEmailVerified && isBadEmailVerificationPage) {
+      url.pathname = "/home";
+      return NextResponse.redirect(url);
+    }
 
-  if (isAuthenticated && isEmailVerified && isBadEmailVerificationPage) {
-    url.pathname = "/home";
-    return NextResponse.redirect(url);
-  }
+    if (!isEmailVerified && isGoodEmailVerificationPage) {
+      url.pathname = "/email/verify";
+      return NextResponse.redirect(url);
+    }
 
-  if (isAuthenticated && !isEmailVerified && isGoodEmailVerificationPage) {
-    url.pathname = "/email/verify";
-    return NextResponse.redirect(url);
-  }
+    if (!isEmailVerified && isBadEmailVerificationPage) {
+      return NextResponse.next();
+    }
 
-  if (isAuthenticated && !isEmailVerified && isBadEmailVerificationPage) {
-    return NextResponse.next();
-  }
+    if (!isEmailVerified) {
+      url.pathname = "/email/verify";
+      return NextResponse.redirect(url);
+    }
 
-  if (isAuthenticated && !isEmailVerified) {
-    url.pathname = "/email/verify";
-    return NextResponse.redirect(url);
-  }
+    if (
+      !isAcceptTermsPage &&
+      isProtectedPage &&
+      (isFirstTermsVersion ||
+        (!isValidTermsVersion && isNoticeTermsVersion !== null))
+    ) {
+      url.pathname = "/accept-terms";
+      return NextResponse.redirect(url);
+    }
 
-  if (
-    !isAcceptTermsPage &&
-    isAuthenticated &&
-    isProtectedPage &&
-    (isFirstTermsVersion ||
-      (!isValidTermsVersion && isNoticeTermsVersion !== null))
-  ) {
-    url.pathname = "/accept-terms";
-    return NextResponse.redirect(url);
-  }
-
-  if (
-    isAcceptTermsPage &&
-    isAuthenticated &&
-    !isFirstTermsVersion &&
-    (isValidTermsVersion ||
-      (!isValidTermsVersion && isNoticeTermsVersion === null))
-  ) {
-    url.pathname = "/home";
-    return NextResponse.redirect(url);
+    if (
+      isAcceptTermsPage &&
+      !isFirstTermsVersion &&
+      (isValidTermsVersion ||
+        (!isValidTermsVersion && isNoticeTermsVersion === null))
+    ) {
+      url.pathname = "/home";
+      return NextResponse.redirect(url);
+    }
+  } else {
+    if (isProtectedPage) {
+      url.pathname = "/";
+      return NextResponse.redirect(url);
+    }
   }
 
   return NextResponse.next();

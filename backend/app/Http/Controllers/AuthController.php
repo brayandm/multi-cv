@@ -191,12 +191,26 @@ class AuthController extends Controller
 
         $email_verified = $user->email_verified_at ? true : false;
 
+        $is_first_login = $user->is_first_login;
+
         return response()->json(['authenticated' => true,
             'is_valid_terms_version' => $is_valid_terms_version,
             'notice_new_terms_version' => $notice_new_terms_version,
             'email_verified' => $email_verified,
             'email' => $user->email,
+            'is_first_login' => $is_first_login,
         ]);
+    }
+
+    public function finishFirstLogin(Request $request)
+    {
+        $user = $request->user();
+
+        $user->update([
+            'is_first_login' => false,
+        ]);
+
+        return response()->json(['message' => 'First login finished successfully']);
     }
 
     public function logout(Request $request)

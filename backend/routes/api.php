@@ -36,7 +36,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
 
-    Route::middleware(['check.constant.connection', 'auth:sanctum', 'auth.inter.communication'])->group(function () {
+    Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified', 'auth.inter.communication'])->group(function () {
         Route::post('/action/consume', 'App\Http\Controllers\ActionController@consumeAction');
         Route::post('/auth/get-id', 'App\Http\Controllers\AuthController@getId');
     });
@@ -44,10 +44,6 @@ Route::group(['prefix' => 'v1'], function () {
     Route::middleware(['auth.inter.communication'])->group(function () {
         Route::post('/action/rollback', 'App\Http\Controllers\ActionController@rollbackAction');
         Route::post('/action/commit', 'App\Http\Controllers\ActionController@commitAction');
-    });
-
-    Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
-        Route::post('/quota/info', 'App\Http\Controllers\ActionController@getQuotaInfo');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
@@ -69,6 +65,8 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {
 
+        Route::post('/quota/info', 'App\Http\Controllers\ActionController@getQuotaInfo');
+
         Route::get('/user', 'App\Http\Controllers\AuthController@getUser');
 
         Route::put('/user/update/profile', 'App\Http\Controllers\AuthController@updateProfile');
@@ -76,5 +74,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::put('/user/accept-terms-version', 'App\Http\Controllers\AuthController@updateAcceptedTermsVersion');
         Route::put('/user/notified-terms-version', 'App\Http\Controllers\AuthController@updateNotifiedTermsVersion');
+
+        Route::put('/user/finish-first-login', 'App\Http\Controllers\AuthController@finishFirstLogin');
     });
 });

@@ -13,6 +13,7 @@ export const passwordRecoveryResetApiLink = "/password/reset";
 export const userSetLocaleApiLink = "/user/set-locale";
 export const userLocaleApiLink = "/user/locale";
 export const getQuotaInfoApiLink = "/quota/info";
+export const finishFirstLoginApiLink = "/user/finish-first-login";
 export const profileSyncEngineLink = "/profile/sync";
 export const getProfileEngineLink = "/profile";
 export const generateCvInlineEngineLink = "/generate/cv/inline";

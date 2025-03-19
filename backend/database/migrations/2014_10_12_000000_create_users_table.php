@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamp('accepted_terms_at')->nullable();
             $table->timestamp('notified_terms_at')->nullable();
             $table->string('locale')->default('en');
+            $table->boolean('is_first_login')->default(true);
             $table->rememberToken();
             $table->timestamps();
         });

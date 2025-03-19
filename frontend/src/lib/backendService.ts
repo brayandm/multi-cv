@@ -18,6 +18,7 @@ import {
   getQuotaInfoApiLink,
   getProfileEngineLink,
   generateCvInlineEngineLink,
+  finishFirstLoginApiLink,
 } from "./links";
 import {
   UserResponse,
@@ -35,6 +36,7 @@ import {
   UserLocaleResponse,
   ProfileSyncResponse,
   GetQuotaInfoResponse,
+  FinishFirstLoginResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 
@@ -230,6 +232,12 @@ export const getQuotaInfoApi = async (
   action: string
 ): Promise<AxiosResponse<GetQuotaInfoResponse>> => {
   return await api.post(getQuotaInfoApiLink, { action: action });
+};
+
+export const finishFirstLoginApi = async (): Promise<
+  AxiosResponse<FinishFirstLoginResponse>
+> => {
+  return await api.put(finishFirstLoginApiLink);
 };
 
 export const profileSyncEngine = async (
