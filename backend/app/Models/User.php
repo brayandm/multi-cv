@@ -109,6 +109,7 @@ class User extends Authenticatable implements MustVerifyEmail
                 'quota' => 5,
                 'frequency' => 'months',
                 'cumulative' => false,
+                'left' => 5,
                 'max_failed' => 3,
                 'max_pending' => 1,
             ]);
