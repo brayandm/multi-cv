@@ -11,7 +11,13 @@ import Education from "./Education";
 import ChatComponent from "@/shared/components/ChatComponent";
 import { useProfile } from "@/contexts/ProfileContext";
 
-const ProfileComponent: React.FC = () => {
+interface IProfileComponentProps {
+  isFirstLogin?: boolean;
+}
+
+const ProfileComponent: React.FC = ({
+  isFirstLogin = false,
+}: IProfileComponentProps) => {
   const width = 350;
 
   const { isLoaded, syncProfile } = useProfile();
@@ -145,7 +151,7 @@ const ProfileComponent: React.FC = () => {
             </CardBody>
           </Card>
           <Card className="mb-3">
-            {nextPositionIsAvailable() && (
+            {(isFirstLogin || nextPositionIsAvailable()) && (
               <Button
                 onPress={() => {
                   setSelectedTab(positions[mapPosition[selectedTab] + 1]);
