@@ -90,6 +90,13 @@ const Projects: React.FC = () => {
               onProjectChange(index, "description", value),
             value: project?.description || "",
             isRequired: true,
+            isInvalid: project?.description.length < 50,
+            errorMessage: t("common.errors.length", {
+              field: t("common.form.project_description"),
+              length: 50,
+              current_length: project?.description.length,
+            }),
+            description: `${project?.description.length} / 50`,
           },
           [
             {

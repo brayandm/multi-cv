@@ -97,13 +97,20 @@ const Experience: React.FC = () => {
             isRequired: true,
           },
           {
-            label: t("common.form.description"),
+            label: t("common.form.company_description"),
             type: "textarea",
             placeholder: t("common.placeholders.enter_job_description"),
             onValueChange: (value: string) =>
               onExperienceChange(index, "description", value),
             value: experience?.description || "",
             isRequired: true,
+            isInvalid: experience?.description.length < 50,
+            errorMessage: t("common.errors.length", {
+              field: t("common.form.company_description"),
+              length: 50,
+              current_length: experience?.description.length,
+            }),
+            description: `${experience?.description.length} / 50`,
           },
           {
             label: t("common.form.location"),

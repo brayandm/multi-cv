@@ -64,7 +64,7 @@
       "role": "Role",
       "phone_number": "Phone number",
       "phone_country_code": "Country code",
-      "description": "Company description",
+      "company_description": "Job Description",
       "location": "Location",
       "start_date": "Start date",
       "end_date": "End date",
