@@ -2,9 +2,11 @@
 import React, { useRef, useState } from "react";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
 import { Button, Pagination } from "@heroui/react";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 const Paginator: React.FC<IPaginatorProps> = ({
   onNewPage,
+  onRemovePage,
   total,
   buttonLabel,
   children,
@@ -35,8 +37,33 @@ const Paginator: React.FC<IPaginatorProps> = ({
     }, 200);
   }
 
+  function deleteCurrentPage() {
+    if (currentPage === 1) {
+      if (totalPages === 1) {
+      } else {
+        scrollToPage(currentPage + 1);
+      }
+    } else {
+      scrollToPage(currentPage - 1);
+      setCurrentpage(currentPage - 1);
+    }
+    setTimeout(() => {
+      onRemovePage(currentPage - 1);
+      setTotalPages(totalPages - 1);
+    }, 200);
+  }
+
   return (
     <section className={`flex flex-col`}>
+      <Button
+        variant="bordered"
+        color="danger"
+        className="rounded-full self-center"
+        isIconOnly
+        onPress={deleteCurrentPage}
+      >
+        <XMarkIcon className="w-5 h-5" />
+      </Button>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
         <div ref={childRef} className="flex">
           {children}
@@ -64,6 +91,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
         variant="bordered"
         color="primary"
         onPress={addNewPage}
+        type="submit"
         className="mx-1"
       >
         {buttonLabel}
