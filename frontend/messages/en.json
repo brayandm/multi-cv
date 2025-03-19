@@ -63,6 +63,7 @@
       "career": "Career",
       "skill": "Skill",
       "role": "Role",
+      "delete": "Delete",
       "phone_number": "Phone number",
       "phone_country_code": "Country code",
       "company_description": "Job Description",

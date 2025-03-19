@@ -2,7 +2,7 @@
 import React, { useRef, useState } from "react";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
 import { Button, Pagination } from "@heroui/react";
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 
 const Paginator: React.FC<IPaginatorProps> = ({
   onNewPage,
@@ -15,6 +15,8 @@ const Paginator: React.FC<IPaginatorProps> = ({
   const childRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentpage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(total);
+
+  const t = useTranslations();
 
   const scrollToPage = (page: number) => {
     if (!childRef.current) return;
@@ -55,15 +57,6 @@ const Paginator: React.FC<IPaginatorProps> = ({
 
   return (
     <section className={`flex flex-col`}>
-      <Button
-        variant="bordered"
-        color="danger"
-        className="rounded-full self-center"
-        isIconOnly
-        onPress={deleteCurrentPage}
-      >
-        <XMarkIcon className="w-5 h-5" />
-      </Button>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
         <div ref={childRef} className="flex">
           {children}
@@ -87,15 +80,21 @@ const Paginator: React.FC<IPaginatorProps> = ({
           />
         </div>
       )}
-      <Button
-        variant="bordered"
-        color="primary"
-        onPress={addNewPage}
-        type="submit"
-        className="mx-1"
-      >
-        {buttonLabel}
-      </Button>
+      <div className="flex flex-row gap-1">
+        <Button
+          variant="bordered"
+          color="primary"
+          onPress={addNewPage}
+          className="w-full"
+        >
+          {buttonLabel}
+        </Button>
+        {totalPages > 0 && (
+          <Button variant="bordered" color="danger" onPress={deleteCurrentPage}>
+            {t("common.form.delete")}
+          </Button>
+        )}
+      </div>
     </section>
   );
 };
