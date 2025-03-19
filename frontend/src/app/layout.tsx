@@ -9,6 +9,7 @@ import { ProfileProvider } from "@/contexts/ProfileContext";
 import { ClientLayout } from "./ClientLayout";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { ToastProvider } from "@/providers/ToastProvider";
+import { UserStatusProvider } from "@/contexts/UserStatusContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -64,11 +65,13 @@ export default async function RootLayout({
           <ToastProvider />
           <NextIntlClientProvider messages={messages}>
             <LocaleProvider>
-              <ProfileProvider>
-                <ClientLayout>
-                  <MarginTopContainer>{children}</MarginTopContainer>
-                </ClientLayout>
-              </ProfileProvider>
+              <UserStatusProvider>
+                <ProfileProvider>
+                  <ClientLayout>
+                    <MarginTopContainer>{children}</MarginTopContainer>
+                  </ClientLayout>
+                </ProfileProvider>
+              </UserStatusProvider>
             </LocaleProvider>
           </NextIntlClientProvider>
         </HeroUIProvider>

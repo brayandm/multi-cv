@@ -9,6 +9,7 @@ import {
   ReactNode,
   useEffect,
 } from "react";
+import { useUserStatus } from "./UserStatusContext";
 
 export type IBasicInfo = {
   full_name: string;
@@ -106,6 +107,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     },
   });
 
+  const { userStatus } = useUserStatus();
+
   const [profileErrors, setProfileErrors] = useState<IProfileErrors>();
 
   useEffect(() => {
@@ -131,18 +134,20 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    getProfileEngine()
-      .then((response) => {
-        if (response.data) {
-          setProfile(response.data);
-        }
-        setIsLoaded(true);
-      })
-      .catch((error) => {
-        console.error(error);
-        setIsLoaded(true);
-      });
-  }, []);
+    if (userStatus.authenticated) {
+      getProfileEngine()
+        .then((response) => {
+          if (response.data) {
+            setProfile(response.data);
+          }
+          setIsLoaded(true);
+        })
+        .catch((error) => {
+          console.error(error);
+          setIsLoaded(true);
+        });
+    }
+  }, [userStatus]);
 
   const updateProfile = (newProfile: Partial<IProfile>) => {
     setProfile((prev) => ({ ...prev, ...newProfile }));
