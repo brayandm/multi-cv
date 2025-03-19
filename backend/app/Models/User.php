@@ -100,5 +100,18 @@ class User extends Authenticatable implements MustVerifyEmail
                 'error' => 'You have exceeded the global registration limit. Please try again later.',
             ])->status(429);
         });
+
+        static::created(function ($user) {
+
+            Quota::create([
+                'user_id' => $user->id,
+                'action' => 'generate_cv_inline',
+                'quota' => 5,
+                'frequency' => 'months',
+                'cumulative' => false,
+                'max_failed' => 3,
+                'max_pending' => 1,
+            ]);
+        });
     }
 }
