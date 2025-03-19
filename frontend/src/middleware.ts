@@ -18,6 +18,8 @@ export async function middleware(req: NextRequest) {
     url.pathname
   );
 
+  const isProfilePage = url.pathname === "/profile";
+
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
 
   const data = await api.get<UserStatusResponse>(userStatusApiLink, {
@@ -80,9 +82,9 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    if (isFirstLogin) {
+    if (isFirstLogin && !isProfilePage) {
       url.pathname = "/profile";
-      return;
+      return NextResponse.redirect(url);
     }
 
     if (isAuthPage) {
