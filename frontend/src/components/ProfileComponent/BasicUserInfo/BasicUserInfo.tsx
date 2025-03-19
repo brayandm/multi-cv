@@ -52,6 +52,7 @@ const BasicUserInfo: React.FC = () => {
           onBasicUserInfoChange("phone_country_code", value || "");
         },
         isRequired: true,
+        isInvalid: !profile.basic_info.phone_country_code,
       },
       {
         label: t("common.form.phone_number"),
