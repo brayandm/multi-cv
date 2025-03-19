@@ -32,6 +32,7 @@ export interface IDynamicInput<T> {
   endContent?: React.ReactNode;
   onValueChange?: IDynamicOnValueChange<T>;
   onPress?: IDynamicOnPress;
+  isRequired?: boolean;
 }
 
 export type IDynamicInputArray<T> = Array<
