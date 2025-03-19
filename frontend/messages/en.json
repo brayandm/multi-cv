@@ -41,7 +41,8 @@
       "server": "Server error",
       "under_age": "You must be over 18 years old",
       "accept_terms": "You must accept the terms and conditions",
-      "length": "The {field} must be {current_length}/{length} characters long"
+      "length": "The {field} must be {current_length}/{length} characters long",
+      "skill_length": "You should enter at least {min} skill"
     },
     "success": {
       "password_change": "Password changed",
