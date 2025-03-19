@@ -22,6 +22,10 @@ const Experience: React.FC = () => {
     const updatedExperiences = [...profile.experience];
     updatedExperiences[index] = { ...updatedExperiences[index], [key]: value };
 
+    if (key === "is_present" && value === true) {
+      updatedExperiences[index].end_date = "";
+    }
+
     updateProfile({
       ...profile,
       experience: updatedExperiences,
@@ -58,8 +62,9 @@ const Experience: React.FC = () => {
           return {
             label: t("pages.profile.sections.experience.is_present"),
             type: "is_present",
-            onValueChange: (value: boolean) =>
-              onExperienceChange(index, "is_present", value),
+            onValueChange: (value: boolean) => {
+              onExperienceChange(index, "is_present", value);
+            },
             value: experience?.is_present || "",
           };
         };

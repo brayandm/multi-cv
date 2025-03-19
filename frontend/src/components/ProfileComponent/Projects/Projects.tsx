@@ -20,6 +20,10 @@ const Projects: React.FC = () => {
     const updatedProjects = [...profile.projects];
     updatedProjects[index] = { ...updatedProjects[index], [key]: value };
 
+    if (key === "is_present" && value === true) {
+      updatedProjects[index].end_date = "";
+    }
+
     updateProfile({
       ...profile,
       projects: updatedProjects,

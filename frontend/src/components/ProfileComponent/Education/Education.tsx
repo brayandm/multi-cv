@@ -20,6 +20,10 @@ const Education: React.FC = () => {
     const updatedEducations = [...profile.education];
     updatedEducations[index] = { ...updatedEducations[index], [key]: value };
 
+    if (key === "is_present" && value === true) {
+      updatedEducations[index].end_date = "";
+    }
+
     updateProfile({
       ...profile,
       education: updatedEducations,
