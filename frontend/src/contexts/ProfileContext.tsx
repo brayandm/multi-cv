@@ -98,6 +98,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     },
   });
 
+  const [onLoadedError, setOnLoadedError] = useState(false);
+
   const { userStatus } = useUserStatus();
 
   const [isLoaded, setIsLoaded] = useState(false);
@@ -114,6 +116,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
         .catch((error) => {
           console.error(error);
           setIsLoaded(true);
+          setOnLoadedError(true);
         });
     }
   }, [userStatus]);
@@ -123,6 +126,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const syncProfile = async () => {
+    if (onLoadedError) return;
     await profileSyncEngine(profile);
   };
 
