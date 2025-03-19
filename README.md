@@ -29,3 +29,15 @@ bash clean-project.sh
 ```bash
 bash clean-project.sh -v
 ```
+
+## Stop Project for Local Development
+
+```bash
+bash down.sh
+```
+
+## Start Project for Local Development
+
+```bash
+bash up.sh
+```
