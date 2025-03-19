@@ -24,7 +24,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
 
   const { isLoaded, syncProfile } = useProfile();
 
-  const [direction, setDirection] = useState<"next" | "previous">("next");
+  const formRef = useRef<HTMLFormElement>(null);
 
   const t = useTranslations();
 
@@ -93,29 +93,11 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
     smoothScroll(ref.current.scrollLeft, targetScroll, 700);
   }, [selectedTab, mapPosition]);
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
-
-    if (direction === "previous") {
-      setSelectedTab(positions[mapPosition[selectedTab] - 1]);
-      syncProfile();
-    } else {
-      if (isFirstLogin && !nextPositionIsAvailable()) {
-        await syncProfile();
-        await finishFirstLoginApi();
-        router.push("/profile/success");
-        return;
-      }
-      setSelectedTab(positions[mapPosition[selectedTab] + 1]);
-      syncProfile();
-    }
-  };
-
   return (
     <main className="flex justify-center">
       <ChatComponent />
       <div className={`max-w-[${width}px]`}>
-        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-2" ref={formRef}>
           <Card className="min-h-[75vh]">
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
@@ -182,8 +164,13 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
               <Card className="mb-3 w-full">
                 <Button
                   color="primary"
-                  type="submit"
-                  onPress={() => setDirection("previous")}
+                  onPress={() => {
+                    if (!formRef.current || !formRef.current.reportValidity())
+                      return;
+
+                    setSelectedTab(positions[mapPosition[selectedTab] - 1]);
+                    syncProfile();
+                  }}
                 >
                   {t("common.buttons.previous")}
                 </Button>
@@ -193,8 +180,18 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
               <Card className="mb-3 w-full">
                 <Button
                   color="primary"
-                  type="submit"
-                  onPress={() => setDirection("next")}
+                  onPress={async () => {
+                    if (!formRef.current || !formRef.current.reportValidity())
+                      return;
+                    if (isFirstLogin && !nextPositionIsAvailable()) {
+                      await syncProfile();
+                      await finishFirstLoginApi();
+                      router.push("/profile/success");
+                      return;
+                    }
+                    setSelectedTab(positions[mapPosition[selectedTab] + 1]);
+                    syncProfile();
+                  }}
                 >
                   {t("common.buttons.next")}
                 </Button>
