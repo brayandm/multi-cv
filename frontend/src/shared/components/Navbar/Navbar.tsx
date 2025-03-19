@@ -57,10 +57,9 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
           <NavbarMenuItem>
             <Link
               className="w-full cursor-pointer"
-              color={"foreground"}
+              color={homeRoute ? "primary" : "foreground"}
               size="sm"
               onPress={() => router.push("/home")}
-              underline={homeRoute ? "always" : "none"}
             >
               {t("common.menu.home")}
             </Link>
@@ -69,9 +68,8 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             <Link
               className="w-full cursor-pointer"
               size="sm"
-              color={"foreground"}
+              color={profileRoute ? "primary" : "foreground"}
               onPress={() => router.push("/profile")}
-              underline={profileRoute ? "always" : "none"}
             >
               {t("common.menu.profile")}
             </Link>
@@ -79,10 +77,9 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
           <NavbarMenuItem>
             <Link
               className="w-full cursor-pointer"
-              color={"foreground"}
+              color={passwordRoute ? "primary" : "foreground"}
               size="sm"
               onPress={() => router.push("/password")}
-              underline={passwordRoute ? "always" : "none"}
             >
               {t("common.menu.change_password")}
             </Link>
@@ -115,6 +112,8 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
 
   const t = useTranslations();
 
+  console.log("Navbar", empty);
+
   return (
     <NavbarUI
       onMenuOpenChange={setIsMenuOpen}
@@ -125,7 +124,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
       }}
     >
       <NavbarContent>
-        {empty && (
+        {!empty && (
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
@@ -138,23 +137,27 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        <NavbarItems
-          onlyLogout={onlyLogout}
-          passwordRoute={passwordRoute}
-          homeRoute={homeRoute}
-          profileRoute={profileRoute}
-        ></NavbarItems>
-      </NavbarContent>
+      {!empty && (
+        <>
+          <NavbarContent className="hidden sm:flex gap-4" justify="end">
+            <NavbarItems
+              onlyLogout={onlyLogout}
+              passwordRoute={passwordRoute}
+              homeRoute={homeRoute}
+              profileRoute={profileRoute}
+            ></NavbarItems>
+          </NavbarContent>
 
-      <NavbarMenu className="overflow-hidden">
-        <NavbarItems
-          onlyLogout={onlyLogout}
-          passwordRoute={passwordRoute}
-          homeRoute={homeRoute}
-          profileRoute={profileRoute}
-        ></NavbarItems>
-      </NavbarMenu>
+          <NavbarMenu className="overflow-hidden">
+            <NavbarItems
+              onlyLogout={onlyLogout}
+              passwordRoute={passwordRoute}
+              homeRoute={homeRoute}
+              profileRoute={profileRoute}
+            ></NavbarItems>
+          </NavbarMenu>
+        </>
+      )}
       <LanguageToggle />
     </NavbarUI>
   );
