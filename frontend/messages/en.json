@@ -27,6 +27,7 @@
       "try_again": "Try again",
       "too_many_requests": "Too many requests, try in 24 hours",
       "next": "Next",
+      "previous": "Previous",
       "go_home": "Go Home"
     },
     "errors": {
