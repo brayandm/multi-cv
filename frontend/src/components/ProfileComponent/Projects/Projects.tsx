@@ -72,6 +72,7 @@ const Projects: React.FC = () => {
             onValueChange: (value: string) =>
               onProjectChange(index, "name", value),
             value: project?.name || "",
+            isRequired: true,
           },
           {
             label: t("common.form.link"),
@@ -88,6 +89,7 @@ const Projects: React.FC = () => {
             onValueChange: (value: string) =>
               onProjectChange(index, "description", value),
             value: project?.description || "",
+            isRequired: true,
           },
           [
             {
@@ -96,6 +98,7 @@ const Projects: React.FC = () => {
               onValueChange: (value: string) =>
                 onProjectChange(index, "start_date", value),
               value: project?.start_date || "",
+              isRequired: true,
             },
             {
               label: t("common.form.end_date"),
@@ -103,6 +106,7 @@ const Projects: React.FC = () => {
               onValueChange: (value: string) =>
                 onProjectChange(index, "end_date", value),
               value: project?.end_date || "",
+              isRequired: true,
             },
           ],
           isPresent(),

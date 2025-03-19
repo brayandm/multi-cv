@@ -77,6 +77,7 @@ const Experience: React.FC = () => {
             onValueChange: (value: string) =>
               onExperienceChange(index, "company", value),
             value: experience?.company || "",
+            isRequired: true,
           },
           {
             label: t("common.form.link"),
@@ -93,6 +94,7 @@ const Experience: React.FC = () => {
             onValueChange: (value: string) =>
               onExperienceChange(index, "role", value),
             value: experience?.role || "",
+            isRequired: true,
           },
           {
             label: t("common.form.description"),
@@ -101,6 +103,7 @@ const Experience: React.FC = () => {
             onValueChange: (value: string) =>
               onExperienceChange(index, "description", value),
             value: experience?.description || "",
+            isRequired: true,
           },
           {
             label: t("common.form.location"),
@@ -109,6 +112,7 @@ const Experience: React.FC = () => {
             onValueChange: (value: string) =>
               onExperienceChange(index, "location", value),
             value: experience?.location || "",
+            isRequired: true,
           },
           [
             {
@@ -117,6 +121,7 @@ const Experience: React.FC = () => {
               onValueChange: (value: string) =>
                 onExperienceChange(index, "start_date", value),
               value: experience?.start_date || "",
+              isRequired: true,
             },
             {
               label: t("common.form.end_date"),
@@ -124,6 +129,7 @@ const Experience: React.FC = () => {
               onValueChange: (value: string) =>
                 onExperienceChange(index, "end_date", value),
               value: experience?.end_date || "",
+              isRequired: true,
             },
           ],
           isPresent(),

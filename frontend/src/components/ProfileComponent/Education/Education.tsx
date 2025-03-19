@@ -73,6 +73,7 @@ const Education: React.FC = () => {
             onValueChange: (value: string) =>
               onEducationChange(index, "institution", value),
             value: education?.institution || "",
+            isRequired: true,
           },
           {
             label: t("common.form.link"),
@@ -89,6 +90,7 @@ const Education: React.FC = () => {
             onValueChange: (value: string) =>
               onEducationChange(index, "career", value),
             value: education?.career || "",
+            isRequired: true,
           },
           {
             label: t("common.form.location"),
@@ -97,6 +99,7 @@ const Education: React.FC = () => {
             onValueChange: (value: string) =>
               onEducationChange(index, "location", value),
             value: education?.location || "",
+            isRequired: true,
           },
           [
             {
@@ -105,6 +108,7 @@ const Education: React.FC = () => {
               onValueChange: (value: string) =>
                 onEducationChange(index, "start_date", value),
               value: education?.start_date || "",
+              isRequired: true,
             },
             {
               label: t("common.form.end_date"),
@@ -112,6 +116,7 @@ const Education: React.FC = () => {
               onValueChange: (value: string) =>
                 onEducationChange(index, "end_date", value),
               value: education?.end_date || "",
+              isRequired: true,
             },
           ],
           isPresent(),
