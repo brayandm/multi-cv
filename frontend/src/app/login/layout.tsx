@@ -9,7 +9,7 @@ export default function LoginLayout({
   return (
     <>
       <NavbarWrapper>
-        <Navbar />
+        <Navbar empty />
       </NavbarWrapper>
       {children}
     </>

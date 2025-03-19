@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { logoutApi } from "@/lib/backendService";
 
-import React, { useEffect } from "react";
+import React from "react";
 import {
   Navbar as NavbarUI,
   NavbarBrand,
@@ -18,10 +18,10 @@ import LanguageToggle from "../LanguageToggle";
 import { useTranslations } from "next-intl";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
-  passwordLink,
-  logoutLink,
-  homeLink,
-  profileLink,
+  onlyLogout,
+  passwordRoute,
+  homeRoute,
+  profileRoute,
 }) => {
   const router = useRouter();
 
@@ -41,43 +41,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
 
   return (
     <>
-      {homeLink && (
-        <NavbarMenuItem>
-          <Link
-            className="w-full cursor-pointer"
-            color={"foreground"}
-            size="sm"
-            onPress={() => router.push("/home")}
-          >
-            {t("common.menu.home")}
-          </Link>
-        </NavbarMenuItem>
-      )}
-      {passwordLink && (
-        <NavbarMenuItem>
-          <Link
-            className="w-full cursor-pointer"
-            color={"foreground"}
-            size="sm"
-            onPress={() => router.push("/password")}
-          >
-            {t("common.menu.change_password")}
-          </Link>
-        </NavbarMenuItem>
-      )}
-      {profileLink && (
-        <NavbarMenuItem>
-          <Link
-            className="w-full cursor-pointer"
-            size="sm"
-            color={"foreground"}
-            onPress={() => router.push("/profile")}
-          >
-            {t("common.menu.profile")}
-          </Link>
-        </NavbarMenuItem>
-      )}
-      {logoutLink && (
+      {onlyLogout ? (
         <NavbarMenuItem>
           <Link
             className="w-full cursor-pointer"
@@ -88,31 +52,68 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             {t("common.auth.logout")}
           </Link>
         </NavbarMenuItem>
+      ) : (
+        <>
+          <NavbarMenuItem>
+            <Link
+              className="w-full cursor-pointer"
+              color={"foreground"}
+              size="sm"
+              onPress={() => router.push("/home")}
+              underline={homeRoute ? "always" : "none"}
+            >
+              {t("common.menu.home")}
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link
+              className="w-full cursor-pointer"
+              size="sm"
+              color={"foreground"}
+              onPress={() => router.push("/profile")}
+              underline={profileRoute ? "always" : "none"}
+            >
+              {t("common.menu.profile")}
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link
+              className="w-full cursor-pointer"
+              color={"foreground"}
+              size="sm"
+              onPress={() => router.push("/password")}
+              underline={passwordRoute ? "always" : "none"}
+            >
+              {t("common.menu.change_password")}
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link
+              className="w-full cursor-pointer"
+              color={"danger"}
+              size="sm"
+              onPress={() => logout()}
+            >
+              {t("common.auth.logout")}
+            </Link>
+          </NavbarMenuItem>
+        </>
       )}
     </>
   );
 };
 
 const Navbar: React.FC<ITopBarNavigationProps> = ({
-  passwordLink,
-  logoutLink,
-  profileLink,
-  homeLink,
+  empty = false,
+  onlyLogout = false,
+  passwordRoute = false,
+  homeRoute = false,
+  profileRoute = false,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const router = useRouter();
 
   const t = useTranslations();
-
-  const [noContent, setNoContent] = React.useState(true);
-
-  useEffect(() => {
-    if (!passwordLink && !logoutLink && !profileLink && !homeLink) {
-      setNoContent(false);
-    } else {
-      setNoContent(true);
-    }
-  }, [passwordLink, logoutLink, profileLink, homeLink]);
 
   return (
     <NavbarUI
@@ -124,7 +125,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
       }}
     >
       <NavbarContent>
-        {noContent && (
+        {empty && (
           <NavbarMenuToggle
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
             className="sm:hidden"
@@ -139,19 +140,19 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
 
       <NavbarContent className="hidden sm:flex gap-4" justify="end">
         <NavbarItems
-          passwordLink={passwordLink}
-          logoutLink={logoutLink}
-          homeLink={homeLink}
-          profileLink={profileLink}
+          onlyLogout={onlyLogout}
+          passwordRoute={passwordRoute}
+          homeRoute={homeRoute}
+          profileRoute={profileRoute}
         ></NavbarItems>
       </NavbarContent>
 
       <NavbarMenu className="overflow-hidden">
         <NavbarItems
-          passwordLink={passwordLink}
-          logoutLink={logoutLink}
-          homeLink={homeLink}
-          profileLink={profileLink}
+          onlyLogout={onlyLogout}
+          passwordRoute={passwordRoute}
+          homeRoute={homeRoute}
+          profileRoute={profileRoute}
         ></NavbarItems>
       </NavbarMenu>
       <LanguageToggle />

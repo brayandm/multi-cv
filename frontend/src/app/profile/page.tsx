@@ -6,7 +6,7 @@ export default async function Profile() {
   return (
     <>
       <NavbarWrapper>
-        <Navbar homeLink passwordLink logoutLink />
+        <Navbar profileRoute />
       </NavbarWrapper>
       <ProfileComponent isFirstLogin={false} />
     </>

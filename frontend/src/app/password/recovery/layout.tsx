@@ -9,7 +9,7 @@ export default function PasswordRecoveryLayout({
   return (
     <>
       <NavbarWrapper>
-        <Navbar />
+        <Navbar empty />
       </NavbarWrapper>
       {children}
     </>

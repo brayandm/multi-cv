@@ -9,7 +9,7 @@ export default function AcceptTermsLayout({
   return (
     <>
       <NavbarWrapper>
-        <Navbar logoutLink />
+        <Navbar onlyLogout />
       </NavbarWrapper>
       {children}
     </>

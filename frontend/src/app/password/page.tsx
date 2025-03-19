@@ -6,7 +6,7 @@ export default function Password() {
   return (
     <>
       <NavbarWrapper>
-        <Navbar profileLink homeLink logoutLink />
+        <Navbar passwordRoute />
       </NavbarWrapper>
       <PasswordComponent />
     </>

@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <NavbarWrapper>
-        <Navbar />
+        <Navbar empty />
       </NavbarWrapper>
       <WelcomeComponent />
     </>

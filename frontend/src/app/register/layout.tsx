@@ -9,7 +9,7 @@ export default function PasswordLayout({
   return (
     <>
       <NavbarWrapper>
-        <Navbar />
+        <Navbar empty />
       </NavbarWrapper>
       {children}
     </>

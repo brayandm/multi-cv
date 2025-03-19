@@ -9,7 +9,7 @@ export default function ProfileSuccessLayout({
   return (
     <>
       <NavbarWrapper>
-        <Navbar homeLink passwordLink logoutLink />
+        <Navbar profileRoute />
       </NavbarWrapper>
       {children}
     </>

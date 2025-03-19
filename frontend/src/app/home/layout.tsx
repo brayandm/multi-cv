@@ -9,7 +9,7 @@ export default function HomeLayout({
   return (
     <>
       <NavbarWrapper>
-        <Navbar profileLink passwordLink logoutLink />
+        <Navbar homeRoute />
       </NavbarWrapper>
       {children}
     </>
