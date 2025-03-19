@@ -87,11 +87,23 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
     smoothScroll(ref.current.scrollLeft, targetScroll, 700);
   }, [selectedTab, mapPosition]);
 
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    if (isFirstLogin && !nextPositionIsAvailable()) {
+      await syncProfile();
+      await finishFirstLoginApi();
+      router.push("/profile/success");
+      return;
+    }
+    setSelectedTab(positions[mapPosition[selectedTab] + 1]);
+    syncProfile();
+  };
+
   return (
     <main className="flex justify-center">
       <ChatComponent />
       <div className={`max-w-[${width}px]`}>
-        <form className="flex flex-col gap-2">
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
           <Card className="min-h-[75vh]">
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
@@ -154,19 +166,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
           </Card>
           <Card className="mb-3">
             {(isFirstLogin || nextPositionIsAvailable()) && (
-              <Button
-                onPress={async () => {
-                  if (isFirstLogin && !nextPositionIsAvailable()) {
-                    await syncProfile();
-                    await finishFirstLoginApi();
-                    router.push("/profile/success");
-                    return;
-                  }
-                  setSelectedTab(positions[mapPosition[selectedTab] + 1]);
-                  syncProfile();
-                }}
-                color="primary"
-              >
+              <Button color="primary" type="submit">
                 {t("common.buttons.next")}
               </Button>
             )}
