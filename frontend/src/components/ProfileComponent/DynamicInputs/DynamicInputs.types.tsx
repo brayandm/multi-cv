@@ -33,6 +33,9 @@ export interface IDynamicInput<T> {
   onValueChange?: IDynamicOnValueChange<T>;
   onPress?: IDynamicOnPress;
   isRequired?: boolean;
+  isInvalid?: boolean;
+  errorMessage?: string;
+  description?: string;
 }
 
 export type IDynamicInputArray<T> = Array<

@@ -85,6 +85,13 @@ const BasicUserInfo: React.FC = () => {
         onBasicUserInfoChange("about", value);
       },
       isRequired: true,
+      isInvalid: profile.basic_info.about.length < 50,
+      errorMessage: t("common.errors.length", {
+        field: t("common.form.about"),
+        length: 50,
+        current_length: profile.basic_info.about.length,
+      }),
+      description: `${profile.basic_info.about.length} / 50`,
     },
   ];
 

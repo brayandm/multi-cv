@@ -40,7 +40,8 @@
       "old_password_incorrect": "The current password is incorrect",
       "server": "Server error",
       "under_age": "You must be over 18 years old",
-      "accept_terms": "You must accept the terms and conditions"
+      "accept_terms": "You must accept the terms and conditions",
+      "length": "The {field} must be {current_length}/{length} characters long"
     },
     "success": {
       "password_change": "Password changed",

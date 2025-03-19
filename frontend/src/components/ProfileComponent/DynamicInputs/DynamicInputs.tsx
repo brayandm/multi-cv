@@ -109,6 +109,8 @@ const DynamicInputs = <T,>({
                 <Flag className="w-6 h-6" code={input.value as string}></Flag>
               }
               isRequired={input.isRequired}
+              isInvalid={input.isInvalid}
+              errorMessage={input.errorMessage}
             ></SelectCountry>
           );
         }
@@ -129,6 +131,8 @@ const DynamicInputs = <T,>({
               classNames={customStyles}
               onBlur={() => syncProfile()}
               isRequired={input.isRequired}
+              isInvalid={input.isInvalid}
+              errorMessage={input.errorMessage}
             />
           );
         }
@@ -148,6 +152,9 @@ const DynamicInputs = <T,>({
               classNames={customStyles}
               onBlur={() => syncProfile()}
               isRequired={input.isRequired}
+              isInvalid={input.isInvalid}
+              errorMessage={input.errorMessage}
+              description={input.description}
             />
           );
         }
@@ -199,6 +206,8 @@ const DynamicInputs = <T,>({
               classNames={{ ...customStyles, base: "w-[150px]" }}
               onBlur={() => syncProfile()}
               isRequired={input.isRequired}
+              isInvalid={input.isInvalid}
+              errorMessage={input.errorMessage}
             ></Input>
           );
         }
@@ -220,6 +229,8 @@ const DynamicInputs = <T,>({
               classNames={{ ...customStyles, base: "w-[150px]" }}
               onBlur={() => syncProfile()}
               isRequired={input.isRequired}
+              isInvalid={input.isInvalid}
+              errorMessage={input.errorMessage}
             ></Input>
           );
         }
@@ -239,6 +250,8 @@ const DynamicInputs = <T,>({
             endContent={input.endContent}
             onBlur={() => syncProfile()}
             isRequired={input.isRequired}
+            isInvalid={input.isInvalid}
+            errorMessage={input.errorMessage}
           />
         );
       })}
