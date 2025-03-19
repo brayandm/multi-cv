@@ -117,6 +117,7 @@ const ProfessionalLinks: React.FC = () => {
             onValueChange: (value: string) =>
               onSocialChange(index, "link", value),
             value: social?.link || "",
+            isRequired: true,
           },
         ];
 
