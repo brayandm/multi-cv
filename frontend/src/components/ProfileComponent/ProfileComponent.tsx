@@ -10,15 +10,16 @@ import ProfessionalLinks from "./ProfessionalLinks";
 import Education from "./Education";
 import ChatComponent from "@/shared/components/ChatComponent";
 import { useProfile } from "@/contexts/ProfileContext";
+import { useRouter } from "next/navigation";
 
 interface IProfileComponentProps {
-  isFirstLogin?: boolean;
+  isFirstLogin: boolean;
 }
 
-const ProfileComponent: React.FC = ({
-  isFirstLogin = false,
-}: IProfileComponentProps) => {
+const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   const width = 350;
+
+  const router = useRouter();
 
   const { isLoaded, syncProfile } = useProfile();
 
@@ -154,8 +155,12 @@ const ProfileComponent: React.FC = ({
             {(isFirstLogin || nextPositionIsAvailable()) && (
               <Button
                 onPress={() => {
-                  setSelectedTab(positions[mapPosition[selectedTab] + 1]);
                   syncProfile();
+                  if (isFirstLogin && !nextPositionIsAvailable()) {
+                    router.push("/profile/success");
+                    return;
+                  }
+                  setSelectedTab(positions[mapPosition[selectedTab] + 1]);
                 }}
                 color="primary"
               >
