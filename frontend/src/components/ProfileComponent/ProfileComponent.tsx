@@ -178,12 +178,12 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
             </CardBody>
           </Card>
           <div className="flex flex-row justify-between gap-1">
-            {isFirstLogin && prevPositionIsAvailable() && (
+            {prevPositionIsAvailable() && (
               <Card className="mb-3 w-full">
                 <Button
                   color="primary"
                   type="submit"
-                  onClick={() => setDirection("previous")}
+                  onPress={() => setDirection("previous")}
                 >
                   {t("common.buttons.previous")}
                 </Button>
@@ -194,7 +194,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                 <Button
                   color="primary"
                   type="submit"
-                  onClick={() => setDirection("next")}
+                  onPress={() => setDirection("next")}
                 >
                   {t("common.buttons.next")}
                 </Button>
