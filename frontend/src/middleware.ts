@@ -58,6 +58,8 @@ export async function middleware(req: NextRequest) {
         url.pathname = "/home";
         return NextResponse.redirect(url);
       }
+
+      return NextResponse.next();
     } else {
       if (
         isFirstTermsVersion ||
