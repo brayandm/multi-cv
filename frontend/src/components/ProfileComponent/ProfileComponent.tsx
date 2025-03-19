@@ -24,6 +24,8 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
 
   const { isLoaded, syncProfile } = useProfile();
 
+  const [direction, setDirection] = useState<"next" | "previous">("next");
+
   const t = useTranslations();
 
   const [selectedTab, setSelectedTab] =
@@ -43,6 +45,10 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   const positions = Object.keys(mapPosition) as Array<keyof typeof mapPosition>;
   const nextPositionIsAvailable = () => {
     return mapPosition[selectedTab] + 1 < positions.length;
+  };
+
+  const prevPositionIsAvailable = () => {
+    return mapPosition[selectedTab] - 1 >= 0;
   };
 
   const ref = useRef<HTMLDivElement>(null);
@@ -87,11 +93,29 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
     smoothScroll(ref.current.scrollLeft, targetScroll, 700);
   }, [selectedTab, mapPosition]);
 
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (direction === "previous") {
+      setSelectedTab(positions[mapPosition[selectedTab] - 1]);
+      syncProfile();
+    } else {
+      if (isFirstLogin && !nextPositionIsAvailable()) {
+        await syncProfile();
+        await finishFirstLoginApi();
+        router.push("/profile/success");
+        return;
+      }
+      setSelectedTab(positions[mapPosition[selectedTab] + 1]);
+      syncProfile();
+    }
+  };
+
   return (
     <main className="flex justify-center">
       <ChatComponent />
       <div className={`max-w-[${width}px]`}>
-        <form className="flex flex-col gap-2">
+        <form className="flex flex-col gap-2" onSubmit={handleSubmit}>
           <Card className="min-h-[75vh]">
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
@@ -111,6 +135,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                     syncProfile();
                   }}
                   ref={ref}
+                  disabledKeys={positions.filter((key) => key !== selectedTab)}
                 >
                   <Tab
                     key="basic-user-info"
@@ -152,25 +177,30 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
               )}
             </CardBody>
           </Card>
-          <Card className="mb-3">
-            {(isFirstLogin || nextPositionIsAvailable()) && (
-              <Button
-                onPress={async () => {
-                  if (isFirstLogin && !nextPositionIsAvailable()) {
-                    await syncProfile();
-                    await finishFirstLoginApi();
-                    router.push("/profile/success");
-                    return;
-                  }
-                  setSelectedTab(positions[mapPosition[selectedTab] + 1]);
-                  syncProfile();
-                }}
-                color="primary"
-              >
-                {t("common.buttons.next")}
-              </Button>
+          <div className="flex flex-row justify-between gap-1">
+            {isFirstLogin && prevPositionIsAvailable() && (
+              <Card className="mb-3 w-full">
+                <Button
+                  color="primary"
+                  type="submit"
+                  onClick={() => setDirection("previous")}
+                >
+                  {t("common.buttons.previous")}
+                </Button>
+              </Card>
             )}
-          </Card>
+            {(isFirstLogin || nextPositionIsAvailable()) && (
+              <Card className="mb-3 w-full">
+                <Button
+                  color="primary"
+                  type="submit"
+                  onClick={() => setDirection("next")}
+                >
+                  {t("common.buttons.next")}
+                </Button>
+              </Card>
+            )}
+          </div>
         </form>
       </div>
     </main>

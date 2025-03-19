@@ -18,7 +18,7 @@ const DynamicInputs = <T,>({
   isPresent,
   horizontal = false,
 }: DynamicInputsProps<T>) => {
-  const { syncProfile, profileErrors } = useProfile();
+  const { syncProfile } = useProfile();
 
   const getSelectedCountry = (
     inputs: IDynamicInputArray<T>
@@ -72,19 +72,9 @@ const DynamicInputs = <T,>({
           );
         }
 
-        let isInvalid = false;
-        let errorMessage = "";
-        let color: "default" | "danger" = "default";
         const variant: "flat" | "bordered" | "underlined" | "faded" = "flat";
 
         const customStyles = dynamicInputsStyles;
-
-        if (input.type === "email") {
-          isInvalid = profileErrors?.email?.invalid || false;
-          errorMessage = profileErrors?.email?.message || "";
-          if (isInvalid)
-            color = profileErrors?.email?.invalid ? "danger" : "default";
-        }
 
         if (input.type === "button") {
           return (
@@ -114,10 +104,11 @@ const DynamicInputs = <T,>({
               inputProps={{
                 classNames: customStyles,
               }}
-              color={color}
+              color={input.color}
               startContent={
                 <Flag className="w-6 h-6" code={input.value as string}></Flag>
               }
+              isRequired={input.isRequired}
             ></SelectCountry>
           );
         }
@@ -133,12 +124,11 @@ const DynamicInputs = <T,>({
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
-              color={color}
-              isInvalid={isInvalid}
-              errorMessage={errorMessage}
+              color={input.color}
               startContent={PhoneNumberStartContent()}
               classNames={customStyles}
               onBlur={() => syncProfile()}
+              isRequired={input.isRequired}
             />
           );
         }
@@ -154,10 +144,10 @@ const DynamicInputs = <T,>({
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
-              color={color}
-              errorMessage={errorMessage}
+              color={input.color}
               classNames={customStyles}
               onBlur={() => syncProfile()}
+              isRequired={input.isRequired}
             />
           );
         }
@@ -202,12 +192,13 @@ const DynamicInputs = <T,>({
               placeholder={input.placeholder}
               type={"month"}
               value={input.value as string}
-              color={color}
+              color={input.color}
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               classNames={{ ...customStyles, base: "w-[150px]" }}
               onBlur={() => syncProfile()}
+              isRequired={input.isRequired}
             ></Input>
           );
         }
@@ -221,13 +212,14 @@ const DynamicInputs = <T,>({
               placeholder={input.placeholder}
               type={"month"}
               value={input.value as string}
-              color={color}
+              color={input.color}
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               isDisabled={isDisabled}
               classNames={{ ...customStyles, base: "w-[150px]" }}
               onBlur={() => syncProfile()}
+              isRequired={input.isRequired}
             ></Input>
           );
         }
@@ -241,13 +233,12 @@ const DynamicInputs = <T,>({
             type={input.type}
             value={input.value as string}
             onValueChange={input.onValueChange as IDynamicOnValueChange<string>}
-            color={color}
-            isInvalid={isInvalid}
-            errorMessage={errorMessage}
+            color={input.color}
             classNames={customStyles}
             startContent={input.startContent}
             endContent={input.endContent}
             onBlur={() => syncProfile()}
+            isRequired={input.isRequired}
           />
         );
       })}

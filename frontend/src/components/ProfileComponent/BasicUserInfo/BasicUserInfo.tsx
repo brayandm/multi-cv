@@ -31,6 +31,7 @@ const BasicUserInfo: React.FC = () => {
       onValueChange: (value: string) => {
         onBasicUserInfoChange("full_name", value);
       },
+      isRequired: true,
     },
     {
       label: t("common.form.email"),
@@ -40,6 +41,7 @@ const BasicUserInfo: React.FC = () => {
       onValueChange: (value: string) => {
         onBasicUserInfoChange("email", value);
       },
+      isRequired: true,
     },
     [
       {
@@ -49,6 +51,7 @@ const BasicUserInfo: React.FC = () => {
         onValueChange: (value?: string) => {
           onBasicUserInfoChange("phone_country_code", value || "");
         },
+        isRequired: true,
       },
       {
         label: t("common.form.phone_number"),
@@ -58,6 +61,7 @@ const BasicUserInfo: React.FC = () => {
         onValueChange: (value: string) => {
           onBasicUserInfoChange("phone_number", value);
         },
+        isRequired: true,
       },
     ],
     [
@@ -69,6 +73,7 @@ const BasicUserInfo: React.FC = () => {
         onValueChange: (value: string) => {
           onBasicUserInfoChange("location", value);
         },
+        isRequired: true,
       },
     ],
     {
@@ -79,6 +84,7 @@ const BasicUserInfo: React.FC = () => {
       onValueChange: (value: string) => {
         onBasicUserInfoChange("about", value);
       },
+      isRequired: true,
     },
   ];
 
