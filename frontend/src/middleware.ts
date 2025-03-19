@@ -26,7 +26,7 @@ export async function middleware(req: NextRequest) {
     url.pathname
   );
 
-  const isProfilePage = url.pathname === "/profile";
+  const isProfileInitialPage = url.pathname === "/profile/initial";
 
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
 
@@ -96,7 +96,10 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    if (isFirstLogin && !isProfilePage) {
+    if (isFirstLogin && !isProfileInitialPage) {
+      url.pathname = "/profile/initial";
+      return NextResponse.redirect(url);
+    } else if (!isFirstLogin && isProfileInitialPage) {
       url.pathname = "/profile";
       return NextResponse.redirect(url);
     }
