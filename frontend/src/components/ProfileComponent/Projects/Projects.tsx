@@ -121,7 +121,9 @@ const Projects: React.FC = () => {
 
         return (
           <div key={index} className={`mb-4 px-1 snap-center`}>
-            <DynamicInputs isPresent={isPresent()} inputs={inputs} />
+            <div className="h-[320px] overflow-y-scroll">
+              <DynamicInputs isPresent={isPresent()} inputs={inputs} />
+            </div>
           </div>
         );
       })}
