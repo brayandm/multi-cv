@@ -6,10 +6,6 @@ import { UserStatusResponse } from "./lib/types";
 const authPages = ["/", "/login", "/register"];
 const unProtectedPages: string[] = [];
 const badEmailVerificationPages = ["/email/verify", "/email/verify/expired"];
-const goodEmailVerificationPages = [
-  "/email/verify/success",
-  "/email/verify/already-verified",
-];
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
@@ -19,10 +15,6 @@ export async function middleware(req: NextRequest) {
     !unProtectedPages.includes(url.pathname);
   const isAcceptTermsPage = url.pathname === "/accept-terms";
   const isBadEmailVerificationPage = badEmailVerificationPages.includes(
-    url.pathname
-  );
-
-  const isGoodEmailVerificationPage = goodEmailVerificationPages.includes(
     url.pathname
   );
 
@@ -46,7 +38,7 @@ export async function middleware(req: NextRequest) {
   const isEmailVerified =
     data.status === 200 && data.data.email_verified === true;
 
-  // const isFirstLogin = data.status === 200 && data.data.is_first_login === true;
+  const isFirstLogin = data.status === 200 && data.data.is_first_login === true;
 
   let isNoticeTermsVersion = null;
 
@@ -55,46 +47,45 @@ export async function middleware(req: NextRequest) {
   }
 
   if (isAuthenticated) {
+    if (isAcceptTermsPage) {
+      if (
+        !isFirstTermsVersion &&
+        (isValidTermsVersion ||
+          (!isValidTermsVersion && isNoticeTermsVersion === null))
+      ) {
+        url.pathname = "/home";
+        return NextResponse.redirect(url);
+      }
+    } else {
+      if (
+        isFirstTermsVersion ||
+        (!isValidTermsVersion && isNoticeTermsVersion !== null)
+      ) {
+        url.pathname = "/accept-terms";
+        return NextResponse.redirect(url);
+      }
+    }
+
+    if (isEmailVerified) {
+      if (isBadEmailVerificationPage) {
+        url.pathname = "/home";
+        return NextResponse.redirect(url);
+      }
+    } else {
+      if (isBadEmailVerificationPage) {
+        return NextResponse.next();
+      }
+
+      url.pathname = "/email/verify";
+      return NextResponse.redirect(url);
+    }
+
+    if (isFirstLogin) {
+      url.pathname = "/profile";
+      return;
+    }
+
     if (isAuthPage) {
-      url.pathname = "/home";
-      return NextResponse.redirect(url);
-    }
-
-    if (isEmailVerified && isBadEmailVerificationPage) {
-      url.pathname = "/home";
-      return NextResponse.redirect(url);
-    }
-
-    if (!isEmailVerified && isGoodEmailVerificationPage) {
-      url.pathname = "/email/verify";
-      return NextResponse.redirect(url);
-    }
-
-    if (!isEmailVerified && isBadEmailVerificationPage) {
-      return NextResponse.next();
-    }
-
-    if (!isEmailVerified) {
-      url.pathname = "/email/verify";
-      return NextResponse.redirect(url);
-    }
-
-    if (
-      !isAcceptTermsPage &&
-      isProtectedPage &&
-      (isFirstTermsVersion ||
-        (!isValidTermsVersion && isNoticeTermsVersion !== null))
-    ) {
-      url.pathname = "/accept-terms";
-      return NextResponse.redirect(url);
-    }
-
-    if (
-      isAcceptTermsPage &&
-      !isFirstTermsVersion &&
-      (isValidTermsVersion ||
-        (!isValidTermsVersion && isNoticeTermsVersion === null))
-    ) {
       url.pathname = "/home";
       return NextResponse.redirect(url);
     }
