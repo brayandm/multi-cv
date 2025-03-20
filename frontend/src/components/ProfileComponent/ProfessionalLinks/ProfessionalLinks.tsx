@@ -10,17 +10,17 @@ import { SelectIconInputsStyles } from "@/lib/customStyles";
 export const professionalLinks = [
   {
     name: "Github",
-    avatar: "icons/companies/github.png",
+    avatar: "/icons/companies/github.png",
     url: "https://github.com/",
   },
   {
     name: "Linkedin",
-    avatar: "icons/companies/linkedin.webp",
+    avatar: "/icons/companies/linkedin.webp",
     url: "https://www.linkedin.com/in/",
   },
   {
     name: "Portfolio",
-    avatar: "icons/others/portfolio.png",
+    avatar: "/icons/others/portfolio.png",
     url: "https://yourportfolio.amz/",
   },
 ];
@@ -75,7 +75,7 @@ const ProfessionalLinks: React.FC = () => {
                 <Image
                   className="w-6 h-6"
                   src={item.data?.avatar}
-                  alt="asdd"
+                  alt="avatar"
                   key={id}
                 ></Image>
               ))}
