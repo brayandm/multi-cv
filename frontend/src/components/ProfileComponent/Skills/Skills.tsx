@@ -65,10 +65,14 @@ const Skills: React.FC = () => {
       value: inputSkill,
       endContent: <InputButton onPress={addSkill}></InputButton>,
       onValueChange: setInputSkill,
-      isInvalid: profile.skills.list.length < 5,
       errorMessage: t("common.errors.skill_length", {
         min: 5,
       }),
+      validate: () => {
+        if (profile.skills.list.length < 5) {
+          return "error";
+        }
+      },
     },
   ];
 
