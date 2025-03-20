@@ -11,15 +11,12 @@ import SelectCountry from "@/shared/components/SelectCountry";
 import Flag from "react-world-flags";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 import { dynamicInputsStyles } from "@/lib/customStyles";
-import { useProfile } from "@/contexts/ProfileContext";
 
 const DynamicInputs = <T,>({
   inputs,
   isPresent,
   horizontal = false,
 }: DynamicInputsProps<T>) => {
-  const { syncProfile } = useProfile();
-
   const getSelectedCountry = (
     inputs: IDynamicInputArray<T>
   ): IDynamicInput<T> => {
@@ -98,7 +95,6 @@ const DynamicInputs = <T,>({
                 (input.onValueChange as IDynamicOnValueChange<Key | null>)(
                   value
                 );
-                syncProfile();
               }}
               selectedKey={input.value as string}
               inputProps={{
@@ -129,10 +125,11 @@ const DynamicInputs = <T,>({
               color={input.color}
               startContent={PhoneNumberStartContent()}
               classNames={customStyles}
-              onBlur={() => syncProfile()}
+              onBlur={input.onBlur}
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
+              validate={input.validate}
             />
           );
         }
@@ -150,11 +147,12 @@ const DynamicInputs = <T,>({
               }
               color={input.color}
               classNames={customStyles}
-              onBlur={() => syncProfile()}
+              onBlur={input.onBlur}
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
               description={input.description}
+              validate={input.validate}
             />
           );
         }
@@ -166,7 +164,6 @@ const DynamicInputs = <T,>({
               isSelected={input.value as boolean}
               onValueChange={(value) => {
                 (input.onValueChange as IDynamicOnValueChange<boolean>)(value);
-                syncProfile();
               }}
             >
               {input.label}
@@ -180,7 +177,6 @@ const DynamicInputs = <T,>({
               key={index}
               onValueChange={(value) => {
                 (input.onValueChange as IDynamicOnValueChange<boolean>)(value);
-                syncProfile();
               }}
               value={input.value as string}
               defaultSelected={input.selected}
@@ -204,10 +200,11 @@ const DynamicInputs = <T,>({
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               classNames={{ ...customStyles, base: "w-[150px]" }}
-              onBlur={() => syncProfile()}
+              onBlur={input.onBlur}
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
+              validate={input.validate}
             ></Input>
           );
         }
@@ -227,10 +224,11 @@ const DynamicInputs = <T,>({
               }
               isDisabled={isDisabled}
               classNames={{ ...customStyles, base: "w-[150px]" }}
-              onBlur={() => syncProfile()}
+              onBlur={input.onBlur}
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
+              validate={input.validate}
             ></Input>
           );
         }
@@ -248,10 +246,11 @@ const DynamicInputs = <T,>({
             classNames={customStyles}
             startContent={input.startContent}
             endContent={input.endContent}
-            onBlur={() => syncProfile()}
+            onBlur={input.onBlur}
             isRequired={input.isRequired}
             isInvalid={input.isInvalid}
             errorMessage={input.errorMessage}
+            validate={input.validate}
           />
         );
       })}

@@ -1,6 +1,8 @@
 export type IDynamicOnValueChange<T> = (value: T) => void;
 export type IDynamicOnPress = () => void;
 
+export type ValidationError = string | string[];
+
 export interface IDynamicInput<T> {
   label: string;
   placeholder?: string;
@@ -36,6 +38,8 @@ export interface IDynamicInput<T> {
   isInvalid?: boolean;
   errorMessage?: string;
   description?: string;
+  onBlur?: () => void;
+  validate?: (value: string) => ValidationError | true | null | undefined;
 }
 
 export type IDynamicInputArray<T> = Array<
