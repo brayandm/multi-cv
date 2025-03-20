@@ -37,14 +37,17 @@ const Skills: React.FC = () => {
         list: [...profile.skills.list, inputSkill],
       },
     });
+
+    syncProfile();
+
     setInputSkill("");
-  }, [inputSkill, profile, updateProfile]);
+  }, [inputSkill, profile, updateProfile, syncProfile]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter") {
         e.preventDefault();
-        syncProfile();
+
         addSkill();
       }
     };
@@ -52,7 +55,7 @@ const Skills: React.FC = () => {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [addSkill, syncProfile]);
+  }, [addSkill]);
 
   const inputs: IDynamicInputArray<string> = [
     {
@@ -74,9 +77,10 @@ const Skills: React.FC = () => {
       <DynamicInputs inputs={inputs}></DynamicInputs>
       <ChipArea
         chips={profile.skills.list}
-        setChips={(skills) =>
-          updateProfile({ ...profile, skills: { list: skills } })
-        }
+        setChips={(skills) => {
+          updateProfile({ ...profile, skills: { list: skills } });
+          syncProfile();
+        }}
       ></ChipArea>
     </div>
   );
