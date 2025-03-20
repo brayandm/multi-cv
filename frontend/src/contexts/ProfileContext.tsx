@@ -112,7 +112,6 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
             setProfile(response.data);
           } else {
             setProfile({
-              ...profile,
               basic_info: {
                 full_name: userStatus.name || "",
                 email: userStatus.email || "",
@@ -120,6 +119,13 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
                 phone_country_code: "",
                 phone_number: "",
                 location: "",
+              },
+              professional_links: [],
+              experience: [],
+              education: [],
+              projects: [],
+              skills: {
+                list: [],
               },
             });
           }
