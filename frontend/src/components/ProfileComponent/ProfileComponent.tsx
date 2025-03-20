@@ -165,9 +165,6 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                 <Button
                   color="primary"
                   onPress={() => {
-                    if (!formRef.current || !formRef.current.reportValidity())
-                      return;
-
                     setSelectedTab(positions[mapPosition[selectedTab] - 1]);
                     syncProfile();
                   }}
