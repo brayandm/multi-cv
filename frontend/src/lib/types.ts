@@ -4,6 +4,7 @@ export interface UserStatusResponse {
   notice_new_terms_version?: boolean;
   email_verified?: boolean;
   email?: string;
+  name?: string;
   is_first_login?: boolean;
 }
 

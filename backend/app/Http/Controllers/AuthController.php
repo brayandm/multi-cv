@@ -198,6 +198,7 @@ class AuthController extends Controller
             'notice_new_terms_version' => $notice_new_terms_version,
             'email_verified' => $email_verified,
             'email' => $user->email,
+            'name' => $user->name,
             'is_first_login' => $is_first_login,
         ]);
     }

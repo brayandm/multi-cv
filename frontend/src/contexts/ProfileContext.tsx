@@ -80,6 +80,8 @@ interface ProfileContextType {
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
+  const { userStatus } = useUserStatus();
+
   const [profile, setProfile] = useState<IProfile>({
     basic_info: {
       full_name: "",
@@ -100,8 +102,6 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
 
   const [onLoadedError, setOnLoadedError] = useState(false);
 
-  const { userStatus } = useUserStatus();
-
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
@@ -110,12 +110,23 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
         .then((response) => {
           if (response.data) {
             setProfile(response.data);
+          } else {
+            setProfile({
+              ...profile,
+              basic_info: {
+                full_name: userStatus.name || "",
+                email: userStatus.email || "",
+                about: "",
+                phone_country_code: "",
+                phone_number: "",
+                location: "",
+              },
+            });
           }
           setIsLoaded(true);
         })
         .catch((error) => {
           console.error(error);
-          setIsLoaded(true);
           setOnLoadedError(true);
         });
     }
