@@ -26,7 +26,11 @@ export const professionalLinks = [
 ];
 
 const ProfessionalLinks: React.FC = () => {
-  const { profile, updateProfile, syncProfile } = useProfile();
+  const {
+    professionalLinks: professionalLinksList,
+    updateProfessionalLinks: updateProfessionalLinksList,
+    syncProfile,
+  } = useProfile();
 
   const t = useTranslations();
   function onSocialChange(
@@ -34,30 +38,24 @@ const ProfessionalLinks: React.FC = () => {
     key: keyof IProfessionalLinks,
     value: string | boolean
   ) {
-    const updatedProfessionalLinks = [...profile.professional_links];
+    const updatedProfessionalLinks = [...professionalLinksList];
     updatedProfessionalLinks[index] = {
       ...updatedProfessionalLinks[index],
       [key]: value,
     };
 
-    updateProfile({
-      ...profile,
-      professional_links: updatedProfessionalLinks,
-    });
+    updateProfessionalLinksList(updatedProfessionalLinks);
   }
 
   function updateProfessionalLinks(newSelectedProfessionalLinks: string[]) {
     const updatedProfessionalLinks = newSelectedProfessionalLinks.map(
       (social) => {
-        const found = profile.professional_links.find((s) => s.name === social);
+        const found = professionalLinksList.find((s) => s.name === social);
         return found || { name: social, link: "" };
       }
     );
 
-    updateProfile({
-      ...profile,
-      professional_links: updatedProfessionalLinks,
-    });
+    updateProfessionalLinksList(updatedProfessionalLinks);
   }
 
   return (
@@ -67,7 +65,7 @@ const ProfessionalLinks: React.FC = () => {
         className="mb-2"
         isMultiline={true}
         items={professionalLinks}
-        selectedKeys={profile.professional_links.map((social) => social.name)}
+        selectedKeys={professionalLinksList.map((social) => social.name)}
         label={t("common.form.professional_links_select")}
         placeholder={t("common.placeholders.professional_links_select")}
         renderValue={(items) => {
@@ -106,7 +104,7 @@ const ProfessionalLinks: React.FC = () => {
           </SelectItem>
         )}
       </Select>
-      {profile.professional_links.map((social, index) => {
+      {professionalLinksList.map((social, index) => {
         const inputs: IDynamicInputArray<string & boolean> = [
           {
             label: social?.name || "",

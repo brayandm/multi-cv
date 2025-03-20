@@ -21,7 +21,7 @@ const InputButton: React.FC<InputButtonProps> = (props) => {
 };
 
 const Skills: React.FC = () => {
-  const { profile, updateProfile } = useProfile();
+  const { skills, updateSkills } = useProfile();
   const [inputSkill, setInputSkill] = useState<string>("");
 
   const { syncProfile } = useProfile();
@@ -31,17 +31,14 @@ const Skills: React.FC = () => {
   const addSkill = useCallback(() => {
     if (inputSkill === "") return;
 
-    updateProfile({
-      ...profile,
-      skills: {
-        list: [...profile.skills.list, inputSkill],
-      },
+    updateSkills({
+      list: [...skills.list, inputSkill],
     });
 
     syncProfile();
 
     setInputSkill("");
-  }, [inputSkill, profile, updateProfile, syncProfile]);
+  }, [inputSkill, skills, updateSkills, syncProfile]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -69,7 +66,7 @@ const Skills: React.FC = () => {
         min: 5,
       }),
       validate: () => {
-        if (profile.skills.list.length < 5) {
+        if (skills.list.length < 5) {
           return "error";
         }
       },
@@ -80,9 +77,9 @@ const Skills: React.FC = () => {
     <div className="px-1">
       <DynamicInputs inputs={inputs}></DynamicInputs>
       <ChipArea
-        chips={profile.skills.list}
+        chips={skills.list}
         setChips={(skills) => {
-          updateProfile({ ...profile, skills: { list: skills } });
+          updateSkills({ list: skills });
           syncProfile();
         }}
       ></ChipArea>

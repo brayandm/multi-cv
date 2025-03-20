@@ -11,7 +11,11 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
 const Experience: React.FC = () => {
-  const { profile, updateProfile, syncProfile } = useProfile();
+  const {
+    experience: experienceList,
+    updateExperience,
+    syncProfile,
+  } = useProfile();
 
   const t = useTranslations();
   function onExperienceChange(
@@ -19,17 +23,14 @@ const Experience: React.FC = () => {
     key: keyof IExperience,
     value: string | boolean
   ) {
-    const updatedExperiences = [...profile.experience];
+    const updatedExperiences = [...experienceList];
     updatedExperiences[index] = { ...updatedExperiences[index], [key]: value };
 
     if (key === "is_present" && value === true) {
       updatedExperiences[index].end_date = "";
     }
 
-    updateProfile({
-      ...profile,
-      experience: updatedExperiences,
-    });
+    updateExperience(updatedExperiences);
   }
 
   function addNewExperience() {
@@ -45,31 +46,25 @@ const Experience: React.FC = () => {
       is_present: false,
     };
 
-    updateProfile({
-      ...profile,
-      experience: [...profile.experience, experience],
-    });
+    updateExperience([...experienceList, experience]);
   }
 
   function onRemovePage(index: number) {
-    const updatedExperiences = profile.experience.filter(
+    const updatedExperiences = experienceList.filter(
       (_, experienceIndex) => experienceIndex !== index
     );
 
-    updateProfile({
-      ...profile,
-      experience: updatedExperiences,
-    });
+    updateExperience(updatedExperiences);
   }
 
   return (
     <Paginator
-      total={profile.experience.length}
+      total={experienceList.length}
       onNewPage={addNewExperience}
       onRemovePage={onRemovePage}
       buttonLabel={t("pages.profile.sections.experience.add_experience")}
     >
-      {profile.experience.map((experience, index) => {
+      {experienceList.map((experience, index) => {
         const isPresent = (): IDynamicInput<boolean> => {
           return {
             label: t("pages.profile.sections.experience.is_present"),

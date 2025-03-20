@@ -112,8 +112,6 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
 
   const t = useTranslations();
 
-  console.log("Navbar", empty);
-
   return (
     <NavbarUI
       onMenuOpenChange={setIsMenuOpen}

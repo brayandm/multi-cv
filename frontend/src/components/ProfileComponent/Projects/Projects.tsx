@@ -10,24 +10,21 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
 const Projects: React.FC = () => {
-  const { profile, updateProfile, syncProfile } = useProfile();
+  const { projects, updateProjects, syncProfile } = useProfile();
   const t = useTranslations();
   function onProjectChange(
     index: number,
     key: keyof IProject,
     value: string | boolean
   ) {
-    const updatedProjects = [...profile.projects];
+    const updatedProjects = [...projects];
     updatedProjects[index] = { ...updatedProjects[index], [key]: value };
 
     if (key === "is_present" && value === true) {
       updatedProjects[index].end_date = "";
     }
 
-    updateProfile({
-      ...profile,
-      projects: updatedProjects,
-    });
+    updateProjects(updatedProjects);
   }
 
   function addNewProject() {
@@ -41,31 +38,25 @@ const Projects: React.FC = () => {
       is_present: false,
     };
 
-    updateProfile({
-      ...profile,
-      projects: [...profile.projects, project],
-    });
+    updateProjects([...projects, project]);
   }
 
   function onRemovePage(index: number) {
-    const updatedProjects = profile.projects.filter(
+    const updatedProjects = projects.filter(
       (_, projectsIndex) => projectsIndex !== index
     );
 
-    updateProfile({
-      ...profile,
-      projects: updatedProjects,
-    });
+    updateProjects(updatedProjects);
   }
 
   return (
     <Paginator
-      total={profile.projects.length}
+      total={projects.length}
       onNewPage={addNewProject}
       onRemovePage={onRemovePage}
       buttonLabel={t("pages.profile.sections.projects.add_project")}
     >
-      {profile.projects.map((project, index) => {
+      {projects.map((project, index) => {
         const isPresent = (): IDynamicInput<boolean> => {
           return {
             label: t("pages.profile.sections.projects.is_present"),

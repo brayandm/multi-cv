@@ -71,10 +71,20 @@ export interface IProfile {
 }
 
 interface ProfileContextType {
-  profile: IProfile;
   isLoaded: boolean;
-  updateProfile: (newProfile: Partial<IProfile>) => void;
   syncProfile: () => void;
+  basicInfo: IBasicInfo;
+  professionalLinks: IProfessionalLinks[];
+  experience: IExperience[];
+  education: IEducation[];
+  projects: IProject[];
+  skills: ISkills;
+  updateBasicInfo: (newBasicInfo: IBasicInfo) => void;
+  updateProfessionalLinks: (newProfessionalLinks: IProfessionalLinks[]) => void;
+  updateExperience: (newExperience: IExperience[]) => void;
+  updateEducation: (newEducation: IEducation[]) => void;
+  updateProjects: (newProjects: IProject[]) => void;
+  updateSkills: (newSkills: ISkills) => void;
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -82,23 +92,23 @@ const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const { userStatus } = useUserStatus();
 
-  const [profile, setProfile] = useState<IProfile>({
-    basic_info: {
-      full_name: "",
-      email: "",
-      about: "",
-      phone_country_code: "",
-      phone_number: "",
-      location: "",
-    },
-    professional_links: [],
-    experience: [],
-    education: [],
-    projects: [],
-    skills: {
-      list: [],
-    },
+  const [basicInfo, setBasicInfo] = useState<IBasicInfo>({
+    full_name: "",
+    email: "",
+    about: "",
+    phone_country_code: "",
+    phone_number: "",
+    location: "",
   });
+
+  const [professionalLinks, setProfessionalLinks] = useState<
+    IProfessionalLinks[]
+  >([]);
+
+  const [experience, setExperience] = useState<IExperience[]>([]);
+  const [education, setEducation] = useState<IEducation[]>([]);
+  const [projects, setProjects] = useState<IProject[]>([]);
+  const [skills, setSkills] = useState<ISkills>({ list: [] });
 
   const [onLoadedError, setOnLoadedError] = useState(false);
 
@@ -109,24 +119,21 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       getProfileEngine()
         .then((response) => {
           if (response.data) {
-            setProfile(response.data);
+            const profile: IProfile = response.data;
+            setBasicInfo(profile.basic_info);
+            setProfessionalLinks(profile.professional_links);
+            setExperience(profile.experience);
+            setEducation(profile.education);
+            setProjects(profile.projects);
+            setSkills(profile.skills);
           } else {
-            setProfile({
-              basic_info: {
-                full_name: userStatus.name || "",
-                email: userStatus.email || "",
-                about: "",
-                phone_country_code: "",
-                phone_number: "",
-                location: "",
-              },
-              professional_links: [],
-              experience: [],
-              education: [],
-              projects: [],
-              skills: {
-                list: [],
-              },
+            setBasicInfo({
+              full_name: userStatus.name || "",
+              email: userStatus.email || "",
+              about: "",
+              phone_country_code: "",
+              phone_number: "",
+              location: "",
             });
           }
           setIsLoaded(true);
@@ -138,18 +145,62 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [userStatus]);
 
-  const updateProfile = (newProfile: Partial<IProfile>) => {
-    setProfile((prev) => ({ ...prev, ...newProfile }));
+  const updateBasicInfo = (newBasicInfo: IBasicInfo) => {
+    setBasicInfo(newBasicInfo);
+  };
+
+  const updateProfessionalLinks = (
+    newProfessionalLinks: IProfessionalLinks[]
+  ) => {
+    setProfessionalLinks(newProfessionalLinks);
+  };
+
+  const updateExperience = (newExperience: IExperience[]) => {
+    setExperience(newExperience);
+  };
+
+  const updateEducation = (newEducation: IEducation[]) => {
+    setEducation(newEducation);
+  };
+
+  const updateProjects = (newProjects: IProject[]) => {
+    setProjects(newProjects);
+  };
+
+  const updateSkills = (newSkills: ISkills) => {
+    setSkills(newSkills);
   };
 
   const syncProfile = async () => {
     if (onLoadedError) return;
-    await profileSyncEngine(profile);
+    await profileSyncEngine({
+      basic_info: basicInfo,
+      professional_links: professionalLinks,
+      experience: experience,
+      education: education,
+      projects: projects,
+      skills: skills,
+    });
   };
 
   return (
     <ProfileContext.Provider
-      value={{ profile, isLoaded, updateProfile, syncProfile }}
+      value={{
+        isLoaded,
+        syncProfile,
+        basicInfo,
+        professionalLinks,
+        experience,
+        education,
+        projects,
+        skills,
+        updateBasicInfo,
+        updateProfessionalLinks,
+        updateExperience,
+        updateEducation,
+        updateProjects,
+        updateSkills,
+      }}
     >
       {children}
     </ProfileContext.Provider>

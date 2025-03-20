@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { IBasicInfo, useProfile } from "@/contexts/ProfileContext";
 
 const BasicUserInfo: React.FC = () => {
-  const { profile, updateProfile, syncProfile } = useProfile();
+  const { basicInfo, updateBasicInfo, syncProfile } = useProfile();
 
   const t = useTranslations();
 
@@ -14,12 +14,9 @@ const BasicUserInfo: React.FC = () => {
     key: keyof IBasicInfo,
     value: string | boolean
   ) {
-    const updatedBasicInfo = { ...profile.basic_info, [key]: value };
+    const updatedBasicInfo = { ...basicInfo, [key]: value };
 
-    updateProfile({
-      ...profile,
-      basic_info: updatedBasicInfo,
-    });
+    updateBasicInfo(updatedBasicInfo);
   }
 
   const inputs: IDynamicInputArray<string> = [
@@ -27,7 +24,7 @@ const BasicUserInfo: React.FC = () => {
       label: t("common.form.full_name"),
       placeholder: t("common.placeholders.enter_full_name"),
       type: "text",
-      value: profile.basic_info.full_name,
+      value: basicInfo.full_name,
       onValueChange: (value: string) => {
         onBasicUserInfoChange("full_name", value);
       },
@@ -38,7 +35,7 @@ const BasicUserInfo: React.FC = () => {
       label: t("common.form.email"),
       placeholder: t("common.placeholders.enter_email"),
       type: "email",
-      value: profile.basic_info.email,
+      value: basicInfo.email,
       onValueChange: (value: string) => {
         onBasicUserInfoChange("email", value);
       },
@@ -49,7 +46,7 @@ const BasicUserInfo: React.FC = () => {
       {
         label: t("common.form.phone_country_code"),
         type: "phone_country_code",
-        value: profile.basic_info.phone_country_code,
+        value: basicInfo.phone_country_code,
         onValueChange: (value?: string) => {
           onBasicUserInfoChange("phone_country_code", value || "");
           syncProfile();
@@ -70,7 +67,7 @@ const BasicUserInfo: React.FC = () => {
         label: t("common.form.phone_number"),
         placeholder: "XXXXXXXXX",
         type: "phone_number",
-        value: profile.basic_info.phone_number,
+        value: basicInfo.phone_number,
         onValueChange: (value: string) => {
           onBasicUserInfoChange("phone_number", value);
         },
@@ -83,7 +80,7 @@ const BasicUserInfo: React.FC = () => {
         label: t("common.form.your_location"),
         placeholder: t("common.placeholders.enter_location"),
         type: "text",
-        value: profile.basic_info.location,
+        value: basicInfo.location,
         onValueChange: (value: string) => {
           onBasicUserInfoChange("location", value);
         },
@@ -95,17 +92,17 @@ const BasicUserInfo: React.FC = () => {
       label: t("common.form.about"),
       placeholder: t("common.placeholders.enter_about"),
       type: "textarea",
-      value: profile.basic_info.about,
+      value: basicInfo.about,
       onValueChange: (value: string) => {
         onBasicUserInfoChange("about", value);
       },
       isRequired: true,
-      description: `${profile.basic_info.about.length} / 50`,
+      description: `${basicInfo.about.length} / 50`,
       onBlur: syncProfile,
       errorMessage: t("common.errors.length", {
         field: t("common.form.about"),
         length: 50,
-        current_length: profile.basic_info.about.length,
+        current_length: basicInfo.about.length,
       }),
       validate: (value) => {
         if (value.length < 50) {

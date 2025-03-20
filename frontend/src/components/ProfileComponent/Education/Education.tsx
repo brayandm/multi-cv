@@ -10,24 +10,25 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
 const Education: React.FC = () => {
-  const { profile, updateProfile, syncProfile } = useProfile();
+  const {
+    education: educationList,
+    updateEducation,
+    syncProfile,
+  } = useProfile();
   const t = useTranslations();
   function onEducationChange(
     index: number,
     key: keyof IEducation,
     value: string | boolean
   ) {
-    const updatedEducations = [...profile.education];
+    const updatedEducations = [...educationList];
     updatedEducations[index] = { ...updatedEducations[index], [key]: value };
 
     if (key === "is_present" && value === true) {
       updatedEducations[index].end_date = "";
     }
 
-    updateProfile({
-      ...profile,
-      education: updatedEducations,
-    });
+    updateEducation(updatedEducations);
   }
 
   function addNewEducation() {
@@ -42,31 +43,25 @@ const Education: React.FC = () => {
       is_present: false,
     };
 
-    updateProfile({
-      ...profile,
-      education: [...profile.education, education],
-    });
+    updateEducation([...educationList, education]);
   }
 
   function onRemovePage(index: number) {
-    const updatedEducations = profile.education.filter(
+    const updatedEducations = educationList.filter(
       (_, educationIndex) => educationIndex !== index
     );
 
-    updateProfile({
-      ...profile,
-      education: updatedEducations,
-    });
+    updateEducation(updatedEducations);
   }
 
   return (
     <Paginator
-      total={profile.education.length}
+      total={educationList.length}
       onNewPage={addNewEducation}
       onRemovePage={onRemovePage}
       buttonLabel={t("pages.profile.sections.education.add_education")}
     >
-      {profile.education.map((education, index) => {
+      {educationList.map((education, index) => {
         const isPresent = (): IDynamicInput<boolean> => {
           return {
             label: t("pages.profile.sections.education.is_present"),
