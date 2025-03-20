@@ -120,14 +120,18 @@ const Experience: React.FC = () => {
               onExperienceChange(index, "description", value),
             value: experience?.description || "",
             isRequired: true,
-            isInvalid: experience?.description.length < 50,
+            description: `${experience?.description.length} / 50`,
+            onBlur: syncProfile,
             errorMessage: t("common.errors.length", {
               field: t("common.form.company_description"),
               length: 50,
               current_length: experience?.description.length,
             }),
-            description: `${experience?.description.length} / 50`,
-            onBlur: syncProfile,
+            validate: (value) => {
+              if (value.length < 50) {
+                return "error";
+              }
+            },
           },
           {
             label: t("common.form.location"),
