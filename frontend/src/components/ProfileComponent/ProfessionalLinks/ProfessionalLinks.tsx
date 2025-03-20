@@ -26,7 +26,7 @@ export const professionalLinks = [
 ];
 
 const ProfessionalLinks: React.FC = () => {
-  const { profile, updateProfile } = useProfile();
+  const { profile, updateProfile, syncProfile } = useProfile();
 
   const t = useTranslations();
   function onSocialChange(
@@ -118,6 +118,7 @@ const ProfessionalLinks: React.FC = () => {
               onSocialChange(index, "link", value),
             value: social?.link || "",
             isRequired: true,
+            onBlur: syncProfile,
           },
         ];
 

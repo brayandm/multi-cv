@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
 const Education: React.FC = () => {
-  const { profile, updateProfile } = useProfile();
+  const { profile, updateProfile, syncProfile } = useProfile();
   const t = useTranslations();
   function onEducationChange(
     index: number,
@@ -71,8 +71,10 @@ const Education: React.FC = () => {
           return {
             label: t("pages.profile.sections.education.is_present"),
             type: "is_present",
-            onValueChange: (value: boolean) =>
-              onEducationChange(index, "is_present", value),
+            onValueChange: (value: boolean) => {
+              onEducationChange(index, "is_present", value);
+              syncProfile();
+            },
             value: education?.is_present || "",
           };
         };
@@ -86,6 +88,7 @@ const Education: React.FC = () => {
               onEducationChange(index, "institution", value),
             value: education?.institution || "",
             isRequired: true,
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.link"),
@@ -94,6 +97,7 @@ const Education: React.FC = () => {
             onValueChange: (value: string) =>
               onEducationChange(index, "link", value),
             value: education?.link || "",
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.career"),
@@ -103,6 +107,7 @@ const Education: React.FC = () => {
               onEducationChange(index, "career", value),
             value: education?.career || "",
             isRequired: true,
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.location"),
@@ -112,21 +117,26 @@ const Education: React.FC = () => {
               onEducationChange(index, "location", value),
             value: education?.location || "",
             isRequired: true,
+            onBlur: syncProfile,
           },
           [
             {
               label: t("common.form.start_date"),
               type: "start_date",
-              onValueChange: (value: string) =>
-                onEducationChange(index, "start_date", value),
+              onValueChange: (value: string) => {
+                onEducationChange(index, "start_date", value);
+                syncProfile();
+              },
               value: education?.start_date || "",
               isRequired: true,
             },
             {
               label: t("common.form.end_date"),
               type: "end_date",
-              onValueChange: (value: string) =>
-                onEducationChange(index, "end_date", value),
+              onValueChange: (value: string) => {
+                onEducationChange(index, "end_date", value);
+                syncProfile();
+              },
               value: education?.end_date || "",
               isRequired: true,
             },

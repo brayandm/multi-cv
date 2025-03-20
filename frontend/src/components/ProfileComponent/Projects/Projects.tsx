@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
 const Projects: React.FC = () => {
-  const { profile, updateProfile } = useProfile();
+  const { profile, updateProfile, syncProfile } = useProfile();
   const t = useTranslations();
   function onProjectChange(
     index: number,
@@ -70,8 +70,10 @@ const Projects: React.FC = () => {
           return {
             label: t("pages.profile.sections.projects.is_present"),
             type: "is_present",
-            onValueChange: (value: boolean) =>
-              onProjectChange(index, "is_present", value),
+            onValueChange: (value: boolean) => {
+              onProjectChange(index, "is_present", value);
+              syncProfile();
+            },
             value: project?.is_present || "",
           };
         };
@@ -85,6 +87,7 @@ const Projects: React.FC = () => {
               onProjectChange(index, "name", value),
             value: project?.name || "",
             isRequired: true,
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.link"),
@@ -93,6 +96,7 @@ const Projects: React.FC = () => {
             onValueChange: (value: string) =>
               onProjectChange(index, "link", value),
             value: project?.link || "",
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.project_description"),
@@ -109,21 +113,26 @@ const Projects: React.FC = () => {
               current_length: project?.description.length,
             }),
             description: `${project?.description.length} / 50`,
+            onBlur: syncProfile,
           },
           [
             {
               label: t("common.form.start_date"),
               type: "start_date",
-              onValueChange: (value: string) =>
-                onProjectChange(index, "start_date", value),
+              onValueChange: (value: string) => {
+                onProjectChange(index, "start_date", value);
+                syncProfile();
+              },
               value: project?.start_date || "",
               isRequired: true,
             },
             {
               label: t("common.form.end_date"),
               type: "end_date",
-              onValueChange: (value: string) =>
-                onProjectChange(index, "end_date", value),
+              onValueChange: (value: string) => {
+                onProjectChange(index, "end_date", value);
+                syncProfile();
+              },
               value: project?.end_date || "",
               isRequired: true,
             },

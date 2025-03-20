@@ -11,7 +11,7 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 
 const Experience: React.FC = () => {
-  const { profile, updateProfile } = useProfile();
+  const { profile, updateProfile, syncProfile } = useProfile();
 
   const t = useTranslations();
   function onExperienceChange(
@@ -76,6 +76,7 @@ const Experience: React.FC = () => {
             type: "is_present",
             onValueChange: (value: boolean) => {
               onExperienceChange(index, "is_present", value);
+              syncProfile();
             },
             value: experience?.is_present || "",
           };
@@ -90,6 +91,7 @@ const Experience: React.FC = () => {
               onExperienceChange(index, "company", value),
             value: experience?.company || "",
             isRequired: true,
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.link"),
@@ -98,6 +100,7 @@ const Experience: React.FC = () => {
             onValueChange: (value: string) =>
               onExperienceChange(index, "link", value),
             value: experience?.link || "",
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.role"),
@@ -107,6 +110,7 @@ const Experience: React.FC = () => {
               onExperienceChange(index, "role", value),
             value: experience?.role || "",
             isRequired: true,
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.company_description"),
@@ -123,6 +127,7 @@ const Experience: React.FC = () => {
               current_length: experience?.description.length,
             }),
             description: `${experience?.description.length} / 50`,
+            onBlur: syncProfile,
           },
           {
             label: t("common.form.location"),
@@ -132,21 +137,26 @@ const Experience: React.FC = () => {
               onExperienceChange(index, "location", value),
             value: experience?.location || "",
             isRequired: true,
+            onBlur: syncProfile,
           },
           [
             {
               label: t("common.form.start_date"),
               type: "start_date",
-              onValueChange: (value: string) =>
-                onExperienceChange(index, "start_date", value),
+              onValueChange: (value: string) => {
+                onExperienceChange(index, "start_date", value);
+                syncProfile();
+              },
               value: experience?.start_date || "",
               isRequired: true,
             },
             {
               label: t("common.form.end_date"),
               type: "end_date",
-              onValueChange: (value: string) =>
-                onExperienceChange(index, "end_date", value),
+              onValueChange: (value: string) => {
+                onExperienceChange(index, "end_date", value);
+                syncProfile();
+              },
               value: experience?.end_date || "",
               isRequired: true,
             },
