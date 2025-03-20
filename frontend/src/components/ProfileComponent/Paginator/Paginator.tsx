@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
 import {
   Button,
@@ -25,6 +25,43 @@ const Paginator: React.FC<IPaginatorProps> = ({
   const [currentPage, setCurrentpage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(total);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const [currentPageBasedOnScroll, setCurrentPageBasedOnScroll] = useState(1);
+  const scrolling = useRef(false);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const handleScroll = useCallback(() => {
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
+    }
+
+    scrolling.current = true;
+
+    scrollTimeout.current = setTimeout(() => {
+      const scrollLeft = scrollRef.current?.scrollLeft;
+      if (scrollLeft === undefined) return;
+
+      const position = (scrollLeft - 4) / 326;
+      const page = Math.round(position) + 1;
+
+      setCurrentPageBasedOnScroll(page);
+      scrolling.current = false;
+    }, 200);
+  }, []);
+
+  useEffect(() => {
+    const scrollElement = scrollRef.current;
+    if (!scrollElement) return;
+
+    scrollElement.addEventListener("scroll", handleScroll);
+    return () => {
+      scrollElement.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
+  useEffect(() => {
+    setCurrentpage(currentPageBasedOnScroll);
+  }, [currentPageBasedOnScroll]);
 
   const t = useTranslations();
 
