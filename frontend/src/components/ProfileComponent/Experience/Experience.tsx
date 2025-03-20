@@ -62,7 +62,7 @@ const Experience: React.FC = () => {
       total={experienceList.length}
       onNewPage={addNewExperience}
       onRemovePage={onRemovePage}
-      buttonLabel={t("pages.profile.sections.experience.add_experience")}
+      elementName={t("pages.profile.sections.experience.element")}
     >
       {experienceList.map((experience, index) => {
         const isPresent = (): IDynamicInput<boolean> => {

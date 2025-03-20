@@ -17,6 +17,10 @@
       "use_other_method": "Use another method",
       "forgot_password": "Forgot your password?"
     },
+    "texts": {
+      "delete": "Deleting {element}",
+      "delete_confirmation": "Are you sure you want to delete this {element}?"
+    },
     "buttons": {
       "continue": "Continue",
       "add": "Add",
@@ -28,7 +32,10 @@
       "too_many_requests": "Too many requests, try in 24 hours",
       "next": "Next",
       "previous": "Previous",
-      "go_home": "Go Home"
+      "go_home": "Go Home",
+      "add_element": "Add {element}",
+      "delete": "Delete",
+      "cancel": "Cancel"
     },
     "errors": {
       "login": "Login failed",
@@ -64,7 +71,6 @@
       "career": "Career",
       "skill": "Skill",
       "role": "Role",
-      "delete": "Delete",
       "phone_number": "Phone number",
       "phone_country_code": "Country code",
       "company_description": "Job Description",
@@ -171,17 +177,17 @@
         },
         "projects": {
           "title": "Projects",
-          "add_project": "Add Project",
+          "element": "Project",
           "is_present": "I'm currently working on this project"
         },
         "experience": {
           "title": "Experience",
-          "add_experience": "Add Experience",
+          "element": "Experience",
           "is_present": "I'm currently working here"
         },
         "education": {
           "title": "Education",
-          "add_education": "Add Education",
+          "element": "Education",
           "is_present": "I'm currently studying here"
         }
       },

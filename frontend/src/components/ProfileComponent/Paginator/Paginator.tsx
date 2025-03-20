@@ -1,20 +1,30 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { IPaginatorProps } from "../Paginator/Paginator.types";
-import { Button, Pagination } from "@heroui/react";
+import {
+  Button,
+  Pagination,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
+} from "@heroui/react";
 import { useTranslations } from "next-intl";
 
 const Paginator: React.FC<IPaginatorProps> = ({
   onNewPage,
   onRemovePage,
   total,
-  buttonLabel,
+  elementName,
   children,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentpage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(total);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const t = useTranslations();
 
@@ -87,12 +97,48 @@ const Paginator: React.FC<IPaginatorProps> = ({
           onPress={addNewPage}
           className="w-full"
         >
-          {buttonLabel}
+          {t("common.buttons.add_element", { element: elementName })}
         </Button>
         {totalPages > 0 && (
-          <Button variant="bordered" color="danger" onPress={deleteCurrentPage}>
-            {t("common.form.delete")}
-          </Button>
+          <>
+            <Button variant="bordered" color="danger" onPress={onOpen}>
+              {t("common.buttons.delete")}
+            </Button>
+            <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+              <ModalContent>
+                {(onClose) => (
+                  <>
+                    <ModalHeader className="flex flex-col gap-1">
+                      <h3>
+                        {t("common.texts.delete", { element: elementName })}
+                      </h3>
+                    </ModalHeader>
+                    <ModalBody>
+                      <p>
+                        {t("common.texts.delete_confirmation", {
+                          element: elementName,
+                        })}
+                      </p>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button color="primary" variant="light" onPress={onClose}>
+                        {t("common.buttons.cancel")}
+                      </Button>
+                      <Button
+                        color="danger"
+                        onPress={() => {
+                          deleteCurrentPage();
+                          onClose();
+                        }}
+                      >
+                        {t("common.buttons.delete")}
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
+          </>
         )}
       </div>
     </section>

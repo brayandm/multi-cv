@@ -59,7 +59,7 @@ const Education: React.FC = () => {
       total={educationList.length}
       onNewPage={addNewEducation}
       onRemovePage={onRemovePage}
-      buttonLabel={t("pages.profile.sections.education.add_education")}
+      elementName={t("pages.profile.sections.education.element")}
     >
       {educationList.map((education, index) => {
         const isPresent = (): IDynamicInput<boolean> => {

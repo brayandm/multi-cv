@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
       total={projects.length}
       onNewPage={addNewProject}
       onRemovePage={onRemovePage}
-      buttonLabel={t("pages.profile.sections.projects.add_project")}
+      elementName={t("pages.profile.sections.projects.element")}
     >
       {projects.map((project, index) => {
         const isPresent = (): IDynamicInput<boolean> => {

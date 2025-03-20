@@ -2,6 +2,6 @@ export interface IPaginatorProps {
   onNewPage: () => void;
   onRemovePage: (index: number) => void;
   total: number;
-  buttonLabel: string;
+  elementName: string;
   children: React.ReactNode;
 }
