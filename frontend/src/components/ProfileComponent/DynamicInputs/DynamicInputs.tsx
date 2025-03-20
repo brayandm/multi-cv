@@ -6,6 +6,7 @@ import {
   IDynamicInput,
   IDynamicInputArray,
   IDynamicOnValueChange,
+  ValidationError,
 } from "./DynamicInputs.types";
 import SelectCountry from "@/shared/components/SelectCountry";
 import Flag from "react-world-flags";
@@ -107,6 +108,13 @@ const DynamicInputs = <T,>({
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
+              validate={
+                input.validate as
+                  | ((
+                      value: unknown
+                    ) => true | ValidationError | null | undefined)
+                  | undefined
+              }
             ></SelectCountry>
           );
         }

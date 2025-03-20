@@ -42,7 +42,8 @@
       "under_age": "You must be over 18 years old",
       "accept_terms": "You must accept the terms and conditions",
       "length": "The {field} must be {current_length}/{length} characters long",
-      "skill_length": "You should enter at least {min} skill"
+      "skill_length": "You should enter at least {min} skill",
+      "country_code_required": "Select a country code"
     },
     "success": {
       "password_change": "Password changed",

@@ -55,7 +55,16 @@ const BasicUserInfo: React.FC = () => {
           syncProfile();
         },
         isRequired: true,
-        isInvalid: !profile.basic_info.phone_country_code,
+        validate: (value: unknown) => {
+          value = value as { inputValue: string; selectedKey: string };
+          const castedValue = value as {
+            inputValue: string;
+            selectedKey: string;
+          };
+          if (!castedValue.selectedKey) {
+            return t("common.errors.country_code_required");
+          }
+        },
       },
       {
         label: t("common.form.phone_number"),
@@ -91,14 +100,18 @@ const BasicUserInfo: React.FC = () => {
         onBasicUserInfoChange("about", value);
       },
       isRequired: true,
-      isInvalid: profile.basic_info.about.length < 50,
+      description: `${profile.basic_info.about.length} / 50`,
+      onBlur: syncProfile,
       errorMessage: t("common.errors.length", {
         field: t("common.form.about"),
         length: 50,
         current_length: profile.basic_info.about.length,
       }),
-      description: `${profile.basic_info.about.length} / 50`,
-      onBlur: syncProfile,
+      validate: (value) => {
+        if (value.length < 50) {
+          return "error";
+        }
+      },
     },
   ];
 
