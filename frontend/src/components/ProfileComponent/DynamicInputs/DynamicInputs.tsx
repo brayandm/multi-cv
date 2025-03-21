@@ -174,9 +174,12 @@ const DynamicInputs = <T,>({
               key={index}
               isSelected={input.value as boolean}
               isDisabled={input.isDisabled}
-              onValueChange={(value) => {
-                (input.onValueChange as IDynamicOnValueChange<boolean>)(value);
-              }}
+              onChange={(event) =>
+                (input.onValueChange as IDynamicOnValueChange<boolean>)(
+                  event.target.checked
+                )
+              }
+              value={input.value as string}
             >
               {input.label}
             </Checkbox>
@@ -187,9 +190,11 @@ const DynamicInputs = <T,>({
           return (
             <Checkbox
               key={index}
-              onValueChange={(value) => {
-                (input.onValueChange as IDynamicOnValueChange<boolean>)(value);
-              }}
+              onChange={(event) =>
+                (input.onValueChange as IDynamicOnValueChange<boolean>)(
+                  event.target.checked
+                )
+              }
               isDisabled={input.isDisabled}
               value={input.value as string}
               defaultSelected={input.selected}
