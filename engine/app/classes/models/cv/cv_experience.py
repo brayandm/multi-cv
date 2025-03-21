@@ -1,13 +1,13 @@
+from typing import Annotated, List
+
 from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import (
-    ShortStr,
-    LongStr,
     MAX_EXPERIENCE_BULLETS_LENGTH,
+    LongStr,
+    ShortStr,
     crop_list,
 )
-
-from typing import List, Annotated
 
 
 class CvExperience(BaseModel):

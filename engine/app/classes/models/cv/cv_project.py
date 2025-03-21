@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-from app.utils.pydantic_custom_types import ShortStr, LongStr
+from app.utils.pydantic_custom_types import LongStr, ShortStr
 
 
 class CvProject(BaseModel):

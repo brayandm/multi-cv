@@ -7,8 +7,8 @@ from app.utils.pydantic_custom_types import (
     MAX_EXPERIENCE_LENGTH,
     MAX_PROJECTS_LENGTH,
     MAX_SKILL_CATEGORIES_LENGTH,
-    ShortStr,
     LongStr,
+    ShortStr,
     crop_list,
 )
 
