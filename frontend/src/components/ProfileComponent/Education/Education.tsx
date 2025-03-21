@@ -1,9 +1,6 @@
 "use client";
 import React from "react";
-import {
-  IDynamicInput,
-  IDynamicInputArray,
-} from "../DynamicInputs/DynamicInputs.types";
+import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { IEducation, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
@@ -64,18 +61,6 @@ const Education: React.FC = () => {
       elementName={t("pages.profile.sections.education.element")}
     >
       {educationList.map((education, index) => {
-        const isPresent = (): IDynamicInput<boolean> => {
-          return {
-            label: t("pages.profile.sections.education.is_present"),
-            type: "is_present",
-            onValueChange: (value: boolean) => {
-              onEducationChange(index, "is_present", value);
-              syncProfile();
-            },
-            value: education?.is_present || "",
-          };
-        };
-
         const inputs: IDynamicInputArray<string & boolean> = [
           {
             label: t("common.form.institution"),
@@ -134,17 +119,26 @@ const Education: React.FC = () => {
                 onEducationChange(index, "end_date", value);
                 syncProfile();
               },
+              isDisabled: education?.is_present,
               value: education?.end_date || "",
               isRequired: true,
             },
           ],
-          isPresent(),
+          {
+            label: t("pages.profile.sections.education.is_present"),
+            type: "is_present",
+            onValueChange: (value: boolean) => {
+              onEducationChange(index, "is_present", value);
+              syncProfile();
+            },
+            value: education?.is_present || "",
+          },
         ];
 
         return (
           <div key={index} className={`mb-4 px-1 snap-center`}>
             <div className="h-[320px] overflow-y-scroll">
-              <DynamicInputs isPresent={isPresent()} inputs={inputs} />
+              <DynamicInputs inputs={inputs} />
             </div>
           </div>
         );

@@ -16,7 +16,6 @@ import { MAX_LONG_TEXT_LENGTH, MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 
 const DynamicInputs = <T,>({
   inputs,
-  isPresent,
   horizontal = false,
 }: DynamicInputsProps<T>) => {
   const getSelectedCountry = (
@@ -62,11 +61,7 @@ const DynamicInputs = <T,>({
         if (Array.isArray(input)) {
           return (
             <div key={index} className="flex gap-2">
-              <DynamicInputs
-                isPresent={isPresent}
-                inputs={input}
-                horizontal={true}
-              />
+              <DynamicInputs inputs={input} horizontal={true} />
             </div>
           );
         }
@@ -80,6 +75,7 @@ const DynamicInputs = <T,>({
             <Button
               key={index}
               variant={variant}
+              isDisabled={input.isDisabled}
               onPress={input.onPress}
               color={input.color}
             >
@@ -102,6 +98,7 @@ const DynamicInputs = <T,>({
               inputProps={{
                 classNames: customStyles,
               }}
+              isDisabled={input.isDisabled}
               color={input.color}
               startContent={
                 <Flag className="w-6 h-6" code={input.value as string}></Flag>
@@ -133,6 +130,7 @@ const DynamicInputs = <T,>({
               }
               color={input.color}
               startContent={PhoneNumberStartContent()}
+              isDisabled={input.isDisabled}
               classNames={customStyles}
               onBlur={input.onBlur}
               isRequired={input.isRequired}
@@ -157,6 +155,7 @@ const DynamicInputs = <T,>({
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               color={input.color}
+              isDisabled={input.isDisabled}
               classNames={customStyles}
               onBlur={input.onBlur}
               isRequired={input.isRequired}
@@ -174,6 +173,7 @@ const DynamicInputs = <T,>({
             <Checkbox
               key={index}
               isSelected={input.value as boolean}
+              isDisabled={input.isDisabled}
               onValueChange={(value) => {
                 (input.onValueChange as IDynamicOnValueChange<boolean>)(value);
               }}
@@ -190,6 +190,7 @@ const DynamicInputs = <T,>({
               onValueChange={(value) => {
                 (input.onValueChange as IDynamicOnValueChange<boolean>)(value);
               }}
+              isDisabled={input.isDisabled}
               value={input.value as string}
               defaultSelected={input.selected}
             >
@@ -211,6 +212,7 @@ const DynamicInputs = <T,>({
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
+              isDisabled={input.isDisabled}
               classNames={{ ...customStyles, base: "w-[150px]" }}
               onBlur={input.onBlur}
               isRequired={input.isRequired}
@@ -223,7 +225,6 @@ const DynamicInputs = <T,>({
           );
         }
         if (input.type === "end_date") {
-          const isDisabled = isPresent?.value ? true : false;
           return (
             <Input
               key={index}
@@ -236,7 +237,7 @@ const DynamicInputs = <T,>({
               onValueChange={
                 input.onValueChange as IDynamicOnValueChange<string>
               }
-              isDisabled={isDisabled}
+              isDisabled={input.isDisabled}
               classNames={{ ...customStyles, base: "w-[150px]" }}
               onBlur={input.onBlur}
               isRequired={input.isRequired}
@@ -259,6 +260,7 @@ const DynamicInputs = <T,>({
             value={input.value as string}
             onValueChange={input.onValueChange as IDynamicOnValueChange<string>}
             color={input.color}
+            isDisabled={input.isDisabled}
             classNames={customStyles}
             startContent={input.startContent}
             endContent={input.endContent}

@@ -40,6 +40,7 @@ export interface IDynamicInput<T> {
   description?: string;
   onBlur?: () => void;
   validate?: (value: string) => ValidationError | true | null | undefined;
+  isDisabled?: boolean;
 }
 
 export type IDynamicInputArray<T> = Array<
@@ -48,6 +49,6 @@ export type IDynamicInputArray<T> = Array<
 
 export interface DynamicInputsProps<T> {
   inputs: IDynamicInputArray<T>;
-  isPresent?: IDynamicInput<T>;
+
   horizontal?: boolean;
 }
