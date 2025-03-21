@@ -73,6 +73,7 @@ export interface IProfile {
 interface ProfileContextType {
   isLoaded: boolean;
   syncProfile: () => void;
+  syncProfileOnFirstLogin: () => void;
   basicInfo: IBasicInfo;
   professionalLinks: IProfessionalLinks[];
   experience: IExperience[];
@@ -183,11 +184,25 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const syncProfileOnFirstLogin = async () => {
+    if (onLoadedError) return;
+    if (!userStatus.is_first_login) return;
+    await profileSyncEngine({
+      basic_info: basicInfo,
+      professional_links: professionalLinks,
+      experience: experience,
+      education: education,
+      projects: projects,
+      skills: skills,
+    });
+  };
+
   return (
     <ProfileContext.Provider
       value={{
         isLoaded,
         syncProfile,
+        syncProfileOnFirstLogin,
         basicInfo,
         professionalLinks,
         experience,

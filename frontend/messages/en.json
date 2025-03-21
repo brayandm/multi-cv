@@ -36,7 +36,8 @@
       "go_home": "Go Home",
       "add_element": "Add {element}",
       "delete": "Delete",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "save": "Save"
     },
     "errors": {
       "login": "Login failed",

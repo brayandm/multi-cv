@@ -25,7 +25,7 @@ const Skills: React.FC = () => {
   const { skills, updateSkills } = useProfile();
   const [inputSkill, setInputSkill] = useState<string>("");
 
-  const { syncProfile } = useProfile();
+  const { syncProfileOnFirstLogin } = useProfile();
 
   const t = useTranslations();
 
@@ -51,10 +51,10 @@ const Skills: React.FC = () => {
       list: [...skills.list, inputSkill],
     });
 
-    syncProfile();
+    syncProfileOnFirstLogin();
 
     setInputSkill("");
-  }, [inputSkill, skills, updateSkills, syncProfile, t]);
+  }, [inputSkill, skills, updateSkills, syncProfileOnFirstLogin, t]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -98,7 +98,7 @@ const Skills: React.FC = () => {
           chips={skills.list}
           setChips={(skills) => {
             updateSkills({ list: skills });
-            syncProfile();
+            syncProfileOnFirstLogin();
           }}
         ></ChipArea>
       </div>

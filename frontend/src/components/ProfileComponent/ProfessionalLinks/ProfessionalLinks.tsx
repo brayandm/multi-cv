@@ -29,7 +29,7 @@ const ProfessionalLinks: React.FC = () => {
   const {
     professionalLinks: professionalLinksList,
     updateProfessionalLinks: updateProfessionalLinksList,
-    syncProfile,
+    syncProfileOnFirstLogin,
   } = useProfile();
 
   const t = useTranslations();
@@ -116,7 +116,7 @@ const ProfessionalLinks: React.FC = () => {
               onSocialChange(index, "link", value),
             value: social?.link || "",
             isRequired: true,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
         ];
 

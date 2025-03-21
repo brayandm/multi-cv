@@ -160,7 +160,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
             </CardBody>
           </Card>
           <div className="flex flex-row justify-between gap-1">
-            {prevPositionIsAvailable() && (
+            {isFirstLogin && prevPositionIsAvailable() && (
               <Card className="mb-3 w-full">
                 <Button
                   color="primary"
@@ -173,14 +173,14 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                 </Button>
               </Card>
             )}
-            {(isFirstLogin || nextPositionIsAvailable()) && (
+            {isFirstLogin && nextPositionIsAvailable() && (
               <Card className="mb-3 w-full">
                 <Button
                   color="primary"
                   onPress={async () => {
                     if (!formRef.current || !formRef.current.reportValidity())
                       return;
-                    if (isFirstLogin && !nextPositionIsAvailable()) {
+                    if (!nextPositionIsAvailable()) {
                       await syncProfile();
                       await finishFirstLoginApi();
                       router.push("/profile/success");
@@ -191,6 +191,20 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                   }}
                 >
                   {t("common.buttons.next")}
+                </Button>
+              </Card>
+            )}
+            {!isFirstLogin && (
+              <Card className="mb-3 w-full">
+                <Button
+                  color="primary"
+                  onPress={() => {
+                    if (!formRef.current || !formRef.current.reportValidity())
+                      return;
+                    syncProfile();
+                  }}
+                >
+                  {t("common.buttons.save")}
                 </Button>
               </Card>
             )}

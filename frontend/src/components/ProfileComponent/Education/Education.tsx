@@ -11,7 +11,7 @@ const Education: React.FC = () => {
   const {
     education: educationList,
     updateEducation,
-    syncProfile,
+    syncProfileOnFirstLogin,
   } = useProfile();
   const t = useTranslations();
   function onEducationChange(
@@ -70,7 +70,7 @@ const Education: React.FC = () => {
               onEducationChange(index, "institution", value),
             value: education?.institution || "",
             isRequired: true,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           {
             label: t("common.form.link"),
@@ -79,7 +79,7 @@ const Education: React.FC = () => {
             onValueChange: (value: string) =>
               onEducationChange(index, "link", value),
             value: education?.link || "",
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           {
             label: t("common.form.career"),
@@ -89,7 +89,7 @@ const Education: React.FC = () => {
               onEducationChange(index, "career", value),
             value: education?.career || "",
             isRequired: true,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           {
             label: t("common.form.location"),
@@ -99,7 +99,7 @@ const Education: React.FC = () => {
               onEducationChange(index, "location", value),
             value: education?.location || "",
             isRequired: true,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           [
             {
@@ -107,7 +107,7 @@ const Education: React.FC = () => {
               type: "start_date",
               onValueChange: (value: string) => {
                 onEducationChange(index, "start_date", value);
-                syncProfile();
+                syncProfileOnFirstLogin();
               },
               value: education?.start_date || "",
               isRequired: true,
@@ -117,7 +117,7 @@ const Education: React.FC = () => {
               type: "end_date",
               onValueChange: (value: string) => {
                 onEducationChange(index, "end_date", value);
-                syncProfile();
+                syncProfileOnFirstLogin();
               },
               isDisabled: education?.is_present,
               value: education?.end_date || "",
@@ -129,7 +129,7 @@ const Education: React.FC = () => {
             type: "is_present",
             onValueChange: (value: boolean) => {
               onEducationChange(index, "is_present", value);
-              syncProfile();
+              syncProfileOnFirstLogin();
             },
             value: education?.is_present || "",
           },

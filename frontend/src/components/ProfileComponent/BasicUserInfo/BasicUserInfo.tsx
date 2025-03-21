@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { IBasicInfo, useProfile } from "@/contexts/ProfileContext";
 
 const BasicUserInfo: React.FC = () => {
-  const { basicInfo, updateBasicInfo, syncProfile } = useProfile();
+  const { basicInfo, updateBasicInfo, syncProfileOnFirstLogin } = useProfile();
 
   const t = useTranslations();
 
@@ -29,7 +29,7 @@ const BasicUserInfo: React.FC = () => {
         onBasicUserInfoChange("full_name", value);
       },
       isRequired: true,
-      onBlur: syncProfile,
+      onBlur: syncProfileOnFirstLogin,
     },
     {
       label: t("common.form.email"),
@@ -40,7 +40,7 @@ const BasicUserInfo: React.FC = () => {
         onBasicUserInfoChange("email", value);
       },
       isRequired: true,
-      onBlur: syncProfile,
+      onBlur: syncProfileOnFirstLogin,
     },
     [
       {
@@ -49,7 +49,7 @@ const BasicUserInfo: React.FC = () => {
         value: basicInfo.phone_country_code,
         onValueChange: (value?: string) => {
           onBasicUserInfoChange("phone_country_code", value || "");
-          syncProfile();
+          syncProfileOnFirstLogin();
         },
         isRequired: true,
         validate: (value: unknown) => {
@@ -72,7 +72,7 @@ const BasicUserInfo: React.FC = () => {
           onBasicUserInfoChange("phone_number", value);
         },
         isRequired: true,
-        onBlur: syncProfile,
+        onBlur: syncProfileOnFirstLogin,
       },
     ],
     [
@@ -85,7 +85,7 @@ const BasicUserInfo: React.FC = () => {
           onBasicUserInfoChange("location", value);
         },
         isRequired: true,
-        onBlur: syncProfile,
+        onBlur: syncProfileOnFirstLogin,
       },
     ],
     {
@@ -98,7 +98,7 @@ const BasicUserInfo: React.FC = () => {
       },
       isRequired: true,
       description: `${basicInfo.about.length} / 50`,
-      onBlur: syncProfile,
+      onBlur: syncProfileOnFirstLogin,
       errorMessage: t("common.errors.length", {
         field: t("common.form.about"),
         length: 50,
