@@ -211,6 +211,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                       return;
                     if (!nextPositionIsAvailable()) {
                       await syncProfile();
+                      await pullProfile();
                       await finishFirstLoginApi();
                       router.push("/profile/success");
                       return;
