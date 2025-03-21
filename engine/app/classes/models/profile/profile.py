@@ -1,8 +1,11 @@
 from typing import Annotated, List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
-from app.utils.pydantic_custom_types import NotesStr
+from app.utils.pydantic_custom_types import (
+    GeneralNotesStr,
+    MAX_GENERAL_NOTES_LENGTH,
+)
 
 from .basic_info import BasicInfo
 from .education import Education
@@ -21,4 +24,11 @@ class Profile(BaseModel):
     education: Annotated[List[Education], Field(..., max_items=10)]
     projects: Annotated[List[Project], Field(..., max_items=15)]
     skills: Skills
-    general_notes: Optional[NotesStr] = None
+    general_notes: Optional[GeneralNotesStr] = None
+
+    @field_validator("general_notes", mode="before")
+    @classmethod
+    def crop_notes(cls, v: Optional[str]) -> Optional[str]:
+        if isinstance(v, str) and len(v) > MAX_GENERAL_NOTES_LENGTH:
+            return v[:MAX_GENERAL_NOTES_LENGTH]
+        return v
