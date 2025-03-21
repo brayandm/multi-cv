@@ -86,9 +86,11 @@ def commit_action_after() -> Callable[..., Any]:
         @wraps(func)
         async def wrapper(*args: Any, **kwargs: Any) -> Any:
 
+            result = await func(*args, **kwargs)
+
             commit_action()
 
-            return await func(*args, **kwargs)
+            return result
 
         return wrapper
 
