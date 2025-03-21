@@ -1,15 +1,47 @@
-from typing import Annotated
+from typing import Annotated, Optional
 
-from pydantic import Field
+from pydantic import Field, BeforeValidator
 
 MAX_SHORT_STR_LENGTH = 100
 MAX_LONG_STR_LENGTH = 1000
 MAX_NOTES_LENGTH = 2000
 MAX_GENERAL_NOTES_LENGTH = 5000
 
+
+def crop_str(max_length: int) -> BeforeValidator:
+
+    def crop(value: Optional[str]) -> Optional[str]:
+        if isinstance(value, str) and len(value) > max_length:
+            return value[:max_length]
+        return value
+
+    return BeforeValidator(crop)
+
+
 ShortStr = Annotated[str, Field(..., max_length=MAX_SHORT_STR_LENGTH)]
+
 LongStr = Annotated[str, Field(..., max_length=MAX_LONG_STR_LENGTH)]
-NotesStr = Annotated[str, Field(None, max_length=MAX_NOTES_LENGTH)]
+
+ForceShortStr = Annotated[
+    str,
+    crop_str(MAX_SHORT_STR_LENGTH),
+    Field(max_length=MAX_SHORT_STR_LENGTH),
+]
+
+ForceLongStr = Annotated[
+    str,
+    crop_str(MAX_LONG_STR_LENGTH),
+    Field(max_length=MAX_LONG_STR_LENGTH),
+]
+
+NotesStr = Annotated[
+    Optional[str],
+    crop_str(MAX_NOTES_LENGTH),
+    Field(max_length=MAX_NOTES_LENGTH),
+]
+
 GeneralNotesStr = Annotated[
-    str, Field(None, max_length=MAX_GENERAL_NOTES_LENGTH)
+    Optional[str],
+    crop_str(MAX_GENERAL_NOTES_LENGTH),
+    Field(max_length=MAX_GENERAL_NOTES_LENGTH),
 ]

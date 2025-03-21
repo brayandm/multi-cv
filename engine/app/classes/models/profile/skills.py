@@ -3,31 +3,16 @@ from typing import Annotated, List, Optional
 from pydantic import BaseModel, Field, field_validator
 
 from app.utils.pydantic_custom_types import (
-    MAX_LONG_STR_LENGTH,
-    MAX_SHORT_STR_LENGTH,
-    LongStr,
+    ForceLongStr,
+    ForceShortStr,
     ShortStr,
 )
 
 
 class SkillNote(BaseModel):
-    name: ShortStr
+    name: ForceShortStr
     experience_years: float
-    description: LongStr
-
-    @field_validator("name", mode="before")
-    @classmethod
-    def crop_name(cls, v: Optional[str]) -> Optional[str]:
-        if isinstance(v, str) and len(v) > MAX_SHORT_STR_LENGTH:
-            return v[:MAX_SHORT_STR_LENGTH]
-        return v
-
-    @field_validator("description", mode="before")
-    @classmethod
-    def crop_description(cls, v: Optional[str]) -> Optional[str]:
-        if isinstance(v, str) and len(v) > MAX_LONG_STR_LENGTH:
-            return v[:MAX_LONG_STR_LENGTH]
-        return v
+    description: ForceLongStr
 
 
 class Skills(BaseModel):
