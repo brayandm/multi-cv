@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from app.utils.pydantic_custom_types import ShortStr, NotesStr
+from app.utils.pydantic_custom_types import NotesStr, ShortStr
 
 
 class Education(BaseModel):

@@ -1,4 +1,5 @@
 from typing import Annotated
+
 from pydantic import Field
 
 ShortStr = Annotated[str, Field(..., max_length=100)]

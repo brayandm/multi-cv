@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
-from app.utils.pydantic_custom_types import ShortStr, LongStr
+from app.utils.pydantic_custom_types import LongStr, ShortStr
 
 
 class SkillNote(BaseModel):
