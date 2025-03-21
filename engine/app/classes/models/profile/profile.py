@@ -3,8 +3,8 @@ from typing import Annotated, List, Optional
 from pydantic import BaseModel, Field, field_validator
 
 from app.utils.pydantic_custom_types import (
-    GeneralNotesStr,
     MAX_GENERAL_NOTES_LENGTH,
+    GeneralNotesStr,
 )
 
 from .basic_info import BasicInfo

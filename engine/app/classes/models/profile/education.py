@@ -3,9 +3,9 @@ from typing import Optional
 from pydantic import BaseModel, field_validator
 
 from app.utils.pydantic_custom_types import (
+    MAX_NOTES_LENGTH,
     NotesStr,
     ShortStr,
-    MAX_NOTES_LENGTH,
 )
 
 

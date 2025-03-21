@@ -3,10 +3,10 @@ from typing import Annotated, List, Optional
 from pydantic import BaseModel, Field, field_validator
 
 from app.utils.pydantic_custom_types import (
+    MAX_LONG_STR_LENGTH,
+    MAX_SHORT_STR_LENGTH,
     LongStr,
     ShortStr,
-    MAX_SHORT_STR_LENGTH,
-    MAX_LONG_STR_LENGTH,
 )
 
 
