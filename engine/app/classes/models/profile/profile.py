@@ -3,11 +3,11 @@ from typing import Annotated, List, Optional
 from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import (
-    GeneralNotesStr,
-    MAX_PROFESSIONAL_LINKS_LENGTH,
-    MAX_EXPERIENCE_LENGTH,
     MAX_EDUCATION_LENGTH,
+    MAX_EXPERIENCE_LENGTH,
+    MAX_PROFESSIONAL_LINKS_LENGTH,
     MAX_PROJECTS_LENGTH,
+    GeneralNotesStr,
 )
 
 from .basic_info import BasicInfo

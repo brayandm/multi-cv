@@ -24,7 +24,7 @@ class GenerateCvAgent(Agent):
               "location": "string",
               "start_date": "string",
               "end_date": "string",
-              "description": ["string"]
+              "descriptions": ["string"]
             }
           ],
           "education": [

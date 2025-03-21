@@ -1,10 +1,12 @@
 from pydantic import BaseModel
 
+from app.utils.pydantic_custom_types import ShortStr, LongStr
+
 
 class CvProject(BaseModel):
-    name: str
-    location: str
-    start_date: str
-    end_date: str
-    link: str
-    description: str
+    name: ShortStr
+    location: ShortStr
+    start_date: ShortStr
+    end_date: ShortStr
+    link: ShortStr
+    description: LongStr

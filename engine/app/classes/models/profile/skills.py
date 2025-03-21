@@ -3,11 +3,11 @@ from typing import Annotated, List, Optional
 from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import (
+    MAX_SKILS,
     ForceLongStr,
     ForceShortStr,
     ShortStr,
     crop_list,
-    MAX_SKILS,
 )
 
 

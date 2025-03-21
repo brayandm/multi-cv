@@ -1,9 +1,11 @@
 from pydantic import BaseModel
 
+from app.utils.pydantic_custom_types import ShortStr
+
 
 class CvEducation(BaseModel):
-    institution: str
-    career: str
-    location: str
-    start_date: str
-    end_date: str
+    institution: ShortStr
+    career: ShortStr
+    location: ShortStr
+    start_date: ShortStr
+    end_date: ShortStr
