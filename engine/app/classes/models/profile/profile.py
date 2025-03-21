@@ -9,6 +9,8 @@ from .professional_link import ProfessionalLink
 from .project import Project
 from .skills import Skills
 
+from app.utils.pydantic_custom_types import NotesStr
+
 
 class Profile(BaseModel):
     basic_info: BasicInfo
@@ -17,4 +19,4 @@ class Profile(BaseModel):
     education: List[Education]
     projects: List[Project]
     skills: Skills
-    general_notes: Optional[str] = None
+    general_notes: Optional[NotesStr] = None

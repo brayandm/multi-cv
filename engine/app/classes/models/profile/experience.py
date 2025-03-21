@@ -2,15 +2,17 @@ from typing import Optional
 
 from pydantic import BaseModel
 
+from app.utils.pydantic_custom_types import ShortStr, LongStr, NotesStr
+
 
 class Experience(BaseModel):
-    id: str
-    company: str
-    link: str
-    role: str
-    location: str
-    description: str
-    start_date: str
-    end_date: str
+    id: ShortStr
+    company: ShortStr
+    link: ShortStr
+    role: ShortStr
+    location: ShortStr
+    description: LongStr
+    start_date: ShortStr
+    end_date: ShortStr
     is_present: bool
-    notes: Optional[str] = None
+    notes: Optional[NotesStr] = None

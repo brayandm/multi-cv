@@ -2,13 +2,15 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
+from app.utils.pydantic_custom_types import ShortStr, LongStr
+
 
 class SkillNote(BaseModel):
-    name: str
+    name: ShortStr
     experience_years: float
-    description: str
+    description: LongStr
 
 
 class Skills(BaseModel):
-    list: list[str]
+    list: list[ShortStr]
     notes: Optional[List[SkillNote]] = None
