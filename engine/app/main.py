@@ -98,7 +98,7 @@ async def render_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
     }
 
 
-@router.get("/generate/cv/inline")
+@router.post("/generate/cv/inline")
 @commit_action_after()
 @consume_action("generate_cv_inline")
 async def generate_cv_inline(
