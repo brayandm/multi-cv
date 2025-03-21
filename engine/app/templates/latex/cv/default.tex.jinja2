@@ -139,4 +139,19 @@
 \resumeSubHeadingListEnd
 {% endif %}
 
+% PROJECTS
+{% if cv.projects %}
+\section{Projects}
+
+\resumeSubHeadingListStart
+
+{% for proj in cv.projects %}
+\resumeSubheading
+{ {{ proj.name }} }  { {{ proj.start_date }} -- {{ proj.end_date }} }
+{ {{ proj.description }} }
+{% endfor %}
+
+\resumeSubHeadingListEnd
+{% endif %}
+
 \end{document}
