@@ -60,6 +60,15 @@ class GenerateCvAgent(Agent):
         or after the JSON output.
         - In Experience Section add severals descriptions for each experience.
 
+        **Format Guidelines:**
+        - The Experiences should be in reverse chronological order.
+        - The Education should be in reverse chronological order.
+        - The Dates of the Experiences should be "month_name year" format.
+        - In case of having is_present as True, the end_date should be
+        "Present".
+        - The most Recent Experience should have more descriptions. And
+        the oldest experience should have less descriptions.
+
         **Skills Section Guidelines:**
         - The skills should be categorized into meaningful groups. Each group
         should have:
