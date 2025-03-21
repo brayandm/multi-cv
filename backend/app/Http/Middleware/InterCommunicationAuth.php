@@ -23,6 +23,8 @@ class InterCommunicationAuth
             ], 401);
         }
 
+        $request->attributes->set('is_internal_request', true);
+
         return $next($request);
     }
 }
