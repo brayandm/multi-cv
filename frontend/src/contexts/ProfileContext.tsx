@@ -7,6 +7,7 @@ import {
   useState,
   ReactNode,
   useEffect,
+  useCallback,
 } from "react";
 import { useUserStatus } from "./UserStatusContext";
 
@@ -17,6 +18,7 @@ export type IBasicInfo = {
   phone_country_code: string;
   phone_number: string;
   location: string;
+  notes?: null;
 };
 
 export interface IExperience {
@@ -29,6 +31,7 @@ export interface IExperience {
   start_date: string;
   end_date: string;
   is_present: boolean;
+  notes?: null;
 }
 
 export interface IEducation {
@@ -40,6 +43,7 @@ export interface IEducation {
   start_date: string;
   end_date: string;
   is_present: boolean;
+  notes?: null;
 }
 
 export interface IProject {
@@ -50,6 +54,7 @@ export interface IProject {
   start_date: string;
   end_date: string;
   is_present: boolean;
+  notes?: null;
 }
 
 export interface IProfessionalLinks {
@@ -59,6 +64,7 @@ export interface IProfessionalLinks {
 
 export interface ISkills {
   list: string[];
+  notes?: null;
 }
 
 export interface IProfile {
@@ -68,11 +74,15 @@ export interface IProfile {
   education: IEducation[];
   projects: IProject[];
   skills: ISkills;
+  general_notes?: null;
 }
 
 interface ProfileContextType {
   isLoaded: boolean;
   syncProfile: () => void;
+  syncProfileOnFirstLogin: () => void;
+  pullProfile: () => void;
+  checkArePendingChanges: () => boolean;
   basicInfo: IBasicInfo;
   professionalLinks: IProfessionalLinks[];
   experience: IExperience[];
@@ -99,6 +109,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     phone_country_code: "",
     phone_number: "",
     location: "",
+    notes: null,
   });
 
   const [professionalLinks, setProfessionalLinks] = useState<
@@ -108,42 +119,67 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [experience, setExperience] = useState<IExperience[]>([]);
   const [education, setEducation] = useState<IEducation[]>([]);
   const [projects, setProjects] = useState<IProject[]>([]);
-  const [skills, setSkills] = useState<ISkills>({ list: [] });
+  const [skills, setSkills] = useState<ISkills>({ list: [], notes: null });
 
   const [onLoadedError, setOnLoadedError] = useState(false);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
+  const [profileEngine, setProfileEngine] = useState<IProfile | null>(null);
+
+  const getJoinedProfile = () => {
+    return {
+      basic_info: basicInfo,
+      professional_links: professionalLinks,
+      experience: experience,
+      education: education,
+      projects: projects,
+      skills: skills,
+      general_notes: null,
+    };
+  };
+
+  const checkArePendingChanges = () => {
+    const profileEngineData = JSON.stringify(profileEngine);
+    const profileData = JSON.stringify(getJoinedProfile());
+
+    return profileEngineData !== profileData;
+  };
+
+  const pullProfile = useCallback(async () => {
     if (userStatus.authenticated) {
-      getProfileEngine()
-        .then((response) => {
-          if (response.data) {
-            const profile: IProfile = response.data;
-            setBasicInfo(profile.basic_info);
-            setProfessionalLinks(profile.professional_links);
-            setExperience(profile.experience);
-            setEducation(profile.education);
-            setProjects(profile.projects);
-            setSkills(profile.skills);
-          } else {
-            setBasicInfo({
-              full_name: userStatus.name || "",
-              email: userStatus.email || "",
-              about: "",
-              phone_country_code: "",
-              phone_number: "",
-              location: "",
-            });
-          }
-          setIsLoaded(true);
-        })
-        .catch((error) => {
-          console.error(error);
-          setOnLoadedError(true);
-        });
+      try {
+        const response = await getProfileEngine();
+        if (response.data) {
+          const profile: IProfile = response.data;
+          setBasicInfo(profile.basic_info);
+          setProfessionalLinks(profile.professional_links);
+          setExperience(profile.experience);
+          setEducation(profile.education);
+          setProjects(profile.projects);
+          setSkills(profile.skills);
+          setProfileEngine(profile);
+        } else {
+          setBasicInfo({
+            full_name: userStatus.name || "",
+            email: userStatus.email || "",
+            about: "",
+            phone_country_code: "",
+            phone_number: "",
+            location: "",
+          });
+        }
+        setIsLoaded(true);
+      } catch (error) {
+        console.error(error);
+        setOnLoadedError(true);
+      }
     }
   }, [userStatus]);
+
+  useEffect(() => {
+    pullProfile();
+  }, [pullProfile]);
 
   const updateBasicInfo = (newBasicInfo: IBasicInfo) => {
     setBasicInfo(newBasicInfo);
@@ -173,6 +209,12 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
 
   const syncProfile = async () => {
     if (onLoadedError) return;
+    await profileSyncEngine(getJoinedProfile());
+  };
+
+  const syncProfileOnFirstLogin = async () => {
+    if (onLoadedError) return;
+    if (!userStatus.is_first_login) return;
     await profileSyncEngine({
       basic_info: basicInfo,
       professional_links: professionalLinks,
@@ -188,6 +230,9 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       value={{
         isLoaded,
         syncProfile,
+        syncProfileOnFirstLogin,
+        pullProfile,
+        checkArePendingChanges,
         basicInfo,
         professionalLinks,
         experience,

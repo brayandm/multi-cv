@@ -8,7 +8,7 @@ import Paginator from "../Paginator";
 import { MAX_PROJECTS_ELEMENTS } from "@/lib/consts";
 
 const Projects: React.FC = () => {
-  const { projects, updateProjects, syncProfile } = useProfile();
+  const { projects, updateProjects, syncProfileOnFirstLogin } = useProfile();
   const t = useTranslations();
   function onProjectChange(
     index: number,
@@ -34,6 +34,7 @@ const Projects: React.FC = () => {
       start_date: "",
       end_date: "",
       is_present: false,
+      notes: null,
     };
 
     updateProjects([...projects, project]);
@@ -65,7 +66,7 @@ const Projects: React.FC = () => {
               onProjectChange(index, "name", value),
             value: project?.name || "",
             isRequired: true,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           {
             label: t("common.form.link"),
@@ -74,7 +75,7 @@ const Projects: React.FC = () => {
             onValueChange: (value: string) =>
               onProjectChange(index, "link", value),
             value: project?.link || "",
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           {
             label: t("common.form.project_description"),
@@ -85,7 +86,7 @@ const Projects: React.FC = () => {
             value: project?.description || "",
             isRequired: true,
             description: `${project?.description.length} / 50`,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
             errorMessage: t("common.errors.length", {
               field: t("common.form.project_description"),
               length: 50,
@@ -103,7 +104,7 @@ const Projects: React.FC = () => {
               type: "start_date",
               onValueChange: (value: string) => {
                 onProjectChange(index, "start_date", value);
-                syncProfile();
+                syncProfileOnFirstLogin();
               },
               value: project?.start_date || "",
               isRequired: true,
@@ -113,7 +114,7 @@ const Projects: React.FC = () => {
               type: "end_date",
               onValueChange: (value: string) => {
                 onProjectChange(index, "end_date", value);
-                syncProfile();
+                syncProfileOnFirstLogin();
               },
               isDisabled: project?.is_present,
               value: project?.end_date || "",
@@ -125,7 +126,7 @@ const Projects: React.FC = () => {
             type: "is_present",
             onValueChange: (value: boolean) => {
               onProjectChange(index, "is_present", value);
-              syncProfile();
+              syncProfileOnFirstLogin();
             },
             value: project?.is_present || "",
           },

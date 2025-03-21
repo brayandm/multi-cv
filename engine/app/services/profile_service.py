@@ -5,7 +5,7 @@ from motor.core import AgnosticDatabase
 
 from app.classes.models import Profile
 from app.database.mongodb import get_database
-from app.utils.preserve_notes import preserve_notes
+from app.utils.preserve_notes import preserve_notes, remove_notes
 
 
 class ProfileService:
@@ -35,13 +35,18 @@ class ProfileService:
 
         return profile
 
-    async def get_profile(self, user_id: int) -> Optional[Profile]:
+    async def get_profile(
+        self, user_id: int, with_notes: bool = False
+    ) -> Optional[Profile]:
         profile = await self.db.profiles.find_one({"user_id": user_id})
 
         if profile is None:
             return None
 
-        return Profile(**profile)
+        if with_notes:
+            return Profile(**profile)
+
+        return remove_notes(Profile(**profile))
 
 
 def get_profile_service(

@@ -20,3 +20,21 @@ def preserve_notes(new_profile: Profile, existing_profile: Profile) -> None:
     preserve_notes_list(new_profile.experience, existing_profile.experience)
     preserve_notes_list(new_profile.education, existing_profile.education)
     preserve_notes_list(new_profile.projects, existing_profile.projects)
+
+
+def remove_notes(profile: Profile) -> Profile:
+
+    profile.general_notes = None
+    profile.basic_info.notes = None
+    profile.skills.notes = None
+
+    for experience in profile.experience:
+        experience.notes = None
+
+    for education in profile.education:
+        education.notes = None
+
+    for project in profile.projects:
+        project.notes = None
+
+    return profile

@@ -12,7 +12,7 @@ const Experience: React.FC = () => {
   const {
     experience: experienceList,
     updateExperience,
-    syncProfile,
+    syncProfileOnFirstLogin,
   } = useProfile();
 
   const t = useTranslations();
@@ -42,6 +42,7 @@ const Experience: React.FC = () => {
       start_date: "",
       end_date: "",
       is_present: false,
+      notes: null,
     };
 
     updateExperience([...experienceList, experience]);
@@ -73,7 +74,7 @@ const Experience: React.FC = () => {
               onExperienceChange(index, "company", value),
             value: experience?.company || "",
             isRequired: true,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           {
             label: t("common.form.link"),
@@ -82,7 +83,7 @@ const Experience: React.FC = () => {
             onValueChange: (value: string) =>
               onExperienceChange(index, "link", value),
             value: experience?.link || "",
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           {
             label: t("common.form.role"),
@@ -92,7 +93,7 @@ const Experience: React.FC = () => {
               onExperienceChange(index, "role", value),
             value: experience?.role || "",
             isRequired: true,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           {
             label: t("common.form.company_description"),
@@ -103,7 +104,7 @@ const Experience: React.FC = () => {
             value: experience?.description || "",
             isRequired: true,
             description: `${experience?.description.length} / 50`,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
             errorMessage: t("common.errors.length", {
               field: t("common.form.company_description"),
               length: 50,
@@ -123,7 +124,7 @@ const Experience: React.FC = () => {
               onExperienceChange(index, "location", value),
             value: experience?.location || "",
             isRequired: true,
-            onBlur: syncProfile,
+            onBlur: syncProfileOnFirstLogin,
           },
           [
             {
@@ -131,7 +132,7 @@ const Experience: React.FC = () => {
               type: "start_date",
               onValueChange: (value: string) => {
                 onExperienceChange(index, "start_date", value);
-                syncProfile();
+                syncProfileOnFirstLogin();
               },
               value: experience?.start_date || "",
               isRequired: true,
@@ -141,7 +142,7 @@ const Experience: React.FC = () => {
               type: "end_date",
               onValueChange: (value: string) => {
                 onExperienceChange(index, "end_date", value);
-                syncProfile();
+                syncProfileOnFirstLogin();
               },
               value: experience?.end_date || "",
               isDisabled: experience?.is_present,
@@ -153,7 +154,7 @@ const Experience: React.FC = () => {
             type: "is_present",
             onValueChange: (value: boolean) => {
               onExperienceChange(index, "is_present", value);
-              syncProfile();
+              syncProfileOnFirstLogin();
             },
             value: experience?.is_present || "",
           },

@@ -20,7 +20,9 @@
     "texts": {
       "delete": "Deleting {element}",
       "delete_confirmation": "Are you sure you want to delete this {element}?",
-      "skills": "skills"
+      "skills": "skills",
+      "draft_changes": "Draft changes",
+      "draft_changes_description": "You have unsaved changes. Do you want to save them?"
     },
     "buttons": {
       "continue": "Continue",
@@ -36,7 +38,9 @@
       "go_home": "Go Home",
       "add_element": "Add {element}",
       "delete": "Delete",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "save": "Save",
+      "discard": "Discard"
     },
     "errors": {
       "login": "Login failed",
