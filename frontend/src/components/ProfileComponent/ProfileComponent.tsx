@@ -8,7 +8,7 @@ import Skills from "./Skills";
 import Projects from "./Projects";
 import ProfessionalLinks from "./ProfessionalLinks";
 import Education from "./Education";
-import ChatComponent from "@/shared/components/ChatComponent";
+// import ChatComponent from "@/shared/components/ChatComponent";
 import { useProfile } from "@/contexts/ProfileContext";
 import { useRouter } from "next/navigation";
 import { finishFirstLoginApi } from "@/lib/backendService";
@@ -95,7 +95,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
 
   return (
     <main className="flex justify-center">
-      <ChatComponent />
+      {/* <ChatComponent /> */}
       <div className={`max-w-[${width}px]`}>
         <form className="flex flex-col gap-2" ref={formRef}>
           <Card className="min-h-[75vh]">
