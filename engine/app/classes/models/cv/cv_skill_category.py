@@ -4,15 +4,15 @@ from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import (
     MAX_SKILLS_PER_CATEGORY,
-    ShortStr,
+    ForceShortStr,
     crop_list,
 )
 
 
 class CvSkillCategory(BaseModel):
-    category: ShortStr
+    category: ForceShortStr
     list: Annotated[
-        List[ShortStr],
+        List[ForceShortStr],
         crop_list(MAX_SKILLS_PER_CATEGORY),
         Field(None, max_items=MAX_SKILLS_PER_CATEGORY),
     ]

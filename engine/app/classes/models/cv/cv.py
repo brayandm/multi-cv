@@ -7,8 +7,8 @@ from app.utils.pydantic_custom_types import (
     MAX_EXPERIENCE_LENGTH,
     MAX_PROJECTS_LENGTH,
     MAX_SKILL_CATEGORIES_LENGTH,
-    LongStr,
-    ShortStr,
+    ForceLongStr,
+    ForceShortStr,
     crop_list,
 )
 
@@ -19,13 +19,13 @@ from .cv_skill_category import CvSkillCategory
 
 
 class Cv(BaseModel):
-    name: Optional[ShortStr] = None
-    email: Optional[ShortStr] = None
-    phone: Optional[ShortStr] = None
-    linkedin: Optional[ShortStr] = None
-    github: Optional[ShortStr] = None
-    location: Optional[ShortStr] = None
-    summary: Optional[LongStr] = None
+    name: Optional[ForceShortStr] = None
+    email: Optional[ForceShortStr] = None
+    phone: Optional[ForceShortStr] = None
+    linkedin: Optional[ForceShortStr] = None
+    github: Optional[ForceShortStr] = None
+    location: Optional[ForceShortStr] = None
+    summary: Optional[ForceLongStr] = None
 
     experiences: Annotated[
         Optional[List[CvExperience]],

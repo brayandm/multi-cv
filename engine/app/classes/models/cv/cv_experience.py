@@ -4,20 +4,20 @@ from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import (
     MAX_EXPERIENCE_BULLETS_LENGTH,
-    LongStr,
-    ShortStr,
+    ForceLongStr,
+    ForceShortStr,
     crop_list,
 )
 
 
 class CvExperience(BaseModel):
-    company: ShortStr
-    position: ShortStr
-    location: ShortStr
-    start_date: ShortStr
-    end_date: ShortStr
+    company: ForceShortStr
+    position: ForceShortStr
+    location: ForceShortStr
+    start_date: ForceShortStr
+    end_date: ForceShortStr
     descriptions: Annotated[
-        List[LongStr],
+        List[ForceLongStr],
         crop_list(MAX_EXPERIENCE_BULLETS_LENGTH),
         Field(None, max_items=MAX_EXPERIENCE_BULLETS_LENGTH),
     ]
