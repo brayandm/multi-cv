@@ -255,5 +255,7 @@ export const getProfileEngine = async (): Promise<
 export const generateCvInlineEngine = async (): Promise<
   AxiosResponse<Blob>
 > => {
-  return await engine.post(generateCvInlineEngineLink, { responseType: "blob" });
+  return await engine.post(generateCvInlineEngineLink, {
+    responseType: "blob",
+  });
 };
