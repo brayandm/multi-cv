@@ -143,7 +143,6 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     const profileEngineData = JSON.stringify(profileEngine);
     const profileData = JSON.stringify(getJoinedProfile());
 
-    console.log(profileEngineData, profileData);
     return profileEngineData !== profileData;
   };
 
