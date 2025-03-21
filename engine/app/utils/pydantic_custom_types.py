@@ -1,11 +1,23 @@
-from typing import Annotated, Optional
+from typing import Annotated, Optional, List, TypeVar
 
-from pydantic import Field, BeforeValidator
+from pydantic import BeforeValidator, Field
 
 MAX_SHORT_STR_LENGTH = 100
 MAX_LONG_STR_LENGTH = 1000
 MAX_NOTES_LENGTH = 2000
 MAX_GENERAL_NOTES_LENGTH = 5000
+
+T = TypeVar("T")
+
+
+def crop_list(max_length: int) -> BeforeValidator:
+
+    def crop(value: List[T]) -> List[T]:
+        if isinstance(value, list) and len(value) > max_length:
+            return value[:max_length]
+        return value
+
+    return BeforeValidator(crop)
 
 
 def crop_str(max_length: int) -> BeforeValidator:
