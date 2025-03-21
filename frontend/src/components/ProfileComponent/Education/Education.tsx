@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { RefObject } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { IEducation, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
@@ -7,7 +7,11 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 import { MAX_EDUCATION_ELEMENTS } from "@/lib/consts";
 
-const Education: React.FC = () => {
+interface IEducationProps {
+  formRef: RefObject<HTMLFormElement | null>;
+}
+
+const Education = ({ formRef }: IEducationProps) => {
   const {
     education: educationList,
     updateEducation,
@@ -59,6 +63,7 @@ const Education: React.FC = () => {
       onNewPage={addNewEducation}
       onRemovePage={onRemovePage}
       maxElements={MAX_EDUCATION_ELEMENTS}
+      formRef={formRef}
       elementName={t("pages.profile.sections.education.element")}
     >
       {educationList.map((education, index) => {

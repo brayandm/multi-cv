@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { RefObject } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { IExperience, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
@@ -8,7 +8,11 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 import { MAX_EXPERIENCE_ELEMENTS } from "@/lib/consts";
 
-const Experience: React.FC = () => {
+interface IExperienceProps {
+  formRef: RefObject<HTMLFormElement | null>;
+}
+
+const Experience = ({ formRef }: IExperienceProps) => {
   const {
     experience: experienceList,
     updateExperience,
@@ -62,6 +66,7 @@ const Experience: React.FC = () => {
       onNewPage={addNewExperience}
       onRemovePage={onRemovePage}
       maxElements={MAX_EXPERIENCE_ELEMENTS}
+      formRef={formRef}
       elementName={t("pages.profile.sections.experience.element")}
     >
       {experienceList.map((experience, index) => {

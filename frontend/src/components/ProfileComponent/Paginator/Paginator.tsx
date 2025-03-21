@@ -20,6 +20,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
   total,
   elementName,
   maxElements,
+  formRef,
   children,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -99,6 +100,8 @@ const Paginator: React.FC<IPaginatorProps> = ({
     }
   }
 
+  const [forceUpdate, setForceUpdate] = useState(0);
+
   return (
     <section className={`flex flex-col`}>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
@@ -110,7 +113,12 @@ const Paginator: React.FC<IPaginatorProps> = ({
       {totalPages > 0 && (
         <div className="flex justify-center">
           <Pagination
+            key={forceUpdate}
             onChange={(page) => {
+              if (!formRef.current || !formRef.current.reportValidity()) {
+                setForceUpdate((prev) => prev + 1);
+                return;
+              }
               scrollToPage(page);
               setCurrentpage(page);
             }}
@@ -129,6 +137,10 @@ const Paginator: React.FC<IPaginatorProps> = ({
           variant="bordered"
           color="primary"
           onPress={() => {
+            if (!formRef.current || !formRef.current.reportValidity()) {
+              return;
+            }
+
             if (totalPages >= maxElements) {
               addToast({
                 title: t("common.errors.max_elements", {

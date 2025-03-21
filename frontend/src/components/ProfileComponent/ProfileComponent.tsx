@@ -164,19 +164,19 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                     key="experiences"
                     title={t("pages.profile.sections.experience.title")}
                   >
-                    <Experience />
+                    <Experience formRef={formRef} />
                   </Tab>
                   <Tab
                     key="educations"
                     title={t("pages.profile.sections.education.title")}
                   >
-                    <Education />
+                    <Education formRef={formRef} />
                   </Tab>
                   <Tab
                     key="projects"
                     title={t("pages.profile.sections.projects.title")}
                   >
-                    <Projects />
+                    <Projects formRef={formRef} />
                   </Tab>
                   <Tab
                     key="skills"

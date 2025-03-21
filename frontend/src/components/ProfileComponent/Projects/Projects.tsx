@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { RefObject } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { IProject, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
@@ -7,7 +7,11 @@ import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 import { MAX_PROJECTS_ELEMENTS } from "@/lib/consts";
 
-const Projects: React.FC = () => {
+interface IProjectsProps {
+  formRef: RefObject<HTMLFormElement | null>;
+}
+
+const Projects = ({ formRef }: IProjectsProps) => {
   const { projects, updateProjects, syncProfileOnFirstLogin } = useProfile();
   const t = useTranslations();
   function onProjectChange(
@@ -54,6 +58,7 @@ const Projects: React.FC = () => {
       onNewPage={addNewProject}
       onRemovePage={onRemovePage}
       maxElements={MAX_PROJECTS_ELEMENTS}
+      formRef={formRef}
       elementName={t("pages.profile.sections.projects.element")}
     >
       {projects.map((project, index) => {
