@@ -111,7 +111,7 @@ export default function HomeComponent() {
         <Button
           color="primary"
           onPress={handleDownload}
-          isDisabled={isCvLoading}
+          isDisabled={isCvLoading || quotaInfo?.left === 0}
           isLoading={isCvLoading}
         >
           Generate CV
