@@ -21,8 +21,8 @@ T = TypeVar("T")
 
 def crop_list(max_length: int) -> BeforeValidator:
 
-    def crop(value: List[T]) -> List[T]:
-        if isinstance(value, list) and len(value) > max_length:
+    def crop(value: Optional[List[T]]) -> Optional[List[T]]:
+        if isinstance(value, List) and len(value) > max_length:
             return value[:max_length]
         return value
 

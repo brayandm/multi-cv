@@ -167,6 +167,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
             phone_country_code: "",
             phone_number: "",
             location: "",
+            notes: null,
           });
         }
         setIsLoaded(true);

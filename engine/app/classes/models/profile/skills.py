@@ -20,8 +20,10 @@ class SkillNote(BaseModel):
 class Skills(BaseModel):
     list: Annotated[List[ShortStr], Field(..., max_items=MAX_SKILS)]
 
-    notes: Annotated[
-        Optional[List[SkillNote]],
-        crop_list(MAX_SKILS),
-        Field(None, max_items=MAX_SKILS),
-    ]
+    notes: Optional[
+        Annotated[
+            Optional[List[SkillNote]],
+            crop_list(MAX_SKILS),
+            Field(None, max_items=MAX_SKILS),
+        ]
+    ] = None
