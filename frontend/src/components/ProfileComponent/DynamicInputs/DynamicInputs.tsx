@@ -137,6 +137,7 @@ const DynamicInputs = <T,>({
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
+              description={input.description}
               validate={input.validate}
             />
           );
@@ -212,6 +213,7 @@ const DynamicInputs = <T,>({
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
+              description={input.description}
               validate={input.validate}
             ></Input>
           );
@@ -236,6 +238,7 @@ const DynamicInputs = <T,>({
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
+              description={input.description}
               validate={input.validate}
             ></Input>
           );
@@ -258,6 +261,7 @@ const DynamicInputs = <T,>({
             isRequired={input.isRequired}
             isInvalid={input.isInvalid}
             errorMessage={input.errorMessage}
+            description={input.description}
             validate={input.validate}
           />
         );

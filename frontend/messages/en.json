@@ -80,7 +80,8 @@
       "project_name": "Project name",
       "project_description": "Project description",
       "link": "Link",
-      "professional_links_select": "Select a link"
+      "professional_links_select": "Select a link",
+      "skill_description": "Insert at least {min} skills"
     },
     "placeholders": {
       "enter_full_name": "Enter your full name",
