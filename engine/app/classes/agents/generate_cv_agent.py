@@ -56,12 +56,9 @@ class GenerateCvAgent(Agent):
         - Improve and enhance the provided information where possible (e.g.,
         refining job descriptions, making summaries more compelling, ensuring
         education details are clear).
-        - Use only the information provided in the input profile.
-        - Do NOT infer or generate missing data.
-        - If any field is missing, omit it instead of filling it with
-        placeholders.
         - Do not include any additional text, comments, or explanations before
         or after the JSON output.
+        - In Experience Section add severals descriptions for each experience.
 
         **Skills Section Guidelines:**
         - The skills should be categorized into meaningful groups. Each group

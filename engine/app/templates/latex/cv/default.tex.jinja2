@@ -100,9 +100,9 @@
 { {{ exp.start_date }} -- {{ exp.end_date }} }
 { {{ exp.company }} }
 { {{ exp.location }} }
-{% if exp.description %}
+{% if exp.descriptions %}
   \resumeItemListStart
-    {% for desc in exp.description %}
+    {% for desc in exp.descriptions %}
     \resumeItem{ {{ desc }} }
     {% endfor %}
   \resumeItemListEnd
