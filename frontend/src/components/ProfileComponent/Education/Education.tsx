@@ -94,7 +94,7 @@ const Education: React.FC = () => {
           {
             label: t("common.form.location"),
             type: "text",
-            placeholder: t("common.placeholders.enter_institution_location"),
+            placeholder: t("common.placeholders.enter_location"),
             onValueChange: (value: string) =>
               onEducationChange(index, "location", value),
             value: education?.location || "",
