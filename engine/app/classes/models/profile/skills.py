@@ -7,6 +7,7 @@ from app.utils.pydantic_custom_types import (
     ForceShortStr,
     ShortStr,
     crop_list,
+    MAX_SKILS,
 )
 
 
@@ -17,8 +18,10 @@ class SkillNote(BaseModel):
 
 
 class Skills(BaseModel):
-    list: Annotated[List[ShortStr], Field(..., max_items=50)]
+    list: Annotated[List[ShortStr], Field(..., max_items=MAX_SKILS)]
 
     notes: Annotated[
-        Optional[List[SkillNote]], crop_list(50), Field(None, max_items=50)
+        Optional[List[SkillNote]],
+        crop_list(MAX_SKILS),
+        Field(None, max_items=MAX_SKILS),
     ]

@@ -1,14 +1,16 @@
-from typing import List, Literal
+from typing import List, Literal, Annotated
 
 from pydantic import BaseModel, Field
 
-type SenderType = Literal["bot", "person"]
+from app.utils.pydantic_custom_types import LongStr, MAX_CHAT_MESSAGES
+
+SenderType = Annotated[Literal["bot", "person"], Field(...)]
 
 
 class Message(BaseModel):
-    sender: SenderType = Field(...)
-    text: str = Field(..., min_length=1)
+    sender: SenderType
+    text: LongStr
 
 
 class Chat(BaseModel):
-    messages: List[Message] = Field(...)
+    messages: Annotated[List[Message], Field(..., max_items=MAX_CHAT_MESSAGES)]

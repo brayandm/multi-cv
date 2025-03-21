@@ -1,4 +1,4 @@
-from typing import Annotated, Optional, List, TypeVar
+from typing import Annotated, List, Optional, TypeVar
 
 from pydantic import BeforeValidator, Field
 
@@ -6,6 +6,13 @@ MAX_SHORT_STR_LENGTH = 100
 MAX_LONG_STR_LENGTH = 1000
 MAX_NOTES_LENGTH = 2000
 MAX_GENERAL_NOTES_LENGTH = 5000
+MAX_PROFESSIONAL_LINKS_LENGTH = 10
+MAX_PROJECTS_LENGTH = 15
+MAX_EDUCATION_LENGTH = 10
+MAX_EXPERIENCE_LENGTH = 20
+MAX_SKILL_CATEGORIES_LENGTH = 10
+MAX_SKILS = 50
+MAX_CHAT_MESSAGES = 10
 
 T = TypeVar("T")
 
