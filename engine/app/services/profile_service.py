@@ -35,11 +35,16 @@ class ProfileService:
 
         return profile
 
-    async def get_profile(self, user_id: int) -> Optional[Profile]:
+    async def get_profile(
+        self, user_id: int, with_notes: bool = False
+    ) -> Optional[Profile]:
         profile = await self.db.profiles.find_one({"user_id": user_id})
 
         if profile is None:
             return None
+
+        if with_notes:
+            return Profile(**profile)
 
         return remove_notes(Profile(**profile))
 
