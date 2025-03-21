@@ -81,6 +81,20 @@ def rollback_action(action_id: str) -> None:
         )
 
 
+def commit_action_after() -> Callable[..., Any]:
+    def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
+        @wraps(func)
+        async def wrapper(*args: Any, **kwargs: Any) -> Any:
+
+            commit_action()
+
+            return await func(*args, **kwargs)
+
+        return wrapper
+
+    return decorator
+
+
 def consume_action(action: str) -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)

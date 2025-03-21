@@ -19,7 +19,7 @@ from app.framework.decorators import (
     consume_action,
     validate_api_token,
 )
-from app.framework.decorators.action import commit_action
+from app.framework.decorators.action import commit_action_after
 from app.framework.decorators.context_vars import get_user_id
 from app.framework.logging import logger
 from app.framework.middlewares import (
@@ -99,6 +99,7 @@ async def render_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
 
 
 @router.get("/generate/cv/inline")
+@commit_action_after()
 @consume_action("generate_cv_inline")
 async def generate_cv_inline(
     profile_service: ProfileService = Depends(get_profile_service),
@@ -122,12 +123,11 @@ async def generate_cv_inline(
 
     pdf_bytes = document_render.get_cv()
 
-    commit_action()
-
     return Response(content=pdf_bytes, media_type="application/pdf")
 
 
 @router.post("/render/cv/inline")
+@commit_action_after()
 @consume_action("render_cv_inline")
 async def render_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
@@ -136,8 +136,6 @@ async def render_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
     document_render.render_cv(cv, cv_template)
 
     pdf_bytes = document_render.get_cv()
-
-    commit_action()
 
     return Response(content=pdf_bytes, media_type="application/pdf")
 
@@ -170,6 +168,7 @@ async def get_profile(
 
 
 @router.post("/webhook")
+@commit_action_after()
 @validate_api_token()
 async def webhook(payload: WebhookPayload) -> Dict[str, str]:
     action_id = payload.action_id
@@ -180,8 +179,6 @@ async def webhook(payload: WebhookPayload) -> Dict[str, str]:
         f"Received webhook with action: {action} with id: {action_id} "
         f"with result: {result}"
     )
-
-    commit_action()
 
     return {"message": "Webhook processed successfully."}
 
