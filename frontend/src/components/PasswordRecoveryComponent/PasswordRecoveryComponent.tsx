@@ -6,6 +6,7 @@ import { Button, Input } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
+import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 
 interface IPasswordRecoveryComponentProps {
   type: "success" | "fail" | "recovery";
@@ -118,6 +119,7 @@ export default function PasswordRecoveryComponent({
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             classNames={generalInputsStyles}
+            maxLength={MAX_SHORT_TEXT_LENGTH}
           />
           <Button
             color="primary"

@@ -13,6 +13,7 @@ import { UserResponse } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { generalInputsStyles } from "@/lib/customStyles";
+import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 
 interface IPasswordComponentProps {
   passwordRecovery?: {
@@ -133,6 +134,7 @@ export default function PasswordComponent({
             isRequired
             classNames={generalInputsStyles}
             minLength={8}
+            maxLength={MAX_SHORT_TEXT_LENGTH}
           />
         )}
         <Input
@@ -146,6 +148,7 @@ export default function PasswordComponent({
           isRequired
           classNames={generalInputsStyles}
           minLength={8}
+          maxLength={MAX_SHORT_TEXT_LENGTH}
         />
         <Input
           label={t("common.form.repeat_password")}
@@ -164,6 +167,7 @@ export default function PasswordComponent({
               ? t("common.errors.passwords_not_match")
               : ""
           }
+          maxLength={MAX_SHORT_TEXT_LENGTH}
         />
         <Button color="primary" type="submit" isLoading={onPasswordChange}>
           {t("common.buttons.change_password")}

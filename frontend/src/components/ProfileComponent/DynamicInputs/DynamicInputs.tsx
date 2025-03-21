@@ -12,6 +12,7 @@ import SelectCountry from "@/shared/components/SelectCountry";
 import Flag from "react-world-flags";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 import { dynamicInputsStyles } from "@/lib/customStyles";
+import { MAX_LONG_TEXT_LENGTH, MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 
 const DynamicInputs = <T,>({
   inputs,
@@ -139,6 +140,7 @@ const DynamicInputs = <T,>({
               errorMessage={input.errorMessage}
               description={input.description}
               validate={input.validate}
+              maxLength={MAX_SHORT_TEXT_LENGTH}
             />
           );
         }
@@ -162,6 +164,7 @@ const DynamicInputs = <T,>({
               errorMessage={input.errorMessage}
               description={input.description}
               validate={input.validate}
+              maxLength={MAX_LONG_TEXT_LENGTH}
             />
           );
         }
@@ -215,6 +218,7 @@ const DynamicInputs = <T,>({
               errorMessage={input.errorMessage}
               description={input.description}
               validate={input.validate}
+              maxLength={MAX_SHORT_TEXT_LENGTH}
             ></Input>
           );
         }
@@ -240,6 +244,7 @@ const DynamicInputs = <T,>({
               errorMessage={input.errorMessage}
               description={input.description}
               validate={input.validate}
+              maxLength={MAX_SHORT_TEXT_LENGTH}
             ></Input>
           );
         }
@@ -263,6 +268,7 @@ const DynamicInputs = <T,>({
             errorMessage={input.errorMessage}
             description={input.description}
             validate={input.validate}
+            maxLength={MAX_SHORT_TEXT_LENGTH}
           />
         );
       })}

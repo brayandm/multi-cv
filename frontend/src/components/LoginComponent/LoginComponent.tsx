@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { setCookieClient } from "@/lib/setCookieClient";
+import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -91,6 +92,7 @@ export default function LoginComponent() {
           onChange={handleChange}
           classNames={generalInputsStyles}
           isRequired
+          maxLength={MAX_SHORT_TEXT_LENGTH}
         />
         <Input
           label={t("common.form.password")}
@@ -102,6 +104,7 @@ export default function LoginComponent() {
           onChange={handleChange}
           classNames={generalInputsStyles}
           isRequired
+          maxLength={MAX_SHORT_TEXT_LENGTH}
         />
         <Button color="primary" type="submit" isLoading={onLogin}>
           {t("common.auth.login")}

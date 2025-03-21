@@ -11,6 +11,7 @@ import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { setCookieClient } from "@/lib/setCookieClient";
+import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -148,6 +149,7 @@ export default function RegisterComponent() {
           onChange={handleChange}
           classNames={generalInputsStyles}
           isRequired
+          maxLength={MAX_SHORT_TEXT_LENGTH}
         />
         <Input
           label={t("common.form.email")}
@@ -159,6 +161,7 @@ export default function RegisterComponent() {
           onChange={handleChange}
           classNames={generalInputsStyles}
           isRequired
+          maxLength={MAX_SHORT_TEXT_LENGTH}
         />
         <Input
           label={t("common.form.password")}
@@ -171,6 +174,7 @@ export default function RegisterComponent() {
           classNames={generalInputsStyles}
           isRequired
           minLength={8}
+          maxLength={MAX_SHORT_TEXT_LENGTH}
         />
         <Input
           label={t("common.form.repeat_password")}
@@ -189,6 +193,7 @@ export default function RegisterComponent() {
               ? t("common.errors.passwords_not_match")
               : ""
           }
+          maxLength={MAX_SHORT_TEXT_LENGTH}
         />
         <div className="flex items-start gap-1">
           <Checkbox
