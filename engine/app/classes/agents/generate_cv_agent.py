@@ -15,6 +15,8 @@ class GenerateCvAgent(Agent):
         {
           "name": "string",
           "email": "string",
+          "linkedin": "string",
+          "github": "string",
           "phone": "string",
           "summary": "string",
           "experiences": [
