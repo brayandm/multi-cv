@@ -129,7 +129,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
           variant="bordered"
           color="primary"
           onPress={() => {
-            if (totalPages >= maxElements - 1) {
+            if (totalPages >= maxElements) {
               addToast({
                 title: t("common.errors.max_elements", {
                   element: elementName,
@@ -139,12 +139,13 @@ const Paginator: React.FC<IPaginatorProps> = ({
                   max: maxElements,
                 }),
                 color: "warning",
+                timeout: 5000,
               });
+              return;
             }
             addNewPage();
           }}
           className="w-full"
-          isDisabled={totalPages >= maxElements}
         >
           {t("common.buttons.add_element", { element: elementName })}
         </Button>

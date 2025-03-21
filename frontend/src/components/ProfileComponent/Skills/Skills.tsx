@@ -4,9 +4,10 @@ import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
-import { Button } from "@heroui/react";
+import { addToast, Button } from "@heroui/react";
 import ChipArea from "@/shared/components/ChipArea";
 import AddIcon from "@/shared/icons/AddIcon/AddIcon";
+import { MAX_SKILLS_ELEMENTS } from "@/lib/consts";
 
 interface InputButtonProps {
   onPress: () => void;
@@ -30,6 +31,21 @@ const Skills: React.FC = () => {
 
   const addSkill = useCallback(() => {
     if (inputSkill === "") return;
+
+    if (skills.list.length >= MAX_SKILLS_ELEMENTS) {
+      addToast({
+        title: t("common.errors.max_elements", {
+          element: t("common.texts.skills"),
+        }),
+        description: t("common.errors.max_elements_description", {
+          element: t("common.texts.skills"),
+          max: MAX_SKILLS_ELEMENTS,
+        }),
+        color: "warning",
+        timeout: 5000,
+      });
+      return;
+    }
 
     updateSkills({
       list: [...skills.list, inputSkill],

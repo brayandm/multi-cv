@@ -118,12 +118,14 @@ export default function RegisterComponent() {
           title: t("common.errors.register"),
           description: t("common.errors.register_description"),
           color: "danger",
+          timeout: 5000,
         });
       } else {
         addToast({
           title: t("common.errors.register"),
           description: t("common.errors.server"),
           color: "danger",
+          timeout: 5000,
         });
       }
     }

@@ -86,6 +86,7 @@ export default function PasswordComponent({
             title: t("common.success.password_change"),
             description: t("common.success.password_change_description"),
             color: "success",
+            timeout: 5000,
           });
         }
       } catch (error) {
@@ -100,12 +101,14 @@ export default function PasswordComponent({
             title: t("common.errors.password_change"),
             description: t("common.errors.old_password_incorrect"),
             color: "danger",
+            timeout: 5000,
           });
         } else {
           addToast({
             title: t("common.errors.password_change"),
             description: t("common.errors.server"),
             color: "danger",
+            timeout: 5000,
           });
         }
       }

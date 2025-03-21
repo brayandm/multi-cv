@@ -67,6 +67,7 @@ export default function LoginComponent() {
         title: t("common.errors.login"),
         description: t("common.errors.login_description"),
         color: "danger",
+        timeout: 5000,
       });
     }
     setOnLogin(false);
