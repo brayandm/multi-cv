@@ -35,7 +35,8 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
 
   const router = useRouter();
 
-  const { isLoaded, syncProfile, pullProfile } = useProfile();
+  const { isLoaded, syncProfile, pullProfile, checkArePendingChanges } =
+    useProfile();
 
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -132,8 +133,12 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                   selectedKey={selectedTab}
                   onSelectionChange={(key) => {
                     if ((key as keyof typeof mapPosition) !== selectedTab) {
-                      onOpen();
-                      setSelectedPendingTab(key as keyof typeof mapPosition);
+                      if (checkArePendingChanges()) {
+                        onOpen();
+                        setSelectedPendingTab(key as keyof typeof mapPosition);
+                      } else {
+                        setSelectedTab(key as keyof typeof mapPosition);
+                      }
                     }
                   }}
                   ref={ref}
@@ -197,7 +202,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                 </Button>
               </Card>
             )}
-            {isFirstLogin && nextPositionIsAvailable() && (
+            {isFirstLogin && (
               <Card className="mb-3 w-full">
                 <Button
                   color="primary"
@@ -223,10 +228,11 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                 <Card className="mb-3 w-full">
                   <Button
                     color="primary"
-                    onPress={() => {
+                    onPress={async () => {
                       if (!formRef.current || !formRef.current.reportValidity())
                         return;
-                      syncProfile();
+                      await syncProfile();
+                      await pullProfile();
                     }}
                   >
                     {t("common.buttons.save")}
@@ -256,8 +262,20 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                           <Button
                             color="primary"
                             variant="light"
-                            onPress={() => {
+                            onPress={async () => {
+                              if (
+                                !formRef.current ||
+                                !formRef.current.reportValidity()
+                              ) {
+                                onClose();
+                                return;
+                              }
+                              await syncProfile();
+                              await pullProfile();
+
                               onClose();
+
+                              setSelectedTab(selectedPendingTab);
                             }}
                           >
                             {t("common.buttons.save")}

@@ -39,6 +39,7 @@ const Education: React.FC = () => {
       start_date: "",
       end_date: "",
       is_present: false,
+      notes: null,
     };
 
     updateEducation([...educationList, education]);

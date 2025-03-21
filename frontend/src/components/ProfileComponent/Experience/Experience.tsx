@@ -42,6 +42,7 @@ const Experience: React.FC = () => {
       start_date: "",
       end_date: "",
       is_present: false,
+      notes: null,
     };
 
     updateExperience([...experienceList, experience]);
