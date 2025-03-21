@@ -3,5 +3,6 @@ export interface IPaginatorProps {
   onRemovePage: (index: number) => void;
   total: number;
   elementName: string;
+  maxElements: number;
   children: React.ReactNode;
 }

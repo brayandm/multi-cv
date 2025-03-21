@@ -64,7 +64,7 @@ export default function ChatComponent() {
         onClick={() => setIsChatOpen(false)}
       />
       <div
-        className={`fixed bottom-4 right-4 max-w-xs w-full bg-white shadow-lg rounded-3xl z-50 transition-opacity duration-300 ${
+        className={`fixed bottom-4 right-4 max-w-xs w-full bg-white shadow-lg rounded-3xl z-40 transition-opacity duration-300 ${
           !isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
       >
@@ -141,7 +141,7 @@ export default function ChatComponent() {
         </div>
       </div>
       <button
-        className={`fixed bottom-6 right-6 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-50 transition-opacity duration-300 ${
+        className={`fixed bottom-6 right-6 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-40 transition-opacity duration-300 ${
           isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         onClick={() => setIsChatOpen(true)}

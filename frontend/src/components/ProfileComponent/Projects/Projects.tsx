@@ -8,6 +8,7 @@ import { IProject, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
+import { MAX_PROJECTS_ELEMENTS } from "@/lib/consts";
 
 const Projects: React.FC = () => {
   const { projects, updateProjects, syncProfile } = useProfile();
@@ -54,6 +55,7 @@ const Projects: React.FC = () => {
       total={projects.length}
       onNewPage={addNewProject}
       onRemovePage={onRemovePage}
+      maxElements={MAX_PROJECTS_ELEMENTS}
       elementName={t("pages.profile.sections.projects.element")}
     >
       {projects.map((project, index) => {

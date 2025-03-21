@@ -10,6 +10,7 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
+  addToast,
 } from "@heroui/react";
 import { useTranslations } from "next-intl";
 
@@ -18,6 +19,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
   onRemovePage,
   total,
   elementName,
+  maxElements,
   children,
 }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -131,8 +133,23 @@ const Paginator: React.FC<IPaginatorProps> = ({
         <Button
           variant="bordered"
           color="primary"
-          onPress={addNewPage}
+          onPress={() => {
+            if (totalPages >= maxElements - 1) {
+              addToast({
+                title: t("common.errors.max_elements", {
+                  element: elementName,
+                }),
+                description: t("common.errors.max_elements_description", {
+                  element: elementName,
+                  max: maxElements,
+                }),
+                color: "warning",
+              });
+            }
+            addNewPage();
+          }}
           className="w-full"
+          isDisabled={totalPages >= maxElements}
         >
           {t("common.buttons.add_element", { element: elementName })}
         </Button>

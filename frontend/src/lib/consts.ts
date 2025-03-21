@@ -1,2 +1,7 @@
 export const MAX_SHORT_TEXT_LENGTH = 100;
 export const MAX_LONG_TEXT_LENGTH = 1000;
+
+export const MAX_EXPERIENCE_ELEMENTS = 20;
+export const MAX_EDUCATION_ELEMENTS = 10;
+export const MAX_PROJECTS_ELEMENTS = 15;
+export const MAX_SKILLS_ELEMENTS = 50;

@@ -8,6 +8,7 @@ import { IEducation, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
+import { MAX_EDUCATION_ELEMENTS } from "@/lib/consts";
 
 const Education: React.FC = () => {
   const {
@@ -59,6 +60,7 @@ const Education: React.FC = () => {
       total={educationList.length}
       onNewPage={addNewEducation}
       onRemovePage={onRemovePage}
+      maxElements={MAX_EDUCATION_ELEMENTS}
       elementName={t("pages.profile.sections.education.element")}
     >
       {educationList.map((education, index) => {

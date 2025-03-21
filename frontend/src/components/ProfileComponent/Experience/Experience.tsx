@@ -9,6 +9,7 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
+import { MAX_EXPERIENCE_ELEMENTS } from "@/lib/consts";
 
 const Experience: React.FC = () => {
   const {
@@ -62,6 +63,7 @@ const Experience: React.FC = () => {
       total={experienceList.length}
       onNewPage={addNewExperience}
       onRemovePage={onRemovePage}
+      maxElements={MAX_EXPERIENCE_ELEMENTS}
       elementName={t("pages.profile.sections.experience.element")}
     >
       {experienceList.map((experience, index) => {

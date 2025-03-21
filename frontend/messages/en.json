@@ -50,7 +50,9 @@
       "accept_terms": "You must accept the terms and conditions",
       "length": "The {field} must be {current_length}/{length} characters long",
       "skill_length": "You should enter at least {min} skill",
-      "country_code_required": "Select a country code"
+      "country_code_required": "Select a country code",
+      "max_elements": "Maximum number of {element} reached",
+      "max_elements_description": "You can only add {max} {element}"
     },
     "success": {
       "password_change": "Password changed",
