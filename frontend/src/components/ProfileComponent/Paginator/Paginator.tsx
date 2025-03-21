@@ -28,6 +28,11 @@ const Paginator: React.FC<IPaginatorProps> = ({
   const [currentPage, setCurrentpage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(total);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isOpenDiscard,
+    onOpen: onOpenDiscard,
+    onOpenChange: onOpenChangeDiscard,
+  } = useDisclosure();
 
   const [currentPageBasedOnScroll, setCurrentPageBasedOnScroll] = useState(1);
   const scrolling = useRef(false);
@@ -116,6 +121,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
             key={forceUpdate}
             onChange={(page) => {
               if (!formRef.current || !formRef.current.reportValidity()) {
+                onOpenDiscard();
                 setForceUpdate((prev) => prev + 1);
                 return;
               }
@@ -194,6 +200,48 @@ const Paginator: React.FC<IPaginatorProps> = ({
                         }}
                       >
                         {t("common.buttons.delete")}
+                      </Button>
+                    </ModalFooter>
+                  </>
+                )}
+              </ModalContent>
+            </Modal>
+            <Modal isOpen={isOpenDiscard} onOpenChange={onOpenChangeDiscard}>
+              <ModalContent>
+                {(onCloseDiscard) => (
+                  <>
+                    <ModalHeader className="flex flex-col gap-1">
+                      <h3>
+                        {t("common.texts.havent_finished", {
+                          element: elementName,
+                        })}
+                      </h3>
+                    </ModalHeader>
+                    <ModalBody>
+                      <p>
+                        {t("common.texts.discard_changes", {
+                          element: elementName,
+                        })}
+                      </p>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button
+                        color="danger"
+                        onPress={() => {
+                          deleteCurrentPage();
+                          onCloseDiscard();
+                        }}
+                      >
+                        {t("common.buttons.discard")}
+                      </Button>
+                      <Button
+                        color="primary"
+                        variant="light"
+                        onPress={() => {
+                          onCloseDiscard();
+                        }}
+                      >
+                        {t("common.buttons.keep_editing")}
                       </Button>
                     </ModalFooter>
                   </>
