@@ -1,5 +1,18 @@
 "use client";
-import { Button, Card, CardBody, CardHeader, Tab, Tabs } from "@heroui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  Tab,
+  Tabs,
+  useDisclosure,
+} from "@heroui/react";
 import React, { useEffect, useRef, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
 import Experience from "./Experience";
@@ -22,13 +35,18 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
 
   const router = useRouter();
 
-  const { isLoaded, syncProfile } = useProfile();
+  const { isLoaded, syncProfile, pullProfile } = useProfile();
 
   const formRef = useRef<HTMLFormElement>(null);
 
   const t = useTranslations();
 
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
   const [selectedTab, setSelectedTab] =
+    useState<keyof typeof mapPosition>("basic-user-info");
+
+  const [selectedPendingTab, setSelectedPendingTab] =
     useState<keyof typeof mapPosition>("basic-user-info");
 
   const mapPosition = React.useMemo(
@@ -113,11 +131,17 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                   classNames={{ base: "p-2", tabList: "" }}
                   selectedKey={selectedTab}
                   onSelectionChange={(key) => {
-                    setSelectedTab(key as keyof typeof mapPosition);
-                    syncProfile();
+                    if ((key as keyof typeof mapPosition) !== selectedTab) {
+                      onOpen();
+                      setSelectedPendingTab(key as keyof typeof mapPosition);
+                    }
                   }}
                   ref={ref}
-                  disabledKeys={positions.filter((key) => key !== selectedTab)}
+                  disabledKeys={
+                    isFirstLogin
+                      ? positions.filter((key) => key !== selectedTab)
+                      : []
+                  }
                 >
                   <Tab
                     key="basic-user-info"
@@ -195,18 +219,55 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
               </Card>
             )}
             {!isFirstLogin && (
-              <Card className="mb-3 w-full">
-                <Button
-                  color="primary"
-                  onPress={() => {
-                    if (!formRef.current || !formRef.current.reportValidity())
-                      return;
-                    syncProfile();
-                  }}
-                >
-                  {t("common.buttons.save")}
-                </Button>
-              </Card>
+              <>
+                <Card className="mb-3 w-full">
+                  <Button
+                    color="primary"
+                    onPress={() => {
+                      if (!formRef.current || !formRef.current.reportValidity())
+                        return;
+                      syncProfile();
+                    }}
+                  >
+                    {t("common.buttons.save")}
+                  </Button>
+                </Card>
+                <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                  <ModalContent>
+                    {(onClose) => (
+                      <>
+                        <ModalHeader className="flex flex-col gap-1">
+                          <h3>{t("common.texts.draft_changes")}</h3>
+                        </ModalHeader>
+                        <ModalBody>
+                          <p>{t("common.texts.draft_changes_description")}</p>
+                        </ModalBody>
+                        <ModalFooter>
+                          <Button
+                            color="danger"
+                            onPress={async () => {
+                              await pullProfile();
+                              setSelectedTab(selectedPendingTab);
+                              onClose();
+                            }}
+                          >
+                            {t("common.buttons.discard")}
+                          </Button>
+                          <Button
+                            color="primary"
+                            variant="light"
+                            onPress={() => {
+                              onClose();
+                            }}
+                          >
+                            {t("common.buttons.save")}
+                          </Button>
+                        </ModalFooter>
+                      </>
+                    )}
+                  </ModalContent>
+                </Modal>
+              </>
             )}
           </div>
         </form>

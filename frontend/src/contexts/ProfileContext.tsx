@@ -7,6 +7,7 @@ import {
   useState,
   ReactNode,
   useEffect,
+  useCallback,
 } from "react";
 import { useUserStatus } from "./UserStatusContext";
 
@@ -74,6 +75,7 @@ interface ProfileContextType {
   isLoaded: boolean;
   syncProfile: () => void;
   syncProfileOnFirstLogin: () => void;
+  pullProfile: () => void;
   basicInfo: IBasicInfo;
   professionalLinks: IProfessionalLinks[];
   experience: IExperience[];
@@ -115,36 +117,39 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
+  const pullProfile = useCallback(async () => {
     if (userStatus.authenticated) {
-      getProfileEngine()
-        .then((response) => {
-          if (response.data) {
-            const profile: IProfile = response.data;
-            setBasicInfo(profile.basic_info);
-            setProfessionalLinks(profile.professional_links);
-            setExperience(profile.experience);
-            setEducation(profile.education);
-            setProjects(profile.projects);
-            setSkills(profile.skills);
-          } else {
-            setBasicInfo({
-              full_name: userStatus.name || "",
-              email: userStatus.email || "",
-              about: "",
-              phone_country_code: "",
-              phone_number: "",
-              location: "",
-            });
-          }
-          setIsLoaded(true);
-        })
-        .catch((error) => {
-          console.error(error);
-          setOnLoadedError(true);
-        });
+      try {
+        const response = await getProfileEngine();
+        if (response.data) {
+          const profile: IProfile = response.data;
+          setBasicInfo(profile.basic_info);
+          setProfessionalLinks(profile.professional_links);
+          setExperience(profile.experience);
+          setEducation(profile.education);
+          setProjects(profile.projects);
+          setSkills(profile.skills);
+        } else {
+          setBasicInfo({
+            full_name: userStatus.name || "",
+            email: userStatus.email || "",
+            about: "",
+            phone_country_code: "",
+            phone_number: "",
+            location: "",
+          });
+        }
+        setIsLoaded(true);
+      } catch (error) {
+        console.error(error);
+        setOnLoadedError(true);
+      }
     }
   }, [userStatus]);
+
+  useEffect(() => {
+    pullProfile();
+  }, [pullProfile]);
 
   const updateBasicInfo = (newBasicInfo: IBasicInfo) => {
     setBasicInfo(newBasicInfo);
@@ -203,6 +208,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
         isLoaded,
         syncProfile,
         syncProfileOnFirstLogin,
+        pullProfile,
         basicInfo,
         professionalLinks,
         experience,
