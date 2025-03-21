@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import List, Optional, Annotated
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import LongStr, ShortStr
 
@@ -12,5 +12,7 @@ class SkillNote(BaseModel):
 
 
 class Skills(BaseModel):
-    list: list[ShortStr]
-    notes: Optional[List[SkillNote]] = None
+    list: Annotated[List[ShortStr], Field(..., max_items=50)]
+    notes: Optional[Annotated[List[SkillNote], Field(None, max_items=50)]] = (
+        None
+    )
