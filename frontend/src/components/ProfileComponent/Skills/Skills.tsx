@@ -54,7 +54,7 @@ const Skills: React.FC = () => {
     syncProfile();
 
     setInputSkill("");
-  }, [inputSkill, skills, updateSkills, syncProfile]);
+  }, [inputSkill, skills, updateSkills, syncProfile, t]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -93,13 +93,15 @@ const Skills: React.FC = () => {
   return (
     <div className="px-1">
       <DynamicInputs inputs={inputs}></DynamicInputs>
-      <ChipArea
-        chips={skills.list}
-        setChips={(skills) => {
-          updateSkills({ list: skills });
-          syncProfile();
-        }}
-      ></ChipArea>
+      <div className="h-[320px] overflow-y-scroll">
+        <ChipArea
+          chips={skills.list}
+          setChips={(skills) => {
+            updateSkills({ list: skills });
+            syncProfile();
+          }}
+        ></ChipArea>
+      </div>
     </div>
   );
 };
