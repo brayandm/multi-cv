@@ -24,7 +24,9 @@
       "draft_changes": "Draft changes",
       "draft_changes_description": "You have unsaved changes. Do you want to save them?",
       "havent_finished": "You haven't finished yet this {element}.",
-      "discard_changes": "Do you want to keep editing or discard the changes?"
+      "discard_changes": "Do you want to keep editing or discard the changes?",
+      "saved": "Saved",
+      "saved_description": "Your changes have been saved."
     },
     "buttons": {
       "continue": "Continue",
