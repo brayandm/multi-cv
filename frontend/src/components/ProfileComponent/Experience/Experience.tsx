@@ -1,5 +1,5 @@
 "use client";
-import React, { RefObject } from "react";
+import React, { RefObject, useEffect } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { IExperience, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
@@ -19,6 +19,8 @@ const Experience = ({ formRef }: IExperienceProps) => {
     syncProfileOnFirstLogin,
   } = useProfile();
 
+  const [sync, setSync] = React.useState(false);
+
   const t = useTranslations();
   function onExperienceChange(
     index: number,
@@ -32,8 +34,19 @@ const Experience = ({ formRef }: IExperienceProps) => {
       updatedExperiences[index].end_date = "";
     }
 
+    if (key === "is_present" || key === "start_date" || key === "end_date") {
+      setSync(true);
+    }
+
     updateExperience(updatedExperiences);
   }
+
+  useEffect(() => {
+    if (sync) {
+      syncProfileOnFirstLogin();
+      setSync(false);
+    }
+  }, [syncProfileOnFirstLogin, sync]);
 
   function addNewExperience() {
     const experience = {
@@ -138,7 +151,6 @@ const Experience = ({ formRef }: IExperienceProps) => {
               onValueChange: (value: string) => {
                 onExperienceChange(index, "start_date", value);
               },
-              onBlur: syncProfileOnFirstLogin,
               value: experience?.start_date || "",
               isRequired: true,
             },
@@ -148,7 +160,6 @@ const Experience = ({ formRef }: IExperienceProps) => {
               onValueChange: (value: string) => {
                 onExperienceChange(index, "end_date", value);
               },
-              onBlur: syncProfileOnFirstLogin,
               value: experience?.end_date || "",
               isDisabled: experience?.is_present,
               isRequired: true,
@@ -159,7 +170,6 @@ const Experience = ({ formRef }: IExperienceProps) => {
             type: "is_present",
             onValueChange: (value: boolean) => {
               onExperienceChange(index, "is_present", value);
-              syncProfileOnFirstLogin();
             },
             value: experience?.is_present || "",
           },

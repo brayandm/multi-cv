@@ -1,5 +1,5 @@
 "use client";
-import React, { RefObject } from "react";
+import React, { RefObject, useEffect } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { IProject, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
@@ -13,6 +13,9 @@ interface IProjectsProps {
 
 const Projects = ({ formRef }: IProjectsProps) => {
   const { projects, updateProjects, syncProfileOnFirstLogin } = useProfile();
+
+  const [sync, setSync] = React.useState(false);
+
   const t = useTranslations();
   function onProjectChange(
     index: number,
@@ -26,8 +29,19 @@ const Projects = ({ formRef }: IProjectsProps) => {
       updatedProjects[index].end_date = "";
     }
 
+    if (key === "is_present" || key === "start_date" || key === "end_date") {
+      setSync(true);
+    }
+
     updateProjects(updatedProjects);
   }
+
+  useEffect(() => {
+    if (sync) {
+      syncProfileOnFirstLogin();
+      setSync(false);
+    }
+  }, [syncProfileOnFirstLogin, sync]);
 
   function addNewProject() {
     const project = {
