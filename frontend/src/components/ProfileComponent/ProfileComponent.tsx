@@ -211,7 +211,6 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                       return;
                     if (!nextPositionIsAvailable()) {
                       await syncProfile();
-                      await pullProfile();
                       await finishFirstLoginApi();
                       router.push("/profile/success");
                       return;
@@ -233,7 +232,6 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                       if (!formRef.current || !formRef.current.reportValidity())
                         return;
                       await syncProfile();
-                      await pullProfile();
                     }}
                   >
                     {t("common.buttons.save")}
@@ -272,7 +270,6 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                                 return;
                               }
                               await syncProfile();
-                              await pullProfile();
 
                               onClose();
 
