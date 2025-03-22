@@ -85,6 +85,12 @@ export default function SelectDate({
 
   const handleClose = () => setIsOpen(false);
 
+  const handleClear = () => {
+    setSelectedMonth(null);
+    setSelectedYear(null);
+    onValueChange?.("");
+  };
+
   return (
     <>
       <div ref={inputWrapperRef} className="inline-block">
@@ -97,7 +103,6 @@ export default function SelectDate({
             />
           }
           validate={() => {
-            console.log(selectedMonth, selectedYear);
             return selectedMonth !== null && selectedYear !== null
               ? true
               : "Please select a date";
@@ -117,9 +122,16 @@ export default function SelectDate({
               left: inputRect.left,
             }}
           >
-            <div className="flex justify-end mb-2">
+            <div className="relative mb-2 h-5">
+              <span
+                onClick={handleClear}
+                className="absolute left-1/2 -translate-x-1/2 text-primary text-sm font-medium cursor-pointer hover:underline"
+              >
+                Clear
+              </span>
+
               <XMarkIcon
-                className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer"
+                className="absolute right-0 w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer"
                 onClick={handleClose}
               />
             </div>
