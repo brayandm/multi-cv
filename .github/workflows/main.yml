@@ -49,4 +49,4 @@ jobs:
             - self-hosted
         steps:
             - name: Removing unused docker images
-              run: docker image prune -f
+              run: docker system prune -a
