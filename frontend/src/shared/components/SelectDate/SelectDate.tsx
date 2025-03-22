@@ -89,7 +89,6 @@ export default function SelectDate({
     <>
       <div ref={inputWrapperRef} className="inline-block">
         <Input
-          readOnly
           value={`${selectedMonth ?? "---------"} ${selectedYear ?? "----"}`}
           endContent={
             <CalendarIcon
@@ -97,6 +96,12 @@ export default function SelectDate({
               onClick={handleToggle}
             />
           }
+          validate={() => {
+            console.log(selectedMonth, selectedYear);
+            return selectedMonth !== null && selectedYear !== null
+              ? true
+              : "Please select a date";
+          }}
           {...props}
         />
       </div>
