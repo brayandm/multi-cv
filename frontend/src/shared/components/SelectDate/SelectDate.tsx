@@ -1,5 +1,5 @@
 import { Input, type InputProps } from "@heroui/react";
-import { CalendarIcon } from "@heroicons/react/24/outline";
+import { CalendarIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
@@ -32,7 +32,7 @@ export default function SelectDate({
 }: ISelectDateProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState("March");
-  const [selectedYear, setSelectedYear] = useState(2025);
+  const [selectedYear, setSelectedYear] = useState<number | null>(2025);
   const [inputRect, setInputRect] = useState<DOMRect | null>(null);
 
   const inputWrapperRef = useRef<HTMLDivElement>(null);
@@ -61,11 +61,18 @@ export default function SelectDate({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleSelect = (month: string, year: number) => {
+  const handleSelectMonth = (month: string) => {
     setSelectedMonth(month);
+    if (selectedYear) {
+      onValueChange?.(`${month} ${selectedYear}`);
+    }
+  };
+
+  const handleSelectYear = (year: number) => {
     setSelectedYear(year);
-    onValueChange?.(`${month} ${year}`);
-    setIsOpen(false);
+    if (selectedMonth) {
+      onValueChange?.(`${selectedMonth} ${year}`);
+    }
   };
 
   const handleToggle = () => {
@@ -76,12 +83,16 @@ export default function SelectDate({
     setIsOpen((prev) => !prev);
   };
 
+  const handleClose = () => setIsOpen(false);
+
   return (
     <>
       <div ref={inputWrapperRef} className="inline-block">
         <Input
           readOnly
-          value={`${selectedMonth} ${selectedYear}`}
+          value={
+            selectedYear ? `${selectedMonth} ${selectedYear}` : selectedMonth
+          }
           endContent={
             <CalendarIcon
               className="w-5 h-5 text-gray-500 cursor-pointer"
@@ -103,6 +114,13 @@ export default function SelectDate({
               left: inputRect.left,
             }}
           >
+            <div className="flex justify-end mb-2">
+              <XMarkIcon
+                className="w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer"
+                onClick={handleClose}
+              />
+            </div>
+
             <div className="flex gap-2">
               <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pr-1">
                 {months.map((month) => (
@@ -111,7 +129,7 @@ export default function SelectDate({
                     className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
                       selectedMonth === month ? "bg-gray-200 font-medium" : ""
                     }`}
-                    onClick={() => handleSelect(month, selectedYear)}
+                    onClick={() => handleSelectMonth(month)}
                   >
                     {month}
                   </div>
@@ -125,7 +143,7 @@ export default function SelectDate({
                     className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
                       selectedYear === year ? "bg-gray-200 font-medium" : ""
                     }`}
-                    onClick={() => handleSelect(selectedMonth, year)}
+                    onClick={() => handleSelectYear(year)}
                   >
                     {year}
                   </div>
