@@ -127,8 +127,7 @@ async def generate_cv_inline(
 
 
 @router.post("/render/cv/inline")
-@commit_action_after()
-@consume_action("render_cv_inline")
+@authenticate()
 async def render_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
     document_render = DocumentRenderFacade.get_render()

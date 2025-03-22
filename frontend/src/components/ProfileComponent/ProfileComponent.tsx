@@ -136,8 +136,10 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
-      e.returnValue = "";
+      if (checkArePendingChanges()) {
+        e.preventDefault();
+        e.returnValue = "";
+      }
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
@@ -145,7 +147,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
     };
-  }, [onOpen]);
+  }, [checkArePendingChanges]);
 
   return (
     <main className="flex justify-center">
