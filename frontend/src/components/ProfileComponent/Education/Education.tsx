@@ -128,7 +128,6 @@ const Education = ({ formRef }: IEducationProps) => {
               onValueChange: (value: string) => {
                 onEducationChange(index, "start_date", value);
               },
-              onBlur: syncProfileOnFirstLogin,
               value: education?.start_date || "",
               isRequired: true,
             },
@@ -138,7 +137,6 @@ const Education = ({ formRef }: IEducationProps) => {
               onValueChange: (value: string) => {
                 onEducationChange(index, "end_date", value);
               },
-              onBlur: syncProfileOnFirstLogin,
               isDisabled: education?.is_present,
               value: education?.end_date || "",
               isRequired: true,
@@ -149,7 +147,6 @@ const Education = ({ formRef }: IEducationProps) => {
             type: "is_present",
             onValueChange: (value: boolean) => {
               onEducationChange(index, "is_present", value);
-              syncProfileOnFirstLogin();
             },
             value: education?.is_present || "",
           },
