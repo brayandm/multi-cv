@@ -221,7 +221,6 @@ const DynamicInputs = <T,>({
               classNames={{ ...customStyles, base: "w-[150px]" }}
               onBlur={input.onBlur}
               isRequired={input.isRequired}
-              isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
               description={input.description}
               maxLength={MAX_SHORT_TEXT_LENGTH}
