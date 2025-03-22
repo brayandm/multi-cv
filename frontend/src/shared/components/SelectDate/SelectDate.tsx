@@ -65,7 +65,7 @@ export default function SelectDate({
       )}`;
       onValueChange?.(formatted);
     }
-  }, [selectedMonth, selectedYear]);
+  }, [selectedMonth, selectedYear]); // eslint-disable-line
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
