@@ -112,6 +112,8 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
     smoothScroll(ref.current.scrollLeft, targetScroll, 700);
   }, [selectedTab, mapPosition]);
 
+  const [saveLoading, setSaveLoading] = useState(false);
+
   return (
     <main className="flex justify-center">
       {/* <ChatComponent /> */}
@@ -231,8 +233,11 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                     onPress={async () => {
                       if (!formRef.current || !formRef.current.reportValidity())
                         return;
+                      setSaveLoading(true);
                       await syncProfile();
+                      setSaveLoading(false);
                     }}
+                    isLoading={saveLoading}
                   >
                     {t("common.buttons.save")}
                   </Button>
@@ -269,7 +274,9 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                                 onClose();
                                 return;
                               }
+                              setSaveLoading(true);
                               await syncProfile();
+                              setSaveLoading(false);
 
                               onClose();
 
