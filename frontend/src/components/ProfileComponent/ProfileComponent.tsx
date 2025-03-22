@@ -134,6 +134,19 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
     });
   }, [onOpen, setOnAttemptedNavigation, unlock, checkArePendingChanges]);
 
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+      e.returnValue = "";
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [onOpen]);
+
   return (
     <main className="flex justify-center">
       {/* <ChatComponent /> */}
