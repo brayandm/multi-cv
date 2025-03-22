@@ -1,6 +1,6 @@
 import { Input, type InputProps } from "@heroui/react";
 import { CalendarIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const months = [
@@ -33,6 +33,10 @@ export default function SelectDate({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
+
+  const [draftMonth, setDraftMonth] = useState<string | null>(null);
+  const [draftYear, setDraftYear] = useState<number | null>(null);
+
   const [inputRect, setInputRect] = useState<DOMRect | null>(null);
 
   const inputWrapperRef = useRef<HTMLDivElement>(null);
@@ -42,11 +46,27 @@ export default function SelectDate({
   useEffect(() => {
     if (value) {
       const [month, year] = value.split(" ");
-      if (months.includes(month)) setSelectedMonth(month);
+      if (months.includes(month)) {
+        setSelectedMonth(month);
+        setDraftMonth(month);
+      }
       const yearNum = parseInt(year);
-      if (!isNaN(yearNum)) setSelectedYear(yearNum);
+      if (!isNaN(yearNum)) {
+        setSelectedYear(yearNum);
+        setDraftYear(yearNum);
+      }
     }
   }, [value]);
+
+  const handleConfirm = useCallback(() => {
+    setIsOpen(false);
+
+    if (draftMonth && draftYear !== null) {
+      setSelectedMonth(draftMonth);
+      setSelectedYear(draftYear);
+      onValueChange?.(`${draftMonth} ${draftYear}`);
+    }
+  }, [draftMonth, draftYear, onValueChange]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -55,37 +75,31 @@ export default function SelectDate({
         !popoverRef.current.contains(event.target as Node) &&
         !inputWrapperRef.current?.contains(event.target as Node)
       ) {
-        setIsOpen(false);
+        handleConfirm();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [handleConfirm]);
 
   useEffect(() => {
     if (isOpen && yearsContainerRef.current) {
       const container = yearsContainerRef.current;
-      const currentYear = selectedYear ?? new Date().getFullYear();
+      const currentYear = draftYear ?? new Date().getFullYear();
       const index = years.findIndex((y) => y === currentYear);
       const itemHeight = 36;
 
       container.scrollTop =
         itemHeight * index - container.clientHeight / 2 + itemHeight / 2;
     }
-  }, [isOpen, selectedYear]);
+  }, [isOpen, draftYear]);
 
   const handleSelectMonth = (month: string) => {
-    setSelectedMonth(month);
-    if (selectedYear !== null) {
-      onValueChange?.(`${month} ${selectedYear}`);
-    }
+    setDraftMonth(month);
   };
 
   const handleSelectYear = (year: number) => {
-    setSelectedYear(year);
-    if (selectedMonth !== null) {
-      onValueChange?.(`${selectedMonth} ${year}`);
-    }
+    setDraftYear(year);
   };
 
   const handleToggle = () => {
@@ -96,12 +110,17 @@ export default function SelectDate({
     setIsOpen((prev) => !prev);
   };
 
-  const handleClose = () => setIsOpen(false);
+  const handleClose = () => {
+    handleConfirm();
+  };
 
   const handleClear = () => {
     setSelectedMonth(null);
     setSelectedYear(null);
+    setDraftMonth(null);
+    setDraftYear(null);
     onValueChange?.("");
+    setIsOpen(false);
   };
 
   return (
@@ -155,7 +174,7 @@ export default function SelectDate({
                   <div
                     key={month}
                     className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
-                      selectedMonth === month ? "bg-gray-200 font-medium" : ""
+                      draftMonth === month ? "bg-gray-200 font-medium" : ""
                     }`}
                     onClick={() => handleSelectMonth(month)}
                   >
@@ -172,7 +191,7 @@ export default function SelectDate({
                   <div
                     key={year}
                     className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
-                      selectedYear === year ? "bg-gray-200 font-medium" : ""
+                      draftYear === year ? "bg-gray-200 font-medium" : ""
                     }`}
                     onClick={() => handleSelectYear(year)}
                   >
