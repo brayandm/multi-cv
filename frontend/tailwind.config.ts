@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import { heroui } from "@heroui/theme";
+import scrollbar from "tailwind-scrollbar";
 export default {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -63,5 +64,6 @@ export default {
         // ... custom themes
       },
     }),
+    scrollbar({}),
   ],
 } satisfies Config;
