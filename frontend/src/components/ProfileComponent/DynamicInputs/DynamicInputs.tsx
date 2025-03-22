@@ -13,6 +13,7 @@ import Flag from "react-world-flags";
 import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 import { dynamicInputsStyles } from "@/lib/customStyles";
 import { MAX_LONG_TEXT_LENGTH, MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
+import SelectDate from "@/shared/components/SelectDate";
 
 const DynamicInputs = <T,>({
   inputs,
@@ -204,14 +205,13 @@ const DynamicInputs = <T,>({
           );
         }
 
-        if (input.type === "start_date") {
+        if (input.type === "start_date" || input.type === "end_date") {
           return (
-            <Input
+            <SelectDate
               key={index}
               variant={variant}
               label={input.label}
               placeholder={input.placeholder}
-              type={"month"}
               value={input.value as string}
               color={input.color}
               onValueChange={
@@ -226,32 +226,7 @@ const DynamicInputs = <T,>({
               description={input.description}
               validate={input.validate}
               maxLength={MAX_SHORT_TEXT_LENGTH}
-            ></Input>
-          );
-        }
-        if (input.type === "end_date") {
-          return (
-            <Input
-              key={index}
-              variant={variant}
-              label={input.label}
-              placeholder={input.placeholder}
-              type={"month"}
-              value={input.value as string}
-              color={input.color}
-              onValueChange={
-                input.onValueChange as IDynamicOnValueChange<string>
-              }
-              isDisabled={input.isDisabled}
-              classNames={{ ...customStyles, base: "w-[150px]" }}
-              onBlur={input.onBlur}
-              isRequired={input.isRequired}
-              isInvalid={input.isInvalid}
-              errorMessage={input.errorMessage}
-              description={input.description}
-              validate={input.validate}
-              maxLength={MAX_SHORT_TEXT_LENGTH}
-            ></Input>
+            />
           );
         }
 

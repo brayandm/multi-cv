@@ -31,8 +31,8 @@ export default function SelectDate({
   ...props
 }: ISelectDateProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedMonth, setSelectedMonth] = useState("March");
-  const [selectedYear, setSelectedYear] = useState<number | null>(2025);
+  const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
+  const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [inputRect, setInputRect] = useState<DOMRect | null>(null);
 
   const inputWrapperRef = useRef<HTMLDivElement>(null);
@@ -63,14 +63,14 @@ export default function SelectDate({
 
   const handleSelectMonth = (month: string) => {
     setSelectedMonth(month);
-    if (selectedYear) {
+    if (selectedYear !== null) {
       onValueChange?.(`${month} ${selectedYear}`);
     }
   };
 
   const handleSelectYear = (year: number) => {
     setSelectedYear(year);
-    if (selectedMonth) {
+    if (selectedMonth !== null) {
       onValueChange?.(`${selectedMonth} ${year}`);
     }
   };
@@ -90,9 +90,7 @@ export default function SelectDate({
       <div ref={inputWrapperRef} className="inline-block">
         <Input
           readOnly
-          value={
-            selectedYear ? `${selectedMonth} ${selectedYear}` : selectedMonth
-          }
+          value={`${selectedMonth ?? "---------"} ${selectedYear ?? "----"}`}
           endContent={
             <CalendarIcon
               className="w-5 h-5 text-gray-500 cursor-pointer"
