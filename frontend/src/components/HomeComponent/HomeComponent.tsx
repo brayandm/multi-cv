@@ -11,7 +11,7 @@ import { saveAs } from "file-saver";
 import useSWR from "swr";
 // import CvList from "../../shared/components/CvList";
 // import { CV } from "@/lib/types";
-import { Button } from "@heroui/react";
+import { Button, Spinner } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { GetQuotaInfoResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
@@ -107,24 +107,30 @@ export default function HomeComponent() {
       <div className="flex justify-center">
         {/* <CvList cvs={cvs}></CvList> */}
       </div>
-      <div className="flex justify-center">
-        <Button
-          color="primary"
-          onPress={handleDownload}
-          isDisabled={isCvLoading || quotaInfo?.left === 0}
-          isLoading={isCvLoading}
-        >
-          Generate CV
-        </Button>
-      </div>
-      {quotaInfo && (
-        <div className="mt-4 text-center">
-          <p>
-            <strong>Quota Info:</strong>
-          </p>
-          <p>
-            Used: {quotaInfo.left} / {quotaInfo.quota}
-          </p>
+      {quotaInfo ? (
+        <>
+          <div className="flex justify-center">
+            <Button
+              color="primary"
+              onPress={handleDownload}
+              isDisabled={isCvLoading || quotaInfo?.left === 0}
+              isLoading={isCvLoading}
+            >
+              Generate CV
+            </Button>
+          </div>
+          <div className="mt-4 text-center">
+            <p>
+              <strong>Quota Info:</strong>
+            </p>
+            <p>
+              Used: {quotaInfo.left} / {quotaInfo.quota}
+            </p>
+          </div>
+        </>
+      ) : (
+        <div className="flex justify-center">
+          <Spinner variant="dots" />
         </div>
       )}
     </main>
