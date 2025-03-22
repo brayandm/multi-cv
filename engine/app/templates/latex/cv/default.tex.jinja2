@@ -80,8 +80,16 @@
   {% if cv.location %}{{ cv.location }}{% set sep = separator %}{% endif %}
   {% if cv.phone %}{{ sep | default('') }}{{ cv.phone }}{% set sep = separator %}{% endif %}
   {% if cv.email %}{{ sep | default('') }}\href{mailto:{{ cv.email }}}{\underline{ {{ cv.email }} }}{% set sep = separator %}{% endif %}
-  {% if cv.linkedin %}{{ sep | default('') }}\href{https://{{ cv.linkedin }}}{\underline{ {{ cv.linkedin }} }}{% set sep = separator %}{% endif %}
-  {% if cv.github %}{{ sep | default('') }}\href{https://{{ cv.github }}}{\underline{ {{ cv.github }} }}{% endif %}
+  {% if cv.linkedin %}{{ sep | default('') }}\href{ {{ cv.linkedin }} }{\underline{ {{ cv.linkedin
+    .replace('https://', '')
+    .replace('http://', '')
+    .replace('www.', '')
+    .rstrip('/') }} }}{% set sep = separator %}{% endif %}
+  {% if cv.github %}{{ sep | default('') }}\href{ {{ cv.github }} }{\underline{ {{ cv.github
+      .replace('https://', '')
+      .replace('http://', '')
+      .replace('www.', '')
+      .rstrip('/') }} }}{% endif %}
 \end{center}
 
 % SUMMARY
