@@ -221,14 +221,12 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const syncProfileOnFirstLogin = async () => {
     if (onLoadedError) return;
     if (!userStatus.is_first_login) return;
-    await profileSyncEngine({
-      basic_info: basicInfo,
-      professional_links: professionalLinks,
-      experience: experience,
-      education: education,
-      projects: projects,
-      skills: skills,
-    });
+    try {
+      await profileSyncEngine(getJoinedProfile());
+      setProfileEngine(getJoinedProfile());
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
