@@ -210,7 +210,12 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
 
   const syncProfile = async () => {
     if (onLoadedError) return;
-    await profileSyncEngine(getJoinedProfile());
+    try {
+      await profileSyncEngine(getJoinedProfile());
+      setProfileEngine(getJoinedProfile());
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const syncProfileOnFirstLogin = async () => {
