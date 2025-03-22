@@ -9,6 +9,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Spinner,
   Tab,
   Tabs,
   useDisclosure,
@@ -162,7 +163,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
               </div>
             </CardHeader>
             <CardBody>
-              {isLoaded && (
+              {isLoaded ? (
                 <Tabs
                   aria-label="Options"
                   color="primary"
@@ -222,6 +223,10 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                     <Skills />
                   </Tab>
                 </Tabs>
+              ) : (
+                <div className="flex justify-center">
+                  <Spinner variant="dots" />
+                </div>
               )}
             </CardBody>
           </Card>
