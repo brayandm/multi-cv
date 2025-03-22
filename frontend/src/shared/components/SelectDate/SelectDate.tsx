@@ -126,6 +126,12 @@ export default function SelectDate({
     }
   }, [isOpen, draftYear]);
 
+  const POPUP_WIDTH = 256; // w-64 = 16rem = 256px
+  const adjustedLeft =
+    inputRect && inputRect.left + POPUP_WIDTH > window.innerWidth
+      ? Math.max(0, window.innerWidth - POPUP_WIDTH - 16)
+      : inputRect?.left ?? 0;
+
   return (
     <>
       <div ref={inputWrapperRef} className="inline-block">
@@ -158,7 +164,7 @@ export default function SelectDate({
             className="fixed z-[9999] w-64 bg-white rounded-xl shadow-lg p-4 border border-gray-200"
             style={{
               top: inputRect.top - 200,
-              left: inputRect.left,
+              left: adjustedLeft,
             }}
           >
             <div className="relative mb-2 h-5">
