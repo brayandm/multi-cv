@@ -80,11 +80,11 @@ export default function SelectDate({
       {isOpen && (
         <div
           ref={popoverRef}
-          className="absolute z-50 mt-2 w-72 bg-white rounded-xl shadow-lg p-4 border border-gray-200"
+          className="absolute z-50 mt-2 w-64 bg-white rounded-xl shadow-lg p-4 border border-gray-200"
         >
           <div className="flex gap-2">
             {/* Column for months */}
-            <div className="flex-1 max-h-60 overflow-y-scroll space-y-1 scrollbar-none pr-1">
+            <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pr-1">
               {months.map((month) => (
                 <div
                   key={month}
@@ -99,7 +99,7 @@ export default function SelectDate({
             </div>
 
             {/* Column for years */}
-            <div className="flex-1 max-h-60 overflow-y-scroll space-y-1 scrollbar-none pl-1">
+            <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pl-1">
               {years.map((year) => (
                 <div
                   key={year}
