@@ -15,7 +15,8 @@ import {
 import { ITopBarNavigationProps } from "./Navbar.types";
 import LanguageToggle from "../LanguageToggle";
 import { useTranslations } from "next-intl";
-import { useRouterCustom } from "@/contexts/RouterCustomContext";
+import { useInterceptor } from "@/contexts/InterceptorContext";
+import { useRouter } from "next/navigation";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   onlyLogout,
@@ -23,7 +24,9 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   homeRoute,
   profileRoute,
 }) => {
-  const { router } = useRouterCustom();
+  const { run } = useInterceptor();
+
+  const router = useRouter();
 
   const logout = async () => {
     try {
@@ -60,7 +63,11 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               color={homeRoute ? "primary" : "foreground"}
               size="sm"
               onPress={() => {
-                if (!homeRoute) router.push("/home");
+                run({
+                  "navbar-routing": () => {
+                    if (!homeRoute) router.push("/home");
+                  },
+                });
               }}
             >
               {t("common.menu.home")}
@@ -72,7 +79,11 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               size="sm"
               color={profileRoute ? "primary" : "foreground"}
               onPress={() => {
-                if (!profileRoute) router.push("/profile");
+                run({
+                  "navbar-routing": () => {
+                    if (!profileRoute) router.push("/profile");
+                  },
+                });
               }}
             >
               {t("common.menu.profile")}
@@ -84,7 +95,11 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               color={passwordRoute ? "primary" : "foreground"}
               size="sm"
               onPress={() => {
-                if (!passwordRoute) router.push("/password");
+                run({
+                  "navbar-routing": () => {
+                    if (!passwordRoute) router.push("/password");
+                  },
+                });
               }}
             >
               {t("common.menu.change_password")}
@@ -95,7 +110,13 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               className="w-full cursor-pointer"
               color={"danger"}
               size="sm"
-              onPress={() => logout()}
+              onPress={() => {
+                run({
+                  "navbar-routing": () => {
+                    logout();
+                  },
+                });
+              }}
             >
               {t("common.auth.logout")}
             </Link>
@@ -117,7 +138,9 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
 
   const t = useTranslations();
 
-  const { router } = useRouterCustom();
+  const router = useRouter();
+
+  const { run } = useInterceptor();
 
   return (
     <NavbarUI
@@ -136,7 +159,16 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           />
         )}
         <NavbarBrand>
-          <Link onPress={() => router.push("/")} className="cursor-pointer">
+          <Link
+            onPress={() => {
+              run({
+                "navbar-routing": () => {
+                  router.push("/");
+                },
+              });
+            }}
+            className="cursor-pointer"
+          >
             <p className="font-bold text-inherit">{t("app.name")}</p>
           </Link>
         </NavbarBrand>

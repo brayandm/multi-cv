@@ -5,7 +5,7 @@ import { ProfileProvider } from "@/contexts/ProfileContext";
 import { LocaleProvider } from "@/contexts/LocaleContext";
 import { ToastProvider } from "@/providers/ToastProvider";
 import { UserStatusProvider } from "@/contexts/UserStatusContext";
-import { RouterCustomProvider } from "@/contexts/RouterCustomContext";
+import { InterceptorProvider } from "@/contexts/InterceptorContext";
 
 export default async function Providers({
   children,
@@ -19,11 +19,11 @@ export default async function Providers({
       <ToastProvider />
       <NextIntlClientProvider messages={messages}>
         <LocaleProvider>
-          <RouterCustomProvider>
+          <InterceptorProvider>
             <UserStatusProvider>
               <ProfileProvider>{children}</ProfileProvider>
             </UserStatusProvider>
-          </RouterCustomProvider>
+          </InterceptorProvider>
         </LocaleProvider>
       </NextIntlClientProvider>
     </HeroUIProvider>

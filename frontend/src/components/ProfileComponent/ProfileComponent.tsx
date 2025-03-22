@@ -26,7 +26,7 @@ import Education from "./Education";
 import { useProfile } from "@/contexts/ProfileContext";
 import { useRouter } from "next/navigation";
 import { finishFirstLoginApi } from "@/lib/backendService";
-import { useRouterCustom } from "@/contexts/RouterCustomContext";
+import { useInterceptor } from "@/contexts/InterceptorContext";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
@@ -37,7 +37,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
 
   const router = useRouter();
 
-  const { unlock, lock, setOnAttemptedNavigation } = useRouterCustom();
+  const { unlock, lock, setCallback } = useInterceptor();
 
   const { isLoaded, syncProfile, pullProfile, checkArePendingChanges } =
     useProfile();
@@ -119,21 +119,23 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   const [saveLoading, setSaveLoading] = useState(false);
 
   useEffect(() => {
-    lock();
+    lock("navbar-routing");
     return () => {
-      unlock();
+      unlock("navbar-routing");
     };
   }, [lock, unlock]);
 
   useEffect(() => {
-    setOnAttemptedNavigation(() => {
-      if (checkArePendingChanges()) {
-        onOpen();
-        return;
-      }
-      unlock();
+    setCallback({
+      "navbar-routing": () => {
+        if (checkArePendingChanges()) {
+          onOpen();
+          return;
+        }
+        unlock("navbar-routing");
+      },
     });
-  }, [onOpen, setOnAttemptedNavigation, unlock, checkArePendingChanges]);
+  }, [onOpen, setCallback, unlock, checkArePendingChanges]);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -299,7 +301,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                               await pullProfile();
                               setSelectedTab(selectedPendingTab);
                               onClose();
-                              unlock();
+                              unlock("navbar-routing");
                             }}
                           >
                             {t("common.buttons.discard")}
@@ -320,7 +322,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                               setSaveLoading(false);
 
                               onClose();
-                              unlock();
+                              unlock("navbar-routing");
 
                               setSelectedTab(selectedPendingTab);
                             }}
