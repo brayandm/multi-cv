@@ -1,6 +1,6 @@
 import { Input, type InputProps } from "@heroui/react";
 import { CalendarIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const months = [
@@ -37,6 +37,9 @@ export default function SelectDate({
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
   const [inputRect, setInputRect] = useState<DOMRect | null>(null);
 
+  const [draftMonth, setDraftMonth] = useState<string | null>(null);
+  const [draftYear, setDraftYear] = useState<number | null>(null);
+
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const yearsContainerRef = useRef<HTMLDivElement>(null);
@@ -56,16 +59,47 @@ export default function SelectDate({
     }
   }, [value]);
 
-  useEffect(() => {
-    if (selectedMonth && selectedYear !== null) {
-      const monthIndex = months.indexOf(selectedMonth) + 1;
-      const formatted = `${selectedYear}-${String(monthIndex).padStart(
-        2,
-        "0"
-      )}`;
+  const handleSelectMonth = (month: string) => {
+    setDraftMonth(month);
+  };
+
+  const handleSelectYear = (year: number) => {
+    setDraftYear(year);
+  };
+
+  const handleToggle = () => {
+    if (inputWrapperRef.current) {
+      const rect = inputWrapperRef.current.getBoundingClientRect();
+      setInputRect(rect);
+    }
+
+    setDraftMonth(selectedMonth);
+    setDraftYear(selectedYear);
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleConfirm = useCallback(() => {
+    setSelectedMonth(draftMonth);
+    setSelectedYear(draftYear);
+
+    if (draftMonth && draftYear !== null) {
+      const monthIndex = months.indexOf(draftMonth) + 1;
+      const formatted = `${draftYear}-${String(monthIndex).padStart(2, "0")}`;
       onValueChange?.(formatted);
     }
-  }, [selectedMonth, selectedYear]); // eslint-disable-line
+
+    setIsOpen(false);
+    onBlur?.();
+  }, [draftMonth, draftYear, onValueChange, onBlur]);
+
+  const handleClear = () => {
+    setSelectedMonth(null);
+    setSelectedYear(null);
+    setDraftMonth(null);
+    setDraftYear(null);
+    onValueChange?.("");
+    setIsOpen(false);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -74,52 +108,23 @@ export default function SelectDate({
         !popoverRef.current.contains(event.target as Node) &&
         !inputWrapperRef.current?.contains(event.target as Node)
       ) {
-        setIsOpen(false);
-        onBlur?.();
+        handleConfirm();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [onBlur]);
+  }, [draftMonth, draftYear, handleConfirm]);
 
   useEffect(() => {
     if (isOpen && yearsContainerRef.current) {
       const container = yearsContainerRef.current;
-      const currentYear = selectedYear ?? new Date().getFullYear();
+      const currentYear = draftYear ?? new Date().getFullYear();
       const index = years.findIndex((y) => y === currentYear);
       const itemHeight = 36;
       container.scrollTop =
         itemHeight * index - container.clientHeight / 2 + itemHeight / 2;
     }
-  }, [isOpen, selectedYear]);
-
-  const handleSelectMonth = (month: string) => {
-    setSelectedMonth(month);
-  };
-
-  const handleSelectYear = (year: number) => {
-    setSelectedYear(year);
-  };
-
-  const handleToggle = () => {
-    if (inputWrapperRef.current) {
-      const rect = inputWrapperRef.current.getBoundingClientRect();
-      setInputRect(rect);
-    }
-    setIsOpen((prev) => !prev);
-  };
-
-  const handleClose = () => {
-    setIsOpen(false);
-    onBlur?.();
-  };
-
-  const handleClear = () => {
-    setSelectedMonth(null);
-    setSelectedYear(null);
-    onValueChange?.("");
-    setIsOpen(false);
-  };
+  }, [isOpen, draftYear]);
 
   return (
     <>
@@ -165,7 +170,7 @@ export default function SelectDate({
               </span>
               <XMarkIcon
                 className="absolute right-0 w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer"
-                onClick={handleClose}
+                onClick={handleConfirm}
               />
             </div>
 
@@ -175,7 +180,7 @@ export default function SelectDate({
                   <div
                     key={month}
                     className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
-                      selectedMonth === month ? "bg-gray-200 font-medium" : ""
+                      draftMonth === month ? "bg-gray-200 font-medium" : ""
                     }`}
                     onClick={() => handleSelectMonth(month)}
                   >
@@ -192,7 +197,7 @@ export default function SelectDate({
                   <div
                     key={year}
                     className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
-                      selectedYear === year ? "bg-gray-200 font-medium" : ""
+                      draftYear === year ? "bg-gray-200 font-medium" : ""
                     }`}
                     onClick={() => handleSelectYear(year)}
                   >
