@@ -224,7 +224,6 @@ const DynamicInputs = <T,>({
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
               description={input.description}
-              validate={input.validate}
               maxLength={MAX_SHORT_TEXT_LENGTH}
             />
           );
