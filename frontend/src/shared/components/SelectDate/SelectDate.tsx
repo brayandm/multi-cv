@@ -18,7 +18,7 @@ const months = [
   "December",
 ];
 
-const years = Array.from({ length: 10 }, (_, i) => 2022 + i);
+const years = Array.from({ length: 200 }, (_, i) => 1900 + i);
 
 type ISelectDateProps = Omit<InputProps, "value" | "onValueChange"> & {
   value?: string;
@@ -98,7 +98,7 @@ export default function SelectDate({
           value={`${selectedMonth ?? "---------"} ${selectedYear ?? "----"}`}
           endContent={
             <CalendarIcon
-              className="w-5 h-5 text-gray-500 cursor-pointer"
+              className="ml-[-5px] w-5 h-5 text-gray-500 cursor-pointer"
               onClick={handleToggle}
             />
           }
