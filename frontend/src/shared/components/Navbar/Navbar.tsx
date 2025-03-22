@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { logoutApi } from "@/lib/backendService";
 
 import React from "react";
@@ -16,6 +15,7 @@ import {
 import { ITopBarNavigationProps } from "./Navbar.types";
 import LanguageToggle from "../LanguageToggle";
 import { useTranslations } from "next-intl";
+import { useRouterCustom } from "@/contexts/RouterCustomContext";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   onlyLogout,
@@ -23,7 +23,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   homeRoute,
   profileRoute,
 }) => {
-  const router = useRouter();
+  const { router } = useRouterCustom();
 
   const logout = async () => {
     try {
@@ -59,7 +59,9 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               className="w-full cursor-pointer"
               color={homeRoute ? "primary" : "foreground"}
               size="sm"
-              onPress={() => router.push("/home")}
+              onPress={() => {
+                if (!homeRoute) router.push("/home");
+              }}
             >
               {t("common.menu.home")}
             </Link>
@@ -69,7 +71,9 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               className="w-full cursor-pointer"
               size="sm"
               color={profileRoute ? "primary" : "foreground"}
-              onPress={() => router.push("/profile")}
+              onPress={() => {
+                if (!profileRoute) router.push("/profile");
+              }}
             >
               {t("common.menu.profile")}
             </Link>
@@ -79,7 +83,9 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               className="w-full cursor-pointer"
               color={passwordRoute ? "primary" : "foreground"}
               size="sm"
-              onPress={() => router.push("/password")}
+              onPress={() => {
+                if (!passwordRoute) router.push("/password");
+              }}
             >
               {t("common.menu.change_password")}
             </Link>
@@ -108,9 +114,10 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
   profileRoute = false,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const router = useRouter();
 
   const t = useTranslations();
+
+  const { router } = useRouterCustom();
 
   return (
     <NavbarUI

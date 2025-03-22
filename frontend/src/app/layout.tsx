@@ -1,15 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { HeroUIProvider } from "@/providers/HeroUIProvider";
 import { MarginTopContainer } from "./main.styles";
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
-import { ProfileProvider } from "@/contexts/ProfileContext";
+import { getLocale } from "next-intl/server";
 import { ClientLayout } from "./ClientLayout";
-import { LocaleProvider } from "@/contexts/LocaleContext";
-import { ToastProvider } from "@/providers/ToastProvider";
-import { UserStatusProvider } from "@/contexts/UserStatusContext";
+import Providers from "./providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,27 +49,16 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
 
-  const messages = await getMessages();
-
   return (
     <html lang={locale} className="flex h-screen">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex-grow `}
       >
-        <HeroUIProvider>
-          <ToastProvider />
-          <NextIntlClientProvider messages={messages}>
-            <LocaleProvider>
-              <UserStatusProvider>
-                <ProfileProvider>
-                  <ClientLayout>
-                    <MarginTopContainer>{children}</MarginTopContainer>
-                  </ClientLayout>
-                </ProfileProvider>
-              </UserStatusProvider>
-            </LocaleProvider>
-          </NextIntlClientProvider>
-        </HeroUIProvider>
+        <Providers>
+          <ClientLayout>
+            <MarginTopContainer>{children}</MarginTopContainer>
+          </ClientLayout>
+        </Providers>
       </body>
     </html>
   );

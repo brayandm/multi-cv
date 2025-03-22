@@ -25,6 +25,7 @@ import Education from "./Education";
 import { useProfile } from "@/contexts/ProfileContext";
 import { useRouter } from "next/navigation";
 import { finishFirstLoginApi } from "@/lib/backendService";
+import { useRouterCustom } from "@/contexts/RouterCustomContext";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
@@ -34,6 +35,8 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   const width = 350;
 
   const router = useRouter();
+
+  const { unlock, lock, setOnAttemptedNavigation } = useRouterCustom();
 
   const { isLoaded, syncProfile, pullProfile, checkArePendingChanges } =
     useProfile();
@@ -113,6 +116,23 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   }, [selectedTab, mapPosition]);
 
   const [saveLoading, setSaveLoading] = useState(false);
+
+  useEffect(() => {
+    lock();
+    return () => {
+      unlock();
+    };
+  }, [lock, unlock]);
+
+  useEffect(() => {
+    setOnAttemptedNavigation(() => {
+      if (checkArePendingChanges()) {
+        onOpen();
+        return;
+      }
+      unlock();
+    });
+  }, [onOpen, setOnAttemptedNavigation, unlock, checkArePendingChanges]);
 
   return (
     <main className="flex justify-center">
@@ -259,6 +279,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                               await pullProfile();
                               setSelectedTab(selectedPendingTab);
                               onClose();
+                              unlock();
                             }}
                           >
                             {t("common.buttons.discard")}
@@ -279,6 +300,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                               setSaveLoading(false);
 
                               onClose();
+                              unlock();
 
                               setSelectedTab(selectedPendingTab);
                             }}
