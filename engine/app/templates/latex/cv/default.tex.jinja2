@@ -34,9 +34,7 @@
 }{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
 
 \newcommand{\resumeItem}[1]{
-  \item\small{
-    {#1 \vspace{-2pt}}
-  }
+  \item\small{{#1\vspace{-2pt}}}
 }
 
 \newcommand{\resumeSubheading}[4]{
@@ -103,7 +101,7 @@
 {% if exp.descriptions %}
   \resumeItemListStart
     {% for desc in exp.descriptions %}
-    \resumeItem{ {{ desc }} }
+    \resumeItem{ {{-desc-}} }
     {% endfor %}
   \resumeItemListEnd
 {% endif %}
@@ -149,7 +147,7 @@
 \resumeProjectHeading
 { {{ proj.name }} }  { {{ proj.start_date }} -- {{ proj.end_date }} }
 \resumeItemListStart
-\resumeItem{ {{ proj.description }} }
+\resumeItem{ {{-proj.description-}} }
 \resumeItemListEnd
 {% endfor %}
 
