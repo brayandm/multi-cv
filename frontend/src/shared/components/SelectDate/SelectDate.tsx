@@ -1,6 +1,7 @@
 import { Input, type InputProps } from "@heroui/react";
 import { CalendarIcon } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 
 const months = [
   "January",
@@ -32,6 +33,9 @@ export default function SelectDate({
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState("March");
   const [selectedYear, setSelectedYear] = useState(2025);
+  const [inputRect, setInputRect] = useState<DOMRect | null>(null);
+
+  const inputWrapperRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -47,7 +51,8 @@ export default function SelectDate({
     const handleClickOutside = (event: MouseEvent) => {
       if (
         popoverRef.current &&
-        !popoverRef.current.contains(event.target as Node)
+        !popoverRef.current.contains(event.target as Node) &&
+        !inputWrapperRef.current?.contains(event.target as Node)
       ) {
         setIsOpen(false);
       }
@@ -63,58 +68,73 @@ export default function SelectDate({
     setIsOpen(false);
   };
 
+  const handleToggle = () => {
+    if (inputWrapperRef.current) {
+      const rect = inputWrapperRef.current.getBoundingClientRect();
+      setInputRect(rect);
+    }
+    setIsOpen((prev) => !prev);
+  };
+
   return (
-    <div className="relative inline-block">
-      <Input
-        readOnly
-        value={`${selectedMonth} ${selectedYear}`}
-        endContent={
-          <CalendarIcon
-            className="w-5 h-5 text-gray-500 cursor-pointer"
-            onClick={() => setIsOpen((prev) => !prev)}
-          />
-        }
-        {...props}
-      />
+    <>
+      <div ref={inputWrapperRef} className="inline-block">
+        <Input
+          readOnly
+          value={`${selectedMonth} ${selectedYear}`}
+          endContent={
+            <CalendarIcon
+              className="w-5 h-5 text-gray-500 cursor-pointer"
+              onClick={handleToggle}
+            />
+          }
+          {...props}
+        />
+      </div>
 
-      {isOpen && (
-        <div
-          ref={popoverRef}
-          className="absolute z-50 mt-2 w-64 bg-white rounded-xl shadow-lg p-4 border border-gray-200"
-        >
-          <div className="flex gap-2">
-            {/* Column for months */}
-            <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pr-1">
-              {months.map((month) => (
-                <div
-                  key={month}
-                  className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
-                    selectedMonth === month ? "bg-gray-200 font-medium" : ""
-                  }`}
-                  onClick={() => handleSelect(month, selectedYear)}
-                >
-                  {month}
-                </div>
-              ))}
-            </div>
+      {isOpen &&
+        inputRect &&
+        createPortal(
+          <div
+            ref={popoverRef}
+            className="fixed z-[9999] w-64 bg-white rounded-xl shadow-lg p-4 border border-gray-200"
+            style={{
+              top: inputRect.top - 200,
+              left: inputRect.left,
+            }}
+          >
+            <div className="flex gap-2">
+              <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pr-1">
+                {months.map((month) => (
+                  <div
+                    key={month}
+                    className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
+                      selectedMonth === month ? "bg-gray-200 font-medium" : ""
+                    }`}
+                    onClick={() => handleSelect(month, selectedYear)}
+                  >
+                    {month}
+                  </div>
+                ))}
+              </div>
 
-            {/* Column for years */}
-            <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pl-1">
-              {years.map((year) => (
-                <div
-                  key={year}
-                  className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
-                    selectedYear === year ? "bg-gray-200 font-medium" : ""
-                  }`}
-                  onClick={() => handleSelect(selectedMonth, year)}
-                >
-                  {year}
-                </div>
-              ))}
+              <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pl-1">
+                {years.map((year) => (
+                  <div
+                    key={year}
+                    className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
+                      selectedYear === year ? "bg-gray-200 font-medium" : ""
+                    }`}
+                    onClick={() => handleSelect(selectedMonth, year)}
+                  >
+                    {year}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        </div>
-      )}
-    </div>
+          </div>,
+          document.body
+        )}
+    </>
   );
 }
