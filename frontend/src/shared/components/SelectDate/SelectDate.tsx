@@ -21,7 +21,7 @@ const months = [
 const years = Array.from({ length: 200 }, (_, i) => 1900 + i);
 
 type ISelectDateProps = Omit<InputProps, "value" | "onValueChange"> & {
-  value?: string;
+  value?: string; // expected format: "YYYY-MM"
   onValueChange?: (value: string) => void;
   onBlur?: () => void;
 };
@@ -42,17 +42,28 @@ export default function SelectDate({
   const yearsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (value) {
-      const [month, year] = value.split(" ");
-      if (months.includes(month)) setSelectedMonth(month);
-      const yearNum = parseInt(year);
-      if (!isNaN(yearNum)) setSelectedYear(yearNum);
+    if (value && /^\d{4}-\d{2}$/.test(value)) {
+      const [yearStr, monthStr] = value.split("-");
+      const yearNum = parseInt(yearStr);
+      const monthIndex = parseInt(monthStr) - 1;
+      if (!isNaN(yearNum) && months[monthIndex]) {
+        setSelectedYear(yearNum);
+        setSelectedMonth(months[monthIndex]);
+      }
+    } else {
+      setSelectedYear(null);
+      setSelectedMonth(null);
     }
   }, [value]);
 
   useEffect(() => {
     if (selectedMonth && selectedYear !== null) {
-      onValueChange?.(`${selectedMonth} ${selectedYear}`);
+      const monthIndex = months.indexOf(selectedMonth) + 1;
+      const formatted = `${selectedYear}-${String(monthIndex).padStart(
+        2,
+        "0"
+      )}`;
+      onValueChange?.(formatted);
     }
   }, [selectedMonth, selectedYear]);
 
@@ -114,7 +125,11 @@ export default function SelectDate({
     <>
       <div ref={inputWrapperRef} className="inline-block">
         <Input
-          value={`${selectedMonth ?? "---------"} ${selectedYear ?? "----"}`}
+          value={
+            selectedMonth && selectedYear !== null
+              ? `${selectedMonth} ${selectedYear}`
+              : "--------- ----"
+          }
           endContent={
             <CalendarIcon
               className="ml-[-5px] w-5 h-5 text-gray-500 cursor-pointer"
@@ -148,7 +163,6 @@ export default function SelectDate({
               >
                 Clear
               </span>
-
               <XMarkIcon
                 className="absolute right-0 w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer"
                 onClick={handleClose}
