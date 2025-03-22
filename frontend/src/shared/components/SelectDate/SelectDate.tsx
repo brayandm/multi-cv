@@ -37,6 +37,7 @@ export default function SelectDate({
 
   const inputWrapperRef = useRef<HTMLDivElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
+  const yearsContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (value) {
@@ -60,6 +61,18 @@ export default function SelectDate({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  useEffect(() => {
+    if (isOpen && yearsContainerRef.current) {
+      const container = yearsContainerRef.current;
+      const currentYear = selectedYear ?? new Date().getFullYear();
+      const index = years.findIndex((y) => y === currentYear);
+      const itemHeight = 36;
+
+      container.scrollTop =
+        itemHeight * index - container.clientHeight / 2 + itemHeight / 2;
+    }
+  }, [isOpen, selectedYear]);
 
   const handleSelectMonth = (month: string) => {
     setSelectedMonth(month);
@@ -151,7 +164,10 @@ export default function SelectDate({
                 ))}
               </div>
 
-              <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pl-1">
+              <div
+                ref={yearsContainerRef}
+                className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pl-1"
+              >
                 {years.map((year) => (
                   <div
                     key={year}
