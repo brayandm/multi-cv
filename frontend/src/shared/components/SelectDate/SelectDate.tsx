@@ -1,6 +1,6 @@
 import { Input, type InputProps } from "@heroui/react";
 import { CalendarIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
 const months = [
@@ -23,20 +23,18 @@ const years = Array.from({ length: 200 }, (_, i) => 1900 + i);
 type ISelectDateProps = Omit<InputProps, "value" | "onValueChange"> & {
   value?: string;
   onValueChange?: (value: string) => void;
+  onBlur?: () => void;
 };
 
 export default function SelectDate({
   value,
   onValueChange,
+  onBlur,
   ...props
 }: ISelectDateProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState<number | null>(null);
-
-  const [draftMonth, setDraftMonth] = useState<string | null>(null);
-  const [draftYear, setDraftYear] = useState<number | null>(null);
-
   const [inputRect, setInputRect] = useState<DOMRect | null>(null);
 
   const inputWrapperRef = useRef<HTMLDivElement>(null);
@@ -46,27 +44,17 @@ export default function SelectDate({
   useEffect(() => {
     if (value) {
       const [month, year] = value.split(" ");
-      if (months.includes(month)) {
-        setSelectedMonth(month);
-        setDraftMonth(month);
-      }
+      if (months.includes(month)) setSelectedMonth(month);
       const yearNum = parseInt(year);
-      if (!isNaN(yearNum)) {
-        setSelectedYear(yearNum);
-        setDraftYear(yearNum);
-      }
+      if (!isNaN(yearNum)) setSelectedYear(yearNum);
     }
   }, [value]);
 
-  const handleConfirm = useCallback(() => {
-    setIsOpen(false);
-
-    if (draftMonth && draftYear !== null) {
-      setSelectedMonth(draftMonth);
-      setSelectedYear(draftYear);
-      onValueChange?.(`${draftMonth} ${draftYear}`);
+  useEffect(() => {
+    if (selectedMonth && selectedYear !== null) {
+      onValueChange?.(`${selectedMonth} ${selectedYear}`);
     }
-  }, [draftMonth, draftYear, onValueChange]);
+  }, [selectedMonth, selectedYear]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -75,31 +63,31 @@ export default function SelectDate({
         !popoverRef.current.contains(event.target as Node) &&
         !inputWrapperRef.current?.contains(event.target as Node)
       ) {
-        handleConfirm();
+        setIsOpen(false);
+        onBlur?.();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [handleConfirm]);
+  }, [onBlur]);
 
   useEffect(() => {
     if (isOpen && yearsContainerRef.current) {
       const container = yearsContainerRef.current;
-      const currentYear = draftYear ?? new Date().getFullYear();
+      const currentYear = selectedYear ?? new Date().getFullYear();
       const index = years.findIndex((y) => y === currentYear);
       const itemHeight = 36;
-
       container.scrollTop =
         itemHeight * index - container.clientHeight / 2 + itemHeight / 2;
     }
-  }, [isOpen, draftYear]);
+  }, [isOpen, selectedYear]);
 
   const handleSelectMonth = (month: string) => {
-    setDraftMonth(month);
+    setSelectedMonth(month);
   };
 
   const handleSelectYear = (year: number) => {
-    setDraftYear(year);
+    setSelectedYear(year);
   };
 
   const handleToggle = () => {
@@ -111,14 +99,13 @@ export default function SelectDate({
   };
 
   const handleClose = () => {
-    handleConfirm();
+    setIsOpen(false);
+    onBlur?.();
   };
 
   const handleClear = () => {
     setSelectedMonth(null);
     setSelectedYear(null);
-    setDraftMonth(null);
-    setDraftYear(null);
     onValueChange?.("");
     setIsOpen(false);
   };
@@ -134,11 +121,11 @@ export default function SelectDate({
               onClick={handleToggle}
             />
           }
-          validate={() => {
-            return selectedMonth !== null && selectedYear !== null
+          validate={() =>
+            selectedMonth && selectedYear !== null
               ? true
-              : "Please select a date";
-          }}
+              : "Please select a date"
+          }
           {...props}
         />
       </div>
@@ -174,7 +161,7 @@ export default function SelectDate({
                   <div
                     key={month}
                     className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
-                      draftMonth === month ? "bg-gray-200 font-medium" : ""
+                      selectedMonth === month ? "bg-gray-200 font-medium" : ""
                     }`}
                     onClick={() => handleSelectMonth(month)}
                   >
@@ -191,7 +178,7 @@ export default function SelectDate({
                   <div
                     key={year}
                     className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
-                      draftYear === year ? "bg-gray-200 font-medium" : ""
+                      selectedYear === year ? "bg-gray-200 font-medium" : ""
                     }`}
                     onClick={() => handleSelectYear(year)}
                   >

@@ -113,8 +113,8 @@ const Education = ({ formRef }: IEducationProps) => {
               type: "start_date",
               onValueChange: (value: string) => {
                 onEducationChange(index, "start_date", value);
-                syncProfileOnFirstLogin();
               },
+              onBlur: syncProfileOnFirstLogin,
               value: education?.start_date || "",
               isRequired: true,
             },
@@ -123,8 +123,8 @@ const Education = ({ formRef }: IEducationProps) => {
               type: "end_date",
               onValueChange: (value: string) => {
                 onEducationChange(index, "end_date", value);
-                syncProfileOnFirstLogin();
               },
+              onBlur: syncProfileOnFirstLogin,
               isDisabled: education?.is_present,
               value: education?.end_date || "",
               isRequired: true,

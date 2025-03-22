@@ -109,8 +109,8 @@ const Projects = ({ formRef }: IProjectsProps) => {
               type: "start_date",
               onValueChange: (value: string) => {
                 onProjectChange(index, "start_date", value);
-                syncProfileOnFirstLogin();
               },
+              onBlur: syncProfileOnFirstLogin,
               value: project?.start_date || "",
               isRequired: true,
             },
@@ -119,8 +119,8 @@ const Projects = ({ formRef }: IProjectsProps) => {
               type: "end_date",
               onValueChange: (value: string) => {
                 onProjectChange(index, "end_date", value);
-                syncProfileOnFirstLogin();
               },
+              onBlur: syncProfileOnFirstLogin,
               isDisabled: project?.is_present,
               value: project?.end_date || "",
               isRequired: true,

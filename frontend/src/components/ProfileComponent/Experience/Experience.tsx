@@ -137,8 +137,8 @@ const Experience = ({ formRef }: IExperienceProps) => {
               type: "start_date",
               onValueChange: (value: string) => {
                 onExperienceChange(index, "start_date", value);
-                syncProfileOnFirstLogin();
               },
+              onBlur: syncProfileOnFirstLogin,
               value: experience?.start_date || "",
               isRequired: true,
             },
@@ -147,8 +147,8 @@ const Experience = ({ formRef }: IExperienceProps) => {
               type: "end_date",
               onValueChange: (value: string) => {
                 onExperienceChange(index, "end_date", value);
-                syncProfileOnFirstLogin();
               },
+              onBlur: syncProfileOnFirstLogin,
               value: experience?.end_date || "",
               isDisabled: experience?.is_present,
               isRequired: true,
