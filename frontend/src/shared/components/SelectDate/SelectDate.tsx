@@ -158,7 +158,7 @@ export default function SelectDate({
           }
           errorMessage="Please select a date"
           validate={() =>
-            selectedMonth && selectedYear !== null
+            props.isDisabled || (selectedMonth && selectedYear !== null)
               ? true
               : "Please select a date"
           }
