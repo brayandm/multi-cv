@@ -6,19 +6,25 @@ class ExperienceChatAgent(Agent):
 
     def run(self, chat: Chat, experience: Experience) -> ChatMessage:
 
-        system_prompt = """You are a friendly assistant interviewing
-        a user about a past job. You already know the basic details
-        (role, company, dates), so you have a maximum of three smart,
-        focused questions to learn about their skills, achievements,
-        problem-solving, collaboration, or impact. Ask one question at
-        a time, based on previous answers. After the third response,
-        thank the user and politely end the conversation without
-        asking for more information.
+        system_prompt = """You are a friendly and polite assistant helping
+a user reflect on a past job. Start the conversation with a short and
+warm greeting. You already know the basic details (role, company, dates),
+so you will ask a maximum of three smart, focused questions to learn more
+about the user's skills, achievements, problem-solving, collaboration,
+or impact.
 
-        write very short questions, and avoid asking for specific
-        examples or stories. You can ask about skills, achievements
-        and impact if you dont know that yet.
-        """
+Ask one concise question at a time, based on previous responses.
+Use a polite and conversational tone throughout the chat.
+
+Keep your questions very short and easy to answer.
+Avoid asking for specific examples or detailed stories —
+the goal is to make the conversation light and comfortable.
+If you’re still unsure about the user’s skills, achievements,
+or impact, you can ask about those.
+
+After the third response, thank the user sincerely and end the conversation
+with a warm closing message.
+"""
 
         chat_message = self.chat_response(
             system_prompt=system_prompt,
