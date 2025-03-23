@@ -132,7 +132,7 @@ export default function SelectDate({
   const adjustedLeft =
     inputRect && inputRect.left + POPUP_WIDTH > window.innerWidth
       ? Math.max(0, window.innerWidth - POPUP_WIDTH - 16)
-      : (inputRect?.left ?? 0);
+      : inputRect?.left ?? 0;
 
   const [firstInteraction, setFirstInteraction] = useState(true);
 
@@ -191,35 +191,47 @@ export default function SelectDate({
             </div>
 
             <div className="flex gap-2">
-              <div className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pr-1">
-                {months.map((month) => (
-                  <div
-                    key={month}
-                    className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
-                      draftMonth === month ? "bg-gray-200 font-medium" : ""
-                    }`}
-                    onClick={() => handleSelectMonth(month)}
-                  >
-                    {month}
-                  </div>
-                ))}
-              </div>
+              <div className="relative">
+                <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+                <div className="flex-1 max-h-52 relative overflow-y-scroll space-y-1 scrollbar-none pr-1">
+                  <div className="h-1" />
+                  {months.map((month) => (
+                    <div
+                      key={month}
+                      className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
+                        draftMonth === month ? "bg-gray-200 font-medium" : ""
+                      }`}
+                      onClick={() => handleSelectMonth(month)}
+                    >
+                      {month}
+                    </div>
+                  ))}
+                  <div className="h-1" />
+                </div>
 
-              <div
-                ref={yearsContainerRef}
-                className="flex-1 max-h-40 overflow-y-scroll space-y-1 scrollbar-none pl-1"
-              >
-                {years.map((year) => (
-                  <div
-                    key={year}
-                    className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
-                      draftYear === year ? "bg-gray-200 font-medium" : ""
-                    }`}
-                    onClick={() => handleSelectYear(year)}
-                  >
-                    {year}
-                  </div>
-                ))}
+                <div className="absolute z-10 bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+              </div>
+              <div className="relative">
+                <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+                <div
+                  ref={yearsContainerRef}
+                  className="flex-1 max-h-52 overflow-y-scroll space-y-1 scrollbar-none pl-1"
+                >
+                  <div className="h-1" />
+                  {years.map((year) => (
+                    <div
+                      key={year}
+                      className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
+                        draftYear === year ? "bg-gray-200 font-medium" : ""
+                      }`}
+                      onClick={() => handleSelectYear(year)}
+                    >
+                      {year}
+                    </div>
+                  ))}
+                  <div className="h-1" />
+                </div>
+                <div className="absolute z-10 bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent pointer-events-none" />
               </div>
             </div>
           </div>,
