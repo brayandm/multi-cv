@@ -1,15 +1,11 @@
-import os
 import json
+import os
+
 from dotenv import load_dotenv
-
 from langchain.chains import LLMChain
-
 from langchain.prompts import ChatPromptTemplate
-
-from langchain.schema import SystemMessage, HumanMessage
+from langchain.schema import HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
-
-
 from pydantic import SecretStr
 
 load_dotenv(dotenv_path="../.env")
