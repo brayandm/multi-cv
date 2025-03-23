@@ -9,6 +9,10 @@ from app.utils.pydantic_custom_types import (
 )
 
 
+class ExperienceId(BaseModel):
+    id: ShortStr
+
+
 class Experience(BaseModel):
     id: ShortStr
     company: ShortStr

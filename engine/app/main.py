@@ -9,11 +9,12 @@ from app.classes.models import (
     ChatMessage,
     Cv,
     CvTemplate,
-    Experience,
     Message,
+    ExperienceId,
     Profile,
     WebhookPayload,
 )
+
 from app.classes.pipelines import (
     BasicPipeline,
     ChatExperiencePipeline,
@@ -139,7 +140,15 @@ async def generate_cv_inline(
 @router.post("/chat/experience")
 @commit_action_after()
 @consume_action("chat")
-async def chat_experience(chat: Chat, experience: Experience) -> ChatMessage:
+async def chat_experience(
+    experience_id: ExperienceId,
+    chat: Chat,
+    profile_service: ProfileService = Depends(get_profile_service),
+) -> ChatMessage:
+
+    experience = await profile_service.get_experience(
+        get_user_id(), experience_id.id
+    )
 
     return ChatExperiencePipeline().run(chat, experience)
 

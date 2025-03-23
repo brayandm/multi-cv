@@ -1,4 +1,4 @@
-from app.classes.agents import ExperienceNotesAgent
+from app.classes.agents import ExperienceNotesAgent, ExperienceChatAgent
 from app.classes.base import Pipeline
 from app.classes.models import Chat, ChatMessage, Experience
 
@@ -6,7 +6,9 @@ from app.classes.models import Chat, ChatMessage, Experience
 class ChatExperiencePipeline(Pipeline):
 
     def __init__(self) -> None:
-        self.agent = ExperienceNotesAgent()
+        self.chat_agent = ExperienceChatAgent()
+        self.notes_agent = ExperienceNotesAgent()
 
     def run(self, chat: Chat, experience: Experience) -> ChatMessage:
-        return self.agent.run(chat, experience)
+
+        return self.chat_agent.run(chat, experience)

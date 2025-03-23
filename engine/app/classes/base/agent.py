@@ -1,4 +1,5 @@
 from abc import ABC
+from typing import List, Union
 
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate
@@ -8,8 +9,6 @@ from pydantic import BaseModel, SecretStr
 
 from app.classes.models import Chat, ChatMessage
 from app.config import OPENAI_API_KEY
-
-from typing import List, Union
 
 
 class Agent(ABC):

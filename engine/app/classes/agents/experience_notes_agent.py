@@ -1,18 +1,19 @@
 from app.classes.base import Agent
-from app.classes.models import Chat, ChatMessage, Experience
+from app.classes.models import Chat, Experience
+from app.utils.pydantic_custom_types import MAX_NOTES_LENGTH
 
 
 class ExperienceNotesAgent(Agent):
 
-    def run(self, chat: Chat, experience: Experience) -> ChatMessage:
+    def run(self, chat: Chat, experience: Experience) -> str:
 
-        system_prompt = """You are a friendly assistant interviewing
-        a user about a past job. You already know the basic details
-        (role, company, dates), so you have a maximum of three smart,
-        focused questions to learn about their skills, achievements,
-        problem-solving, collaboration, or impact. Ask one question at
-        a time, based on previous answers. After the third response,
-        thank the user and politely end the conversation.
+        system_prompt = f"""You are an assistant that updates a
+        note about a user's past job experience by merging
+        previous notes with new information from a recent chat.
+        Focus on capturing valuable insights such as skills,
+        achievements, challenges, and impact in a clear and neutral
+        tone. Write concisely in plain text, and do not exceed
+        the given {MAX_NOTES_LENGTH / 2} characters limit.
         """
 
         chat_message = self.chat_response(
@@ -21,4 +22,4 @@ class ExperienceNotesAgent(Agent):
             chat=chat,
         )
 
-        return chat_message
+        return chat_message.text
