@@ -15,6 +15,7 @@ class GenerateCvAgent(Agent):
         {
           "name": "string",
           "email": "string",
+          "location": "string",
           "linkedin": "string",
           "github": "string",
           "phone": "string",
@@ -71,6 +72,10 @@ class GenerateCvAgent(Agent):
         - In Experience Section add severals descriptions for each experience.
 
         **Format Guidelines:**
+        - The Phone number is concatenation of the phone_country_code and
+        phone_number
+        - Location of the person should be in the format "City, Country",
+        you can get the location from the location field in basic_info.
         - The Experiences should be in reverse chronological order.
         - The Education should be in reverse chronological order.
         - The Dates of the Experiences should be "month_name year" format.
