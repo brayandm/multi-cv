@@ -73,7 +73,7 @@ class GenerateCvAgent(Agent):
 
         **Format Guidelines:**
         - The Phone number is concatenation of the phone_country_code and
-        phone_number
+        phone_number separated by a space.
         - Location of the person should be in the format "City, Country",
         you can get the location from the location field in basic_info.
         - The Experiences should be in reverse chronological order.
