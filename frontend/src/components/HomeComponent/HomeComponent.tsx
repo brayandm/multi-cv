@@ -93,7 +93,17 @@ export default function HomeComponent() {
       const blob = new Blob([response.data], { type: "application/pdf" });
 
       if (download) {
-        saveAs(blob, "cv.pdf");
+        const contentDisposition = response.headers["content-disposition"];
+        let filename = "cv.pdf";
+
+        if (contentDisposition) {
+          const match = contentDisposition.match(/filename="(.+)"/);
+          if (match && match[1]) {
+            filename = match[1];
+          }
+        }
+
+        saveAs(blob, filename);
       } else {
         const blobUrl = URL.createObjectURL(blob);
 
@@ -117,7 +127,7 @@ export default function HomeComponent() {
           <div className="flex justify-center">
             <Button
               color="primary"
-              onPress={() => handleDocument()}
+              onPress={() => handleDocument(true)}
               isDisabled={isCvLoading || quotaInfo?.left === 0}
               isLoading={isCvLoading}
             >

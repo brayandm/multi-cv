@@ -86,6 +86,7 @@ const Experience = ({ formRef }: IExperienceProps) => {
     const experience = experienceList[currentPage - 1];
 
     if (
+      experience &&
       experience.company.length > 0 &&
       experience.role.length > 0 &&
       experience.location.length > 0 &&
