@@ -28,7 +28,9 @@
       "saved": "Guardado",
       "saved_description": "Tus cambios han sido guardados.",
       "unfinished_element": "Elemento no terminado",
-      "unfinished_element_description": "Aún no has terminado este {element}."
+      "unfinished_element_description": "Aún no has terminado este {element}.",
+      "chat": "Chat AI",
+      "chat_description": "Chatea con nuestro AI para obtener ayuda"
     },
     "buttons": {
       "continue": "Continuar",

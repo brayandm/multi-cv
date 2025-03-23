@@ -28,7 +28,9 @@
       "saved": "Сохранено",
       "saved_description": "Ваши изменения были сохранены.",
       "unfinished_element": "Незавершенный {element}",
-      "unfinished_element_description": "Вы еще не завершили этот {element}."
+      "unfinished_element_description": "Вы еще не завершили этот {element}.",
+      "chat": "Чат AI",
+      "chat_description": "Общайтесь с нашим AI, чтобы получить помощь"
     },
     "buttons": {
       "continue": "Продолжить",

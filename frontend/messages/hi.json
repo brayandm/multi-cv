@@ -28,7 +28,9 @@
       "saved": "Bacha liya",
       "saved_description": "Aapke badlaav bacha liye gaye hain.",
       "unfinished_element": "Adhoora {element}",
-      "unfinished_element_description": "Aapne abhi tak is {element} ko pura nahi kiya hai."
+      "unfinished_element_description": "Aapne abhi tak is {element} ko pura nahi kiya hai.",
+      "chat": "Chat AI",
+      "chat_description": "Madad ke liye hamare AI se chat karein"
     },
     "buttons": {
       "continue": "Aage badhein",
