@@ -84,6 +84,10 @@ export interface ProfileSyncResponse {
   message: string;
 }
 
+export interface chatExperienceResponse {
+  message: string;
+}
+
 export interface FinishFirstLoginResponse {
   message: string;
 }

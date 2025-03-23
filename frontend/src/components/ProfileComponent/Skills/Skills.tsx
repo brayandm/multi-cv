@@ -8,6 +8,7 @@ import { addToast, Button } from "@heroui/react";
 import ChipArea from "@/shared/components/ChipArea";
 import AddIcon from "@/shared/icons/AddIcon/AddIcon";
 import { MAX_SKILLS_ELEMENTS } from "@/lib/consts";
+import { useChat } from "@/contexts/ChatContext";
 
 interface InputButtonProps {
   onPress: () => void;
@@ -23,6 +24,13 @@ const InputButton: React.FC<InputButtonProps> = (props) => {
 
 const Skills: React.FC = () => {
   const { skills, updateSkills } = useProfile();
+
+  const { setChat } = useChat();
+
+  useEffect(() => {
+    setChat(null);
+  }, [setChat]);
+
   const [inputSkill, setInputSkill] = useState<string>("");
 
   const { syncProfileOnFirstLogin } = useProfile();

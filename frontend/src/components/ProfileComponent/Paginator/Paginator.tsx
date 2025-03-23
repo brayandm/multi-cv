@@ -19,6 +19,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
   onRemovePage,
   total,
   elementName,
+  onPageChange = () => {},
   maxElements,
   formRef,
   children,
@@ -33,6 +34,10 @@ const Paginator: React.FC<IPaginatorProps> = ({
     onOpen: onOpenDiscard,
     onOpenChange: onOpenChangeDiscard,
   } = useDisclosure();
+
+  useEffect(() => {
+    onPageChange(currentPage);
+  }, [currentPage]); // eslint-disable-line
 
   const [currentPageBasedOnScroll, setCurrentPageBasedOnScroll] = useState(1);
   const scrolling = useRef(false);

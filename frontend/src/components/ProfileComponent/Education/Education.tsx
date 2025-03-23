@@ -6,6 +6,7 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 import { MAX_EDUCATION_ELEMENTS } from "@/lib/consts";
+import { useChat } from "@/contexts/ChatContext";
 
 interface IEducationProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -17,6 +18,12 @@ const Education = ({ formRef }: IEducationProps) => {
     updateEducation,
     syncProfileOnFirstLogin,
   } = useProfile();
+
+  const { setChat } = useChat();
+
+  useEffect(() => {
+    setChat(null);
+  }, [setChat]);
 
   const [sync, setSync] = React.useState(false);
 
