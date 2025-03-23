@@ -132,7 +132,13 @@ async def generate_cv_inline(
 
     pdf_bytes = document_render.get_cv()
 
-    return Response(content=pdf_bytes, media_type="application/pdf")
+    filename = f"{profile.basic_info.full_name.replace(' ', '_')}_CV.pdf"
+
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={"Content-Disposition": f'inline; filename="{filename}"'},
+    )
 
 
 @router.post("/chat/experience")

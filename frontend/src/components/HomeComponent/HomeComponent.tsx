@@ -6,7 +6,6 @@ import {
   getQuotaInfoApi,
 } from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
-import { saveAs } from "file-saver";
 
 import useSWR from "swr";
 // import CvList from "../../shared/components/CvList";
@@ -15,6 +14,7 @@ import { Button, Spinner } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { GetQuotaInfoResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
+import { saveAs } from "file-saver";
 
 export default function HomeComponent() {
   const { isLoading: isUserDataLoading } = useSWR(userApiLink, fetcherApi);
@@ -85,19 +85,24 @@ export default function HomeComponent() {
   //   },
   // ];
 
-  const handleDownload = async () => {
+  const handleDocument = async (download = false) => {
     try {
       setIsCvLoading(true);
       const response = await generateCvInlineEngine();
 
-      const blob = new Blob([response.data], {
-        type: "application/pdf",
-      });
+      const blob = new Blob([response.data], { type: "application/pdf" });
 
-      saveAs(blob, "cv.pdf");
+      if (download) {
+        saveAs(blob, "cv.pdf");
+      } else {
+        const blobUrl = URL.createObjectURL(blob);
+
+        window.open(blobUrl, "_blank");
+      }
     } catch (error) {
       console.error("Error while generating CV", error);
     }
+
     setIsCvLoading(false);
     getQuota();
   };
@@ -112,7 +117,7 @@ export default function HomeComponent() {
           <div className="flex justify-center">
             <Button
               color="primary"
-              onPress={handleDownload}
+              onPress={() => handleDocument()}
               isDisabled={isCvLoading || quotaInfo?.left === 0}
               isLoading={isCvLoading}
             >
