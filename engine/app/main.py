@@ -4,12 +4,22 @@ from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 
-from app.classes.models import Cv, CvTemplate, Message, Profile, WebhookPayload
+from app.classes.models import (
+    Cv,
+    CvTemplate,
+    Message,
+    Profile,
+    WebhookPayload,
+    Experience,
+    Chat,
+    ChatMessage,
+)
 from app.classes.pipelines import (
     BasicPipeline,
     ImproveAboutPipeline,
     RenderCVPipeline,
     SummaryPipeline,
+    ChatExperiencePipeline,
 )
 from app.classes.pipelines.generate_cv_pipeline import GenerateCvPipeline
 from app.database.mongodb import lifespan
@@ -124,6 +134,14 @@ async def generate_cv_inline(
     pdf_bytes = document_render.get_cv()
 
     return Response(content=pdf_bytes, media_type="application/pdf")
+
+
+@router.post("/chat/experience")
+@commit_action_after()
+@consume_action("chat")
+async def chat_experience(chat: Chat, experience: Experience) -> ChatMessage:
+
+    return ChatExperiencePipeline().run(chat, experience)
 
 
 @router.post("/render/cv/inline")

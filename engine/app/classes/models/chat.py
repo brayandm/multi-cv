@@ -7,10 +7,12 @@ from app.utils.pydantic_custom_types import MAX_CHAT_MESSAGES, ForceLongStr
 SenderType = Annotated[Literal["bot", "person"], Field(...)]
 
 
-class Message(BaseModel):
+class ChatMessage(BaseModel):
     sender: SenderType
     text: ForceLongStr
 
 
 class Chat(BaseModel):
-    messages: Annotated[List[Message], Field(..., max_items=MAX_CHAT_MESSAGES)]
+    messages: Annotated[
+        List[ChatMessage], Field(..., max_items=MAX_CHAT_MESSAGES)
+    ]

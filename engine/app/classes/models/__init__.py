@@ -8,6 +8,7 @@ from .profile.experience import Experience
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .webhook_payload import WebhookPayload
+from .chat import Chat, ChatMessage
 
 __all__ = [
     "Message",
@@ -21,4 +22,6 @@ __all__ = [
     "Cv",
     "CvTemplate",
     "WebhookPayload",
+    "Chat",
+    "ChatMessage",
 ]

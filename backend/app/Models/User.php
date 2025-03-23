@@ -113,6 +113,17 @@ class User extends Authenticatable implements MustVerifyEmail
                 'max_failed' => 3,
                 'max_pending' => 1,
             ]);
+
+            Quota::create([
+                'user_id' => $user->id,
+                'action' => 'chat',
+                'quota' => 0,
+                'frequency' => 'onetime',
+                'cumulative' => false,
+                'left' => 100,
+                'max_failed' => 10,
+                'max_pending' => 1,
+            ]);
         });
     }
 }
