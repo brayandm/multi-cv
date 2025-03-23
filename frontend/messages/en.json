@@ -26,7 +26,9 @@
       "havent_finished": "You haven't finished yet this {element}.",
       "discard_changes": "Do you want to keep editing or discard the changes?",
       "saved": "Saved",
-      "saved_description": "Your changes have been saved."
+      "saved_description": "Your changes have been saved.",
+      "unfinished_element": "Unfinished {element}",
+      "unfinished_element_description": "You haven't finished yet this {element}."
     },
     "buttons": {
       "continue": "Continue",

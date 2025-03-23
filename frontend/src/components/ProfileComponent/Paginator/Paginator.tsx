@@ -119,11 +119,28 @@ const Paginator: React.FC<IPaginatorProps> = ({
 
   const [showPopover, setShowPopover] = useState(false);
 
+  useEffect(() => {
+    if (showPopover) {
+      setTimeout(() => {
+        setShowPopover(false);
+      }, 3000);
+    }
+  }, [showPopover]);
+
   const content = (
     <PopoverContent>
       <div className="px-1 py-2">
-        <div className="text-small font-bold">Popover Content</div>
-        <div className="text-tiny">This is the popover content</div>
+        <div className="text-small font-bold">
+          {t("common.texts.unfinished_element", {
+            element: elementName,
+          })}
+        </div>
+        <div className="text-tiny">
+          {" "}
+          {t("common.texts.unfinished_element_description", {
+            element: elementName,
+          })}
+        </div>
       </div>
     </PopoverContent>
   );
@@ -160,35 +177,36 @@ const Paginator: React.FC<IPaginatorProps> = ({
         </div>
       )}
       <div className="flex flex-row gap-1">
-        <Popover color={"danger"} placement="top-start" showArrow>
-          <PopoverTrigger>
-            <Button
-              variant="bordered"
-              color="primary"
-              onPress={() => {
-                if (!formRef.current || !formRef.current.reportValidity()) {
-                  setShowPopover(true);
-                  return;
-                }
+        <Popover
+          color={"danger"}
+          placement="top-start"
+          showArrow
+          isOpen={showPopover}
+          onOpenChange={() => {
+            if (!formRef.current || !formRef.current.reportValidity()) {
+              setShowPopover(true);
+              return;
+            }
 
-                if (totalPages >= maxElements) {
-                  addToast({
-                    title: t("common.errors.max_elements", {
-                      element: elementName,
-                    }),
-                    description: t("common.errors.max_elements_description", {
-                      element: elementName,
-                      max: maxElements,
-                    }),
-                    color: "warning",
-                    timeout: 5000,
-                  });
-                  return;
-                }
-                addNewPage();
-              }}
-              className="w-full"
-            >
+            if (totalPages >= maxElements) {
+              addToast({
+                title: t("common.errors.max_elements", {
+                  element: elementName,
+                }),
+                description: t("common.errors.max_elements_description", {
+                  element: elementName,
+                  max: maxElements,
+                }),
+                color: "warning",
+                timeout: 5000,
+              });
+              return;
+            }
+            addNewPage();
+          }}
+        >
+          <PopoverTrigger>
+            <Button variant="bordered" color="primary" className="w-full">
               {t("common.buttons.add_element", { element: elementName })}
             </Button>
           </PopoverTrigger>
