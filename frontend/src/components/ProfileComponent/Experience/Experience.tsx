@@ -78,7 +78,20 @@ const Experience = ({ formRef }: IExperienceProps) => {
 
   const onPageChange = React.useCallback(
     (page: number) => {
-      setChat({ type: "experience", id: experienceList[page - 1].id });
+      const experience = experienceList[page - 1];
+
+      if (
+        experience.company.length > 0 &&
+        experience.role.length > 0 &&
+        experience.location.length > 0 &&
+        experience.description.length >= 50 &&
+        experience.start_date.length > 0 &&
+        (experience.end_date.length > 0 || experience.is_present)
+      ) {
+        setChat({ type: "experience", id: experience.id });
+      } else {
+        setChat(null);
+      }
     },
     [setChat, experienceList]
   );
