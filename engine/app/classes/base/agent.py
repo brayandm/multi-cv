@@ -9,6 +9,8 @@ from pydantic import BaseModel, SecretStr
 from app.classes.models import Chat, ChatMessage
 from app.config import OPENAI_API_KEY
 
+from typing import List, Union
+
 
 class Agent(ABC):
 
@@ -20,41 +22,28 @@ class Agent(ABC):
             temperature=0.7,
         )
 
-    def generate_bot_response(
+    def chat_response(
         self,
-        chat: Chat,
-        context_data: BaseModel,
         system_prompt: str,
+        context_data: BaseModel,
+        chat: Chat,
     ) -> ChatMessage:
-        context_dict = context_data.model_dump()
+        context_dict = context_data.model_dump_json()
 
-        messages: list[HumanMessage | AIMessage] = []
+        messages: List[Union[HumanMessage, AIMessage, SystemMessage]] = [
+            SystemMessage(content=system_prompt),
+            SystemMessage(content=f"Context Data: {context_dict}"),
+        ]
+
         for msg in chat.messages:
             if msg.sender == "person":
                 messages.append(HumanMessage(content=msg.text))
             elif msg.sender == "bot":
                 messages.append(AIMessage(content=msg.text))
 
-        prompt = ChatPromptTemplate.from_messages(
-            [
-                SystemMessage(content=system_prompt),
-                SystemMessage(content=f"Contexto adicional: {context_dict}"),
-                *messages,
-                HumanMessage(content="{input}"),
-            ]
-        )
-
-        last_user_message = next(
-            (
-                msg.text
-                for msg in reversed(chat.messages)
-                if msg.sender == "person"
-            ),
-            "",
-        )
-
+        prompt = ChatPromptTemplate.from_messages(messages)
         chain = LLMChain(llm=self.chat, prompt=prompt)
 
-        response = chain.run(input=last_user_message)
+        response = chain.run({})
 
         return ChatMessage(sender="bot", text=response)
