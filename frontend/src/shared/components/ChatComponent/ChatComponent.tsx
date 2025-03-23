@@ -8,21 +8,10 @@ import {
 } from "@heroicons/react/24/solid";
 
 import BotIcon from "@/shared/icons/BotIcon/BotIcon";
-
-interface Message {
-  text: string;
-  isBot: boolean;
-  isLoading?: boolean;
-}
+import { useChat } from "@/contexts/ChatContext";
 
 export default function ChatComponent() {
-  const [messages, setMessages] = useState<Message[]>([
-    { text: "Hello! How can I assist you today?", isBot: true },
-    { text: "Can you help me with my account?", isBot: false },
-    { text: "Of course! What issue are you experiencing?", isBot: true },
-    { text: "I can't seem to log in.", isBot: false },
-    { text: "", isBot: true, isLoading: true },
-  ]);
+  const { chat, addMessage } = useChat();
 
   const [input, setInput] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -34,13 +23,13 @@ export default function ChatComponent() {
 
   const sendMessage = useCallback(() => {
     if (!input.trim()) return;
-    setMessages((prev) => [...prev, { text: input, isBot: false }]);
+    addMessage({ text: input, sender: "person" });
     setInput("");
-  }, [input]);
+  }, [input, addMessage]);
 
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [chat]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -84,11 +73,11 @@ export default function ChatComponent() {
           <div
             className={`h-full overflow-y-scroll overflow-x-hidden p-4 space-y-3`}
           >
-            {messages.map((msg, index) => (
+            {chat.messages.map((msg, index) => (
               <div key={index} className="flex flex-col items-start">
                 <div
                   className={`break-words text-small font-medium max-w-[90%] rounded-3xl p-3 ${
-                    msg.isBot
+                    msg.sender === "bot"
                       ? "bg-secondary text-white self-start"
                       : "bg-primary text-white self-end"
                   } `}
