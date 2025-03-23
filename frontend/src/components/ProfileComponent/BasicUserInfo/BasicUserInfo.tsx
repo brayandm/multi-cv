@@ -132,7 +132,9 @@ const BasicUserInfo: React.FC = () => {
 
   return (
     <div className="px-1">
-      <DynamicInputs inputs={inputs}></DynamicInputs>
+      <div className="h-[380px] overflow-y-scroll">
+        <DynamicInputs inputs={inputs}></DynamicInputs>
+      </div>
     </div>
   );
 };

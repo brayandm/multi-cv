@@ -37,6 +37,8 @@ from app.framework.middlewares import (
 from app.services.profile_service import ProfileService, get_profile_service
 from app.worker.queue_manager import QueueManager
 
+from app.utils.parsers import get_first_name_last_name
+
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
@@ -134,8 +136,7 @@ async def generate_cv_inline(
 
     first_name = profile.basic_info.first_name
     last_name = profile.basic_info.last_name
-    full_name = f"{first_name} {last_name}".replace(" ", "_")
-    filename = f"{full_name}_CV.pdf"
+    filename = f"{get_first_name_last_name(first_name, last_name)}_CV.pdf"
 
     return Response(
         content=pdf_bytes,

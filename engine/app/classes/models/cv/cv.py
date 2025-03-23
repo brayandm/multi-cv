@@ -19,7 +19,7 @@ from .cv_skill_category import CvSkillCategory
 
 
 class Cv(BaseModel):
-    name: Optional[ForceShortStr] = None
+    full_name: Optional[ForceShortStr] = None
     email: Optional[ForceShortStr] = None
     phone: Optional[ForceShortStr] = None
     linkedin: Optional[ForceShortStr] = None

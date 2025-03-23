@@ -14,7 +14,7 @@ class GenerateCvAgent(Agent):
 
         cv_structure = """
         {
-          "name": "string",
+          "full_name": "string",
           "email": "string",
           "location": "string",
           "linkedin": "string",
