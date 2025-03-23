@@ -22,7 +22,8 @@ class AuthTest extends TestCase
         $response = $this->post(
             '/api/v1/register',
             [
-                'name' => 'Testing User',
+                'first_name' => 'Testing',
+                'last_name' => 'User',
                 'email' => 'user@testing.com',
                 'password' => '12345678',
             ]
@@ -38,7 +39,8 @@ class AuthTest extends TestCase
         $response = $this->post(
             '/api/v1/register',
             [
-                'name' => 'Testing User',
+                'first_name' => 'Testing',
+                'last_name' => 'User',
                 'email' => 'user@testing.com',
                 'password' => '12345678',
             ]
@@ -52,7 +54,7 @@ class AuthTest extends TestCase
 
         $response->assertJsonPath('message', 'User created successfully');
 
-        $this->assertDatabaseHas('users', ['name' => 'Testing User', 'email' => 'user@testing.com']);
+        $this->assertDatabaseHas('users', ['first_name' => 'Testing', 'last_name' => 'User', 'email' => 'user@testing.com']);
 
         $this->app->get('auth')->forgetGuards();
 
@@ -66,7 +68,8 @@ class AuthTest extends TestCase
         $response = $this->post(
             '/api/v1/register',
             [
-                'name' => 'Testing User',
+                'first_name' => 'Testing',
+                'last_name' => 'User',
                 'email' => 'user',
                 'password' => '12345678',
             ]

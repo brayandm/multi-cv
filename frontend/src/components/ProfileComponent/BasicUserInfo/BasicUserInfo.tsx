@@ -28,12 +28,23 @@ const BasicUserInfo: React.FC = () => {
 
   const inputs: IDynamicInputArray<string> = [
     {
-      label: t("common.form.full_name"),
-      placeholder: t("common.placeholders.enter_full_name"),
+      label: t("common.form.first_name"),
+      placeholder: t("common.placeholders.enter_first_name"),
       type: "text",
-      value: basicInfo.full_name,
+      value: basicInfo.first_name,
       onValueChange: (value: string) => {
-        onBasicUserInfoChange("full_name", value);
+        onBasicUserInfoChange("first_name", value);
+      },
+      isRequired: true,
+      onBlur: syncProfileOnFirstLogin,
+    },
+    {
+      label: t("common.form.last_name"),
+      placeholder: t("common.placeholders.enter_last_name"),
+      type: "text",
+      value: basicInfo.last_name,
+      onValueChange: (value: string) => {
+        onBasicUserInfoChange("last_name", value);
       },
       isRequired: true,
       onBlur: syncProfileOnFirstLogin,

@@ -132,7 +132,10 @@ async def generate_cv_inline(
 
     pdf_bytes = document_render.get_cv()
 
-    filename = f"{profile.basic_info.full_name.replace(' ', '_')}_CV.pdf"
+    first_name = profile.basic_info.first_name
+    last_name = profile.basic_info.last_name
+    full_name = f"{first_name} {last_name}".replace(" ", "_")
+    filename = f"{full_name}_CV.pdf"
 
     return Response(
         content=pdf_bytes,

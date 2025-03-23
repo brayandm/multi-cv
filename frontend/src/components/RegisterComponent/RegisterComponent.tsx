@@ -19,7 +19,8 @@ export default function RegisterComponent() {
   const t = useTranslations();
 
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     repeatPassword: "",
@@ -142,12 +143,24 @@ export default function RegisterComponent() {
       <p>{t("pages.register.description")}</p>
       <div className="flex flex-col gap-3">
         <Input
-          label={t("common.form.full_name")}
+          label={t("common.form.first_name")}
           color="default"
-          placeholder={t("common.placeholders.enter_full_name")}
+          placeholder={t("common.placeholders.enter_first_name")}
           type="text"
-          name="name"
-          value={formData.name}
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+          classNames={generalInputsStyles}
+          isRequired
+          maxLength={MAX_SHORT_TEXT_LENGTH}
+        />
+        <Input
+          label={t("common.form.last_name")}
+          color="default"
+          placeholder={t("common.placeholders.enter_last_name")}
+          type="text"
+          name="lastName"
+          value={formData.lastName}
           onChange={handleChange}
           classNames={generalInputsStyles}
           isRequired

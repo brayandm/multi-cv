@@ -12,7 +12,8 @@ import {
 import { useUserStatus } from "./UserStatusContext";
 
 export type IBasicInfo = {
-  full_name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   about: string;
   phone_country_code: string;
@@ -103,7 +104,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const { userStatus } = useUserStatus();
 
   const [basicInfo, setBasicInfo] = useState<IBasicInfo>({
-    full_name: "",
+    first_name: "",
+    last_name: "",
     email: "",
     about: "",
     phone_country_code: "",
@@ -161,7 +163,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
           setProfileEngine(profile);
         } else {
           setBasicInfo({
-            full_name: userStatus.name || "",
+            first_name: userStatus.first_name || "",
+            last_name: userStatus.last_name || "",
             email: userStatus.email || "",
             about: "",
             phone_country_code: "",

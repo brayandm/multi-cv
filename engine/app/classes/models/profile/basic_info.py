@@ -10,7 +10,8 @@ from app.utils.pydantic_custom_types import (
 
 
 class BasicInfo(BaseModel):
-    full_name: ShortStr
+    first_name: ShortStr
+    last_name: ShortStr
     email: ShortStr
     about: LongStr
     phone_country_code: ShortStr

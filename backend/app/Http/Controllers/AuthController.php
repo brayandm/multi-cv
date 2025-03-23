@@ -23,7 +23,8 @@ class AuthController extends Controller
     private function validateCorrectRegisterUser(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|max:255',
         ]);
@@ -44,7 +45,8 @@ class AuthController extends Controller
     public function validateProfile($request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
         ]);
 
@@ -198,7 +200,8 @@ class AuthController extends Controller
             'notice_new_terms_version' => $notice_new_terms_version,
             'email_verified' => $email_verified,
             'email' => $user->email,
-            'name' => $user->name,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
             'is_first_login' => $is_first_login,
         ]);
     }

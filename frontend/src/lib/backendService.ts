@@ -126,14 +126,16 @@ export const passwordRecoveryResetApi = async (data: {
 };
 
 export const registerApi = async (formData: {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
 }): Promise<AxiosResponse<RegisterResponse>> => {
   return await api.post(
     registerApiLink,
     {
-      name: formData.name,
+      first_name: formData.firstName,
+      last_name: formData.lastName,
       email: formData.email,
       password: formData.password,
     },

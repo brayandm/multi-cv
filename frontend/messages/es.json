@@ -73,8 +73,6 @@
       "password_change_description": "Tu contraseña ha sido cambiada con éxito."
     },
     "form": {
-      "full_name": "Nombre Completo",
-      "email": "Correo Electrónico",
       "password": "Contraseña",
       "current_password": "Contraseña Actual",
       "new_password": "Nueva Contraseña",
@@ -100,7 +98,6 @@
       "skill_description": "Inserta al menos {min} habilidades"
     },
     "placeholders": {
-      "enter_full_name": "Ingresa tu nombre completo",
       "enter_email": "Ingresa tu correo",
       "enter_password": "Ingresa tu contraseña",
       "enter_current_password": "Ingresa tu contraseña actual",

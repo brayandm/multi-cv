@@ -73,7 +73,6 @@
       "password_change_description": "Aapka password safalta se badal gaya."
     },
     "form": {
-      "full_name": "Pura Naam",
       "email": "Email",
       "password": "Password",
       "current_password": "Maujooda password",
@@ -100,7 +99,6 @@
       "skill_description": "Kam se kam {min} skills daaliye"
     },
     "placeholders": {
-      "enter_full_name": "Apna pura naam daaliye",
       "enter_email": "Apni email daaliye",
       "enter_password": "Apna password daaliye",
       "enter_current_password": "Apna maujooda password daaliye",

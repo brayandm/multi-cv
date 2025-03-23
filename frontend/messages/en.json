@@ -73,7 +73,8 @@
       "password_change_description": "Your password has been changed successfully."
     },
     "form": {
-      "full_name": "Full Name",
+      "first_name": "First name",
+      "last_name": "Last name",
       "email": "Email",
       "password": "Password",
       "current_password": "Current password",
@@ -100,7 +101,8 @@
       "skill_description": "Insert at least {min} skills"
     },
     "placeholders": {
-      "enter_full_name": "Enter your full name",
+      "enter_first_name": "Enter your first name",
+      "enter_last_name": "Enter your last name",
       "enter_email": "Enter your email",
       "enter_password": "Enter your password",
       "enter_current_password": "Enter your current password",

@@ -73,7 +73,6 @@
       "password_change_description": "Ваш пароль был успешно изменен."
     },
     "form": {
-      "full_name": "Полное имя",
       "email": "Email",
       "password": "Пароль",
       "current_password": "Текущий пароль",
@@ -100,7 +99,6 @@
       "skill_description": "Введите как минимум {min} навыков"
     },
     "placeholders": {
-      "enter_full_name": "Введите ваше полное имя",
       "enter_email": "Введите ваш email",
       "enter_password": "Введите ваш пароль",
       "enter_current_password": "Введите ваш текущий пароль",

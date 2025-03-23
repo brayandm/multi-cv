@@ -13,7 +13,8 @@ class UserService
     public function createUser($data)
     {
         $user = User::create([
-            'name' => $data->name,
+            'first_name' => $data->first_name,
+            'last_name' => $data->last_name,
             'email' => $data->email,
             'password' => Hash::make($data->password),
             'accepted_terms_at' => Carbon::now(),
@@ -62,7 +63,8 @@ class UserService
     public function updateProfile($user, $data)
     {
         $user->update([
-            'name' => $data->name,
+            'first_name' => $data->first_name,
+            'last_name' => $data->last_name,
             'email' => $data->email,
         ]);
 
