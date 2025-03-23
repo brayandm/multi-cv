@@ -13,6 +13,7 @@ export type Sender = "bot" | "person";
 export interface ChatMessage {
   sender: Sender;
   text: string;
+  isLoading?: boolean;
 }
 
 export interface ChatSelector {
