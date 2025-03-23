@@ -6,6 +6,7 @@ import React, {
   useContext,
   useState,
   useMemo,
+  useEffect,
   ReactNode,
 } from "react";
 
@@ -37,6 +38,8 @@ interface ChatContextType {
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
 
+const SESSION_KEY = "chatMap";
+
 const getKey = ({ type, id }: ChatSelector): string =>
   id ? `${type}:${id}` : type;
 
@@ -54,6 +57,22 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
     if (!currentKey) return null;
     return chatMap[currentKey] || { messages: [] };
   }, [chatMap, currentKey]);
+
+  useEffect(() => {
+    const stored = sessionStorage.getItem(SESSION_KEY);
+    if (stored) {
+      try {
+        const parsed: ChatMap = JSON.parse(stored);
+        setChatMap(parsed);
+      } catch {
+        console.warn("Invalid chatMap in sessionStorage");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(chatMap));
+  }, [chatMap]);
 
   const setChat = (selector: ChatSelector | null) => {
     if (!selector) {
