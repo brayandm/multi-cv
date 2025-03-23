@@ -30,7 +30,9 @@
       "unfinished_element": "Adhoora {element}",
       "unfinished_element_description": "Aapne abhi tak is {element} ko pura nahi kiya hai.",
       "chat": "Chat AI",
-      "chat_description": "Madad ke liye hamare AI se chat karein"
+      "chat_description": "Madad ke liye hamare AI se chat karein",
+      "ai_assistant": "AI Assistant",
+      "type_message": "Message likhein..."
     },
     "buttons": {
       "continue": "Aage badhein",

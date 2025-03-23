@@ -136,7 +136,9 @@ export default function ChatComponent() {
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
                   <BotIcon className="w-6 h-6 text-primary-400" />
                 </div>
-                <h2 className="font-semibold text-white">AI Assistant</h2>
+                <h2 className="font-semibold text-white">
+                  {t("common.texts.ai_assistant")}
+                </h2>
               </div>
               <div
                 className={`h-full overflow-y-scroll overflow-x-hidden p-4 space-y-3`}
@@ -179,7 +181,7 @@ export default function ChatComponent() {
                   onChange={(e) => setInput(e.target.value)}
                   minRows={1}
                   maxRows={8}
-                  placeholder="Type a message..."
+                  placeholder={t("common.texts.type_message")}
                   className="flex-1"
                   classNames={{
                     inputWrapper: "rounded-3xl shadow-lg",

@@ -30,7 +30,9 @@
       "unfinished_element": "Незавершенный {element}",
       "unfinished_element_description": "Вы еще не завершили этот {element}.",
       "chat": "Чат с ИИ",
-      "chat_description": "Поговорите с нашим ИИ, чтобы получить помощь"
+      "chat_description": "Поговорите с нашим ИИ, чтобы получить помощь",
+      "ai_assistant": "ИИ-помощник",
+      "type_message": "Введите сообщение..."
     },
     "buttons": {
       "continue": "Продолжить",

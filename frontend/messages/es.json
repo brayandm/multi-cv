@@ -30,7 +30,9 @@
       "unfinished_element": "Elemento no terminado",
       "unfinished_element_description": "Aún no has terminado este {element}.",
       "chat": "Chat AI",
-      "chat_description": "Chatea con nuestra IA para obtener ayuda"
+      "chat_description": "Chatea con nuestra IA para obtener ayuda",
+      "ai_assistant": "Asistente de IA",
+      "type_message": "Escribe un mensaje..."
     },
     "buttons": {
       "continue": "Continuar",
