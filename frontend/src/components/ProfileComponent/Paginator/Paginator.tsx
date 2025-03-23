@@ -98,10 +98,14 @@ const Paginator: React.FC<IPaginatorProps> = ({
     if (currentPage !== 1) {
       scrollToPage(currentPage - 1);
       setTotalPages(totalPages - 1);
-      onRemovePage(currentPage - 1);
+      setTimeout(() => {
+        onRemovePage(currentPage - 1);
+      }, 1000);
     } else {
       setTotalPages(totalPages - 1);
-      onRemovePage(currentPage - 1);
+      setTimeout(() => {
+        onRemovePage(currentPage - 1);
+      }, 1000);
     }
   }
 
