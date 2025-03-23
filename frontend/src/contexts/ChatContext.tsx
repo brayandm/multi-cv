@@ -39,15 +39,22 @@ const getKey = ({ type, id }: ChatSelector): string =>
 
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [chatMap, setChatMap] = useState<ChatMap>({});
-  const [currentKey, setCurrentKey] = useState<string>("");
+  const [currentType, setCurrentType] = useState<string>("");
+  const [currentId, setCurrentId] = useState<string | undefined>(undefined);
+
+  const currentKey = useMemo(
+    () => getKey({ type: currentType, id: currentId }),
+    [currentType, currentId]
+  );
 
   const chat = useMemo<ChatData>(() => {
     return chatMap[currentKey] || { messages: [] };
   }, [chatMap, currentKey]);
 
-  const setChat = (selector: ChatSelector) => {
-    const key = getKey(selector);
-    setCurrentKey(key);
+  const setChat = ({ type, id }: ChatSelector) => {
+    setCurrentType(type);
+    setCurrentId(id);
+    const key = getKey({ type, id });
     setChatMap((prev) => ({
       ...prev,
       [key]: prev[key] || { messages: [] },
@@ -55,10 +62,11 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addMessage = (msg: ChatMessage) => {
+    const key = getKey({ type: currentType, id: currentId });
     setChatMap((prev) => ({
       ...prev,
-      [currentKey]: {
-        messages: [...(prev[currentKey]?.messages || []), msg],
+      [key]: {
+        messages: [...(prev[key]?.messages || []), msg],
       },
     }));
   };
