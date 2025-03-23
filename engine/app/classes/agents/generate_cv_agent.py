@@ -73,7 +73,8 @@ class GenerateCvAgent(Agent):
 
         **Format Guidelines:**
         - Location of the person should be in the format "City, Country",
-        you can get the location from the location field in basic_info.
+        you can get the location from the location field in basic_info. If
+        City or Country is missing just use the available one.
         - The Experiences should be in reverse chronological order.
         - The Education should be in reverse chronological order.
         - The Dates of the Experiences should be "month_name year" format.
