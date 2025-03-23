@@ -1,6 +1,7 @@
 import json
 import os
 from concurrent.futures import ThreadPoolExecutor, as_completed
+
 from dotenv import load_dotenv
 from langchain.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
 from langchain.schema import SystemMessage
@@ -53,7 +54,7 @@ chain = chat_prompt | llm
 input_json_str = json.dumps(data, ensure_ascii=False, indent=2)
 
 
-def translate_and_save(target):
+def translate_and_save(target: dict[str, str]) -> str:
     result = chain.invoke(
         {"json_data": input_json_str, "target_language": target["language"]}
     )
