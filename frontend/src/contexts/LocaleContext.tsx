@@ -18,6 +18,19 @@ interface LocaleContextType {
   syncLocale: (newLocale: string) => void;
 }
 
+export const languages = [
+  { code: "en", label: "English" },
+  { code: "es", label: "Spanish" },
+  { code: "hi", label: "Hindi" },
+  { code: "ru", label: "Russian" },
+];
+
+export const mapLocaleToLanguage = (locale: string) => {
+  const language = languages.find((lang) => lang.code === locale)?.label;
+
+  return language || "English";
+};
+
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {

@@ -10,14 +10,7 @@ import {
 } from "@heroui/dropdown";
 import { Link } from "@heroui/react";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
-import { useLocale } from "@/contexts/LocaleContext";
-
-const languages = [
-  { code: "en", label: "English" },
-  { code: "es", label: "Spanish" },
-  { code: "hi", label: "Hindi" },
-  { code: "ru", label: "Russian" },
-];
+import { languages, useLocale } from "@/contexts/LocaleContext";
 
 export default function LanguageToggle() {
   const { locale, syncLocale } = useLocale();

@@ -9,6 +9,7 @@ from .profile.experience import Experience, ExperienceId
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .webhook_payload import WebhookPayload
+from .language import Language
 
 __all__ = [
     "Message",
@@ -25,4 +26,5 @@ __all__ = [
     "WebhookPayload",
     "Chat",
     "ChatMessage",
+    "Language",
 ]

@@ -12,6 +12,7 @@ from app.classes.models import (
     Message,
     Profile,
     WebhookPayload,
+    Language,
 )
 from app.classes.pipelines import (
     BasicPipeline,
@@ -152,6 +153,7 @@ async def generate_cv_inline(
 @consume_action("chat")
 async def chat_experience(
     experience_id: ExperienceId,
+    language: Language,
     chat: Chat,
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Dict[str, str]:
@@ -160,7 +162,9 @@ async def chat_experience(
         get_user_id(), experience_id.id
     )
 
-    chat_message, notes = ChatExperiencePipeline().run(chat, experience)
+    chat_message, notes = ChatExperiencePipeline().run(
+        chat, experience, language
+    )
 
     await profile_service.update_notes_experience(
         get_user_id(), experience_id.id, notes

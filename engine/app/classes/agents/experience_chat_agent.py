@@ -1,12 +1,14 @@
 from app.classes.base import Agent
-from app.classes.models import Chat, ChatMessage, Experience
+from app.classes.models import Chat, ChatMessage, Experience, Language
 
 
 class ExperienceChatAgent(Agent):
 
-    def run(self, chat: Chat, experience: Experience) -> ChatMessage:
+    def run(
+        self, chat: Chat, experience: Experience, language: Language
+    ) -> ChatMessage:
 
-        system_prompt = """You are a friendly and polite assistant helping
+        system_prompt = f"""You are a friendly and polite assistant helping
 a user reflect on a past job. Start the conversation with a short and
 warm greeting. You already know the basic details (role, company, dates),
 so you will ask a maximum of three smart, focused questions to learn more
@@ -24,6 +26,8 @@ or impact, you can ask about those.
 
 After the third response, thank the user sincerely and end the conversation
 with a warm closing message.
+
+Make sure to communicate in the user's preferred language: {language.name}.
 """
 
         chat_message = self.chat_response(
