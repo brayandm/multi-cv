@@ -57,6 +57,19 @@ export default function ChatComponent() {
     }
   }, [chat, generateBotMessage, isChatOpen]);
 
+  const [startAnimation, setStartAnimation] = useState(false);
+
+  useEffect(() => {
+    if (chat) {
+      setStartAnimation(true);
+      setTimeout(() => {
+        setStartAnimation(false);
+      }, 1000);
+    }
+  }, [chat]);
+
+  console.log("chat", chat, startAnimation);
+
   return (
     <>
       {chat && (
@@ -154,7 +167,7 @@ export default function ChatComponent() {
           <button
             className={`fixed bottom-6 right-6 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-40 transition-opacity duration-300 ${
               isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}
+            } ${startAnimation ? "animate-grow-shrink" : ""}`}
             onClick={() => setIsChatOpen(true)}
           >
             <ChatBubbleLeftEllipsisIcon className="w-6 h-6" />
