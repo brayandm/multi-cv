@@ -6,15 +6,13 @@ from fastapi.responses import Response
 
 from app.classes.models import (
     Chat,
-    ChatMessage,
     Cv,
     CvTemplate,
-    Message,
     ExperienceId,
+    Message,
     Profile,
     WebhookPayload,
 )
-
 from app.classes.pipelines import (
     BasicPipeline,
     ChatExperiencePipeline,
@@ -144,13 +142,19 @@ async def chat_experience(
     experience_id: ExperienceId,
     chat: Chat,
     profile_service: ProfileService = Depends(get_profile_service),
-) -> ChatMessage:
+) -> str:
 
     experience = await profile_service.get_experience(
         get_user_id(), experience_id.id
     )
 
-    return ChatExperiencePipeline().run(chat, experience)
+    chat_message, notes = ChatExperiencePipeline().run(chat, experience)
+
+    await profile_service.update_notes_experience(
+        get_user_id(), experience_id.id, notes
+    )
+
+    return chat_message
 
 
 @router.post("/render/cv/inline")

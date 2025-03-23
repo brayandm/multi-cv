@@ -3,7 +3,7 @@ from typing import Any, Optional
 from fastapi import Depends
 from motor.core import AgnosticDatabase
 
-from app.classes.models import Profile, Experience
+from app.classes.models import Experience, Profile
 from app.database.mongodb import get_database
 from app.utils.preserve_notes import preserve_notes, remove_notes
 
