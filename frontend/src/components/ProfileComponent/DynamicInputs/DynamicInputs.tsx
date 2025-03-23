@@ -107,6 +107,7 @@ const DynamicInputs = <T,>({
               isRequired={input.isRequired}
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
+              isClearable={false}
               validate={
                 input.validate as
                   | ((
