@@ -86,6 +86,7 @@ export default function SelectDate({
       const monthIndex = months.indexOf(draftMonth) + 1;
       const formatted = `${draftYear}-${String(monthIndex).padStart(2, "0")}`;
       onValueChange?.(formatted);
+      setFirstInteraction(false);
     }
 
     setIsOpen(false);
@@ -98,6 +99,7 @@ export default function SelectDate({
     setDraftMonth(null);
     setDraftYear(null);
     onValueChange?.("");
+    setFirstInteraction(false);
     setIsOpen(false);
   };
 
@@ -130,7 +132,9 @@ export default function SelectDate({
   const adjustedLeft =
     inputRect && inputRect.left + POPUP_WIDTH > window.innerWidth
       ? Math.max(0, window.innerWidth - POPUP_WIDTH - 16)
-      : (inputRect?.left ?? 0);
+      : inputRect?.left ?? 0;
+
+  const [firstInteraction, setFirstInteraction] = useState(true);
 
   return (
     <>
@@ -147,6 +151,12 @@ export default function SelectDate({
               onClick={handleToggle}
             />
           }
+          isInvalid={
+            firstInteraction
+              ? undefined
+              : !selectedMonth || selectedYear === null
+          }
+          errorMessage="Please select a date"
           validate={() =>
             selectedMonth && selectedYear !== null
               ? true
