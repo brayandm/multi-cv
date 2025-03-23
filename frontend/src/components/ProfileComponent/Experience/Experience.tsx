@@ -7,6 +7,7 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 import { MAX_EXPERIENCE_ELEMENTS } from "@/lib/consts";
+import { useChat } from "@/contexts/ChatContext";
 
 interface IExperienceProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -18,6 +19,8 @@ const Experience = ({ formRef }: IExperienceProps) => {
     updateExperience,
     syncProfileOnFirstLogin,
   } = useProfile();
+
+  const { setChat } = useChat();
 
   const [sync, setSync] = React.useState(false);
 
@@ -73,12 +76,20 @@ const Experience = ({ formRef }: IExperienceProps) => {
     updateExperience(updatedExperiences);
   }
 
+  const onPageChange = React.useCallback(
+    (page: number) => {
+      setChat({ type: "experience", id: experienceList[page - 1].id });
+    },
+    [setChat, experienceList]
+  );
+
   return (
     <Paginator
       total={experienceList.length}
       onNewPage={addNewExperience}
       onRemovePage={onRemovePage}
       maxElements={MAX_EXPERIENCE_ELEMENTS}
+      onPageChange={onPageChange}
       formRef={formRef}
       elementName={t("pages.profile.sections.experience.element")}
     >
