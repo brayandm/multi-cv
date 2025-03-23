@@ -72,7 +72,8 @@ class GoogleAuthController extends Controller
         $user = User::firstOrCreate(
             ['email' => $userInfo['email']],
             [
-                'name' => $userInfo['name'],
+                'first_name' => $userInfo['given_name'] ?? '-----',
+                'last_name' => $userInfo['family_name'] ?? '-----',
                 'email_verified_at' => now(),
             ]
         );
