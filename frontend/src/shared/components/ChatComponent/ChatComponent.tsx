@@ -68,17 +68,21 @@ export default function ChatComponent() {
   const [showPopover, setShowPopover] = useState(false);
 
   useEffect(() => {
+    let timerId: NodeJS.Timeout;
     if (chat) {
       setStartAnimation(true);
       setShowPopover(true);
       setTimeout(() => {
         setStartAnimation(false);
       }, 1000);
-      setTimeout(() => {
+      timerId = setTimeout(() => {
         setStartAnimation(false);
         setShowPopover(false);
       }, 4000);
     }
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [chat]);
 
   const t = useTranslations();
@@ -194,6 +198,10 @@ export default function ChatComponent() {
             className="z-40"
             showArrow
             triggerScaleOnOpen={false}
+            shouldCloseOnInteractOutside={() => {
+              setShowPopover(false);
+              return true;
+            }}
           >
             <PopoverTrigger>
               <button
