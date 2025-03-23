@@ -4,7 +4,8 @@ export interface UserStatusResponse {
   notice_new_terms_version?: boolean;
   email_verified?: boolean;
   email?: string;
-  name?: string;
+  first_name?: string;
+  last_name?: string;
   is_first_login?: boolean;
 }
 
@@ -55,7 +56,8 @@ export interface GoogleLoginResponse {
 }
 export interface UserResponse {
   id: number;
-  name: string;
+  first_name: string;
+  last_name: string;
   email: string;
   email_verified: boolean;
   accepted_terms_at: string;
