@@ -30,7 +30,7 @@ class GenerateCvAgent(Agent):
               "descriptions": ["string"]
             }
           ],
-          "education": [
+          "educations": [
             {
               "institution": "string",
               "career": "string",
