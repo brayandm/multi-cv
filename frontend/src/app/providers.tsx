@@ -6,6 +6,7 @@ import { LocaleProvider } from "@/contexts/LocaleContext";
 import { ToastProvider } from "@/providers/ToastProvider";
 import { UserStatusProvider } from "@/contexts/UserStatusContext";
 import { InterceptorProvider } from "@/contexts/InterceptorContext";
+import { ChatProvider } from "@/contexts/ChatContext";
 
 export default async function Providers({
   children,
@@ -20,9 +21,11 @@ export default async function Providers({
       <NextIntlClientProvider messages={messages}>
         <LocaleProvider>
           <InterceptorProvider>
-            <UserStatusProvider>
-              <ProfileProvider>{children}</ProfileProvider>
-            </UserStatusProvider>
+            <ChatProvider>
+              <UserStatusProvider>
+                <ProfileProvider>{children}</ProfileProvider>
+              </UserStatusProvider>
+            </ChatProvider>
           </InterceptorProvider>
         </LocaleProvider>
       </NextIntlClientProvider>
