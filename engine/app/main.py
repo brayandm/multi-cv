@@ -9,10 +9,10 @@ from app.classes.models import (
     Cv,
     CvTemplate,
     ExperienceId,
+    Language,
     Message,
     Profile,
     WebhookPayload,
-    Language,
 )
 from app.classes.pipelines import (
     BasicPipeline,
