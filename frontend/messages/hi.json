@@ -9,134 +9,176 @@
       "profile": "Profile"
     },
     "auth": {
-      "login": "Login Karo",
-      "register": "Register Karo",
-      "logout": "Logout Karo",
-      "google_sign_in": "Google Se Sign In Karo",
-      "google_sign_up": "Google Se Sign Up Karo",
-      "use_other_method": "Dusra Tarika Chuno",
-      "forgot_password": "Password Bhool Gaye?"
+      "login": "Login",
+      "register": "Register",
+      "logout": "Log out",
+      "google_sign_in": "Google se sign in karein",
+      "google_sign_up": "Google se sign up karein",
+      "use_other_method": "Dusra tarika istemal karein",
+      "forgot_password": "Kya aapne password bhool gaye?"
+    },
+    "texts": {
+      "delete": "{element} ko hata rahe hain",
+      "delete_confirmation": "Kya aap sach mein is {element} ko hataana chahte hain?",
+      "skills": "skills",
+      "draft_changes": "Draft badlaav",
+      "draft_changes_description": "Aapke kuch badlaav bache hain. Kya aap unhe bachana chahte hain?",
+      "havent_finished": "Aapne abhi tak is {element} ko pura nahi kiya hai.",
+      "discard_changes": "Kya aap editing jaari rakhna chahte hain ya badlaav ko hata dena chahte hain?",
+      "saved": "Bacha liya",
+      "saved_description": "Aapke badlaav bacha liye gaye hain.",
+      "unfinished_element": "Adhoora {element}",
+      "unfinished_element_description": "Aapne abhi tak is {element} ko pura nahi kiya hai."
     },
     "buttons": {
-      "continue": "Aage Badho",
-      "add": "Jodo",
-      "resend_email": "Dobara Bhejo",
-      "send_email": "Email Bhejo",
-      "change_password": "Password Badlo",
-      "resend_in": "{timeleft}s me bhejo",
-      "try_again": "Phir Karo",
-      "too_many_requests": "Zyada requests, 24 ghante baad koshish karo",
-      "next": "Agla"
+      "continue": "Aage badhein",
+      "add": "Jodna",
+      "resend_email": "Email dobara bhejein",
+      "send_email": "Email bhejein",
+      "change_password": "Password badlo",
+      "resend_in": "{timeleft}s mein dobara bhejein",
+      "try_again": "Dobara koshish karein",
+      "too_many_requests": "Bahut saari requests, 24 ghante baad koshish karein",
+      "next": "Agla",
+      "previous": "Pichla",
+      "go_home": "Ghar jao",
+      "add_element": "{element} jodna",
+      "delete": "Hataana",
+      "cancel": "Cancel",
+      "save": "Bachana",
+      "discard": "Hataana",
+      "keep_editing": "Editing jaari rakhein"
+    },
+    "errors": {
+      "login": "Login mein asafalta",
+      "login_description": "Email ya password galat hai.",
+      "register": "Registration mein asafalta",
+      "register_description": "Email pehle se istemal ho rahi hai.",
+      "passwords_not_match": "Passwords milte nahi hain",
+      "password_change": "Password badalne mein asafalta",
+      "old_password_incorrect": "Maujooda password galat hai",
+      "server": "Server mein galti",
+      "under_age": "Aapki umar 18 saal se zyada honi chahiye",
+      "accept_terms": "Aapko shartein aur niyam manzoor karne honge",
+      "length": "{field} ki lambai {current_length}/{length} characters honi chahiye",
+      "skill_length": "Aapko kam se kam {min} skill daalni chahiye",
+      "country_code_required": "Desh ka code chuniye",
+      "max_elements": "{element} ka adhiktam sankhya poora ho gaya",
+      "max_elements_description": "Aap sirf {max} {element} jod sakte hain"
+    },
+    "success": {
+      "password_change": "Password badal gaya",
+      "password_change_description": "Aapka password safalta se badal gaya."
     },
     "form": {
       "full_name": "Pura Naam",
       "email": "Email",
       "password": "Password",
-      "current_password": "Abhi ka Password",
-      "new_password": "Naya Password",
-      "repeat_password": "Dobara Password",
-      "your_location": "Aapki Jagah",
-      "phone": "Phone Number",
-      "about": "Aapke Bare Me",
+      "current_password": "Maujooda password",
+      "new_password": "Naya password",
+      "repeat_password": "Password dohraayein",
+      "your_location": "Aapka sthal",
+      "phone": "Phone number",
+      "about": "Aapke baare mein",
       "company_name": "Company",
-      "institution": "Sanstha",
+      "institution": "Sansthan",
       "career": "Career",
       "skill": "Skill",
       "role": "Bhumika",
-      "phone_number": "Phone Number",
-      "phone_country_code": "Country Code",
-      "description": "Company Varnan",
-      "location": "Jagah",
-      "start_date": "Shuru Tarikh",
-      "end_date": "Antim Tarikh",
-      "project_name": "Project Naam",
-      "project_description": "Project Varnan",
-      "link": "Project Link",
-      "professional_links_select": "Link Chuno"
+      "phone_number": "Phone number",
+      "phone_country_code": "Desh ka code",
+      "company_description": "Naukri ka varnan",
+      "location": "Sthal",
+      "start_date": "Shuru hone ki tareekh",
+      "end_date": "Ant hone ki tareekh",
+      "project_name": "Project ka naam",
+      "project_description": "Project ka varnan",
+      "link": "Link",
+      "professional_links_select": "Link chuniye",
+      "skill_description": "Kam se kam {min} skills daaliye"
     },
     "placeholders": {
-      "enter_full_name": "Pura naam likho",
-      "enter_email": "Email likho",
-      "enter_password": "Password likho",
-      "enter_current_password": "Abhi ka password likho",
-      "enter_new_password": "Naya password likho",
-      "enter_password_again": "Dobara password likho",
-      "enter_skill": "Naya skill likho",
-      "enter_phone": "Phone number likho",
-      "enter_about": "Main ... hoon",
-      "enter_company_name": "Company naam likho",
-      "enter_institution_name": "Sanstha naam likho",
-      "enter_career": "Aapka career",
-      "enter_role": "Company me bhumika",
-      "enter_job_description": "Aapke kaam ka varnan",
-      "enter_location": "Shehar / Desh ya \"Remote\"",
-      "enter_institution_location": "Shehar / Desh ya \"Remote\"",
-      "enter_project_name": "Project naam likho",
-      "enter_project_description": "Chhota varnan likho",
-      "enter_project_link": "Project link likho",
-      "enter_institution_link": "Sanstha link likho",
-      "enter_company_link": "Company link likho",
-      "professional_links_select": "Select karne ke liye click karo",
-      "enter_your_link": "Aapka {field} link likho"
+      "enter_full_name": "Apna pura naam daaliye",
+      "enter_email": "Apni email daaliye",
+      "enter_password": "Apna password daaliye",
+      "enter_current_password": "Apna maujooda password daaliye",
+      "enter_new_password": "Apna naya password daaliye",
+      "enter_password_again": "Apna password dobara daaliye",
+      "enter_skill": "Nayi skill daaliye",
+      "enter_phone": "Apna phone number daaliye",
+      "enter_about": "Main ek ... hoon",
+      "enter_company_name": "Company ka naam",
+      "enter_institution_name": "Sansthan ka naam",
+      "enter_career": "Aapne jo degree padhi hai",
+      "enter_role": "Aapki company mein bhumika",
+      "enter_job_description": "Aapke kartavya aur zimmedariyon ka varnan",
+      "enter_location": "\"Sheher, Desh\" ya \"Remote\"",
+      "enter_project_name": "Project ka naam daaliye",
+      "enter_project_description": "Chhota varnan daaliye",
+      "enter_project_link": "Apne project ka link",
+      "enter_institution_link": "Sansthan ka link",
+      "enter_company_link": "Company ka link",
+      "professional_links_select": "Chuniye",
+      "enter_your_link": "Apna {field} link daaliye"
     },
     "legal": {
-      "terms_conditions": "Niyam & Shartein",
+      "terms_conditions": "Shartein & Niyam",
       "privacy_policy": "Gopniyata Niti",
-      "confirm_age": "Main 18+ saal ka hoon",
-      "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> sweekar karta hoon"
+      "confirm_age": "Main yah confirm karta hoon ki meri umar 18 saal se zyada hai",
+      "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko manzoor karta hoon"
     }
   },
   "components": {
     "cv": {
-      "download": "Download Karo",
-      "to_expire": "<days></days> me khatam hoga",
+      "download": "Download",
+      "to_expire": "<days></days> khatam hone ko hai",
       "days": "{count, plural, =1 {1 din} other {# din}}"
     }
   },
   "pages": {
     "email_verification": {
-      "title": "Email Verification",
+      "title": "Email Pushti",
       "already_verified": {
-        "title": "Pehle Se Verified",
-        "message": "Aapka email verified hai."
+        "title": "Email Pushti Pehle Se Pusht",
+        "message": "Aapka email pehle se hi pusht ho chuka hai."
       },
       "success": {
-        "title": "Verification Safal",
-        "message": "Aapka email verified ho gaya hai."
+        "title": "Email Pushti Safal",
+        "message": "Aapka email pusht ho gaya hai."
       },
       "expired": {
-        "title": "Verification Samapt",
-        "message": "Aapka verification link khatam ho gaya hai."
+        "title": "Email Pushti Khatam",
+        "message": "Aapka email pushti link khatam ho gaya hai."
       },
-      "instructions": "Humne aapko ek verification link email kiya hai."
+      "instructions": "Humne aapko ek email bheji hai jisme pushti link hai."
     },
     "password_recovery": {
-      "title": "Password Wapas Paao",
+      "title": "Password Recovery",
       "success": {
-        "title": "Password Badal Gaya",
-        "message": "Aapka password change ho gaya hai."
+        "title": "Password Recovery Safal",
+        "message": "Aapka password badal gaya hai."
       },
       "fail": {
-        "title": "Invalid Ya Samapt Link",
-        "message": "Aapka password recovery link valid nahi hai ya samapt ho gaya hai."
+        "title": "Password Recovery Galat ya Khatam",
+        "message": "Aapka password recovery link galat ya khatam ho gaya hai."
       },
-      "instructions": "Hum aapko password reset link bhejenge."
+      "instructions": "Hum aapko ek email bhejenge jisme aapka password reset karne ka link hoga."
     },
     "welcome": {
-      "title": "Swagat Hai <appName></appName>",
-      "description": "Naye job offers ke liye unique CVs banao."
+      "title": "<appName></appName> mein aapka swagat hai",
+      "description": "Anokhe naukri ke liye anokhe CV banayein."
     },
     "home": {
-      "your_resumes": "Aapke CVs"
+      "your_resumes": "Aapke Resumes"
     },
     "login": {
-      "description": "Apne details dalo"
+      "description": "Kripya apne credentials daaliye"
     },
     "register": {
-      "description": "Apne bare me batao"
+      "description": "Apne aap ko parichit karayein"
     },
     "profile": {
-      "subtitle": "Aapka CV sahi banane ke liye yeh jaroori hai.",
+      "subtitle": "Yeh jankari aapka CV sahi tarike se banane ke liye zaroori hai.",
       "sections": {
         "basic_info": {
           "title": "Vyaktigat"
@@ -149,26 +191,30 @@
         },
         "projects": {
           "title": "Projects",
-          "add_project": "Naya Project Jodo",
+          "element": "Project",
           "is_present": "Main is project par kaam kar raha hoon"
         },
         "experience": {
           "title": "Anubhav",
-          "add_experience": "Naya Anubhav Jodo",
+          "element": "Anubhav",
           "is_present": "Main yahan kaam kar raha hoon"
         },
         "education": {
           "title": "Shiksha",
-          "add_education": "Naya Shiksha Jodo",
+          "element": "Shiksha",
           "is_present": "Main yahan padh raha hoon"
         }
+      },
+      "success": {
+        "title": "Registration Pura",
+        "message": "Aapka account tayar hai. Aap ab platform ke sabhi features ka istemal kar sakte hain."
       }
     },
     "terms_and_conditions": {
-      "title": "Niyam aur Gopniyata Niti",
-      "description_first_time": "Kripya padhkar sweekar karein.",
-      "updating_notice": "Hum naye <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> la rahe hain. Yeh ek mahine me lagu honge. Kripya inhe padh lein.",
-      "accept_terms": "\"Continue\" dabakar naye niyam sweekar karein."
+      "title": "Gopniyata Niti aur Shartein & Niyam",
+      "description_first_time": "Kripya padhein aur manzoor karein.",
+      "updating_notice": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. Naye niyam ek mahine mein lagu honge aur usse pehle review ke liye uplabdh honge. Kripya aane wale badlaav ko dekhne ke liye kuch samay nikaalein.",
+      "accept_terms": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. \"Aage badhein\" par click karke, aap naye niyam ko manzoor karte hain."
     }
   }
 }
