@@ -9,9 +9,9 @@
       "profile": "Perfil"
     },
     "auth": {
-      "login": "Iniciar Sesión",
+      "login": "Iniciar sesión",
       "register": "Registrarse",
-      "logout": "Cerrar Sesión",
+      "logout": "Cerrar sesión",
       "google_sign_in": "Iniciar sesión con Google",
       "google_sign_up": "Registrarse con Google",
       "use_other_method": "Usar otro método",
@@ -30,7 +30,7 @@
       "unfinished_element": "Elemento no terminado",
       "unfinished_element_description": "Aún no has terminado este {element}.",
       "chat": "Chat AI",
-      "chat_description": "Chatea con nuestro AI para obtener ayuda"
+      "chat_description": "Chatea con nuestra IA para obtener ayuda"
     },
     "buttons": {
       "continue": "Continuar",
@@ -73,31 +73,36 @@
       "password_change_description": "Tu contraseña ha sido cambiada con éxito."
     },
     "form": {
+      "first_name": "Nombre",
+      "last_name": "Apellido",
+      "email": "Correo electrónico",
       "password": "Contraseña",
-      "current_password": "Contraseña Actual",
-      "new_password": "Nueva Contraseña",
-      "repeat_password": "Repetir Contraseña",
+      "current_password": "Contraseña actual",
+      "new_password": "Nueva contraseña",
+      "repeat_password": "Repetir contraseña",
       "your_location": "Tu ubicación",
-      "phone": "Número de Teléfono",
+      "phone": "Número de teléfono",
       "about": "Sobre ti",
       "company_name": "Empresa",
       "institution": "Institución",
       "career": "Carrera",
       "skill": "Habilidad",
       "role": "Rol",
-      "phone_number": "Número de Teléfono",
-      "phone_country_code": "Código de País",
-      "company_description": "Descripción del Trabajo",
+      "phone_number": "Número de teléfono",
+      "phone_country_code": "Código de país",
+      "company_description": "Descripción del trabajo",
       "location": "Ubicación",
-      "start_date": "Fecha de Inicio",
-      "end_date": "Fecha de Fin",
-      "project_name": "Nombre del Proyecto",
-      "project_description": "Descripción del Proyecto",
+      "start_date": "Fecha de inicio",
+      "end_date": "Fecha de finalización",
+      "project_name": "Nombre del proyecto",
+      "project_description": "Descripción del proyecto",
       "link": "Enlace",
       "professional_links_select": "Selecciona un enlace",
       "skill_description": "Inserta al menos {min} habilidades"
     },
     "placeholders": {
+      "enter_first_name": "Ingresa tu nombre",
+      "enter_last_name": "Ingresa tu apellido",
       "enter_email": "Ingresa tu correo",
       "enter_password": "Ingresa tu contraseña",
       "enter_current_password": "Ingresa tu contraseña actual",
@@ -136,17 +141,17 @@
   },
   "pages": {
     "email_verification": {
-      "title": "Verificación de Correo Electrónico",
+      "title": "Verificación de Correo",
       "already_verified": {
-        "title": "Verificación de Correo Electrónico Ya Verificado",
+        "title": "Verificación de Correo Ya Verificado",
         "message": "Tu correo ya ha sido verificado."
       },
       "success": {
-        "title": "Éxito en la Verificación de Correo Electrónico",
+        "title": "Verificación de Correo Exitosa",
         "message": "Tu correo ha sido verificado."
       },
       "expired": {
-        "title": "Verificación de Correo Electrónico Expirada",
+        "title": "Verificación de Correo Expirada",
         "message": "Tu enlace de verificación de correo ha expirado."
       },
       "instructions": "Te hemos enviado un correo con un enlace de verificación."
@@ -154,7 +159,7 @@
     "password_recovery": {
       "title": "Recuperación de Contraseña",
       "success": {
-        "title": "Éxito en la Recuperación de Contraseña",
+        "title": "Recuperación de Contraseña Exitosa",
         "message": "Tu contraseña ha sido cambiada."
       },
       "fail": {
@@ -212,7 +217,7 @@
     "terms_and_conditions": {
       "title": "Política de Privacidad y Términos y Condiciones",
       "description_first_time": "Por favor lee y acepta.",
-      "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para revisión antes de eso. Por favor, tómate un momento para revisar los próximos cambios.",
+      "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para revisión antes de eso. Por favor, tómate un momento para revisar los cambios que se avecinan.",
       "accept_terms": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Al hacer clic en \"Continuar\", aceptas los términos actualizados."
     }
   }
