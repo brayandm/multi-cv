@@ -83,6 +83,7 @@ const Skills: React.FC = () => {
       errorMessage: t("common.errors.skill_length", {
         min: 5,
       }),
+      isInvalid: skills.list.length >= 5 ? false : undefined,
       validate: () => {
         if (skills.list.length < 5) {
           return "error";
