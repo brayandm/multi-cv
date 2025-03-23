@@ -1,0 +1,1 @@
+python3 app/utils/traductor/traductor.py
