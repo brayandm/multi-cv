@@ -1,13 +1,13 @@
 from abc import ABC
 
-from langchain_openai import ChatOpenAI
-from langchain.schema import HumanMessage, AIMessage, SystemMessage
-from langchain.prompts import ChatPromptTemplate
 from langchain.chains import LLMChain
-from pydantic import SecretStr, BaseModel
+from langchain.prompts import ChatPromptTemplate
+from langchain.schema import AIMessage, HumanMessage, SystemMessage
+from langchain_openai import ChatOpenAI
+from pydantic import BaseModel, SecretStr
 
-from app.config import OPENAI_API_KEY
 from app.classes.models import Chat, ChatMessage
+from app.config import OPENAI_API_KEY
 
 
 class Agent(ABC):
