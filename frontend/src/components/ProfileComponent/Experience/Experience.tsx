@@ -97,7 +97,7 @@ const Experience = ({ formRef }: IExperienceProps) => {
     } else {
       setChat(null);
     }
-  }, [currentPage, experienceList, setChat]);
+  }, [currentPage, experienceList]); // eslint-disable-line
 
   return (
     <Paginator
