@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Textarea } from "@heroui/react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Textarea,
+} from "@heroui/react";
 import { Button } from "@heroui/react";
 import {
   ChatBubbleLeftEllipsisIcon,
@@ -9,6 +14,7 @@ import {
 
 import BotIcon from "@/shared/icons/BotIcon/BotIcon";
 import { useChat } from "@/contexts/ChatContext";
+import { useTranslations } from "next-intl";
 
 export default function ChatComponent() {
   const { chat, addMessage, generateBotMessage } = useChat();
@@ -59,16 +65,32 @@ export default function ChatComponent() {
 
   const [startAnimation, setStartAnimation] = useState(false);
 
+  const [showPopover, setShowPopover] = useState(false);
+
   useEffect(() => {
     if (chat) {
       setStartAnimation(true);
+      setShowPopover(true);
       setTimeout(() => {
         setStartAnimation(false);
       }, 1000);
+      setTimeout(() => {
+        setStartAnimation(false);
+        setShowPopover(false);
+      }, 4000);
     }
   }, [chat]);
 
-  console.log("chat", chat, startAnimation);
+  const t = useTranslations();
+
+  const content = (
+    <PopoverContent>
+      <div className="px-1 py-2">
+        <div className="text-small font-bold">{t("common.texts.chat")}</div>
+        <div className="text-tiny"> {t("common.texts.chat_description")} </div>
+      </div>
+    </PopoverContent>
+  );
 
   return (
     <>
@@ -164,14 +186,26 @@ export default function ChatComponent() {
               </div>
             </div>
           </div>
-          <button
-            className={`fixed bottom-6 right-6 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg z-40 transition-opacity duration-300 ${
-              isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
-            } ${startAnimation ? "animate-grow-shrink" : ""}`}
-            onClick={() => setIsChatOpen(true)}
+          <Popover
+            color="secondary"
+            placement={"top-end"}
+            onChange={() => setIsChatOpen(true)}
+            isOpen={showPopover}
+            className="z-40"
+            showArrow
+            triggerScaleOnOpen={false}
           >
-            <ChatBubbleLeftEllipsisIcon className="w-6 h-6" />
-          </button>
+            <PopoverTrigger>
+              <button
+                className={`fixed bottom-6 right-6 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-opacity duration-300 ${
+                  isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+                } ${startAnimation ? "animate-grow-shrink" : ""}`}
+              >
+                <ChatBubbleLeftEllipsisIcon className="w-6 h-6" />
+              </button>
+            </PopoverTrigger>
+            {content}
+          </Popover>
         </>
       )}
     </>

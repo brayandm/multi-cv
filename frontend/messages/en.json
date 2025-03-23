@@ -28,7 +28,9 @@
       "saved": "Saved",
       "saved_description": "Your changes have been saved.",
       "unfinished_element": "Unfinished {element}",
-      "unfinished_element_description": "You haven't finished yet this {element}."
+      "unfinished_element_description": "You haven't finished yet this {element}.",
+      "chat": "Chat AI",
+      "chat_description": "Chat with our AI to get help"
     },
     "buttons": {
       "continue": "Continue",
