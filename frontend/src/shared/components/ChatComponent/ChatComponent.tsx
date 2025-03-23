@@ -69,7 +69,7 @@ export default function ChatComponent() {
 
   useEffect(() => {
     let timerId: NodeJS.Timeout;
-    if (chat) {
+    if (chat && chat.messages.length == 0) {
       setStartAnimation(true);
       setShowPopover(true);
       setTimeout(() => {
@@ -193,7 +193,6 @@ export default function ChatComponent() {
           <Popover
             color="secondary"
             placement={"top-end"}
-            onChange={() => setIsChatOpen(true)}
             isOpen={showPopover}
             className="z-40"
             showArrow
@@ -208,6 +207,7 @@ export default function ChatComponent() {
                 className={`fixed bottom-6 right-6 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-opacity duration-300 ${
                   isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
                 } ${startAnimation ? "animate-grow-shrink" : ""}`}
+                onClick={() => setIsChatOpen(true)}
               >
                 <ChatBubbleLeftEllipsisIcon className="w-6 h-6" />
               </button>
