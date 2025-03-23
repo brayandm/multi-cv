@@ -69,8 +69,8 @@ export default function ChatComponent() {
 
   useEffect(() => {
     let timerId: NodeJS.Timeout;
-    if (chat && !localStorage.getItem("chat-popover-seen")) {
-      localStorage.setItem("chat-popover-seen", "true");
+    if (chat && !sessionStorage.getItem("chat-popover-seen")) {
+      sessionStorage.setItem("chat-popover-seen", "true");
       setStartAnimation(true);
       setShowPopover(true);
       setTimeout(() => {
