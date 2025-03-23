@@ -74,22 +74,22 @@
 
 % HEADER
 \begin{center}
-  \textbf{\Huge {{ cv.name }}} \\ \vspace{5pt}
+  \textbf{\Huge {{ cv.name }} } \\ \vspace{5pt}
   \small
   {% set separator = " $|$ " %}
-  {% if cv.location %}{{ cv.location }}{% set sep = separator %}{% endif %}
-  {% if cv.phone %}{{ sep | default('') }}{{ cv.phone }}{% set sep = separator %}{% endif %}
-  {% if cv.email %}{{ sep | default('') }}\href{mailto:{{ cv.email }}}{\underline{ {{ cv.email }} }}{% set sep = separator %}{% endif %}
-  {% if cv.linkedin %}{{ sep | default('') }}\href{ {{ cv.linkedin }} }{\underline{ {{ cv.linkedin
+  {% if cv.location %}{{-cv.location-}}{% set sep = separator %}{% endif %}
+  {% if cv.phone %}{{ sep | default('') }}{{-cv.phone-}}{% set sep = separator %}{% endif %}
+  {% if cv.email %}{{ sep | default('') }}\href{mailto:{{-cv.email-}}}{\underline{ {{-cv.email-}} }}{% set sep = separator %}{% endif %}
+  {% if cv.linkedin %}{{ sep | default('') }}\href{ {{-cv.linkedin-}} }{\underline{ {{-cv.linkedin
     .replace('https://', '')
     .replace('http://', '')
     .replace('www.', '')
-    .rstrip('/') }} }}{% set sep = separator %}{% endif %}
-  {% if cv.github %}{{ sep | default('') }}\href{ {{ cv.github }} }{\underline{ {{ cv.github
+    .rstrip('/')-}} }}{% set sep = separator %}{% endif %}
+  {% if cv.github %}{{ sep | default('') }}\href{ {{-cv.github-}} }{\underline{ {{-cv.github
       .replace('https://', '')
       .replace('http://', '')
       .replace('www.', '')
-      .rstrip('/') }} }}{% endif %}
+      .rstrip('/')-}} }}{% endif %}
 \end{center}
 
 % SUMMARY
