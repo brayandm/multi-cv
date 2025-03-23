@@ -5,21 +5,21 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import Response
 
 from app.classes.models import (
+    Chat,
+    ChatMessage,
     Cv,
     CvTemplate,
+    Experience,
     Message,
     Profile,
     WebhookPayload,
-    Experience,
-    Chat,
-    ChatMessage,
 )
 from app.classes.pipelines import (
     BasicPipeline,
+    ChatExperiencePipeline,
     ImproveAboutPipeline,
     RenderCVPipeline,
     SummaryPipeline,
-    ChatExperiencePipeline,
 )
 from app.classes.pipelines.generate_cv_pipeline import GenerateCvPipeline
 from app.database.mongodb import lifespan

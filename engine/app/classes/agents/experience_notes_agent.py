@@ -1,6 +1,5 @@
 from app.classes.base import Agent
-
-from app.classes.models import Chat, Experience, ChatMessage
+from app.classes.models import Chat, ChatMessage, Experience
 
 
 class ExperienceNotesAgent(Agent):

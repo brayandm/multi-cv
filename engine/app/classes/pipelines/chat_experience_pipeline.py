@@ -1,6 +1,6 @@
 from app.classes.agents import ExperienceNotesAgent
 from app.classes.base import Pipeline
-from app.classes.models import Chat, Experience, ChatMessage
+from app.classes.models import Chat, ChatMessage, Experience
 
 
 class ChatExperiencePipeline(Pipeline):

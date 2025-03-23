@@ -1,3 +1,4 @@
+from .chat import Chat, ChatMessage
 from .cv.cv import Cv
 from .cv.cv_experience import CvExperience
 from .cv.cv_template import CvTemplate
@@ -8,7 +9,6 @@ from .profile.experience import Experience
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .webhook_payload import WebhookPayload
-from .chat import Chat, ChatMessage
 
 __all__ = [
     "Message",
