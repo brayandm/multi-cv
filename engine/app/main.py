@@ -35,9 +35,8 @@ from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
 from app.services.profile_service import ProfileService, get_profile_service
-from app.worker.queue_manager import QueueManager
-
 from app.utils.parsers import get_first_name_last_name
+from app.worker.queue_manager import QueueManager
 
 app = FastAPI(lifespan=lifespan)
 

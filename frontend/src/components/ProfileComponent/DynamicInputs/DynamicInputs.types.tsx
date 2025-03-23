@@ -41,6 +41,7 @@ export interface IDynamicInput<T> {
   onBlur?: () => void;
   validate?: (value: string) => ValidationError | true | null | undefined;
   isDisabled?: boolean;
+  customStyles?: string;
 }
 
 export type IDynamicInputArray<T> = Array<

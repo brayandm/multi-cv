@@ -27,28 +27,30 @@ const BasicUserInfo: React.FC = () => {
   }
 
   const inputs: IDynamicInputArray<string> = [
-    {
-      label: t("common.form.first_name"),
-      placeholder: t("common.placeholders.enter_first_name"),
-      type: "text",
-      value: basicInfo.first_name,
-      onValueChange: (value: string) => {
-        onBasicUserInfoChange("first_name", value);
+    [
+      {
+        label: t("common.form.first_name"),
+        placeholder: t("common.placeholders.enter_first_name"),
+        type: "text",
+        value: basicInfo.first_name,
+        onValueChange: (value: string) => {
+          onBasicUserInfoChange("first_name", value);
+        },
+        isRequired: true,
+        onBlur: syncProfileOnFirstLogin,
       },
-      isRequired: true,
-      onBlur: syncProfileOnFirstLogin,
-    },
-    {
-      label: t("common.form.last_name"),
-      placeholder: t("common.placeholders.enter_last_name"),
-      type: "text",
-      value: basicInfo.last_name,
-      onValueChange: (value: string) => {
-        onBasicUserInfoChange("last_name", value);
+      {
+        label: t("common.form.last_name"),
+        placeholder: t("common.placeholders.enter_last_name"),
+        type: "text",
+        value: basicInfo.last_name,
+        onValueChange: (value: string) => {
+          onBasicUserInfoChange("last_name", value);
+        },
+        isRequired: true,
+        onBlur: syncProfileOnFirstLogin,
       },
-      isRequired: true,
-      onBlur: syncProfileOnFirstLogin,
-    },
+    ],
     {
       label: t("common.form.email"),
       placeholder: t("common.placeholders.enter_email"),
