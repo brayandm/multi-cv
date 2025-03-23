@@ -124,12 +124,13 @@ export default function ChatComponent() {
               !isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}
           >
-            <button
+            <Button
               className="absolute -top-7 -left-3 bg-primary-800 text-white rounded-full w-10 h-10 flex items-center justify-center shadow-md"
-              onClick={() => setIsChatOpen(false)}
+              onPress={() => setIsChatOpen(false)}
+              isIconOnly
             >
               <XMarkIcon className="w-5 h-5" />
-            </button>
+            </Button>
             <div className="h-[35rem] flex flex-col rounded-3xl overflow-hidden">
               <div className="flex bg-primary-400 px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
                 <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
@@ -214,16 +215,17 @@ export default function ChatComponent() {
               setShowPopover(false);
               return true;
             }}
+            onOpenChange={() => setIsChatOpen(true)}
           >
             <PopoverTrigger>
-              <button
+              <Button
                 className={`fixed bottom-6 right-6 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-opacity duration-300 ${
                   isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
                 } ${startAnimation ? "animate-grow-shrink" : ""}`}
-                onClick={() => setIsChatOpen(true)}
+                isIconOnly
               >
                 <ChatBubbleLeftEllipsisIcon className="w-6 h-6" />
-              </button>
+              </Button>
             </PopoverTrigger>
             {content}
           </Popover>
