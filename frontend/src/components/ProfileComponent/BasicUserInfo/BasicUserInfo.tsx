@@ -1,12 +1,19 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { IBasicInfo, useProfile } from "@/contexts/ProfileContext";
+import { useChat } from "@/contexts/ChatContext";
 
 const BasicUserInfo: React.FC = () => {
   const { basicInfo, updateBasicInfo, syncProfileOnFirstLogin } = useProfile();
+
+  const { setChat } = useChat();
+
+  useEffect(() => {
+    setChat(null);
+  }, [setChat]);
 
   const t = useTranslations();
 

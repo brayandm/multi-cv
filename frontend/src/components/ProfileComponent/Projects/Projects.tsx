@@ -6,6 +6,7 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
 import { MAX_PROJECTS_ELEMENTS } from "@/lib/consts";
+import { useChat } from "@/contexts/ChatContext";
 
 interface IProjectsProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -13,6 +14,12 @@ interface IProjectsProps {
 
 const Projects = ({ formRef }: IProjectsProps) => {
   const { projects, updateProjects, syncProfileOnFirstLogin } = useProfile();
+
+  const { setChat } = useChat();
+
+  useEffect(() => {
+    setChat(null);
+  }, [setChat]);
 
   const [sync, setSync] = React.useState(false);
 

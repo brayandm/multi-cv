@@ -29,8 +29,8 @@ export interface ChatData {
 export type ChatMap = Record<string, ChatData>;
 
 interface ChatContextType {
-  chat: ChatData;
-  setChat: (selector: ChatSelector) => void;
+  chat: ChatData | null;
+  setChat: (selector: ChatSelector | null) => void;
   addMessage: (msg: ChatMessage) => void;
   generateBotMessage: () => Promise<void>;
 }
@@ -42,19 +42,26 @@ const getKey = ({ type, id }: ChatSelector): string =>
 
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [chatMap, setChatMap] = useState<ChatMap>({});
-  const [currentType, setCurrentType] = useState<string>("");
+  const [currentType, setCurrentType] = useState<string | null>(null);
   const [currentId, setCurrentId] = useState<string | undefined>(undefined);
 
-  const currentKey = useMemo(
-    () => getKey({ type: currentType, id: currentId }),
-    [currentType, currentId]
-  );
+  const currentKey = useMemo(() => {
+    if (!currentType) return null;
+    return getKey({ type: currentType, id: currentId });
+  }, [currentType, currentId]);
 
-  const chat = useMemo<ChatData>(() => {
+  const chat = useMemo<ChatData | null>(() => {
+    if (!currentKey) return null;
     return chatMap[currentKey] || { messages: [] };
   }, [chatMap, currentKey]);
 
-  const setChat = ({ type, id }: ChatSelector) => {
+  const setChat = (selector: ChatSelector | null) => {
+    if (!selector) {
+      setCurrentType(null);
+      setCurrentId(undefined);
+      return;
+    }
+    const { type, id } = selector;
     setCurrentType(type);
     setCurrentId(id);
     const key = getKey({ type, id });
@@ -65,6 +72,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const addMessage = (msg: ChatMessage) => {
+    if (!currentType) return;
     const key = getKey({ type: currentType, id: currentId });
     setChatMap((prev) => ({
       ...prev,
@@ -75,17 +83,18 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const getMessage = async (
-    currentType: string,
+    currentType: string | null,
     currentId: string | undefined
   ) => {
     try {
       if (currentType === "experience" && currentId) {
-        return (
-          await chatExperienceEngine({
-            experience_id: currentId,
-            chat: chatMap[currentKey] || { messages: [] },
-          })
-        ).data.message;
+        const response = await chatExperienceEngine({
+          experience_id: currentId,
+          chat: chatMap[getKey({ type: currentType, id: currentId })] || {
+            messages: [],
+          },
+        });
+        return response.data.message;
       }
     } catch (error) {
       console.error("Failed to fetch bot message:", error);
@@ -93,13 +102,14 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const generateBotMessage = async () => {
+    if (!currentType) return;
+    const key = getKey({ type: currentType, id: currentId });
+
     const loadingMessage: ChatMessage = {
       sender: "bot",
       text: "",
       isLoading: true,
     };
-
-    const key = getKey({ type: currentType, id: currentId });
 
     setChatMap((prev) => ({
       ...prev,
@@ -110,10 +120,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       const message = await getMessage(currentType, currentId);
-
-      if (!message) {
-        throw new Error("No message received from bot");
-      }
+      if (!message) throw new Error("No message received from bot");
 
       const botResponse: ChatMessage = {
         sender: "bot",

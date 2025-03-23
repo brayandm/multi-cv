@@ -1,11 +1,12 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
 import { IProfessionalLinks, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { Avatar, Image, Select, SelectItem } from "@heroui/react";
 import { SelectIconInputsStyles } from "@/lib/customStyles";
+import { useChat } from "@/contexts/ChatContext";
 
 export const professionalLinks = [
   {
@@ -31,6 +32,12 @@ const ProfessionalLinks: React.FC = () => {
     updateProfessionalLinks: updateProfessionalLinksList,
     syncProfileOnFirstLogin,
   } = useProfile();
+
+  const { setChat } = useChat();
+
+  useEffect(() => {
+    setChat(null);
+  }, [setChat]);
 
   const t = useTranslations();
   function onSocialChange(
