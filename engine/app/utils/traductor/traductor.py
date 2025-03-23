@@ -11,8 +11,7 @@ from pydantic import SecretStr
 load_dotenv(dotenv_path=".env")
 api_key = os.environ.get("OPENAI_API_KEY") or ""
 
-CURRENT_DIR = os.path.dirname(__file__)
-file_path = os.path.join(CURRENT_DIR, "en.json")
+file_path = "../frontend/messages/en.json"
 
 with open(file_path, "r", encoding="utf-8") as f:
     data = json.load(f)
@@ -59,7 +58,7 @@ def translate_and_save(target: dict[str, str]) -> str:
         {"json_data": input_json_str, "target_language": target["language"]}
     )
     output_filename = f"{target['code']}.json"
-    output_path = os.path.join(CURRENT_DIR, output_filename)
+    output_path = f"../frontend/messages/{output_filename}"
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(
             json.loads(str(result.content)), f, ensure_ascii=False, indent=4
@@ -67,7 +66,6 @@ def translate_and_save(target: dict[str, str]) -> str:
     return output_filename
 
 
-# Ejecutar en paralelo
 with ThreadPoolExecutor() as executor:
     futures = [
         executor.submit(translate_and_save, target)
