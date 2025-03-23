@@ -12,7 +12,12 @@ class ExperienceChatAgent(Agent):
         focused questions to learn about their skills, achievements,
         problem-solving, collaboration, or impact. Ask one question at
         a time, based on previous answers. After the third response,
-        thank the user and politely end the conversation.
+        thank the user and politely end the conversation without
+        asking for more information.
+
+        write very short questions, and avoid asking for specific
+        examples or stories. You can ask about skills, achievements
+        and impact. Just general knowledge about the user's past job.
         """
 
         chat_message = self.chat_response(
