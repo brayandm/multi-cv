@@ -45,8 +45,15 @@ export default function ChatComponent() {
   }, [sendMessage]);
 
   useEffect(() => {
-    if (isChatOpen && chat.messages.length === 0) {
-      generateBotMessage();
+    if (isChatOpen) {
+      if (chat.messages.length === 0) generateBotMessage();
+
+      if (
+        chat.messages.length > 0 &&
+        chat.messages[chat.messages.length - 1].sender === "person"
+      ) {
+        generateBotMessage();
+      }
     }
   }, [chat, generateBotMessage, isChatOpen]);
 
@@ -126,7 +133,12 @@ export default function ChatComponent() {
             <Button
               color={"primary"}
               onPressStart={sendMessage}
-              isDisabled={!input.trim()}
+              isDisabled={
+                !input.trim() ||
+                chat.messages.some((m) => m.isLoading) ||
+                (chat.messages.length > 0 &&
+                  chat.messages[chat.messages.length - 1].sender === "person")
+              }
               className="p-2 rounded-full"
               isIconOnly
             >
