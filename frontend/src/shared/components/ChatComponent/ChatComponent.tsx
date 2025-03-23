@@ -15,9 +15,11 @@ import {
 import BotIcon from "@/shared/icons/BotIcon/BotIcon";
 import { useChat } from "@/contexts/ChatContext";
 import { useTranslations } from "next-intl";
+import { useProfile } from "@/contexts/ProfileContext";
 
 export default function ChatComponent() {
   const { chat, addMessage, generateBotMessage } = useChat();
+  const { syncProfile } = useProfile();
 
   const [input, setInput] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -52,16 +54,26 @@ export default function ChatComponent() {
 
   useEffect(() => {
     if (isChatOpen && chat) {
-      if (chat.messages.length === 0) generateBotMessage();
+      if (chat.messages.length === 0) {
+        const func = async () => {
+          await syncProfile();
+          generateBotMessage();
+        };
+        func();
+      }
 
       if (
         chat.messages.length > 0 &&
         chat.messages[chat.messages.length - 1].sender === "person"
       ) {
-        generateBotMessage();
+        const func = async () => {
+          await syncProfile();
+          generateBotMessage();
+        };
+        func();
       }
     }
-  }, [chat, generateBotMessage, isChatOpen]);
+  }, [chat, generateBotMessage, isChatOpen]); // eslint-disable-line
 
   const [startAnimation, setStartAnimation] = useState(false);
 
