@@ -18,6 +18,7 @@ fs-s3fs = "*"
 fs = "*"
 pydantic = {extras = ["email"], version = "*"}
 motor = "*"
+phonenumbers = "*"
 
 [dev-packages]
 black = "*"

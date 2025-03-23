@@ -4,6 +4,7 @@ from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
 from app.classes.models import Cv, Profile
+from app.utils.phone import to_international_format
 
 
 class GenerateCvAgent(Agent):
@@ -18,7 +19,6 @@ class GenerateCvAgent(Agent):
           "location": "string",
           "linkedin": "string",
           "github": "string",
-          "phone": "string",
           "summary": "string",
           "experiences": [
             {
@@ -72,8 +72,6 @@ class GenerateCvAgent(Agent):
         - In Experience Section add severals descriptions for each experience.
 
         **Format Guidelines:**
-        - The Phone number is concatenation of the phone_country_code and
-        phone_number separated by a space.
         - Location of the person should be in the format "City, Country",
         you can get the location from the location field in basic_info.
         - The Experiences should be in reverse chronological order.
@@ -114,7 +112,15 @@ class GenerateCvAgent(Agent):
             json_content = response[json_start:json_end].strip()
 
             cv_data = json.loads(json_content)
-            return Cv(**cv_data)
+            cv = Cv(**cv_data)
+
+            cv.phone = to_international_format(
+                profile.basic_info.phone_number,
+                profile.basic_info.phone_country_code,
+            )
+
+            return cv
+
         except json.JSONDecodeError as e:
             raise ValueError(f"Failed to parse response as JSON: {e}")
         except Exception as e:
