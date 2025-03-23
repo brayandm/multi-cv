@@ -129,18 +129,19 @@ export default function ChatComponent() {
               classNames={{
                 inputWrapper: "rounded-3xl shadow-lg",
               }}
+              isDisabled={chat.messages.length >= 7}
             />
             <Button
               color={"primary"}
               onPressStart={sendMessage}
+              className="p-2 rounded-full"
+              isIconOnly
               isDisabled={
                 !input.trim() ||
                 chat.messages.some((m) => m.isLoading) ||
                 (chat.messages.length > 0 &&
                   chat.messages[chat.messages.length - 1].sender === "person")
               }
-              className="p-2 rounded-full"
-              isIconOnly
             >
               <PaperAirplaneIcon className="w-5 h-5" />
             </Button>
