@@ -219,7 +219,7 @@ export default function ChatComponent() {
           >
             <PopoverTrigger>
               <Button
-                className={`fixed bottom-6 right-6 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-opacity duration-300 ${
+                className={`fixed bottom-4 right-4 bg-warning text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg transition-opacity duration-300 ${
                   isChatOpen ? "opacity-0 pointer-events-none" : "opacity-100"
                 } ${startAnimation ? "animate-grow-shrink" : ""}`}
                 isIconOnly
