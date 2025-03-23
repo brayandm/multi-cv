@@ -142,7 +142,7 @@ async def chat_experience(
     experience_id: ExperienceId,
     chat: Chat,
     profile_service: ProfileService = Depends(get_profile_service),
-) -> str:
+) -> Dict[str, str]:
 
     experience = await profile_service.get_experience(
         get_user_id(), experience_id.id
@@ -154,7 +154,7 @@ async def chat_experience(
         get_user_id(), experience_id.id, notes
     )
 
-    return chat_message
+    return {"message": chat_message}
 
 
 @router.post("/render/cv/inline")

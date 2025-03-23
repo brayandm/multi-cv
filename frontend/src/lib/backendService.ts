@@ -19,6 +19,7 @@ import {
   getProfileEngineLink,
   generateCvInlineEngineLink,
   finishFirstLoginApiLink,
+  chatExperienceEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -37,8 +38,10 @@ import {
   ProfileSyncResponse,
   GetQuotaInfoResponse,
   FinishFirstLoginResponse,
+  chatExperienceResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
+import { ChatData } from "@/contexts/ChatContext";
 
 const isServer = typeof window === "undefined";
 
@@ -260,6 +263,27 @@ export const generateCvInlineEngine = async (): Promise<
     {},
     {
       responseType: "blob",
+    }
+  );
+};
+
+export const chatExperienceEngine = async ({
+  experience_id,
+  chat,
+}: {
+  experience_id: string;
+  chat: ChatData;
+}): Promise<AxiosResponse<chatExperienceResponse>> => {
+  return await engine.post(
+    chatExperienceEngineLink,
+    {
+      experience_id: experience_id,
+      chat: chat,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
     }
   );
 };

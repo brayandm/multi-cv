@@ -17,3 +17,4 @@ export const finishFirstLoginApiLink = "/user/finish-first-login";
 export const profileSyncEngineLink = "/profile/sync";
 export const getProfileEngineLink = "/profile";
 export const generateCvInlineEngineLink = "/generate/cv/inline";
+export const chatExperienceEngineLink = "/chat/experience";
