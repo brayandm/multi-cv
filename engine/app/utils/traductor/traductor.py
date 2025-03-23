@@ -1,6 +1,6 @@
 import json
 import os
-
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dotenv import load_dotenv
 from langchain.prompts import ChatPromptTemplate, HumanMessagePromptTemplate
 from langchain.schema import SystemMessage
@@ -50,19 +50,28 @@ llm = ChatOpenAI(
 )
 
 chain = chat_prompt | llm
-
 input_json_str = json.dumps(data, ensure_ascii=False, indent=2)
 
-for target in target_languages:
+
+def translate_and_save(target):
     result = chain.invoke(
         {"json_data": input_json_str, "target_language": target["language"]}
     )
-
     output_filename = f"{target['code']}.json"
     output_path = os.path.join(CURRENT_DIR, output_filename)
-
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(
             json.loads(str(result.content)), f, ensure_ascii=False, indent=4
         )
-    print(f"Output saved to {output_filename}")
+    return output_filename
+
+
+# Ejecutar en paralelo
+with ThreadPoolExecutor() as executor:
+    futures = [
+        executor.submit(translate_and_save, target)
+        for target in target_languages
+    ]
+    for future in as_completed(futures):
+        output_file = future.result()
+        print(f"Output saved to {output_file}")
