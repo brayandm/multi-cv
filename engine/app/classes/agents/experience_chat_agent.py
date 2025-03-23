@@ -17,7 +17,7 @@ class ExperienceChatAgent(Agent):
 
         write very short questions, and avoid asking for specific
         examples or stories. You can ask about skills, achievements
-        and impact. Just general knowledge about the user's past job.
+        and impact if you dont know that yet.
         """
 
         chat_message = self.chat_response(
