@@ -15,12 +15,15 @@ import { useEffect, useState } from "react";
 import { GetQuotaInfoResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
 import { saveAs } from "file-saver";
+import { useTranslations } from "next-intl";
 
 export default function HomeComponent() {
   const { isLoading: isUserDataLoading } = useSWR(userApiLink, fetcherApi);
 
   const [isQuotaInfoLoading, setIsQuotaInfoLoading] = useState(false);
   const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
+
+  const t = useTranslations();
 
   const getQuota = () => {
     getQuotaInfoApi("generate_cv_inline")
@@ -131,15 +134,15 @@ export default function HomeComponent() {
               isDisabled={isCvLoading || quotaInfo?.left === 0}
               isLoading={isCvLoading}
             >
-              Generate CV
+              {t("common.texts.generate_cv")}
             </Button>
           </div>
           <div className="mt-4 text-center">
             <p>
-              <strong>Quota Info:</strong>
+              <strong>{t("common.texts.quota_info")}:</strong>
             </p>
             <p>
-              Used: {quotaInfo.left} / {quotaInfo.quota}
+              {t("common.texts.used")}: {quotaInfo.left} / {quotaInfo.quota}
             </p>
           </div>
         </>

@@ -32,7 +32,10 @@
       "chat": "Chat AI",
       "chat_description": "Chat with our AI to get help",
       "ai_assistant": "AI Assistant",
-      "type_message": "Type a message..."
+      "type_message": "Type a message...",
+      "generate_cv": "Generate CV",
+      "quota_info": "Quota Info",
+      "used": "Used"
     },
     "buttons": {
       "continue": "Continue",

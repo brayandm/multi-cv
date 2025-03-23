@@ -32,7 +32,10 @@
       "chat": "Chat AI",
       "chat_description": "Chatea con nuestra IA para obtener ayuda",
       "ai_assistant": "Asistente de IA",
-      "type_message": "Escribe un mensaje..."
+      "type_message": "Escribe un mensaje...",
+      "generate_cv": "Generar CV",
+      "quota_info": "Información de cuota",
+      "used": "Usado"
     },
     "buttons": {
       "continue": "Continuar",

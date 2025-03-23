@@ -32,7 +32,10 @@
       "chat": "Chat AI",
       "chat_description": "Madad ke liye hamare AI se chat karein",
       "ai_assistant": "AI Assistant",
-      "type_message": "Message likhein..."
+      "type_message": "Message likhein...",
+      "generate_cv": "CV banayein",
+      "quota_info": "Quota Info",
+      "used": "Used"
     },
     "buttons": {
       "continue": "Aage badhein",
