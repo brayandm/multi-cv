@@ -1,5 +1,6 @@
 "use client";
 
+import { chatExperienceEngine } from "@/lib/backendService";
 import React, {
   createContext,
   useContext,
@@ -31,6 +32,7 @@ interface ChatContextType {
   chat: ChatData;
   setChat: (selector: ChatSelector) => void;
   addMessage: (msg: ChatMessage) => void;
+  generateBotMessage: () => Promise<void>;
 }
 
 const ChatContext = createContext<ChatContextType | undefined>(undefined);
@@ -72,8 +74,72 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
     }));
   };
 
+  const getMessage = async (
+    currentType: string,
+    currentId: string | undefined
+  ) => {
+    try {
+      if (currentType === "experience" && currentId) {
+        return (
+          await chatExperienceEngine({
+            experience_id: currentId,
+            chat: chatMap[currentKey] || { messages: [] },
+          })
+        ).data.message;
+      }
+    } catch (error) {
+      console.error("Failed to fetch bot message:", error);
+    }
+  };
+
+  const generateBotMessage = async () => {
+    const loadingMessage: ChatMessage = {
+      sender: "bot",
+      text: "",
+      isLoading: true,
+    };
+
+    const key = getKey({ type: currentType, id: currentId });
+
+    setChatMap((prev) => ({
+      ...prev,
+      [key]: {
+        messages: [...(prev[key]?.messages || []), loadingMessage],
+      },
+    }));
+
+    try {
+      const message = await getMessage(currentType, currentId);
+
+      if (!message) {
+        throw new Error("No message received from bot");
+      }
+
+      const botResponse: ChatMessage = {
+        sender: "bot",
+        text: message,
+      };
+
+      setChatMap((prev) => {
+        const messages = [...(prev[key]?.messages || [])];
+        const lastIndex = messages.findIndex((m) => m.isLoading);
+        if (lastIndex !== -1) {
+          messages[lastIndex] = botResponse;
+        }
+        return {
+          ...prev,
+          [key]: { messages },
+        };
+      });
+    } catch (error) {
+      console.error("Failed to fetch bot message:", error);
+    }
+  };
+
   return (
-    <ChatContext.Provider value={{ chat, setChat, addMessage }}>
+    <ChatContext.Provider
+      value={{ chat, setChat, addMessage, generateBotMessage }}
+    >
       {children}
     </ChatContext.Provider>
   );

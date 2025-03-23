@@ -11,7 +11,7 @@ import BotIcon from "@/shared/icons/BotIcon/BotIcon";
 import { useChat } from "@/contexts/ChatContext";
 
 export default function ChatComponent() {
-  const { chat, addMessage } = useChat();
+  const { chat, addMessage, generateBotMessage } = useChat();
 
   const [input, setInput] = useState("");
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -43,6 +43,12 @@ export default function ChatComponent() {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [sendMessage]);
+
+  useEffect(() => {
+    if (isChatOpen && chat.messages.length === 0) {
+      generateBotMessage();
+    }
+  }, [chat, generateBotMessage, isChatOpen]);
 
   return (
     <>

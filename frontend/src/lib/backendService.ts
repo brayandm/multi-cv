@@ -277,7 +277,9 @@ export const chatExperienceEngine = async ({
   return await engine.post(
     chatExperienceEngineLink,
     {
-      experience_id: experience_id,
+      experience_id: {
+        id: experience_id,
+      },
       chat: chat,
     },
     {
