@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { AuthCookie } from "@/lib/types";
 import { setCookieClient } from "@/lib/setCookieClient";
 
 export default function RedirectBack() {
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -22,7 +23,7 @@ export default function RedirectBack() {
       );
 
       if (!authCookieName || !authCookieValue || !authCookieExpirationDate) {
-        window.location.href = "/";
+        router.push("/");
         return;
       }
 
@@ -42,9 +43,9 @@ export default function RedirectBack() {
           auth_cookie.value,
           auth_cookie.expiration_date
         );
-        window.location.href = "/home";
+        router.push("/home");
       }
     }
-  }, [searchParams]);
+  }, []); // eslint-disable-line
   return null;
 }
