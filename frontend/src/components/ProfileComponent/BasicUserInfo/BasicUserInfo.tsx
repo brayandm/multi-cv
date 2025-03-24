@@ -98,7 +98,7 @@ const BasicUserInfo: React.FC = () => {
     [
       {
         label: t("common.form.your_location"),
-        placeholder: t("common.placeholders.enter_location"),
+        placeholder: t("common.placeholders.enter_your_location"),
         type: "text",
         value: basicInfo.location,
         onValueChange: (value: string) => {
