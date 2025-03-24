@@ -2,6 +2,7 @@
 
 import { userLocaleApi, userSetLocaleApi } from "@/lib/backendService";
 import { setCookieClient } from "@/lib/setCookieClient";
+import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
 import {
@@ -68,6 +69,12 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const syncLocale = (newLocale: string) => {
     updateLocaleServer(newLocale);
     setLocale(newLocale);
+
+    const isIframe = window.self !== window.top;
+
+    if (isIframe) {
+      storeExtensionStorageValue("locale", newLocale, () => {});
+    }
   };
 
   useEffect(() => {

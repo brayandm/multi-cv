@@ -9,7 +9,6 @@ import {
   DropdownItem,
 } from "@heroui/dropdown";
 import { Link } from "@heroui/react";
-import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { languages, useLocale } from "@/contexts/LocaleContext";
 
 export default function LanguageToggle() {
@@ -17,12 +16,6 @@ export default function LanguageToggle() {
 
   const changeLanguage = (newLocale: string) => {
     syncLocale(newLocale);
-
-    const isIframe = window.self !== window.top;
-
-    if (isIframe) {
-      storeExtensionStorageValue("locale", newLocale, () => {});
-    }
   };
 
   return (
