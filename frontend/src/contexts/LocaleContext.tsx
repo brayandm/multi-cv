@@ -43,7 +43,9 @@ const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
-  const [locale, setLocale] = useState("en");
+  const [locale, setLocale] = useState(
+    (getCookie("locale") as string) || getSystemLocale()
+  );
 
   const updateLocale = async (newLocale: string) => {
     let userLocaleResponse;
@@ -78,10 +80,6 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     if (isIframe) {
       storeExtensionStorageValue("locale", newLocale, () => {});
     }
-  }, []);
-
-  useEffect(() => {
-    setLocale((getCookie("locale") as string) || "en");
   }, []);
 
   useEffect(() => {
