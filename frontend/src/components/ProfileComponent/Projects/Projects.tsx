@@ -157,7 +157,7 @@ const Projects = ({ formRef }: IProjectsProps) => {
 
         return (
           <div key={index} className={`mb-4 px-1 snap-center`}>
-            <div className="h-[320px] overflow-y-scroll">
+            <div className="h-[320px] overflow-y-scroll overflow-x-hidden">
               <DynamicInputs inputs={inputs} />
             </div>
           </div>

@@ -103,7 +103,7 @@ const Skills: React.FC = () => {
   return (
     <div className="px-1">
       <DynamicInputs inputs={inputs}></DynamicInputs>
-      <div className="h-[320px] overflow-y-scroll">
+      <div className="max-h-[320px] overflow-y-scroll overflow-x-hidden">
         <ChipArea
           chips={skills.list}
           setChips={(skills) => {
