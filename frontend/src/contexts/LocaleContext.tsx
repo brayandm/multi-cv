@@ -27,14 +27,14 @@ export interface Language {
 }
 
 export const languages = [
-  { code: "en", label: "English" },
-  { code: "es", label: "Spanish" },
-  { code: "hi", label: "Romanized Hindi" },
-  { code: "ru", label: "Russian" },
+  { code: "en", label: "English", name: "English" },
+  { code: "es", label: "Spanish", name: "Spanish" },
+  { code: "hi", label: "Hindi", name: "Romanized Hindi" },
+  { code: "ru", label: "Russian", name: "Russian" },
 ];
 
 export const mapLocaleToLanguage = (locale: string) => {
-  const language = languages.find((lang) => lang.code === locale)?.label;
+  const language = languages.find((lang) => lang.code === locale)?.name;
 
   return language || "English";
 };
