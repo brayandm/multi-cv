@@ -10,18 +10,14 @@ from app.classes.models import (
     CvTemplate,
     ExperienceId,
     Language,
-    Message,
     Profile,
     WebhookPayload,
 )
 from app.classes.pipelines import (
-    BasicPipeline,
     ChatExperiencePipeline,
-    ImproveAboutPipeline,
     RenderCVPipeline,
-    SummaryPipeline,
+    GenerateCvPipeline,
 )
-from app.classes.pipelines.generate_cv_pipeline import GenerateCvPipeline
 from app.database.mongodb import lifespan
 from app.facades.document_render_facade import DocumentRenderFacade
 from app.framework.decorators import (
@@ -59,41 +55,6 @@ router = APIRouter(prefix="/api/v1")
 @router.get("/ping")
 async def ping() -> Dict[str, str]:
     return {"message": "pong"}
-
-
-@router.post("/message")
-@consume_action("message")
-async def message(message: Message) -> Dict[str, str]:
-
-    queue_manager.execute_pipeline(BasicPipeline, "message", message)
-
-    return {
-        "message": "Request received. Processing in background.",
-    }
-
-
-@router.post("/summary")
-@consume_action("summary")
-async def summary(profile: Profile) -> Dict[str, str]:
-
-    queue_manager.execute_pipeline(SummaryPipeline, "summary", profile)
-
-    return {
-        "message": "Request received. Processing in background.",
-    }
-
-
-@router.post("/improve/about")
-@consume_action("improve_about")
-async def improve_about(profile: Profile, message: Message) -> Dict[str, str]:
-
-    queue_manager.execute_pipeline(
-        ImproveAboutPipeline, "improve_about", profile, message
-    )
-
-    return {
-        "message": "Request received. Processing in background.",
-    }
 
 
 @router.post("/render/cv")
