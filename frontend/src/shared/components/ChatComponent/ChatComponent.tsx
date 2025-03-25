@@ -141,7 +141,7 @@ export default function ChatComponent() {
                 </h2>
               </div>
               <div
-                className={`h-full overflow-y-scroll overflow-x-hidden p-4 space-y-3`}
+                className={`h-full overflow-y-auto overflow-x-hidden p-4 space-y-3`}
               >
                 {chat.messages.map((msg, index) => (
                   <div key={index} className="flex flex-col items-start">

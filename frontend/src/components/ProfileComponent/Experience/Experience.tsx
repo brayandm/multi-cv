@@ -205,7 +205,7 @@ const Experience = ({ formRef }: IExperienceProps) => {
 
         return (
           <div key={index} className={`mb-4 px-1 snap-center `}>
-            <div className="h-[320px] overflow-y-scroll overflow-x-hidden">
+            <div className="h-[320px] overflow-y-auto overflow-x-hidden">
               <DynamicInputs inputs={inputs} />
             </div>
           </div>

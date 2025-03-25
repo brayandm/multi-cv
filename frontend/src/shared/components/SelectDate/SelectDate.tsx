@@ -138,7 +138,7 @@ export default function SelectDate({
   const adjustedLeft =
     inputRect && inputRect.left + POPUP_WIDTH > window.innerWidth
       ? Math.max(0, window.innerWidth - POPUP_WIDTH - 16)
-      : (inputRect?.left ?? 0);
+      : inputRect?.left ?? 0;
 
   const [firstInteraction, setFirstInteraction] = useState(true);
 
@@ -199,7 +199,7 @@ export default function SelectDate({
             <div className="flex gap-2">
               <div className="relative">
                 <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
-                <div className="flex-1 max-h-52 relative overflow-y-scroll space-y-1 scrollbar-none pr-1">
+                <div className="flex-1 max-h-52 relative overflow-y-auto space-y-1 scrollbar-none pr-1">
                   <div className="h-1" />
                   {months.map((month) => (
                     <div
@@ -221,7 +221,7 @@ export default function SelectDate({
                 <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
                 <div
                   ref={yearsContainerRef}
-                  className="flex-1 max-h-52 overflow-y-scroll space-y-1 scrollbar-none pl-1"
+                  className="flex-1 max-h-52 overflow-y-auto space-y-1 scrollbar-none pl-1"
                 >
                   <div className="h-1" />
                   {years.map((year) => (
