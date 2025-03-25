@@ -89,19 +89,22 @@ export default function SelectDate({
   };
 
   const [firstInteraction, setFirstInteraction] = useState(true);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (yearsContainerRef.current) {
+    if (open && yearsContainerRef.current) {
       const container = yearsContainerRef.current;
-      const currentYear = draftYear ?? new Date().getFullYear();
-      const index = years.findIndex((y) => y === currentYear);
-      const itemHeight = 36;
-      container.scrollTop =
-        itemHeight * index - container.clientHeight / 2 + itemHeight / 2;
-    }
-  }, [draftYear]);
 
-  const [open, setOpen] = useState(false);
+      const currentYear = draftYear ?? selectedYear ?? new Date().getFullYear();
+
+      const index = years.findIndex((y) => y === currentYear);
+      if (index !== -1) {
+        const itemHeight = 32;
+        container.scrollTop =
+          itemHeight * index - container.clientHeight / 2 + itemHeight / 2 + 4;
+      }
+    }
+  }, [open, draftYear, selectedYear]);
 
   return (
     <Popover
@@ -167,7 +170,7 @@ export default function SelectDate({
               {months.map((month) => (
                 <div
                   key={month}
-                  className={`cursor-pointer px-2 py-1 rounded-md hover:bg-gray-100 ${
+                  className={`cursor-pointer h-7 px-2 py-1 rounded-md hover:bg-gray-100 ${
                     draftMonth === month ? "bg-gray-200 font-medium" : ""
                   }`}
                   onClick={() => handleSelectMonth(month)}
@@ -189,7 +192,7 @@ export default function SelectDate({
               {years.map((year) => (
                 <div
                   key={year}
-                  className={`cursor-pointer px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
+                  className={`cursor-pointer h-7 px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
                     draftYear === year ? "bg-gray-200 font-medium" : ""
                   }`}
                   onClick={() => handleSelectYear(year)}
