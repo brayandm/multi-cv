@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 import { passwordValidator } from "@/lib/validator";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 interface IPasswordComponentProps {
   passwordRecovery?: {
@@ -37,6 +38,10 @@ export default function PasswordComponent({
   const router = useRouter();
 
   const t = useTranslations();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+  const [showCurrentPassword, setShowCurrentPassword] = useState(false);
 
   const { data: userData, isLoading: isUserDataLoading } = useSWR<UserResponse>(
     passwordRecovery ? null : userApiLink,
@@ -131,46 +136,84 @@ export default function PasswordComponent({
             label={t("common.form.current_password")}
             color="default"
             placeholder={t("common.placeholders.enter_current_password")}
-            type="password"
+            type={showCurrentPassword ? "text" : "password"}
             name="currentPassword"
             value={formData.currentPassword}
             onChange={handleChange}
+            classNames={{
+              ...generalInputsStyles,
+              inputWrapper: "pr-10",
+            }}
             isRequired
-            classNames={generalInputsStyles}
             minLength={8}
             maxLength={MAX_SHORT_TEXT_LENGTH}
             validate={(value) => {
               return passwordValidator(t, value);
             }}
+            endContent={
+              <button
+                type="button"
+                onClick={() => setShowCurrentPassword((prev) => !prev)}
+                className="absolute right-3 text-gray-500 hover:text-primary pointer-events-auto"
+                tabIndex={-1}
+              >
+                {showCurrentPassword ? (
+                  <EyeSlashIcon className="h-5 w-5" />
+                ) : (
+                  <EyeIcon className="h-5 w-5" />
+                )}
+              </button>
+            }
           />
         )}
         <Input
           label={t("common.form.password")}
           color="default"
           placeholder={t("common.placeholders.enter_password")}
-          type="password"
+          type={showPassword ? "text" : "password"}
           name="password"
           value={formData.password}
           onChange={handleChange}
+          classNames={{
+            ...generalInputsStyles,
+            inputWrapper: "pr-10",
+          }}
           isRequired
-          classNames={generalInputsStyles}
           minLength={8}
           maxLength={MAX_SHORT_TEXT_LENGTH}
           validate={(value) => {
             return passwordValidator(t, value);
           }}
+          endContent={
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 text-gray-500 hover:text-primary pointer-events-auto"
+              tabIndex={-1}
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </button>
+          }
         />
+
         <Input
           label={t("common.form.repeat_password")}
           color="default"
           placeholder={t("common.placeholders.enter_password_again")}
-          type="password"
+          type={showRepeatPassword ? "text" : "password"}
           name="repeatPassword"
           value={formData.repeatPassword}
           onChange={handleChange}
+          classNames={{
+            ...generalInputsStyles,
+            inputWrapper: "pr-10",
+          }}
           isRequired
           minLength={8}
-          classNames={generalInputsStyles}
           isInvalid={formData.password !== formData.repeatPassword}
           errorMessage={
             formData.password !== formData.repeatPassword
@@ -178,6 +221,20 @@ export default function PasswordComponent({
               : ""
           }
           maxLength={MAX_SHORT_TEXT_LENGTH}
+          endContent={
+            <button
+              type="button"
+              onClick={() => setShowRepeatPassword((prev) => !prev)}
+              className="absolute right-3 text-gray-500 hover:text-primary pointer-events-auto"
+              tabIndex={-1}
+            >
+              {showRepeatPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </button>
+          }
         />
         <Button color="primary" type="submit" isLoading={onPasswordChange}>
           {t("common.buttons.change_password")}
