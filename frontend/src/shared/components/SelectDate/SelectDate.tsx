@@ -1,22 +1,8 @@
 import { Input, type InputProps } from "@heroui/react";
 import { CalendarIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import { useTranslations } from "next-intl";
 
 const years = Array.from({ length: 200 }, (_, i) => 1900 + i);
 
@@ -44,6 +30,26 @@ export default function SelectDate({
   const popoverRef = useRef<HTMLDivElement>(null);
   const yearsContainerRef = useRef<HTMLDivElement>(null);
 
+  const t = useTranslations();
+
+  const months = useMemo(
+    () => [
+      t("common.months.january"),
+      t("common.months.february"),
+      t("common.months.march"),
+      t("common.months.april"),
+      t("common.months.may"),
+      t("common.months.june"),
+      t("common.months.july"),
+      t("common.months.august"),
+      t("common.months.september"),
+      t("common.months.october"),
+      t("common.months.november"),
+      t("common.months.december"),
+    ],
+    [t]
+  );
+
   useEffect(() => {
     if (value && /^\d{4}-\d{2}$/.test(value)) {
       const [yearStr, monthStr] = value.split("-");
@@ -57,7 +63,7 @@ export default function SelectDate({
       setSelectedYear(null);
       setSelectedMonth(null);
     }
-  }, [value]);
+  }, [value, months]);
 
   const handleSelectMonth = (month: string) => {
     setDraftMonth(month);
@@ -91,7 +97,7 @@ export default function SelectDate({
 
     setIsOpen(false);
     onBlur?.();
-  }, [draftMonth, draftYear, onValueChange, onBlur]);
+  }, [draftMonth, draftYear, onValueChange, onBlur, months]);
 
   const handleClear = () => {
     setSelectedMonth(null);
@@ -132,7 +138,7 @@ export default function SelectDate({
   const adjustedLeft =
     inputRect && inputRect.left + POPUP_WIDTH > window.innerWidth
       ? Math.max(0, window.innerWidth - POPUP_WIDTH - 16)
-      : (inputRect?.left ?? 0);
+      : inputRect?.left ?? 0;
 
   const [firstInteraction, setFirstInteraction] = useState(true);
 
@@ -156,11 +162,11 @@ export default function SelectDate({
               ? undefined
               : !props.isDisabled && (!selectedMonth || selectedYear === null)
           }
-          errorMessage="Please select a date"
+          errorMessage={t("common.errors.select_date")}
           validate={() =>
             props.isDisabled || (selectedMonth && selectedYear !== null)
               ? true
-              : "Please select a date"
+              : t("common.errors.select_date")
           }
           {...props}
         />
@@ -182,7 +188,7 @@ export default function SelectDate({
                 onClick={handleClear}
                 className="absolute left-1/2 -translate-x-1/2 text-primary text-sm font-medium cursor-pointer hover:underline"
               >
-                Clear
+                {t("common.buttons.clear")}
               </span>
               <XMarkIcon
                 className="absolute right-0 w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer"

@@ -12,6 +12,11 @@ import { generalInputsStyles } from "@/lib/customStyles";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
+import {
+  emailValidator,
+  passwordValidator,
+  requiredValidator,
+} from "@/lib/validator";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -153,6 +158,9 @@ export default function RegisterComponent() {
           classNames={generalInputsStyles}
           isRequired
           maxLength={MAX_SHORT_TEXT_LENGTH}
+          validate={(value) => {
+            return requiredValidator(t, value);
+          }}
         />
         <Input
           label={t("common.form.last_name")}
@@ -165,18 +173,23 @@ export default function RegisterComponent() {
           classNames={generalInputsStyles}
           isRequired
           maxLength={MAX_SHORT_TEXT_LENGTH}
+          validate={(value) => {
+            return requiredValidator(t, value);
+          }}
         />
         <Input
           label={t("common.form.email")}
           color="default"
           placeholder={t("common.placeholders.enter_email")}
-          type="email"
           name="email"
           value={formData.email}
           onChange={handleChange}
           classNames={generalInputsStyles}
           isRequired
           maxLength={MAX_SHORT_TEXT_LENGTH}
+          validate={(value) => {
+            return emailValidator(t, value);
+          }}
         />
         <Input
           label={t("common.form.password")}
@@ -190,6 +203,9 @@ export default function RegisterComponent() {
           isRequired
           minLength={8}
           maxLength={MAX_SHORT_TEXT_LENGTH}
+          validate={(value) => {
+            return passwordValidator(t, value);
+          }}
         />
         <Input
           label={t("common.form.repeat_password")}

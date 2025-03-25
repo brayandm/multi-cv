@@ -14,6 +14,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
+import { passwordValidator } from "@/lib/validator";
 
 interface IPasswordComponentProps {
   passwordRecovery?: {
@@ -138,6 +139,9 @@ export default function PasswordComponent({
             classNames={generalInputsStyles}
             minLength={8}
             maxLength={MAX_SHORT_TEXT_LENGTH}
+            validate={(value) => {
+              return passwordValidator(t, value);
+            }}
           />
         )}
         <Input
@@ -152,6 +156,9 @@ export default function PasswordComponent({
           classNames={generalInputsStyles}
           minLength={8}
           maxLength={MAX_SHORT_TEXT_LENGTH}
+          validate={(value) => {
+            return passwordValidator(t, value);
+          }}
         />
         <Input
           label={t("common.form.repeat_password")}

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { generalInputsStyles } from "@/lib/customStyles";
 import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
+import { emailValidator } from "@/lib/validator";
 
 interface IPasswordRecoveryComponentProps {
   type: "success" | "fail" | "recovery";
@@ -113,13 +114,15 @@ export default function PasswordRecoveryComponent({
             label={t("common.form.email")}
             color="default"
             placeholder={t("common.placeholders.enter_email")}
-            type="email"
             name="email"
             isRequired
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             classNames={generalInputsStyles}
             maxLength={MAX_SHORT_TEXT_LENGTH}
+            validate={(value) => {
+              return emailValidator(t, value);
+            }}
           />
           <Button
             color="primary"

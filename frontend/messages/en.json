@@ -54,7 +54,8 @@
       "cancel": "Cancel",
       "save": "Save",
       "discard": "Discard",
-      "keep_editing": "Keep editing"
+      "keep_editing": "Keep editing",
+      "clear": "Clear"
     },
     "errors": {
       "login": "Login failed",
@@ -71,7 +72,11 @@
       "skill_length": "You should enter at least {min} skill",
       "country_code_required": "Select a country code",
       "max_elements": "Maximum number of {element} reached",
-      "max_elements_description": "You can only add {max} {element}"
+      "max_elements_description": "You can only add {max} {element}",
+      "required": "Please fill out this field.",
+      "invalid_email": "The email you entered is not valid",
+      "password_too_short": "The password should be at least {min} characters long",
+      "select_date": "Please select a date"
     },
     "success": {
       "password_change": "Password changed",
@@ -136,6 +141,20 @@
       "privacy_policy": "Privacy Policy",
       "confirm_age": "I confirm that I am over 18 years old",
       "accept_terms": "I accept the <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>"
+    },
+    "months": {
+      "january": "January",
+      "february": "February",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
     }
   },
   "components": {
