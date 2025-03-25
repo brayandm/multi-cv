@@ -3,13 +3,13 @@ import json
 from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
-from app.classes.models import Cv, Profile
+from app.classes.models import Cv, Profile, Language
 from app.utils.phone import to_international_format
 
 
 class GenerateCvAgent(Agent):
 
-    async def run(self, profile: Profile) -> Cv:
+    async def run(self, profile: Profile, language: Language) -> Cv:
         profile_json = profile.model_dump_json()
 
         cv_structure = """
@@ -105,6 +105,9 @@ class GenerateCvAgent(Agent):
         BEGIN_JSON
         <valid JSON response>
         END_JSON
+
+        Remember to generate the CV in the user's preferred language:
+        {language.name}
         """
 
         response = str(

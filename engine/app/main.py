@@ -74,6 +74,7 @@ async def render_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
 @commit_action_after()
 @consume_action("generate_cv_inline")
 async def generate_cv_inline(
+    language: Language,
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Response:
 
@@ -87,11 +88,11 @@ async def generate_cv_inline(
 
     cv_template = CvTemplate(id="default")
 
-    cv = await GenerateCvPipeline().run(profile)
+    cv = await GenerateCvPipeline().run(profile, language)
 
     document_render = DocumentRenderFacade.get_render()
 
-    document_render.render_cv(cv, cv_template)
+    document_render.render_cv(cv, cv_template, language)
 
     pdf_bytes = document_render.get_cv()
 
@@ -136,11 +137,13 @@ async def chat_experience(
 
 @router.post("/render/cv/inline")
 @authenticate()
-async def render_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
+async def render_cv_inline(
+    cv: Cv, cv_template: CvTemplate, language: Language
+) -> Response:
 
     document_render = DocumentRenderFacade.get_render()
 
-    document_render.render_cv(cv, cv_template)
+    document_render.render_cv(cv, cv_template, language)
 
     pdf_bytes = document_render.get_cv()
 

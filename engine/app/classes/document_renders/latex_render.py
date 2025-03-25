@@ -10,8 +10,10 @@ from jinja2 import Environment, FileSystemLoader
 from app.classes.base.document_render import (
     DocumentRender,
 )
-from app.classes.models import Cv, CvTemplate
+from app.classes.models import Cv, CvTemplate, Language
 from app.facades.filesystem_facade import FilesystemFacade
+
+import json
 
 
 def escape_latex(text: str) -> str:
@@ -74,14 +76,22 @@ class LatexRender(DocumentRender):
 
         return sanitize_data(sanitized_cv)  # type: ignore
 
-    def render_cv(self, cv: Cv, cv_template: CvTemplate) -> None:
+    def render_cv(
+        self, cv: Cv, cv_template: CvTemplate, language: Language
+    ) -> None:
         env = Environment(loader=FileSystemLoader(self.cv_template))
         template = env.get_template(f"{cv_template.id}.tex.jinja2")
 
         sanitized_cv = self.sanitize_cv(cv)
 
+        traductions_path = os.path.join(
+            "app", "utils", "traductions", "cv", f"{language.locale}.json"
+        )
+        with open(traductions_path, "r", encoding="utf-8") as traductions_file:
+            traductions = json.load(traductions_file)
+
         with open(self.tex_path, "w", encoding="utf-8") as f:
-            f.write(template.render(cv=sanitized_cv))
+            f.write(template.render(cv=sanitized_cv, traductions=traductions))
 
         try:
             subprocess.run(
