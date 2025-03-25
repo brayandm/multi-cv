@@ -5,6 +5,7 @@ import DynamicInputs from "../DynamicInputs";
 import { useTranslations } from "next-intl";
 import { IBasicInfo, useProfile } from "@/contexts/ProfileContext";
 import { useChat } from "@/contexts/ChatContext";
+import { phoneValidator } from "@/lib/validator";
 
 const BasicUserInfo: React.FC = () => {
   const { basicInfo, updateBasicInfo, syncProfileOnFirstLogin } = useProfile();
@@ -93,6 +94,9 @@ const BasicUserInfo: React.FC = () => {
         },
         isRequired: true,
         onBlur: syncProfileOnFirstLogin,
+        validate: (value: string) => {
+          return phoneValidator(t, basicInfo.phone_country_code, value);
+        },
       },
     ],
     [

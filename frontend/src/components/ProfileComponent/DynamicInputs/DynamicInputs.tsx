@@ -143,15 +143,7 @@ const DynamicInputs = <T,>({
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
               description={input.description}
-              validate={(value) => {
-                if (input.validate) {
-                  return input.validate(value);
-                }
-                if (input.isRequired) {
-                  return requiredValidator(t, value);
-                }
-                return true;
-              }}
+              validate={input.validate}
               maxLength={MAX_SHORT_TEXT_LENGTH}
             />
           );

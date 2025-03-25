@@ -76,7 +76,8 @@
       "required": "Please fill out this field.",
       "invalid_email": "The email you entered is not valid",
       "password_too_short": "The password should be at least {min} characters long",
-      "select_date": "Please select a date"
+      "select_date": "Please select a date",
+      "invalid_phone": "The phone number is not valid"
     },
     "success": {
       "password_change": "Password changed",

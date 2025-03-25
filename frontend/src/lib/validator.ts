@@ -1,3 +1,5 @@
+import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const emailValidator = (t: any, value: string): string | true => {
   t = t as (key: string, values?: Record<string, string>) => string;
@@ -15,6 +17,34 @@ export const emailValidator = (t: any, value: string): string | true => {
   }
 
   return true;
+};
+
+export const phoneValidator = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: any,
+  country_code: string,
+  number: string
+): string | true => {
+  t = t as (key: string, values?: Record<string, string>) => string;
+
+  if (!number || number.trim().length === 0) {
+    return t("common.errors.required");
+  }
+
+  try {
+    const phoneNumber = parsePhoneNumberFromString(
+      number,
+      country_code as CountryCode
+    );
+
+    if (!phoneNumber || !phoneNumber.isValid()) {
+      return t("common.errors.invalid_phone");
+    }
+
+    return true;
+  } catch {
+    return t("common.errors.invalid_phone");
+  }
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
