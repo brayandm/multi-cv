@@ -111,6 +111,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       if (currentType === "experience" && currentId) {
         const response = await chatExperienceEngine({
           experience_id: currentId,
+          locale: locale,
           language: mapLocaleToLanguage(locale || "en"),
           chat: chatMap[getKey({ type: currentType, id: currentId })] || {
             messages: [],

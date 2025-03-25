@@ -272,9 +272,11 @@ export const generateCvInlineEngine = async (): Promise<
 export const chatExperienceEngine = async ({
   experience_id,
   chat,
+  locale,
   language,
 }: {
   experience_id: string;
+  locale: string;
   language: string;
   chat: ChatData;
 }): Promise<AxiosResponse<chatExperienceResponse>> => {
@@ -285,6 +287,7 @@ export const chatExperienceEngine = async ({
         id: experience_id,
       },
       language: {
+        locale: locale,
         name: language,
       },
       chat: chat,
