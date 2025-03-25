@@ -43,7 +43,7 @@ class LatexRender(DocumentRender):
 
     def __init__(self) -> None:
         self.cv_uuid = str(uuid.uuid4())
-        self.working_dir = "./app/templates/latex/"
+        self.working_dir = "./app/templates/latex"
         self.cv_template = f"{self.working_dir}/cv/"
         self.cv_folder = f"{self.working_dir}/rendered/{self.cv_uuid}/"
         self.tex_path = os.path.join(self.cv_folder, "cv_rendered.tex")

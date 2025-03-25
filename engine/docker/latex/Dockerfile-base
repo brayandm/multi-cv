@@ -8,4 +8,8 @@ RUN pip install --no-cache-dir pipenv
 
 RUN apt update
 
-RUN apt install -y texlive-latex-base texlive-latex-extra texlive-fonts-recommended
+RUN apt install -y \
+        texlive-latex-base \
+        texlive-latex-recommended \
+        texlive-fonts-recommended \
+        texlive-lang-all
