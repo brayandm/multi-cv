@@ -3,14 +3,11 @@ import { Button, Checkbox, Input, Textarea } from "@heroui/react";
 import React, { Key } from "react";
 import {
   DynamicInputsProps,
-  IDynamicInput,
-  IDynamicInputArray,
   IDynamicOnValueChange,
   ValidationError,
 } from "./DynamicInputs.types";
 import SelectCountry from "@/shared/components/SelectCountry";
 import Flag from "react-world-flags";
-import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 import { dynamicInputsStyles } from "@/lib/customStyles";
 import { MAX_LONG_TEXT_LENGTH, MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 import SelectDate from "@/shared/components/SelectDate";
@@ -22,41 +19,6 @@ const DynamicInputs = <T,>({
   horizontal = false,
 }: DynamicInputsProps<T>) => {
   const t = useTranslations();
-
-  const getSelectedCountry = (
-    inputs: IDynamicInputArray<T>
-  ): IDynamicInput<T> => {
-    return inputs.find((input) => {
-      if (Array.isArray(input)) {
-        return getSelectedCountry(input); // <- There is a problem here
-      } else {
-        return input.type === "phone_country_code" && input.value !== null;
-      }
-    }) as IDynamicInput<T>;
-  };
-
-  const PhoneNumberStartContent = () => {
-    try {
-      const Component = (
-        <>
-          {getSelectedCountry(inputs) &&
-            (getSelectedCountry(inputs).value as string) && (
-              <>
-                +
-                {getCountryCallingCode(
-                  getSelectedCountry(inputs).value as CountryCode
-                )}
-              </>
-            )}
-        </>
-      );
-      return Component;
-    } catch (e) {
-      console.log(e);
-
-      return <></>;
-    }
-  };
 
   return (
     <div
@@ -135,7 +97,6 @@ const DynamicInputs = <T,>({
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               color={input.color}
-              startContent={PhoneNumberStartContent()}
               isDisabled={input.isDisabled}
               classNames={customStyles}
               onBlur={input.onBlur}
