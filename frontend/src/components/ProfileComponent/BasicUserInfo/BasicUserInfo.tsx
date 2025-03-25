@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { IBasicInfo, useProfile } from "@/contexts/ProfileContext";
 import { useChat } from "@/contexts/ChatContext";
 import { phoneValidator } from "@/lib/validator";
+import { AsYouType, CountryCode } from "libphonenumber-js";
 
 const BasicUserInfo: React.FC = () => {
   const { basicInfo, updateBasicInfo, syncProfileOnFirstLogin } = useProfile();
@@ -89,8 +90,18 @@ const BasicUserInfo: React.FC = () => {
         placeholder: "XXXXXXXXX",
         type: "phone_number",
         value: basicInfo.phone_number,
+
         onValueChange: (value: string) => {
-          onBasicUserInfoChange("phone_number", value);
+          const formatter = new AsYouType(
+            basicInfo.phone_country_code as CountryCode
+          );
+          const formatted = formatter.input(value);
+
+          if (value.replace(/\s/g, "").length > 15) {
+            return;
+          }
+
+          onBasicUserInfoChange("phone_number", formatted);
         },
         isRequired: true,
         onBlur: syncProfileOnFirstLogin,
