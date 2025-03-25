@@ -8,8 +8,8 @@ class GenerateCvPipeline(Pipeline):
     def __init__(self) -> None:
         self.agent = GenerateCvAgent()
 
-    def run(self, profile: Profile) -> Cv:
+    async def run(self, profile: Profile) -> Cv:
 
-        result = self.agent.run(profile)
+        result = await self.agent.run(profile)
 
         return result

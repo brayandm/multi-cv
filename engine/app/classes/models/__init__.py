@@ -3,7 +3,6 @@ from .cv.cv import Cv
 from .cv.cv_experience import CvExperience
 from .cv.cv_template import CvTemplate
 from .language import Language
-from .message import Message
 from .profile.basic_info import BasicInfo
 from .profile.education import Education
 from .profile.experience import Experience, ExperienceId
@@ -12,7 +11,6 @@ from .profile.profile import Profile
 from .webhook_payload import WebhookPayload
 
 __all__ = [
-    "Message",
     "Profile",
     "BasicInfo",
     "Education",

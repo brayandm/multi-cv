@@ -9,7 +9,7 @@ from app.utils.phone import to_international_format
 
 class GenerateCvAgent(Agent):
 
-    def run(self, profile: Profile) -> Cv:
+    async def run(self, profile: Profile) -> Cv:
         profile_json = profile.model_dump_json()
 
         cv_structure = """
@@ -107,7 +107,11 @@ class GenerateCvAgent(Agent):
         END_JSON
         """
 
-        response = str(self.chat([HumanMessage(content=input_prompt)]).content)
+        response = str(
+            (
+                await self.chat.ainvoke([HumanMessage(content=input_prompt)])
+            ).content
+        )
 
         try:
             json_start = response.find("BEGIN_JSON") + len("BEGIN_JSON")

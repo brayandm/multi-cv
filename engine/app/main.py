@@ -15,8 +15,8 @@ from app.classes.models import (
 )
 from app.classes.pipelines import (
     ChatExperiencePipeline,
-    RenderCVPipeline,
     GenerateCvPipeline,
+    RenderCVPipeline,
 )
 from app.database.mongodb import lifespan
 from app.facades.document_render_facade import DocumentRenderFacade
@@ -87,7 +87,7 @@ async def generate_cv_inline(
 
     cv_template = CvTemplate(id="default")
 
-    cv = GenerateCvPipeline().run(profile)
+    cv = await GenerateCvPipeline().run(profile)
 
     document_render = DocumentRenderFacade.get_render()
 
