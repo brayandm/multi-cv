@@ -1,6 +1,8 @@
 name: multi-cv
 
 on:
+    push:
+        branches: ["main"]
     workflow_dispatch:
 
 jobs:
@@ -28,7 +30,7 @@ jobs:
               run: bash run-tests.sh
 
     deploy:
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         needs: test
         runs-on:
             - self-hosted
