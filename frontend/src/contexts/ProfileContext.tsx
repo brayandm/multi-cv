@@ -212,7 +212,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const syncProfile = async () => {
-    if (onLoadedError) return;
+    if (!isLoaded || onLoadedError) return;
     try {
       await profileSyncEngine(getJoinedProfile());
       setProfileEngine(getJoinedProfile());
@@ -222,7 +222,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const syncProfileOnFirstLogin = async () => {
-    if (onLoadedError) return;
+    if (!isLoaded || onLoadedError) return;
     if (!userStatus.is_first_login) return;
     try {
       await profileSyncEngine(getJoinedProfile());
