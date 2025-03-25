@@ -2,11 +2,9 @@ from typing import Any, Dict, Type
 
 from app.classes.base import Pipeline
 from app.framework.decorators.context_vars import get_action_id
+from app.framework.logging import logger
 from app.worker.tasks import execute_pipeline_task
 from app.worker.utils import serialize
-
-
-from app.framework.logging import logger
 
 
 class QueueManager:
