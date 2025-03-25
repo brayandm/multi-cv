@@ -14,6 +14,7 @@ import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 import { emailValidator, requiredValidator } from "@/lib/validator";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -76,6 +77,8 @@ export default function LoginComponent() {
 
   const t = useTranslations();
 
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <form
       className="flex flex-col gap-2 text-center w-[250px] mx-auto"
@@ -98,21 +101,38 @@ export default function LoginComponent() {
             return emailValidator(t, value);
           }}
         />
-        <Input
-          label={t("common.form.password")}
-          color="default"
-          placeholder={t("common.placeholders.enter_password")}
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          classNames={generalInputsStyles}
-          isRequired
-          maxLength={MAX_SHORT_TEXT_LENGTH}
-          validate={(value) => {
-            return requiredValidator(t, value);
-          }}
-        />
+        <div className="relative">
+          <Input
+            label={t("common.form.password")}
+            color="default"
+            placeholder={t("common.placeholders.enter_password")}
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            classNames={{
+              ...generalInputsStyles,
+              inputWrapper: "pr-10",
+            }}
+            isRequired
+            maxLength={MAX_SHORT_TEXT_LENGTH}
+            validate={(value) => {
+              return requiredValidator(t, value);
+            }}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-[50%] translate-y-[-50%] text-gray-500 hover:text-primary"
+            tabIndex={-1}
+          >
+            {showPassword ? (
+              <EyeSlashIcon className="h-5 w-5" />
+            ) : (
+              <EyeIcon className="h-5 w-5" />
+            )}
+          </button>
+        </div>
         <Button color="primary" type="submit" isLoading={onLogin}>
           {t("common.auth.login")}
         </Button>
