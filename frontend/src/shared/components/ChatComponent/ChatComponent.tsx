@@ -175,34 +175,43 @@ export default function ChatComponent() {
                 ))}
                 <div ref={messagesEndRef} />
               </div>
-              <div className="flex flex-row items-end px-4 pb-4 space-x-2 border-t-2 pt-3 shadow-lg">
-                <Textarea
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  minRows={1}
-                  maxRows={8}
-                  placeholder={t("common.texts.type_message")}
-                  className="flex-1"
-                  classNames={{
-                    inputWrapper: "rounded-3xl shadow-lg",
-                  }}
-                  isDisabled={chat.messages.length >= 7}
-                />
-                <Button
-                  color={"primary"}
-                  onPressStart={sendMessage}
-                  className="p-2 rounded-full"
-                  isIconOnly
-                  isDisabled={
-                    !input.trim() ||
-                    chat.messages.some((m) => m.isLoading) ||
-                    (chat.messages.length > 0 &&
-                      chat.messages[chat.messages.length - 1].sender ===
-                        "person")
-                  }
-                >
-                  <PaperAirplaneIcon className="w-5 h-5" />
-                </Button>
+              <div className="border-t-2">
+                {/* <div className="px-4">
+                  <span className={`text-xs font-medium ${"text-gray-500"}`}>
+                    {t("common.texts.message_left", {
+                      count: 7 - chat.messages.length,
+                    })}
+                  </span>
+                </div> */}
+                <div className="flex flex-row items-end px-4 pb-4 pt-3 space-x-2 shadow-lg relative">
+                  <Textarea
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    minRows={1}
+                    maxRows={8}
+                    placeholder={t("common.texts.type_message")}
+                    className="flex-1"
+                    classNames={{
+                      inputWrapper: "rounded-3xl shadow-lg",
+                    }}
+                    isDisabled={chat.messages.length >= 7}
+                  />
+                  <Button
+                    color={"primary"}
+                    onPressStart={sendMessage}
+                    className="p-2 rounded-full"
+                    isIconOnly
+                    isDisabled={
+                      !input.trim() ||
+                      chat.messages.some((m) => m.isLoading) ||
+                      (chat.messages.length > 0 &&
+                        chat.messages[chat.messages.length - 1].sender ===
+                          "person")
+                    }
+                  >
+                    <PaperAirplaneIcon className="w-5 h-5" />
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

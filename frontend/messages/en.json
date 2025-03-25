@@ -35,7 +35,8 @@
       "type_message": "Type a message...",
       "generate_cv": "Generate CV",
       "quota_info": "Quota Info",
-      "used": "Used"
+      "used": "Used",
+      "message_left": "Messages left: {count}"
     },
     "buttons": {
       "continue": "Continue",
