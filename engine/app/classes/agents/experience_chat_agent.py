@@ -24,11 +24,19 @@ the goal is to make the conversation light and comfortable.
 If you’re still unsure about the user’s skills, achievements,
 or impact, you can ask about those.
 
-After the third response, thank the user sincerely and end the conversation
-with a warm closing message.
+Make sure to communicate in the user's preferred language: {language.name}.
+"""
+
+        system_prompt_end = f"""You are a friendly and polite assistant helping
+a user reflect on a past job. You already asked three smart, focused
+questions to learn more about the user's skills, achievements, etc.
+Now finish the conversation and say goodbye.
 
 Make sure to communicate in the user's preferred language: {language.name}.
 """
+
+        if len(chat.messages) == 6:
+            system_prompt = system_prompt_end
 
         chat_message = await self.chat_response(
             system_prompt=system_prompt,
