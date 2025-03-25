@@ -42,6 +42,7 @@ import {
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
+import { Language } from "@/contexts/LocaleContext";
 
 const isServer = typeof window === "undefined";
 
@@ -257,27 +258,21 @@ export const getProfileEngine = async (): Promise<
   return await engine.get(getProfileEngineLink);
 };
 
-export const generateCvInlineEngine = async (): Promise<
-  AxiosResponse<Blob>
-> => {
-  return await engine.post(
-    generateCvInlineEngineLink,
-    {},
-    {
-      responseType: "blob",
-    }
-  );
+export const generateCvInlineEngine = async (
+  language: Language
+): Promise<AxiosResponse<Blob>> => {
+  return await engine.post(generateCvInlineEngineLink, language, {
+    responseType: "blob",
+  });
 };
 
 export const chatExperienceEngine = async ({
   experience_id,
   chat,
-  locale,
   language,
 }: {
   experience_id: string;
-  locale: string;
-  language: string;
+  language: Language;
   chat: ChatData;
 }): Promise<AxiosResponse<chatExperienceResponse>> => {
   return await engine.post(
@@ -286,10 +281,7 @@ export const chatExperienceEngine = async ({
       experience_id: {
         id: experience_id,
       },
-      language: {
-        locale: locale,
-        name: language,
-      },
+      language: language,
       chat: chat,
     },
     {

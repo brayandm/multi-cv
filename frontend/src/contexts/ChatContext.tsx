@@ -9,7 +9,7 @@ import React, {
   useEffect,
   ReactNode,
 } from "react";
-import { mapLocaleToLanguage, useLocale } from "./LocaleContext";
+import { useLocale } from "./LocaleContext";
 
 export type Sender = "bot" | "person";
 
@@ -48,7 +48,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [chatMap, setChatMap] = useState<ChatMap>({});
   const [currentType, setCurrentType] = useState<string | null>(null);
   const [currentId, setCurrentId] = useState<string | undefined>(undefined);
-  const { locale } = useLocale();
+  const { getLanguage } = useLocale();
 
   const currentKey = useMemo(() => {
     if (!currentType) return null;
@@ -111,8 +111,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       if (currentType === "experience" && currentId) {
         const response = await chatExperienceEngine({
           experience_id: currentId,
-          locale: locale,
-          language: mapLocaleToLanguage(locale || "en"),
+          language: getLanguage(),
           chat: chatMap[getKey({ type: currentType, id: currentId })] || {
             messages: [],
           },

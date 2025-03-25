@@ -16,9 +16,12 @@ import { GetQuotaInfoResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
 import { saveAs } from "file-saver";
 import { useTranslations } from "next-intl";
+import { useLocale } from "@/contexts/LocaleContext";
 
 export default function HomeComponent() {
   const { isLoading: isUserDataLoading } = useSWR(userApiLink, fetcherApi);
+
+  const { getLanguage } = useLocale();
 
   const [isQuotaInfoLoading, setIsQuotaInfoLoading] = useState(false);
   const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
@@ -91,7 +94,7 @@ export default function HomeComponent() {
   const handleDocument = async (download = false) => {
     try {
       setIsCvLoading(true);
-      const response = await generateCvInlineEngine();
+      const response = await generateCvInlineEngine(getLanguage());
 
       const blob = new Blob([response.data], { type: "application/pdf" });
 

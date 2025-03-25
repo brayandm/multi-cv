@@ -18,6 +18,12 @@ interface LocaleContextType {
   locale: string;
   updateLocale: (newLocale: string) => void;
   syncLocale: (newLocale: string) => void;
+  getLanguage: () => Language;
+}
+
+export interface Language {
+  locale: string;
+  name: string;
 }
 
 export const languages = [
@@ -82,13 +88,22 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
+  const getLanguage = useCallback(() => {
+    return {
+      locale: locale,
+      name: mapLocaleToLanguage(locale || "en"),
+    };
+  }, [locale]);
+
   useEffect(() => {
     setCookieClient("locale", locale);
     router.refresh();
   }, [locale, router]);
 
   return (
-    <LocaleContext.Provider value={{ locale, updateLocale, syncLocale }}>
+    <LocaleContext.Provider
+      value={{ locale, updateLocale, syncLocale, getLanguage }}
+    >
       {children}
     </LocaleContext.Provider>
   );
