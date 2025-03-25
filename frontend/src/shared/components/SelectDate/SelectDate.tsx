@@ -75,7 +75,7 @@ export default function SelectDate({
       const formatted = `${draftYear}-${String(monthIndex).padStart(2, "0")}`;
       onValueChange?.(formatted);
     }
-
+    setOpen(false);
     onBlur?.();
   }, [draftMonth, draftYear, onValueChange, onBlur, months]);
 
@@ -85,6 +85,7 @@ export default function SelectDate({
     setDraftMonth(null);
     setDraftYear(null);
     onValueChange?.("");
+    setOpen(false);
   };
 
   const [firstInteraction, setFirstInteraction] = useState(true);
@@ -100,10 +101,13 @@ export default function SelectDate({
     }
   }, [draftYear]);
 
+  const [open, setOpen] = useState(false);
+
   return (
     <Popover
       placement="bottom-start"
       onOpenChange={(open) => {
+        setOpen(true);
         if (open) {
           setDraftMonth(selectedMonth);
           setDraftYear(selectedYear);
@@ -111,6 +115,7 @@ export default function SelectDate({
           handleConfirm();
         }
       }}
+      isOpen={open}
     >
       <PopoverTrigger>
         <div>
