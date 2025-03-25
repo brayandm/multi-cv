@@ -28,6 +28,7 @@ export default function SelectDate({
   const [draftMonth, setDraftMonth] = useState<string | null>(null);
   const [draftYear, setDraftYear] = useState<number | null>(null);
   const yearsContainerRef = useRef<HTMLDivElement>(null);
+  const monthsContainerRef = useRef<HTMLDivElement>(null);
   const t = useTranslations();
 
   const months = useMemo(
@@ -106,6 +107,19 @@ export default function SelectDate({
     }
   }, [open, draftYear, selectedYear]);
 
+  useEffect(() => {
+    if (open && monthsContainerRef.current) {
+      const container = monthsContainerRef.current;
+
+      const index = months.findIndex((m) => m === draftMonth);
+      if (index !== -1) {
+        const itemHeight = 32;
+        container.scrollTop =
+          itemHeight * index - container.clientHeight / 2 + itemHeight / 2 + 4;
+      }
+    }
+  }, [open, draftMonth, months]);
+
   return (
     <Popover
       placement="bottom-start"
@@ -165,7 +179,10 @@ export default function SelectDate({
         <div className="flex gap-2">
           <div className="relative">
             <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
-            <div className="flex-1 max-h-52 relative overflow-y-auto space-y-1 scrollbar-none pr-1">
+            <div
+              ref={monthsContainerRef}
+              className="flex-1 max-h-52 relative overflow-y-auto space-y-1 scrollbar-none pr-1"
+            >
               <div className="h-1" />
               {months.map((month) => (
                 <div
