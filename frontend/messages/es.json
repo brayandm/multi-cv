@@ -1,230 +1,250 @@
 {
-  "app": {
-    "name": "MultiCV"
-  },
-  "common": {
-    "menu": {
-      "home": "Inicio",
-      "change_password": "Cambiar Contraseña",
-      "profile": "Perfil"
+    "app": {
+        "name": "MultiCV"
     },
-    "auth": {
-      "login": "Iniciar sesión",
-      "register": "Registrarse",
-      "logout": "Cerrar sesión",
-      "google_sign_in": "Iniciar sesión con Google",
-      "google_sign_up": "Registrarse con Google",
-      "use_other_method": "Usar otro método",
-      "forgot_password": "¿Olvidaste tu contraseña?"
-    },
-    "texts": {
-      "delete": "Eliminando {element}",
-      "delete_confirmation": "¿Estás seguro de que deseas eliminar este {element}?",
-      "skills": "habilidades",
-      "draft_changes": "Cambios en borrador",
-      "draft_changes_description": "Tienes cambios no guardados. ¿Quieres guardarlos?",
-      "havent_finished": "Aún no has terminado este {element}.",
-      "discard_changes": "¿Quieres seguir editando o descartar los cambios?",
-      "saved": "Guardado",
-      "saved_description": "Tus cambios han sido guardados.",
-      "unfinished_element": "Elemento no terminado",
-      "unfinished_element_description": "Aún no has terminado este {element}.",
-      "chat": "Chat AI",
-      "chat_description": "Chatea con nuestra IA para obtener ayuda",
-      "ai_assistant": "Asistente de IA",
-      "type_message": "Escribe un mensaje...",
-      "generate_cv": "Generar CV",
-      "quota_info": "Información de cuota",
-      "used": "Usado"
-    },
-    "buttons": {
-      "continue": "Continuar",
-      "add": "Agregar",
-      "resend_email": "Reenviar correo",
-      "send_email": "Enviar correo",
-      "change_password": "Cambiar contraseña",
-      "resend_in": "Reenviar en {timeleft}s",
-      "try_again": "Intenta de nuevo",
-      "too_many_requests": "Demasiadas solicitudes, intenta en 24 horas",
-      "next": "Siguiente",
-      "previous": "Anterior",
-      "go_home": "Ir a Inicio",
-      "add_element": "Agregar {element}",
-      "delete": "Eliminar",
-      "cancel": "Cancelar",
-      "save": "Guardar",
-      "discard": "Descartar",
-      "keep_editing": "Seguir editando"
-    },
-    "errors": {
-      "login": "Error de inicio de sesión",
-      "login_description": "El correo o la contraseña son incorrectos.",
-      "register": "Error de registro",
-      "register_description": "El correo ya está en uso.",
-      "passwords_not_match": "Las contraseñas no coinciden",
-      "password_change": "Error al cambiar la contraseña",
-      "old_password_incorrect": "La contraseña actual es incorrecta",
-      "server": "Error del servidor",
-      "under_age": "Debes tener más de 18 años",
-      "accept_terms": "Debes aceptar los términos y condiciones",
-      "length": "El {field} debe tener {current_length}/{length} caracteres",
-      "skill_length": "Debes ingresar al menos {min} habilidad",
-      "country_code_required": "Selecciona un código de país",
-      "max_elements": "Número máximo de {element} alcanzado",
-      "max_elements_description": "Solo puedes agregar {max} {element}"
-    },
-    "success": {
-      "password_change": "Contraseña cambiada",
-      "password_change_description": "Tu contraseña ha sido cambiada con éxito."
-    },
-    "form": {
-      "first_name": "Nombre",
-      "last_name": "Apellido",
-      "email": "Correo electrónico",
-      "password": "Contraseña",
-      "current_password": "Contraseña actual",
-      "new_password": "Nueva contraseña",
-      "repeat_password": "Repetir contraseña",
-      "your_location": "Tu ubicación",
-      "phone": "Número de teléfono",
-      "about": "Sobre ti",
-      "company_name": "Empresa",
-      "institution": "Institución",
-      "career": "Carrera",
-      "skill": "Habilidad",
-      "role": "Rol",
-      "phone_number": "Número de teléfono",
-      "phone_country_code": "Código de país",
-      "company_description": "Descripción del trabajo",
-      "location": "Ubicación",
-      "start_date": "Fecha de inicio",
-      "end_date": "Fecha de finalización",
-      "project_name": "Nombre del proyecto",
-      "project_description": "Descripción del proyecto",
-      "link": "Enlace",
-      "professional_links_select": "Selecciona un enlace",
-      "skill_description": "Inserta al menos {min} habilidades"
-    },
-    "placeholders": {
-      "enter_first_name": "Ingresa tu nombre",
-      "enter_last_name": "Ingresa tu apellido",
-      "enter_email": "Ingresa tu correo",
-      "enter_password": "Ingresa tu contraseña",
-      "enter_current_password": "Ingresa tu contraseña actual",
-      "enter_new_password": "Ingresa tu nueva contraseña",
-      "enter_password_again": "Ingresa tu contraseña nuevamente",
-      "enter_skill": "Ingresa una nueva habilidad",
-      "enter_phone": "Ingresa tu número de teléfono",
-      "enter_about": "Soy un/a ...",
-      "enter_company_name": "Nombre de la empresa",
-      "enter_institution_name": "Nombre de la institución",
-      "enter_career": "El título que estudiaste / estudias aquí",
-      "enter_role": "Tu rol en la empresa",
-      "enter_job_description": "Una descripción de tus deberes y responsabilidades en el trabajo",
-      "enter_your_location": "Ciudad, País",
-      "enter_location": "\"Ciudad, País\" o \"Remoto\"",
-      "enter_project_name": "Ingresa el nombre del proyecto",
-      "enter_project_description": "Ingresa una breve descripción",
-      "enter_project_link": "Enlace a tu proyecto",
-      "enter_institution_link": "Enlace de la institución",
-      "enter_company_link": "Enlace de la empresa",
-      "professional_links_select": "Haz clic para seleccionar",
-      "enter_your_link": "Ingresa tu enlace de {field}"
-    },
-    "legal": {
-      "terms_conditions": "Términos y Condiciones",
-      "privacy_policy": "Política de Privacidad",
-      "confirm_age": "Confirmo que tengo más de 18 años",
-      "accept_terms": "Acepto los <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>"
-    }
-  },
-  "components": {
-    "cv": {
-      "download": "Descargar",
-      "to_expire": "<days></days> Para expirar",
-      "days": "{count, plural, =1 {1 día} other {# días}}"
-    }
-  },
-  "pages": {
-    "email_verification": {
-      "title": "Verificación de Correo",
-      "already_verified": {
-        "title": "Verificación de Correo Ya Verificado",
-        "message": "Tu correo ya ha sido verificado."
-      },
-      "success": {
-        "title": "Verificación de Correo Exitosa",
-        "message": "Tu correo ha sido verificado."
-      },
-      "expired": {
-        "title": "Verificación de Correo Expirada",
-        "message": "Tu enlace de verificación de correo ha expirado."
-      },
-      "instructions": "Te hemos enviado un correo con un enlace de verificación."
-    },
-    "password_recovery": {
-      "title": "Recuperación de Contraseña",
-      "success": {
-        "title": "Recuperación de Contraseña Exitosa",
-        "message": "Tu contraseña ha sido cambiada."
-      },
-      "fail": {
-        "title": "Recuperación de Contraseña Inválida o Expirada",
-        "message": "Tu enlace de recuperación de contraseña es inválido o ha expirado."
-      },
-      "instructions": "Te enviaremos un correo con un enlace para restablecer tu contraseña."
-    },
-    "welcome": {
-      "title": "Bienvenido a <appName></appName>",
-      "description": "Crea CVs únicos para ofertas de trabajo únicas."
-    },
-    "home": {
-      "your_resumes": "Tus Currículums"
-    },
-    "login": {
-      "description": "Por favor ingresa tus credenciales"
-    },
-    "register": {
-      "description": "Preséntate"
-    },
-    "profile": {
-      "subtitle": "Esta información es necesaria para crear correctamente tu CV.",
-      "sections": {
-        "basic_info": {
-          "title": "Personal"
+    "common": {
+        "menu": {
+            "home": "Inicio",
+            "change_password": "Cambiar Contraseña",
+            "profile": "Perfil"
         },
-        "professional_links": {
-          "title": "Enlaces"
+        "auth": {
+            "login": "Iniciar sesión",
+            "register": "Registrarse",
+            "logout": "Cerrar sesión",
+            "google_sign_in": "Iniciar sesión con Google",
+            "google_sign_up": "Registrarse con Google",
+            "use_other_method": "Usar otro método",
+            "forgot_password": "¿Olvidaste tu contraseña?"
         },
-        "skills": {
-          "title": "Habilidades"
+        "texts": {
+            "delete": "Eliminando {element}",
+            "delete_confirmation": "¿Estás seguro de que deseas eliminar este {element}?",
+            "skills": "habilidades",
+            "draft_changes": "Cambios en borrador",
+            "draft_changes_description": "Tienes cambios no guardados. ¿Quieres guardarlos?",
+            "havent_finished": "Aún no has terminado este {element}.",
+            "discard_changes": "¿Quieres seguir editando o descartar los cambios?",
+            "saved": "Guardado",
+            "saved_description": "Tus cambios han sido guardados.",
+            "unfinished_element": "Elemento no terminado",
+            "unfinished_element_description": "Aún no has terminado este {element}.",
+            "chat": "Chat AI",
+            "chat_description": "Chatea con nuestra IA para obtener ayuda",
+            "ai_assistant": "Asistente AI",
+            "type_message": "Escribe un mensaje...",
+            "generate_cv": "Generar CV",
+            "quota_info": "Información de Cuota",
+            "used": "Usado"
         },
-        "projects": {
-          "title": "Proyectos",
-          "element": "Proyecto",
-          "is_present": "Actualmente estoy trabajando en este proyecto"
+        "buttons": {
+            "continue": "Continuar",
+            "add": "Agregar",
+            "resend_email": "Reenviar correo",
+            "send_email": "Enviar correo",
+            "change_password": "Cambiar contraseña",
+            "resend_in": "Reenviar en {timeleft}s",
+            "try_again": "Intenta de nuevo",
+            "too_many_requests": "Demasiadas solicitudes, intenta en 24 horas",
+            "next": "Siguiente",
+            "previous": "Anterior",
+            "go_home": "Ir a Inicio",
+            "add_element": "Agregar {element}",
+            "delete": "Eliminar",
+            "cancel": "Cancelar",
+            "save": "Guardar",
+            "discard": "Descartar",
+            "keep_editing": "Seguir editando",
+            "clear": "Limpiar"
         },
-        "experience": {
-          "title": "Experiencia",
-          "element": "Experiencia",
-          "is_present": "Actualmente estoy trabajando aquí"
+        "errors": {
+            "login": "Error de inicio de sesión",
+            "login_description": "El correo o la contraseña son incorrectos.",
+            "register": "Error de registro",
+            "register_description": "El correo ya está en uso.",
+            "passwords_not_match": "Las contraseñas no coinciden",
+            "password_change": "Error al cambiar la contraseña",
+            "old_password_incorrect": "La contraseña actual es incorrecta",
+            "server": "Error del servidor",
+            "under_age": "Debes tener más de 18 años",
+            "accept_terms": "Debes aceptar los términos y condiciones",
+            "length": "El {field} debe tener {current_length}/{length} caracteres",
+            "skill_length": "Debes ingresar al menos {min} habilidad",
+            "country_code_required": "Selecciona un código de país",
+            "max_elements": "Número máximo de {element} alcanzado",
+            "max_elements_description": "Solo puedes agregar {max} {element}",
+            "required": "Por favor completa este campo.",
+            "invalid_email": "El correo que ingresaste no es válido",
+            "password_too_short": "La contraseña debe tener al menos {min} caracteres",
+            "select_date": "Por favor selecciona una fecha",
+            "invalid_phone": "El número de teléfono no es válido"
         },
-        "education": {
-          "title": "Educación",
-          "element": "Educación",
-          "is_present": "Actualmente estoy estudiando aquí"
+        "success": {
+            "password_change": "Contraseña cambiada",
+            "password_change_description": "Tu contraseña ha sido cambiada con éxito."
+        },
+        "form": {
+            "first_name": "Nombre",
+            "last_name": "Apellido",
+            "email": "Correo electrónico",
+            "password": "Contraseña",
+            "current_password": "Contraseña actual",
+            "new_password": "Nueva contraseña",
+            "repeat_password": "Repetir contraseña",
+            "your_location": "Tu ubicación",
+            "phone": "Número de teléfono",
+            "about": "Sobre ti",
+            "company_name": "Empresa",
+            "institution": "Institución",
+            "career": "Carrera",
+            "skill": "Habilidad",
+            "role": "Rol",
+            "phone_number": "Número de teléfono",
+            "phone_country_code": "Código de país",
+            "company_description": "Descripción del trabajo",
+            "location": "Ubicación",
+            "start_date": "Fecha de inicio",
+            "end_date": "Fecha de finalización",
+            "project_name": "Nombre del proyecto",
+            "project_description": "Descripción del proyecto",
+            "link": "Enlace",
+            "professional_links_select": "Selecciona un enlace",
+            "skill_description": "Inserta al menos {min} habilidades"
+        },
+        "placeholders": {
+            "enter_first_name": "Ingresa tu nombre",
+            "enter_last_name": "Ingresa tu apellido",
+            "enter_email": "Ingresa tu correo",
+            "enter_password": "Ingresa tu contraseña",
+            "enter_current_password": "Ingresa tu contraseña actual",
+            "enter_new_password": "Ingresa tu nueva contraseña",
+            "enter_password_again": "Ingresa tu contraseña nuevamente",
+            "enter_skill": "Ingresa una nueva habilidad",
+            "enter_phone": "Ingresa tu número de teléfono",
+            "enter_about": "Soy un/a ...",
+            "enter_company_name": "Nombre de la empresa",
+            "enter_institution_name": "Nombre de la institución",
+            "enter_career": "El título que estudiaste / estudias aquí",
+            "enter_role": "Tu rol en la empresa",
+            "enter_job_description": "Una descripción de tus deberes y responsabilidades en el trabajo",
+            "enter_your_location": "Ciudad, País",
+            "enter_location": "\"Ciudad, País\" o \"Remoto\"",
+            "enter_project_name": "Ingresa el nombre del proyecto",
+            "enter_project_description": "Ingresa una breve descripción",
+            "enter_project_link": "Enlace a tu proyecto",
+            "enter_institution_link": "Enlace de la institución",
+            "enter_company_link": "Enlace de la empresa",
+            "professional_links_select": "Haz clic para seleccionar",
+            "enter_your_link": "Ingresa tu enlace de {field}"
+        },
+        "legal": {
+            "terms_conditions": "Términos y Condiciones",
+            "privacy_policy": "Política de Privacidad",
+            "confirm_age": "Confirmo que tengo más de 18 años",
+            "accept_terms": "Acepto los <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>"
+        },
+        "months": {
+            "january": "Enero",
+            "february": "Febrero",
+            "march": "Marzo",
+            "april": "Abril",
+            "may": "Mayo",
+            "june": "Junio",
+            "july": "Julio",
+            "august": "Agosto",
+            "september": "Septiembre",
+            "october": "Octubre",
+            "november": "Noviembre",
+            "december": "Diciembre"
         }
-      },
-      "success": {
-        "title": "Registro Completo",
-        "message": "Tu cuenta está lista. Ahora puedes acceder a todas las funciones de la plataforma."
-      }
     },
-    "terms_and_conditions": {
-      "title": "Política de Privacidad y Términos y Condiciones",
-      "description_first_time": "Por favor lee y acepta.",
-      "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para revisión antes de eso. Por favor, tómate un momento para revisar los cambios que se avecinan.",
-      "accept_terms": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Al hacer clic en \"Continuar\", aceptas los términos actualizados."
+    "components": {
+        "cv": {
+            "download": "Descargar",
+            "to_expire": "<days></days> Para expirar",
+            "days": "{count, plural, =1 {1 día} other {# días}}"
+        }
+    },
+    "pages": {
+        "email_verification": {
+            "title": "Verificación de Correo",
+            "already_verified": {
+                "title": "Verificación de Correo Ya Verificada",
+                "message": "Tu correo ya ha sido verificado."
+            },
+            "success": {
+                "title": "Verificación de Correo Exitosa",
+                "message": "Tu correo ha sido verificado."
+            },
+            "expired": {
+                "title": "Verificación de Correo Expirada",
+                "message": "Tu enlace de verificación de correo ha expirado."
+            },
+            "instructions": "Te hemos enviado un correo con un enlace de verificación."
+        },
+        "password_recovery": {
+            "title": "Recuperación de Contraseña",
+            "success": {
+                "title": "Recuperación de Contraseña Exitosa",
+                "message": "Tu contraseña ha sido cambiada."
+            },
+            "fail": {
+                "title": "Recuperación de Contraseña Inválida o Expirada",
+                "message": "Tu enlace de recuperación de contraseña es inválido o ha expirado."
+            },
+            "instructions": "Te enviaremos un correo con un enlace para restablecer tu contraseña."
+        },
+        "welcome": {
+            "title": "Bienvenido a <appName></appName>",
+            "description": "Crea CVs únicos para ofertas de trabajo únicas."
+        },
+        "home": {
+            "your_resumes": "Tus CVs"
+        },
+        "login": {
+            "description": "Por favor ingresa tus credenciales"
+        },
+        "register": {
+            "description": "Preséntate"
+        },
+        "profile": {
+            "subtitle": "Esta información es necesaria para crear correctamente tu CV.",
+            "sections": {
+                "basic_info": {
+                    "title": "Personal"
+                },
+                "professional_links": {
+                    "title": "Enlaces"
+                },
+                "skills": {
+                    "title": "Habilidades"
+                },
+                "projects": {
+                    "title": "Proyectos",
+                    "element": "Proyecto",
+                    "is_present": "Actualmente estoy trabajando en este proyecto"
+                },
+                "experience": {
+                    "title": "Experiencia",
+                    "element": "Experiencia",
+                    "is_present": "Actualmente estoy trabajando aquí"
+                },
+                "education": {
+                    "title": "Educación",
+                    "element": "Educación",
+                    "is_present": "Actualmente estoy estudiando aquí"
+                }
+            },
+            "success": {
+                "title": "Registro Completo",
+                "message": "Tu cuenta está lista. Ahora puedes acceder a todas las funciones de la plataforma."
+            }
+        },
+        "terms_and_conditions": {
+            "title": "Política de Privacidad y Términos y Condiciones",
+            "description_first_time": "Por favor lee y acepta.",
+            "updating_notice": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Los nuevos términos entrarán en vigor en un mes y estarán disponibles para revisión antes de eso. Por favor, tómate un momento para revisar los cambios que se avecinan.",
+            "accept_terms": "Estamos actualizando nuestros <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>. Al hacer clic en \"Continuar\", aceptas los términos actualizados."
+        }
     }
-  }
 }
