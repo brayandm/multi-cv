@@ -162,7 +162,7 @@ async def chat_experience(
         get_user_id(), experience_id.id
     )
 
-    chat_message, notes = ChatExperiencePipeline().run(
+    chat_message, notes = await ChatExperiencePipeline().run(
         chat, experience, language
     )
 

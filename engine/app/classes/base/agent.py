@@ -14,14 +14,13 @@ from app.config import OPENAI_API_KEY
 class Agent(ABC):
 
     def __init__(self) -> None:
-
         self.chat = ChatOpenAI(
             api_key=SecretStr(OPENAI_API_KEY),
             model="gpt-4o-mini",
             temperature=0.7,
         )
 
-    def chat_response(
+    async def chat_response(
         self,
         system_prompt: str,
         context_data: BaseModel,
@@ -43,6 +42,6 @@ class Agent(ABC):
         prompt = ChatPromptTemplate.from_messages(messages)
         chain = LLMChain(llm=self.chat, prompt=prompt)
 
-        response = chain.run({})
+        response = await chain.arun({})
 
         return ChatMessage(sender="bot", text=response)

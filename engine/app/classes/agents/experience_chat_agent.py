@@ -4,7 +4,7 @@ from app.classes.models import Chat, ChatMessage, Experience, Language
 
 class ExperienceChatAgent(Agent):
 
-    def run(
+    async def run(
         self, chat: Chat, experience: Experience, language: Language
     ) -> ChatMessage:
 
@@ -30,7 +30,7 @@ with a warm closing message.
 Make sure to communicate in the user's preferred language: {language.name}.
 """
 
-        chat_message = self.chat_response(
+        chat_message = await self.chat_response(
             system_prompt=system_prompt,
             context_data=experience,
             chat=chat,

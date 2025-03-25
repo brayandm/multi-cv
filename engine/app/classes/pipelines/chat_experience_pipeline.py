@@ -9,11 +9,11 @@ class ChatExperiencePipeline(Pipeline):
         self.chat_agent = ExperienceChatAgent()
         self.notes_agent = ExperienceNotesAgent()
 
-    def run(
+    async def run(
         self, chat: Chat, experience: Experience, language: Language
     ) -> tuple[str, str]:
 
         return (
-            self.chat_agent.run(chat, experience, language).text,
-            self.notes_agent.run(chat, experience),
+            (await self.chat_agent.run(chat, experience, language)).text,
+            await self.notes_agent.run(chat, experience),
         )
