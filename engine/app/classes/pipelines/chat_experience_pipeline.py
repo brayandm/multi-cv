@@ -15,5 +15,5 @@ class ChatExperiencePipeline(Pipeline):
 
         return (
             (await self.chat_agent.run(chat, experience, language)).text,
-            await self.notes_agent.run(chat, experience),
+            await self.notes_agent.run(chat, experience, language),
         )
