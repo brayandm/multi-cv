@@ -101,38 +101,38 @@ export default function LoginComponent() {
             return emailValidator(t, value);
           }}
         />
-        <div className="relative">
-          <Input
-            label={t("common.form.password")}
-            color="default"
-            placeholder={t("common.placeholders.enter_password")}
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            classNames={{
-              ...generalInputsStyles,
-              inputWrapper: "pr-10",
-            }}
-            isRequired
-            maxLength={MAX_SHORT_TEXT_LENGTH}
-            validate={(value) => {
-              return requiredValidator(t, value);
-            }}
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-[50%] translate-y-[-50%] text-gray-500 hover:text-primary"
-            tabIndex={-1}
-          >
-            {showPassword ? (
-              <EyeSlashIcon className="h-5 w-5" />
-            ) : (
-              <EyeIcon className="h-5 w-5" />
-            )}
-          </button>
-        </div>
+        <Input
+          label={t("common.form.password")}
+          color="default"
+          placeholder={t("common.placeholders.enter_password")}
+          type={showPassword ? "text" : "password"}
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          classNames={{
+            ...generalInputsStyles,
+            inputWrapper: "pr-10",
+          }}
+          isRequired
+          maxLength={MAX_SHORT_TEXT_LENGTH}
+          validate={(value) => {
+            return requiredValidator(t, value);
+          }}
+          endContent={
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 text-gray-500 hover:text-primary pointer-events-auto"
+              tabIndex={-1}
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </button>
+          }
+        />
         <Button color="primary" type="submit" isLoading={onLogin}>
           {t("common.auth.login")}
         </Button>

@@ -195,75 +195,77 @@ export default function RegisterComponent() {
             return emailValidator(t, value);
           }}
         />
-        <div className="relative">
-          <Input
-            label={t("common.form.password")}
-            color="default"
-            placeholder={t("common.placeholders.enter_password")}
-            type={showPassword ? "text" : "password"}
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            classNames={{
-              ...generalInputsStyles,
-              inputWrapper: "pr-10",
-            }}
-            isRequired
-            minLength={8}
-            maxLength={MAX_SHORT_TEXT_LENGTH}
-            validate={(value) => {
-              return passwordValidator(t, value);
-            }}
-          />
-          <button
-            type="button"
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-[50%] translate-y-[-50%] text-gray-500 hover:text-primary"
-            tabIndex={-1}
-          >
-            {showPassword ? (
-              <EyeSlashIcon className="h-5 w-5" />
-            ) : (
-              <EyeIcon className="h-5 w-5" />
-            )}
-          </button>
-        </div>
-        <div className="relative">
-          <Input
-            label={t("common.form.repeat_password")}
-            color="default"
-            placeholder={t("common.placeholders.enter_password_again")}
-            type={showRepeatPassword ? "text" : "password"}
-            name="repeatPassword"
-            value={formData.repeatPassword}
-            onChange={handleChange}
-            classNames={{
-              ...generalInputsStyles,
-              inputWrapper: "pr-10",
-            }}
-            isRequired
-            minLength={8}
-            isInvalid={formData.password !== formData.repeatPassword}
-            errorMessage={
-              formData.password !== formData.repeatPassword
-                ? t("common.errors.passwords_not_match")
-                : ""
-            }
-            maxLength={MAX_SHORT_TEXT_LENGTH}
-          />
-          <button
-            type="button"
-            onClick={() => setShowRepeatPassword((prev) => !prev)}
-            className="absolute right-3 top-[50%] translate-y-[-50%] text-gray-500 hover:text-primary"
-            tabIndex={-1}
-          >
-            {showRepeatPassword ? (
-              <EyeSlashIcon className="h-5 w-5" />
-            ) : (
-              <EyeIcon className="h-5 w-5" />
-            )}
-          </button>
-        </div>
+
+        <Input
+          label={t("common.form.password")}
+          color="default"
+          placeholder={t("common.placeholders.enter_password")}
+          type={showPassword ? "text" : "password"}
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+          classNames={{
+            ...generalInputsStyles,
+            inputWrapper: "pr-10",
+          }}
+          isRequired
+          minLength={8}
+          maxLength={MAX_SHORT_TEXT_LENGTH}
+          validate={(value) => {
+            return passwordValidator(t, value);
+          }}
+          endContent={
+            <button
+              type="button"
+              onClick={() => setShowPassword((prev) => !prev)}
+              className="absolute right-3 text-gray-500 hover:text-primary pointer-events-auto"
+              tabIndex={-1}
+            >
+              {showPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </button>
+          }
+        />
+
+        <Input
+          label={t("common.form.repeat_password")}
+          color="default"
+          placeholder={t("common.placeholders.enter_password_again")}
+          type={showRepeatPassword ? "text" : "password"}
+          name="repeatPassword"
+          value={formData.repeatPassword}
+          onChange={handleChange}
+          classNames={{
+            ...generalInputsStyles,
+            inputWrapper: "pr-10",
+          }}
+          isRequired
+          minLength={8}
+          isInvalid={formData.password !== formData.repeatPassword}
+          errorMessage={
+            formData.password !== formData.repeatPassword
+              ? t("common.errors.passwords_not_match")
+              : ""
+          }
+          maxLength={MAX_SHORT_TEXT_LENGTH}
+          endContent={
+            <button
+              type="button"
+              onClick={() => setShowRepeatPassword((prev) => !prev)}
+              className="absolute right-3 text-gray-500 hover:text-primary pointer-events-auto"
+              tabIndex={-1}
+            >
+              {showRepeatPassword ? (
+                <EyeSlashIcon className="h-5 w-5" />
+              ) : (
+                <EyeIcon className="h-5 w-5" />
+              )}
+            </button>
+          }
+        />
 
         <div className="flex items-start gap-1">
           <Checkbox
