@@ -140,8 +140,8 @@ export default function SelectDate({
         </div>
       </PopoverTrigger>
 
-      <PopoverContent className="z-[9999] w-64 bg-white rounded-xl shadow-lg p-4 border border-gray-200">
-        <div className="relative mb-2 h-5">
+      <PopoverContent className="z-[9999] w-52 bg-white rounded-xl shadow-lg p-4 border border-gray-200">
+        <div className="relative mb-2 h-5 w-full">
           <span
             onClick={handleClear}
             className="absolute left-1/2 -translate-x-1/2 text-primary text-sm font-medium cursor-pointer hover:underline"
