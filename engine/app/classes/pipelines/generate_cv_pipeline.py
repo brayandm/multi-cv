@@ -1,6 +1,6 @@
 from app.classes.agents.generate_cv_agent import GenerateCvAgent
 from app.classes.base import Pipeline
-from app.classes.models import Cv, Profile, Language
+from app.classes.models import Cv, Language, Profile
 
 
 class GenerateCvPipeline(Pipeline):

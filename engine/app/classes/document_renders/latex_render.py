@@ -1,3 +1,4 @@
+import json
 import os
 import re
 import shutil
@@ -12,8 +13,6 @@ from app.classes.base.document_render import (
 )
 from app.classes.models import Cv, CvTemplate, Language
 from app.facades.filesystem_facade import FilesystemFacade
-
-import json
 
 
 def escape_latex(text: str) -> str:

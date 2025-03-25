@@ -3,7 +3,7 @@ import json
 from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
-from app.classes.models import Cv, Profile, Language
+from app.classes.models import Cv, Language, Profile
 from app.utils.phone import to_international_format
 
 
