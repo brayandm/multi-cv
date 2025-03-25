@@ -29,7 +29,7 @@ export interface Language {
 export const languages = [
   { code: "en", label: "English" },
   { code: "es", label: "Spanish" },
-  { code: "hi", label: "Hindi" },
+  { code: "hi", label: "Romanized Hindi" },
   { code: "ru", label: "Russian" },
 ];
 
