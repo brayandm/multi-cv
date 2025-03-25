@@ -81,7 +81,7 @@ class GenerateCvAgent(Agent):
         - The Education should be in reverse chronological order.
         - The Dates of the Experiences should be "month_name year" format.
         - In case of having is_present as True, the end_date should be
-        "Present".
+        "Present" in {language.name} language.
         - The most Recent Experience should have more descriptions. And
         the oldest experience should have less descriptions.
 
