@@ -6,6 +6,9 @@ from app.worker.tasks import execute_pipeline_task
 from app.worker.utils import serialize
 
 
+from app.framework.logging import logger
+
+
 class QueueManager:
     def __init__(self, default_queue: str = "default_queue") -> None:
         self.default_queue = default_queue
@@ -48,4 +51,6 @@ class QueueManager:
             ],
             queue=queue_name,
         )
-        print(f"Pipeline {pipeline_class.__name__} sent to queue {queue_name}")
+        logger.info(
+            f"Pipeline {pipeline_class.__name__} sent to queue {queue_name}"
+        )

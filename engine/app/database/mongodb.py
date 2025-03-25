@@ -6,6 +6,7 @@ from motor.core import AgnosticDatabase
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from app.config import MONGO_DB
+from app.framework.logging import logger
 
 
 @asynccontextmanager
@@ -19,12 +20,12 @@ async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     db: AgnosticDatabase[Any] = client[MONGO_DB["name"]]
 
     app.state.db = db
-    print("✅ Connection to MongoDB established")
+    logger.info("✅ Connection to MongoDB established")
 
     yield
 
     client.close()
-    print("✅ MongoDB connection closed")
+    logger.info("✅ MongoDB connection closed")
 
 
 def get_database(request: Request) -> AgnosticDatabase[Any]:
