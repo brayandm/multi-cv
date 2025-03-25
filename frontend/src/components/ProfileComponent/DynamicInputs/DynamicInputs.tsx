@@ -145,6 +145,31 @@ const DynamicInputs = <T,>({
               description={input.description}
               validate={input.validate}
               maxLength={MAX_SHORT_TEXT_LENGTH}
+              onKeyDown={(e) => {
+                const allowedControlKeys = [
+                  "Backspace",
+                  "Delete",
+                  "ArrowLeft",
+                  "ArrowRight",
+                  "Tab",
+                  "Home",
+                  "End",
+                ];
+
+                const isControlCombo =
+                  (e.ctrlKey || e.metaKey) &&
+                  ["a", "c", "v", "x"].includes(e.key.toLowerCase());
+
+                const isDigit = /^[0-9]$/.test(e.key);
+
+                if (
+                  !isDigit &&
+                  !allowedControlKeys.includes(e.key) &&
+                  !isControlCombo
+                ) {
+                  e.preventDefault();
+                }
+              }}
             />
           );
         }
