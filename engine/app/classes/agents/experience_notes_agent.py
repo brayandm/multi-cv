@@ -1,11 +1,13 @@
 from app.classes.base import Agent
-from app.classes.models import Chat, Experience
+from app.classes.models import Chat, Experience, Language
 from app.utils.pydantic_custom_types import MAX_NOTES_LENGTH
 
 
 class ExperienceNotesAgent(Agent):
 
-    async def run(self, chat: Chat, experience: Experience) -> str:
+    async def run(
+        self, chat: Chat, experience: Experience, language: Language
+    ) -> str:
 
         system_prompt = f"""You are an assistant that updates a
         note about a user's past job experience by merging
@@ -14,6 +16,9 @@ class ExperienceNotesAgent(Agent):
         achievements, challenges, and impact in a clear and neutral
         tone. Write concisely in plain text, and do not exceed
         the given {MAX_NOTES_LENGTH / 2} characters limit.
+
+        Make sure to take notes in the user's preferred
+        language: {language.name}.
         """
 
         chat_message = await self.chat_response(
