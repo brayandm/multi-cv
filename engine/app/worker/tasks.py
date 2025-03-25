@@ -11,6 +11,8 @@ from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
 
+import asyncio
+
 
 def rollback_task(
     exc: TaskError,
@@ -59,12 +61,13 @@ def execute_pipeline_task(
     pipeline_instance = pipeline_class()
 
     try:
-        result = pipeline_instance.run(*deserialized_inputs)
+        if asyncio.iscoroutinefunction(pipeline_instance.run):
+            result = asyncio.run(pipeline_instance.run(*deserialized_inputs))
+        else:
+            result = pipeline_instance.run(*deserialized_inputs)
     except Exception as e:
         logger.error(
-            "Pipeline failed for action: %s with error: %s",
-            action,
-            e,
+            "Pipeline failed for action: %s with error: %s", action, e
         )
         raise e
 

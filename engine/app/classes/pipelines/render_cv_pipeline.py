@@ -7,7 +7,7 @@ from app.facades.document_render_facade import (
 
 class RenderCVPipeline(Pipeline):
 
-    def run(self, cv: Cv, cv_template: CvTemplate) -> str:
+    async def run(self, cv: Cv, cv_template: CvTemplate) -> str:
 
         render = DocumentRenderFacade.get_render()
 
