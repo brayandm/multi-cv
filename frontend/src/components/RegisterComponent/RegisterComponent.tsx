@@ -17,6 +17,7 @@ import {
   passwordValidator,
   requiredValidator,
 } from "@/lib/validator";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -139,6 +140,9 @@ export default function RegisterComponent() {
     setOnRegister(false);
   };
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+
   return (
     <form
       className="flex flex-col gap-2 text-center w-[250px] mx-auto"
@@ -191,41 +195,76 @@ export default function RegisterComponent() {
             return emailValidator(t, value);
           }}
         />
-        <Input
-          label={t("common.form.password")}
-          color="default"
-          placeholder={t("common.placeholders.enter_password")}
-          type="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          classNames={generalInputsStyles}
-          isRequired
-          minLength={8}
-          maxLength={MAX_SHORT_TEXT_LENGTH}
-          validate={(value) => {
-            return passwordValidator(t, value);
-          }}
-        />
-        <Input
-          label={t("common.form.repeat_password")}
-          color="default"
-          placeholder={t("common.placeholders.enter_password_again")}
-          type="password"
-          name="repeatPassword"
-          value={formData.repeatPassword}
-          onChange={handleChange}
-          classNames={generalInputsStyles}
-          isRequired
-          minLength={8}
-          isInvalid={formData.password !== formData.repeatPassword}
-          errorMessage={
-            formData.password !== formData.repeatPassword
-              ? t("common.errors.passwords_not_match")
-              : ""
-          }
-          maxLength={MAX_SHORT_TEXT_LENGTH}
-        />
+        <div className="relative">
+          <Input
+            label={t("common.form.password")}
+            color="default"
+            placeholder={t("common.placeholders.enter_password")}
+            type={showPassword ? "text" : "password"}
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            classNames={{
+              ...generalInputsStyles,
+              inputWrapper: "pr-10",
+            }}
+            isRequired
+            minLength={8}
+            maxLength={MAX_SHORT_TEXT_LENGTH}
+            validate={(value) => {
+              return passwordValidator(t, value);
+            }}
+          />
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-[50%] translate-y-[-50%] text-gray-500 hover:text-primary"
+            tabIndex={-1}
+          >
+            {showPassword ? (
+              <EyeSlashIcon className="h-5 w-5" />
+            ) : (
+              <EyeIcon className="h-5 w-5" />
+            )}
+          </button>
+        </div>
+        <div className="relative">
+          <Input
+            label={t("common.form.repeat_password")}
+            color="default"
+            placeholder={t("common.placeholders.enter_password_again")}
+            type={showRepeatPassword ? "text" : "password"}
+            name="repeatPassword"
+            value={formData.repeatPassword}
+            onChange={handleChange}
+            classNames={{
+              ...generalInputsStyles,
+              inputWrapper: "pr-10",
+            }}
+            isRequired
+            minLength={8}
+            isInvalid={formData.password !== formData.repeatPassword}
+            errorMessage={
+              formData.password !== formData.repeatPassword
+                ? t("common.errors.passwords_not_match")
+                : ""
+            }
+            maxLength={MAX_SHORT_TEXT_LENGTH}
+          />
+          <button
+            type="button"
+            onClick={() => setShowRepeatPassword((prev) => !prev)}
+            className="absolute right-3 top-[50%] translate-y-[-50%] text-gray-500 hover:text-primary"
+            tabIndex={-1}
+          >
+            {showRepeatPassword ? (
+              <EyeSlashIcon className="h-5 w-5" />
+            ) : (
+              <EyeIcon className="h-5 w-5" />
+            )}
+          </button>
+        </div>
+
         <div className="flex items-start gap-1">
           <Checkbox
             name="underAge"
