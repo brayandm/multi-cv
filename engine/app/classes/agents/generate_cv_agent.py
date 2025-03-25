@@ -106,7 +106,7 @@ class GenerateCvAgent(Agent):
         <valid JSON response>
         END_JSON
 
-        Remember to generate the CV in the user's preferred language:
+        Remember to generate the CV JSON in the user's preferred language:
         {language.name}
         """
 
