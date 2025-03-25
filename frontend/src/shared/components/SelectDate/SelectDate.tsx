@@ -138,7 +138,7 @@ export default function SelectDate({
   const adjustedLeft =
     inputRect && inputRect.left + POPUP_WIDTH > window.innerWidth
       ? Math.max(0, window.innerWidth - POPUP_WIDTH - 16)
-      : inputRect?.left ?? 0;
+      : (inputRect?.left ?? 0);
 
   const [firstInteraction, setFirstInteraction] = useState(true);
 

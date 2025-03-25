@@ -14,11 +14,15 @@ import { CountryCode, getCountryCallingCode } from "libphonenumber-js";
 import { dynamicInputsStyles } from "@/lib/customStyles";
 import { MAX_LONG_TEXT_LENGTH, MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 import SelectDate from "@/shared/components/SelectDate";
+import { emailValidator, requiredValidator } from "@/lib/validator";
+import { useTranslations } from "next-intl";
 
 const DynamicInputs = <T,>({
   inputs,
   horizontal = false,
 }: DynamicInputsProps<T>) => {
+  const t = useTranslations();
+
   const getSelectedCountry = (
     inputs: IDynamicInputArray<T>
   ): IDynamicInput<T> => {
@@ -139,7 +143,15 @@ const DynamicInputs = <T,>({
               isInvalid={input.isInvalid}
               errorMessage={input.errorMessage}
               description={input.description}
-              validate={input.validate}
+              validate={(value) => {
+                if (input.validate) {
+                  return input.validate(value);
+                }
+                if (input.isRequired) {
+                  return requiredValidator(t, value);
+                }
+                return true;
+              }}
               maxLength={MAX_SHORT_TEXT_LENGTH}
             />
           );
@@ -247,7 +259,18 @@ const DynamicInputs = <T,>({
             isInvalid={input.isInvalid}
             errorMessage={input.errorMessage}
             description={input.description}
-            validate={input.validate}
+            validate={(value) => {
+              if (input.validate) {
+                return input.validate(value);
+              }
+              if (input.type === "email") {
+                return emailValidator(t, value);
+              }
+              if (input.isRequired) {
+                return requiredValidator(t, value);
+              }
+              return true;
+            }}
             maxLength={MAX_SHORT_TEXT_LENGTH}
           />
         );
