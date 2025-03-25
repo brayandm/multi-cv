@@ -12,6 +12,13 @@ export const setCookieClient = (
   }
 
   setCookie(name, value, {
+    domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
+    path: "/",
+    maxAge: maxAge,
+    partitioned: true,
+  });
+
+  setCookie(name, value, {
     secure: true,
     sameSite: "none",
     domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,

@@ -11,6 +11,7 @@ import {
   useState,
   ReactNode,
   useEffect,
+  useCallback,
 } from "react";
 
 interface LocaleContextType {
@@ -32,15 +33,17 @@ export const mapLocaleToLanguage = (locale: string) => {
   return language || "English";
 };
 
+export const getSystemLocale = () => {
+  const systemLocale = navigator.language.split("-")[0];
+
+  return systemLocale || "en";
+};
+
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const [locale, setLocale] = useState("en");
-
-  useEffect(() => {
-    setLocale((getCookie("locale") as string) || "en");
-  }, []);
 
   const updateLocale = async (newLocale: string) => {
     let userLocaleResponse;
@@ -58,15 +61,15 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const updateLocaleServer = async (newLocale: string) => {
-    try {
-      await userSetLocaleApi(newLocale);
-    } catch (error) {
-      console.log("Error setting user locale", error);
-    }
-  };
+  const syncLocale = useCallback((newLocale: string) => {
+    const updateLocaleServer = async (newLocale: string) => {
+      try {
+        await userSetLocaleApi(newLocale);
+      } catch (error) {
+        console.log("Error setting user locale", error);
+      }
+    };
 
-  const syncLocale = (newLocale: string) => {
     updateLocaleServer(newLocale);
     setLocale(newLocale);
 
@@ -75,7 +78,11 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     if (isIframe) {
       storeExtensionStorageValue("locale", newLocale, () => {});
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    setLocale((getCookie("locale") as string) || "en");
+  }, []);
 
   useEffect(() => {
     setCookieClient("locale", locale);
