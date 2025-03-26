@@ -109,10 +109,7 @@ export default function LoginComponent() {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          classNames={{
-            ...generalInputsStyles,
-            inputWrapper: "pr-10",
-          }}
+          classNames={generalInputsStyles}
           isRequired
           maxLength={MAX_SHORT_TEXT_LENGTH}
           validate={(value) => {

@@ -204,10 +204,7 @@ export default function RegisterComponent() {
           name="password"
           value={formData.password}
           onChange={handleChange}
-          classNames={{
-            ...generalInputsStyles,
-            inputWrapper: "pr-10",
-          }}
+          classNames={generalInputsStyles}
           isRequired
           minLength={8}
           maxLength={MAX_SHORT_TEXT_LENGTH}
@@ -238,10 +235,7 @@ export default function RegisterComponent() {
           name="repeatPassword"
           value={formData.repeatPassword}
           onChange={handleChange}
-          classNames={{
-            ...generalInputsStyles,
-            inputWrapper: "pr-10",
-          }}
+          classNames={generalInputsStyles}
           isRequired
           minLength={8}
           isInvalid={formData.password !== formData.repeatPassword}

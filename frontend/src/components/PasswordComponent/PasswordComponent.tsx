@@ -140,10 +140,7 @@ export default function PasswordComponent({
             name="currentPassword"
             value={formData.currentPassword}
             onChange={handleChange}
-            classNames={{
-              ...generalInputsStyles,
-              inputWrapper: "pr-10",
-            }}
+            classNames={generalInputsStyles}
             isRequired
             minLength={8}
             maxLength={MAX_SHORT_TEXT_LENGTH}
@@ -174,10 +171,7 @@ export default function PasswordComponent({
           name="password"
           value={formData.password}
           onChange={handleChange}
-          classNames={{
-            ...generalInputsStyles,
-            inputWrapper: "pr-10",
-          }}
+          classNames={generalInputsStyles}
           isRequired
           minLength={8}
           maxLength={MAX_SHORT_TEXT_LENGTH}
@@ -208,10 +202,7 @@ export default function PasswordComponent({
           name="repeatPassword"
           value={formData.repeatPassword}
           onChange={handleChange}
-          classNames={{
-            ...generalInputsStyles,
-            inputWrapper: "pr-10",
-          }}
+          classNames={generalInputsStyles}
           isRequired
           minLength={8}
           isInvalid={formData.password !== formData.repeatPassword}
