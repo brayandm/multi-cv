@@ -17,7 +17,7 @@ import { ITopBarNavigationProps } from "./Navbar.types";
 import LanguageToggle from "../LanguageToggle";
 import { useTranslations } from "next-intl";
 import { useInterceptor } from "@/contexts/InterceptorContext";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   onlyLogout,
@@ -28,6 +28,8 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   const { run } = useInterceptor();
 
   const router = useRouter();
+
+  const pathname = usePathname();
 
   const logout = async () => {
     try {
@@ -70,11 +72,13 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               color={homeRoute ? "primary" : "foreground"}
               size="sm"
               onPress={() => {
-                run({
-                  "navbar-routing": () => {
-                    if (!homeRoute) router.push("/home");
-                  },
-                });
+                const newPath = "/home";
+                if (!homeRoute || pathname != newPath)
+                  run({
+                    "navbar-routing": () => {
+                      router.push(newPath);
+                    },
+                  });
               }}
             >
               {t("common.menu.home")}
@@ -86,11 +90,13 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               size="sm"
               color={profileRoute ? "primary" : "foreground"}
               onPress={() => {
-                run({
-                  "navbar-routing": () => {
-                    if (!profileRoute) router.push("/profile");
-                  },
-                });
+                const newPath = "/profile";
+                if (!profileRoute || pathname != newPath)
+                  run({
+                    "navbar-routing": () => {
+                      router.push(newPath);
+                    },
+                  });
               }}
             >
               {t("common.menu.profile")}
@@ -102,11 +108,13 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
               color={settingsRoute ? "primary" : "foreground"}
               size="sm"
               onPress={() => {
-                run({
-                  "navbar-routing": () => {
-                    if (!settingsRoute) router.push("/settings");
-                  },
-                });
+                const newPath = "/settings";
+                if (!settingsRoute || pathname != newPath)
+                  run({
+                    "navbar-routing": () => {
+                      router.push(newPath);
+                    },
+                  });
               }}
             >
               {t("common.menu.settings")}
