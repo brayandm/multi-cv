@@ -1,21 +1,20 @@
 from typing import List, Union
+
+from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import (
     AIMessage,
+    BaseMessage,
     HumanMessage,
     SystemMessage,
-    BaseMessage,
 )
 from langchain_openai import ChatOpenAI
-from langchain.callbacks import get_openai_callback
 from pydantic import BaseModel, SecretStr
+
 from app.classes.models import Chat
 from app.config import OPENAI_API_KEY
-
 from app.database.mongodb import mongo_handler
-
-
 from app.framework.decorators.context_vars import get_user_id
 
 

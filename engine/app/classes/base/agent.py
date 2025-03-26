@@ -1,15 +1,13 @@
 from abc import ABC
-
-from pydantic import BaseModel
-
-from app.classes.models import Chat, ChatMessage
-from app.services.chat_engine import ChatEngineService
-
 from typing import List
 
 from langchain.schema import (
     BaseMessage,
 )
+from pydantic import BaseModel
+
+from app.classes.models import Chat, ChatMessage
+from app.services.chat_engine import ChatEngineService
 
 
 class Agent(ABC):
