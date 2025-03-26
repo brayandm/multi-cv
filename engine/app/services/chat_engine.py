@@ -6,8 +6,8 @@ from langchain.schema import AIMessage, HumanMessage, SystemMessage
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, SecretStr
 
-from app.config import OPENAI_API_KEY
 from app.classes.models import Chat
+from app.config import OPENAI_API_KEY
 
 
 class ChatEngineService:

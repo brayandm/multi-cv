@@ -1,7 +1,8 @@
 from abc import ABC
 
-from app.classes.models import Chat, ChatMessage
 from pydantic import BaseModel
+
+from app.classes.models import Chat, ChatMessage
 from app.services.chat_engine import ChatEngineService
 
 
