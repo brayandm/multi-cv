@@ -8,8 +8,9 @@ from app.utils.pydantic_custom_types import ShortStr
 
 
 class Document(BaseModel):
-    id: ShortStr
+    id: ShortStr = Field(alias="_id")
     user_id: ShortStr
+    name: ShortStr
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc)
     )
@@ -17,6 +18,9 @@ class Document(BaseModel):
         default_factory=lambda: datetime.now(timezone.utc)
     )
     type: ShortStr
+
+    class Config:
+        allow_population_by_field_name = True
 
 
 class CvDocument(Document):
