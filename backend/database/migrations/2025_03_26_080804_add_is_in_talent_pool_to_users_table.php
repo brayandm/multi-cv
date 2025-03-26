@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('is_in_talent_pool')
-                  ->nullable()
-                  ->after('password');
+                ->nullable()
+                ->after('password');
         });
     }
 
