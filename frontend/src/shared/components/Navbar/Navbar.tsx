@@ -11,6 +11,7 @@ import {
   NavbarMenu,
   NavbarMenuItem,
   Link,
+  addToast,
 } from "@heroui/react";
 import { ITopBarNavigationProps } from "./Navbar.types";
 import LanguageToggle from "../LanguageToggle";
@@ -20,7 +21,7 @@ import { useRouter } from "next/navigation";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   onlyLogout,
-  passwordRoute,
+  settingsRoute,
   homeRoute,
   profileRoute,
 }) => {
@@ -37,6 +38,12 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
       }
     } catch (error) {
       console.log(error);
+      addToast({
+        title: t("common.errors.settings"),
+        description: t("common.errors.server"),
+        color: "danger",
+        timeout: 5000,
+      });
     }
   };
 
@@ -92,17 +99,17 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
           <NavbarMenuItem>
             <Link
               className="w-full cursor-pointer"
-              color={passwordRoute ? "primary" : "foreground"}
+              color={settingsRoute ? "primary" : "foreground"}
               size="sm"
               onPress={() => {
                 run({
                   "navbar-routing": () => {
-                    if (!passwordRoute) router.push("/password");
+                    if (!settingsRoute) router.push("/settings");
                   },
                 });
               }}
             >
-              {t("common.menu.change_password")}
+              {t("common.menu.settings")}
             </Link>
           </NavbarMenuItem>
           <NavbarMenuItem>
@@ -130,7 +137,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
 const Navbar: React.FC<ITopBarNavigationProps> = ({
   empty = false,
   onlyLogout = false,
-  passwordRoute = false,
+  settingsRoute = false,
   homeRoute = false,
   profileRoute = false,
 }) => {
@@ -179,7 +186,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           <NavbarContent className="hidden sm:flex gap-4" justify="end">
             <NavbarItems
               onlyLogout={onlyLogout}
-              passwordRoute={passwordRoute}
+              settingsRoute={settingsRoute}
               homeRoute={homeRoute}
               profileRoute={profileRoute}
             ></NavbarItems>
@@ -188,7 +195,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           <NavbarMenu className="overflow-hidden">
             <NavbarItems
               onlyLogout={onlyLogout}
-              passwordRoute={passwordRoute}
+              settingsRoute={settingsRoute}
               homeRoute={homeRoute}
               profileRoute={profileRoute}
             ></NavbarItems>

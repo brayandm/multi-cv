@@ -205,6 +205,8 @@ class AuthController extends Controller
 
         $is_first_login = $user->is_first_login;
 
+        $is_in_talent_pool = $user->is_in_talent_pool;
+
         return response()->json(['authenticated' => true,
             'is_valid_terms_version' => $is_valid_terms_version,
             'notice_new_terms_version' => $notice_new_terms_version,
@@ -213,6 +215,7 @@ class AuthController extends Controller
             'first_name' => $user->first_name,
             'last_name' => $user->last_name,
             'is_first_login' => $is_first_login,
+            'is_in_talent_pool' => $is_in_talent_pool,
         ]);
     }
 

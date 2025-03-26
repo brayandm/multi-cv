@@ -5,7 +5,7 @@
   "common": {
     "menu": {
       "home": "Home",
-      "change_password": "Change Password",
+      "settings": "Settings",
       "profile": "Profile"
     },
     "auth": {
@@ -78,7 +78,8 @@
       "invalid_email": "The email you entered is not valid",
       "password_too_short": "The password should be at least {min} characters long",
       "select_date": "Please select a date",
-      "invalid_phone": "The phone number is not valid"
+      "invalid_phone": "The phone number is not valid",
+      "settings": "Settings update failed"
     },
     "success": {
       "password_change": "Password changed",
@@ -195,6 +196,10 @@
         "message": "Your password recovery link is invalid or has expired."
       },
       "instructions": "We will send you an email with a link to reset your password."
+    },
+    "settings": {
+      "subtitle": "Change your account settings",
+      "password": "Password settings"
     },
     "welcome": {
       "title": "Welcome to <appName></appName>",

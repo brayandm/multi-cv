@@ -40,6 +40,10 @@ export const mapLocaleToLanguage = (locale: string) => {
 };
 
 export const getSystemLocale = () => {
+  if (typeof navigator === "undefined") {
+    return "en";
+  }
+
   const systemLocale = navigator.language.split("-")[0];
 
   return systemLocale || "en";

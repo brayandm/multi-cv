@@ -7,6 +7,7 @@ export interface UserStatusResponse {
   first_name?: string;
   last_name?: string;
   is_first_login?: boolean;
+  is_in_talent_pool?: boolean;
 }
 
 export interface LoginResponse {
@@ -70,6 +71,7 @@ export interface UserResponse {
   is_password_null: boolean;
   is_valid_terms_version: boolean | null;
   notice_new_terms_version: boolean | null;
+  is_in_talent_pool: boolean;
 }
 
 export interface UserSetLocaleResponse {

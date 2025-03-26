@@ -5,7 +5,7 @@
   "common": {
     "menu": {
       "home": "Inicio",
-      "change_password": "Cambiar Contraseña",
+      "settings": "Configuraciones",
       "profile": "Perfil"
     },
     "auth": {
@@ -34,7 +34,7 @@
       "ai_assistant": "Asistente AI",
       "type_message": "Escribe un mensaje...",
       "generate_cv": "Generar CV",
-      "quota_info": "Información de Cuota",
+      "quota_info": "Información de cuota",
       "used": "Usado",
       "message_left": "Mensajes restantes: {count}"
     },
@@ -195,6 +195,10 @@
         "message": "Tu enlace de recuperación de contraseña es inválido o ha expirado."
       },
       "instructions": "Te enviaremos un correo con un enlace para restablecer tu contraseña."
+    },
+    "settings": {
+      "subtitle": "Cambia la configuración de tu cuenta",
+      "password": "Configuraciones de contraseña"
     },
     "welcome": {
       "title": "Bienvenido a <appName></appName>",
