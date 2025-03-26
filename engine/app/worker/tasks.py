@@ -8,7 +8,11 @@ from celery.exceptions import TaskError  # type: ignore
 
 from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
 from app.framework.decorators.action import rollback_action
-from app.framework.decorators.context_vars import set_user_id
+from app.framework.decorators.context_vars import (
+    set_user_id,
+    set_action_id,
+    set_action,
+)
 from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
@@ -62,6 +66,8 @@ def execute_pipeline_task(
     pipeline_instance = pipeline_class()
 
     set_user_id(user_id)
+    set_action_id(action_id)
+    set_action(action)
 
     try:
         if asyncio.iscoroutinefunction(pipeline_instance.run):

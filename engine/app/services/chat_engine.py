@@ -15,7 +15,11 @@ from pydantic import BaseModel, SecretStr
 from app.classes.models import Chat
 from app.config import OPENAI_API_KEY
 from app.database.mongodb import mongo_handler
-from app.framework.decorators.context_vars import get_user_id
+from app.framework.decorators.context_vars import (
+    get_user_id,
+    get_action_id,
+    get_action,
+)
 
 
 class ChatEngineService:
@@ -27,12 +31,26 @@ class ChatEngineService:
         )
         self.db = mongo_handler.get_database()
 
-    async def add_cost(self, cost: float) -> None:
+    async def add_cost(self, cost: float, tokens: int) -> None:
 
         user_id = get_user_id()
+        action_id = get_action_id()
+        action = get_action()
 
-        await self.db["costs"].update_one(
-            {"user_id": user_id}, {"$inc": {"total_cost": cost}}, upsert=True
+        await self.db["total_costs"].update_one(
+            {"user_id": user_id},
+            {"$inc": {"total_cost": cost, "total_tokens": tokens}},
+            upsert=True,
+        )
+
+        await self.db["actions_costs"].insert_one(
+            {
+                "user_id": user_id,
+                "action_id": action_id,
+                "action": action,
+                "cost": cost,
+                "tokens": tokens,
+            }
         )
 
     async def generate_response(self, messages: List[BaseMessage]) -> str:
@@ -40,8 +58,9 @@ class ChatEngineService:
         with get_openai_callback() as cb:
             response = await self.chat.ainvoke(messages)
             total_cost = cb.total_cost
+            total_tokens = cb.total_tokens
 
-            await self.add_cost(total_cost)
+            await self.add_cost(total_cost, total_tokens)
 
         return str(response.content)
 
@@ -67,7 +86,8 @@ class ChatEngineService:
         with get_openai_callback() as cb:
             response = await chain.arun({})
             total_cost = cb.total_cost
+            total_tokens = cb.total_tokens
 
-            await self.add_cost(total_cost)
+            await self.add_cost(total_cost, total_tokens)
 
         return str(response)

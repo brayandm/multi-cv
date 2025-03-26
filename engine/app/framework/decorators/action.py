@@ -12,6 +12,7 @@ from app.framework.decorators.context_vars import (
     get_action_id,
     set_action_id,
     set_user_id,
+    set_action,
 )
 from app.framework.logging import logger
 from app.framework.middlewares.request_handle_middleware import (
@@ -144,6 +145,8 @@ def consume_action(action: str) -> Callable[..., Any]:
             set_action_id(action_id)
 
             set_user_id(user_id)
+
+            set_action(action)
 
             try:
                 return await func(*args, **kwargs)
