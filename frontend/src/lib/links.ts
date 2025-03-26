@@ -6,6 +6,7 @@ export const userApiLink = `/user`;
 export const googleLoginApiLink = `oauth/google/login`;
 export const updatePasswordApiLink = `/user/update/password`;
 export const acceptTermsVersionApiLink = `/user/accept-terms-version`;
+export const talentPoolApiLink = `/user/talent-pool`;
 export const notifiedTermsVersionApiLink = `/user/notified-terms-version`;
 export const resendEmailApiLink = `/email/resend`;
 export const passwordRecoveryEmailApiLink = "/password/email";

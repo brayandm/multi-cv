@@ -72,6 +72,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::put('/user/update/profile', 'App\Http\Controllers\AuthController@updateProfile');
         Route::put('/user/update/password', 'App\Http\Controllers\AuthController@updatePassword');
 
+        Route::put('/user/talent-pool', 'App\Http\Controllers\AuthController@updateTalentPool');
         Route::put('/user/accept-terms-version', 'App\Http\Controllers\AuthController@updateAcceptedTermsVersion');
         Route::put('/user/notified-terms-version', 'App\Http\Controllers\AuthController@updateNotifiedTermsVersion');
 

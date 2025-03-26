@@ -22,6 +22,10 @@ export interface RegisterResponse {
   message: string;
 }
 
+export interface TalentPoolResponse {
+  message: string;
+}
+
 export interface AcceptTermsVersionResponse {
   message: string;
 }

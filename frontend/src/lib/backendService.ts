@@ -20,6 +20,7 @@ import {
   generateCvInlineEngineLink,
   finishFirstLoginApiLink,
   chatExperienceEngineLink,
+  talentPoolApiLink,
 } from "./links";
 import {
   UserResponse,
@@ -39,6 +40,7 @@ import {
   GetQuotaInfoResponse,
   FinishFirstLoginResponse,
   chatExperienceResponse,
+  TalentPoolResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -150,14 +152,28 @@ export const registerApi = async (formData: {
   );
 };
 
-export const acceptTermsVersionApi = async (
+export const talentPoolApi = async (
   talentPool: boolean
-): Promise<AxiosResponse<AcceptTermsVersionResponse>> => {
+): Promise<AxiosResponse<TalentPoolResponse>> => {
   return await api.put(
-    acceptTermsVersionApiLink,
+    talentPoolApiLink,
     {
       talent_pool: talentPool,
     },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};
+
+export const acceptTermsVersionApi = async (): Promise<
+  AxiosResponse<AcceptTermsVersionResponse>
+> => {
+  return await api.put(
+    acceptTermsVersionApiLink,
+    {},
     {
       headers: {
         "Content-Type": "application/json",

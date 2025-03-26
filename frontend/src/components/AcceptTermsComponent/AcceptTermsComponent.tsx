@@ -3,6 +3,7 @@
 import {
   acceptTermsVersionApi,
   notifiedTermsVersionApi,
+  talentPoolApi,
 } from "@/lib/backendService";
 
 import { Button, Checkbox } from "@heroui/react";
@@ -39,15 +40,20 @@ export default function AcceptTermsComponent({
     e.preventDefault();
 
     try {
+      let responseTalentPool;
       let response;
+
       if (acceptTerms === false && noticeTerms === true) {
         response = await notifiedTermsVersionApi();
+        if (response.status === 200) {
+          router.push("/home");
+        }
       } else {
-        response = await acceptTermsVersionApi(formData.talentPool);
-      }
-
-      if (response.status === 200) {
-        router.push("/home");
+        responseTalentPool = await talentPoolApi(formData.talentPool);
+        response = await acceptTermsVersionApi();
+        if (response.status === 200 && responseTalentPool.status === 200) {
+          router.push("/home");
+        }
       }
     } catch (error) {
       console.log(error);
