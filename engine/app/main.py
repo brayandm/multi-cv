@@ -57,19 +57,6 @@ async def ping() -> Dict[str, str]:
     return {"message": "pong"}
 
 
-@router.post("/render/cv")
-@consume_action("render_cv")
-async def render_cv(cv: Cv, cv_template: CvTemplate) -> Dict[str, str]:
-
-    queue_manager.execute_pipeline(
-        RenderCVPipeline, "render_cv", cv, cv_template
-    )
-
-    return {
-        "message": "Request received. Processing in background.",
-    }
-
-
 @router.post("/generate/cv/inline")
 @commit_action_after()
 @consume_action("generate_cv_inline")
@@ -135,6 +122,21 @@ async def chat_experience(
     return {"message": chat_message}
 
 
+@router.post("/render/cv")
+@consume_action("render_cv")
+async def render_cv(
+    cv: Cv, cv_template: CvTemplate, language: Language
+) -> Dict[str, str]:
+
+    queue_manager.execute_pipeline(
+        RenderCVPipeline, "render_cv", cv, cv_template, language
+    )
+
+    return {
+        "message": "Request received. Processing in background.",
+    }
+
+
 @router.post("/render/cv/inline")
 @authenticate()
 async def render_cv_inline(
@@ -181,12 +183,14 @@ async def get_profile(
 @commit_action_after()
 @validate_api_token()
 async def webhook(payload: WebhookPayload) -> Dict[str, str]:
-    action_id = payload.action_id
     action = payload.action
+    action_id = payload.action_id
+    user_id = payload.user_id
     result = payload.result
 
     logger.info(
         f"Received webhook with action: {action} with id: {action_id} "
+        f"for user: {user_id} "
         f"with result: {result}"
     )
 

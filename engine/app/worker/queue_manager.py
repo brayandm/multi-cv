@@ -1,7 +1,7 @@
 from typing import Any, Dict, Type
 
 from app.classes.base import Pipeline
-from app.framework.decorators.context_vars import get_action_id
+from app.framework.decorators.context_vars import get_action_id, get_user_id
 from app.framework.logging import logger
 from app.worker.tasks import execute_pipeline_task
 from app.worker.utils import serialize
@@ -37,14 +37,20 @@ class QueueManager:
 
         action_id = get_action_id()
 
+        user_id = get_user_id()
+
         if not action_id:
             raise ValueError("Action ID is missing")
+
+        if not user_id:
+            raise ValueError("User ID is missing")
 
         execute_pipeline_task.apply_async(
             args=[
                 f"{pipeline_class.__module__}.{pipeline_class.__name__}",
                 action,
                 action_id,
+                user_id,
                 serialized_inputs,
             ],
             queue=queue_name,

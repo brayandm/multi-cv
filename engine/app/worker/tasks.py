@@ -11,6 +11,8 @@ from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore
 from app.worker.utils import deserialize, format_result
 
+from app.framework.decorators.context_vars import set_user_id
+
 import asyncio
 
 
@@ -42,6 +44,7 @@ def execute_pipeline_task(
     pipeline_path: str,
     action: str,
     action_id: str,
+    user_id: int,
     inputs: Dict[str, Any],
 ) -> Any:
 
@@ -60,6 +63,8 @@ def execute_pipeline_task(
 
     pipeline_instance = pipeline_class()
 
+    set_user_id(user_id)
+
     try:
         if asyncio.iscoroutinefunction(pipeline_instance.run):
             result = asyncio.run(pipeline_instance.run(*deserialized_inputs))
@@ -75,8 +80,9 @@ def execute_pipeline_task(
         requests.post(
             WEBHOOK_URL,
             json={
-                "action_id": action_id,
                 "action": action,
+                "action_id": action_id,
+                "user_id": user_id,
                 "result": format_result(result),
             },
             headers={"X-API-Token": INTER_COMMUNICATION_TOKEN},
