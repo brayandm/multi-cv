@@ -9,9 +9,9 @@ from celery.exceptions import TaskError  # type: ignore
 from app.config import INTER_COMMUNICATION_TOKEN, WEBHOOK_URL
 from app.framework.decorators.action import rollback_action
 from app.framework.decorators.context_vars import (
-    set_user_id,
-    set_action_id,
     set_action,
+    set_action_id,
+    set_user_id,
 )
 from app.framework.logging import logger
 from app.worker.celery import celery  # type: ignore

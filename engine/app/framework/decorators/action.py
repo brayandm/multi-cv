@@ -10,9 +10,9 @@ from app.config import (
 )
 from app.framework.decorators.context_vars import (
     get_action_id,
+    set_action,
     set_action_id,
     set_user_id,
-    set_action,
 )
 from app.framework.logging import logger
 from app.framework.middlewares.request_handle_middleware import (

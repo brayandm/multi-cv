@@ -16,9 +16,9 @@ from app.classes.models import Chat
 from app.config import OPENAI_API_KEY
 from app.database.mongodb import mongo_handler
 from app.framework.decorators.context_vars import (
-    get_user_id,
-    get_action_id,
     get_action,
+    get_action_id,
+    get_user_id,
 )
 
 
