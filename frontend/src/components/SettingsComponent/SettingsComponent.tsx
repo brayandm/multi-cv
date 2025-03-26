@@ -27,7 +27,7 @@ export default function SettingsComponent() {
 
   useEffect(() => {
     if (userData) {
-      setAccepted(userData.is_in_talent_pool);
+      setAccepted(userData.is_in_talent_pool ? true : false);
     }
   }, [userData]);
 
