@@ -1,4 +1,4 @@
-from typing import Dict, Optional
+from typing import Dict, Optional, Any
 
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -170,13 +170,16 @@ async def store_profile(
 @authenticate()
 async def get_profile(
     profile_service: ProfileService = Depends(get_profile_service),
-) -> Optional[Profile]:
+) -> Optional[dict[Any, Any]]:
 
     user_id = get_user_id()
 
     profile = await profile_service.get_profile(user_id)
 
-    return profile
+    if profile is None:
+        return None
+
+    return profile.model_dump(exclude_none=True)
 
 
 @router.post("/webhook")

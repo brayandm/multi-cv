@@ -19,7 +19,6 @@ export type IBasicInfo = {
   phone_country_code: string;
   phone_number: string;
   location: string;
-  notes?: null;
 };
 
 export interface IExperience {
@@ -32,7 +31,6 @@ export interface IExperience {
   start_date: string;
   end_date: string;
   is_present: boolean;
-  notes?: null;
 }
 
 export interface IEducation {
@@ -44,7 +42,6 @@ export interface IEducation {
   start_date: string;
   end_date: string;
   is_present: boolean;
-  notes?: null;
 }
 
 export interface IProject {
@@ -55,7 +52,6 @@ export interface IProject {
   start_date: string;
   end_date: string;
   is_present: boolean;
-  notes?: null;
 }
 
 export interface IProfessionalLinks {
@@ -65,7 +61,6 @@ export interface IProfessionalLinks {
 
 export interface ISkills {
   list: string[];
-  notes?: null;
 }
 
 export interface IProfile {
@@ -75,7 +70,6 @@ export interface IProfile {
   education: IEducation[];
   projects: IProject[];
   skills: ISkills;
-  general_notes?: null;
 }
 
 interface ProfileContextType {
@@ -111,7 +105,6 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     phone_country_code: "",
     phone_number: "",
     location: "",
-    notes: null,
   });
 
   const [professionalLinks, setProfessionalLinks] = useState<
@@ -121,7 +114,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [experience, setExperience] = useState<IExperience[]>([]);
   const [education, setEducation] = useState<IEducation[]>([]);
   const [projects, setProjects] = useState<IProject[]>([]);
-  const [skills, setSkills] = useState<ISkills>({ list: [], notes: null });
+  const [skills, setSkills] = useState<ISkills>({ list: [] });
 
   const [onLoadedError, setOnLoadedError] = useState(false);
 
@@ -137,7 +130,6 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       education: education,
       projects: projects,
       skills: skills,
-      general_notes: null,
     };
   };
 
@@ -170,7 +162,6 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
             phone_country_code: "",
             phone_number: "",
             location: "",
-            notes: null,
           });
         }
         setIsLoaded(true);

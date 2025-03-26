@@ -62,7 +62,6 @@ const Experience = ({ formRef }: IExperienceProps) => {
       start_date: "",
       end_date: "",
       is_present: false,
-      notes: null,
     };
 
     updateExperience([...experienceList, experience]);

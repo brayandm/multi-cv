@@ -59,7 +59,6 @@ const Projects = ({ formRef }: IProjectsProps) => {
       start_date: "",
       end_date: "",
       is_present: false,
-      notes: null,
     };
 
     updateProjects([...projects, project]);

@@ -57,7 +57,6 @@ const Skills: React.FC = () => {
 
     updateSkills({
       list: [...skills.list, inputSkill],
-      notes: null,
     });
 
     syncProfileOnFirstLogin();
@@ -107,7 +106,7 @@ const Skills: React.FC = () => {
         <ChipArea
           chips={skills.list}
           setChips={(skills) => {
-            updateSkills({ list: skills, notes: null });
+            updateSkills({ list: skills });
             syncProfileOnFirstLogin();
           }}
         ></ChipArea>
