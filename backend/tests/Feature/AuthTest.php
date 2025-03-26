@@ -26,6 +26,7 @@ class AuthTest extends TestCase
                 'last_name' => 'User',
                 'email' => 'user@testing.com',
                 'password' => '12345678',
+                'talent_pool' => true,
             ]
         );
 
@@ -43,6 +44,7 @@ class AuthTest extends TestCase
                 'last_name' => 'User',
                 'email' => 'user@testing.com',
                 'password' => '12345678',
+                'talent_pool' => true,
             ]
         );
 
