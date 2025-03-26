@@ -9,23 +9,41 @@ from app.config import MONGO_DB
 from app.framework.logging import logger
 
 
+class MongoDBHandler:
+    def __init__(self) -> None:
+        self.client: AsyncIOMotorClient[Any] | None = None
+        self.db: AgnosticDatabase[Any] | None = None
+
+    async def connect(self) -> None:
+        uri = (
+            f"mongodb://{MONGO_DB['username']}:{MONGO_DB['password']}@"
+            f"{MONGO_DB['host']}:{MONGO_DB['port']}/"
+            f"{MONGO_DB['name']}?authSource=admin"
+        )
+        self.client = AsyncIOMotorClient(uri)
+        self.db = self.client[MONGO_DB["name"]]
+        logger.info("✅ Connection to MongoDB established.")
+
+    async def close(self) -> None:
+        if self.client:
+            self.client.close()
+            logger.info("✅ MongoDB connection closed.")
+
+    def get_database(self) -> AgnosticDatabase[Any]:
+        if self.db is None:
+            raise RuntimeError("Database connection has not been established.")
+        return self.db
+
+
+mongo_handler = MongoDBHandler()
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    uri = (
-        f"mongodb://{MONGO_DB['username']}:{MONGO_DB['password']}@"
-        f"{MONGO_DB['host']}:{MONGO_DB['port']}/"
-        f"{MONGO_DB['name']}?authSource=admin"
-    )
-    client: AsyncIOMotorClient[Any] = AsyncIOMotorClient(uri)
-    db: AgnosticDatabase[Any] = client[MONGO_DB["name"]]
-
-    app.state.db = db
-    logger.info("✅ Connection to MongoDB established")
-
+    await mongo_handler.connect()
+    app.state.db = mongo_handler.get_database()
     yield
-
-    client.close()
-    logger.info("✅ MongoDB connection closed")
+    await mongo_handler.close()
 
 
 def get_database(request: Request) -> AgnosticDatabase[Any]:

@@ -5,13 +5,22 @@ from pydantic import BaseModel
 from app.classes.models import Chat, ChatMessage
 from app.services.chat_engine import ChatEngineService
 
+from typing import List
+
+from langchain.schema import (
+    BaseMessage,
+)
+
 
 class Agent(ABC):
     def __init__(
         self,
     ) -> None:
         self.engine = ChatEngineService()
-        self.chat = self.engine.chat
+
+    async def generate_response(self, messages: List[BaseMessage]) -> str:
+        response = await self.engine.generate_response(messages)
+        return response
 
     async def chat_response(
         self,

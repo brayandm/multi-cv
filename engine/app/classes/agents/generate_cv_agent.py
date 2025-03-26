@@ -108,10 +108,8 @@ class GenerateCvAgent(Agent):
         END_JSON
         """
 
-        response = str(
-            (
-                await self.chat.ainvoke([HumanMessage(content=input_prompt)])
-            ).content
+        response = await self.generate_response(
+            [HumanMessage(content=input_prompt)]
         )
 
         try:
