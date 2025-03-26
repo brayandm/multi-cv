@@ -9,6 +9,12 @@ from .profile.experience import Experience, ExperienceId
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .webhook_payload import WebhookPayload
+from .cover_letter.cover_letter import CoverLetter
+from .cover_letter.cover_letter_template import CoverLetterTemplate
+from .document import Document
+from .document import CvDocument
+from .document import CoverLetterDocument
+
 
 __all__ = [
     "Profile",
@@ -21,8 +27,13 @@ __all__ = [
     "CvExperience",
     "Cv",
     "CvTemplate",
+    "CoverLetter",
+    "CoverLetterTemplate",
     "WebhookPayload",
     "Chat",
     "ChatMessage",
     "Language",
+    "Document",
+    "CvDocument",
+    "CoverLetterDocument",
 ]
