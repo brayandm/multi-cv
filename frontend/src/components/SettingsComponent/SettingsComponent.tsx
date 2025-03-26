@@ -7,6 +7,7 @@ import {
   Switch,
   Button,
   addToast,
+  Spinner,
 } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -22,10 +23,7 @@ export default function SettingsComponent() {
 
   const router = useRouter();
 
-  const { data: userData, isLoading: isUserDataLoading } = useSWR<UserResponse>(
-    userApiLink,
-    fetcherApi
-  );
+  const { data: userData } = useSWR<UserResponse>(userApiLink, fetcherApi);
 
   useEffect(() => {
     if (userData) {
@@ -50,10 +48,6 @@ export default function SettingsComponent() {
     }
   };
 
-  if (isUserDataLoading) {
-    return null;
-  }
-
   return (
     <main className="flex justify-center">
       <div className="w-[320px]">
@@ -70,28 +64,36 @@ export default function SettingsComponent() {
               </div>
             </CardHeader>
             <CardBody className="flex flex-col gap-6">
-              <div className="flex gap-4">
-                <Switch
-                  isSelected={accepted}
-                  onValueChange={changeTalentPool}
-                  aria-label="Accept switch"
-                />
-                <span className="text-xs font-medium text-gray-600 max-w-[30ch]">
-                  {t("common.legal.talent_pool")}
-                </span>
-              </div>
+              {userData ? (
+                <>
+                  <div className="flex gap-4">
+                    <Switch
+                      isSelected={accepted}
+                      onValueChange={changeTalentPool}
+                      aria-label="Accept switch"
+                    />
+                    <span className="text-xs font-medium text-gray-600 max-w-[30ch]">
+                      {t("common.legal.talent_pool")}
+                    </span>
+                  </div>
 
-              <div className="flex flex-col gap-2">
-                <Button
-                  color="primary"
-                  variant="bordered"
-                  onPress={() => {
-                    router.push("/password");
-                  }}
-                >
-                  {t("pages.settings.password")}
-                </Button>
-              </div>
+                  <div className="flex flex-col gap-2">
+                    <Button
+                      color="primary"
+                      variant="bordered"
+                      onPress={() => {
+                        router.push("/password");
+                      }}
+                    >
+                      {t("pages.settings.password")}
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <div className="flex justify-center">
+                  <Spinner variant="dots" />
+                </div>
+              )}
             </CardBody>
           </Card>
         </form>
