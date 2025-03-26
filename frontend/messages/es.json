@@ -142,7 +142,8 @@
       "terms_conditions": "Términos y Condiciones",
       "privacy_policy": "Política de Privacidad",
       "confirm_age": "Confirmo que tengo más de 18 años",
-      "accept_terms": "Acepto los <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>"
+      "accept_terms": "Acepto los <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>",
+      "talent_pool": "Permitir a los reclutadores ver mi perfil para oportunidades laborales."
     },
     "months": {
       "january": "Enero",

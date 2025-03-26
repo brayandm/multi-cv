@@ -27,6 +27,7 @@ class AuthController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|max:255',
+            'talent_pool' => 'required|boolean',
         ]);
 
         return $validator;

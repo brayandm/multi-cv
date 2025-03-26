@@ -17,6 +17,7 @@ class UserService
             'last_name' => $data->last_name,
             'email' => $data->email,
             'password' => Hash::make($data->password),
+            'is_in_talent_pool' => (bool) $data->talent_pool,
             'accepted_terms_at' => Carbon::now(),
         ]);
 

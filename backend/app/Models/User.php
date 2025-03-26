@@ -26,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'last_name',
         'email',
         'password',
+        'is_in_talent_pool',
         'accepted_terms_at',
         'notified_terms_at',
         'email_verified_at',
@@ -49,6 +50,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<string, string>
      */
     protected $casts = [
+        'is_in_talent_pool' => 'boolean',
         'email_verified_at' => 'datetime',
         'accepted_terms_at' => 'datetime',
         'notified_terms_at' => 'datetime',

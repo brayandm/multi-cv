@@ -32,6 +32,7 @@ export default function RegisterComponent() {
     repeatPassword: "",
     acceptTerms: false,
     underAge: false,
+    talentPool: false,
   });
 
   const [onRegister, setOnRegister] = useState(false);
@@ -269,7 +270,7 @@ export default function RegisterComponent() {
             size="sm"
           />
           <span
-            className="text-[9px] text-gray-600
+            className="text-[9px] text-gray-600 text-left
           "
           >
             {t("common.legal.confirm_age")}
@@ -316,6 +317,20 @@ export default function RegisterComponent() {
             {t("common.errors.accept_terms")}
           </p>
         )}
+        <div className="flex items-start gap-1">
+          <Checkbox
+            name="talentPool"
+            checked={formData.talentPool}
+            onChange={handleCheckboxChange}
+            size="sm"
+          />
+          <span
+            className="text-[9px] text-gray-600 text-left
+          "
+          >
+            {t("common.legal.talent_pool")}
+          </span>
+        </div>
         <Button color="primary" type="submit" isLoading={onRegister}>
           {t("common.auth.register")}
         </Button>

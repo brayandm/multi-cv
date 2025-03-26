@@ -25,6 +25,7 @@ export default function AcceptTermsComponent({
   const [formData, setFormData] = useState({
     acceptTerms: false,
     underAge: false,
+    talentPool: false,
   });
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -126,7 +127,7 @@ export default function AcceptTermsComponent({
               size="sm"
             />
             <span
-              className="text-[9px] text-gray-600
+              className="text-[9px] text-gray-600 text-left
           "
             >
               {t("common.legal.confirm_age")}
@@ -162,6 +163,22 @@ export default function AcceptTermsComponent({
                   </Link>
                 ),
               })}
+            </span>
+          </div>
+        )}
+        {acceptTerms === null && (
+          <div className="flex items-start gap-1">
+            <Checkbox
+              name="talentPool"
+              checked={formData.talentPool}
+              onChange={handleCheckboxChange}
+              size="sm"
+            />
+            <span
+              className="text-[9px] text-gray-600 text-left
+          "
+            >
+              {t("common.legal.talent_pool")}
             </span>
           </div>
         )}
