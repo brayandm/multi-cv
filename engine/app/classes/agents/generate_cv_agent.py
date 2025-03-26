@@ -6,8 +6,6 @@ from app.classes.base import Agent
 from app.classes.models import Cv, Language, Profile
 from app.utils.phone import to_international_format
 
-from app.framework.logging import logger
-
 
 class GenerateCvAgent(Agent):
 
@@ -123,9 +121,6 @@ class GenerateCvAgent(Agent):
 
             cv_data = json.loads(json_content)
             cv = Cv(**cv_data)
-
-            logger.info(f"Generated CV: {cv}")
-            logger.info(f"Generated CV JSON: {language.name}")
 
             cv.phone = to_international_format(
                 profile.basic_info.phone_number,
