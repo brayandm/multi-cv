@@ -43,7 +43,7 @@ export default function AcceptTermsComponent({
       if (acceptTerms === false && noticeTerms === true) {
         response = await notifiedTermsVersionApi();
       } else {
-        response = await acceptTermsVersionApi();
+        response = await acceptTermsVersionApi(formData.talentPool);
       }
 
       if (response.status === 200) {

@@ -73,6 +73,15 @@ class AuthController extends Controller
         return $validator;
     }
 
+    public function validateAcceptTermsAndTalentPool($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'talent_pool' => 'required|boolean',
+        ]);
+
+        return $validator;
+    }
+
     public function register(Request $request)
     {
         $validator = $this->validateCorrectRegisterUser($request);
@@ -295,10 +304,17 @@ class AuthController extends Controller
 
     public function updateAcceptedTermsVersion(Request $request)
     {
+        $validator = $this->validateAcceptTermsAndTalentPool($request);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
         $user = $this->userService->findUserByEmail(auth()->user()->email);
 
         $user->update([
             'accepted_terms_at' => Carbon::now(),
+            'is_in_talent_pool' => (bool) $request->talent_pool,
         ]);
 
         return response()->json(['message' => 'Accepted Privacy Policy and Terms of Service successfully']);

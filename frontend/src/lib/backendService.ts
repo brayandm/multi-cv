@@ -150,12 +150,14 @@ export const registerApi = async (formData: {
   );
 };
 
-export const acceptTermsVersionApi = async (): Promise<
-  AxiosResponse<AcceptTermsVersionResponse>
-> => {
+export const acceptTermsVersionApi = async (
+  talentPool: boolean
+): Promise<AxiosResponse<AcceptTermsVersionResponse>> => {
   return await api.put(
     acceptTermsVersionApiLink,
-    {},
+    {
+      talent_pool: talentPool,
+    },
     {
       headers: {
         "Content-Type": "application/json",
