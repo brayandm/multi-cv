@@ -16,6 +16,9 @@ import BotIcon from "@/shared/icons/BotIcon/BotIcon";
 import { useChat } from "@/contexts/ChatContext";
 import { useTranslations } from "next-intl";
 import { useProfile } from "@/contexts/ProfileContext";
+import { GetQuotaInfoResponse } from "@/lib/types";
+import { AxiosResponse } from "axios";
+import { getQuotaInfoApi } from "@/lib/backendService";
 
 export default function ChatComponent() {
   const { chat, addMessage, generateBotMessage } = useChat();
@@ -74,6 +77,26 @@ export default function ChatComponent() {
       }
     }
   }, [chat, generateBotMessage, isChatOpen]); // eslint-disable-line
+
+  const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
+
+  useEffect(() => {
+    const getQuota = () => {
+      getQuotaInfoApi("chat")
+        .then((response: AxiosResponse<GetQuotaInfoResponse>) => {
+          setQuotaInfo(response.data);
+        })
+        .catch((error: unknown) => {
+          if (error instanceof Error) {
+            console.error("Error while fetching quota info", error.message);
+          } else {
+            console.error("Error while fetching quota info", error);
+          }
+        });
+    };
+
+    getQuota();
+  }, [chat]);
 
   const [startAnimation, setStartAnimation] = useState(false);
 
@@ -176,13 +199,15 @@ export default function ChatComponent() {
                 <div ref={messagesEndRef} />
               </div>
               <div className="border-t-2">
-                {/* <div className="px-4">
-                  <span className={`text-xs font-medium ${"text-gray-500"}`}>
-                    {t("common.texts.message_left", {
-                      count: 7 - chat.messages.length,
-                    })}
-                  </span>
-                </div> */}
+                {quotaInfo && (
+                  <div className="px-4">
+                    <span className={`text-xs font-medium ${"text-gray-500"}`}>
+                      {t("common.texts.message_left", {
+                        count: quotaInfo.left,
+                      })}
+                    </span>
+                  </div>
+                )}
                 <div className="flex flex-row items-end px-4 pb-4 pt-3 space-x-2 shadow-lg relative">
                   <Textarea
                     value={input}
