@@ -1,10 +1,10 @@
-from pydantic import BaseModel, Field
 from datetime import datetime, timezone
 from typing import Literal
 
-from app.utils.pydantic_custom_types import ShortStr
+from pydantic import BaseModel, Field
 
-from app.classes.models import Cv, CvTemplate, CoverLetter, CoverLetterTemplate
+from app.classes.models import CoverLetter, CoverLetterTemplate, Cv, CvTemplate
+from app.utils.pydantic_custom_types import ShortStr
 
 
 class Document(BaseModel):
