@@ -16,6 +16,7 @@ import {
   ExperienceDescriptions,
   ExperienceDescription,
   Div,
+  Span,
 } from "./utils/components";
 
 export default function DefaultTemplate() {
@@ -122,11 +123,14 @@ export default function DefaultTemplate() {
                 <Div style={{ fontSize: 14, color: "#555" }}>
                   <ExperienceLocation />
                 </Div>
-                <ul style={{ marginTop: 10, paddingLeft: 20 }}>
+                <Div style={{ marginTop: 10, paddingLeft: 20 }}>
                   <ExperienceDescriptions>
-                    <ExperienceDescription />
+                    <Div>
+                      <Span>- </Span>
+                      <ExperienceDescription />
+                    </Div>
                   </ExperienceDescriptions>
-                </ul>
+                </Div>
               </Div>
             </Experience>
           </ExperienceList>

@@ -50,6 +50,106 @@ export const Div = ({
   return <div {...props}>{childrenWithProps}</div>;
 };
 
+export const Span = ({
+  index,
+  subindex,
+  children,
+  ...props
+}: {
+  index?: number;
+  subindex?: number;
+  children?: ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>) => {
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement<{ index?: number; subindex?: number }>(child)) {
+      return React.cloneElement(child, { index, subindex });
+    }
+    return child;
+  });
+
+  return <span {...props}>{childrenWithProps}</span>;
+};
+
+export const P = ({
+  index,
+  subindex,
+  children,
+  ...props
+}: {
+  index?: number;
+  subindex?: number;
+  children?: ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>) => {
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement<{ index?: number; subindex?: number }>(child)) {
+      return React.cloneElement(child, { index, subindex });
+    }
+    return child;
+  });
+
+  return <p {...props}>{childrenWithProps}</p>;
+};
+
+export const H1 = ({
+  index,
+  subindex,
+  children,
+  ...props
+}: {
+  index?: number;
+  subindex?: number;
+  children?: ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>) => {
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement<{ index?: number; subindex?: number }>(child)) {
+      return React.cloneElement(child, { index, subindex });
+    }
+    return child;
+  });
+
+  return <h1 {...props}>{childrenWithProps}</h1>;
+};
+
+export const H2 = ({
+  index,
+  subindex,
+  children,
+  ...props
+}: {
+  index?: number;
+  subindex?: number;
+  children?: ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>) => {
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement<{ index?: number; subindex?: number }>(child)) {
+      return React.cloneElement(child, { index, subindex });
+    }
+    return child;
+  });
+
+  return <h2 {...props}>{childrenWithProps}</h2>;
+};
+
+export const H3 = ({
+  index,
+  subindex,
+  children,
+  ...props
+}: {
+  index?: number;
+  subindex?: number;
+  children?: ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>) => {
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement<{ index?: number; subindex?: number }>(child)) {
+      return React.cloneElement(child, { index, subindex });
+    }
+    return child;
+  });
+
+  return <h3 {...props}>{childrenWithProps}</h3>;
+};
+
 export const FullName = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const { cv, setCv } = useCv();
   return (
@@ -281,16 +381,13 @@ export const ExperienceDescription = ({
   subindex?: number;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const { cv, setCv } = useCv();
-  const desc = cv.experiences[index].descriptions[subindex];
   return (
-    <div
-      contentEditable
-      suppressContentEditableWarning
-      onInput={(e) => {
+    <EditableField
+      value={cv.experiences[index].descriptions[subindex]}
+      onEdit={(val) => {
         const updated = [...cv.experiences];
         const updatedDescriptions = [...updated[index].descriptions];
-        updatedDescriptions[subindex] =
-          (e.currentTarget as HTMLElement).textContent || "";
+        updatedDescriptions[subindex] = val;
         updated[index] = {
           ...updated[index],
           descriptions: updatedDescriptions,
@@ -298,8 +395,6 @@ export const ExperienceDescription = ({
         setCv({ ...cv, experiences: updated });
       }}
       {...props}
-    >
-      {desc}
-    </div>
+    />
   );
 };
