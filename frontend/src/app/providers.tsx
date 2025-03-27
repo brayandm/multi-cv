@@ -7,6 +7,7 @@ import { ToastProvider } from "@/providers/ToastProvider";
 import { UserStatusProvider } from "@/contexts/UserStatusContext";
 import { InterceptorProvider } from "@/contexts/InterceptorContext";
 import { ChatProvider } from "@/contexts/ChatContext";
+import { CvProvider } from "@/contexts/CvContext";
 
 export default async function Providers({
   children,
@@ -23,7 +24,9 @@ export default async function Providers({
           <InterceptorProvider>
             <ChatProvider>
               <UserStatusProvider>
-                <ProfileProvider>{children}</ProfileProvider>
+                <ProfileProvider>
+                  <CvProvider>{children}</CvProvider>
+                </ProfileProvider>
               </UserStatusProvider>
             </ChatProvider>
           </InterceptorProvider>

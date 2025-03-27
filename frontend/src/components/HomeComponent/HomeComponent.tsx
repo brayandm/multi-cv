@@ -3,6 +3,7 @@
 import {
   fetcherApi,
   generateCvInlineEngine,
+  generateCvInlineNoRenderEngine,
   getQuotaInfoApi,
 } from "@/lib/backendService";
 import { userApiLink } from "@/lib/links";
@@ -14,14 +15,21 @@ import { Button, Spinner } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { GetQuotaInfoResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
-import { saveAs } from "file-saver";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useCv } from "@/contexts/CvContext";
+import { useRouter } from "next/navigation";
+
+import { saveAs } from "file-saver";
 
 export default function HomeComponent() {
   const { isLoading: isUserDataLoading } = useSWR(userApiLink, fetcherApi);
 
   const { getLanguage } = useLocale();
+
+  const { setCv } = useCv();
+
+  const router = useRouter();
 
   const [isQuotaInfoLoading, setIsQuotaInfoLoading] = useState(false);
   const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
@@ -123,6 +131,21 @@ export default function HomeComponent() {
     getQuota();
   };
 
+  const redirectEditCv = async () => {
+    try {
+      setIsCvLoading(true);
+      const response = await generateCvInlineNoRenderEngine(getLanguage());
+      if (response.data) setCv(response.data);
+
+      router.push("/edit/cv");
+    } catch (error) {
+      console.error("Error while generating CV", error);
+    }
+
+    setIsCvLoading(false);
+    getQuota();
+  };
+
   return (
     <main className="">
       <div className="flex justify-center">
@@ -133,7 +156,7 @@ export default function HomeComponent() {
           <div className="flex justify-center">
             <Button
               color="primary"
-              onPress={() => handleDocument(true)}
+              onPress={() => (true ? handleDocument() : redirectEditCv())}
               isDisabled={isCvLoading || quotaInfo?.left === 0}
               isLoading={isCvLoading}
             >

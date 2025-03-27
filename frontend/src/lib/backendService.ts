@@ -21,6 +21,8 @@ import {
   finishFirstLoginApiLink,
   chatExperienceEngineLink,
   talentPoolApiLink,
+  generateCvInlineNoRenderEngineLink,
+  renderHtmlInlineEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -45,6 +47,7 @@ import {
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
 import { Language } from "@/contexts/LocaleContext";
+import { Cv } from "@/contexts/CvContext";
 
 const isServer = typeof window === "undefined";
 
@@ -284,6 +287,28 @@ export const generateCvInlineEngine = async (
   return await engine.post(generateCvInlineEngineLink, language, {
     responseType: "blob",
   });
+};
+
+export const generateCvInlineNoRenderEngine = async (
+  language: Language
+): Promise<AxiosResponse<Cv | null>> => {
+  return await engine.post(generateCvInlineNoRenderEngineLink, language, {
+    responseType: "json",
+  });
+};
+
+export const renderHtmlInlineEngine = async (
+  html: string
+): Promise<AxiosResponse<Blob>> => {
+  return await engine.post(
+    renderHtmlInlineEngineLink,
+    {
+      content: html,
+    },
+    {
+      responseType: "blob",
+    }
+  );
 };
 
 export const chatExperienceEngine = async ({
