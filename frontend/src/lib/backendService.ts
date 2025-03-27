@@ -22,6 +22,7 @@ import {
   chatExperienceEngineLink,
   talentPoolApiLink,
   generateCvInlineNoRenderEngineLink,
+  renderHtmlInlineEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -294,6 +295,20 @@ export const generateCvInlineNoRenderEngine = async (
   return await engine.post(generateCvInlineNoRenderEngineLink, language, {
     responseType: "json",
   });
+};
+
+export const renderHtmlInlineEngine = async (
+  html: string
+): Promise<AxiosResponse<Blob>> => {
+  return await engine.post(
+    renderHtmlInlineEngineLink,
+    {
+      content: html,
+    },
+    {
+      responseType: "blob",
+    }
+  );
 };
 
 export const chatExperienceEngine = async ({

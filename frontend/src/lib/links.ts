@@ -21,3 +21,4 @@ export const generateCvInlineEngineLink = "/generate/cv/inline";
 export const generateCvInlineNoRenderEngineLink =
   "/generate/cv/inline/norender";
 export const chatExperienceEngineLink = "/chat/experience";
+export const renderHtmlInlineEngineLink = "/render/html/inline";
