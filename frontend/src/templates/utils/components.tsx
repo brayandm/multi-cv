@@ -1,5 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
-import { useCv } from "./context";
+import { useCv } from "@/contexts/CvContext";
 
 const EditableField = ({
   value,
@@ -295,7 +295,7 @@ export const ExperienceDescription = ({
           ...updated[index],
           descriptions: updatedDescriptions,
         };
-        setCv((prev) => ({ ...prev, experiences: updated }));
+        setCv({ ...cv, experiences: updated });
       }}
       {...props}
     >
