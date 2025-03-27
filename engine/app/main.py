@@ -76,7 +76,7 @@ async def generate_cv_inline(
             status_code=404,
         )
 
-    cv_template = CvTemplate(id="default")
+    cv_template = CvTemplate(id="default", type="latex")
 
     cv = await GenerateCvPipeline().run(profile, traduction)
 
@@ -149,6 +149,9 @@ async def render_cv(
     cv: Cv, cv_template: CvTemplate, traduction: Traduction
 ) -> Dict[str, str]:
 
+    if cv_template.type != "latex":
+        raise ValueError("Invalid template type. Expected 'latex'.")
+
     queue_manager.execute_pipeline(
         RenderCVPipeline, "render_cv", cv, cv_template, traduction
     )
@@ -163,6 +166,9 @@ async def render_cv(
 async def render_cv_inline(
     cv: Cv, cv_template: CvTemplate, traduction: Traduction
 ) -> Response:
+
+    if cv_template.type != "latex":
+        raise ValueError("Invalid template type. Expected 'latex'.")
 
     document_render = DocumentRenderFacade.get_render()
 

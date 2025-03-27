@@ -78,6 +78,10 @@ class LatexRender(DocumentRender):
     def render_cv(
         self, cv: Cv, cv_template: CvTemplate, traduction: Traduction
     ) -> None:
+
+        if cv_template.type != "latex":
+            raise ValueError("Invalid template type. Expected 'latex'.")
+
         env = Environment(loader=FileSystemLoader(self.cv_template))
         template = env.get_template(f"{cv_template.id}.tex.jinja2")
 
