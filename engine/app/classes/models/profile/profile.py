@@ -3,23 +3,23 @@ from typing import Annotated, List, Optional
 from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import (
+    MAX_CERTIFICATIONS_LENGTH,
     MAX_EDUCATION_LENGTH,
     MAX_EXPERIENCE_LENGTH,
+    MAX_LANGUAGES,
     MAX_PROFESSIONAL_LINKS_LENGTH,
     MAX_PROJECTS_LENGTH,
-    MAX_CERTIFICATIONS_LENGTH,
-    MAX_LANGUAGES,
     GeneralNotesStr,
 )
 
 from .basic_info import BasicInfo
+from .certificate import Certificate
 from .education import Education
 from .experience import Experience
+from .language import Language
 from .professional_link import ProfessionalLink
 from .project import Project
 from .skills import Skills
-from .certificate import Certificate
-from .language import Language
 
 
 class Profile(BaseModel):

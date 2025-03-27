@@ -11,8 +11,8 @@ from app.classes.models import (
     CvTemplate,
     ExperienceId,
     Html,
-    Traduction,
     Profile,
+    Traduction,
     WebhookPayload,
 )
 from app.classes.pipelines import (
