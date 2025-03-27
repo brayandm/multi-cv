@@ -5,6 +5,7 @@ from .cv.cv import Cv
 from .cv.cv_experience import CvExperience
 from .cv.cv_template import CvTemplate
 from .document import CoverLetterDocument, CvDocument, Document
+from .html import Html
 from .language import Language
 from .profile.basic_info import BasicInfo
 from .profile.education import Education
@@ -12,7 +13,6 @@ from .profile.experience import Experience, ExperienceId
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .webhook_payload import WebhookPayload
-from .html import Html
 
 __all__ = [
     "Profile",

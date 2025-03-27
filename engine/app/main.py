@@ -1,18 +1,20 @@
+from io import BytesIO
 from typing import Any, Dict, Optional
 
-from fastapi import APIRouter, Depends, FastAPI, Request
+from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response, StreamingResponse, JSONResponse
+from fastapi.responses import JSONResponse, Response, StreamingResponse
+from playwright.async_api import async_playwright
 
 from app.classes.models import (
     Chat,
     Cv,
     CvTemplate,
     ExperienceId,
+    Html,
     Language,
     Profile,
     WebhookPayload,
-    Html,
 )
 from app.classes.pipelines import (
     ChatExperiencePipeline,
@@ -35,9 +37,6 @@ from app.framework.middlewares import (
 from app.services.profile_service import ProfileService, get_profile_service
 from app.utils.parsers import get_first_name_last_name
 from app.worker.queue_manager import QueueManager
-
-from playwright.async_api import async_playwright
-from io import BytesIO
 
 app = FastAPI(lifespan=lifespan)
 
