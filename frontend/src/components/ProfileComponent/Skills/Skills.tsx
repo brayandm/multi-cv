@@ -23,6 +23,8 @@ const InputButton: React.FC<InputButtonProps> = (props) => {
 };
 
 const Skills: React.FC = () => {
+  const minSkillLength = 3;
+
   const { skills, updateSkills } = useProfile();
 
   const { setChat } = useChat();
@@ -86,13 +88,13 @@ const Skills: React.FC = () => {
       value: inputSkill,
       endContent: <InputButton onPress={addSkill}></InputButton>,
       onValueChange: setInputSkill,
-      description: t("common.form.skill_description", { min: 5 }),
+      description: t("common.form.skill_description", { min: minSkillLength }),
       errorMessage: t("common.errors.skill_length", {
-        min: 5,
+        min: minSkillLength,
       }),
-      isInvalid: skills.list.length >= 5 ? false : undefined,
+      isInvalid: skills.list.length >= minSkillLength ? false : undefined,
       validate: () => {
-        if (skills.list.length < 5) {
+        if (skills.list.length < minSkillLength) {
           return "error";
         }
       },

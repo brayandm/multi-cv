@@ -73,8 +73,6 @@ class GenerateCvAgent(Agent):
         - In Experience Section add severals descriptions for each experience.
 
         **Format Guidelines:**
-        - If possible, include the number of years of experience in the main
-        field within the summary.
         - Location of the person should be in the format "City, Country",
         you can get the location from the location field in basic_info. If
         City or Country is missing just use the available one.

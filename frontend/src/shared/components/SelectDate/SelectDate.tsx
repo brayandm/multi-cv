@@ -89,9 +89,13 @@ export default function SelectDate({
     setOpen(false);
   };
 
+  console.log(selectedMonth, selectedYear);
+
   const [firstInteraction, setFirstInteraction] = useState(true);
   const [open, setOpen] = useState(false);
 
+  console.log("firstInteraction", firstInteraction);
+  console.log("open", open);
   useEffect(() => {
     if (open && yearsContainerRef.current) {
       const container = yearsContainerRef.current;
@@ -125,6 +129,7 @@ export default function SelectDate({
       placement="bottom-start"
       onOpenChange={(open) => {
         setOpen(true);
+        setFirstInteraction(false);
         if (open) {
           setDraftMonth(selectedMonth);
           setDraftYear(selectedYear);
@@ -156,7 +161,6 @@ export default function SelectDate({
                 ? true
                 : t("common.errors.select_date")
             }
-            onFocus={() => setFirstInteraction(false)}
             {...props}
           />
         </div>
