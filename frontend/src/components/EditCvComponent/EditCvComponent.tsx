@@ -22,9 +22,10 @@ export default function EditCvComponent() {
       const fullHtml = `
       <html>
         <head>
+         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
           <style>
             @page { size: A4; margin: 0; }
-            body { margin: 0; padding: 0; }
+            body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
             .cv-page {
               width: 794px;
               height: 1123px;

@@ -23,7 +23,9 @@ export default function DefaultTemplate() {
   return (
     <Div
       style={{
-        fontFamily: "Segoe UI, sans-serif",
+        fontFamily: "Inter, sans-serif",
+        lineHeight: 1.2,
+        fontWeight: 400,
         display: "flex",
         width: "100%",
         height: "100%",
@@ -60,7 +62,15 @@ export default function DefaultTemplate() {
         >
           Contact Details
         </Div>
-        <Div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <Div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 8,
+            fontSize: 12,
+            fontWeight: "500",
+          }}
+        >
           <Email />
           <Phone />
           <Location />
@@ -123,9 +133,15 @@ export default function DefaultTemplate() {
                 <Div style={{ fontSize: 14, color: "#555" }}>
                   <ExperienceLocation />
                 </Div>
-                <Div style={{ marginTop: 10, paddingLeft: 20 }}>
+                <Div
+                  style={{
+                    marginTop: 10,
+                    paddingLeft: 20,
+                    fontSize: 14,
+                  }}
+                >
                   <ExperienceDescriptions>
-                    <Div>
+                    <Div style={{ marginTop: 2 }}>
                       <Span>- </Span>
                       <ExperienceDescription />
                     </Div>
