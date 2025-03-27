@@ -68,7 +68,6 @@ export default function DefaultTemplate() {
             flexDirection: "column",
             gap: 8,
             fontSize: 12,
-            fontWeight: "500",
           }}
         >
           <Email />
