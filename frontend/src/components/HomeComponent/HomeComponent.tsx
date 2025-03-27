@@ -27,7 +27,7 @@ export default function HomeComponent() {
 
   const { getTraduction } = useLocale();
 
-  const { setCv } = useCv();
+  const { setCv, setTradution } = useCv();
 
   const router = useRouter();
 
@@ -134,8 +134,12 @@ export default function HomeComponent() {
   const redirectEditCv = async () => {
     try {
       setIsCvLoading(true);
-      const response = await generateCvInlineNoRenderEngine(getTraduction());
-      if (response.data) setCv(response.data);
+      const traduction = getTraduction();
+      const response = await generateCvInlineNoRenderEngine(traduction);
+      if (response.data) {
+        setTradution(traduction);
+        setCv(response.data);
+      }
 
       router.push("/edit/cv");
     } catch (error) {
@@ -156,7 +160,7 @@ export default function HomeComponent() {
           <div className="flex justify-center">
             <Button
               color="primary"
-              onPress={() => (true ? handleDocument() : redirectEditCv())}
+              onPress={() => (false ? handleDocument() : redirectEditCv())}
               isDisabled={isCvLoading || quotaInfo?.left === 0}
               isLoading={isCvLoading}
             >

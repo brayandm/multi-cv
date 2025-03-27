@@ -17,6 +17,9 @@ import {
   ExperienceDescription,
   Div,
   Span,
+  ExperienceSection,
+  ContactInfoSection,
+  SummarySection,
 } from "./utils/components";
 
 export default function DefaultTemplate() {
@@ -52,16 +55,15 @@ export default function DefaultTemplate() {
           }}
         ></Div>
 
-        <Div
+        <ContactInfoSection
           style={{
             fontSize: 18,
             fontWeight: "bold",
             marginBottom: 10,
             textAlign: "center",
           }}
-        >
-          Contact Details
-        </Div>
+        />
+
         <Div
           style={{
             display: "flex",
@@ -90,36 +92,29 @@ export default function DefaultTemplate() {
         >
           <FullName />
         </Div>
-        <Div style={{ fontSize: 18, color: "#666", marginBottom: 30 }}>
-          Html Developer
-        </Div>
 
         <Div className="summary-section" style={{ marginBottom: 40 }}>
-          <Div
+          <SummarySection
             style={{
               fontSize: 20,
               fontWeight: "bold",
               borderBottom: "2px solid #000",
               marginBottom: 10,
             }}
-          >
-            Summary
-          </Div>
+          />
+
           <Summary />
         </Div>
 
         <Div className="experience-section">
-          <Div
+          <ExperienceSection
             style={{
               fontSize: 20,
               fontWeight: "bold",
               borderBottom: "2px solid #000",
               marginBottom: 20,
             }}
-          >
-            Work Experience
-          </Div>
-
+          />
           <ExperienceList>
             <Experience>
               <Div style={{ marginBottom: 30 }}>

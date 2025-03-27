@@ -7,6 +7,7 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
+import { Traduction } from "./LocaleContext";
 
 export const dummyCv: Cv = {
   full_name: "Brayan Durán Medina",
@@ -67,6 +68,8 @@ export interface CvExperience {
 interface CvContextType {
   cv: Cv;
   setCv: (cv: Cv) => void;
+  traduction: Traduction;
+  setTradution: (traduction: Traduction) => void;
 }
 
 const CvContext = createContext<CvContextType | undefined>(undefined);
@@ -81,6 +84,11 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
     location: "",
     summary: "",
     experiences: [],
+  });
+
+  const [traduction, setTradution] = useState<Traduction>({
+    locale: "en",
+    name: "English",
   });
 
   useEffect(() => {
@@ -103,7 +111,9 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
   }, [cv]);
 
   return (
-    <CvContext.Provider value={{ cv, setCv }}>{children}</CvContext.Provider>
+    <CvContext.Provider value={{ cv, setCv, traduction, setTradution }}>
+      {children}
+    </CvContext.Provider>
   );
 };
 
