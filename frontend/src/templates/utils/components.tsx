@@ -8,16 +8,27 @@ const EditableField = ({
 }: {
   value: string;
   onEdit: (val: string) => void;
-} & React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    {...props}
-    contentEditable
-    suppressContentEditableWarning
-    onInput={(e) => onEdit((e.currentTarget as HTMLElement).textContent || "")}
-  >
-    {value}
-  </div>
-);
+} & React.HTMLAttributes<HTMLDivElement>) => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (ref.current && ref.current.textContent !== value) {
+      ref.current.textContent = value;
+    }
+  }, [value]);
+
+  return (
+    <p
+      {...props}
+      ref={ref}
+      contentEditable
+      suppressContentEditableWarning
+      onInput={(e) =>
+        onEdit((e.currentTarget as HTMLElement).textContent || "")
+      }
+    />
+  );
+};
 
 export const Div = ({
   index,
