@@ -27,7 +27,7 @@ export const Div = ({
 }: {
   index?: number;
   subindex?: number;
-  children: ReactNode;
+  children?: ReactNode;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement<{ index?: number; subindex?: number }>(child)) {
