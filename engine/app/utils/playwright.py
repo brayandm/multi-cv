@@ -1,4 +1,4 @@
-from playwright.async_api import async_playwright, Browser
+from playwright.async_api import Browser, async_playwright
 
 _browser = None
 _playwright = None
