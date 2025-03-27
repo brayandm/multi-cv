@@ -292,7 +292,7 @@ export const generateCvInlineNoRenderEngine = async (
   language: Language
 ): Promise<AxiosResponse<Cv | null>> => {
   return await engine.post(generateCvInlineNoRenderEngineLink, language, {
-    responseType: "blob",
+    responseType: "json",
   });
 };
 
