@@ -1,8 +1,8 @@
 from typing import Any, Dict, Optional
 
-from fastapi import APIRouter, Depends, FastAPI
+from fastapi import APIRouter, Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import Response
+from fastapi.responses import Response, StreamingResponse, JSONResponse
 
 from app.classes.models import (
     Chat,
@@ -12,6 +12,7 @@ from app.classes.models import (
     Language,
     Profile,
     WebhookPayload,
+    Html,
 )
 from app.classes.pipelines import (
     ChatExperiencePipeline,
@@ -34,6 +35,9 @@ from app.framework.middlewares import (
 from app.services.profile_service import ProfileService, get_profile_service
 from app.utils.parsers import get_first_name_last_name
 from app.worker.queue_manager import QueueManager
+
+from playwright.async_api import async_playwright
+from io import BytesIO
 
 app = FastAPI(lifespan=lifespan)
 
@@ -150,6 +154,34 @@ async def render_cv_inline(
     pdf_bytes = document_render.get_cv()
 
     return Response(content=pdf_bytes, media_type="application/pdf")
+
+
+@router.post("/render/html/inline")
+@authenticate()
+async def render_html_inline(html: Html) -> Response:
+    try:
+        html_content = html.content
+
+        if not html_content:
+            return JSONResponse(
+                status_code=400, content={"error": "Missing HTML"}
+            )
+
+        async with async_playwright() as p:
+            browser = await p.chromium.launch()
+            page = await browser.new_page()
+            await page.set_content(html_content, wait_until="networkidle")
+
+            pdf = await page.pdf(format="A4", print_background=True)
+            await browser.close()
+
+            return StreamingResponse(
+                BytesIO(pdf),
+                media_type="application/pdf",
+                headers={"Content-Disposition": "attachment; filename=cv.pdf"},
+            )
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e)})
 
 
 @router.put("/profile/sync")

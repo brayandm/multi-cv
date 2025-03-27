@@ -19,6 +19,7 @@ fs = "*"
 pydantic = {extras = ["email"], version = "*"}
 motor = "*"
 phonenumbers = "*"
+playwright = "*"
 
 [dev-packages]
 black = "*"

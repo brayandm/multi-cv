@@ -1,7 +1,6 @@
 services:
     engine:
-        user: "${UID:-1000}:${GID:-1000}"
-        image: brayand/fullstack-project-template-python-latex:1.0.0
+        image: brayand/fullstack-project-template-python-latex-html:1.0.0
         restart: always
         volumes:
             - .:/app
@@ -24,7 +23,7 @@ services:
 
     celery:
         user: "${UID:-1000}:${GID:-1000}"
-        image: brayand/fullstack-project-template-python-latex:1.0.0
+        image: brayand/fullstack-project-template-python-latex-html:1.0.0
         restart: always
         volumes:
             - .:/app

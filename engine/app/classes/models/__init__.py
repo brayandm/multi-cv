@@ -12,6 +12,7 @@ from .profile.experience import Experience, ExperienceId
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .webhook_payload import WebhookPayload
+from .html import Html
 
 __all__ = [
     "Profile",
@@ -33,4 +34,5 @@ __all__ = [
     "Document",
     "CvDocument",
     "CoverLetterDocument",
+    "Html",
 ]
