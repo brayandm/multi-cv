@@ -25,7 +25,7 @@ import { saveAs } from "file-saver";
 export default function HomeComponent() {
   const { isLoading: isUserDataLoading } = useSWR(userApiLink, fetcherApi);
 
-  const { getLanguage } = useLocale();
+  const { getTraduction } = useLocale();
 
   const { setCv } = useCv();
 
@@ -102,7 +102,7 @@ export default function HomeComponent() {
   const handleDocument = async (download = false) => {
     try {
       setIsCvLoading(true);
-      const response = await generateCvInlineEngine(getLanguage());
+      const response = await generateCvInlineEngine(getTraduction());
 
       const blob = new Blob([response.data], { type: "application/pdf" });
 
@@ -134,7 +134,7 @@ export default function HomeComponent() {
   const redirectEditCv = async () => {
     try {
       setIsCvLoading(true);
-      const response = await generateCvInlineNoRenderEngine(getLanguage());
+      const response = await generateCvInlineNoRenderEngine(getTraduction());
       if (response.data) setCv(response.data);
 
       router.push("/edit/cv");

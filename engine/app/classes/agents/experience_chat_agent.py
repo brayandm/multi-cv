@@ -1,11 +1,11 @@
 from app.classes.base import Agent
-from app.classes.models import Chat, ChatMessage, Experience, Language
+from app.classes.models import Chat, ChatMessage, Experience, Traduction
 
 
 class ExperienceChatAgent(Agent):
 
     async def run(
-        self, chat: Chat, experience: Experience, language: Language
+        self, chat: Chat, experience: Experience, traduction: Traduction
     ) -> ChatMessage:
 
         system_prompt = f"""You are a friendly and polite assistant helping
@@ -24,7 +24,7 @@ the goal is to make the conversation light and comfortable.
 If you’re still unsure about the user’s skills, achievements,
 or impact, you can ask about those.
 
-Make sure to communicate in the user's preferred language: {language.name}.
+Make sure to communicate in the user's preferred language: {traduction.name}.
 """
 
         system_prompt_end = f"""You are a friendly and polite assistant helping
@@ -32,7 +32,7 @@ a user reflect on a past job. You already asked three smart, focused
 questions to learn more about the user's skills, achievements, etc.
 Now finish the conversation and say goodbye.
 
-Make sure to communicate in the user's preferred language: {language.name}.
+Make sure to communicate in the user's preferred language: {traduction.name}.
 """
 
         if len(chat.messages) == 6:

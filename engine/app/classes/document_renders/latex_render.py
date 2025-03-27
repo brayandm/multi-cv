@@ -11,7 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 from app.classes.base.document_render import (
     DocumentRender,
 )
-from app.classes.models import Cv, CvTemplate, Language
+from app.classes.models import Cv, CvTemplate, Traduction
 from app.facades.filesystem_facade import FilesystemFacade
 
 
@@ -76,7 +76,7 @@ class LatexRender(DocumentRender):
         return sanitize_data(sanitized_cv)  # type: ignore
 
     def render_cv(
-        self, cv: Cv, cv_template: CvTemplate, language: Language
+        self, cv: Cv, cv_template: CvTemplate, traduction: Traduction
     ) -> None:
         env = Environment(loader=FileSystemLoader(self.cv_template))
         template = env.get_template(f"{cv_template.id}.tex.jinja2")
@@ -84,7 +84,7 @@ class LatexRender(DocumentRender):
         sanitized_cv = self.sanitize_cv(cv)
 
         traductions_path = os.path.join(
-            "app", "utils", "traductions", "cv", f"{language.locale}.json"
+            "app", "utils", "traductions", "cv", f"{traduction.locale}.json"
         )
         with open(traductions_path, "r", encoding="utf-8") as traductions_file:
             traductions = json.load(traductions_file)

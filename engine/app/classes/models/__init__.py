@@ -6,12 +6,14 @@ from .cv.cv_experience import CvExperience
 from .cv.cv_template import CvTemplate
 from .document import CoverLetterDocument, CvDocument, Document
 from .html import Html
-from .language import Language
+from .traduction import Traduction
 from .profile.basic_info import BasicInfo
 from .profile.education import Education
 from .profile.experience import Experience, ExperienceId
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
+from .profile.certificate import Certificate
+from .profile.language import Language
 from .webhook_payload import WebhookPayload
 
 __all__ = [
@@ -22,6 +24,8 @@ __all__ = [
     "ExperienceId",
     "Project",
     "ProfessionalLink",
+    "Certificate",
+    "Language",
     "CvExperience",
     "Cv",
     "CvTemplate",
@@ -30,7 +34,7 @@ __all__ = [
     "WebhookPayload",
     "Chat",
     "ChatMessage",
-    "Language",
+    "Traduction",
     "Document",
     "CvDocument",
     "CoverLetterDocument",

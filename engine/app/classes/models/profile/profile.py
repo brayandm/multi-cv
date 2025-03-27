@@ -7,6 +7,8 @@ from app.utils.pydantic_custom_types import (
     MAX_EXPERIENCE_LENGTH,
     MAX_PROFESSIONAL_LINKS_LENGTH,
     MAX_PROJECTS_LENGTH,
+    MAX_CERTIFICATIONS_LENGTH,
+    MAX_LANGUAGES,
     GeneralNotesStr,
 )
 
@@ -16,6 +18,8 @@ from .experience import Experience
 from .professional_link import ProfessionalLink
 from .project import Project
 from .skills import Skills
+from .certificate import Certificate
+from .language import Language
 
 
 class Profile(BaseModel):
@@ -33,5 +37,9 @@ class Profile(BaseModel):
     projects: Annotated[
         List[Project], Field(..., max_items=MAX_PROJECTS_LENGTH)
     ]
+    certifications: Annotated[
+        List[Certificate], Field(..., max_items=MAX_CERTIFICATIONS_LENGTH)
+    ]
     skills: Skills
+    languages: Annotated[List[Language], Field(..., max_items=MAX_LANGUAGES)]
     general_notes: Optional[GeneralNotesStr] = None

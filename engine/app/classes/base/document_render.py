@@ -1,13 +1,13 @@
 from abc import ABC, abstractmethod
 
-from app.classes.models import Cv, CvTemplate, Language
+from app.classes.models import Cv, CvTemplate, Traduction
 
 
 class DocumentRender(ABC):
 
     @abstractmethod
     def render_cv(
-        self, cv: Cv, cv_template: CvTemplate, language: Language
+        self, cv: Cv, cv_template: CvTemplate, traduction: Traduction
     ) -> None:
         pass
 

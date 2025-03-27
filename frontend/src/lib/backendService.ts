@@ -46,7 +46,7 @@ import {
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
-import { Language } from "@/contexts/LocaleContext";
+import { Traduction } from "@/contexts/LocaleContext";
 import { Cv } from "@/contexts/CvContext";
 
 const isServer = typeof window === "undefined";
@@ -282,17 +282,17 @@ export const getProfileEngine = async (): Promise<
 };
 
 export const generateCvInlineEngine = async (
-  language: Language
+  traduction: Traduction
 ): Promise<AxiosResponse<Blob>> => {
-  return await engine.post(generateCvInlineEngineLink, language, {
+  return await engine.post(generateCvInlineEngineLink, traduction, {
     responseType: "blob",
   });
 };
 
 export const generateCvInlineNoRenderEngine = async (
-  language: Language
+  traduction: Traduction
 ): Promise<AxiosResponse<Cv | null>> => {
-  return await engine.post(generateCvInlineNoRenderEngineLink, language, {
+  return await engine.post(generateCvInlineNoRenderEngineLink, traduction, {
     responseType: "json",
   });
 };
@@ -314,10 +314,10 @@ export const renderHtmlInlineEngine = async (
 export const chatExperienceEngine = async ({
   experience_id,
   chat,
-  language,
+  traduction,
 }: {
   experience_id: string;
-  language: Language;
+  traduction: Traduction;
   chat: ChatData;
 }): Promise<AxiosResponse<chatExperienceResponse>> => {
   return await engine.post(
@@ -326,7 +326,7 @@ export const chatExperienceEngine = async ({
       experience_id: {
         id: experience_id,
       },
-      language: language,
+      traduction: traduction,
       chat: chat,
     },
     {

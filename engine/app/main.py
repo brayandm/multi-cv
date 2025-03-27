@@ -11,7 +11,7 @@ from app.classes.models import (
     CvTemplate,
     ExperienceId,
     Html,
-    Language,
+    Traduction,
     Profile,
     WebhookPayload,
 )
@@ -64,7 +64,7 @@ async def ping() -> Dict[str, str]:
 @commit_action_after()
 @consume_action("generate_cv_inline")
 async def generate_cv_inline(
-    language: Language,
+    traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Response:
 
@@ -78,11 +78,11 @@ async def generate_cv_inline(
 
     cv_template = CvTemplate(id="default")
 
-    cv = await GenerateCvPipeline().run(profile, language)
+    cv = await GenerateCvPipeline().run(profile, traduction)
 
     document_render = DocumentRenderFacade.get_render()
 
-    document_render.render_cv(cv, cv_template, language)
+    document_render.render_cv(cv, cv_template, traduction)
 
     pdf_bytes = document_render.get_cv()
 
@@ -104,7 +104,7 @@ async def generate_cv_inline(
 @commit_action_after()
 @consume_action("generate_cv_inline")
 async def generate_cv_inline_norender(
-    language: Language,
+    traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Optional[Cv]:
 
@@ -113,7 +113,7 @@ async def generate_cv_inline_norender(
     if profile is None:
         return None
 
-    cv = await GenerateCvPipeline().run(profile, language)
+    cv = await GenerateCvPipeline().run(profile, traduction)
 
     return cv
 
@@ -123,7 +123,7 @@ async def generate_cv_inline_norender(
 @consume_action("chat")
 async def chat_experience(
     experience_id: ExperienceId,
-    language: Language,
+    traduction: Traduction,
     chat: Chat,
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Dict[str, str]:
@@ -133,7 +133,7 @@ async def chat_experience(
     )
 
     chat_message, notes = await ChatExperiencePipeline().run(
-        chat, experience, language
+        chat, experience, traduction
     )
 
     await profile_service.update_notes_experience(
@@ -146,11 +146,11 @@ async def chat_experience(
 @router.post("/render/cv")
 @consume_action("render_cv")
 async def render_cv(
-    cv: Cv, cv_template: CvTemplate, language: Language
+    cv: Cv, cv_template: CvTemplate, traduction: Traduction
 ) -> Dict[str, str]:
 
     queue_manager.execute_pipeline(
-        RenderCVPipeline, "render_cv", cv, cv_template, language
+        RenderCVPipeline, "render_cv", cv, cv_template, traduction
     )
 
     return {
@@ -161,12 +161,12 @@ async def render_cv(
 @router.post("/render/cv/inline")
 @authenticate()
 async def render_cv_inline(
-    cv: Cv, cv_template: CvTemplate, language: Language
+    cv: Cv, cv_template: CvTemplate, traduction: Traduction
 ) -> Response:
 
     document_render = DocumentRenderFacade.get_render()
 
-    document_render.render_cv(cv, cv_template, language)
+    document_render.render_cv(cv, cv_template, traduction)
 
     pdf_bytes = document_render.get_cv()
 

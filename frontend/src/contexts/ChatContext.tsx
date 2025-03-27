@@ -48,7 +48,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [chatMap, setChatMap] = useState<ChatMap>({});
   const [currentType, setCurrentType] = useState<string | null>(null);
   const [currentId, setCurrentId] = useState<string | undefined>(undefined);
-  const { getLanguage } = useLocale();
+  const { getTraduction } = useLocale();
 
   const currentKey = useMemo(() => {
     if (!currentType) return null;
@@ -111,7 +111,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       if (currentType === "experience" && currentId) {
         const response = await chatExperienceEngine({
           experience_id: currentId,
-          language: getLanguage(),
+          traduction: getTraduction(),
           chat: chatMap[getKey({ type: currentType, id: currentId })] || {
             messages: [],
           },

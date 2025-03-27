@@ -3,13 +3,13 @@ import json
 from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
-from app.classes.models import Cv, Language, Profile
+from app.classes.models import Cv, Traduction, Profile
 from app.utils.phone import to_international_format
 
 
 class GenerateCvAgent(Agent):
 
-    async def run(self, profile: Profile, language: Language) -> Cv:
+    async def run(self, profile: Profile, traduction: Traduction) -> Cv:
         profile_json = profile.model_dump_json()
 
         cv_structure = """
@@ -58,7 +58,7 @@ class GenerateCvAgent(Agent):
 
         input_prompt = f"""
         You are an AI assistant that generates JSON-formatted resumes in
-        {language.name} language so any results should be in this language.
+        {traduction.name} language so any results should be in this language.
         Your task is to generate a CV strictly in the JSON format provided
         below.
 
@@ -80,7 +80,7 @@ class GenerateCvAgent(Agent):
         - The Education should be in reverse chronological order.
         - The Dates of the Experiences should be "month_name year" format.
         - In case of having is_present as True, the end_date should be
-        "Present" in {language.name} language.
+        "Present" in {traduction.name} language.
         - The most Recent Experience should have more descriptions. And
         the oldest experience should have less descriptions.
 

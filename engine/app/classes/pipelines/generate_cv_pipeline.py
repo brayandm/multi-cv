@@ -1,6 +1,6 @@
 from app.classes.agents.generate_cv_agent import GenerateCvAgent
 from app.classes.base import Pipeline
-from app.classes.models import Cv, Language, Profile
+from app.classes.models import Cv, Traduction, Profile
 
 
 class GenerateCvPipeline(Pipeline):
@@ -8,8 +8,8 @@ class GenerateCvPipeline(Pipeline):
     def __init__(self) -> None:
         self.agent = GenerateCvAgent()
 
-    async def run(self, profile: Profile, language: Language) -> Cv:
+    async def run(self, profile: Profile, traduction: Traduction) -> Cv:
 
-        result = await self.agent.run(profile, language)
+        result = await self.agent.run(profile, traduction)
 
         return result

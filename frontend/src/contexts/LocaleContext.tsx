@@ -18,10 +18,10 @@ interface LocaleContextType {
   locale: string;
   updateLocale: (newLocale: string) => void;
   syncLocale: (newLocale: string) => void;
-  getLanguage: () => Language;
+  getTraduction: () => Traduction;
 }
 
-export interface Language {
+export interface Traduction {
   locale: string;
   name: string;
 }
@@ -92,7 +92,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  const getLanguage = useCallback(() => {
+  const getTraduction = useCallback(() => {
     return {
       locale: locale,
       name: mapLocaleToLanguage(locale || "en"),
@@ -106,7 +106,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <LocaleContext.Provider
-      value={{ locale, updateLocale, syncLocale, getLanguage }}
+      value={{ locale, updateLocale, syncLocale, getTraduction }}
     >
       {children}
     </LocaleContext.Provider>
