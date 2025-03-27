@@ -4,7 +4,6 @@ from typing import Any, Dict, Optional
 from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
-from playwright.async_api import async_playwright
 
 from app.classes.models import (
     Chat,
@@ -37,6 +36,8 @@ from app.framework.middlewares import (
 from app.services.profile_service import ProfileService, get_profile_service
 from app.utils.parsers import get_first_name_last_name
 from app.worker.queue_manager import QueueManager
+
+from app.utils.playwright import get_browser
 
 app = FastAPI(lifespan=lifespan)
 
@@ -166,19 +167,18 @@ async def render_html_inline(html: Html) -> Response:
                 status_code=400, content={"error": "Missing HTML"}
             )
 
-        async with async_playwright() as p:
-            browser = await p.chromium.launch()
-            page = await browser.new_page()
-            await page.set_content(html_content, wait_until="networkidle")
+        browser = await get_browser()
+        page = await browser.new_page()
+        await page.set_content(html_content, wait_until="networkidle")
 
-            pdf = await page.pdf(format="A4", print_background=True)
-            await browser.close()
+        pdf = await page.pdf(format="A4", print_background=True)
+        await page.close()
 
-            return StreamingResponse(
-                BytesIO(pdf),
-                media_type="application/pdf",
-                headers={"Content-Disposition": "attachment; filename=cv.pdf"},
-            )
+        return StreamingResponse(
+            BytesIO(pdf),
+            media_type="application/pdf",
+            headers={"Content-Disposition": "attachment; filename=cv.pdf"},
+        )
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
 
