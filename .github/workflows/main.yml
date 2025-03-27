@@ -3,6 +3,7 @@ name: multi-cv
 on:
     push:
         branches: ["main"]
+    workflow_dispatch:
 
 jobs:
     build:
@@ -29,7 +30,7 @@ jobs:
               run: bash run-tests.sh
 
     deploy:
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         needs: test
         runs-on:
             - self-hosted
@@ -40,7 +41,7 @@ jobs:
             - name: Removing backend code volume
               run: docker volume rm multi-cv_backend-app || true
             - name: Starting the containers
-              run: docker compose  up -d
+              run: docker compose up -d
 
     clean:
         if: always()
