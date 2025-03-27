@@ -130,7 +130,7 @@ const Education = ({ formRef }: IEducationProps) => {
           [
             {
               label: t("common.form.start_date"),
-              type: "start_date",
+              type: "month_selector",
               onValueChange: (value: string) => {
                 onEducationChange(index, "start_date", value);
               },
@@ -139,7 +139,7 @@ const Education = ({ formRef }: IEducationProps) => {
             },
             {
               label: t("common.form.end_date"),
-              type: "end_date",
+              type: "month_selector",
               onValueChange: (value: string) => {
                 onEducationChange(index, "end_date", value);
               },
@@ -150,7 +150,7 @@ const Education = ({ formRef }: IEducationProps) => {
           ],
           {
             label: t("pages.profile.sections.education.is_present"),
-            type: "is_present",
+            type: "checkbox",
             onValueChange: (value: boolean) => {
               onEducationChange(index, "is_present", value);
             },

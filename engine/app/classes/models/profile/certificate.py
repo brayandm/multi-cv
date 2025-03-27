@@ -17,9 +17,10 @@ class Certificate(BaseModel):
     id: ShortStr
     name: ShortStr
     issuer: ShortStr
-    issue_date: ShortStr
-    expiration_date: ShortStr
     certificate_id: ShortStr
     verification_url: ShortStr
     description: LongStr
+    issue_date: ShortStr
+    expiration_date: ShortStr
+    has_expiration_date: bool
     notes: Optional[NotesStr] = None

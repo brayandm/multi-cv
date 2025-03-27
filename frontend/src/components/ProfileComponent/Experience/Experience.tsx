@@ -174,7 +174,7 @@ const Experience = ({ formRef }: IExperienceProps) => {
           [
             {
               label: t("common.form.start_date"),
-              type: "start_date",
+              type: "month_selector",
               onValueChange: (value: string) => {
                 onExperienceChange(index, "start_date", value);
               },
@@ -183,7 +183,7 @@ const Experience = ({ formRef }: IExperienceProps) => {
             },
             {
               label: t("common.form.end_date"),
-              type: "end_date",
+              type: "month_selector",
               onValueChange: (value: string) => {
                 onExperienceChange(index, "end_date", value);
               },
@@ -194,7 +194,7 @@ const Experience = ({ formRef }: IExperienceProps) => {
           ],
           {
             label: t("pages.profile.sections.experience.is_present"),
-            type: "is_present",
+            type: "checkbox",
             onValueChange: (value: boolean) => {
               onExperienceChange(index, "is_present", value);
             },
