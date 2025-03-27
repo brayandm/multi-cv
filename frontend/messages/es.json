@@ -36,7 +36,8 @@
       "generate_cv": "Generar CV",
       "quota_info": "Información de cuota",
       "used": "Usado",
-      "message_left": "Mensajes restantes: {count}"
+      "message_left": "Mensajes restantes: {count}",
+      "generation_left": "Generaciones restantes: {count}"
     },
     "buttons": {
       "continue": "Continuar",

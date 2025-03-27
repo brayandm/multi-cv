@@ -168,7 +168,9 @@ export default function HomeComponent() {
               <strong>{t("common.texts.quota_info")}:</strong>
             </p>
             <p>
-              {t("common.texts.used")}: {quotaInfo.left} / {quotaInfo.quota}
+              {t("common.texts.generation_left", {
+                count: quotaInfo.left,
+              })}
             </p>
           </div>
         </>
