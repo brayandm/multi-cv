@@ -1,9 +1,8 @@
-from pydantic import BaseModel, Field
-
 from typing import Annotated, Literal
 
-from app.utils.pydantic_custom_types import ShortStr
+from pydantic import BaseModel, Field
 
+from app.utils.pydantic_custom_types import ShortStr
 
 CvTemplateType = Annotated[
     Literal[
