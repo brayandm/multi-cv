@@ -6,7 +6,7 @@ from app.utils.pydantic_custom_types import (
     ShortStr,
 )
 
-LanguageProficiency = Annotated[
+LanguageLevel = Annotated[
     Literal[
         "Basic",
         "Limited",
@@ -20,4 +20,4 @@ LanguageProficiency = Annotated[
 
 class Language(BaseModel):
     name: ShortStr
-    proficiency: LanguageProficiency
+    level: LanguageLevel

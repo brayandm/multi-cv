@@ -160,7 +160,7 @@ const DynamicInputs = <T,>({
           );
         }
 
-        if (input.type === "is_present") {
+        if (input.type === "checkbox") {
           return (
             <Checkbox
               key={index}
@@ -178,25 +178,7 @@ const DynamicInputs = <T,>({
           );
         }
 
-        if (input.type === "checkbox") {
-          return (
-            <Checkbox
-              key={index}
-              onChange={(event) =>
-                (input.onValueChange as IDynamicOnValueChange<boolean>)(
-                  event.target.checked
-                )
-              }
-              isDisabled={input.isDisabled}
-              value={input.value as string}
-              defaultSelected={input.selected}
-            >
-              {input.label}
-            </Checkbox>
-          );
-        }
-
-        if (input.type === "start_date" || input.type === "end_date") {
+        if (input.type === "month_selector") {
           return (
             <SelectDate
               key={index}

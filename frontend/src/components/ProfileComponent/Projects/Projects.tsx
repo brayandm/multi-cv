@@ -126,7 +126,7 @@ const Projects = ({ formRef }: IProjectsProps) => {
           [
             {
               label: t("common.form.start_date"),
-              type: "start_date",
+              type: "month_selector",
               onValueChange: (value: string) => {
                 onProjectChange(index, "start_date", value);
               },
@@ -135,7 +135,7 @@ const Projects = ({ formRef }: IProjectsProps) => {
             },
             {
               label: t("common.form.end_date"),
-              type: "end_date",
+              type: "month_selector",
               onValueChange: (value: string) => {
                 onProjectChange(index, "end_date", value);
               },
@@ -146,7 +146,7 @@ const Projects = ({ formRef }: IProjectsProps) => {
           ],
           {
             label: t("pages.profile.sections.projects.is_present"),
-            type: "is_present",
+            type: "checkbox",
             onValueChange: (value: boolean) => {
               onProjectChange(index, "is_present", value);
             },
