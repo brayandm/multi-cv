@@ -100,6 +100,24 @@ async def generate_cv_inline(
     )
 
 
+@router.post("/generate/cv/inline/norender")
+@commit_action_after()
+@consume_action("generate_cv_inline")
+async def generate_cv_inline_norender(
+    language: Language,
+    profile_service: ProfileService = Depends(get_profile_service),
+) -> Optional[Cv]:
+
+    profile = await profile_service.get_profile(get_user_id())
+
+    if profile is None:
+        return None
+
+    cv = await GenerateCvPipeline().run(profile, language)
+
+    return cv
+
+
 @router.post("/chat/experience")
 @commit_action_after()
 @consume_action("chat")
