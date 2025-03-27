@@ -23,10 +23,12 @@ export default function EditCvComponent() {
       <html>
         <head>
           <style>
-            body { margin: 0; padding: 40px; font-family: Arial, sans-serif; }
+            @page { size: A4; margin: 0; }
+            body { margin: 0; padding: 0; }
             .cv-page {
               width: 794px;
               height: 1123px;
+              box-sizing: border-box;
             }
           </style>
         </head>
@@ -77,8 +79,10 @@ export default function EditCvComponent() {
         >
           Download CV
         </Button>
-        <div className="w-[794px] h-[1123px]" ref={templateRef}>
-          <DefaultTemplate />
+        <div className="shadow-lg">
+          <div className="w-[794px] h-[1123px]" ref={templateRef}>
+            <DefaultTemplate />
+          </div>
         </div>
       </div>
     </>

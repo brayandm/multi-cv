@@ -28,7 +28,6 @@ export default function DefaultTemplate() {
         height: "100%",
         margin: "0 auto",
         backgroundColor: "#fff",
-        boxShadow: "0 0 20px rgba(0, 0, 0, 0.1)",
       }}
     >
       {/* Sidebar */}
