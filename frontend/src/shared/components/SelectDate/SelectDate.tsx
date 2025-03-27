@@ -70,6 +70,7 @@ export default function SelectDate({
   const handleConfirm = useCallback(() => {
     setSelectedMonth(draftMonth);
     setSelectedYear(draftYear);
+    setFirstInteraction(false);
 
     if (draftMonth && draftYear !== null) {
       const monthIndex = months.indexOf(draftMonth) + 1;
@@ -129,7 +130,6 @@ export default function SelectDate({
       placement="bottom-start"
       onOpenChange={(open) => {
         setOpen(true);
-        setFirstInteraction(false);
         if (open) {
           setDraftMonth(selectedMonth);
           setDraftYear(selectedYear);
