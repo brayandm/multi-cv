@@ -24,7 +24,8 @@ export default function DefaultTemplate() {
       style={{
         fontFamily: "Segoe UI, sans-serif",
         display: "flex",
-        maxWidth: "1000px",
+        width: "794px",
+        height: "1123px",
         margin: "0 auto",
         backgroundColor: "#fff",
         boxShadow: "0 0 20px rgba(0, 0, 0, 0.1)",

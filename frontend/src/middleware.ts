@@ -124,6 +124,8 @@ export const config = {
     "/register",
     "/accept-terms",
     "/home",
+    "/edit/:path*",
+    "/settings",
     "/profile/:path*",
     "/password",
     "/email/:path*",
