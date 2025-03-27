@@ -18,7 +18,7 @@ const EditableField = ({
   }, [value]);
 
   return (
-    <p
+    <span
       {...props}
       ref={ref}
       contentEditable
