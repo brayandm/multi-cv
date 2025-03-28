@@ -21,6 +21,8 @@ from app.framework.decorators.context_vars import (
     get_user_id,
 )
 
+from datetime import datetime, timezone
+
 
 class ChatEngineService:
     def __init__(self) -> None:
@@ -44,6 +46,7 @@ class ChatEngineService:
                 "action": action,
                 "cost": cost,
                 "tokens": tokens,
+                "created_at": datetime.now(timezone.utc),
             }
         )
 
