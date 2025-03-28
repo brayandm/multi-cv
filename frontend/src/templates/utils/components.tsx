@@ -6,12 +6,14 @@ import { userProfilePictureApiLink } from "@/lib/links";
 const EditableField = ({
   value,
   onEdit,
+  type = "span",
   ...props
 }: {
   value: string;
   onEdit: (val: string) => void;
+  type?: "p" | "span" | "h1" | "h2" | "h3";
 } & React.HTMLAttributes<HTMLDivElement>) => {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     if (ref.current && ref.current.textContent !== value) {
@@ -19,17 +21,14 @@ const EditableField = ({
     }
   }, [value]);
 
-  return (
-    <span
-      {...props}
-      ref={ref}
-      contentEditable
-      suppressContentEditableWarning
-      onInput={(e) =>
-        onEdit((e.currentTarget as HTMLElement).textContent || "")
-      }
-    />
-  );
+  return React.createElement(type, {
+    ...props,
+    ref,
+    contentEditable: true,
+    suppressContentEditableWarning: true,
+    onInput: (e: React.FormEvent<HTMLElement>) =>
+      onEdit((e.currentTarget as HTMLElement).textContent || ""),
+  });
 };
 
 export const Div = ({
