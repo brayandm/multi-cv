@@ -27,9 +27,6 @@ export default function DefaultTemplate() {
   return (
     <Div
       style={{
-        fontFamily: "Inter, sans-serif",
-        lineHeight: 1.2,
-        fontWeight: 400,
         display: "flex",
         width: "100%",
         height: "100%",
