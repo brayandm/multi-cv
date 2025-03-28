@@ -50,7 +50,7 @@ export default function SettingsComponent() {
 
   return (
     <main className="flex justify-center">
-      <div className="w-[320px]">
+      <div className="max-w-[90vw] w-[500px]">
         <form className="flex flex-col gap-2">
           <Card className="min-h-[75vh]">
             <CardHeader className="pb-0 flex flex-col items-start">
