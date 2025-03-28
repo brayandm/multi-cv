@@ -217,7 +217,7 @@ class AuthController extends Controller
             'last_name' => $user->last_name,
             'is_first_login' => $is_first_login,
             'is_in_talent_pool' => $is_in_talent_pool,
-            "profile_picture" => $user->profile_picture,
+            'profile_picture' => $user->profile_picture,
         ]);
     }
 
@@ -382,7 +382,7 @@ class AuthController extends Controller
 
         $media = $user->getFirstMedia('profile_picture');
 
-        if (!$media) {
+        if (! $media) {
             return response()->json(['error' => 'No profile picture found.'], 404);
         }
 
@@ -392,7 +392,7 @@ class AuthController extends Controller
             fclose($stream);
         }, 200, [
             'Content-Type' => $media->mime_type,
-            'Content-Disposition' => 'inline; filename="' . $media->file_name . '"',
+            'Content-Disposition' => 'inline; filename="'.$media->file_name.'"',
         ]);
     }
 }
