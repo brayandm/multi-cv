@@ -71,7 +71,7 @@ class GoogleAuthController extends Controller
 
         $user = User::where('email', $userInfo['email'])->first();
 
-        if(! $user) {
+        if (! $user) {
             User::Create([
                 'email' => $userInfo['email'],
                 'first_name' => $userInfo['given_name'] ?? '',
