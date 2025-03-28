@@ -7,6 +7,8 @@ from app.utils.pydantic_custom_types import (
     MAX_EXPERIENCE_LENGTH,
     MAX_PROJECTS_LENGTH,
     MAX_SKILL_CATEGORIES_LENGTH,
+    MAX_CERTIFICATIONS_LENGTH,
+    MAX_LANGUAGES,
     ForceLongStr,
     ForceShortStr,
     crop_list,
@@ -16,6 +18,8 @@ from .cv_education import CvEducation
 from .cv_experience import CvExperience
 from .cv_project import CvProject
 from .cv_skill_category import CvSkillCategory
+from .cv_certificate import CvCertificate
+from .cv_language import CvLanguage
 
 
 class Cv(BaseModel):
@@ -46,4 +50,15 @@ class Cv(BaseModel):
         Optional[List[CvProject]],
         crop_list(MAX_PROJECTS_LENGTH),
         Field(None, max_items=MAX_PROJECTS_LENGTH),
+    ]
+    certifications: Annotated[
+        Optional[List[CvCertificate]],
+        crop_list(MAX_CERTIFICATIONS_LENGTH),
+        Field(None, max_items=MAX_CERTIFICATIONS_LENGTH),
+    ]
+
+    languages: Annotated[
+        Optional[List[CvLanguage]],
+        crop_list(MAX_LANGUAGES),
+        Field(None, max_items=MAX_LANGUAGES),
     ]

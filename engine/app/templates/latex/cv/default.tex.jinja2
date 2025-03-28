@@ -9,7 +9,11 @@
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
+{% if traductions.locale == 'ru' %}
 \usepackage[english,russian]{babel}
+{% else %}
+\usepackage[english]{babel}
+{% endif %}
 \usepackage{tabularx}
 \usepackage{setspace}
 \usepackage{ifthen}
@@ -55,7 +59,7 @@
 \newcommand{\resumeProjectHeading}[2]{
     \item
     \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
-      \small#1 & #2
+      \textbf{#1} & #2
     \end{tabular*}\vspace{-7pt}
 }
 
@@ -102,10 +106,10 @@
 \resumeSubHeadingListStart
 {% for exp in cv.experiences %}
 \resumeSubheading
-{ {{ exp.position }} }
-{ {{ exp.start_date }} -- {{ exp.end_date }} }
-{ {{ exp.company }} }
-{ {{ exp.location }} }
+{ {{-exp.position-}} }
+{ {{-exp.start_date-}} -- {{-exp.end_date-}} }
+{\href{ {{-exp.link-}} } { {{-exp.company-}} } }
+{ {{-exp.location-}} }
 {% if exp.descriptions %}
   \resumeItemListStart
     {% for desc in exp.descriptions %}
@@ -126,6 +130,8 @@
         {% for skill in cv.skill_categories %}
             \textbf{ {{-skill.category-}} }:{ {{ skill.list | join(', ') }} } \\
         {% endfor %}
+        \textbf{ {{-traductions.languages-}} }:{ {% for lang in cv.languages %}{{ lang.name }} ({{ lang.level }}){% if not loop.last %}, {% endif %}
+        {% endfor %} }
     }}
 \end{itemize}
 {% endif %}
@@ -138,8 +144,8 @@
 
 {% for edu in cv.educations %}
 \resumeSubheading
-{ {{ edu.institution }} }  { {{ edu.start_date }} -- {{ edu.end_date }} }
-{ {{ edu.career }} }  { {{ edu.location }} }
+{\href{ {{-edu.link-}} }{ {{-edu.institution-}} } }  { {{ edu.start_date }} -- {{ edu.end_date }} }
+{ {{-edu.career-}} }  { {{ edu.location }} }
 {% endfor %}
 
 \resumeSubHeadingListEnd
@@ -153,10 +159,25 @@
 
 {% for proj in cv.projects %}
 \resumeProjectHeading
-{ {{ proj.name }} }  { {{ proj.start_date }} -- {{ proj.end_date }} }
+{\href{ {{-proj.link-}} } { {{-proj.name-}} } }  { {{ proj.start_date }} -- {{ proj.end_date }} }
 \resumeItemListStart
 \resumeItem{ {{-proj.description-}} }
 \resumeItemListEnd
+{% endfor %}
+
+\resumeSubHeadingListEnd
+{% endif %}
+
+% CERTIFICATIONS
+{% if cv.certifications %}
+\section{ {{-traductions.certifications-}} }
+
+\resumeSubHeadingListStart
+
+{% for cert in cv.certifications %}
+\resumeProjectHeading
+{\href{ {{-cert.verification_url-}} }{ {{ cert.name }} at {{ cert.issuer }} } }  { {{ cert.issue_date }} }
+
 {% endfor %}
 
 \resumeSubHeadingListEnd

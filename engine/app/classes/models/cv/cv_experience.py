@@ -12,6 +12,7 @@ from app.utils.pydantic_custom_types import (
 
 class CvExperience(BaseModel):
     company: ForceShortStr
+    link: ForceShortStr
     position: ForceShortStr
     location: ForceShortStr
     start_date: ForceShortStr
