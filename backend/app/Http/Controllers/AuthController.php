@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class AuthController extends Controller
 {
@@ -216,6 +217,7 @@ class AuthController extends Controller
             'last_name' => $user->last_name,
             'is_first_login' => $is_first_login,
             'is_in_talent_pool' => $is_in_talent_pool,
+            "profile_picture" => $user->profile_picture,
         ]);
     }
 
@@ -342,5 +344,55 @@ class AuthController extends Controller
         ]);
 
         return response()->json(['message' => 'Notified Privacy Policy and Terms of Service successfully']);
+    }
+
+    public function uploadProfilePicture(Request $request)
+    {
+        $request->validate([
+            'photo' => 'required|image|max:2048',
+        ]);
+
+        $user = User::find(auth()->user()->id);
+
+        $user->clearMediaCollection('profile_picture');
+
+        $user->addMediaFromRequest('photo')
+            ->toMediaCollection('profile_picture');
+
+        return response()->json([
+            'message' => 'Profile picture updated successfully.',
+            'url' => $user->profile_picture,
+        ]);
+    }
+
+    public function deleteProfilePicture()
+    {
+        $user = User::find(auth()->user()->id);
+
+        $user->clearMediaCollection('profile_picture');
+
+        return response()->json([
+            'message' => 'Profile picture removed successfully.',
+        ]);
+    }
+
+    public function getProfilePicture()
+    {
+        $user = User::find(auth()->user()->id);
+
+        $media = $user->getFirstMedia('profile_picture');
+
+        if (!$media) {
+            return response()->json(['error' => 'No profile picture found.'], 404);
+        }
+
+        return new StreamedResponse(function () use ($media) {
+            $stream = $media->stream();
+            fpassthru($stream);
+            fclose($stream);
+        }, 200, [
+            'Content-Type' => $media->mime_type,
+            'Content-Disposition' => 'inline; filename="' . $media->file_name . '"',
+        ]);
     }
 }

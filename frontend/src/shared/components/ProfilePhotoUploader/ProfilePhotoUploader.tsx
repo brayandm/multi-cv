@@ -1,11 +1,10 @@
-import { useRef } from "react";
-import { Input } from "@heroui/react";
+import { useRef, useState } from "react";
+import { Input, Spinner } from "@heroui/react";
 import { XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
-import Image from "next/image";
 
 export interface IProfilePhotoUploaderProps {
   image: string | null;
-  onImageChange?: (imageDataUrl: string, file: File) => void;
+  onImageChange?: (file: File) => void;
   onImageRemove?: () => void;
 }
 
@@ -16,18 +15,15 @@ const ProfilePhotoUploader = ({
 }: IProfilePhotoUploaderProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const [onSubmitting, setOnSubmitting] = useState(false);
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setOnSubmitting(true);
     const file = e.target.files?.[0];
     if (file) {
-      const reader = new FileReader();
-      reader.onload = (event) => {
-        const result = event.target?.result;
-        if (typeof result === "string") {
-          onImageChange(result, file);
-        }
-      };
-      reader.readAsDataURL(file);
+      await onImageChange(file);
     }
+    setOnSubmitting(false);
   };
 
   const handleRemoveImage = () => {
@@ -48,20 +44,26 @@ const ProfilePhotoUploader = ({
         onClick={handleClick}
       >
         {image ? (
-          <Image
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
             src={image}
             alt="Profile"
+            width={64}
+            height={64}
             className="w-full h-full object-cover"
           />
-        ) : (
+        ) : !onSubmitting ? (
           <PlusIcon className="w-8 h-8 text-gray-500" />
+        ) : (
+          <Spinner />
         )}
       </div>
 
       {image && (
         <button
+          type="button"
           onClick={handleRemoveImage}
-          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+          className="absolute top-[-0.25rem] right-[-0.25rem] bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
         >
           <XMarkIcon className="w-4 h-4" />
         </button>

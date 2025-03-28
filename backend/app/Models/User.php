@@ -11,10 +11,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
@@ -61,6 +63,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function quotas()
     {
         return $this->hasMany(Quota::class);
+    }
+
+    public function getProfilePictureAttribute()
+    {
+        return $this->getFirstMediaUrl('profile_picture') ?: null;
     }
 
     public function sendEmailVerificationNotification()

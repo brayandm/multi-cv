@@ -7,6 +7,12 @@ import { IBasicInfo, useProfile } from "@/contexts/ProfileContext";
 import { useChat } from "@/contexts/ChatContext";
 import { phoneValidator } from "@/lib/validator";
 import { AsYouType, CountryCode } from "libphonenumber-js";
+import ProfilePhotoUploader from "@/shared/components/ProfilePhotoUploader";
+import {
+  userDeleteProfilePictureApi,
+  userUploadProfilePictureApi,
+} from "@/lib/backendService";
+import { userProfilePictureApiLink } from "@/lib/links";
 
 const BasicUserInfo: React.FC = () => {
   const { basicInfo, updateBasicInfo, syncProfileOnFirstLogin } = useProfile();
@@ -147,8 +153,26 @@ const BasicUserInfo: React.FC = () => {
     },
   ];
 
+  const [imageLink, setImageLink] = React.useState<string | null>(null);
+
+  const onImageChange = async (file: File) => {
+    await userUploadProfilePictureApi(file);
+    setImageLink(userProfilePictureApiLink);
+  };
+  const onImageRemove = async () => {
+    await userDeleteProfilePictureApi();
+    setImageLink(null);
+  };
+
   return (
     <div className="px-1">
+      <div className="flex justify-center mb-3">
+        <ProfilePhotoUploader
+          image={imageLink}
+          onImageChange={onImageChange}
+          onImageRemove={onImageRemove}
+        />
+      </div>
       <div className="h-[380px] overflow-y-auto overflow-x-hidden">
         <DynamicInputs inputs={inputs}></DynamicInputs>
       </div>

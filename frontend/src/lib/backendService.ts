@@ -23,26 +23,18 @@ import {
   talentPoolApiLink,
   generateCvInlineNoRenderEngineLink,
   renderHtmlInlineEngineLink,
+  userDeleteProfilePictureApiLink,
+  userUploadProfilePictureApiLink,
 } from "./links";
 import {
   UserResponse,
   LoginResponse,
-  LogoutResponse,
-  RegisterResponse,
   UserStatusResponse,
-  NotifiedTermsVersionResponse,
-  AcceptTermsVersionResponse,
-  ResendEmailResponse,
   GoogleLoginResponse,
-  PasswordRecoveryEmailResponse,
   PasswordRecoveryResetResponse,
-  UserSetLocaleResponse,
   UserLocaleResponse,
-  ProfileSyncResponse,
   GetQuotaInfoResponse,
-  FinishFirstLoginResponse,
-  chatExperienceResponse,
-  TalentPoolResponse,
+  MessageResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -84,19 +76,19 @@ export const loginApi = async (formData: {
   );
 };
 
-export const logoutApi = async (): Promise<AxiosResponse<LogoutResponse>> => {
+export const logoutApi = async (): Promise<AxiosResponse<MessageResponse>> => {
   return await api.post(logoutApiLink);
 };
 
 export const resendEmailApi = async (): Promise<
-  AxiosResponse<ResendEmailResponse>
+  AxiosResponse<MessageResponse>
 > => {
   return await api.post(resendEmailApiLink);
 };
 
 export const passwordRecoveryEmailApi = async (
   email: string
-): Promise<AxiosResponse<PasswordRecoveryEmailResponse>> => {
+): Promise<AxiosResponse<MessageResponse>> => {
   return await api.post(
     passwordRecoveryEmailApiLink,
     {
@@ -137,7 +129,7 @@ export const registerApi = async (formData: {
   email: string;
   password: string;
   talentPool: boolean;
-}): Promise<AxiosResponse<RegisterResponse>> => {
+}): Promise<AxiosResponse<MessageResponse>> => {
   return await api.post(
     registerApiLink,
     {
@@ -157,7 +149,7 @@ export const registerApi = async (formData: {
 
 export const talentPoolApi = async (
   talentPool: boolean
-): Promise<AxiosResponse<TalentPoolResponse>> => {
+): Promise<AxiosResponse<MessageResponse>> => {
   return await api.put(
     talentPoolApiLink,
     {
@@ -172,7 +164,7 @@ export const talentPoolApi = async (
 };
 
 export const acceptTermsVersionApi = async (): Promise<
-  AxiosResponse<AcceptTermsVersionResponse>
+  AxiosResponse<MessageResponse>
 > => {
   return await api.put(
     acceptTermsVersionApiLink,
@@ -186,7 +178,7 @@ export const acceptTermsVersionApi = async (): Promise<
 };
 
 export const notifiedTermsVersionApi = async (): Promise<
-  AxiosResponse<NotifiedTermsVersionResponse>
+  AxiosResponse<MessageResponse>
 > => {
   return await api.put(
     notifiedTermsVersionApiLink,
@@ -220,7 +212,7 @@ export const userStatusApi = async (): Promise<
 export const updatePasswordApi = async (formData: {
   currentPassword: string;
   password: string;
-}): Promise<AxiosResponse<RegisterResponse>> => {
+}): Promise<AxiosResponse<MessageResponse>> => {
   return await api.put(
     updatePasswordApiLink,
     {
@@ -237,7 +229,7 @@ export const updatePasswordApi = async (formData: {
 
 export const userSetLocaleApi = async (
   locale: string
-): Promise<AxiosResponse<UserSetLocaleResponse>> => {
+): Promise<AxiosResponse<MessageResponse>> => {
   return await api.put(
     userSetLocaleApiLink,
     {
@@ -264,14 +256,14 @@ export const getQuotaInfoApi = async (
 };
 
 export const finishFirstLoginApi = async (): Promise<
-  AxiosResponse<FinishFirstLoginResponse>
+  AxiosResponse<MessageResponse>
 > => {
   return await api.put(finishFirstLoginApiLink);
 };
 
 export const profileSyncEngine = async (
   profile: IProfile
-): Promise<AxiosResponse<ProfileSyncResponse>> => {
+): Promise<AxiosResponse<MessageResponse>> => {
   return await engine.put(profileSyncEngineLink, profile);
 };
 
@@ -319,7 +311,7 @@ export const chatExperienceEngine = async ({
   experience_id: string;
   traduction: Traduction;
   chat: ChatData;
-}): Promise<AxiosResponse<chatExperienceResponse>> => {
+}): Promise<AxiosResponse<MessageResponse>> => {
   return await engine.post(
     chatExperienceEngineLink,
     {
@@ -335,4 +327,22 @@ export const chatExperienceEngine = async ({
       },
     }
   );
+};
+
+export const userUploadProfilePictureApi = async (
+  file: File
+): Promise<AxiosResponse<UserResponse>> => {
+  const formData = new FormData();
+  formData.append("photo", file);
+
+  return await api.post(userUploadProfilePictureApiLink, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+export const userDeleteProfilePictureApi = async (): Promise<
+  AxiosResponse<UserResponse>
+> => {
+  return await api.delete(userDeleteProfilePictureApiLink);
 };

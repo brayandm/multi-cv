@@ -22,3 +22,7 @@ export const generateCvInlineNoRenderEngineLink =
   "/generate/cv/inline/norender";
 export const chatExperienceEngineLink = "/chat/experience";
 export const renderHtmlInlineEngineLink = "/render/html/inline";
+export const userUploadProfilePictureApiLink = "/user/upload/profile-picture";
+export const userDeleteProfilePictureApiLink = "/user/delete/profile-picture";
+export const userProfilePictureApiLink =
+  process.env.NEXT_PUBLIC_API_URL + "/user/profile-picture";
