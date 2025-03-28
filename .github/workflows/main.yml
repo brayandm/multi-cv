@@ -3,10 +3,12 @@ name: multi-cv
 on:
     push:
         branches: ["main"]
+    workflow_dispatch:
 
 jobs:
     build:
-        runs-on: self-hosted
+        runs-on:
+            - self-hosted
         steps:
             - uses: actions/checkout@v3
             - name: Copying .env to frontend project
@@ -20,17 +22,18 @@ jobs:
 
     test:
         needs: build
-        runs-on: self-hosted
+        runs-on:
+            - self-hosted
         steps:
             - uses: actions/checkout@v3
             - name: Run tests
               run: bash run-tests.sh
 
     deploy:
+        if: github.event_name == 'workflow_dispatch'
         needs: test
-        runs-on: self-hosted
-        environment:
-            name: manual-approval
+        runs-on:
+            - self-hosted
         steps:
             - uses: actions/checkout@v3
             - name: Stopping the containers
@@ -43,7 +46,8 @@ jobs:
     clean:
         if: always()
         needs: deploy
-        runs-on: self-hosted
+        runs-on:
+            - self-hosted
         steps:
             - name: Removing unused docker images
               run: docker system prune -a
