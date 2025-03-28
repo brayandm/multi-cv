@@ -27,7 +27,7 @@ export default function HomeComponent() {
 
   const { getTraduction } = useLocale();
 
-  const { setCv, setTradution } = useCv();
+  const { setCv, setCvTexts } = useCv();
 
   const router = useRouter();
 
@@ -137,8 +137,8 @@ export default function HomeComponent() {
       const traduction = getTraduction();
       const response = await generateCvInlineNoRenderEngine(traduction);
       if (response.data) {
-        setTradution(traduction);
-        setCv(response.data);
+        setCv(response.data.cv);
+        setCvTexts(response.data.cv_texts);
       }
 
       router.push("/edit/cv");

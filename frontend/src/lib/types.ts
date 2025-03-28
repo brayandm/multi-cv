@@ -1,3 +1,5 @@
+import { Cv, CvTexts } from "@/contexts/CvContext";
+
 export interface UserStatusResponse {
   authenticated: boolean;
   is_valid_terms_version?: boolean;
@@ -59,6 +61,11 @@ export interface GetQuotaInfoResponse {
 
 export interface MessageResponse {
   message: string;
+}
+
+export interface generateCvInlineNoRenderResponse {
+  cv: Cv;
+  cv_texts: CvTexts;
 }
 
 export interface CV {

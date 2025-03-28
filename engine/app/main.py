@@ -5,6 +5,9 @@ from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
 
+import os
+import json
+
 from app.classes.models import (
     Chat,
     Cv,
@@ -14,6 +17,7 @@ from app.classes.models import (
     Profile,
     Traduction,
     WebhookPayload,
+    CvTexts,
 )
 from app.classes.pipelines import (
     ChatExperiencePipeline,
@@ -106,16 +110,34 @@ async def generate_cv_inline(
 async def generate_cv_inline_norender(
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
-) -> Optional[Cv]:
+) -> Response:
 
     profile = await profile_service.get_profile(get_user_id())
 
     if profile is None:
-        return None
+        return Response(
+            content="Profile not found.",
+            status_code=404,
+        )
 
     cv = await GenerateCvPipeline().run(profile, traduction)
 
-    return cv
+    traductions_path = os.path.join(
+        "app", "utils", "traductions", "cv", f"{traduction.locale}.json"
+    )
+
+    with open(traductions_path, "r", encoding="utf-8") as traductions_file:
+        traductions = json.load(traductions_file)
+
+    cv_texts = CvTexts(**traductions)
+
+    return JSONResponse(
+        content={
+            "cv": cv.model_dump(exclude_none=True),
+            "cv_texts": cv_texts.model_dump(exclude_none=True),
+        },
+        status_code=200,
+    )
 
 
 @router.post("/chat/experience")

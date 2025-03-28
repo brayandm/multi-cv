@@ -1,7 +1,11 @@
 {
+    "locale": "hi",
+    "contact_info": "Sampark Jankari",
     "summary": "Saar",
     "experience": "Anubhav",
-    "skills": "Kaushal",
     "education": "Shiksha",
-    "projects": "Pariyojnaayein"
+    "projects": "Pariyojanayen",
+    "certifications": "Praman Patra",
+    "languages": "Bhashaen",
+    "skills": "Kaushal"
 }

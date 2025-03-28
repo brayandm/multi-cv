@@ -6,10 +6,10 @@ from pydantic import BaseModel, Field
 from app.classes.models import (
     CoverLetter,
     CoverLetterTemplate,
+    CoverLetterTexts,
     Cv,
     CvTemplate,
     CvTexts,
-    CoverLetterTexts,
 )
 from app.utils.pydantic_custom_types import ShortStr
 

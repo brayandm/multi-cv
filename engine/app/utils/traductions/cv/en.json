@@ -1,7 +1,11 @@
 {
+    "locale": "en",
+    "contact_info": "Contact Information",
     "summary": "Summary",
     "experience": "Experience",
-    "skills": "Skills",
     "education": "Education",
-    "projects": "Projects"
+    "projects": "Projects",
+    "certifications": "Certifications",
+    "languages": "Languages",
+    "skills": "Skills"
 }

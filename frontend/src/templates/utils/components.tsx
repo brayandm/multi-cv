@@ -1,6 +1,5 @@
 import React, { ReactElement, ReactNode } from "react";
 import { useCv } from "@/contexts/CvContext";
-import { sectionsTraductions } from "./languages";
 import { userProfilePictureApiLink } from "@/lib/links";
 
 const EditableField = ({
@@ -163,17 +162,9 @@ export const ProfilePicture = ({
 export const ContactInfoSection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { traduction } = useCv();
+  const { cvTexts } = useCv();
 
-  return (
-    <p {...props}>
-      {
-        sectionsTraductions[
-          traduction.locale as keyof typeof sectionsTraductions
-        ].contact_info
-      }
-    </p>
-  );
+  return <p {...props}>{cvTexts.contact_info}</p>;
 };
 
 export const FullName = (props: React.HTMLAttributes<HTMLDivElement>) => {
@@ -244,17 +235,9 @@ export const GitHub = (props: React.HTMLAttributes<HTMLDivElement>) => {
 export const SummarySection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { traduction } = useCv();
+  const { cvTexts } = useCv();
 
-  return (
-    <p {...props}>
-      {
-        sectionsTraductions[
-          traduction.locale as keyof typeof sectionsTraductions
-        ].summary
-      }
-    </p>
-  );
+  return <p {...props}>{cvTexts.summary}</p>;
 };
 
 export const Summary = (props: React.HTMLAttributes<HTMLDivElement>) => {
@@ -271,17 +254,9 @@ export const Summary = (props: React.HTMLAttributes<HTMLDivElement>) => {
 export const ExperienceSection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { traduction } = useCv();
+  const { cvTexts } = useCv();
 
-  return (
-    <p {...props}>
-      {
-        sectionsTraductions[
-          traduction.locale as keyof typeof sectionsTraductions
-        ].experience
-      }
-    </p>
-  );
+  return <p {...props}>{cvTexts.experience}</p>;
 };
 
 export const ExperienceList = ({

@@ -7,7 +7,6 @@ import React, {
   ReactNode,
   useEffect,
 } from "react";
-import { Traduction } from "./LocaleContext";
 
 export interface Cv {
   full_name: string;
@@ -28,7 +27,8 @@ export interface CvExperience {
   end_date: string;
   descriptions: string[];
 }
-export interface CvTemplateTexts {
+export interface CvTexts {
+  locale: string;
   contact_info: string;
   summary: string;
   experience: string;
@@ -42,10 +42,8 @@ export interface CvTemplateTexts {
 interface CvContextType {
   cv: Cv;
   setCv: (cv: Cv) => void;
-  traduction: Traduction;
-  setTradution: (traduction: Traduction) => void;
-  cvTemplateTexts: CvTemplateTexts;
-  setCvTemplateTexts: (texts: CvTemplateTexts) => void;
+  cvTexts: CvTexts;
+  setCvTexts: (texts: CvTexts) => void;
 }
 
 const CvContext = createContext<CvContextType | undefined>(undefined);
@@ -62,7 +60,8 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
     experiences: [],
   });
 
-  const [cvTemplateTexts, setCvTemplateTexts] = useState<CvTemplateTexts>({
+  const [cvTexts, setCvTexts] = useState<CvTexts>({
+    locale: "en",
     contact_info: "Contact Information",
     summary: "Summary",
     experience: "Experience",
@@ -71,11 +70,6 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
     certifications: "Certifications",
     languages: "Languages",
     skills: "Skills",
-  });
-
-  const [traduction, setTradution] = useState<Traduction>({
-    locale: "en",
-    name: "English",
   });
 
   useEffect(() => {
@@ -102,10 +96,8 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
       value={{
         cv,
         setCv,
-        traduction,
-        setTradution,
-        cvTemplateTexts,
-        setCvTemplateTexts,
+        cvTexts,
+        setCvTexts,
       }}
     >
       {children}
