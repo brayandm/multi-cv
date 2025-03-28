@@ -160,7 +160,7 @@ export default function HomeComponent() {
           <div className="flex justify-center">
             <Button
               color="primary"
-              onPress={() => (true ? handleDocument() : redirectEditCv())}
+              onPress={() => (false ? handleDocument() : redirectEditCv())}
               isDisabled={isCvLoading || quotaInfo?.left === 0}
               isLoading={isCvLoading}
             >
