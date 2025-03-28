@@ -4,6 +4,7 @@ from .cover_letter.cover_letter_template import CoverLetterTemplate
 from .cv.cv import Cv
 from .cv.cv_experience import CvExperience
 from .cv.cv_template import CvTemplate
+from .cv.cv_template_texts import CvTemplateTexts
 from .document import CoverLetterDocument, CvDocument, Document
 from .html import Html
 from .profile.basic_info import BasicInfo
@@ -29,6 +30,7 @@ __all__ = [
     "CvExperience",
     "Cv",
     "CvTemplate",
+    "CvTemplateTexts",
     "CoverLetter",
     "CoverLetterTemplate",
     "WebhookPayload",
