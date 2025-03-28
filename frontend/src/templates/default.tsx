@@ -28,9 +28,7 @@ export default function DefaultTemplate() {
     <Div
       style={{
         display: "flex",
-        width: "100%",
-        height: "100%",
-        margin: "0 auto",
+
         backgroundColor: "#fff",
       }}
     >
@@ -67,6 +65,7 @@ export default function DefaultTemplate() {
             fontSize: 18,
             fontWeight: "bold",
             marginBottom: 10,
+            color: "#2b2b2b",
             textAlign: "center",
           }}
         />
@@ -105,6 +104,7 @@ export default function DefaultTemplate() {
             style={{
               fontSize: 20,
               fontWeight: "bold",
+              color: "#000",
               borderBottom: "2px solid #000",
               marginBottom: 10,
             }}
@@ -118,6 +118,7 @@ export default function DefaultTemplate() {
             style={{
               fontSize: 20,
               fontWeight: "bold",
+              color: "#2b2b2b",
               borderBottom: "2px solid #000",
               marginBottom: 20,
             }}
