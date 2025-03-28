@@ -1,15 +1,16 @@
-from pydantic import BaseModel
+import inspect
+import json
 from typing import (
+    Annotated,
     Any,
+    List,
+    Type,
     Union,
     get_args,
     get_origin,
-    List,
-    Annotated,
-    Type,
 )
-import inspect
-import json
+
+from pydantic import BaseModel
 
 
 def get_schema(type_hint: Any) -> Any:

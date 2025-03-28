@@ -28,7 +28,8 @@ export default function DefaultTemplate() {
     <Div
       style={{
         display: "flex",
-
+        width: "100%",
+        height: "100%",
         backgroundColor: "#fff",
       }}
     >
