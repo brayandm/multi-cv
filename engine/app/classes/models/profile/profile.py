@@ -40,6 +40,6 @@ class Profile(BaseModel):
     certifications: Annotated[
         List[Certificate], Field(..., max_items=MAX_CERTIFICATIONS_LENGTH)
     ]
-    skills: Skills
     languages: Annotated[List[Language], Field(..., max_items=MAX_LANGUAGES)]
+    skills: Skills
     general_notes: Optional[GeneralNotesStr] = None

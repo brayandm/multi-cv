@@ -37,7 +37,12 @@
       "quota_info": "Quota Info",
       "used": "Used",
       "message_left": "Messages left: {count}",
-      "generation_left": "Generations left: {count}"
+      "generation_left": "Generations left: {count}",
+      "languages": "Languages",
+      "basic": "Basic",
+      "intermediate": "Intermediate",
+      "professional": "Professional",
+      "native": "Native"
     },
     "buttons": {
       "continue": "Continue",
@@ -80,7 +85,8 @@
       "password_too_short": "The password should be at least {min} characters long",
       "select_date": "Please select a date",
       "invalid_phone": "The phone number is not valid",
-      "settings": "Settings update failed"
+      "settings": "Settings update failed",
+      "file_size": "The file size should be less than {max}MB"
     },
     "success": {
       "password_change": "Password changed",
@@ -112,7 +118,16 @@
       "project_description": "Project description",
       "link": "Link",
       "professional_links_select": "Select a link",
-      "skill_description": "Insert at least {min} skills"
+      "skill_description": "Insert at least {min} skills",
+      "certification_name": "Certification name",
+      "certification_description": "Certification description",
+      "certificate_id": "Certificate ID",
+      "verification_url": "Verification Link",
+      "issuer": "Certification issuer",
+      "issue_date": "Issue date",
+      "expiration_date": "Expiration date",
+      "language": "Language",
+      "level": "Level"
     },
     "placeholders": {
       "enter_first_name": "Enter your first name",
@@ -138,7 +153,14 @@
       "enter_institution_link": "Institution link",
       "enter_company_link": "Company link",
       "professional_links_select": "Click to select",
-      "enter_your_link": "Enter your {field} link"
+      "enter_your_link": "Enter your {field} link",
+      "enter_certification_name": "Enter the certification name",
+      "enter_certification_issuer": "Enter the issuer",
+      "enter_certification_certificate_id": "Certificate ID",
+      "enter_certification_verification_url": "Enter the verification URL",
+      "enter_certification_description": "Enter a brief description",
+      "enter_language": "Enter a language",
+      "select_language_level": "Select a level"
     },
     "legal": {
       "terms_conditions": "Terms & Conditions",
@@ -224,14 +246,6 @@
         "professional_links": {
           "title": "Links"
         },
-        "skills": {
-          "title": "Skills"
-        },
-        "projects": {
-          "title": "Projects",
-          "element": "Project",
-          "is_present": "I'm currently working on this project"
-        },
         "experience": {
           "title": "Experience",
           "element": "Experience",
@@ -241,6 +255,22 @@
           "title": "Education",
           "element": "Education",
           "is_present": "I'm currently studying here"
+        },
+        "projects": {
+          "title": "Projects",
+          "element": "Project",
+          "is_present": "I'm currently working on this project"
+        },
+        "certifications": {
+          "title": "Certifications",
+          "element": "Certification",
+          "hasnt_expiration_date": "This certification does not have an expiration date"
+        },
+        "languages": {
+          "title": "Languages"
+        },
+        "skills": {
+          "title": "Skills"
         }
       },
       "success": {

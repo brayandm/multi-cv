@@ -78,6 +78,12 @@ class GoogleAuthController extends Controller
             ]
         );
 
+        if (isset($userInfo['picture'])) {
+            $user->clearMediaCollection('profile_picture');
+            $user->addMediaFromUrl($userInfo['picture'])
+                ->toMediaCollection('profile_picture');
+        }
+
         $token = $this->userService->createUserToken($user);
 
         if ($extension) {

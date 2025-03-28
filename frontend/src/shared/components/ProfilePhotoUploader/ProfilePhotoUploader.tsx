@@ -1,0 +1,98 @@
+import { useRef, useState } from "react";
+import { Input, Spinner } from "@heroui/react";
+import { XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
+
+export interface IProfilePhotoUploaderProps {
+  image: string | null;
+  onImageChange?: (file: File) => void;
+  onImageRemove?: () => void;
+}
+
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
+
+const ProfilePhotoUploader = ({
+  image,
+  onImageChange = () => {},
+  onImageRemove = () => {},
+}: IProfilePhotoUploaderProps) => {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const t = useTranslations();
+
+  const [onSubmitting, setOnSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
+    setOnSubmitting(true);
+    const file = e.target.files?.[0];
+
+    if (file) {
+      if (file.size > MAX_IMAGE_SIZE) {
+        setError(t("common.errors.file_size", { max: 2 }));
+        setOnSubmitting(false);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+        return;
+      }
+      await onImageChange(file);
+    }
+    setOnSubmitting(false);
+  };
+
+  const handleRemoveImage = () => {
+    onImageRemove();
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+    setError(null);
+  };
+
+  const handleClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  return (
+    <div className="flex relative flex-col">
+      <div
+        className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer overflow-hidden"
+        onClick={handleClick}
+      >
+        {image ? (
+          /* eslint-disable-next-line @next/next/no-img-element */
+          <img
+            src={image}
+            alt="Profile"
+            className="w-full h-full object-cover"
+          />
+        ) : !onSubmitting ? (
+          <PlusIcon className="w-8 h-8 text-gray-500" />
+        ) : (
+          <Spinner />
+        )}
+      </div>
+
+      {image && (
+        <button
+          type="button"
+          onClick={handleRemoveImage}
+          className="absolute top-[-0.25rem] right-[-0.25rem] bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+        >
+          <XMarkIcon className="w-4 h-4" />
+        </button>
+      )}
+
+      <Input
+        type="file"
+        className="hidden"
+        ref={fileInputRef}
+        onChange={handleImageChange}
+        accept="image/*"
+      />
+
+      {error && <p className="text-red-500 text-xs mt-2 w-24">{error}</p>}
+    </div>
+  );
+};
+
+export default ProfilePhotoUploader;

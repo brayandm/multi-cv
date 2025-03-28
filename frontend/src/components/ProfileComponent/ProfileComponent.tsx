@@ -27,6 +27,8 @@ import { useProfile } from "@/contexts/ProfileContext";
 import { useRouter } from "next/navigation";
 import { finishFirstLoginApi } from "@/lib/backendService";
 import { useInterceptor } from "@/contexts/InterceptorContext";
+import Certifications from "./Certifications";
+import Languages from "./Languages";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
@@ -61,7 +63,9 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
       experiences: 2,
       educations: 3,
       projects: 4,
-      skills: 5,
+      certifications: 5,
+      languages: 6,
+      skills: 7,
     }),
     []
   );
@@ -217,6 +221,18 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                     title={t("pages.profile.sections.projects.title")}
                   >
                     <Projects formRef={formRef} />
+                  </Tab>
+                  <Tab
+                    key="certifications"
+                    title={t("pages.profile.sections.certifications.title")}
+                  >
+                    <Certifications formRef={formRef} />
+                  </Tab>
+                  <Tab
+                    key="languages"
+                    title={t("pages.profile.sections.languages.title")}
+                  >
+                    <Languages />
                   </Tab>
                   <Tab
                     key="skills"

@@ -77,5 +77,9 @@ Route::group(['prefix' => 'v1'], function () {
         Route::put('/user/notified-terms-version', 'App\Http\Controllers\AuthController@updateNotifiedTermsVersion');
 
         Route::put('/user/finish-first-login', 'App\Http\Controllers\AuthController@finishFirstLogin');
+
+        Route::post('/user/upload/profile-picture', 'App\Http\Controllers\AuthController@uploadProfilePicture');
+        Route::delete('/user/delete/profile-picture', 'App\Http\Controllers\AuthController@deleteProfilePicture');
+        Route::get('/user/profile-picture', 'App\Http\Controllers\AuthController@getProfilePicture');
     });
 });

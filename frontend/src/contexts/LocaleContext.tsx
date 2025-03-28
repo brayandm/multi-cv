@@ -53,9 +53,11 @@ const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
-  const [locale, setLocale] = useState(
-    (getCookie("locale") as string) || getSystemLocale()
-  );
+  const [locale, setLocale] = useState("en");
+
+  useEffect(() => {
+    setLocale((getCookie("locale") as string) || getSystemLocale());
+  }, []);
 
   const updateLocale = async (newLocale: string) => {
     let userLocaleResponse;

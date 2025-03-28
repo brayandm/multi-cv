@@ -1,5 +1,12 @@
 "use client";
-import { Button, Checkbox, Input, Textarea } from "@heroui/react";
+import {
+  Autocomplete,
+  AutocompleteItem,
+  Button,
+  Checkbox,
+  Input,
+  Textarea,
+} from "@heroui/react";
 import React, { Key } from "react";
 import {
   DynamicInputsProps,
@@ -13,6 +20,7 @@ import { MAX_LONG_TEXT_LENGTH, MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 import SelectDate from "@/shared/components/SelectDate";
 import { emailValidator, requiredValidator } from "@/lib/validator";
 import { useTranslations } from "next-intl";
+import ProfilePhotoUploader from "@/shared/components/ProfilePhotoUploader";
 
 const DynamicInputs = <T,>({
   inputs,
@@ -28,7 +36,7 @@ const DynamicInputs = <T,>({
         if (Array.isArray(input)) {
           return (
             <div key={index} className="flex gap-2">
-              <DynamicInputs inputs={input} horizontal={true} />
+              <DynamicInputs inputs={input} horizontal={!horizontal} />
             </div>
           );
         }
@@ -50,6 +58,22 @@ const DynamicInputs = <T,>({
             </Button>
           );
         }
+        if (input.type === "picture") {
+          return (
+            <div
+              key={index}
+              className="flex flex-col align-center justify-center p-3"
+            >
+              <ProfilePhotoUploader
+                key={index}
+                image={input.image ? input.image : null}
+                onImageChange={input.onImageChange}
+                onImageRemove={input.onImageRemove}
+              />
+            </div>
+          );
+        }
+
         if (input.type === "phone_country_code") {
           return (
             <SelectCountry
@@ -172,9 +196,50 @@ const DynamicInputs = <T,>({
                 )
               }
               value={input.value as string}
+              classNames={{
+                label: "text-sm",
+              }}
             >
               {input.label}
             </Checkbox>
+          );
+        }
+
+        if (input.type === "selector") {
+          return (
+            <div key={index} className="flex flex-row justify-between">
+              <div className="flex flex-row gap-2 justify-between w-full">
+                <div className="flex pt-2">{input.text}</div>
+                <Autocomplete
+                  variant={variant}
+                  label={input.label}
+                  aria-label={input.label || "default"}
+                  placeholder={input.placeholder}
+                  defaultItems={input.selectItems}
+                  color={input.color}
+                  isDisabled={input.isDisabled}
+                  onBlur={input.onBlur}
+                  isRequired={input.isRequired}
+                  description={input.description}
+                  onSelectionChange={(value) => {
+                    (input.onValueChange as IDynamicOnValueChange<Key | null>)(
+                      value
+                    );
+                  }}
+                  isClearable={false}
+                  classNames={{
+                    base: "w-[150px]",
+                  }}
+                >
+                  {(item) => (
+                    <AutocompleteItem key={item.key}>
+                      {item.label}
+                    </AutocompleteItem>
+                  )}
+                </Autocomplete>
+              </div>
+              {input.afterContent}
+            </div>
           );
         }
 

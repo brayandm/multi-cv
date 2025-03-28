@@ -5,7 +5,7 @@ import { ICertificate, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
-import { MAX_PROJECTS_ELEMENTS } from "@/lib/consts";
+import { MAX_CERTIFICATIONS_ELEMENTS } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
 
 interface ICertificationsProps {
@@ -36,6 +36,10 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
       [key]: value,
     };
 
+    if (key === "hasnt_expiration_date" && value === true) {
+      updatedCertifications[index].expiration_date = "";
+    }
+
     if (key === "issue_date" || key === "expiration_date") {
       setSync(true);
     }
@@ -60,7 +64,7 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
       description: "",
       issue_date: "",
       expiration_date: "",
-      has_expiration_date: false,
+      hasnt_expiration_date: false,
     };
 
     updateCertifications([...certifications, certification]);
@@ -79,7 +83,7 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
       total={certifications.length}
       onNewPage={addNewCertification}
       onRemovePage={onRemovePage}
-      maxElements={MAX_PROJECTS_ELEMENTS}
+      maxElements={MAX_CERTIFICATIONS_ELEMENTS}
       formRef={formRef}
       elementName={t("pages.profile.sections.certifications.element")}
     >
@@ -95,13 +99,39 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
             isRequired: true,
             onBlur: syncProfileOnFirstLogin,
           },
+          [
+            {
+              label: t("common.form.issuer"),
+              type: "text",
+              placeholder: t("common.placeholders.enter_certification_issuer"),
+              onValueChange: (value: string) =>
+                onCertificationChange(index, "issuer", value),
+              value: certification?.issuer || "",
+              onBlur: syncProfileOnFirstLogin,
+              isRequired: true,
+            },
+            {
+              label: t("common.form.certificate_id"),
+              type: "text",
+              placeholder: t(
+                "common.placeholders.enter_certification_certificate_id"
+              ),
+              onValueChange: (value: string) =>
+                onCertificationChange(index, "certificate_id", value),
+              value: certification?.certificate_id || "",
+              onBlur: syncProfileOnFirstLogin,
+              customStyles: "w-[2/6]",
+            },
+          ],
           {
-            label: t("common.form.issuer"),
+            label: t("common.form.verification_url"),
             type: "text",
-            placeholder: t("common.placeholders.enter_certification_issuer"),
+            placeholder: t(
+              "common.placeholders.enter_certification_verification_url"
+            ),
             onValueChange: (value: string) =>
-              onCertificationChange(index, "issuer", value),
-            value: certification?.issuer || "",
+              onCertificationChange(index, "verification_url", value),
+            value: certification?.verification_url || "",
             onBlur: syncProfileOnFirstLogin,
           },
           {
@@ -113,19 +143,7 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
             onValueChange: (value: string) =>
               onCertificationChange(index, "description", value),
             value: certification?.description || "",
-            isRequired: true,
-            description: `${certification?.description.length} / 50`,
             onBlur: syncProfileOnFirstLogin,
-            errorMessage: t("common.errors.length", {
-              field: t("common.form.certification_description"),
-              length: 50,
-              current_length: certification?.description.length,
-            }),
-            validate: (value) => {
-              if (value.length < 50) {
-                return "error";
-              }
-            },
           },
           [
             {
@@ -143,20 +161,20 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
               onValueChange: (value: string) => {
                 onCertificationChange(index, "expiration_date", value);
               },
-              isDisabled: certification?.has_expiration_date,
+              isDisabled: certification?.hasnt_expiration_date,
               value: certification?.expiration_date || "",
               isRequired: true,
             },
           ],
           {
             label: t(
-              "pages.profile.sections.certifications.has_expiration_date"
+              "pages.profile.sections.certifications.hasnt_expiration_date"
             ),
             type: "checkbox",
             onValueChange: (value: boolean) => {
-              onCertificationChange(index, "has_expiration_date", value);
+              onCertificationChange(index, "hasnt_expiration_date", value);
             },
-            value: certification?.has_expiration_date || "",
+            value: certification?.hasnt_expiration_date || "",
           },
         ];
 

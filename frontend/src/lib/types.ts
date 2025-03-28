@@ -8,39 +8,12 @@ export interface UserStatusResponse {
   last_name?: string;
   is_first_login?: boolean;
   is_in_talent_pool?: boolean | null;
+  has_profile_picture?: boolean;
 }
 
 export interface LoginResponse {
   message: string;
   auth_cookie?: AuthCookie;
-}
-
-export interface LogoutResponse {
-  message: string;
-}
-
-export interface RegisterResponse {
-  message: string;
-}
-
-export interface TalentPoolResponse {
-  message: string;
-}
-
-export interface AcceptTermsVersionResponse {
-  message: string;
-}
-
-export interface NotifiedTermsVersionResponse {
-  message: string;
-}
-
-export interface ResendEmailResponse {
-  message: string;
-}
-
-export interface PasswordRecoveryEmailResponse {
-  message: string;
 }
 
 export interface PasswordRecoveryResetResponse {
@@ -74,10 +47,6 @@ export interface UserResponse {
   is_in_talent_pool: boolean | null;
 }
 
-export interface UserSetLocaleResponse {
-  message: string;
-}
-
 export interface UserLocaleResponse {
   locale: string;
 }
@@ -88,15 +57,7 @@ export interface GetQuotaInfoResponse {
   left: number;
 }
 
-export interface ProfileSyncResponse {
-  message: string;
-}
-
-export interface chatExperienceResponse {
-  message: string;
-}
-
-export interface FinishFirstLoginResponse {
+export interface MessageResponse {
   message: string;
 }
 
