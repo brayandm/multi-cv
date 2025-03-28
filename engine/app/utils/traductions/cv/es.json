@@ -1,7 +1,11 @@
 {
+    "locale": "es",
+    "contact_info": "Información de contacto",
     "summary": "Resumen",
     "experience": "Experiencia",
-    "skills": "Habilidades",
     "education": "Educación",
-    "projects": "Proyectos"
+    "projects": "Proyectos",
+    "certifications": "Certificaciones",
+    "languages": "Idiomas",
+    "skills": "Habilidades"
 }

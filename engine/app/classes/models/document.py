@@ -3,7 +3,14 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from app.classes.models import CoverLetter, CoverLetterTemplate, Cv, CvTemplate
+from app.classes.models import (
+    CoverLetter,
+    CoverLetterTemplate,
+    CoverLetterTexts,
+    Cv,
+    CvTemplate,
+    CvTexts,
+)
 from app.utils.pydantic_custom_types import ShortStr
 
 
@@ -27,9 +34,11 @@ class CvDocument(Document):
     type: Literal["cv"]
     cv: Cv
     cv_template: CvTemplate
+    cv_texts: CvTexts
 
 
 class CoverLetterDocument(Document):
     type: Literal["cover_letter"]
     cover_letter: CoverLetter
     cover_letter_template: CoverLetterTemplate
+    cover_letter_texts: CoverLetterTexts

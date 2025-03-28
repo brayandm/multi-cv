@@ -35,11 +35,11 @@ import {
   UserLocaleResponse,
   GetQuotaInfoResponse,
   MessageResponse,
+  generateCvInlineNoRenderResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
 import { Traduction } from "@/contexts/LocaleContext";
-import { Cv } from "@/contexts/CvContext";
 
 const isServer = typeof window === "undefined";
 
@@ -283,7 +283,7 @@ export const generateCvInlineEngine = async (
 
 export const generateCvInlineNoRenderEngine = async (
   traduction: Traduction
-): Promise<AxiosResponse<Cv | null>> => {
+): Promise<AxiosResponse<generateCvInlineNoRenderResponse>> => {
   return await engine.post(generateCvInlineNoRenderEngineLink, traduction, {
     responseType: "json",
   });

@@ -1,16 +1,18 @@
 import React, { ReactElement, ReactNode } from "react";
 import { useCv } from "@/contexts/CvContext";
-import { sectionsTraductions } from "./languages";
+import { userProfilePictureApiLink } from "@/lib/links";
 
 const EditableField = ({
   value,
   onEdit,
+  type = "span",
   ...props
 }: {
   value: string;
   onEdit: (val: string) => void;
+  type?: "p" | "span" | "h1" | "h2" | "h3";
 } & React.HTMLAttributes<HTMLDivElement>) => {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const ref = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
     if (ref.current && ref.current.textContent !== value) {
@@ -18,17 +20,14 @@ const EditableField = ({
     }
   }, [value]);
 
-  return (
-    <span
-      {...props}
-      ref={ref}
-      contentEditable
-      suppressContentEditableWarning
-      onInput={(e) =>
-        onEdit((e.currentTarget as HTMLElement).textContent || "")
-      }
-    />
-  );
+  return React.createElement(type, {
+    ...props,
+    ref,
+    contentEditable: true,
+    suppressContentEditableWarning: true,
+    onInput: (e: React.FormEvent<HTMLElement>) =>
+      onEdit((e.currentTarget as HTMLElement).textContent || ""),
+  });
 };
 
 export const Div = ({
@@ -151,19 +150,27 @@ export const H3 = ({
   return <h3 {...props}>{childrenWithProps}</h3>;
 };
 
+export const ProfilePicture = ({
+  ...props
+}: {} & React.HTMLAttributes<HTMLDivElement>) => {
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img {...props} alt="Profile" src={userProfilePictureApiLink} />
+  );
+};
+
 export const ContactInfoSection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { traduction } = useCv();
+  const { cvTexts, setCvTexts } = useCv();
 
   return (
-    <p {...props}>
-      {
-        sectionsTraductions[
-          traduction.locale as keyof typeof sectionsTraductions
-        ].contact_info
-      }
-    </p>
+    <EditableField
+      value={cvTexts.contact_info}
+      onEdit={(val) => setCvTexts({ ...cvTexts, contact_info: val })}
+      type="p"
+      {...props}
+    />
   );
 };
 
@@ -235,16 +242,14 @@ export const GitHub = (props: React.HTMLAttributes<HTMLDivElement>) => {
 export const SummarySection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { traduction } = useCv();
-
+  const { cvTexts, setCvTexts } = useCv();
   return (
-    <p {...props}>
-      {
-        sectionsTraductions[
-          traduction.locale as keyof typeof sectionsTraductions
-        ].summary
-      }
-    </p>
+    <EditableField
+      value={cvTexts.summary}
+      onEdit={(val) => setCvTexts({ ...cvTexts, summary: val })}
+      type="p"
+      {...props}
+    />
   );
 };
 
@@ -262,16 +267,14 @@ export const Summary = (props: React.HTMLAttributes<HTMLDivElement>) => {
 export const ExperienceSection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { traduction } = useCv();
-
+  const { cvTexts, setCvTexts } = useCv();
   return (
-    <p {...props}>
-      {
-        sectionsTraductions[
-          traduction.locale as keyof typeof sectionsTraductions
-        ].experience
-      }
-    </p>
+    <EditableField
+      value={cvTexts.experience}
+      onEdit={(val) => setCvTexts({ ...cvTexts, experience: val })}
+      type="p"
+      {...props}
+    />
   );
 };
 

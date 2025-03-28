@@ -81,8 +81,17 @@ export default function EditCvComponent() {
           Download CV
         </Button>
         <div className="shadow-lg">
-          <div className="w-[794px] h-[1123px]" ref={templateRef}>
-            <DefaultTemplate />
+          <div
+            style={{
+              fontFamily: "Inter, sans-serif",
+              lineHeight: 1.2,
+              fontWeight: 400,
+              color: "#000",
+            }}
+          >
+            <div className="w-[794px] h-[1123px]" ref={templateRef}>
+              <DefaultTemplate />
+            </div>
           </div>
         </div>
       </div>

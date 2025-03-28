@@ -4,6 +4,7 @@ from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
 from app.classes.models import Cv, Profile, Traduction
+from app.utils.get_schema import get_schema
 from app.utils.phone import to_international_format
 
 
@@ -12,49 +13,7 @@ class GenerateCvAgent(Agent):
     async def run(self, profile: Profile, traduction: Traduction) -> Cv:
         profile_json = profile.model_dump_json()
 
-        cv_structure = """
-        {
-          "full_name": "string",
-          "email": "string",
-          "location": "string",
-          "linkedin": "string",
-          "github": "string",
-          "summary": "string",
-          "experiences": [
-            {
-              "company": "string",
-              "position": "string",
-              "location": "string",
-              "start_date": "string",
-              "end_date": "string",
-              "descriptions": ["string"]
-            }
-          ],
-          "educations": [
-            {
-              "institution": "string",
-              "career": "string",
-              "location": "string",
-              "start_date": "string",
-              "end_date": "string"
-            }
-          ],
-          "skill_categories": [
-            {
-              "category": "string",
-              "list": ["string"]
-            }
-          ],
-           "projects": [
-            {
-              "name": "string",
-              "start_date": "string",
-              "end_date": "string"
-              "description": "string",
-            }
-          ]
-        }
-        """
+        cv_structure = get_schema(Cv)
 
         input_prompt = f"""
         You are an AI assistant that generates JSON-formatted resumes in

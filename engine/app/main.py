@@ -1,3 +1,5 @@
+import json
+import os
 from io import BytesIO
 from typing import Any, Dict, Optional
 
@@ -9,6 +11,7 @@ from app.classes.models import (
     Chat,
     Cv,
     CvTemplate,
+    CvTexts,
     ExperienceId,
     Html,
     Profile,
@@ -28,7 +31,7 @@ from app.framework.decorators import (
     validate_api_token,
 )
 from app.framework.decorators.action import commit_action_after
-from app.framework.decorators.context_vars import get_user_id
+from app.framework.decorators.context_vars import get_auth_token, get_user_id
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
@@ -106,16 +109,34 @@ async def generate_cv_inline(
 async def generate_cv_inline_norender(
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
-) -> Optional[Cv]:
+) -> Response:
 
     profile = await profile_service.get_profile(get_user_id())
 
     if profile is None:
-        return None
+        return Response(
+            content="Profile not found.",
+            status_code=404,
+        )
 
     cv = await GenerateCvPipeline().run(profile, traduction)
 
-    return cv
+    traductions_path = os.path.join(
+        "app", "utils", "traductions", "cv", f"{traduction.locale}.json"
+    )
+
+    with open(traductions_path, "r", encoding="utf-8") as traductions_file:
+        traductions = json.load(traductions_file)
+
+    cv_texts = CvTexts(**traductions)
+
+    return JSONResponse(
+        content={
+            "cv": cv.model_dump(exclude_none=True),
+            "cv_texts": cv_texts.model_dump(exclude_none=True),
+        },
+        status_code=200,
+    )
 
 
 @router.post("/chat/experience")
@@ -192,6 +213,9 @@ async def render_html_inline(html: Html) -> Response:
 
         browser = await get_browser()
         page = await browser.new_page()
+
+        await page.set_extra_http_headers({"Authorization": get_auth_token()})
+
         await page.set_content(html_content, wait_until="networkidle")
 
         pdf = await page.pdf(format="A4", print_background=True)
@@ -200,7 +224,9 @@ async def render_html_inline(html: Html) -> Response:
         return StreamingResponse(
             BytesIO(pdf),
             media_type="application/pdf",
-            headers={"Content-Disposition": "attachment; filename=cv.pdf"},
+            headers={
+                "Content-Disposition": "attachment; filename=cv.pdf",
+            },
         )
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})

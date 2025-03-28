@@ -20,19 +20,16 @@ import {
   ExperienceSection,
   ContactInfoSection,
   SummarySection,
+  ProfilePicture,
 } from "./utils/components";
 
 export default function DefaultTemplate() {
   return (
     <Div
       style={{
-        fontFamily: "Inter, sans-serif",
-        lineHeight: 1.2,
-        fontWeight: 400,
         display: "flex",
         width: "100%",
         height: "100%",
-        margin: "0 auto",
         backgroundColor: "#fff",
       }}
     >
@@ -47,19 +44,29 @@ export default function DefaultTemplate() {
       >
         <Div
           style={{
-            width: 100,
-            height: 100,
-            borderRadius: "50%",
-            backgroundColor: "#ccc",
-            margin: "0 auto 20px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 20,
           }}
-        ></Div>
+        >
+          <ProfilePicture
+            style={{
+              width: 100,
+              height: 100,
+              borderRadius: "50%",
+              backgroundColor: "#ccc",
+            }}
+          ></ProfilePicture>
+        </Div>
 
         <ContactInfoSection
           style={{
             fontSize: 18,
             fontWeight: "bold",
             marginBottom: 10,
+            color: "#2b2b2b",
             textAlign: "center",
           }}
         />
@@ -98,6 +105,7 @@ export default function DefaultTemplate() {
             style={{
               fontSize: 20,
               fontWeight: "bold",
+              color: "#000",
               borderBottom: "2px solid #000",
               marginBottom: 10,
             }}
@@ -111,6 +119,7 @@ export default function DefaultTemplate() {
             style={{
               fontSize: 20,
               fontWeight: "bold",
+              color: "#2b2b2b",
               borderBottom: "2px solid #000",
               marginBottom: 20,
             }}
