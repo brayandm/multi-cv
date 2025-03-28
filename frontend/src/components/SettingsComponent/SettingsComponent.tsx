@@ -54,7 +54,12 @@ export default function SettingsComponent() {
 
   return (
     <main className="flex justify-center">
-      <div className={`max-w-[${maxWidth}vw] w-[${width}px]`}>
+      <div
+        style={{
+          maxWidth: `${maxWidth}vw`,
+          width: `${width}px`,
+        }}
+      >
         <form className="flex flex-col gap-2">
           <Card className="min-h-[75vh]">
             <CardHeader className="pb-0 flex flex-col items-start">
