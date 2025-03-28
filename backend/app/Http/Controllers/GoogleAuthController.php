@@ -69,19 +69,21 @@ class GoogleAuthController extends Controller
             return redirect('/')->with('error', 'Failed to retrieve user information.');
         }
 
-        $user = User::firstOrCreate(
-            ['email' => $userInfo['email']],
-            [
+        $user = User::where('email', $userInfo['email'])->first();
+
+        if(! $user) {
+            User::Create([
+                'email' => $userInfo['email'],
                 'first_name' => $userInfo['given_name'] ?? '',
                 'last_name' => $userInfo['family_name'] ?? '',
                 'email_verified_at' => now(),
-            ]
-        );
+            ]);
 
-        if (isset($userInfo['picture'])) {
-            $user->clearMediaCollection('profile_picture');
-            $user->addMediaFromUrl($userInfo['picture'])
-                ->toMediaCollection('profile_picture');
+            if (isset($userInfo['picture'])) {
+                $user->clearMediaCollection('profile_picture');
+                $user->addMediaFromUrl($userInfo['picture'])
+                    ->toMediaCollection('profile_picture');
+            }
         }
 
         $token = $this->userService->createUserToken($user);
