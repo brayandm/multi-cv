@@ -1,6 +1,7 @@
 import React, { ReactElement, ReactNode } from "react";
 import { useCv } from "@/contexts/CvContext";
 import { sectionsTraductions } from "./languages";
+import { userProfilePictureApiLink } from "@/lib/links";
 
 const EditableField = ({
   value,
@@ -149,6 +150,15 @@ export const H3 = ({
   });
 
   return <h3 {...props}>{childrenWithProps}</h3>;
+};
+
+export const ProfilePicture = ({
+  ...props
+}: {} & React.HTMLAttributes<HTMLDivElement>) => {
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img {...props} alt="Profile" src={userProfilePictureApiLink} />
+  );
 };
 
 export const ContactInfoSection = ({

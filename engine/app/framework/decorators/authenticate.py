@@ -8,7 +8,7 @@ from app.config import (
     BACKEND_API_URL,
     INTER_COMMUNICATION_TOKEN,
 )
-from app.framework.decorators.context_vars import set_user_id
+from app.framework.decorators.context_vars import set_user_id, set_auth_token
 from app.framework.logging import logger
 from app.framework.middlewares.request_handle_middleware import (
     request_var,
@@ -58,6 +58,7 @@ def authenticate() -> Callable[..., Any]:
                 raise HTTPException(status_code=403, detail="Unauthorized")
 
             set_user_id(user_id)
+            set_auth_token(authorization)
 
             try:
                 return await func(*args, **kwargs)

@@ -3,6 +3,7 @@ from contextvars import ContextVar
 user_id_var: ContextVar[int] = ContextVar("user_id")
 action_id_var: ContextVar[str | None] = ContextVar("action_id", default=None)
 action_var: ContextVar[str | None] = ContextVar("action", default=None)
+auth_token_var: ContextVar[str] = ContextVar("auth_token")
 
 
 def get_user_id() -> int:
@@ -27,3 +28,11 @@ def get_action() -> str | None:
 
 def set_action(action: str) -> None:
     action_var.set(action)
+
+
+def get_auth_token() -> str:
+    return auth_token_var.get()
+
+
+def set_auth_token(token: str) -> None:
+    auth_token_var.set(token)

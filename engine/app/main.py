@@ -28,7 +28,7 @@ from app.framework.decorators import (
     validate_api_token,
 )
 from app.framework.decorators.action import commit_action_after
-from app.framework.decorators.context_vars import get_user_id
+from app.framework.decorators.context_vars import get_user_id, get_auth_token
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
@@ -192,6 +192,9 @@ async def render_html_inline(html: Html) -> Response:
 
         browser = await get_browser()
         page = await browser.new_page()
+
+        await page.set_extra_http_headers({"Authorization": get_auth_token()})
+
         await page.set_content(html_content, wait_until="networkidle")
 
         pdf = await page.pdf(format="A4", print_background=True)
@@ -200,7 +203,9 @@ async def render_html_inline(html: Html) -> Response:
         return StreamingResponse(
             BytesIO(pdf),
             media_type="application/pdf",
-            headers={"Content-Disposition": "attachment; filename=cv.pdf"},
+            headers={
+                "Content-Disposition": "attachment; filename=cv.pdf",
+            },
         )
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})

@@ -20,6 +20,7 @@ import {
   ExperienceSection,
   ContactInfoSection,
   SummarySection,
+  ProfilePicture,
 } from "./utils/components";
 
 export default function DefaultTemplate() {
@@ -47,13 +48,22 @@ export default function DefaultTemplate() {
       >
         <Div
           style={{
-            width: 100,
-            height: 100,
-            borderRadius: "50%",
-            backgroundColor: "#ccc",
-            margin: "0 auto 20px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            marginBottom: 20,
           }}
-        ></Div>
+        >
+          <ProfilePicture
+            style={{
+              width: 100,
+              height: 100,
+              borderRadius: "50%",
+              backgroundColor: "#ccc",
+            }}
+          ></ProfilePicture>
+        </Div>
 
         <ContactInfoSection
           style={{
