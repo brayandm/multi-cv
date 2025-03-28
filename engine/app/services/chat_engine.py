@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List, Union, Optional
 
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
@@ -24,15 +24,9 @@ from app.framework.decorators.context_vars import (
 
 class ChatEngineService:
     def __init__(self) -> None:
-        self.chat = ChatOpenAI(
-            api_key=SecretStr(OPENAI_API_KEY),
-            model="gpt-4o-mini",
-            temperature=0.7,
-        )
         self.db = mongo_handler.get_database()
 
     async def add_cost(self, cost: float, tokens: int) -> None:
-
         user_id = get_user_id()
         action_id = get_action_id()
         action = get_action()
@@ -53,10 +47,25 @@ class ChatEngineService:
             }
         )
 
-    async def generate_response(self, messages: List[BaseMessage]) -> str:
+    async def generate_response(
+        self,
+        messages: List[BaseMessage],
+        max_completion_tokens: Optional[int] = None,
+    ) -> str:
+
+        client = ChatOpenAI(
+            api_key=SecretStr(OPENAI_API_KEY),
+            model="gpt-4o-mini",
+            temperature=0.7,
+            max_completion_tokens=(
+                max_completion_tokens
+                if max_completion_tokens is not None
+                else None
+            ),
+        )
 
         with get_openai_callback() as cb:
-            response = await self.chat.ainvoke(messages)
+            response = await client.ainvoke(messages)
             total_cost = cb.total_cost
             total_tokens = cb.total_tokens
 
@@ -65,8 +74,23 @@ class ChatEngineService:
         return str(response.content)
 
     async def run_chain(
-        self, system_prompt: str, context_data: BaseModel, chat: Chat
+        self,
+        system_prompt: str,
+        context_data: BaseModel,
+        chat: Chat,
+        max_completion_tokens: Optional[int] = None,
     ) -> str:
+        client = ChatOpenAI(
+            api_key=SecretStr(OPENAI_API_KEY),
+            model="gpt-4o-mini",
+            temperature=0.7,
+            max_completion_tokens=(
+                max_completion_tokens
+                if max_completion_tokens is not None
+                else None
+            ),
+        )
+
         context_dict = context_data.model_dump_json()
 
         messages: List[Union[HumanMessage, AIMessage, SystemMessage]] = [
@@ -81,7 +105,7 @@ class ChatEngineService:
                 messages.append(AIMessage(content=msg.text))
 
         prompt = ChatPromptTemplate.from_messages(messages)
-        chain = LLMChain(llm=self.chat, prompt=prompt)
+        chain = LLMChain(llm=client, prompt=prompt)
 
         with get_openai_callback() as cb:
             response = await chain.arun({})

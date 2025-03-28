@@ -1,6 +1,8 @@
 from app.classes.base import Agent
 from app.classes.models import Chat, ChatMessage, Experience, Traduction
 
+from app.utils.pydantic_custom_types import MAX_LONG_STR_LENGTH
+
 
 class ExperienceChatAgent(Agent):
 
@@ -42,6 +44,7 @@ Make sure to communicate in the user's preferred language: {traduction.name}.
             system_prompt=system_prompt,
             context_data=experience,
             chat=chat,
+            max_completion_tokens=MAX_LONG_STR_LENGTH,
         )
 
         return chat_message

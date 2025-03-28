@@ -25,6 +25,7 @@ class ExperienceNotesAgent(Agent):
             system_prompt=system_prompt,
             context_data=experience,
             chat=chat,
+            max_completion_tokens=int(MAX_NOTES_LENGTH / 2),
         )
 
         return chat_message.text
