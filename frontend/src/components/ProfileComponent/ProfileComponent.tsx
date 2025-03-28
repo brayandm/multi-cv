@@ -29,14 +29,15 @@ import { finishFirstLoginApi } from "@/lib/backendService";
 import { useInterceptor } from "@/contexts/InterceptorContext";
 import Certifications from "./Certifications";
 import Languages from "./Languages";
+import { DEFAULT_CARD_MAX_WIDTH, DEFAULT_CARD_WIDTH } from "@/lib/consts";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
 }
 
 const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
-  const width = 500;
-  const maxWidth = 90;
+  const width = DEFAULT_CARD_WIDTH;
+  const maxWidth = DEFAULT_CARD_MAX_WIDTH;
 
   const router = useRouter();
 

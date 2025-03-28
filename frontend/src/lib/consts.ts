@@ -11,3 +11,6 @@ export const MAX_SKILLS_ELEMENTS = 50;
 export const SCREEN_SIZES = {
   mobile: 600,
 };
+
+export const DEFAULT_CARD_WIDTH = 500;
+export const DEFAULT_CARD_MAX_WIDTH = 90;

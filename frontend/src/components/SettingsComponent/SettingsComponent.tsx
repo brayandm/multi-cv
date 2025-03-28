@@ -16,6 +16,7 @@ import { UserResponse } from "@/lib/types";
 import useSWR from "swr";
 import { userApiLink } from "@/lib/links";
 import { fetcherApi, talentPoolApi } from "@/lib/backendService";
+import { DEFAULT_CARD_MAX_WIDTH, DEFAULT_CARD_WIDTH } from "@/lib/consts";
 
 export default function SettingsComponent() {
   const t = useTranslations();
@@ -48,9 +49,12 @@ export default function SettingsComponent() {
     }
   };
 
+  const width = DEFAULT_CARD_WIDTH;
+  const maxWidth = DEFAULT_CARD_MAX_WIDTH;
+
   return (
     <main className="flex justify-center">
-      <div className="max-w-[90vw] w-[500px]">
+      <div className={`max-w-[${maxWidth}vw] w-[${width}px]`}>
         <form className="flex flex-col gap-2">
           <Card className="min-h-[75vh]">
             <CardHeader className="pb-0 flex flex-col items-start">
