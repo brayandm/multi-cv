@@ -172,6 +172,9 @@ const DynamicInputs = <T,>({
                 )
               }
               value={input.value as string}
+              classNames={{
+                label: "text-sm",
+              }}
             >
               {input.label}
             </Checkbox>
