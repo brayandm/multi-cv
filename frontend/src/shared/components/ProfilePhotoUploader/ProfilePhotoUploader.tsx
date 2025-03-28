@@ -53,7 +53,7 @@ const ProfilePhotoUploader = ({
   };
 
   return (
-    <div className="flex relative flex-row">
+    <div className="flex relative flex-col">
       <div
         className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer overflow-hidden"
         onClick={handleClick}
@@ -90,7 +90,7 @@ const ProfilePhotoUploader = ({
         accept="image/*"
       />
 
-      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+      {error && <p className="text-red-500 text-xs mt-2 w-24">{error}</p>}
     </div>
   );
 };
