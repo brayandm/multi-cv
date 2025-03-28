@@ -1,4 +1,4 @@
-from typing import List, Union, Optional
+from typing import List, Optional, Union
 
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain

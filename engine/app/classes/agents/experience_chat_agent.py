@@ -1,6 +1,5 @@
 from app.classes.base import Agent
 from app.classes.models import Chat, ChatMessage, Experience, Traduction
-
 from app.utils.pydantic_custom_types import MAX_LONG_STR_LENGTH
 
 
