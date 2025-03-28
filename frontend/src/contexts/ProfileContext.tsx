@@ -70,14 +70,13 @@ export interface IProfessionalLinks {
   name: string;
   link: string;
 }
-
-export interface ISkills {
-  list: string[];
-}
-
 export interface ILanguage {
   name: string;
   level: string;
+}
+
+export interface ISkills {
+  list: string[];
 }
 
 export interface IProfile {
@@ -87,8 +86,8 @@ export interface IProfile {
   education: IEducation[];
   projects: IProject[];
   certifications: ICertificate[];
-  skills: ISkills;
   languages: ILanguage[];
+  skills: ISkills;
 }
 
 interface ProfileContextType {
@@ -103,16 +102,16 @@ interface ProfileContextType {
   education: IEducation[];
   projects: IProject[];
   certifications: ICertificate[];
-  skills: ISkills;
   languages: ILanguage[];
+  skills: ISkills;
   updateBasicInfo: (newBasicInfo: IBasicInfo) => void;
   updateProfessionalLinks: (newProfessionalLinks: IProfessionalLinks[]) => void;
   updateExperience: (newExperience: IExperience[]) => void;
   updateEducation: (newEducation: IEducation[]) => void;
   updateProjects: (newProjects: IProject[]) => void;
   updateCertifications: (newCertifications: ICertificate[]) => void;
-  updateSkills: (newSkills: ISkills) => void;
   updateLanguages: (newLanguages: ILanguage[]) => void;
+  updateSkills: (newSkills: ISkills) => void;
 }
 
 const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
@@ -138,8 +137,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [education, setEducation] = useState<IEducation[]>([]);
   const [projects, setProjects] = useState<IProject[]>([]);
   const [certifications, setCertifications] = useState<ICertificate[]>([]);
-  const [skills, setSkills] = useState<ISkills>({ list: [] });
   const [languages, setLanguages] = useState<ILanguage[]>([]);
+  const [skills, setSkills] = useState<ISkills>({ list: [] });
 
   const [onLoadedError, setOnLoadedError] = useState(false);
 
@@ -155,8 +154,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
       education: education,
       projects: projects,
       certifications: certifications,
-      skills: skills,
       languages: languages,
+      skills: skills,
     };
   };
 
@@ -179,8 +178,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
           setEducation(profile.education);
           setProjects(profile.projects);
           setCertifications(profile.certifications);
-          setSkills(profile.skills);
           setLanguages(profile.languages);
+          setSkills(profile.skills);
           setProfileEngine(profile);
         } else {
           setBasicInfo({
@@ -231,12 +230,12 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     setCertifications(newCertifications);
   };
 
-  const updateSkills = (newSkills: ISkills) => {
-    setSkills(newSkills);
-  };
-
   const updateLanguages = (newLanguages: ILanguage[]) => {
     setLanguages(newLanguages);
+  };
+
+  const updateSkills = (newSkills: ISkills) => {
+    setSkills(newSkills);
   };
 
   const syncProfile = async () => {
@@ -274,16 +273,16 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
         education,
         projects,
         certifications,
-        skills,
         languages,
+        skills,
         updateBasicInfo,
         updateProfessionalLinks,
         updateExperience,
         updateEducation,
         updateProjects,
         updateCertifications,
-        updateSkills,
         updateLanguages,
+        updateSkills,
       }}
     >
       {children}

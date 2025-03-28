@@ -256,6 +256,9 @@
           "element": "Certification",
           "hasnt_expiration_date": "This certification does not have an expiration date"
         },
+        "languages": {
+          "title": "Languages"
+        },
         "skills": {
           "title": "Skills"
         }
