@@ -12,11 +12,13 @@ import {
   userUploadProfilePictureApi,
 } from "@/lib/backendService";
 import { userProfilePictureApiLink } from "@/lib/links";
+import { useUserStatus } from "@/contexts/UserStatusContext";
 
 const BasicUserInfo: React.FC = () => {
   const { basicInfo, updateBasicInfo, syncProfileOnFirstLogin } = useProfile();
 
   const { setChat } = useChat();
+  const { userStatus } = useUserStatus();
 
   useEffect(() => {
     setChat(null);
@@ -33,7 +35,9 @@ const BasicUserInfo: React.FC = () => {
     updateBasicInfo(updatedBasicInfo);
   }
 
-  const [imageLink, setImageLink] = React.useState<string | null>(null);
+  const [imageLink, setImageLink] = React.useState<string | null>(
+    userStatus.has_profile_picture ? userProfilePictureApiLink : null
+  );
 
   const onImageChange = async (file: File) => {
     await userUploadProfilePictureApi(file);

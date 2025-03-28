@@ -8,6 +8,7 @@ export interface UserStatusResponse {
   last_name?: string;
   is_first_login?: boolean;
   is_in_talent_pool?: boolean | null;
+  has_profile_picture?: boolean;
 }
 
 export interface LoginResponse {

@@ -217,7 +217,7 @@ class AuthController extends Controller
             'last_name' => $user->last_name,
             'is_first_login' => $is_first_login,
             'is_in_talent_pool' => $is_in_talent_pool,
-            'profile_picture' => $user->profile_picture,
+            'has_profile_picture' => $user->hasMedia('profile_picture'),
         ]);
     }
 
