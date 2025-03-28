@@ -168,6 +168,7 @@ export const ContactInfoSection = ({
     <EditableField
       value={cvTexts.contact_info}
       onEdit={(val) => setCvTexts({ ...cvTexts, contact_info: val })}
+      type="p"
       {...props}
     />
   );
@@ -246,6 +247,7 @@ export const SummarySection = ({
     <EditableField
       value={cvTexts.summary}
       onEdit={(val) => setCvTexts({ ...cvTexts, summary: val })}
+      type="p"
       {...props}
     />
   );
@@ -270,6 +272,7 @@ export const ExperienceSection = ({
     <EditableField
       value={cvTexts.experience}
       onEdit={(val) => setCvTexts({ ...cvTexts, experience: val })}
+      type="p"
       {...props}
     />
   );
