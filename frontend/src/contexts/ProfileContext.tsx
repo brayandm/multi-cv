@@ -70,6 +70,7 @@ export interface IProfessionalLinks {
   name: string;
   link: string;
 }
+
 export interface ILanguage {
   name: string;
   level: string;

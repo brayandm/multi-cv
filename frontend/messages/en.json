@@ -37,7 +37,12 @@
       "quota_info": "Quota Info",
       "used": "Used",
       "message_left": "Messages left: {count}",
-      "generation_left": "Generations left: {count}"
+      "generation_left": "Generations left: {count}",
+      "languages": "Languages",
+      "basic": "Basic",
+      "intermediate": "Intermediate",
+      "professional": "Professional",
+      "native": "Native"
     },
     "buttons": {
       "continue": "Continue",
@@ -119,7 +124,9 @@
       "verification_url": "Verification Link",
       "issuer": "Certification issuer",
       "issue_date": "Issue date",
-      "expiration_date": "Expiration date"
+      "expiration_date": "Expiration date",
+      "language": "Language",
+      "level": "Level"
     },
     "placeholders": {
       "enter_first_name": "Enter your first name",
@@ -150,7 +157,9 @@
       "enter_certification_issuer": "Enter the issuer",
       "enter_certification_certificate_id": "Certificate ID",
       "enter_certification_verification_url": "Enter the verification URL",
-      "enter_certification_description": "Enter a brief description"
+      "enter_certification_description": "Enter a brief description",
+      "enter_language": "Enter a language",
+      "select_language_level": "Select a level"
     },
     "legal": {
       "terms_conditions": "Terms & Conditions",

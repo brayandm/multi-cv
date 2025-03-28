@@ -4,7 +4,7 @@ export type IDynamicOnPress = () => void;
 export type ValidationError = string | string[];
 
 export interface IDynamicInput<T> {
-  label: string;
+  label?: string;
   placeholder?: string;
   type:
     | "text"
@@ -14,8 +14,8 @@ export interface IDynamicInput<T> {
     | "textarea"
     | "date"
     | "month_selector"
+    | "selector"
     | "checkbox"
-    | "is_present"
     | "phone_number"
     | "phone_country_code"
     | "button";
@@ -41,6 +41,12 @@ export interface IDynamicInput<T> {
   validate?: (value: string) => ValidationError | true | null | undefined;
   isDisabled?: boolean;
   customStyles?: string;
+  selectItems?: Array<{
+    label: string;
+    key: string;
+    description?: string;
+  }>;
+  text?: string;
 }
 
 export type IDynamicInputArray<T> = Array<

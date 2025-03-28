@@ -9,9 +9,8 @@ from app.utils.pydantic_custom_types import (
 LanguageLevel = Annotated[
     Literal[
         "Basic",
-        "Limited",
+        "Intermediate",
         "Professional",
-        "Full professional",
         "Native",
     ],
     Field(...),
