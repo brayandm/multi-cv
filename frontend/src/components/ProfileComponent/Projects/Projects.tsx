@@ -190,7 +190,7 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
               minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
             }}
           >
-            <div className="h-[320px] overflow-y-auto overflow-x-hidden">
+            <div className="h-[300px] overflow-y-auto overflow-x-hidden">
               <DynamicInputs inputs={inputs} />
             </div>
           </div>
