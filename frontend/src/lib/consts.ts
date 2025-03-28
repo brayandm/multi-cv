@@ -12,5 +12,5 @@ export const SCREEN_SIZES = {
   mobile: 600,
 };
 
-export const DEFAULT_CARD_WIDTH = 600;
+export const DEFAULT_CARD_WIDTH = 500;
 export const DEFAULT_CARD_MAX_WIDTH = 90;
