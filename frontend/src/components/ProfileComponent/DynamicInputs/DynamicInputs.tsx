@@ -20,6 +20,7 @@ import { MAX_LONG_TEXT_LENGTH, MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 import SelectDate from "@/shared/components/SelectDate";
 import { emailValidator, requiredValidator } from "@/lib/validator";
 import { useTranslations } from "next-intl";
+import ProfilePhotoUploader from "@/shared/components/ProfilePhotoUploader";
 
 const DynamicInputs = <T,>({
   inputs,
@@ -35,7 +36,7 @@ const DynamicInputs = <T,>({
         if (Array.isArray(input)) {
           return (
             <div key={index} className="flex gap-2">
-              <DynamicInputs inputs={input} horizontal={true} />
+              <DynamicInputs inputs={input} horizontal={!horizontal} />
             </div>
           );
         }
@@ -57,6 +58,22 @@ const DynamicInputs = <T,>({
             </Button>
           );
         }
+        if (input.type === "picture") {
+          return (
+            <div
+              key={index}
+              className="flex flex-col align-center justify-center p-3"
+            >
+              <ProfilePhotoUploader
+                key={index}
+                image={input.image ? input.image : null}
+                onImageChange={input.onImageChange}
+                onImageRemove={input.onImageRemove}
+              />
+            </div>
+          );
+        }
+
         if (input.type === "phone_country_code") {
           return (
             <SelectCountry

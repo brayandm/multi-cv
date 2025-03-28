@@ -12,6 +12,7 @@ export interface IDynamicInput<T> {
     | "number"
     | "password"
     | "textarea"
+    | "picture"
     | "date"
     | "month_selector"
     | "selector"
@@ -48,6 +49,9 @@ export interface IDynamicInput<T> {
   }>;
   text?: string;
   afterContent?: React.ReactNode;
+  image?: string | null;
+  onImageChange?: (file: File) => void;
+  onImageRemove?: () => void;
 }
 
 export type IDynamicInputArray<T> = Array<

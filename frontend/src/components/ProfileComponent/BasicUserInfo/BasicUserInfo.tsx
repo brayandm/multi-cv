@@ -7,7 +7,6 @@ import { IBasicInfo, useProfile } from "@/contexts/ProfileContext";
 import { useChat } from "@/contexts/ChatContext";
 import { phoneValidator } from "@/lib/validator";
 import { AsYouType, CountryCode } from "libphonenumber-js";
-import ProfilePhotoUploader from "@/shared/components/ProfilePhotoUploader";
 import {
   userDeleteProfilePictureApi,
   userUploadProfilePictureApi,
@@ -34,30 +33,49 @@ const BasicUserInfo: React.FC = () => {
     updateBasicInfo(updatedBasicInfo);
   }
 
+  const [imageLink, setImageLink] = React.useState<string | null>(null);
+
+  const onImageChange = async (file: File) => {
+    await userUploadProfilePictureApi(file);
+    setImageLink(userProfilePictureApiLink);
+  };
+  const onImageRemove = async () => {
+    await userDeleteProfilePictureApi();
+    setImageLink(null);
+  };
+
   const inputs: IDynamicInputArray<string> = [
     [
       {
-        label: t("common.form.first_name"),
-        placeholder: t("common.placeholders.enter_first_name"),
-        type: "text",
-        value: basicInfo.first_name,
-        onValueChange: (value: string) => {
-          onBasicUserInfoChange("first_name", value);
-        },
-        isRequired: true,
-        onBlur: syncProfileOnFirstLogin,
+        type: "picture",
+        image: imageLink,
+        onImageChange: onImageChange,
+        onImageRemove: onImageRemove,
       },
-      {
-        label: t("common.form.last_name"),
-        placeholder: t("common.placeholders.enter_last_name"),
-        type: "text",
-        value: basicInfo.last_name,
-        onValueChange: (value: string) => {
-          onBasicUserInfoChange("last_name", value);
+      [
+        {
+          label: t("common.form.first_name"),
+          placeholder: t("common.placeholders.enter_first_name"),
+          type: "text",
+          value: basicInfo.first_name,
+          onValueChange: (value: string) => {
+            onBasicUserInfoChange("first_name", value);
+          },
+          isRequired: true,
+          onBlur: syncProfileOnFirstLogin,
         },
-        isRequired: true,
-        onBlur: syncProfileOnFirstLogin,
-      },
+        {
+          label: t("common.form.last_name"),
+          placeholder: t("common.placeholders.enter_last_name"),
+          type: "text",
+          value: basicInfo.last_name,
+          onValueChange: (value: string) => {
+            onBasicUserInfoChange("last_name", value);
+          },
+          isRequired: true,
+          onBlur: syncProfileOnFirstLogin,
+        },
+      ],
     ],
     {
       label: t("common.form.email"),
@@ -153,26 +171,8 @@ const BasicUserInfo: React.FC = () => {
     },
   ];
 
-  const [imageLink, setImageLink] = React.useState<string | null>(null);
-
-  const onImageChange = async (file: File) => {
-    await userUploadProfilePictureApi(file);
-    setImageLink(userProfilePictureApiLink);
-  };
-  const onImageRemove = async () => {
-    await userDeleteProfilePictureApi();
-    setImageLink(null);
-  };
-
   return (
     <div className="px-1">
-      <div className="flex justify-center mb-3">
-        <ProfilePhotoUploader
-          image={imageLink}
-          onImageChange={onImageChange}
-          onImageRemove={onImageRemove}
-        />
-      </div>
       <div className="h-[380px] overflow-y-auto overflow-x-hidden">
         <DynamicInputs inputs={inputs}></DynamicInputs>
       </div>

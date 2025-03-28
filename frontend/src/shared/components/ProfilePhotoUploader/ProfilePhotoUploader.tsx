@@ -1,12 +1,15 @@
 import { useRef, useState } from "react";
 import { Input, Spinner } from "@heroui/react";
 import { XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 
 export interface IProfilePhotoUploaderProps {
   image: string | null;
   onImageChange?: (file: File) => void;
   onImageRemove?: () => void;
 }
+
+const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
 
 const ProfilePhotoUploader = ({
   image,
@@ -15,12 +18,23 @@ const ProfilePhotoUploader = ({
 }: IProfilePhotoUploaderProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const t = useTranslations();
+
   const [onSubmitting, setOnSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError(null);
     setOnSubmitting(true);
     const file = e.target.files?.[0];
+
     if (file) {
+      if (file.size > MAX_IMAGE_SIZE) {
+        setError(t("common.errors.file_size", { max: 2 }));
+        setOnSubmitting(false);
+        if (fileInputRef.current) fileInputRef.current.value = "";
+        return;
+      }
       await onImageChange(file);
     }
     setOnSubmitting(false);
@@ -31,6 +45,7 @@ const ProfilePhotoUploader = ({
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
     }
+    setError(null);
   };
 
   const handleClick = () => {
@@ -38,9 +53,9 @@ const ProfilePhotoUploader = ({
   };
 
   return (
-    <div className="relative inline-block">
+    <div className="flex relative flex-row">
       <div
-        className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer overflow-hidden"
+        className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer overflow-hidden"
         onClick={handleClick}
       >
         {image ? (
@@ -48,8 +63,6 @@ const ProfilePhotoUploader = ({
           <img
             src={image}
             alt="Profile"
-            width={64}
-            height={64}
             className="w-full h-full object-cover"
           />
         ) : !onSubmitting ? (
@@ -76,6 +89,8 @@ const ProfilePhotoUploader = ({
         onChange={handleImageChange}
         accept="image/*"
       />
+
+      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
     </div>
   );
 };
