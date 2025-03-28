@@ -52,6 +52,7 @@ export interface IDynamicInput<T> {
   image?: string | null;
   onImageChange?: (file: File) => void;
   onImageRemove?: () => void;
+  defaultSelectedKey?: string;
 }
 
 export type IDynamicInputArray<T> = Array<

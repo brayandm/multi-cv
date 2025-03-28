@@ -116,6 +116,7 @@ const Languages: React.FC = () => {
         isRequired: true,
         onBlur: syncProfileOnFirstLogin,
         text: language.name,
+        defaultSelectedKey: language.level,
         afterContent: (
           <div className="flex pt-2">
             <Button

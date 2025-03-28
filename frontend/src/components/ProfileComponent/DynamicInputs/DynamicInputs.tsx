@@ -222,6 +222,7 @@ const DynamicInputs = <T,>({
                   isDisabled={input.isDisabled}
                   onBlur={input.onBlur}
                   isRequired={input.isRequired}
+                  defaultSelectedKey={input.defaultSelectedKey}
                   description={input.description}
                   onSelectionChange={(value) => {
                     (input.onValueChange as IDynamicOnValueChange<Key | null>)(
