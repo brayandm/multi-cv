@@ -10,9 +10,11 @@ import { useChat } from "@/contexts/ChatContext";
 
 interface IProjectsProps {
   formRef: RefObject<HTMLFormElement | null>;
+  width: number;
+  maxWidth: number;
 }
 
-const Projects = ({ formRef }: IProjectsProps) => {
+const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
   const { projects, updateProjects, syncProfileOnFirstLogin } = useProfile();
 
   const { setChat } = useChat();
@@ -155,7 +157,13 @@ const Projects = ({ formRef }: IProjectsProps) => {
         ];
 
         return (
-          <div key={index} className={`mb-4 px-1 snap-center`}>
+          <div
+            key={index}
+            className={`mb-4 px-1 snap-center`}
+            style={{
+              minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
+            }}
+          >
             <div className="h-[320px] overflow-y-auto overflow-x-hidden">
               <DynamicInputs inputs={inputs} />
             </div>

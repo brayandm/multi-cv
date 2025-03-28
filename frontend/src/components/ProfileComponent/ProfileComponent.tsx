@@ -35,7 +35,8 @@ interface IProfileComponentProps {
 }
 
 const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
-  const width = 350;
+  const width = 500;
+  const maxWidth = 90;
 
   const router = useRouter();
 
@@ -159,7 +160,12 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   return (
     <main className="flex justify-center">
       <ChatComponent />
-      <div className={`max-w-[${width}px]`}>
+      <div
+        style={{
+          maxWidth: `${maxWidth}vw`,
+          width: `${width}px`,
+        }}
+      >
         <form className="flex flex-col gap-2" ref={formRef}>
           <Card className="min-h-[75vh]">
             <CardHeader className="pb-0 flex flex-col items-start">
@@ -208,25 +214,41 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                     key="experiences"
                     title={t("pages.profile.sections.experience.title")}
                   >
-                    <Experience formRef={formRef} />
+                    <Experience
+                      formRef={formRef}
+                      width={width}
+                      maxWidth={maxWidth}
+                    />
                   </Tab>
                   <Tab
                     key="educations"
                     title={t("pages.profile.sections.education.title")}
                   >
-                    <Education formRef={formRef} />
+                    <Education
+                      formRef={formRef}
+                      width={width}
+                      maxWidth={maxWidth}
+                    />
                   </Tab>
                   <Tab
                     key="projects"
                     title={t("pages.profile.sections.projects.title")}
                   >
-                    <Projects formRef={formRef} />
+                    <Projects
+                      formRef={formRef}
+                      width={width}
+                      maxWidth={maxWidth}
+                    />
                   </Tab>
                   <Tab
                     key="certifications"
                     title={t("pages.profile.sections.certifications.title")}
                   >
-                    <Certifications formRef={formRef} />
+                    <Certifications
+                      formRef={formRef}
+                      width={width}
+                      maxWidth={maxWidth}
+                    />
                   </Tab>
                   <Tab
                     key="languages"

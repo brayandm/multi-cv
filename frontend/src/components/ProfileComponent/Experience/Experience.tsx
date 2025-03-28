@@ -11,9 +11,11 @@ import { useChat } from "@/contexts/ChatContext";
 
 interface IExperienceProps {
   formRef: RefObject<HTMLFormElement | null>;
+  width: number;
+  maxWidth: number;
 }
 
-const Experience = ({ formRef }: IExperienceProps) => {
+const Experience = ({ formRef, width, maxWidth }: IExperienceProps) => {
   const {
     experience: experienceList,
     updateExperience,
@@ -203,8 +205,14 @@ const Experience = ({ formRef }: IExperienceProps) => {
         ];
 
         return (
-          <div key={index} className={`mb-4 px-1 snap-center `}>
-            <div className="h-[320px] overflow-y-auto overflow-x-hidden">
+          <div
+            key={index}
+            className={`mb-4 px-1 snap-center`}
+            style={{
+              minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
+            }}
+          >
+            <div className={`h-[320px] overflow-y-auto overflow-x-hidden`}>
               <DynamicInputs inputs={inputs} />
             </div>
           </div>

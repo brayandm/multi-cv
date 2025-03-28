@@ -30,12 +30,14 @@ const DynamicInputs = <T,>({
 
   return (
     <div
-      className={`flex ${horizontal ? "flex-row" : "flex-col"} gap-2 w-full`}
+      className={`flex ${
+        horizontal ? "flex-row" : "flex-col"
+      } gap-2 justify-between w-full`}
     >
       {inputs.map((input, index) => {
         if (Array.isArray(input)) {
           return (
-            <div key={index} className="flex gap-2">
+            <div key={index} className="flex w-full gap-2">
               <DynamicInputs inputs={input} horizontal={!horizontal} />
             </div>
           );
@@ -256,7 +258,7 @@ const DynamicInputs = <T,>({
                 input.onValueChange as IDynamicOnValueChange<string>
               }
               isDisabled={input.isDisabled}
-              classNames={{ ...customStyles, base: "w-[150px]" }}
+              classNames={{ ...customStyles }}
               onBlur={input.onBlur}
               isRequired={input.isRequired}
               description={input.description}

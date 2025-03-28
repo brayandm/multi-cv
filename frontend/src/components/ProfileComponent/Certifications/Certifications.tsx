@@ -10,9 +10,11 @@ import { useChat } from "@/contexts/ChatContext";
 
 interface ICertificationsProps {
   formRef: RefObject<HTMLFormElement | null>;
+  width: number;
+  maxWidth: number;
 }
 
-const Certifications = ({ formRef }: ICertificationsProps) => {
+const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
   const { certifications, updateCertifications, syncProfileOnFirstLogin } =
     useProfile();
 
@@ -179,7 +181,13 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
         ];
 
         return (
-          <div key={index} className={`mb-4 px-1 snap-center`}>
+          <div
+            key={index}
+            className={`mb-4 px-1 snap-center`}
+            style={{
+              minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
+            }}
+          >
             <div className="h-[320px] overflow-y-auto overflow-x-hidden">
               <DynamicInputs inputs={inputs} />
             </div>

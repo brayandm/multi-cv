@@ -10,9 +10,11 @@ import { useChat } from "@/contexts/ChatContext";
 
 interface IEducationProps {
   formRef: RefObject<HTMLFormElement | null>;
+  width: number;
+  maxWidth: number;
 }
 
-const Education = ({ formRef }: IEducationProps) => {
+const Education = ({ formRef, width, maxWidth }: IEducationProps) => {
   const {
     education: educationList,
     updateEducation,
@@ -159,7 +161,13 @@ const Education = ({ formRef }: IEducationProps) => {
         ];
 
         return (
-          <div key={index} className={`mb-4 px-1 snap-center`}>
+          <div
+            key={index}
+            className={`mb-4 px-1 snap-center`}
+            style={{
+              minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
+            }}
+          >
             <div className="h-[320px] overflow-y-auto overflow-x-hidden">
               <DynamicInputs inputs={inputs} />
             </div>
