@@ -162,9 +162,15 @@ export const ProfilePicture = ({
 export const ContactInfoSection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { cvTexts } = useCv();
+  const { cvTexts, setCvTexts } = useCv();
 
-  return <p {...props}>{cvTexts.contact_info}</p>;
+  return (
+    <EditableField
+      value={cvTexts.contact_info}
+      onEdit={(val) => setCvTexts({ ...cvTexts, contact_info: val })}
+      {...props}
+    />
+  );
 };
 
 export const FullName = (props: React.HTMLAttributes<HTMLDivElement>) => {
@@ -235,9 +241,14 @@ export const GitHub = (props: React.HTMLAttributes<HTMLDivElement>) => {
 export const SummarySection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { cvTexts } = useCv();
-
-  return <p {...props}>{cvTexts.summary}</p>;
+  const { cvTexts, setCvTexts } = useCv();
+  return (
+    <EditableField
+      value={cvTexts.summary}
+      onEdit={(val) => setCvTexts({ ...cvTexts, summary: val })}
+      {...props}
+    />
+  );
 };
 
 export const Summary = (props: React.HTMLAttributes<HTMLDivElement>) => {
@@ -254,9 +265,14 @@ export const Summary = (props: React.HTMLAttributes<HTMLDivElement>) => {
 export const ExperienceSection = ({
   ...props
 }: {} & React.HTMLAttributes<HTMLDivElement>) => {
-  const { cvTexts } = useCv();
-
-  return <p {...props}>{cvTexts.experience}</p>;
+  const { cvTexts, setCvTexts } = useCv();
+  return (
+    <EditableField
+      value={cvTexts.experience}
+      onEdit={(val) => setCvTexts({ ...cvTexts, experience: val })}
+      {...props}
+    />
+  );
 };
 
 export const ExperienceList = ({

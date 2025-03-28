@@ -1,3 +1,5 @@
+import json
+import os
 from io import BytesIO
 from typing import Any, Dict, Optional
 
@@ -5,19 +7,16 @@ from fastapi import APIRouter, Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
 
-import os
-import json
-
 from app.classes.models import (
     Chat,
     Cv,
     CvTemplate,
+    CvTexts,
     ExperienceId,
     Html,
     Profile,
     Traduction,
     WebhookPayload,
-    CvTexts,
 )
 from app.classes.pipelines import (
     ChatExperiencePipeline,
