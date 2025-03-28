@@ -254,7 +254,7 @@
         "certifications": {
           "title": "Certifications",
           "element": "Certification",
-          "has_expiration_date": "This certification does not have an expiration date"
+          "hasnt_expiration_date": "This certification does not have an expiration date"
         },
         "skills": {
           "title": "Skills"

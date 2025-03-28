@@ -36,7 +36,7 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
       [key]: value,
     };
 
-    if (key === "has_expiration_date" && value === true) {
+    if (key === "hasnt_expiration_date" && value === true) {
       updatedCertifications[index].expiration_date = "";
     }
 
@@ -64,7 +64,7 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
       description: "",
       issue_date: "",
       expiration_date: "",
-      has_expiration_date: false,
+      hasnt_expiration_date: false,
     };
 
     updateCertifications([...certifications, certification]);
@@ -161,20 +161,20 @@ const Certifications = ({ formRef }: ICertificationsProps) => {
               onValueChange: (value: string) => {
                 onCertificationChange(index, "expiration_date", value);
               },
-              isDisabled: certification?.has_expiration_date,
+              isDisabled: certification?.hasnt_expiration_date,
               value: certification?.expiration_date || "",
               isRequired: true,
             },
           ],
           {
             label: t(
-              "pages.profile.sections.certifications.has_expiration_date"
+              "pages.profile.sections.certifications.hasnt_expiration_date"
             ),
             type: "checkbox",
             onValueChange: (value: boolean) => {
-              onCertificationChange(index, "has_expiration_date", value);
+              onCertificationChange(index, "hasnt_expiration_date", value);
             },
-            value: certification?.has_expiration_date || "",
+            value: certification?.hasnt_expiration_date || "",
           },
         ];
 

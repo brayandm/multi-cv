@@ -22,5 +22,5 @@ class Certificate(BaseModel):
     description: LongStr
     issue_date: ShortStr
     expiration_date: ShortStr
-    has_expiration_date: bool
+    hasnt_expiration_date: bool
     notes: Optional[NotesStr] = None

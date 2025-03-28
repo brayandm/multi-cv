@@ -63,7 +63,7 @@ export interface ICertificate {
   description: string;
   issue_date: string;
   expiration_date: string;
-  has_expiration_date: boolean;
+  hasnt_expiration_date: boolean;
 }
 
 export interface IProfessionalLinks {
