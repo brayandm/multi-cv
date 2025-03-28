@@ -9,42 +9,6 @@ import React, {
 } from "react";
 import { Traduction } from "./LocaleContext";
 
-export const dummyCv: Cv = {
-  full_name: "Brayan Durán Medina",
-  email: "brayan.duran@example.com",
-  phone: "+34 612 345 678",
-  linkedin: "linkedin.com/in/brayan-duran",
-  github: "github.com/brayan-dev",
-  location: "Barcelona, España",
-  summary:
-    "Desarrollador Full Stack con experiencia en React, Next.js, Laravel y DevOps. Apasionado por crear soluciones eficientes y escalables.",
-  experiences: [
-    {
-      company: "OpenAI",
-      position: "Full Stack Developer",
-      location: "Remoto",
-      start_date: "Ene 2023",
-      end_date: "Mar 2024",
-      descriptions: [
-        "Desarrollé interfaces interactivas con React y Tailwind.",
-        "Implementé APIs RESTful con Laravel y bases de datos relacionales.",
-        "Optimizaciones de rendimiento en el backend y automatización con CI/CD.",
-      ],
-    },
-    {
-      company: "Habra Spain Institute of Technology",
-      position: "DevOps Intern",
-      location: "Barcelona",
-      start_date: "Sep 2022",
-      end_date: "Dic 2022",
-      descriptions: [
-        "Desplegué microservicios usando Docker y Nginx.",
-        "Configuré pipelines con GitHub Actions y DigitalOcean.",
-      ],
-    },
-  ],
-};
-
 export interface Cv {
   full_name: string;
   email: string;
@@ -64,12 +28,24 @@ export interface CvExperience {
   end_date: string;
   descriptions: string[];
 }
+export interface CvTemplateTexts {
+  contact_info: string;
+  summary: string;
+  experience: string;
+  education: string;
+  projects: string;
+  certifications: string;
+  languages: string;
+  skills: string;
+}
 
 interface CvContextType {
   cv: Cv;
   setCv: (cv: Cv) => void;
   traduction: Traduction;
   setTradution: (traduction: Traduction) => void;
+  cvTemplateTexts: CvTemplateTexts;
+  setCvTemplateTexts: (texts: CvTemplateTexts) => void;
 }
 
 const CvContext = createContext<CvContextType | undefined>(undefined);
@@ -84,6 +60,17 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
     location: "",
     summary: "",
     experiences: [],
+  });
+
+  const [cvTemplateTexts, setCvTemplateTexts] = useState<CvTemplateTexts>({
+    contact_info: "Contact Information",
+    summary: "Summary",
+    experience: "Experience",
+    education: "Education",
+    projects: "Projects",
+    certifications: "Certifications",
+    languages: "Languages",
+    skills: "Skills",
   });
 
   const [traduction, setTradution] = useState<Traduction>({
@@ -111,7 +98,16 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
   }, [cv]);
 
   return (
-    <CvContext.Provider value={{ cv, setCv, traduction, setTradution }}>
+    <CvContext.Provider
+      value={{
+        cv,
+        setCv,
+        traduction,
+        setTradution,
+        cvTemplateTexts,
+        setCvTemplateTexts,
+      }}
+    >
       {children}
     </CvContext.Provider>
   );
