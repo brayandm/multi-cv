@@ -63,6 +63,13 @@
     \end{tabular*}\vspace{-7pt}
 }
 
+\newcommand{\resumeCertificateHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      #1 & #2
+    \end{tabular*}\vspace{-7pt}
+}
+
 \newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
 
 \renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
@@ -175,8 +182,8 @@
 \resumeSubHeadingListStart
 
 {% for cert in cv.certifications %}
-\resumeProjectHeading
-{\href{ {{-cert.verification_url-}} }{ {{ cert.name }} at {{ cert.issuer }} } }  { {{ cert.issue_date }} }
+\resumeCertificateHeading
+{\href{ {{-cert.verification_url-}} }{ \textbf{ {{-cert.name-}} } \textit{at} {{ cert.issuer }} } }  { {{ cert.issue_date }} }
 
 {% endfor %}
 

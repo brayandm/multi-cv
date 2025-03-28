@@ -3,23 +3,23 @@ from typing import Annotated, List, Optional
 from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import (
+    MAX_CERTIFICATIONS_LENGTH,
     MAX_EDUCATION_LENGTH,
     MAX_EXPERIENCE_LENGTH,
+    MAX_LANGUAGES,
     MAX_PROJECTS_LENGTH,
     MAX_SKILL_CATEGORIES_LENGTH,
-    MAX_CERTIFICATIONS_LENGTH,
-    MAX_LANGUAGES,
     ForceLongStr,
     ForceShortStr,
     crop_list,
 )
 
+from .cv_certificate import CvCertificate
 from .cv_education import CvEducation
 from .cv_experience import CvExperience
+from .cv_language import CvLanguage
 from .cv_project import CvProject
 from .cv_skill_category import CvSkillCategory
-from .cv_certificate import CvCertificate
-from .cv_language import CvLanguage
 
 
 class Cv(BaseModel):
