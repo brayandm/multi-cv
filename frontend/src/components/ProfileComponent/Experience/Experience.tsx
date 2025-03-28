@@ -1,6 +1,9 @@
 "use client";
 import React, { RefObject, useEffect } from "react";
-import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
+import {
+  IDynamicInput,
+  IDynamicInputArray,
+} from "../DynamicInputs/DynamicInputs.types";
 import { IExperience, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 
@@ -112,96 +115,109 @@ const Experience = ({ formRef, width, maxWidth }: IExperienceProps) => {
       elementName={t("pages.profile.sections.experience.element")}
     >
       {experienceList.map((experience, index) => {
+        const companyNameInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.company_name"),
+          type: "text",
+          placeholder: t("common.placeholders.enter_company_name"),
+          onValueChange: (value: string) =>
+            onExperienceChange(index, "company", value),
+          value: experience?.company || "",
+          isRequired: true,
+          onBlur: syncProfileOnFirstLogin,
+        };
+
+        const linkInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.link"),
+          type: "text",
+          placeholder: t("common.placeholders.enter_company_link"),
+          onValueChange: (value: string) =>
+            onExperienceChange(index, "link", value),
+          value: experience?.link || "",
+          onBlur: syncProfileOnFirstLogin,
+        };
+
+        const roleInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.role"),
+          type: "text",
+          placeholder: t("common.placeholders.enter_role"),
+          onValueChange: (value: string) =>
+            onExperienceChange(index, "role", value),
+          value: experience?.role || "",
+          isRequired: true,
+          onBlur: syncProfileOnFirstLogin,
+        };
+
+        const descriptionInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.company_description"),
+          type: "textarea",
+          placeholder: t("common.placeholders.enter_job_description"),
+          onValueChange: (value: string) =>
+            onExperienceChange(index, "description", value),
+          value: experience?.description || "",
+          isRequired: true,
+          description: `${experience?.description.length} / 50`,
+          onBlur: syncProfileOnFirstLogin,
+          errorMessage: t("common.errors.length", {
+            field: t("common.form.company_description"),
+            length: 50,
+            current_length: experience?.description.length,
+          }),
+          validate: (value) => {
+            if (value.length < 50) {
+              return "error";
+            }
+          },
+        };
+
+        const locationInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.location"),
+          type: "text",
+          placeholder: t("common.placeholders.enter_location"),
+          onValueChange: (value: string) =>
+            onExperienceChange(index, "location", value),
+          value: experience?.location || "",
+          isRequired: true,
+          onBlur: syncProfileOnFirstLogin,
+        };
+
+        const startDateInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.start_date"),
+          type: "month_selector",
+          onValueChange: (value: string) => {
+            onExperienceChange(index, "start_date", value);
+          },
+          value: experience?.start_date || "",
+          isRequired: true,
+        };
+
+        const endDateInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.end_date"),
+          type: "month_selector",
+          onValueChange: (value: string) => {
+            onExperienceChange(index, "end_date", value);
+          },
+          value: experience?.end_date || "",
+          isDisabled: experience?.is_present,
+          isRequired: true,
+        };
+
+        const isPresentInput: IDynamicInput<string & boolean> = {
+          label: t("pages.profile.sections.experience.is_present"),
+          type: "checkbox",
+          onValueChange: (value: boolean) => {
+            onExperienceChange(index, "is_present", value);
+          },
+          value: experience?.is_present || "",
+        };
+
         const inputs: IDynamicInputArray<string & boolean> = [
-          {
-            label: t("common.form.company_name"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_company_name"),
-            onValueChange: (value: string) =>
-              onExperienceChange(index, "company", value),
-            value: experience?.company || "",
-            isRequired: true,
-            onBlur: syncProfileOnFirstLogin,
-          },
-          {
-            label: t("common.form.link"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_company_link"),
-            onValueChange: (value: string) =>
-              onExperienceChange(index, "link", value),
-            value: experience?.link || "",
-            onBlur: syncProfileOnFirstLogin,
-          },
-          {
-            label: t("common.form.role"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_role"),
-            onValueChange: (value: string) =>
-              onExperienceChange(index, "role", value),
-            value: experience?.role || "",
-            isRequired: true,
-            onBlur: syncProfileOnFirstLogin,
-          },
-          {
-            label: t("common.form.company_description"),
-            type: "textarea",
-            placeholder: t("common.placeholders.enter_job_description"),
-            onValueChange: (value: string) =>
-              onExperienceChange(index, "description", value),
-            value: experience?.description || "",
-            isRequired: true,
-            description: `${experience?.description.length} / 50`,
-            onBlur: syncProfileOnFirstLogin,
-            errorMessage: t("common.errors.length", {
-              field: t("common.form.company_description"),
-              length: 50,
-              current_length: experience?.description.length,
-            }),
-            validate: (value) => {
-              if (value.length < 50) {
-                return "error";
-              }
-            },
-          },
-          {
-            label: t("common.form.location"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_location"),
-            onValueChange: (value: string) =>
-              onExperienceChange(index, "location", value),
-            value: experience?.location || "",
-            isRequired: true,
-            onBlur: syncProfileOnFirstLogin,
-          },
-          [
-            {
-              label: t("common.form.start_date"),
-              type: "month_selector",
-              onValueChange: (value: string) => {
-                onExperienceChange(index, "start_date", value);
-              },
-              value: experience?.start_date || "",
-              isRequired: true,
-            },
-            {
-              label: t("common.form.end_date"),
-              type: "month_selector",
-              onValueChange: (value: string) => {
-                onExperienceChange(index, "end_date", value);
-              },
-              value: experience?.end_date || "",
-              isDisabled: experience?.is_present,
-              isRequired: true,
-            },
-          ],
-          {
-            label: t("pages.profile.sections.experience.is_present"),
-            type: "checkbox",
-            onValueChange: (value: boolean) => {
-              onExperienceChange(index, "is_present", value);
-            },
-            value: experience?.is_present || "",
-          },
+          companyNameInput,
+          linkInput,
+          roleInput,
+          descriptionInput,
+          locationInput,
+          [startDateInput, endDateInput],
+          isPresentInput,
         ];
 
         return (

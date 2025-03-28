@@ -1,6 +1,9 @@
 "use client";
 import React, { RefObject, useEffect } from "react";
-import { IDynamicInputArray } from "../DynamicInputs/DynamicInputs.types";
+import {
+  IDynamicInput,
+  IDynamicInputArray,
+} from "../DynamicInputs/DynamicInputs.types";
 import { IEducation, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
@@ -89,75 +92,86 @@ const Education = ({ formRef, width, maxWidth }: IEducationProps) => {
       elementName={t("pages.profile.sections.education.element")}
     >
       {educationList.map((education, index) => {
+        const institutionInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.institution"),
+          type: "text",
+          placeholder: t("common.placeholders.enter_institution_name"),
+          onValueChange: (value: string) =>
+            onEducationChange(index, "institution", value),
+          value: education?.institution || "",
+          isRequired: true,
+          onBlur: syncProfileOnFirstLogin,
+        };
+
+        const linkInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.link"),
+          type: "text",
+          placeholder: t("common.placeholders.enter_institution_link"),
+          onValueChange: (value: string) =>
+            onEducationChange(index, "link", value),
+          value: education?.link || "",
+          onBlur: syncProfileOnFirstLogin,
+        };
+
+        const careerInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.career"),
+          type: "text",
+          placeholder: t("common.placeholders.enter_career"),
+          onValueChange: (value: string) =>
+            onEducationChange(index, "career", value),
+          value: education?.career || "",
+          isRequired: true,
+          onBlur: syncProfileOnFirstLogin,
+        };
+
+        const locationInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.location"),
+          type: "text",
+          placeholder: t("common.placeholders.enter_location"),
+          onValueChange: (value: string) =>
+            onEducationChange(index, "location", value),
+          value: education?.location || "",
+          isRequired: true,
+          onBlur: syncProfileOnFirstLogin,
+        };
+
+        const startDateInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.start_date"),
+          type: "month_selector",
+          onValueChange: (value: string) => {
+            onEducationChange(index, "start_date", value);
+          },
+          value: education?.start_date || "",
+          isRequired: true,
+        };
+
+        const endDateInput: IDynamicInput<string & boolean> = {
+          label: t("common.form.end_date"),
+          type: "month_selector",
+          onValueChange: (value: string) => {
+            onEducationChange(index, "end_date", value);
+          },
+          isDisabled: education?.is_present,
+          value: education?.end_date || "",
+          isRequired: true,
+        };
+
+        const isPresentInput: IDynamicInput<string & boolean> = {
+          label: t("pages.profile.sections.education.is_present"),
+          type: "checkbox",
+          onValueChange: (value: boolean) => {
+            onEducationChange(index, "is_present", value);
+          },
+          value: education?.is_present || "",
+        };
+
         const inputs: IDynamicInputArray<string & boolean> = [
-          {
-            label: t("common.form.institution"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_institution_name"),
-            onValueChange: (value: string) =>
-              onEducationChange(index, "institution", value),
-            value: education?.institution || "",
-            isRequired: true,
-            onBlur: syncProfileOnFirstLogin,
-          },
-          {
-            label: t("common.form.link"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_institution_link"),
-            onValueChange: (value: string) =>
-              onEducationChange(index, "link", value),
-            value: education?.link || "",
-            onBlur: syncProfileOnFirstLogin,
-          },
-          {
-            label: t("common.form.career"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_career"),
-            onValueChange: (value: string) =>
-              onEducationChange(index, "career", value),
-            value: education?.career || "",
-            isRequired: true,
-            onBlur: syncProfileOnFirstLogin,
-          },
-          {
-            label: t("common.form.location"),
-            type: "text",
-            placeholder: t("common.placeholders.enter_location"),
-            onValueChange: (value: string) =>
-              onEducationChange(index, "location", value),
-            value: education?.location || "",
-            isRequired: true,
-            onBlur: syncProfileOnFirstLogin,
-          },
-          [
-            {
-              label: t("common.form.start_date"),
-              type: "month_selector",
-              onValueChange: (value: string) => {
-                onEducationChange(index, "start_date", value);
-              },
-              value: education?.start_date || "",
-              isRequired: true,
-            },
-            {
-              label: t("common.form.end_date"),
-              type: "month_selector",
-              onValueChange: (value: string) => {
-                onEducationChange(index, "end_date", value);
-              },
-              isDisabled: education?.is_present,
-              value: education?.end_date || "",
-              isRequired: true,
-            },
-          ],
-          {
-            label: t("pages.profile.sections.education.is_present"),
-            type: "checkbox",
-            onValueChange: (value: boolean) => {
-              onEducationChange(index, "is_present", value);
-            },
-            value: education?.is_present || "",
-          },
+          institutionInput,
+          linkInput,
+          careerInput,
+          locationInput,
+          [startDateInput, endDateInput],
+          isPresentInput,
         ];
 
         return (
