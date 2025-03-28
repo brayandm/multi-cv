@@ -8,6 +8,7 @@ import { addToast, Button } from "@heroui/react";
 import AddIcon from "@/shared/icons/AddIcon/AddIcon";
 import { MAX_LANGUAGES_ELEMENTS } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 interface InputButtonProps {
   onPress: () => void;
@@ -115,6 +116,24 @@ const Languages: React.FC = () => {
         isRequired: true,
         onBlur: syncProfileOnFirstLogin,
         text: language.name,
+        afterContent: (
+          <div className="flex pt-2">
+            <Button
+              variant="solid"
+              isIconOnly
+              className="ml-2 min-w-6 w-6 h-6 rounded-small"
+              onPress={() => {
+                const updatedLanguages = languages.filter(
+                  (lang, langIndex) => langIndex !== index
+                );
+                updateLanguages(updatedLanguages);
+              }}
+              color="danger"
+            >
+              <XMarkIcon width={15} />
+            </Button>
+          </div>
+        ),
       },
     ];
 

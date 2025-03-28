@@ -47,6 +47,7 @@ export interface IDynamicInput<T> {
     description?: string;
   }>;
   text?: string;
+  afterContent?: React.ReactNode;
 }
 
 export type IDynamicInputArray<T> = Array<

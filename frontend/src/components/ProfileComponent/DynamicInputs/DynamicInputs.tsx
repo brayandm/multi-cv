@@ -190,37 +190,38 @@ const DynamicInputs = <T,>({
 
         if (input.type === "selector") {
           return (
-            <div key={index} className="flex flex-row gap-2 justify-between">
-              <div className="flex items-center justify-center">
-                {input.text}
+            <div key={index} className="flex flex-row justify-between">
+              <div className="flex flex-row gap-2 justify-between w-full">
+                <div className="flex pt-2">{input.text}</div>
+                <Autocomplete
+                  variant={variant}
+                  label={input.label}
+                  aria-label={input.label || "default"}
+                  placeholder={input.placeholder}
+                  defaultItems={input.selectItems}
+                  color={input.color}
+                  isDisabled={input.isDisabled}
+                  onBlur={input.onBlur}
+                  isRequired={input.isRequired}
+                  description={input.description}
+                  onSelectionChange={(value) => {
+                    (input.onValueChange as IDynamicOnValueChange<Key | null>)(
+                      value
+                    );
+                  }}
+                  isClearable={false}
+                  classNames={{
+                    base: "w-[150px]",
+                  }}
+                >
+                  {(item) => (
+                    <AutocompleteItem key={item.key}>
+                      {item.label}
+                    </AutocompleteItem>
+                  )}
+                </Autocomplete>
               </div>
-              <Autocomplete
-                variant={variant}
-                label={input.label}
-                aria-label={input.label || "default"}
-                placeholder={input.placeholder}
-                defaultItems={input.selectItems}
-                color={input.color}
-                isDisabled={input.isDisabled}
-                onBlur={input.onBlur}
-                isRequired={input.isRequired}
-                description={input.description}
-                onSelectionChange={(value) => {
-                  (input.onValueChange as IDynamicOnValueChange<Key | null>)(
-                    value
-                  );
-                }}
-                isClearable={false}
-                classNames={{
-                  base: "w-[150px]",
-                }}
-              >
-                {(item) => (
-                  <AutocompleteItem key={item.key}>
-                    {item.label}
-                  </AutocompleteItem>
-                )}
-              </Autocomplete>
+              {input.afterContent}
             </div>
           );
         }
