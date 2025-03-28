@@ -8,8 +8,9 @@ import { IEducation, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
-import { MAX_EDUCATION_ELEMENTS } from "@/lib/consts";
+import { MAX_EDUCATION_ELEMENTS, SCREEN_SIZES } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 interface IEducationProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -81,6 +82,8 @@ const Education = ({ formRef, width, maxWidth }: IEducationProps) => {
 
     updateEducation(updatedEducations);
   }
+
+  const { width: windowWidth } = useWindowSize();
 
   return (
     <Paginator
@@ -165,14 +168,26 @@ const Education = ({ formRef, width, maxWidth }: IEducationProps) => {
           value: education?.is_present || "",
         };
 
-        const inputs: IDynamicInputArray<string & boolean> = [
-          institutionInput,
-          linkInput,
-          careerInput,
-          locationInput,
-          [startDateInput, endDateInput],
-          isPresentInput,
-        ];
+        let inputs: IDynamicInputArray<string & boolean> = [];
+
+        if (windowWidth < SCREEN_SIZES.mobile) {
+          inputs = [
+            institutionInput,
+            linkInput,
+            careerInput,
+            locationInput,
+            [startDateInput, endDateInput],
+            isPresentInput,
+          ];
+        } else {
+          inputs = [
+            [institutionInput, linkInput],
+            careerInput,
+            locationInput,
+            [startDateInput, endDateInput],
+            isPresentInput,
+          ];
+        }
 
         return (
           <div

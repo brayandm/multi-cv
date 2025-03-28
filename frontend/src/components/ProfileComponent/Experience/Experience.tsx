@@ -9,8 +9,9 @@ import DynamicInputs from "../DynamicInputs/DynamicInputs";
 
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
-import { MAX_EXPERIENCE_ELEMENTS } from "@/lib/consts";
+import { MAX_EXPERIENCE_ELEMENTS, SCREEN_SIZES } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 interface IExperienceProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -103,6 +104,8 @@ const Experience = ({ formRef, width, maxWidth }: IExperienceProps) => {
       setChat(null);
     }
   }, [currentPage, experienceList]); // eslint-disable-line
+
+  const { width: windowWidth } = useWindowSize();
 
   return (
     <Paginator
@@ -210,15 +213,27 @@ const Experience = ({ formRef, width, maxWidth }: IExperienceProps) => {
           value: experience?.is_present || "",
         };
 
-        const inputs: IDynamicInputArray<string & boolean> = [
-          companyNameInput,
-          linkInput,
-          roleInput,
-          descriptionInput,
-          locationInput,
-          [startDateInput, endDateInput],
-          isPresentInput,
-        ];
+        let inputs: IDynamicInputArray<string & boolean> = [];
+
+        if (windowWidth < SCREEN_SIZES.mobile) {
+          inputs = [
+            companyNameInput,
+            linkInput,
+            roleInput,
+            descriptionInput,
+            locationInput,
+            [startDateInput, endDateInput],
+            isPresentInput,
+          ];
+        } else {
+          inputs = [
+            [companyNameInput, linkInput],
+            [roleInput, locationInput],
+            descriptionInput,
+            [startDateInput, endDateInput],
+            isPresentInput,
+          ];
+        }
 
         return (
           <div

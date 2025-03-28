@@ -16,6 +16,8 @@ import {
 } from "@/lib/backendService";
 import { userProfilePictureApiLink } from "@/lib/links";
 import { useUserStatus } from "@/contexts/UserStatusContext";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import { SCREEN_SIZES } from "@/lib/consts";
 
 const BasicUserInfo: React.FC = () => {
   const { basicInfo, updateBasicInfo, syncProfileOnFirstLogin } = useProfile();
@@ -175,13 +177,29 @@ const BasicUserInfo: React.FC = () => {
     },
   };
 
-  const inputs: IDynamicInputArray<string> = [
-    [pictureInput, [firstNameInput, lastNameInput]],
-    emailInput,
-    [phoneCountryCodeInput, phoneNumberInput],
-    locationInput,
-    aboutInput,
-  ];
+  const { width } = useWindowSize();
+
+  const [inputs, setInputs] = React.useState<
+    IDynamicInputArray<string> | IDynamicInputArray<string>[]
+  >([]);
+
+  useEffect(() => {
+    if (width < SCREEN_SIZES.mobile) {
+      setInputs([
+        [pictureInput, [firstNameInput, lastNameInput]],
+        emailInput,
+        [phoneCountryCodeInput, phoneNumberInput],
+        locationInput,
+        aboutInput,
+      ]);
+    } else {
+      setInputs([
+        [pictureInput, [[firstNameInput, lastNameInput], emailInput]],
+        [phoneCountryCodeInput, phoneNumberInput, locationInput],
+        aboutInput,
+      ]);
+    }
+  }, [width]); // eslint-disable-line
 
   return (
     <div className="px-1">

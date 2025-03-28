@@ -7,3 +7,7 @@ export const MAX_PROJECTS_ELEMENTS = 15;
 export const MAX_CERTIFICATIONS_ELEMENTS = 10;
 export const MAX_LANGUAGES_ELEMENTS = 10;
 export const MAX_SKILLS_ELEMENTS = 50;
+
+export const SCREEN_SIZES = {
+  mobile: 600,
+};

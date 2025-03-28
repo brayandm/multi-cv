@@ -8,8 +8,9 @@ import { IProject, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
-import { MAX_PROJECTS_ELEMENTS } from "@/lib/consts";
+import { MAX_PROJECTS_ELEMENTS, SCREEN_SIZES } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 interface IProjectsProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -76,6 +77,8 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
 
     updateProjects(updatedProjects);
   }
+
+  const { width: windowWidth } = useWindowSize();
 
   return (
     <Paginator
@@ -160,13 +163,24 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
           value: project?.is_present || "",
         };
 
-        const inputs: IDynamicInputArray<string & boolean> = [
-          projectNameInput,
-          linkInput,
-          projectDescriptionInput,
-          [startDateInput, endDateInput],
-          isPresentInput,
-        ];
+        let inputs: IDynamicInputArray<string & boolean> = [];
+
+        if (windowWidth < SCREEN_SIZES.mobile) {
+          inputs = [
+            projectNameInput,
+            linkInput,
+            projectDescriptionInput,
+            [startDateInput, endDateInput],
+            isPresentInput,
+          ];
+        } else {
+          inputs = [
+            [projectNameInput, linkInput],
+            projectDescriptionInput,
+            [startDateInput, endDateInput],
+            isPresentInput,
+          ];
+        }
 
         return (
           <div

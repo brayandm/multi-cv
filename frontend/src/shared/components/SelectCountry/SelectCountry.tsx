@@ -32,7 +32,7 @@ const SelectCountry: React.FC<SelectCountryProps> = ({
       {...props}
       selectedKey={selectedKey ? `${selectedKey}` : ""}
       classNames={{
-        base: "w-[200px]",
+        base: "min-w-[120px] w-[120px]",
       }}
     >
       {countries.map((countryCode) => {

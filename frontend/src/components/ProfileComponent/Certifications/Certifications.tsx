@@ -8,8 +8,9 @@ import { ICertificate, useProfile } from "@/contexts/ProfileContext";
 import DynamicInputs from "../DynamicInputs/DynamicInputs";
 import { useTranslations } from "next-intl";
 import Paginator from "../Paginator";
-import { MAX_CERTIFICATIONS_ELEMENTS } from "@/lib/consts";
+import { MAX_CERTIFICATIONS_ELEMENTS, SCREEN_SIZES } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 interface ICertificationsProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -82,6 +83,8 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
 
     updateCertifications(updatedCertifications);
   }
+
+  const { width: windowWidth } = useWindowSize();
 
   return (
     <Paginator
@@ -182,14 +185,26 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
           value: certification?.hasnt_expiration_date || "",
         };
 
-        const inputs: IDynamicInputArray<string & boolean> = [
-          certificationNameInput,
-          [issuerInput, certificateIdInput],
-          verificationUrlInput,
-          certificationDescriptionInput,
-          [issueDateInput, expirationDateInput],
-          hasntExpirationDateInput,
-        ];
+        let inputs: IDynamicInputArray<string & boolean> = [];
+
+        if (windowWidth < SCREEN_SIZES.mobile) {
+          inputs = [
+            certificationNameInput,
+            [issuerInput, certificateIdInput],
+            verificationUrlInput,
+            certificationDescriptionInput,
+            [issueDateInput, expirationDateInput],
+            hasntExpirationDateInput,
+          ];
+        } else {
+          inputs = [
+            [certificationNameInput, issuerInput],
+            [verificationUrlInput, certificateIdInput],
+            certificationDescriptionInput,
+            [issueDateInput, expirationDateInput],
+            hasntExpirationDateInput,
+          ];
+        }
 
         return (
           <div
