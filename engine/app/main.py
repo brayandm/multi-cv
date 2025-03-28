@@ -28,7 +28,7 @@ from app.framework.decorators import (
     validate_api_token,
 )
 from app.framework.decorators.action import commit_action_after
-from app.framework.decorators.context_vars import get_user_id, get_auth_token
+from app.framework.decorators.context_vars import get_auth_token, get_user_id
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
