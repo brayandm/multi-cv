@@ -91,7 +91,8 @@ const Paginator: React.FC<IPaginatorProps> = ({
 
   useEffect(() => {
     setCurrentpage(currentPageBasedOnScroll);
-  }, [currentPageBasedOnScroll]);
+    setTotalPages(total);
+  }, [currentPageBasedOnScroll, total]);
 
   const t = useTranslations();
 
@@ -299,6 +300,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
                             setTimeout(() => {
                               scrollToPage(pendingPage);
                               setCurrentpage(pendingPage);
+                              setForceUpdateAll((prev) => prev + 1);
                             }, 200);
                           }
                         }}
