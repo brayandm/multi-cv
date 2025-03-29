@@ -37,7 +37,7 @@ from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
 from app.services.profile_service import ProfileService, get_profile_service
-from app.services.text_extractor import TextExtractor, InvalidPDFError
+from app.services.text_extractor import InvalidPDFError, TextExtractor
 from app.utils.parsers import get_first_name_last_name
 from app.utils.playwright import get_browser
 from app.worker.queue_manager import QueueManager
