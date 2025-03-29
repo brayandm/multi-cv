@@ -125,7 +125,7 @@ export default function SelectDate({
 
   useEffect(() => {
     setForceUpdate((prev) => prev + 1);
-  }, [props.isRequired]);
+  }, [props.isRequired, props.isDisabled]);
 
   return (
     <Popover
