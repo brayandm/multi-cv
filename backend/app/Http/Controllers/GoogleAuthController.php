@@ -80,7 +80,7 @@ class GoogleAuthController extends Controller
             ]);
 
             if (isset($userInfo['picture'])) {
-                if($user->hasMedia('profile_picture')) {
+                if ($user->hasMedia('profile_picture')) {
                     $user->clearMediaCollection('profile_picture');
                 }
                 $user->addMediaFromUrl($userInfo['picture'])
