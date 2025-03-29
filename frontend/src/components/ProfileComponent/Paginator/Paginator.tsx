@@ -174,13 +174,13 @@ const Paginator: React.FC<IPaginatorProps> = ({
           <Pagination
             key={forceUpdate}
             onChange={(page) => {
-              if (!formRef.current || !formRef.current.reportValidity()) {
-                if (!userStatus.is_first_login) {
+              if (!userStatus.is_first_login) {
+                if (!formRef.current || !formRef.current.reportValidity()) {
                   onOpenDiscard();
                   setPendingPage(page);
                   setForceUpdate((prev) => prev + 1);
+                  return;
                 }
-                return;
               }
               scrollToPage(page);
               setCurrentpage(page);
