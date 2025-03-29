@@ -41,7 +41,6 @@ from app.utils.parsers import get_first_name_last_name
 from app.utils.playwright import get_browser
 from app.worker.queue_manager import QueueManager
 
-
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(

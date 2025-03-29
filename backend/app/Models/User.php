@@ -116,10 +116,10 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
             Quota::create([
                 'user_id' => $user->id,
                 'action' => 'generate_cv_inline',
-                'quota' => 5,
+                'quota' => 3,
                 'frequency' => 'months',
                 'cumulative' => false,
-                'left' => 5,
+                'left' => 3,
                 'max_failed' => 3,
                 'max_pending' => 1,
             ]);
@@ -130,8 +130,19 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
                 'quota' => 0,
                 'frequency' => 'onetime',
                 'cumulative' => false,
-                'left' => 100,
+                'left' => 20,
                 'max_failed' => 10,
+                'max_pending' => 1,
+            ]);
+
+            Quota::create([
+                'user_id' => $user->id,
+                'action' => 'auto_fill_cv_from_document',
+                'quota' => 0,
+                'frequency' => 'onetime',
+                'cumulative' => false,
+                'left' => 1,
+                'max_failed' => 1,
                 'max_pending' => 1,
             ]);
         });
