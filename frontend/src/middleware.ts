@@ -99,7 +99,7 @@ export async function middleware(req: NextRequest) {
     }
 
     if (isFirstLogin && !isProfileInitialPage) {
-      url.pathname = "/profile/initial";
+      url.pathname = "/profile/auto-fill";
       return NextResponse.redirect(url);
     } else if (!isFirstLogin && isProfileInitialPage) {
       url.pathname = "/profile";
