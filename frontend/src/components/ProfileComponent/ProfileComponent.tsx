@@ -34,6 +34,7 @@ import {
   DEFAULT_CARD_MAX_WIDTH,
   DEFAULT_CARD_WIDTH,
 } from "@/lib/consts";
+import { useUserStatus } from "@/contexts/UserStatusContext";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
@@ -43,6 +44,11 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
   const height = DEFAULT_CARD_HEIGHT;
+
+  const { refreshUserStatus } = useUserStatus();
+  useEffect(() => {
+    refreshUserStatus();
+  }, []); // eslint-disable-line
 
   const router = useRouter();
 

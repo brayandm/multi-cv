@@ -12,6 +12,7 @@ import {
 
 interface UserStatusContextType {
   userStatus: UserStatusResponse;
+  refreshUserStatus: () => void;
 }
 
 const UserStatusContext = createContext<UserStatusContextType | undefined>(
@@ -29,8 +30,14 @@ export const UserStatusProvider = ({ children }: { children: ReactNode }) => {
     });
   }, []);
 
+  const refreshUserStatus = () => {
+    userStatusApi().then((response) => {
+      setUserStatus(response.data);
+    });
+  };
+
   return (
-    <UserStatusContext.Provider value={{ userStatus }}>
+    <UserStatusContext.Provider value={{ userStatus, refreshUserStatus }}>
       {children}
     </UserStatusContext.Provider>
   );
