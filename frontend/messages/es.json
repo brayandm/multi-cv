@@ -42,7 +42,10 @@
             "basic": "Básico",
             "intermediate": "Intermedio",
             "professional": "Profesional",
-            "native": "Nativo"
+            "native": "Nativo",
+            "upload_cv": "Sube tu CV (PDF)",
+            "loading_title": "Procesando tu CV",
+            "loading_autofill": "Por favor espera mientras llenamos tu perfil..."
         },
         "buttons": {
             "continue": "Continuar",
@@ -62,7 +65,8 @@
             "save": "Guardar",
             "discard": "Descartar",
             "keep_editing": "Seguir editando",
-            "clear": "Limpiar"
+            "clear": "Limpiar",
+            "autofill_button": "Llenar perfil desde CV"
         },
         "errors": {
             "login": "Error de inicio de sesión",
@@ -86,7 +90,8 @@
             "select_date": "Por favor selecciona una fecha",
             "invalid_phone": "El número de teléfono no es válido",
             "settings": "Error al actualizar configuraciones",
-            "file_size": "El tamaño del archivo debe ser menor a {max}MB"
+            "file_size": "El tamaño del archivo debe ser menor a {max}MB",
+            "autofill": "Error al autocompletar"
         },
         "success": {
             "password_change": "Contraseña cambiada",
@@ -195,7 +200,7 @@
         "email_verification": {
             "title": "Verificación de Correo",
             "already_verified": {
-                "title": "Verificación de Correo Ya Verificada",
+                "title": "Verificación de Correo Ya Verificado",
                 "message": "Tu correo ya ha sido verificado."
             },
             "success": {
@@ -276,6 +281,10 @@
             "success": {
                 "title": "Registro Completo",
                 "message": "Tu cuenta está lista. Ahora puedes acceder a todas las funciones de la plataforma."
+            },
+            "auto_fill": {
+                "title": "Sube tu CV para llenar tu perfil",
+                "message": "Ahorra tiempo subiendo tu CV existente; extraeremos la información y llenaremos tu perfil automáticamente."
             }
         },
         "terms_and_conditions": {

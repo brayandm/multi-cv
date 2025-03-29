@@ -12,6 +12,7 @@ import {
   ModalBody,
   useDisclosure,
   Spinner,
+  addToast,
 } from "@heroui/react";
 import {
   DEFAULT_CARD_HEIGHT,
@@ -36,7 +37,7 @@ export default function ProfileAutoCvComponent() {
   const t = useTranslations();
 
   const [file, setFile] = useState<File | null>(null);
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
@@ -48,11 +49,24 @@ export default function ProfileAutoCvComponent() {
   const handleAutofill = async () => {
     onOpen();
 
-    await autoFillCvFromDocumentEngine(file as File);
+    try {
+      await autoFillCvFromDocumentEngine(file as File);
 
-    await pullProfile();
+      await pullProfile();
 
-    router.push("/profile/initial");
+      router.push("/profile/initial");
+    } catch (error) {
+      console.error("Error during autofill:", error);
+
+      onClose();
+
+      addToast({
+        title: t("common.errors.autofill"),
+        description: t("common.errors.server"),
+        color: "danger",
+        timeout: 5000,
+      });
+    }
   };
 
   return (
