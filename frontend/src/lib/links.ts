@@ -26,3 +26,4 @@ export const userUploadProfilePictureApiLink = "/user/upload/profile-picture";
 export const userDeleteProfilePictureApiLink = "/user/delete/profile-picture";
 export const userProfilePictureApiLink =
   process.env.NEXT_PUBLIC_API_URL + "/user/profile-picture";
+export const autoFillCvFromDocumentEngineLink = "/auto-fill/cv/from-document";

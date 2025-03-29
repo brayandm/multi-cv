@@ -22,6 +22,7 @@ import {
 import { PlusIcon, DocumentTextIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { autoFillCvFromDocumentEngine } from "@/lib/backendService";
 
 export default function ProfileAutoCvComponent() {
   const width = DEFAULT_CARD_WIDTH;
@@ -44,7 +45,7 @@ export default function ProfileAutoCvComponent() {
   const handleAutofill = async () => {
     onOpen();
 
-    await new Promise((resolve) => setTimeout(resolve, 10000));
+    await autoFillCvFromDocumentEngine(file as File);
 
     router.push("/profile/initial");
   };
