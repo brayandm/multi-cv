@@ -1,18 +1,25 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Button, Card, CardBody, CardHeader } from "@heroui/react";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  useDisclosure,
+  Spinner,
+} from "@heroui/react";
 import {
   DEFAULT_CARD_HEIGHT,
   DEFAULT_CARD_MAX_WIDTH,
   DEFAULT_CARD_WIDTH,
 } from "@/lib/consts";
 
-import {
-  PlusIcon,
-  DocumentTextIcon,
-  ArrowUpTrayIcon,
-} from "@heroicons/react/24/solid";
+import { PlusIcon, DocumentTextIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -22,16 +29,24 @@ export default function ProfileAutoCvComponent() {
   const height = DEFAULT_CARD_HEIGHT;
 
   const router = useRouter();
-
   const t = useTranslations();
 
   const [file, setFile] = useState<File | null>(null);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile && selectedFile.type === "application/pdf") {
       setFile(selectedFile);
     }
+  };
+
+  const handleAutofill = async () => {
+    onOpen();
+
+    await new Promise((resolve) => setTimeout(resolve, 10000));
+
+    router.push("/profile/initial");
   };
 
   return (
@@ -47,8 +62,8 @@ export default function ProfileAutoCvComponent() {
           <Card style={{ height: `${height}px` }}>
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
-                <h1> {t("pages.profile.auto_fill.title")}</h1>
-                <p> {t("pages.profile.auto_fill.message")}</p>
+                <h1>{t("pages.profile.auto_fill.title")}</h1>
+                <p>{t("pages.profile.auto_fill.message")}</p>
               </div>
             </CardHeader>
             <CardBody className="flex flex-col gap-6">
@@ -78,7 +93,7 @@ export default function ProfileAutoCvComponent() {
 
               <div className="flex flex-col justify-between items-center w-full">
                 {file && (
-                  <Button color="secondary">
+                  <Button color="secondary" onPress={handleAutofill}>
                     {t("common.buttons.autofill_button")}
                   </Button>
                 )}
@@ -99,6 +114,29 @@ export default function ProfileAutoCvComponent() {
           </div>
         </form>
       </div>
+
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        hideCloseButton
+        isDismissable={false}
+      >
+        <ModalContent>
+          {() => (
+            <>
+              <ModalHeader className="text-center">
+                {t("common.texts.loading_title")}
+              </ModalHeader>
+              <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
+                <Spinner />
+                <p className="text-center text-sm text-gray-600">
+                  {t("common.texts.loading_autofill")}
+                </p>
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </main>
   );
 }

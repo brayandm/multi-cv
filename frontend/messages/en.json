@@ -43,7 +43,9 @@
       "intermediate": "Intermediate",
       "professional": "Professional",
       "native": "Native",
-      "upload_cv": "Upload your CV (PDF)"
+      "upload_cv": "Upload your CV (PDF)",
+      "loading_title": "Processing your CV",
+      "loading_autofill": "Please wait while we fill in your profile..."
     },
     "buttons": {
       "continue": "Continue",
