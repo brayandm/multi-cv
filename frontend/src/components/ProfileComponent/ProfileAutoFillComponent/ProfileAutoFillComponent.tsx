@@ -76,14 +76,13 @@ export default function ProfileAutoCvComponent() {
                 />
               </label>
 
-              {file && (
-                <div className="flex justify-between items-center w-full">
-                  <Button color="secondary" className="self-start">
-                    <ArrowUpTrayIcon className="w-4 h-4 mr-2" />
+              <div className="flex flex-col justify-between items-center w-full">
+                {file && (
+                  <Button color="secondary">
                     {t("common.buttons.autofill_button")}
                   </Button>
-                </div>
-              )}
+                )}
+              </div>
             </CardBody>
           </Card>
           <div className="flex flex-row justify-between gap-1">
