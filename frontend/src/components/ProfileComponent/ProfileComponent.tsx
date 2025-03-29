@@ -29,7 +29,11 @@ import { finishFirstLoginApi } from "@/lib/backendService";
 import { useInterceptor } from "@/contexts/InterceptorContext";
 import Certifications from "./Certifications";
 import Languages from "./Languages";
-import { DEFAULT_CARD_MAX_WIDTH, DEFAULT_CARD_WIDTH } from "@/lib/consts";
+import {
+  DEFAULT_CARD_HEIGHT,
+  DEFAULT_CARD_MAX_WIDTH,
+  DEFAULT_CARD_WIDTH,
+} from "@/lib/consts";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
@@ -38,6 +42,7 @@ interface IProfileComponentProps {
 const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
+  const height = DEFAULT_CARD_HEIGHT;
 
   const router = useRouter();
 
@@ -168,7 +173,11 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
         }}
       >
         <form className="flex flex-col gap-2" ref={formRef}>
-          <Card className="min-h-[75vh]">
+          <Card
+            style={{
+              height: `${height}px`,
+            }}
+          >
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
                 <h1>{t("common.menu.profile")}</h1>

@@ -12,5 +12,6 @@ export const SCREEN_SIZES = {
   mobile: 600,
 };
 
-export const DEFAULT_CARD_WIDTH = 500;
-export const DEFAULT_CARD_MAX_WIDTH = 90;
+export const DEFAULT_CARD_WIDTH = 500; // px
+export const DEFAULT_CARD_MAX_WIDTH = 90; // vw
+export const DEFAULT_CARD_HEIGHT = 620; // px
