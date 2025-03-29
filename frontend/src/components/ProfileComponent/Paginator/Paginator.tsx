@@ -16,6 +16,8 @@ import {
   PopoverContent,
 } from "@heroui/react";
 import { useTranslations } from "next-intl";
+import { DEFAULT_CARD_MAX_WIDTH, DEFAULT_CARD_WIDTH } from "@/lib/consts";
+import { useWindowSize } from "@/hooks/useWindowSize";
 
 const Paginator: React.FC<IPaginatorProps> = ({
   onNewPage,
@@ -46,6 +48,8 @@ const Paginator: React.FC<IPaginatorProps> = ({
   const scrolling = useRef(false);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
+  const { width } = useWindowSize();
+
   const handleScroll = useCallback(() => {
     if (scrollTimeout.current) {
       clearTimeout(scrollTimeout.current);
@@ -57,13 +61,19 @@ const Paginator: React.FC<IPaginatorProps> = ({
       const scrollLeft = scrollRef.current?.scrollLeft;
       if (scrollLeft === undefined) return;
 
-      const position = (scrollLeft - 4) / 326;
+      const getWidth = () => {
+        const vwValue = width * (DEFAULT_CARD_MAX_WIDTH / 100);
+        const minValue = Math.min(vwValue, DEFAULT_CARD_WIDTH);
+        return minValue - 32;
+      };
+
+      const position = (scrollLeft - 4) / getWidth();
       const page = Math.round(position) + 1;
 
       setCurrentPageBasedOnScroll(page);
       scrolling.current = false;
     }, 200);
-  }, []);
+  }, [width]);
 
   useEffect(() => {
     const scrollElement = scrollRef.current;
