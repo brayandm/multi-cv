@@ -32,8 +32,8 @@ from app.framework.decorators import (
     validate_api_token,
 )
 from app.framework.decorators.action import (
-    commit_action_after,
     commit_action,
+    commit_action_after,
     rollback_action,
 )
 from app.framework.decorators.context_vars import get_auth_token, get_user_id
@@ -91,6 +91,8 @@ async def auto_fill_cv_from_document(
         extractor.close()
 
         profile = await AutoFillProfilePipeline().run(text)
+
+        logger.info(f"Extracted profile: {profile}")
 
         await profile_service.sync_profile(get_user_id(), profile)
 

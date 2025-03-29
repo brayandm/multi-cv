@@ -10,12 +10,12 @@ import { useChat } from "@/contexts/ChatContext";
 
 export const professionalLinks = [
   {
-    name: "Github",
+    name: "GitHub",
     avatar: "/icons/companies/github.png",
     url: "https://github.com/",
   },
   {
-    name: "Linkedin",
+    name: "LinkedIn",
     avatar: "/icons/companies/linkedin.webp",
     url: "https://www.linkedin.com/in/",
   },
@@ -72,7 +72,9 @@ const ProfessionalLinks: React.FC = () => {
         className="mb-2"
         isMultiline={true}
         items={professionalLinks}
-        selectedKeys={professionalLinksList.map((social) => social.name)}
+        selectedKeys={professionalLinksList.map((social) =>
+          social.name.toLowerCase()
+        )}
         label={t("common.form.professional_links_select")}
         placeholder={t("common.placeholders.professional_links_select")}
         renderValue={(items) => {
@@ -95,7 +97,7 @@ const ProfessionalLinks: React.FC = () => {
         selectionMode="multiple"
       >
         {(item) => (
-          <SelectItem key={item.name} textValue={item.name}>
+          <SelectItem key={item.name.toLowerCase()} textValue={item.name}>
             <div className="flex gap-2 items-center">
               <Avatar
                 alt={item.name}

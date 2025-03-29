@@ -23,11 +23,14 @@ import { PlusIcon, DocumentTextIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { autoFillCvFromDocumentEngine } from "@/lib/backendService";
+import { useProfile } from "@/contexts/ProfileContext";
 
 export default function ProfileAutoCvComponent() {
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
   const height = DEFAULT_CARD_HEIGHT;
+
+  const { pullProfile } = useProfile();
 
   const router = useRouter();
   const t = useTranslations();
@@ -46,6 +49,8 @@ export default function ProfileAutoCvComponent() {
     onOpen();
 
     await autoFillCvFromDocumentEngine(file as File);
+
+    await pullProfile();
 
     router.push("/profile/initial");
   };

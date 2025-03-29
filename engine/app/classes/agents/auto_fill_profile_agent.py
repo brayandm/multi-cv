@@ -21,6 +21,14 @@ class AutoFillProfileAgent(Agent):
         **Requirements:**
         - In Languages, the only levels allowed are: "Basic", "Intermediate",
         "Professional", "Native" so asign the correct level to each language.
+        - In phone_country_code try to guess the country code (e.g. ES for
+        Spain, FR for France, etc.) based on the phone number provided.
+        - Fix encoding issues and restore correct accents or special characters
+          in names or text written in Spanish. Only correct malformed
+          characters—do not change content that is already correct.
+        - Dates should be formatted as YYYY-MM
+        - The only professional links allowed are "GitHub", "LinkedIn",
+        "Portfolio"
 
         **Input profile data (text):**
         {text}
