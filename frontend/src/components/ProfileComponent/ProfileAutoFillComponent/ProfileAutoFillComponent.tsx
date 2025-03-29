@@ -21,10 +21,15 @@ import {
 } from "@/lib/consts";
 
 import { PlusIcon, DocumentTextIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { autoFillCvFromDocumentEngine } from "@/lib/backendService";
+import {
+  autoFillCvFromDocumentEngine,
+  getQuotaInfoApi,
+} from "@/lib/backendService";
 import { useProfile } from "@/contexts/ProfileContext";
+import { AxiosResponse } from "axios";
+import { GetQuotaInfoResponse } from "@/lib/types";
 
 export default function ProfileAutoCvComponent() {
   const width = DEFAULT_CARD_WIDTH;
@@ -68,6 +73,34 @@ export default function ProfileAutoCvComponent() {
       });
     }
   };
+
+  const [isQuotaInfoLoading, setIsQuotaInfoLoading] = useState(true);
+
+  const getQuota = useCallback(() => {
+    getQuotaInfoApi("auto_fill_cv_from_document")
+      .then((response: AxiosResponse<GetQuotaInfoResponse>) => {
+        if (response.data && response.data.left <= 0) {
+          router.push("/profile/initial");
+        } else {
+          setIsQuotaInfoLoading(false);
+        }
+      })
+      .catch((error: unknown) => {
+        if (error instanceof Error) {
+          console.error("Error while fetching quota info", error.message);
+        } else {
+          console.error("Error while fetching quota info", error);
+        }
+      });
+  }, []); // eslint-disable-line
+
+  useEffect(() => {
+    getQuota();
+  }, [getQuota]);
+
+  if (isQuotaInfoLoading) {
+    return null;
+  }
 
   return (
     <main className="flex justify-center">

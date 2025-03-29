@@ -14,7 +14,7 @@ import {
   Tabs,
   useDisclosure,
 } from "@heroui/react";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import BasicUserInfo from "./BasicUserInfo";
 import Experience from "./Experience";
 import { useTranslations } from "next-intl";
@@ -25,7 +25,7 @@ import Education from "./Education";
 import ChatComponent from "@/shared/components/ChatComponent";
 import { useProfile } from "@/contexts/ProfileContext";
 import { useRouter } from "next/navigation";
-import { finishFirstLoginApi } from "@/lib/backendService";
+import { finishFirstLoginApi, getQuotaInfoApi } from "@/lib/backendService";
 import { useInterceptor } from "@/contexts/InterceptorContext";
 import Certifications from "./Certifications";
 import Languages from "./Languages";
@@ -35,6 +35,8 @@ import {
   DEFAULT_CARD_WIDTH,
 } from "@/lib/consts";
 import { useUserStatus } from "@/contexts/UserStatusContext";
+import { AxiosResponse } from "axios";
+import { GetQuotaInfoResponse } from "@/lib/types";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
@@ -169,6 +171,28 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
     };
   }, [checkArePendingChanges]);
 
+  const [showFirstPrevButton, setShowFirstPrevButton] = useState(false);
+
+  const getQuota = useCallback(() => {
+    getQuotaInfoApi("auto_fill_cv_from_document")
+      .then((response: AxiosResponse<GetQuotaInfoResponse>) => {
+        if (response.data && response.data.left > 0) {
+          setShowFirstPrevButton(true);
+        }
+      })
+      .catch((error: unknown) => {
+        if (error instanceof Error) {
+          console.error("Error while fetching quota info", error.message);
+        } else {
+          console.error("Error while fetching quota info", error);
+        }
+      });
+  }, []);
+
+  useEffect(() => {
+    getQuota();
+  }, [getQuota]);
+
   return (
     <main className="flex justify-center">
       <ChatComponent />
@@ -287,23 +311,24 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
             </CardBody>
           </Card>
           <div className="flex flex-row justify-between gap-1">
-            {isFirstLogin && (
-              <Card className="mb-3 w-full">
-                <Button
-                  color="primary"
-                  onPress={() => {
-                    syncProfile();
-                    if (prevPositionIsAvailable()) {
-                      setSelectedTab(positions[mapPosition[selectedTab] - 1]);
-                    } else {
-                      router.push("/profile/auto-fill");
-                    }
-                  }}
-                >
-                  {t("common.buttons.previous")}
-                </Button>
-              </Card>
-            )}
+            {isFirstLogin &&
+              (!(mapPosition[selectedTab] == 0) || showFirstPrevButton) && (
+                <Card className="mb-3 w-full">
+                  <Button
+                    color="primary"
+                    onPress={() => {
+                      syncProfile();
+                      if (prevPositionIsAvailable()) {
+                        setSelectedTab(positions[mapPosition[selectedTab] - 1]);
+                      } else {
+                        router.push("/profile/auto-fill");
+                      }
+                    }}
+                  >
+                    {t("common.buttons.previous")}
+                  </Button>
+                </Card>
+              )}
             {isFirstLogin && (
               <Card className="mb-3 w-full">
                 <Button
