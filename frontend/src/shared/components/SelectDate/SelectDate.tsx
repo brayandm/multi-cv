@@ -121,22 +121,6 @@ export default function SelectDate({
     }
   }, [open, draftMonth, months]);
 
-  console.log("xxx", props.isRequired);
-  console.log(
-    "xxx1",
-    firstInteraction || !props.isRequired
-      ? undefined
-      : !props.isDisabled && (!selectedMonth || selectedYear === null)
-  );
-  console.log(
-    "xxx2",
-    props.isDisabled ||
-      (selectedMonth && selectedYear !== null) ||
-      !props.isRequired
-      ? true
-      : t("common.errors.select_date")
-  );
-
   const [forceUpdate, setForceUpdate] = useState(0);
 
   useEffect(() => {
