@@ -36,7 +36,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const {
     isOpen: isOpenDiscard,
-    onOpen: onOpenDiscard,
+    // onOpen: onOpenDiscard,
     onOpenChange: onOpenChangeDiscard,
   } = useDisclosure();
 
@@ -169,7 +169,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
             key={forceUpdate}
             onChange={(page) => {
               if (!formRef.current || !formRef.current.reportValidity()) {
-                onOpenDiscard();
+                // onOpenDiscard();
                 setForceUpdate((prev) => prev + 1);
                 return;
               }
