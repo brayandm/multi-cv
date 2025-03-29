@@ -31,7 +31,11 @@ from app.framework.decorators import (
     consume_action,
     validate_api_token,
 )
-from app.framework.decorators.action import commit_action_after
+from app.framework.decorators.action import (
+    commit_action_after,
+    commit_action,
+    rollback_action,
+)
 from app.framework.decorators.context_vars import get_auth_token, get_user_id
 from app.framework.logging import logger
 from app.framework.middlewares import (
@@ -66,7 +70,6 @@ async def ping() -> Dict[str, str]:
 
 
 @router.post("/auto-fill/cv/from-document")
-@commit_action_after()
 @consume_action("auto_fill_cv_from_document")
 async def auto_fill_cv_from_document(
     file: UploadFile = File(...),
@@ -91,6 +94,8 @@ async def auto_fill_cv_from_document(
 
         await profile_service.sync_profile(get_user_id(), profile)
 
+        commit_action()
+
         return JSONResponse(
             content={
                 "message": "Document processed successfully.",
@@ -98,11 +103,15 @@ async def auto_fill_cv_from_document(
             status_code=200,
         )
     except InvalidPDFError as e:
+        rollback_action()
+
         return JSONResponse(
             status_code=400,
             content={"error": str(e)},
         )
     except Exception as e:
+        rollback_action()
+
         return JSONResponse(
             status_code=500,
             content={"error": f"Unexpected error: {str(e)}"},

@@ -18,6 +18,10 @@ class AutoFillProfileAgent(Agent):
         given text. Your task is to generate a Profile strictly in the JSON
         format provided below.
 
+        **Requirements:**
+        - In Languages, the only levels allowed are: "Basic", "Intermediate",
+        "Professional", "Native" so asign the correct level to each language.
+
         **Input profile data (text):**
         {text}
 
