@@ -191,7 +191,7 @@ const Education = ({ formRef, width, maxWidth }: IEducationProps) => {
 
         return (
           <div
-            key={index}
+            key={education.id}
             className={`mb-4 px-1 snap-center`}
             style={{
               minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,

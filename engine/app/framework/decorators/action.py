@@ -52,7 +52,9 @@ def commit_action() -> None:
         )
 
 
-def rollback_action(action_id: str) -> None:
+def rollback_action() -> None:
+
+    action_id = get_action_id()
 
     try:
         response = requests.post(
@@ -154,7 +156,7 @@ def consume_action(action: str) -> Callable[..., Any]:
             except Exception as e:
                 logger.error(e)
 
-                rollback_action(action_id)
+                rollback_action()
 
                 raise e
 

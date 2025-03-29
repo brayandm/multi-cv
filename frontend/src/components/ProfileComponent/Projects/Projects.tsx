@@ -184,7 +184,7 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
 
         return (
           <div
-            key={index}
+            key={project.id}
             className={`mb-4 px-1 snap-center`}
             style={{
               minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,

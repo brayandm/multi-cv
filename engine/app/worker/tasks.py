@@ -28,11 +28,13 @@ def rollback_task(
 
     action_id = args[1]
 
+    set_action_id(action_id)
+
     if not action_id:
         logger.error("Action ID is missing for rollback")
         return
 
-    rollback_action(action_id)
+    rollback_action()
 
 
 @celery.task(

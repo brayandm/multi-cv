@@ -281,13 +281,17 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
             </CardBody>
           </Card>
           <div className="flex flex-row justify-between gap-1">
-            {isFirstLogin && prevPositionIsAvailable() && (
+            {isFirstLogin && (
               <Card className="mb-3 w-full">
                 <Button
                   color="primary"
                   onPress={() => {
-                    setSelectedTab(positions[mapPosition[selectedTab] - 1]);
                     syncProfile();
+                    if (prevPositionIsAvailable()) {
+                      setSelectedTab(positions[mapPosition[selectedTab] - 1]);
+                    } else {
+                      router.push("/profile/auto-fill");
+                    }
                   }}
                 >
                   {t("common.buttons.previous")}

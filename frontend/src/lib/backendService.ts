@@ -25,6 +25,7 @@ import {
   renderHtmlInlineEngineLink,
   userDeleteProfilePictureApiLink,
   userUploadProfilePictureApiLink,
+  autoFillCvFromDocumentEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -345,4 +346,17 @@ export const userDeleteProfilePictureApi = async (): Promise<
   AxiosResponse<UserResponse>
 > => {
   return await api.delete(userDeleteProfilePictureApiLink);
+};
+
+export const autoFillCvFromDocumentEngine = async (
+  file: File
+): Promise<AxiosResponse<MessageResponse>> => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  return await engine.post(autoFillCvFromDocumentEngineLink, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
 };

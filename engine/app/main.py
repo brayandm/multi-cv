@@ -3,7 +3,7 @@ import os
 from io import BytesIO
 from typing import Any, Dict, Optional
 
-from fastapi import APIRouter, Depends, FastAPI
+from fastapi import APIRouter, Depends, FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
 
@@ -19,6 +19,7 @@ from app.classes.models import (
     WebhookPayload,
 )
 from app.classes.pipelines import (
+    AutoFillProfilePipeline,
     ChatExperiencePipeline,
     GenerateCvPipeline,
     RenderCVPipeline,
@@ -30,13 +31,18 @@ from app.framework.decorators import (
     consume_action,
     validate_api_token,
 )
-from app.framework.decorators.action import commit_action_after
+from app.framework.decorators.action import (
+    commit_action,
+    commit_action_after,
+    rollback_action,
+)
 from app.framework.decorators.context_vars import get_auth_token, get_user_id
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
 from app.services.profile_service import ProfileService, get_profile_service
+from app.services.text_extractor import InvalidPDFError, TextExtractor
 from app.utils.parsers import get_first_name_last_name
 from app.utils.playwright import get_browser
 from app.worker.queue_manager import QueueManager
@@ -61,6 +67,57 @@ router = APIRouter(prefix="/api/v1")
 @router.get("/ping")
 async def ping() -> Dict[str, str]:
     return {"message": "pong"}
+
+
+@router.post("/auto-fill/cv/from-document")
+@consume_action("auto_fill_cv_from_document")
+async def auto_fill_cv_from_document(
+    file: UploadFile = File(...),
+    profile_service: ProfileService = Depends(get_profile_service),
+) -> Response:
+    if file.content_type != "application/pdf":
+        return JSONResponse(
+            status_code=400,
+            content={
+                "error": "Invalid file type. Only PDF files are allowed."
+            },
+        )
+
+    contents = await file.read()
+
+    try:
+        extractor = TextExtractor(contents)
+        text = extractor.extract_text()
+        extractor.close()
+
+        profile = await AutoFillProfilePipeline().run(text)
+
+        logger.info(f"Extracted profile: {profile}")
+
+        await profile_service.sync_profile(get_user_id(), profile)
+
+        commit_action()
+
+        return JSONResponse(
+            content={
+                "message": "Document processed successfully.",
+            },
+            status_code=200,
+        )
+    except InvalidPDFError as e:
+        rollback_action()
+
+        return JSONResponse(
+            status_code=400,
+            content={"error": str(e)},
+        )
+    except Exception as e:
+        rollback_action()
+
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"Unexpected error: {str(e)}"},
+        )
 
 
 @router.post("/generate/cv/inline")

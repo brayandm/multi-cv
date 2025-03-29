@@ -208,7 +208,7 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
 
         return (
           <div
-            key={index}
+            key={certification.id}
             className={`mb-4 px-1 snap-center`}
             style={{
               minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
