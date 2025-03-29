@@ -18,6 +18,8 @@ import {
 import { useTranslations } from "next-intl";
 import { DEFAULT_CARD_MAX_WIDTH, DEFAULT_CARD_WIDTH } from "@/lib/consts";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { useUserStatus } from "@/contexts/UserStatusContext";
+import { useProfile } from "@/contexts/ProfileContext";
 
 const Paginator: React.FC<IPaginatorProps> = ({
   onNewPage,
@@ -29,6 +31,8 @@ const Paginator: React.FC<IPaginatorProps> = ({
   formRef,
   children,
 }) => {
+  const { userStatus } = useUserStatus();
+  const { pullProfile } = useProfile();
   const scrollRef = useRef<HTMLDivElement>(null);
   const childRef = useRef<HTMLDivElement>(null);
   const [currentPage, setCurrentpage] = useState<number>(1);
@@ -36,7 +40,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const {
     isOpen: isOpenDiscard,
-    // onOpen: onOpenDiscard,
+    onOpen: onOpenDiscard,
     onOpenChange: onOpenChangeDiscard,
   } = useDisclosure();
 
@@ -126,6 +130,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
   }
 
   const [forceUpdate, setForceUpdate] = useState(0);
+  const [pendingPage, setPendingPage] = useState(0);
 
   const [showPopover, setShowPopover] = useState(false);
 
@@ -169,8 +174,11 @@ const Paginator: React.FC<IPaginatorProps> = ({
             key={forceUpdate}
             onChange={(page) => {
               if (!formRef.current || !formRef.current.reportValidity()) {
-                // onOpenDiscard();
-                setForceUpdate((prev) => prev + 1);
+                if (!userStatus.is_first_login) {
+                  onOpenDiscard();
+                  setPendingPage(page);
+                  setForceUpdate((prev) => prev + 1);
+                }
                 return;
               }
               scrollToPage(page);
@@ -282,9 +290,16 @@ const Paginator: React.FC<IPaginatorProps> = ({
                     <ModalFooter>
                       <Button
                         color="danger"
-                        onPress={() => {
-                          deleteCurrentPage();
-                          onCloseDiscard();
+                        onPress={async () => {
+                          if (!userStatus.is_first_login) {
+                            await pullProfile();
+                            onCloseDiscard();
+                            if (formRef.current) {
+                              formRef.current.reportValidity();
+                            }
+                            scrollToPage(pendingPage);
+                            setCurrentpage(pendingPage);
+                          }
                         }}
                       >
                         {t("common.buttons.discard")}
