@@ -142,7 +142,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
                 'frequency' => 'onetime',
                 'cumulative' => false,
                 'left' => 1,
-                'max_failed' => 1,
+                'max_failed' => 2,
                 'max_pending' => 1,
             ]);
         });
