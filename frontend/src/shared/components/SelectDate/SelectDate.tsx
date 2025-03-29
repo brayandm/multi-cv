@@ -147,13 +147,15 @@ export default function SelectDate({
               <CalendarIcon className="ml-[-5px] w-5 h-5 text-gray-500 cursor-pointer" />
             }
             isInvalid={
-              firstInteraction
+              firstInteraction || !props.isRequired
                 ? undefined
                 : !props.isDisabled && (!selectedMonth || selectedYear === null)
             }
             errorMessage={t("common.errors.select_date")}
             validate={() =>
-              props.isDisabled || (selectedMonth && selectedYear !== null)
+              props.isDisabled ||
+              (selectedMonth && selectedYear !== null) ||
+              !props.isRequired
                 ? true
                 : t("common.errors.select_date")
             }
