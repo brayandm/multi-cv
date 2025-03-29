@@ -130,6 +130,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
   }
 
   const [forceUpdate, setForceUpdate] = useState(0);
+  const [forceUpdateAll, setForceUpdateAll] = useState(0);
   const [pendingPage, setPendingPage] = useState(0);
 
   const [showPopover, setShowPopover] = useState(false);
@@ -163,7 +164,7 @@ const Paginator: React.FC<IPaginatorProps> = ({
   return (
     <section className={`flex flex-col`}>
       <div ref={scrollRef} className="overflow-hidden snap-x snap-mandatory">
-        <div ref={childRef} className="flex">
+        <div ref={childRef} className="flex" key={forceUpdateAll}>
           {children}
         </div>
       </div>
@@ -293,12 +294,12 @@ const Paginator: React.FC<IPaginatorProps> = ({
                         onPress={async () => {
                           if (!userStatus.is_first_login) {
                             await pullProfile();
+                            setForceUpdateAll((prev) => prev + 1);
                             onCloseDiscard();
-                            if (formRef.current) {
-                              formRef.current.reportValidity();
-                            }
-                            scrollToPage(pendingPage);
-                            setCurrentpage(pendingPage);
+                            setTimeout(() => {
+                              scrollToPage(pendingPage);
+                              setCurrentpage(pendingPage);
+                            }, 200);
                           }
                         }}
                       >
