@@ -37,6 +37,7 @@ from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
 from app.services.profile_service import ProfileService, get_profile_service
+from app.services.text_extractor import TextExtractor, InvalidPDFError
 from app.utils.parsers import get_first_name_last_name
 from app.utils.playwright import get_browser
 from app.worker.queue_manager import QueueManager
@@ -77,12 +78,30 @@ async def auto_fill_cv_from_document(
             },
         )
 
-    return JSONResponse(
-        content={
-            "message": "Document Processed successfully.",
-        },
-        status_code=202,
-    )
+    contents = await file.read()
+
+    try:
+        extractor = TextExtractor(contents)
+        text = extractor.extract_text()
+        num_pages = extractor.num_pages()
+        extractor.close()
+
+        return JSONResponse(
+            content={
+                "message": "Document processed successfully.",
+            },
+            status_code=200,
+        )
+    except InvalidPDFError as e:
+        return JSONResponse(
+            status_code=400,
+            content={"error": str(e)},
+        )
+    except Exception as e:
+        return JSONResponse(
+            status_code=500,
+            content={"error": f"Unexpected error: {str(e)}"},
+        )
 
 
 @router.post("/generate/cv/inline")
