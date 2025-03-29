@@ -28,7 +28,7 @@ docker run --rm \
     -u "$(id -u):$(id -g)" \
     -v $(pwd):/var/www/html \
     -w /var/www/html \
-    brayand/fullstack-project-template-composer:1.0.0 \
+    brayand/fullstack-project-template-php:1.0.0 \
     composer install --ignore-platform-reqs > /dev/null 2>&1
 
 echo "Copying backend .env file..."
