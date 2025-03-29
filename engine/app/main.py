@@ -22,6 +22,7 @@ from app.classes.pipelines import (
     ChatExperiencePipeline,
     GenerateCvPipeline,
     RenderCVPipeline,
+    AutoFillProfilePipeline,
 )
 from app.database.mongodb import lifespan
 from app.facades.document_render_facade import DocumentRenderFacade
@@ -69,6 +70,7 @@ async def ping() -> Dict[str, str]:
 @consume_action("auto_fill_cv_from_document")
 async def auto_fill_cv_from_document(
     file: UploadFile = File(...),
+    profile_service: ProfileService = Depends(get_profile_service),
 ) -> Response:
     if file.content_type != "application/pdf":
         return JSONResponse(
@@ -83,8 +85,11 @@ async def auto_fill_cv_from_document(
     try:
         extractor = TextExtractor(contents)
         text = extractor.extract_text()
-        num_pages = extractor.num_pages()
         extractor.close()
+
+        profile = await AutoFillProfilePipeline().run(text)
+
+        await profile_service.sync_profile(get_user_id(), profile)
 
         return JSONResponse(
             content={
