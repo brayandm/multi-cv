@@ -140,6 +140,10 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
             onProjectChange(index, "start_date", value);
           },
           value: project?.start_date || "",
+          isRequired:
+            project?.start_date != "" ||
+            project?.end_date != "" ||
+            project?.is_present,
         };
 
         const endDateInput: IDynamicInput<string & boolean> = {
@@ -150,6 +154,10 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
           },
           isDisabled: project?.is_present,
           value: project?.end_date || "",
+          isRequired:
+            project?.start_date != "" ||
+            project?.end_date != "" ||
+            project?.is_present,
         };
 
         const isPresentInput: IDynamicInput<string & boolean> = {

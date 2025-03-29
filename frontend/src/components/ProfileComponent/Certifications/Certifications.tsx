@@ -160,6 +160,10 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
             onCertificationChange(index, "issue_date", value);
           },
           value: certification?.issue_date || "",
+          isRequired:
+            certification?.issue_date != "" ||
+            certification?.expiration_date != "" ||
+            certification?.hasnt_expiration_date,
         };
 
         const expirationDateInput: IDynamicInput<string & boolean> = {
@@ -170,6 +174,10 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
           },
           isDisabled: certification?.hasnt_expiration_date,
           value: certification?.expiration_date || "",
+          isRequired:
+            certification?.issue_date != "" ||
+            certification?.expiration_date != "" ||
+            certification?.hasnt_expiration_date,
         };
 
         const hasntExpirationDateInput: IDynamicInput<string & boolean> = {
