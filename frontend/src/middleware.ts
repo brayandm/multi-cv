@@ -26,7 +26,9 @@ export async function middleware(req: NextRequest) {
     url.pathname
   );
 
-  const isProfileInitialPage = url.pathname === "/profile/initial";
+  const isProfileInitialPage =
+    url.pathname === "/profile/initial" ||
+    url.pathname === "/profile/auto-fill";
 
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
 

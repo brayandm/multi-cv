@@ -16,7 +16,11 @@ import { UserResponse } from "@/lib/types";
 import useSWR from "swr";
 import { userApiLink } from "@/lib/links";
 import { fetcherApi, talentPoolApi } from "@/lib/backendService";
-import { DEFAULT_CARD_MAX_WIDTH, DEFAULT_CARD_WIDTH } from "@/lib/consts";
+import {
+  DEFAULT_CARD_HEIGHT,
+  DEFAULT_CARD_MAX_WIDTH,
+  DEFAULT_CARD_WIDTH,
+} from "@/lib/consts";
 
 export default function SettingsComponent() {
   const t = useTranslations();
@@ -51,6 +55,7 @@ export default function SettingsComponent() {
 
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
+  const height = DEFAULT_CARD_HEIGHT;
 
   return (
     <main className="flex justify-center">
@@ -61,15 +66,11 @@ export default function SettingsComponent() {
         }}
       >
         <form className="flex flex-col gap-2">
-          <Card className="min-h-[75vh]">
+          <Card style={{ height: `${height}px` }}>
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
-                <h1 className="text-xl font-bold">
-                  {t("common.menu.settings")}
-                </h1>
-                <p className="text-sm text-muted-foreground">
-                  {t("pages.settings.subtitle")}
-                </p>
+                <h1>{t("common.menu.settings")}</h1>
+                <p>{t("pages.settings.subtitle")}</p>
               </div>
             </CardHeader>
             <CardBody className="flex flex-col gap-6">

@@ -42,7 +42,8 @@
       "basic": "Basic",
       "intermediate": "Intermediate",
       "professional": "Professional",
-      "native": "Native"
+      "native": "Native",
+      "upload_cv": "Upload your CV (PDF)"
     },
     "buttons": {
       "continue": "Continue",
@@ -62,7 +63,8 @@
       "save": "Save",
       "discard": "Discard",
       "keep_editing": "Keep editing",
-      "clear": "Clear"
+      "clear": "Clear",
+      "autofill_button": "Fill profile from CV"
     },
     "errors": {
       "login": "Login failed",
@@ -276,6 +278,10 @@
       "success": {
         "title": "Registration Completed",
         "message": "Your account is ready. You can now access all the platform's features."
+      },
+      "auto_fill": {
+        "title": "Upload your CV to fill your profile",
+        "message": "Save time by uploading your existing CV — we'll extract the information and fill in your profile for you automatically."
       }
     },
     "terms_and_conditions": {
