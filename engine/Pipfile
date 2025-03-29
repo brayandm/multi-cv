@@ -20,6 +20,8 @@ pydantic = {extras = ["email"], version = "*"}
 motor = "*"
 phonenumbers = "*"
 playwright = "*"
+python-multipart = "*"
+pymupdf = "*"
 
 [dev-packages]
 black = "*"

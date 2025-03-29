@@ -3,7 +3,7 @@ import os
 from io import BytesIO
 from typing import Any, Dict, Optional
 
-from fastapi import APIRouter, Depends, FastAPI
+from fastapi import APIRouter, Depends, FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
 
@@ -41,6 +41,7 @@ from app.utils.parsers import get_first_name_last_name
 from app.utils.playwright import get_browser
 from app.worker.queue_manager import QueueManager
 
+
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
@@ -61,6 +62,28 @@ router = APIRouter(prefix="/api/v1")
 @router.get("/ping")
 async def ping() -> Dict[str, str]:
     return {"message": "pong"}
+
+
+@router.post("/auto-fill/cv/from-document")
+@commit_action_after()
+@consume_action("auto_fill_cv_from_document")
+async def auto_fill_cv_from_document(
+    file: UploadFile = File(...),
+) -> Response:
+    if file.content_type != "application/pdf":
+        return JSONResponse(
+            status_code=400,
+            content={
+                "error": "Invalid file type. Only PDF files are allowed."
+            },
+        )
+
+    return JSONResponse(
+        content={
+            "message": "Document Processed successfully.",
+        },
+        status_code=202,
+    )
 
 
 @router.post("/generate/cv/inline")
