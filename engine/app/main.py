@@ -19,10 +19,10 @@ from app.classes.models import (
     WebhookPayload,
 )
 from app.classes.pipelines import (
+    AutoFillProfilePipeline,
     ChatExperiencePipeline,
     GenerateCvPipeline,
     RenderCVPipeline,
-    AutoFillProfilePipeline,
 )
 from app.database.mongodb import lifespan
 from app.facades.document_render_facade import DocumentRenderFacade
