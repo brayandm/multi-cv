@@ -395,4 +395,30 @@ class AuthController extends Controller
             'Content-Disposition' => 'inline; filename="'.$media->file_name.'"',
         ]);
     }
+
+    public function updateTheme(Request $request)
+    {
+        $user = $request->user();
+
+        $validator = Validator::make($request->all(), [
+            'theme' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $user->update([
+            'theme' => $request->theme,
+        ]);
+
+        return response()->json(['message' => 'Theme updated successfully']);
+    }
+
+    public function getTheme(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json(['theme' => $user->theme]);
+    }
 }

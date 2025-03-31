@@ -270,7 +270,7 @@ export default function RegisterComponent() {
             size="sm"
           />
           <span
-            className="text-[9px] text-gray-600 text-left
+            className="text-[9px] text-gray-600 dark:text-gray-300 text-left
           "
           >
             {t("common.legal.confirm_age")}
@@ -289,7 +289,7 @@ export default function RegisterComponent() {
             onChange={handleCheckboxChange}
             size="sm"
           />
-          <span className="text-[9px] text-gray-600 text-left">
+          <span className="text-[9px] text-gray-600 dark:text-gray-300 text-left">
             {t.rich("common.legal.accept_terms", {
               termsConditions: () => (
                 <Link
@@ -325,7 +325,7 @@ export default function RegisterComponent() {
             size="sm"
           />
           <span
-            className="text-[9px] text-gray-600 text-left
+            className="text-[9px] text-gray-600 dark:text-gray-300 text-left
           "
           >
             {t("common.legal.talent_pool")}

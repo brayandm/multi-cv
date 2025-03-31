@@ -11,7 +11,15 @@ import { userApiLink } from "@/lib/links";
 import useSWR from "swr";
 // import CvList from "../../shared/components/CvList";
 // import { CV } from "@/lib/types";
-import { Button, Spinner } from "@heroui/react";
+import {
+  Button,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalHeader,
+  Spinner,
+  useDisclosure,
+} from "@heroui/react";
 import { useEffect, useState } from "react";
 import { GetQuotaInfoResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
@@ -33,6 +41,8 @@ export default function HomeComponent() {
 
   const [isQuotaInfoLoading, setIsQuotaInfoLoading] = useState(false);
   const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
+
+  const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const t = useTranslations();
 
@@ -160,9 +170,16 @@ export default function HomeComponent() {
           <div className="flex justify-center">
             <Button
               color="primary"
-              onPress={() => (true ? handleDocument(true) : redirectEditCv())}
+              onPress={async () => {
+                onOpen();
+                if (true) {
+                  await handleDocument(true);
+                } else {
+                  await redirectEditCv();
+                }
+                onClose();
+              }}
               isDisabled={isCvLoading || quotaInfo?.left === 0}
-              isLoading={isCvLoading}
             >
               {t("common.texts.generate_cv")}
             </Button>
@@ -183,6 +200,28 @@ export default function HomeComponent() {
           <Spinner variant="dots" />
         </div>
       )}
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        hideCloseButton
+        isDismissable={false}
+      >
+        <ModalContent>
+          {() => (
+            <>
+              <ModalHeader className="text-center">
+                {t("common.texts.loading_generating_cv_title")}
+              </ModalHeader>
+              <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
+                <Spinner />
+                <p className="text-center text-sm text-gray-600 dark:text-gray-300">
+                  {t("common.texts.loading_generating_cv_description")}
+                </p>
+              </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
     </main>
   );
 }

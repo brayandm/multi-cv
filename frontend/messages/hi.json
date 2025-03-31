@@ -44,8 +44,11 @@
             "professional": "Peshawar",
             "native": "Mool",
             "upload_cv": "Apna CV upload karein (PDF)",
-            "loading_title": "Aapka CV process ho raha hai",
-            "loading_autofill": "Kripya intezaar karein jab tak hum aapka profile bharte hain..."
+            "loading_autofill_title": "Aapka CV process ho raha hai",
+            "loading_autofill_description": "Kripya intezaar karein jab tak hum aapka profile bharte hain...",
+            "loading_generating_cv_title": "Aapka CV bana rahe hain",
+            "loading_generating_cv_description": "Kripya intezaar karein jab tak hum aapka CV banaate hain...",
+            "only_year": "Sirf saal"
         },
         "buttons": {
             "continue": "Aage badhein",
@@ -61,7 +64,7 @@
             "go_home": "Ghar jao",
             "add_element": "{element} jodna",
             "delete": "Hataana",
-            "cancel": "Cancel",
+            "cancel": "Radd karein",
             "save": "Bachana",
             "discard": "Hataana",
             "keep_editing": "Editing jaari rakhein",
@@ -78,15 +81,15 @@
             "old_password_incorrect": "Maujooda password galat hai",
             "server": "Server mein galti",
             "under_age": "Aapko 18 saal se upar hona chahiye",
-            "accept_terms": "Aapko terms aur conditions ko sweekar karna hoga",
-            "length": "{field} ki lambai {current_length}/{length} characters honi chahiye",
+            "accept_terms": "Aapko shartein aur niyam manzoor karne chahiye",
+            "length": "{field} ki lambai {current_length}/{length} akshar honi chahiye",
             "skill_length": "Aapko kam se kam {min} skill daalni chahiye",
             "country_code_required": "Ek desh ka code chuniye",
-            "max_elements": "Adhik {element} ki sankhya pahunch gayi",
+            "max_elements": "{element} ki adhiktam sankhya tak pahunch gaya",
             "max_elements_description": "Aap sirf {max} {element} jod sakte hain",
             "required": "Kripya is kshetra ko bharein.",
             "invalid_email": "Aapka diya gaya email valid nahi hai",
-            "password_too_short": "Password kam se kam {min} characters lamba hona chahiye",
+            "password_too_short": "Password kam se kam {min} akshar lamba hona chahiye",
             "select_date": "Kripya ek tareekh chuniye",
             "invalid_phone": "Phone number valid nahi hai",
             "settings": "Settings update mein asafalta",
@@ -95,7 +98,7 @@
         },
         "success": {
             "password_change": "Password badal gaya",
-            "password_change_description": "Aapka password safalta se badal gaya hai."
+            "password_change_description": "Aapka password safalta se badal gaya."
         },
         "form": {
             "first_name": "Pehla naam",
@@ -104,7 +107,7 @@
             "password": "Password",
             "current_password": "Maujooda password",
             "new_password": "Naya password",
-            "repeat_password": "Password dohraein",
+            "repeat_password": "Password dohraayein",
             "your_location": "Aapka sthal",
             "phone": "Phone number",
             "about": "Aapke baare mein",
@@ -147,13 +150,13 @@
             "enter_about": "Main ek ... hoon",
             "enter_company_name": "Company ka naam",
             "enter_institution_name": "Sansthan ka naam",
-            "enter_career": "Aapne yahan kaunsa degree kiya",
+            "enter_career": "Jo degree aapne yahan padhi / padh rahe hain",
             "enter_role": "Aapki company mein bhumika",
             "enter_job_description": "Aapke kaam aur zimmedariyon ka varnan",
             "enter_your_location": "Sheher, Desh",
             "enter_location": "\"Sheher, Desh\" ya \"Remote\"",
             "enter_project_name": "Pariyojana ka naam daalein",
-            "enter_project_description": "Ek chhota varnan daalein",
+            "enter_project_description": "Ek sankshipt varnan daalein",
             "enter_project_link": "Aapki pariyojana ka link",
             "enter_institution_link": "Sansthan ka link",
             "enter_company_link": "Company ka link",
@@ -163,16 +166,16 @@
             "enter_certification_issuer": "Jari karne wale ka naam daalein",
             "enter_certification_certificate_id": "Pramanpatra ID",
             "enter_certification_verification_url": "Paryavekshan URL daalein",
-            "enter_certification_description": "Ek chhota varnan daalein",
+            "enter_certification_description": "Ek sankshipt varnan daalein",
             "enter_language": "Ek bhasha daalein",
             "select_language_level": "Ek star chuniye"
         },
         "legal": {
-            "terms_conditions": "Terms & Conditions",
+            "terms_conditions": "Shartein & Niyam",
             "privacy_policy": "Gopniyata Niti",
-            "confirm_age": "Main sweekar karta hoon ki main 18 saal se upar hoon",
-            "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko sweekar karta hoon",
-            "talent_pool": "Recruiters ko meri profile dekhne ki anumati dein."
+            "confirm_age": "Main yah pushti karta hoon ki main 18 saal se upar hoon",
+            "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko manzoor karta hoon",
+            "talent_pool": "Bharti karne walon ko meri profile dekhne ki anumati dein."
         },
         "months": {
             "january": "Janvari",
@@ -200,12 +203,12 @@
         "email_verification": {
             "title": "Email Paryavekshan",
             "already_verified": {
-                "title": "Email Paryavekshan Pehle Se Hi Paryavekshit",
-                "message": "Aapka email pehle se hi paryavekshit hai."
+                "title": "Email Paryavekshan Pehle Se Manzoor",
+                "message": "Aapka email pehle se hi manzoor ho chuka hai."
             },
             "success": {
                 "title": "Email Paryavekshan Safal",
-                "message": "Aapka email paryavekshit ho gaya hai."
+                "message": "Aapka email manzoor ho gaya hai."
             },
             "expired": {
                 "title": "Email Paryavekshan Samapt",
@@ -279,8 +282,8 @@
                 }
             },
             "success": {
-                "title": "Registration Pura Hua",
-                "message": "Aapka account tayar hai. Aap ab platform ke sabhi features ka istemal kar sakte hain."
+                "title": "Registration Pura",
+                "message": "Aapka account tayaar hai. Aap ab platform ke sabhi features ka istemal kar sakte hain."
             },
             "auto_fill": {
                 "title": "Apna CV upload karein taaki aapka profile bharein",
@@ -288,10 +291,10 @@
             }
         },
         "terms_and_conditions": {
-            "title": "Gopniyata Niti aur Terms & Conditions",
-            "description_first_time": "Kripya padhein aur sweekar karein.",
-            "updating_notice": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. Naye terms ek mahine mein lagu honge aur usse pehle review ke liye uplabdh honge. Kripya aane wale badlaav ko dekhne ke liye kuch samay nikaalein.",
-            "accept_terms": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. \"Aage badhein\" par click karke, aap naye terms ko sweekar karte hain."
+            "title": "Gopniyata Niti aur Shartein & Niyam",
+            "description_first_time": "Kripya padhein aur manzoor karein.",
+            "updating_notice": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. Naye shartein ek mahine mein lagu hongi aur usse pehle review ke liye uplabdh hongi. Kripya aane wale badlaav ko dekhne ke liye kuch samay nikaalein.",
+            "accept_terms": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. \"Aage badhein\" par click karke, aap naye shartein ko manzoor karte hain."
         }
     }
 }

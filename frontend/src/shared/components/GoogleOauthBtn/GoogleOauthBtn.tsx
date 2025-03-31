@@ -2,14 +2,14 @@ import { Button, ButtonProps } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-export const GoogleIcon = ({}) => {
+export const GoogleIcon = () => {
   return (
     <Image
       alt="Google Logo"
       width={20}
       height={20}
       src="icons/companies/google.svg"
-    ></Image>
+    />
   );
 };
 
@@ -22,7 +22,7 @@ export default function GoogleOauthBtn({ ...props }: GoogleOauthBtnProps) {
   return (
     <div className="w-full gap-4 items-center">
       <Button
-        className="w-full bg-white shadow-md !font-light"
+        className="w-full bg-white text-black shadow-md !font-light dark:bg-default-50 dark:text-white dark:border dark:border-default-200"
         startContent={<GoogleIcon />}
         color="default"
         {...props}

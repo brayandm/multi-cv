@@ -55,7 +55,7 @@ const ProfilePhotoUploader = ({
   return (
     <div className="flex relative flex-col">
       <div
-        className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center cursor-pointer overflow-hidden"
+        className="w-24 h-24 bg-gray-200 dark:bg-default-100 rounded-full flex items-center justify-center cursor-pointer overflow-hidden"
         onClick={handleClick}
       >
         {image ? (
@@ -76,7 +76,7 @@ const ProfilePhotoUploader = ({
         <button
           type="button"
           onClick={handleRemoveImage}
-          className="absolute top-[-0.25rem] right-[-0.25rem] bg-red-500 text-white rounded-full p-1 hover:bg-red-600"
+          className="absolute top-[-0.25rem] right-[-0.25rem] bg-danger text-white rounded-full p-1 hover:bg-danger-300"
         >
           <XMarkIcon className="w-4 h-4" />
         </button>
@@ -90,7 +90,11 @@ const ProfilePhotoUploader = ({
         accept="image/*"
       />
 
-      {error && <p className="text-red-500 text-xs mt-2 w-24">{error}</p>}
+      {error && (
+        <p className="text-danger font-light text-center text-xs mt-2 w-24">
+          {error}
+        </p>
+      )}
     </div>
   );
 };

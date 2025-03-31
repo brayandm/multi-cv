@@ -44,8 +44,11 @@
             "professional": "Profesional",
             "native": "Nativo",
             "upload_cv": "Sube tu CV (PDF)",
-            "loading_title": "Procesando tu CV",
-            "loading_autofill": "Por favor espera mientras llenamos tu perfil..."
+            "loading_autofill_title": "Procesando tu CV",
+            "loading_autofill_description": "Por favor espera mientras llenamos tu perfil...",
+            "loading_generating_cv_title": "Generando tu CV",
+            "loading_generating_cv_description": "Por favor espera mientras generamos tu CV...",
+            "only_year": "Solo año"
         },
         "buttons": {
             "continue": "Continuar",
@@ -204,7 +207,7 @@
                 "message": "Tu correo ya ha sido verificado."
             },
             "success": {
-                "title": "Verificación de Correo Exitosa",
+                "title": "Éxito en la Verificación de Correo",
                 "message": "Tu correo ha sido verificado."
             },
             "expired": {
@@ -216,7 +219,7 @@
         "password_recovery": {
             "title": "Recuperación de Contraseña",
             "success": {
-                "title": "Recuperación de Contraseña Exitosa",
+                "title": "Éxito en la Recuperación de Contraseña",
                 "message": "Tu contraseña ha sido cambiada."
             },
             "fail": {

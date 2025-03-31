@@ -5,6 +5,7 @@ import { MarginTopContainer } from "./main.styles";
 import { getLocale } from "next-intl/server";
 import { ClientLayout } from "./ClientLayout";
 import Providers from "./providers";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,9 +49,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = await getLocale();
+  const theme = (await cookies()).get("theme")?.value || "light";
 
   return (
-    <html lang={locale} className="flex h-screen">
+    <html lang={locale} className={`flex h-screen ${theme}`}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex-grow `}
       >

@@ -18,6 +18,7 @@ import LanguageToggle from "../LanguageToggle";
 import { useTranslations } from "next-intl";
 import { useInterceptor } from "@/contexts/InterceptorContext";
 import { usePathname, useRouter } from "next/navigation";
+import ThemeToggle from "../ThemeToggle";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   onlyLogout,
@@ -210,6 +211,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           </NavbarMenu>
         </>
       )}
+      <ThemeToggle />
       <LanguageToggle />
     </NavbarUI>
   );

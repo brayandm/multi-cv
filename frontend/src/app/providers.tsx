@@ -8,6 +8,7 @@ import { UserStatusProvider } from "@/contexts/UserStatusContext";
 import { InterceptorProvider } from "@/contexts/InterceptorContext";
 import { ChatProvider } from "@/contexts/ChatContext";
 import { CvProvider } from "@/contexts/CvContext";
+import { ThemeProvider } from "@/contexts/ThemeContext";
 
 export default async function Providers({
   children,
@@ -21,15 +22,17 @@ export default async function Providers({
       <ToastProvider />
       <NextIntlClientProvider messages={messages}>
         <LocaleProvider>
-          <InterceptorProvider>
-            <ChatProvider>
-              <UserStatusProvider>
-                <ProfileProvider>
-                  <CvProvider>{children}</CvProvider>
-                </ProfileProvider>
-              </UserStatusProvider>
-            </ChatProvider>
-          </InterceptorProvider>
+          <ThemeProvider>
+            <InterceptorProvider>
+              <ChatProvider>
+                <UserStatusProvider>
+                  <ProfileProvider>
+                    <CvProvider>{children}</CvProvider>
+                  </ProfileProvider>
+                </UserStatusProvider>
+              </ChatProvider>
+            </InterceptorProvider>
+          </ThemeProvider>
         </LocaleProvider>
       </NextIntlClientProvider>
     </HeroUIProvider>

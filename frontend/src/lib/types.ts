@@ -68,6 +68,10 @@ export interface generateCvInlineNoRenderResponse {
   cv_texts: CvTexts;
 }
 
+export interface UserThemeResponse {
+  theme: string;
+}
+
 export interface CV {
   id: number;
   company: string;

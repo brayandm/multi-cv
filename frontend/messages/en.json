@@ -44,8 +44,11 @@
       "professional": "Professional",
       "native": "Native",
       "upload_cv": "Upload your CV (PDF)",
-      "loading_title": "Processing your CV",
-      "loading_autofill": "Please wait while we fill in your profile..."
+      "loading_autofill_title": "Processing your CV",
+      "loading_autofill_description": "Please wait while we fill in your profile...",
+      "loading_generating_cv_title": "Generating your CV",
+      "loading_generating_cv_description": "Please wait while we generate your CV...",
+      "only_year": "Only year"
     },
     "buttons": {
       "continue": "Continue",

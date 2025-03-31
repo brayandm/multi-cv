@@ -58,8 +58,25 @@ export default {
           },
         },
         dark: {
-          // ...
-          colors: {},
+          colors: {
+            primary: {
+              50: "#E3F8FF",
+              100: "#C1EEFF",
+              200: "#9BDEFF",
+              300: "#73CCFF",
+              400: "#4BB9FF",
+              500: "#24A5FF", // Base
+              600: "#1A94E0",
+              700: "#147FC0",
+              800: "#0F6AA0",
+              900: "#084B70",
+              DEFAULT: "#24A5FF",
+            },
+
+            focus: {
+              DEFAULT: "#ffffff22",
+            },
+          },
         },
         // ... custom themes
       },

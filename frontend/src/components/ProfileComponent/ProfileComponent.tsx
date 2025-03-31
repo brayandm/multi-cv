@@ -31,6 +31,7 @@ import Certifications from "./Certifications";
 import Languages from "./Languages";
 import {
   DEFAULT_CARD_HEIGHT,
+  DEFAULT_CARD_MAX_HEIGHT,
   DEFAULT_CARD_MAX_WIDTH,
   DEFAULT_CARD_WIDTH,
 } from "@/lib/consts";
@@ -46,6 +47,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
   const height = DEFAULT_CARD_HEIGHT;
+  const maxHeight = DEFAULT_CARD_MAX_HEIGHT;
 
   const { refreshUserStatus } = useUserStatus();
   useEffect(() => {
@@ -206,6 +208,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
           <Card
             style={{
               height: `${height}px`,
+              maxHeight: `${maxHeight}vh`,
             }}
           >
             <CardHeader className="pb-0 flex flex-col items-start">
@@ -313,7 +316,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
           <div className="flex flex-row justify-between gap-1">
             {isFirstLogin &&
               (!(mapPosition[selectedTab] == 0) || showFirstPrevButton) && (
-                <Card className="mb-3 w-full">
+                <Card className="w-full">
                   <Button
                     color="primary"
                     onPress={() => {
@@ -330,7 +333,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
                 </Card>
               )}
             {isFirstLogin && (
-              <Card className="mb-3 w-full">
+              <Card className="w-full">
                 <Button
                   color="primary"
                   onPress={async () => {
@@ -352,7 +355,7 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
             )}
             {!isFirstLogin && (
               <>
-                <Card className="mb-3 w-full">
+                <Card className="w-full">
                   <Button
                     color="primary"
                     onPress={async () => {

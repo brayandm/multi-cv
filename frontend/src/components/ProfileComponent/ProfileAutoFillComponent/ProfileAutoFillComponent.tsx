@@ -16,6 +16,7 @@ import {
 } from "@heroui/react";
 import {
   DEFAULT_CARD_HEIGHT,
+  DEFAULT_CARD_MAX_HEIGHT,
   DEFAULT_CARD_MAX_WIDTH,
   DEFAULT_CARD_WIDTH,
 } from "@/lib/consts";
@@ -35,6 +36,7 @@ export default function ProfileAutoCvComponent() {
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
   const height = DEFAULT_CARD_HEIGHT;
+  const maxHeight = DEFAULT_CARD_MAX_HEIGHT;
 
   const { pullProfile } = useProfile();
 
@@ -109,6 +111,7 @@ export default function ProfileAutoCvComponent() {
           maxWidth: `${maxWidth}vw`,
           width: `${width}px`,
           height: `${height}px`,
+          maxHeight: `${maxHeight}vh`,
         }}
       >
         <form className="flex flex-col gap-2">
@@ -122,15 +125,15 @@ export default function ProfileAutoCvComponent() {
             <CardBody className="flex flex-col gap-6">
               <label
                 htmlFor="pdf-upload"
-                className="flex items-center justify-center gap-2 border border-dashed border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition"
+                className="flex items-center justify-center gap-2 border border-dashed border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-default-100 transition"
               >
                 {file ? (
-                  <div className="flex items-center gap-2 text-sm text-gray-700">
+                  <div className="flex h-6 items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                     <DocumentTextIcon className="w-5 h-5 text-primary" />
                     {file.name}
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2 text-gray-500">
+                  <div className="flex h-6 items-center gap-2 text-gray-500 dark:text-gray-300">
                     <PlusIcon className="w-5 h-5" />
                     <span>{t("common.texts.upload_cv")}</span>
                   </div>
@@ -145,11 +148,13 @@ export default function ProfileAutoCvComponent() {
               </label>
 
               <div className="flex flex-col justify-between items-center w-full">
-                {file && (
-                  <Button color="secondary" onPress={handleAutofill}>
-                    {t("common.buttons.autofill_button")}
-                  </Button>
-                )}
+                <Button
+                  color="secondary"
+                  onPress={handleAutofill}
+                  isDisabled={!file}
+                >
+                  {t("common.buttons.autofill_button")}
+                </Button>
               </div>
             </CardBody>
           </Card>
@@ -178,12 +183,12 @@ export default function ProfileAutoCvComponent() {
           {() => (
             <>
               <ModalHeader className="text-center">
-                {t("common.texts.loading_title")}
+                {t("common.texts.loading_autofill_title")}
               </ModalHeader>
               <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
                 <Spinner />
-                <p className="text-center text-sm text-gray-600">
-                  {t("common.texts.loading_autofill")}
+                <p className="text-center text-sm text-gray-600 dark:text-gray-300">
+                  {t("common.texts.loading_autofill_description")}
                 </p>
               </ModalBody>
             </>
