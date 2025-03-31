@@ -125,12 +125,12 @@ export default function ProfileAutoCvComponent() {
                 className="flex items-center justify-center gap-2 border border-dashed border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-default-100 transition"
               >
                 {file ? (
-                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
+                  <div className="flex h-6 items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                     <DocumentTextIcon className="w-5 h-5 text-primary" />
                     {file.name}
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2 text-gray-500 dark:text-gray-300">
+                  <div className="flex h-6 items-center gap-2 text-gray-500 dark:text-gray-300">
                     <PlusIcon className="w-5 h-5" />
                     <span>{t("common.texts.upload_cv")}</span>
                   </div>
@@ -145,11 +145,13 @@ export default function ProfileAutoCvComponent() {
               </label>
 
               <div className="flex flex-col justify-between items-center w-full">
-                {file && (
-                  <Button color="secondary" onPress={handleAutofill}>
-                    {t("common.buttons.autofill_button")}
-                  </Button>
-                )}
+                <Button
+                  color="secondary"
+                  onPress={handleAutofill}
+                  isDisabled={!file}
+                >
+                  {t("common.buttons.autofill_button")}
+                </Button>
               </div>
             </CardBody>
           </Card>
