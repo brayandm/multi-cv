@@ -172,7 +172,7 @@ export const Footer = () => {
     >
       <motion.div className="mb-2" {...fadeInUp}>
         <Link href="/" className="hover:text-black dark:hover:text-white mx-2">
-          Homepage
+          Main Page
         </Link>
         <a
           href="/privacy-policy"
