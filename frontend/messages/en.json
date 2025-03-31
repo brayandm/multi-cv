@@ -94,7 +94,8 @@
       "invalid_phone": "The phone number is not valid",
       "settings": "Settings update failed",
       "file_size": "The file size should be less than {max}MB",
-      "autofill": "Autofill failed"
+      "autofill": "Autofill failed",
+      "dates_impossible": "The end date must be after the start date"
     },
     "success": {
       "password_change": "Password changed",

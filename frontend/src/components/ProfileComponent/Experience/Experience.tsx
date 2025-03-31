@@ -12,6 +12,7 @@ import Paginator from "../Paginator";
 import { MAX_EXPERIENCE_ELEMENTS, SCREEN_SIZES } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { datesValidator } from "@/lib/dates";
 
 interface IExperienceProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -202,6 +203,18 @@ const Experience = ({ formRef, width, maxWidth }: IExperienceProps) => {
           value: experience?.end_date || "",
           isDisabled: experience?.is_present,
           isRequired: true,
+          isInvalid: datesValidator(
+            experience?.start_date,
+            experience?.end_date
+          )
+            ? undefined
+            : true,
+          errorMessage: datesValidator(
+            experience?.start_date,
+            experience?.end_date
+          )
+            ? undefined
+            : t("common.errors.dates_impossible"),
         };
 
         const isPresentInput: IDynamicInput<string & boolean> = {
@@ -238,12 +251,12 @@ const Experience = ({ formRef, width, maxWidth }: IExperienceProps) => {
         return (
           <div
             key={experience.id}
-            className={`mb-4 px-1 snap-center`}
+            className={`mb-4 snap-center`}
             style={{
               minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
             }}
           >
-            <div className={`h-[300px] overflow-y-auto overflow-x-hidden`}>
+            <div className={`h-[300px] overflow-y-auto px-1`}>
               <DynamicInputs inputs={inputs} />
             </div>
           </div>

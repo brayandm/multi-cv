@@ -11,6 +11,7 @@ import Paginator from "../Paginator";
 import { MAX_EDUCATION_ELEMENTS, SCREEN_SIZES } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { datesValidator } from "@/lib/dates";
 
 interface IEducationProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -157,6 +158,15 @@ const Education = ({ formRef, width, maxWidth }: IEducationProps) => {
           isDisabled: education?.is_present,
           value: education?.end_date || "",
           isRequired: true,
+          isInvalid: datesValidator(education?.start_date, education?.end_date)
+            ? undefined
+            : true,
+          errorMessage: datesValidator(
+            education?.start_date,
+            education?.end_date
+          )
+            ? undefined
+            : t("common.errors.dates_impossible"),
         };
 
         const isPresentInput: IDynamicInput<string & boolean> = {
@@ -192,12 +202,12 @@ const Education = ({ formRef, width, maxWidth }: IEducationProps) => {
         return (
           <div
             key={education.id}
-            className={`mb-4 px-1 snap-center`}
+            className={`mb-4 snap-center`}
             style={{
               minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
             }}
           >
-            <div className="h-[300px] overflow-y-auto overflow-x-hidden">
+            <div className="h-[300px] overflow-y-auto overflow-x-hidden px-1">
               <DynamicInputs inputs={inputs} />
             </div>
           </div>

@@ -11,6 +11,7 @@ import Paginator from "../Paginator";
 import { MAX_CERTIFICATIONS_ELEMENTS, SCREEN_SIZES } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { datesValidator } from "@/lib/dates";
 
 interface ICertificationsProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -178,6 +179,18 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
             certification?.issue_date != "" ||
             certification?.expiration_date != "" ||
             certification?.hasnt_expiration_date,
+          isInvalid: datesValidator(
+            certification?.issue_date,
+            certification?.expiration_date
+          )
+            ? undefined
+            : true,
+          errorMessage: datesValidator(
+            certification?.issue_date,
+            certification?.expiration_date
+          )
+            ? undefined
+            : t("common.errors.dates_impossible"),
         };
 
         const hasntExpirationDateInput: IDynamicInput<string & boolean> = {
@@ -215,12 +228,12 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
         return (
           <div
             key={certification.id}
-            className={`mb-4 px-1 snap-center`}
+            className={`mb-4 snap-center`}
             style={{
               minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
             }}
           >
-            <div className="h-[300px] overflow-y-auto overflow-x-hidden">
+            <div className="h-[300px] overflow-y-auto overflow-x-hidden px-1">
               <DynamicInputs inputs={inputs} />
             </div>
           </div>

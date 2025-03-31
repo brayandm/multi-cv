@@ -94,7 +94,8 @@
             "invalid_phone": "El número de teléfono no es válido",
             "settings": "Error al actualizar configuraciones",
             "file_size": "El tamaño del archivo debe ser menor a {max}MB",
-            "autofill": "Error al autocompletar"
+            "autofill": "Error al autocompletar",
+            "dates_impossible": "La fecha de finalización debe ser posterior a la fecha de inicio"
         },
         "success": {
             "password_change": "Contraseña cambiada",
@@ -150,7 +151,7 @@
             "enter_about": "Soy un/a ...",
             "enter_company_name": "Nombre de la empresa",
             "enter_institution_name": "Nombre de la institución",
-            "enter_career": "El título que estudiaste / estudias aquí",
+            "enter_career": "La carrera que estudiaste / estudias aquí",
             "enter_role": "Tu rol en la empresa",
             "enter_job_description": "Una descripción de tus deberes y responsabilidades en el trabajo",
             "enter_your_location": "Ciudad, País",
@@ -203,7 +204,7 @@
         "email_verification": {
             "title": "Verificación de Correo",
             "already_verified": {
-                "title": "Verificación de Correo Ya Verificado",
+                "title": "Verificación de Correo Ya Verificada",
                 "message": "Tu correo ya ha sido verificado."
             },
             "success": {

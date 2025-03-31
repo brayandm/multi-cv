@@ -97,11 +97,11 @@ export default function SelectDate({
       const formatted = isOnlyYear
         ? String(draftYear)
         : draftMonth
-          ? `${draftYear}-${String(months.indexOf(draftMonth) + 1).padStart(
-              2,
-              "0"
-            )}`
-          : "";
+        ? `${draftYear}-${String(months.indexOf(draftMonth) + 1).padStart(
+            2,
+            "0"
+          )}`
+        : "";
       onValueChange?.(formatted);
     }
 
@@ -171,22 +171,24 @@ export default function SelectDate({
                 ? isOnlyYear
                   ? `${selectedYear}`
                   : selectedMonth
-                    ? `${selectedMonth} ${selectedYear}`
-                    : "--------- ----"
+                  ? `${selectedMonth} ${selectedYear}`
+                  : "--------- ----"
                 : "--------- ----"
             }
             endContent={
               <CalendarIcon className="ml-[-5px] w-5 h-5 text-gray-500 cursor-pointer" />
             }
             isInvalid={
-              firstInteraction || !props.isRequired
+              props.isInvalid ||
+              (firstInteraction || !props.isRequired
                 ? undefined
                 : !props.isDisabled &&
-                  (selectedYear === null || (!isOnlyYear && !selectedMonth))
+                  (selectedYear === null || (!isOnlyYear && !selectedMonth)))
             }
             isRequired={props.isRequired}
             errorMessage={
-              props.isRequired ? undefined : t("common.errors.select_date")
+              props.errorMessage ||
+              (props.isRequired ? undefined : t("common.errors.select_date"))
             }
             validate={() =>
               props.isDisabled ||

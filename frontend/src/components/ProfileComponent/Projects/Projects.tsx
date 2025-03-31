@@ -11,6 +11,7 @@ import Paginator from "../Paginator";
 import { MAX_PROJECTS_ELEMENTS, SCREEN_SIZES } from "@/lib/consts";
 import { useChat } from "@/contexts/ChatContext";
 import { useWindowSize } from "@/hooks/useWindowSize";
+import { datesValidator } from "@/lib/dates";
 
 interface IProjectsProps {
   formRef: RefObject<HTMLFormElement | null>;
@@ -158,6 +159,12 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
             project?.start_date != "" ||
             project?.end_date != "" ||
             project?.is_present,
+          isInvalid: datesValidator(project?.start_date, project?.end_date)
+            ? undefined
+            : true,
+          errorMessage: datesValidator(project?.start_date, project?.end_date)
+            ? undefined
+            : t("common.errors.dates_impossible"),
         };
 
         const isPresentInput: IDynamicInput<string & boolean> = {
@@ -191,12 +198,12 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
         return (
           <div
             key={project.id}
-            className={`mb-4 px-1 snap-center`}
+            className={`mb-4 snap-center`}
             style={{
               minWidth: `calc(min(${maxWidth}vw, ${width}px) - 32px)`,
             }}
           >
-            <div className="h-[300px] overflow-y-auto overflow-x-hidden">
+            <div className="h-[300px] overflow-y-auto overflow-x-hidden px-1">
               <DynamicInputs inputs={inputs} />
             </div>
           </div>

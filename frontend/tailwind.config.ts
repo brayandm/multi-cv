@@ -74,7 +74,7 @@ export default {
             },
 
             focus: {
-              DEFAULT: "#ffffff22",
+              DEFAULT: "#ffffff00", // transparent
             },
           },
         },
