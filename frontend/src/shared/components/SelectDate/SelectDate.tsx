@@ -97,11 +97,11 @@ export default function SelectDate({
       const formatted = isOnlyYear
         ? String(draftYear)
         : draftMonth
-        ? `${draftYear}-${String(months.indexOf(draftMonth) + 1).padStart(
-            2,
-            "0"
-          )}`
-        : "";
+          ? `${draftYear}-${String(months.indexOf(draftMonth) + 1).padStart(
+              2,
+              "0"
+            )}`
+          : "";
       onValueChange?.(formatted);
     }
 
@@ -171,8 +171,8 @@ export default function SelectDate({
                 ? isOnlyYear
                   ? `${selectedYear}`
                   : selectedMonth
-                  ? `${selectedMonth} ${selectedYear}`
-                  : "--------- ----"
+                    ? `${selectedMonth} ${selectedYear}`
+                    : "--------- ----"
                 : "--------- ----"
             }
             endContent={
