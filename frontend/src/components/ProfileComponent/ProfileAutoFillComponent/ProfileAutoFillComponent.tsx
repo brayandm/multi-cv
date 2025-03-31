@@ -180,12 +180,12 @@ export default function ProfileAutoCvComponent() {
           {() => (
             <>
               <ModalHeader className="text-center">
-                {t("common.texts.loading_title")}
+                {t("common.texts.loading_autofill_title")}
               </ModalHeader>
               <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
                 <Spinner />
                 <p className="text-center text-sm text-gray-600 dark:text-gray-300">
-                  {t("common.texts.loading_autofill")}
+                  {t("common.texts.loading_autofill_description")}
                 </p>
               </ModalBody>
             </>
