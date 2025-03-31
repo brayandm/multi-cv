@@ -14,9 +14,12 @@ class AutoFillProfileAgent(Agent):
         profile_structure = get_schema(Profile)
 
         input_prompt = f"""
-        You are an AI assistant that automatically fills a Profile based on a
-        given text. Your task is to generate a Profile strictly in the JSON
-        format provided below.
+        You are an AI assistant whose task is to automatically generate
+        a structured Profile in JSON format based on a given input text.
+        The input may have been extracted from a PDF or another type
+        of document, so the information might be unstructured, incomplete,
+        or noisy. Your goal is to extract and organize the relevant information
+        strictly following the JSON schema provided below.
 
         **Requirements:**
         - In Languages, the only levels allowed are: "Basic", "Intermediate",
