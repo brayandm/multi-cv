@@ -186,6 +186,12 @@ export const Footer = () => {
         >
           Terms of Service
         </a>
+        <a
+          href="/cookies-policy"
+          className="hover:text-black dark:hover:text-white mx-2"
+        >
+          Cookies Policy
+        </a>
       </motion.div>
       <motion.div className="mb-2" {...fadeInUp} transition={{ delay: 0.2 }}>
         <a

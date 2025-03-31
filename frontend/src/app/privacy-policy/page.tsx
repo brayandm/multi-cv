@@ -140,7 +140,7 @@ export default function PrivacyPolicyPage() {
         We use cookies and similar tracking technologies to enhance user
         experience and analyze website traffic. By using the Service, You
         consent to the use of cookies as described in our
-        <a href="cookies-policy.html">Cookies Policy</a>.
+        <a href="cookies-policy">Cookies Policy</a>.
       </p>
 
       <h2>Your Rights Under GDPR</h2>

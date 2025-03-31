@@ -15,6 +15,11 @@
         <priority>0.5</priority>
         <changefreq>daily</changefreq>
     </url>
+     <url>
+        <loc>https://multicv.space/cookies-policy</loc>
+        <priority>0.5</priority>
+        <changefreq>daily</changefreq>
+    </url>
     <url>
         <loc>https://multicv.space/login</loc>
         <priority>0.5</priority>

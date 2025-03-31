@@ -276,7 +276,7 @@ export default function TermsAndConditionsPage() {
       <p>
         By using MultiCV, You agree to the use of cookies and similar tracking
         technologies as described in our
-        <a href="cookies-policy.html">Cookies Policy</a>.
+        <a href="cookies-policy">Cookies Policy</a>.
       </p>
       <p>
         Cookies help us enhance user experience, analyze website traffic, and
@@ -301,7 +301,7 @@ export default function TermsAndConditionsPage() {
         You can manage or disable cookies at any time through Your browser
         settings. For more information on how we use cookies and how You can
         manage them, please refer to our
-        <a href="cookies-policy.html">Cookies Policy</a>.
+        <a href="cookies-policy">Cookies Policy</a>.
       </p>
 
       <h2>Contact Us</h2>
