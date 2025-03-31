@@ -32,6 +32,8 @@ class AutoFillProfileAgent(Agent):
         - Dates should be formatted as YYYY-MM
         - The only professional links allowed are "GitHub", "LinkedIn",
         "Portfolio"
+        - Dont fill is_present or hasnt_expiration_date fields if the
+        dates are not provided.
 
         **Input profile data (text):**
         {text}
