@@ -104,7 +104,7 @@ export default function TermsAndConditionsPage() {
         store the generated CVs on our servers to enhance user experience and
         allow access to previously generated CVs. For more details on data
         privacy, please review our
-        <a href="privacy-policy.html">Privacy Policy</a>.
+        <a href="privacy-policy">Privacy Policy</a>.
       </p>
       <p>
         Our Service is strictly intended for users aged 18 years and older. If

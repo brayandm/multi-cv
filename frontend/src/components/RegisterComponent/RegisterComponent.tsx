@@ -293,7 +293,7 @@ export default function RegisterComponent() {
             {t.rich("common.legal.accept_terms", {
               termsConditions: () => (
                 <Link
-                  href="/terms-and-conditions.html"
+                  href="/terms-and-conditions"
                   target="_blank"
                   className="text-primary underline"
                 >
@@ -302,7 +302,7 @@ export default function RegisterComponent() {
               ),
               privacyPolicy: () => (
                 <Link
-                  href="/privacy-policy.html"
+                  href="/privacy-policy"
                   target="_blank"
                   className="text-primary underline"
                 >

@@ -6,12 +6,12 @@
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://multicv.space/privacy-policy.html</loc>
+        <loc>https://multicv.space/privacy-policy</loc>
         <priority>0.5</priority>
         <changefreq>daily</changefreq>
     </url>
     <url>
-        <loc>https://multicv.space/terms-and-conditions.html</loc>
+        <loc>https://multicv.space/terms-and-conditions</loc>
         <priority>0.5</priority>
         <changefreq>daily</changefreq>
     </url>

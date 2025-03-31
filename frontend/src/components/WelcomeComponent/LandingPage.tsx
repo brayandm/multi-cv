@@ -157,38 +157,43 @@ export default function LandingPage() {
           </Button>
         </motion.div>
       </motion.section>
-
-      {/* Footer */}
-      <motion.footer
-        className="bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-gray-200 dark:border-gray-800"
-        {...fadeInUp}
-      >
-        <motion.div className="mb-2" {...fadeInUp}>
-          <a
-            href="/privacy-policy.html"
-            className="hover:text-black dark:hover:text-white mx-2"
-          >
-            Privacy Policy
-          </a>
-          <a
-            href="/terms-and-conditions.html"
-            className="hover:text-black dark:hover:text-white mx-2"
-          >
-            Terms of Service
-          </a>
-        </motion.div>
-        <motion.div className="mb-2" {...fadeInUp} transition={{ delay: 0.2 }}>
-          <a
-            href="mailto:hello.multicv@gmail.com"
-            className="hover:text-black dark:hover:text-white"
-          >
-            Contact: hello.multicv@gmail.com
-          </a>
-        </motion.div>
-        <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
-          &copy; {new Date().getFullYear()} MultiCV. All rights reserved.
-        </motion.div>
-      </motion.footer>
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 }
+
+export const Footer = () => {
+  return (
+    <motion.footer
+      className="bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-gray-200 dark:border-gray-800"
+      {...fadeInUp}
+    >
+      <motion.div className="mb-2" {...fadeInUp}>
+        <a
+          href="/privacy-policy"
+          className="hover:text-black dark:hover:text-white mx-2"
+        >
+          Privacy Policy
+        </a>
+        <a
+          href="/terms-and-conditions"
+          className="hover:text-black dark:hover:text-white mx-2"
+        >
+          Terms of Service
+        </a>
+      </motion.div>
+      <motion.div className="mb-2" {...fadeInUp} transition={{ delay: 0.2 }}>
+        <a
+          href="mailto:hello.multicv@gmail.com"
+          className="hover:text-black dark:hover:text-white"
+        >
+          Contact: hello.multicv@gmail.com
+        </a>
+      </motion.div>
+      <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
+        &copy; {new Date().getFullYear()} MultiCV. All rights reserved.
+      </motion.div>
+    </motion.footer>
+  );
+};
