@@ -8,6 +8,8 @@ export default function WelcomeComponent() {
   const router = useRouter();
   const t = useTranslations();
 
+  // const isIframe = window.self !== window.top;
+
   return (
     <div className="flex flex-col mt-40 w-[280px] mx-auto">
       <h1 className="text-center">

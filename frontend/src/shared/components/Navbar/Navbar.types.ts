@@ -11,4 +11,5 @@ export interface ITopBarNavigationProps {
   settingsRoute?: boolean;
   homeRoute?: boolean;
   profileRoute?: boolean;
+  withAuthMethods?: boolean;
 }

@@ -25,6 +25,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   settingsRoute,
   homeRoute,
   profileRoute,
+  withAuthMethods,
 }) => {
   const { run } = useInterceptor();
 
@@ -54,7 +55,44 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
 
   return (
     <>
-      {onlyLogout ? (
+      {withAuthMethods ? (
+        <>
+          <NavbarMenuItem>
+            <Link
+              className="w-full cursor-pointer"
+              color={pathname == "/login" ? "primary" : "foreground"}
+              size="sm"
+              onPress={() => {
+                if (pathname != "/login")
+                  run({
+                    "navbar-routing": () => {
+                      router.push("/login");
+                    },
+                  });
+              }}
+            >
+              {t("common.auth.login")}
+            </Link>
+          </NavbarMenuItem>
+          <NavbarMenuItem>
+            <Link
+              className="w-full cursor-pointer"
+              color={pathname == "/register" ? "primary" : "foreground"}
+              size="sm"
+              onPress={() => {
+                if (pathname != "/register")
+                  run({
+                    "navbar-routing": () => {
+                      router.push("/register");
+                    },
+                  });
+              }}
+            >
+              {t("common.auth.register")}
+            </Link>
+          </NavbarMenuItem>
+        </>
+      ) : onlyLogout ? (
         <NavbarMenuItem>
           <Link
             className="w-full cursor-pointer"
@@ -149,6 +187,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
   settingsRoute = false,
   homeRoute = false,
   profileRoute = false,
+  withAuthMethods = false,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -198,6 +237,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
               settingsRoute={settingsRoute}
               homeRoute={homeRoute}
               profileRoute={profileRoute}
+              withAuthMethods={withAuthMethods}
             ></NavbarItems>
           </NavbarContent>
 
@@ -207,6 +247,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
               settingsRoute={settingsRoute}
               homeRoute={homeRoute}
               profileRoute={profileRoute}
+              withAuthMethods={withAuthMethods}
             ></NavbarItems>
           </NavbarMenu>
         </>

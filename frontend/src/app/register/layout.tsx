@@ -1,3 +1,5 @@
+"use client";
+
 import Navbar from "@/shared/components/Navbar";
 import { NavbarWrapper } from "../main.styles";
 
@@ -6,10 +8,13 @@ export default function PasswordLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const isIframe = window.self !== window.top;
   return (
     <>
       <NavbarWrapper>
-        <Navbar empty />
+        <NavbarWrapper>
+          {isIframe ? <Navbar empty /> : <Navbar withAuthMethods />}
+        </NavbarWrapper>
       </NavbarWrapper>
       {children}
     </>
