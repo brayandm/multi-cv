@@ -11,6 +11,8 @@ import {
   useEffect,
   useCallback,
 } from "react";
+import { getCookie } from "cookies-next";
+import { setCookieClient } from "@/lib/setCookieClient";
 
 type Theme = "light" | "dark";
 
@@ -34,7 +36,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
-    setTheme(localStorage.getItem("theme") || getSystemTheme());
+    setTheme((getCookie("theme") as string) || getSystemTheme());
   }, []);
 
   useEffect(() => {
@@ -78,7 +80,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("theme", theme);
+    setCookieClient("theme", theme);
     router.refresh();
   }, [theme, router]);
 
