@@ -26,6 +26,8 @@ import {
   userDeleteProfilePictureApiLink,
   userUploadProfilePictureApiLink,
   autoFillCvFromDocumentEngineLink,
+  userSetThemeApiLink,
+  userThemeApiLink,
 } from "./links";
 import {
   UserResponse,
@@ -37,6 +39,7 @@ import {
   GetQuotaInfoResponse,
   MessageResponse,
   generateCvInlineNoRenderResponse,
+  UserThemeResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -359,4 +362,26 @@ export const autoFillCvFromDocumentEngine = async (
       "Content-Type": "multipart/form-data",
     },
   });
+};
+
+export const userSetThemeApi = async (
+  theme: string
+): Promise<AxiosResponse<MessageResponse>> => {
+  return await api.put(
+    userSetThemeApiLink,
+    {
+      theme,
+    },
+    {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+};
+
+export const userThemeApi = async (): Promise<
+  AxiosResponse<UserThemeResponse>
+> => {
+  return await api.get(userThemeApiLink);
 };
