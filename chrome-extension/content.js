@@ -52,11 +52,11 @@ if (shouldInject) {
 
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       if (request.action === "responseExtensionStorage") {
-        const token = request.content;
+        const content = request.content;
 
         window.postMessage({
           action: "responseExtensionStorage",
-          content: token,
+          content: content,
         });
       }
     });

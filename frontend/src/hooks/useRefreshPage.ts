@@ -4,17 +4,20 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { useLocale } from "@/contexts/LocaleContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export const useRefreshPage = () => {
   const router = useRouter();
 
   const { updateLocale } = useLocale();
+  const { updateTheme } = useTheme();
 
   useEffect(() => {
     const handleActionRefreshPage = async (event: MessageEvent) => {
       if (event.data.action === "responseExtensionStorage") {
         const content = event.data.content as {
           locale?: string;
+          theme?: string;
           auth_cookie?: {
             name: string;
             value: string;
@@ -24,9 +27,14 @@ export const useRefreshPage = () => {
 
         const cookie = content.auth_cookie;
         const locale = content.locale;
+        const theme = content.theme;
 
         if (locale) {
           updateLocale(locale);
+        }
+
+        if (theme) {
+          updateTheme(theme);
         }
 
         if (cookie) {
