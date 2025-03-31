@@ -3,12 +3,20 @@
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import LandingPage from "./LandingPage";
+import { useEffect, useState } from "react";
 
 export default function WelcomeComponent() {
   const router = useRouter();
   const t = useTranslations();
 
-  return (
+  const [isIframe, setIsIframe] = useState(false);
+
+  useEffect(() => {
+    setIsIframe(window.self !== window.top);
+  }, []);
+
+  return isIframe ? (
     <div className="flex flex-col mt-40 w-[280px] mx-auto">
       <h1 className="text-center">
         {t.rich("pages.welcome.title", {
@@ -25,5 +33,7 @@ export default function WelcomeComponent() {
         </Button>
       </div>
     </div>
+  ) : (
+    <LandingPage />
   );
 }

@@ -155,16 +155,16 @@ export default function ChatComponent() {
               <XMarkIcon className="w-5 h-5" />
             </Button>
             <div className="h-[35rem] flex flex-col rounded-3xl overflow-hidden">
-              <div className="flex bg-primary-400 px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md">
-                <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                  <BotIcon className="w-6 h-6 text-primary-400" />
+              <div className="flex bg-primary-400 px-4 items-center space-x-3 border-b pb-3 pt-4 shadow-md dark:border-default-100">
+                <div className="w-10 h-10 bg-white dark:bg-default-200 rounded-full flex items-center justify-center">
+                  <BotIcon className="w-6 h-6 text-primary-400 dark:text-white" />
                 </div>
-                <h2 className="font-semibold text-white">
+                <h2 className="font-semibold text-white dark:text-default-200">
                   {t("common.texts.ai_assistant")}
                 </h2>
               </div>
               <div
-                className={`h-full overflow-y-auto overflow-x-hidden p-4 space-y-3`}
+                className={`h-full overflow-y-auto overflow-x-hidden p-4 space-y-3 dark:bg-default-100`}
               >
                 {chat.messages.map((msg, index) => (
                   <div key={index} className="flex flex-col items-start">
@@ -198,17 +198,17 @@ export default function ChatComponent() {
                 ))}
                 <div ref={messagesEndRef} />
               </div>
-              <div className="border-t-2">
+              <div className="border-t-2 dark:bg-default-200 dark:border-default-100">
                 {quotaInfo && (
                   <div className="px-4">
-                    <span className={`text-xs font-medium ${"text-gray-500"}`}>
+                    <span className={`text-xs font-medium text-default-500 `}>
                       {t("common.texts.message_left", {
                         count: quotaInfo.left,
                       })}
                     </span>
                   </div>
                 )}
-                <div className="flex flex-row items-end px-4 pb-4 pt-3 space-x-2 shadow-lg relative">
+                <div className="flex flex-row items-end px-4 pb-4 pt-3 space-x-2 shadow-lg relative dark:bg-default-200">
                   <Textarea
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
@@ -224,7 +224,7 @@ export default function ChatComponent() {
                   <Button
                     color={"primary"}
                     onPressStart={sendMessage}
-                    className="p-2 rounded-full"
+                    className="p-2 rounded-full "
                     isIconOnly
                     isDisabled={
                       !input.trim() ||
