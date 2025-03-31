@@ -41,6 +41,7 @@ export const metadata: Metadata = {
     description: "Create and manage multiple CVs",
     images: ["https://multicv.space/og-image.png"],
   },
+  icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
 export default async function RootLayout({

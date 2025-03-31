@@ -58,6 +58,8 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     } else {
       setTheme(newTheme);
     }
+
+    router.refresh();
   };
 
   const syncTheme = useCallback((newTheme: string) => {
@@ -77,12 +79,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     if (isIframe) {
       storeExtensionStorageValue("theme", newTheme, () => {});
     }
-  }, []);
+
+    router.refresh();
+  }, []); // eslint-disable-line
 
   useEffect(() => {
     setCookieClient("theme", theme);
-    router.refresh();
-  }, [theme, router]);
+  }, [theme]);
 
   return (
     <ThemeContext.Provider value={{ theme, updateTheme, syncTheme }}>

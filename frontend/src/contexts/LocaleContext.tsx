@@ -73,6 +73,8 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     } else {
       setLocale(newLocale);
     }
+
+    router.refresh();
   };
 
   const syncLocale = useCallback((newLocale: string) => {
@@ -92,7 +94,9 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     if (isIframe) {
       storeExtensionStorageValue("locale", newLocale, () => {});
     }
-  }, []);
+
+    router.refresh();
+  }, []); // eslint-disable-line
 
   const getTraduction = useCallback(() => {
     return {
@@ -103,8 +107,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     setCookieClient("locale", locale);
-    router.refresh();
-  }, [locale, router]);
+  }, [locale]);
 
   return (
     <LocaleContext.Provider

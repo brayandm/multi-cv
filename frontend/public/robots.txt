@@ -5,6 +5,7 @@ Disallow: /*?callbackUrl=
 Allow: /$
 Allow: /login
 Allow: /register
+Allow: /favicon.ico
 Allow: /sitemap.xml
 
 Sitemap: https://multicv.space/sitemap.xml
