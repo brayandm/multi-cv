@@ -189,4 +189,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'notification_mail' => env('NOTIFICATION_MAIL_TO_ADDRESS', 'hello@example.com'),
 ];

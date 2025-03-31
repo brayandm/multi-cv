@@ -72,7 +72,7 @@ class GoogleAuthController extends Controller
         $user = User::where('email', $userInfo['email'])->first();
 
         if (! $user) {
-            User::Create([
+            $user = User::Create([
                 'email' => $userInfo['email'],
                 'first_name' => $userInfo['given_name'] ?? '',
                 'last_name' => $userInfo['family_name'] ?? '',
@@ -80,9 +80,8 @@ class GoogleAuthController extends Controller
             ]);
 
             if (isset($userInfo['picture'])) {
-                if ($user->hasMedia('profile_picture')) {
-                    $user->clearMediaCollection('profile_picture');
-                }
+                $user->clearMediaCollection('profile_picture');
+
                 $user->addMediaFromUrl($userInfo['picture'])
                     ->toMediaCollection('profile_picture');
             }

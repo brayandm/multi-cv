@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Mail\NewUserRegistered;
 use App\Notifications\ResetPasswordQueued;
 use App\Notifications\VerifyEmailQueued;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Laravel\Sanctum\HasApiTokens;
@@ -112,6 +114,8 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         });
 
         static::created(function ($user) {
+
+            Mail::to(config("app.notification_mail"))->queue(new NewUserRegistered($user));
 
             Quota::create([
                 'user_id' => $user->id,
