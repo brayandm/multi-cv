@@ -12,4 +12,5 @@ export interface ITopBarNavigationProps {
   homeRoute?: boolean;
   profileRoute?: boolean;
   withAuthMethods?: boolean;
+  disableLanguageSelector?: boolean;
 }

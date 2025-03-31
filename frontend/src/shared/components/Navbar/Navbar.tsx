@@ -188,6 +188,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
   homeRoute = false,
   profileRoute = false,
   withAuthMethods = false,
+  disableLanguageSelector = false,
 }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -253,7 +254,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
         </>
       )}
       <ThemeToggle />
-      <LanguageToggle />
+      {!disableLanguageSelector && <LanguageToggle />}
     </NavbarUI>
   );
 };
