@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { api } from "@/lib/backendService";
 import { userStatusApiLink } from "./lib/links";
 import { UserStatusResponse } from "./lib/types";
+import { AxiosResponse } from "axios";
 
 const authPages = ["/", "/login", "/register"];
 const unProtectedPages: string[] = [];
@@ -32,11 +33,22 @@ export async function middleware(req: NextRequest) {
 
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
 
-  const data = await api.get<UserStatusResponse>(userStatusApiLink, {
-    headers: {
-      Authorization: `Bearer ${authToken?.value || ""}`,
-    },
-  });
+  let data: AxiosResponse<UserStatusResponse>;
+
+  try {
+    data = await api.get<UserStatusResponse>(userStatusApiLink, {
+      headers: {
+        Authorization: `Bearer ${authToken?.value || ""}`,
+      },
+    });
+  } catch {
+    if (isProtectedPage) {
+      url.pathname = "/";
+      return NextResponse.redirect(url);
+    } else {
+      return NextResponse.next();
+    }
+  }
 
   const isAuthenticated =
     data.status === 200 && data.data.authenticated === true;
