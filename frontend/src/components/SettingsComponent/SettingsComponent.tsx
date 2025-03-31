@@ -18,6 +18,7 @@ import { userApiLink } from "@/lib/links";
 import { fetcherApi, talentPoolApi } from "@/lib/backendService";
 import {
   DEFAULT_CARD_HEIGHT,
+  DEFAULT_CARD_MAX_HEIGHT,
   DEFAULT_CARD_MAX_WIDTH,
   DEFAULT_CARD_WIDTH,
 } from "@/lib/consts";
@@ -56,6 +57,7 @@ export default function SettingsComponent() {
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
   const height = DEFAULT_CARD_HEIGHT;
+  const maxHeight = DEFAULT_CARD_MAX_HEIGHT;
 
   return (
     <main className="flex justify-center">
@@ -66,7 +68,12 @@ export default function SettingsComponent() {
         }}
       >
         <form className="flex flex-col gap-2">
-          <Card style={{ height: `${height}px` }}>
+          <Card
+            style={{
+              height: `${height}px`,
+              maxHeight: `${maxHeight}vh`,
+            }}
+          >
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
                 <h1>{t("common.menu.settings")}</h1>

@@ -16,6 +16,7 @@ import {
 } from "@heroui/react";
 import {
   DEFAULT_CARD_HEIGHT,
+  DEFAULT_CARD_MAX_HEIGHT,
   DEFAULT_CARD_MAX_WIDTH,
   DEFAULT_CARD_WIDTH,
 } from "@/lib/consts";
@@ -35,6 +36,7 @@ export default function ProfileAutoCvComponent() {
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
   const height = DEFAULT_CARD_HEIGHT;
+  const maxHeight = DEFAULT_CARD_MAX_HEIGHT;
 
   const { pullProfile } = useProfile();
 
@@ -109,6 +111,7 @@ export default function ProfileAutoCvComponent() {
           maxWidth: `${maxWidth}vw`,
           width: `${width}px`,
           height: `${height}px`,
+          maxHeight: `${maxHeight}vh`,
         }}
       >
         <form className="flex flex-col gap-2">
