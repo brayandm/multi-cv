@@ -3,6 +3,7 @@
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -170,6 +171,9 @@ export const Footer = () => {
       {...fadeInUp}
     >
       <motion.div className="mb-2" {...fadeInUp}>
+        <Link href="/" className="hover:text-black dark:hover:text-white mx-2">
+          Homepage
+        </Link>
         <a
           href="/privacy-policy"
           className="hover:text-black dark:hover:text-white mx-2"
