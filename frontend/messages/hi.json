@@ -1,297 +1,298 @@
 {
-    "app": {
-        "name": "MultiCV"
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Ghar",
+      "settings": "Settings",
+      "profile": "Profile"
     },
-    "common": {
-        "menu": {
-            "home": "Ghar",
-            "settings": "Settings",
-            "profile": "Profile"
-        },
-        "auth": {
-            "login": "Login",
-            "register": "Register",
-            "logout": "Log out",
-            "google_sign_in": "Google se sign in karein",
-            "google_sign_up": "Google se sign up karein",
-            "use_other_method": "Dusra tarika istemal karein",
-            "forgot_password": "Kya aapne apna password bhool gaye?"
-        },
-        "texts": {
-            "delete": "{element} ko hata rahe hain",
-            "delete_confirmation": "Kya aap sach mein is {element} ko hataana chahte hain?",
-            "skills": "skills",
-            "draft_changes": "Draft badlaav",
-            "draft_changes_description": "Aapke kuch badlaav bache hain. Kya aap unhe bachana chahte hain?",
-            "havent_finished": "Aapne abhi tak is {element} ko pura nahi kiya hai.",
-            "discard_changes": "Kya aap editing jaari rakhna chahte hain ya badlaav ko hata dena chahte hain?",
-            "saved": "Bach gaya",
-            "saved_description": "Aapke badlaav bach gaye hain.",
-            "unfinished_element": "Adhoora {element}",
-            "unfinished_element_description": "Aapne abhi tak is {element} ko pura nahi kiya hai.",
-            "chat": "Chat AI",
-            "chat_description": "Madad ke liye hamare AI se chat karein",
-            "ai_assistant": "AI Sahayak",
-            "type_message": "Ek sandesh likhein...",
-            "generate_cv": "CV banaein",
-            "quota_info": "Quota jankari",
-            "used": "Istemaal kiya",
-            "message_left": "Bache hue sandesh: {count}",
-            "generation_left": "Bache hue generation: {count}",
-            "languages": "Bhashaen",
-            "basic": "Mool",
-            "intermediate": "Madhyamik",
-            "professional": "Peshawar",
-            "native": "Mool",
-            "upload_cv": "Apna CV upload karein (PDF)",
-            "loading_title": "Aapka CV process ho raha hai",
-            "loading_autofill": "Kripya intezaar karein jab tak hum aapka profile bharte hain..."
-        },
-        "buttons": {
-            "continue": "Aage badhein",
-            "add": "Jodna",
-            "resend_email": "Email dobara bhejein",
-            "send_email": "Email bhejein",
-            "change_password": "Password badlein",
-            "resend_in": "{timeleft}s mein dobara bhejein",
-            "try_again": "Dobara koshish karein",
-            "too_many_requests": "Bahut saari requests, 24 ghante baad koshish karein",
-            "next": "Agla",
-            "previous": "Pichla",
-            "go_home": "Ghar jao",
-            "add_element": "{element} jodna",
-            "delete": "Hataana",
-            "cancel": "Cancel",
-            "save": "Bachana",
-            "discard": "Hataana",
-            "keep_editing": "Editing jaari rakhein",
-            "clear": "Saaf karein",
-            "autofill_button": "CV se profile bharein"
-        },
-        "errors": {
-            "login": "Login mein asafalta",
-            "login_description": "Email ya password galat hai.",
-            "register": "Registration mein asafalta",
-            "register_description": "Email pehle se istemal ho rahi hai.",
-            "passwords_not_match": "Passwords milte nahi hain",
-            "password_change": "Password badalne mein asafalta",
-            "old_password_incorrect": "Maujooda password galat hai",
-            "server": "Server mein galti",
-            "under_age": "Aapko 18 saal se upar hona chahiye",
-            "accept_terms": "Aapko terms aur conditions ko sweekar karna hoga",
-            "length": "{field} ki lambai {current_length}/{length} characters honi chahiye",
-            "skill_length": "Aapko kam se kam {min} skill daalni chahiye",
-            "country_code_required": "Ek desh ka code chuniye",
-            "max_elements": "Adhik {element} ki sankhya pahunch gayi",
-            "max_elements_description": "Aap sirf {max} {element} jod sakte hain",
-            "required": "Kripya is kshetra ko bharein.",
-            "invalid_email": "Aapka diya gaya email valid nahi hai",
-            "password_too_short": "Password kam se kam {min} characters lamba hona chahiye",
-            "select_date": "Kripya ek tareekh chuniye",
-            "invalid_phone": "Phone number valid nahi hai",
-            "settings": "Settings update mein asafalta",
-            "file_size": "File ka size {max}MB se kam hona chahiye",
-            "autofill": "Autofill mein asafalta"
-        },
-        "success": {
-            "password_change": "Password badal gaya",
-            "password_change_description": "Aapka password safalta se badal gaya hai."
-        },
-        "form": {
-            "first_name": "Pehla naam",
-            "last_name": "Aakhri naam",
-            "email": "Email",
-            "password": "Password",
-            "current_password": "Maujooda password",
-            "new_password": "Naya password",
-            "repeat_password": "Password dohraein",
-            "your_location": "Aapka sthal",
-            "phone": "Phone number",
-            "about": "Aapke baare mein",
-            "company_name": "Company",
-            "institution": "Sansthan",
-            "career": "Career",
-            "skill": "Skill",
-            "role": "Bhumika",
-            "phone_number": "Phone number",
-            "phone_country_code": "Desh ka code",
-            "company_description": "Naukri ka varnan",
-            "location": "Sthal",
-            "start_date": "Shuru hone ki tareekh",
-            "end_date": "Ant hone ki tareekh",
-            "project_name": "Pariyojana ka naam",
-            "project_description": "Pariyojana ka varnan",
-            "link": "Link",
-            "professional_links_select": "Ek link chuniye",
-            "skill_description": "Kam se kam {min} skills daalein",
-            "certification_name": "Pramanpatra ka naam",
-            "certification_description": "Pramanpatra ka varnan",
-            "certificate_id": "Pramanpatra ID",
-            "verification_url": "Paryavekshan Link",
-            "issuer": "Pramanpatra ka jari karne wala",
-            "issue_date": "Jari hone ki tareekh",
-            "expiration_date": "Samapti ki tareekh",
-            "language": "Bhasha",
-            "level": "Star"
-        },
-        "placeholders": {
-            "enter_first_name": "Apna pehla naam daalein",
-            "enter_last_name": "Apna aakhri naam daalein",
-            "enter_email": "Apna email daalein",
-            "enter_password": "Apna password daalein",
-            "enter_current_password": "Apna maujooda password daalein",
-            "enter_new_password": "Apna naya password daalein",
-            "enter_password_again": "Apna password dobara daalein",
-            "enter_skill": "Ek nayi skill daalein",
-            "enter_phone": "Apna phone number daalein",
-            "enter_about": "Main ek ... hoon",
-            "enter_company_name": "Company ka naam",
-            "enter_institution_name": "Sansthan ka naam",
-            "enter_career": "Aapne yahan kaunsa degree kiya",
-            "enter_role": "Aapki company mein bhumika",
-            "enter_job_description": "Aapke kaam aur zimmedariyon ka varnan",
-            "enter_your_location": "Sheher, Desh",
-            "enter_location": "\"Sheher, Desh\" ya \"Remote\"",
-            "enter_project_name": "Pariyojana ka naam daalein",
-            "enter_project_description": "Ek chhota varnan daalein",
-            "enter_project_link": "Aapki pariyojana ka link",
-            "enter_institution_link": "Sansthan ka link",
-            "enter_company_link": "Company ka link",
-            "professional_links_select": "Chuniye",
-            "enter_your_link": "Apna {field} link daalein",
-            "enter_certification_name": "Pramanpatra ka naam daalein",
-            "enter_certification_issuer": "Jari karne wale ka naam daalein",
-            "enter_certification_certificate_id": "Pramanpatra ID",
-            "enter_certification_verification_url": "Paryavekshan URL daalein",
-            "enter_certification_description": "Ek chhota varnan daalein",
-            "enter_language": "Ek bhasha daalein",
-            "select_language_level": "Ek star chuniye"
-        },
-        "legal": {
-            "terms_conditions": "Terms & Conditions",
-            "privacy_policy": "Gopniyata Niti",
-            "confirm_age": "Main sweekar karta hoon ki main 18 saal se upar hoon",
-            "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko sweekar karta hoon",
-            "talent_pool": "Recruiters ko meri profile dekhne ki anumati dein."
-        },
-        "months": {
-            "january": "Janvari",
-            "february": "Februvari",
-            "march": "March",
-            "april": "April",
-            "may": "May",
-            "june": "June",
-            "july": "July",
-            "august": "August",
-            "september": "September",
-            "october": "October",
-            "november": "November",
-            "december": "December"
-        }
+    "auth": {
+      "login": "Login",
+      "register": "Register",
+      "logout": "Log out",
+      "google_sign_in": "Google se sign in karein",
+      "google_sign_up": "Google se sign up karein",
+      "use_other_method": "Dusra tarika istemal karein",
+      "forgot_password": "Kya aapne apna password bhool gaye?"
     },
-    "components": {
-        "cv": {
-            "download": "Download",
-            "to_expire": "<days></days> Samapti ke liye",
-            "days": "{count, plural, =1 {1 din} other {# din}}"
-        }
+    "texts": {
+      "delete": "{element} ko hata rahe hain",
+      "delete_confirmation": "Kya aap sach mein is {element} ko hataana chahte hain?",
+      "skills": "skills",
+      "draft_changes": "Draft badlaav",
+      "draft_changes_description": "Aapke kuch badlaav bache hain. Kya aap unhe bachana chahte hain?",
+      "havent_finished": "Aapne abhi tak is {element} ko pura nahi kiya hai.",
+      "discard_changes": "Kya aap editing jaari rakhna chahte hain ya badlaav ko hata dena chahte hain?",
+      "saved": "Bach gaya",
+      "saved_description": "Aapke badlaav bach gaye hain.",
+      "unfinished_element": "Adhoora {element}",
+      "unfinished_element_description": "Aapne abhi tak is {element} ko pura nahi kiya hai.",
+      "chat": "Chat AI",
+      "chat_description": "Madad ke liye hamare AI se chat karein",
+      "ai_assistant": "AI Sahayak",
+      "type_message": "Ek sandesh likhein...",
+      "generate_cv": "CV banaein",
+      "quota_info": "Quota jankari",
+      "used": "Istemaal kiya",
+      "message_left": "Bache hue sandesh: {count}",
+      "generation_left": "Bache hue generation: {count}",
+      "languages": "Bhashaen",
+      "basic": "Mool",
+      "intermediate": "Madhyamik",
+      "professional": "Peshawar",
+      "native": "Mool",
+      "upload_cv": "Apna CV upload karein (PDF)",
+      "loading_title": "Aapka CV process ho raha hai",
+      "loading_autofill": "Kripya intezaar karein jab tak hum aapka profile bharte hain...",
+      "only_year": "Sirf saal chuniye"
     },
-    "pages": {
-        "email_verification": {
-            "title": "Email Paryavekshan",
-            "already_verified": {
-                "title": "Email Paryavekshan Pehle Se Hi Paryavekshit",
-                "message": "Aapka email pehle se hi paryavekshit hai."
-            },
-            "success": {
-                "title": "Email Paryavekshan Safal",
-                "message": "Aapka email paryavekshit ho gaya hai."
-            },
-            "expired": {
-                "title": "Email Paryavekshan Samapt",
-                "message": "Aapka email paryavekshan link samapt ho gaya hai."
-            },
-            "instructions": "Humne aapko ek email bheja hai jisme ek paryavekshan link hai."
-        },
-        "password_recovery": {
-            "title": "Password Recovery",
-            "success": {
-                "title": "Password Recovery Safal",
-                "message": "Aapka password badal gaya hai."
-            },
-            "fail": {
-                "title": "Password Recovery Galat ya Samapt",
-                "message": "Aapka password recovery link galat ya samapt ho gaya hai."
-            },
-            "instructions": "Hum aapko ek email bhejenge jisme aapka password reset karne ka link hoga."
-        },
-        "settings": {
-            "subtitle": "Apne account settings badlein",
-            "password": "Password settings"
-        },
-        "welcome": {
-            "title": "<appName></appName> mein aapka swagat hai",
-            "description": "Anokhe naukri ke liye anokhe CV banayein."
-        },
-        "home": {
-            "your_resumes": "Aapke Resumes"
-        },
-        "login": {
-            "description": "Kripya apne credentials daalein"
-        },
-        "register": {
-            "description": "Apne aap ko parichit karayein"
-        },
-        "profile": {
-            "subtitle": "Yeh jankari aapka CV sahi tarike se banane ke liye avashyak hai.",
-            "sections": {
-                "basic_info": {
-                    "title": "Vyaktigat"
-                },
-                "professional_links": {
-                    "title": "Links"
-                },
-                "experience": {
-                    "title": "Anubhav",
-                    "element": "Anubhav",
-                    "is_present": "Main abhi yahan kaam kar raha hoon"
-                },
-                "education": {
-                    "title": "Shiksha",
-                    "element": "Shiksha",
-                    "is_present": "Main abhi yahan padh raha hoon"
-                },
-                "projects": {
-                    "title": "Pariyojanaen",
-                    "element": "Pariyojana",
-                    "is_present": "Main abhi is pariyojana par kaam kar raha hoon"
-                },
-                "certifications": {
-                    "title": "Pramanpatra",
-                    "element": "Pramanpatra",
-                    "hasnt_expiration_date": "Is pramanpatra ki samapti ki tareekh nahi hai"
-                },
-                "languages": {
-                    "title": "Bhashaen"
-                },
-                "skills": {
-                    "title": "Skills"
-                }
-            },
-            "success": {
-                "title": "Registration Pura Hua",
-                "message": "Aapka account tayar hai. Aap ab platform ke sabhi features ka istemal kar sakte hain."
-            },
-            "auto_fill": {
-                "title": "Apna CV upload karein taaki aapka profile bharein",
-                "message": "Apna maujooda CV upload karke samay bachayein — hum jankari nikaal kar aapka profile aapke liye swatah bharenge."
-            }
-        },
-        "terms_and_conditions": {
-            "title": "Gopniyata Niti aur Terms & Conditions",
-            "description_first_time": "Kripya padhein aur sweekar karein.",
-            "updating_notice": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. Naye terms ek mahine mein lagu honge aur usse pehle review ke liye uplabdh honge. Kripya aane wale badlaav ko dekhne ke liye kuch samay nikaalein.",
-            "accept_terms": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. \"Aage badhein\" par click karke, aap naye terms ko sweekar karte hain."
-        }
+    "buttons": {
+      "continue": "Aage badhein",
+      "add": "Jodna",
+      "resend_email": "Email dobara bhejein",
+      "send_email": "Email bhejein",
+      "change_password": "Password badlein",
+      "resend_in": "{timeleft}s mein dobara bhejein",
+      "try_again": "Dobara koshish karein",
+      "too_many_requests": "Bahut saari requests, 24 ghante baad koshish karein",
+      "next": "Agla",
+      "previous": "Pichla",
+      "go_home": "Ghar jao",
+      "add_element": "{element} jodna",
+      "delete": "Hataana",
+      "cancel": "Cancel",
+      "save": "Bachana",
+      "discard": "Hataana",
+      "keep_editing": "Editing jaari rakhein",
+      "clear": "Saaf karein",
+      "autofill_button": "CV se profile bharein"
+    },
+    "errors": {
+      "login": "Login mein asafalta",
+      "login_description": "Email ya password galat hai.",
+      "register": "Registration mein asafalta",
+      "register_description": "Email pehle se istemal ho rahi hai.",
+      "passwords_not_match": "Passwords milte nahi hain",
+      "password_change": "Password badalne mein asafalta",
+      "old_password_incorrect": "Maujooda password galat hai",
+      "server": "Server mein galti",
+      "under_age": "Aapko 18 saal se upar hona chahiye",
+      "accept_terms": "Aapko terms aur conditions ko sweekar karna hoga",
+      "length": "{field} ki lambai {current_length}/{length} characters honi chahiye",
+      "skill_length": "Aapko kam se kam {min} skill daalni chahiye",
+      "country_code_required": "Ek desh ka code chuniye",
+      "max_elements": "Adhik {element} ki sankhya pahunch gayi",
+      "max_elements_description": "Aap sirf {max} {element} jod sakte hain",
+      "required": "Kripya is kshetra ko bharein.",
+      "invalid_email": "Aapka diya gaya email valid nahi hai",
+      "password_too_short": "Password kam se kam {min} characters lamba hona chahiye",
+      "select_date": "Kripya ek tareekh chuniye",
+      "invalid_phone": "Phone number valid nahi hai",
+      "settings": "Settings update mein asafalta",
+      "file_size": "File ka size {max}MB se kam hona chahiye",
+      "autofill": "Autofill mein asafalta"
+    },
+    "success": {
+      "password_change": "Password badal gaya",
+      "password_change_description": "Aapka password safalta se badal gaya hai."
+    },
+    "form": {
+      "first_name": "Pehla naam",
+      "last_name": "Aakhri naam",
+      "email": "Email",
+      "password": "Password",
+      "current_password": "Maujooda password",
+      "new_password": "Naya password",
+      "repeat_password": "Password dohraein",
+      "your_location": "Aapka sthal",
+      "phone": "Phone number",
+      "about": "Aapke baare mein",
+      "company_name": "Company",
+      "institution": "Sansthan",
+      "career": "Career",
+      "skill": "Skill",
+      "role": "Bhumika",
+      "phone_number": "Phone number",
+      "phone_country_code": "Desh ka code",
+      "company_description": "Naukri ka varnan",
+      "location": "Sthal",
+      "start_date": "Shuru hone ki tareekh",
+      "end_date": "Ant hone ki tareekh",
+      "project_name": "Pariyojana ka naam",
+      "project_description": "Pariyojana ka varnan",
+      "link": "Link",
+      "professional_links_select": "Ek link chuniye",
+      "skill_description": "Kam se kam {min} skills daalein",
+      "certification_name": "Pramanpatra ka naam",
+      "certification_description": "Pramanpatra ka varnan",
+      "certificate_id": "Pramanpatra ID",
+      "verification_url": "Paryavekshan Link",
+      "issuer": "Pramanpatra ka jari karne wala",
+      "issue_date": "Jari hone ki tareekh",
+      "expiration_date": "Samapti ki tareekh",
+      "language": "Bhasha",
+      "level": "Star"
+    },
+    "placeholders": {
+      "enter_first_name": "Apna pehla naam daalein",
+      "enter_last_name": "Apna aakhri naam daalein",
+      "enter_email": "Apna email daalein",
+      "enter_password": "Apna password daalein",
+      "enter_current_password": "Apna maujooda password daalein",
+      "enter_new_password": "Apna naya password daalein",
+      "enter_password_again": "Apna password dobara daalein",
+      "enter_skill": "Ek nayi skill daalein",
+      "enter_phone": "Apna phone number daalein",
+      "enter_about": "Main ek ... hoon",
+      "enter_company_name": "Company ka naam",
+      "enter_institution_name": "Sansthan ka naam",
+      "enter_career": "Aapne yahan kaunsa degree kiya",
+      "enter_role": "Aapki company mein bhumika",
+      "enter_job_description": "Aapke kaam aur zimmedariyon ka varnan",
+      "enter_your_location": "Sheher, Desh",
+      "enter_location": "\"Sheher, Desh\" ya \"Remote\"",
+      "enter_project_name": "Pariyojana ka naam daalein",
+      "enter_project_description": "Ek chhota varnan daalein",
+      "enter_project_link": "Aapki pariyojana ka link",
+      "enter_institution_link": "Sansthan ka link",
+      "enter_company_link": "Company ka link",
+      "professional_links_select": "Chuniye",
+      "enter_your_link": "Apna {field} link daalein",
+      "enter_certification_name": "Pramanpatra ka naam daalein",
+      "enter_certification_issuer": "Jari karne wale ka naam daalein",
+      "enter_certification_certificate_id": "Pramanpatra ID",
+      "enter_certification_verification_url": "Paryavekshan URL daalein",
+      "enter_certification_description": "Ek chhota varnan daalein",
+      "enter_language": "Ek bhasha daalein",
+      "select_language_level": "Ek star chuniye"
+    },
+    "legal": {
+      "terms_conditions": "Terms & Conditions",
+      "privacy_policy": "Gopniyata Niti",
+      "confirm_age": "Main sweekar karta hoon ki main 18 saal se upar hoon",
+      "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko sweekar karta hoon",
+      "talent_pool": "Recruiters ko meri profile dekhne ki anumati dein."
+    },
+    "months": {
+      "january": "Janvari",
+      "february": "Februvari",
+      "march": "March",
+      "april": "April",
+      "may": "May",
+      "june": "June",
+      "july": "July",
+      "august": "August",
+      "september": "September",
+      "october": "October",
+      "november": "November",
+      "december": "December"
     }
+  },
+  "components": {
+    "cv": {
+      "download": "Download",
+      "to_expire": "<days></days> Samapti ke liye",
+      "days": "{count, plural, =1 {1 din} other {# din}}"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "Email Paryavekshan",
+      "already_verified": {
+        "title": "Email Paryavekshan Pehle Se Hi Paryavekshit",
+        "message": "Aapka email pehle se hi paryavekshit hai."
+      },
+      "success": {
+        "title": "Email Paryavekshan Safal",
+        "message": "Aapka email paryavekshit ho gaya hai."
+      },
+      "expired": {
+        "title": "Email Paryavekshan Samapt",
+        "message": "Aapka email paryavekshan link samapt ho gaya hai."
+      },
+      "instructions": "Humne aapko ek email bheja hai jisme ek paryavekshan link hai."
+    },
+    "password_recovery": {
+      "title": "Password Recovery",
+      "success": {
+        "title": "Password Recovery Safal",
+        "message": "Aapka password badal gaya hai."
+      },
+      "fail": {
+        "title": "Password Recovery Galat ya Samapt",
+        "message": "Aapka password recovery link galat ya samapt ho gaya hai."
+      },
+      "instructions": "Hum aapko ek email bhejenge jisme aapka password reset karne ka link hoga."
+    },
+    "settings": {
+      "subtitle": "Apne account settings badlein",
+      "password": "Password settings"
+    },
+    "welcome": {
+      "title": "<appName></appName> mein aapka swagat hai",
+      "description": "Anokhe naukri ke liye anokhe CV banayein."
+    },
+    "home": {
+      "your_resumes": "Aapke Resumes"
+    },
+    "login": {
+      "description": "Kripya apne credentials daalein"
+    },
+    "register": {
+      "description": "Apne aap ko parichit karayein"
+    },
+    "profile": {
+      "subtitle": "Yeh jankari aapka CV sahi tarike se banane ke liye avashyak hai.",
+      "sections": {
+        "basic_info": {
+          "title": "Vyaktigat"
+        },
+        "professional_links": {
+          "title": "Links"
+        },
+        "experience": {
+          "title": "Anubhav",
+          "element": "Anubhav",
+          "is_present": "Main abhi yahan kaam kar raha hoon"
+        },
+        "education": {
+          "title": "Shiksha",
+          "element": "Shiksha",
+          "is_present": "Main abhi yahan padh raha hoon"
+        },
+        "projects": {
+          "title": "Pariyojanaen",
+          "element": "Pariyojana",
+          "is_present": "Main abhi is pariyojana par kaam kar raha hoon"
+        },
+        "certifications": {
+          "title": "Pramanpatra",
+          "element": "Pramanpatra",
+          "hasnt_expiration_date": "Is pramanpatra ki samapti ki tareekh nahi hai"
+        },
+        "languages": {
+          "title": "Bhashaen"
+        },
+        "skills": {
+          "title": "Skills"
+        }
+      },
+      "success": {
+        "title": "Registration Pura Hua",
+        "message": "Aapka account tayar hai. Aap ab platform ke sabhi features ka istemal kar sakte hain."
+      },
+      "auto_fill": {
+        "title": "Apna CV upload karein taaki aapka profile bharein",
+        "message": "Apna maujooda CV upload karke samay bachayein — hum jankari nikaal kar aapka profile aapke liye swatah bharenge."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Gopniyata Niti aur Terms & Conditions",
+      "description_first_time": "Kripya padhein aur sweekar karein.",
+      "updating_notice": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. Naye terms ek mahine mein lagu honge aur usse pehle review ke liye uplabdh honge. Kripya aane wale badlaav ko dekhne ke liye kuch samay nikaalein.",
+      "accept_terms": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. \"Aage badhein\" par click karke, aap naye terms ko sweekar karte hain."
+    }
+  }
 }

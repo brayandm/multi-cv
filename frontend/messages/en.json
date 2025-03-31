@@ -45,7 +45,8 @@
       "native": "Native",
       "upload_cv": "Upload your CV (PDF)",
       "loading_title": "Processing your CV",
-      "loading_autofill": "Please wait while we fill in your profile..."
+      "loading_autofill": "Please wait while we fill in your profile...",
+      "only_year": "Only year"
     },
     "buttons": {
       "continue": "Continue",
