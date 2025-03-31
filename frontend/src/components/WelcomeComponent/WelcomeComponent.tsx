@@ -8,9 +8,9 @@ export default function WelcomeComponent() {
   const router = useRouter();
   const t = useTranslations();
 
-  // const isIframe = window.self !== window.top;
+  const isIframe = window.self !== window.top;
 
-  return (
+  return isIframe ? (
     <div className="flex flex-col mt-40 w-[280px] mx-auto">
       <h1 className="text-center">
         {t.rich("pages.welcome.title", {
@@ -27,5 +27,7 @@ export default function WelcomeComponent() {
         </Button>
       </div>
     </div>
+  ) : (
+    <></>
   );
 }
