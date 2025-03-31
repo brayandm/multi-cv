@@ -174,6 +174,15 @@ export const Footer = () => {
         <Link href="/" className="hover:text-black dark:hover:text-white mx-2">
           Main Page
         </Link>
+        <Link
+          href="https://www.linkedin.com/company/multicv-space/"
+          className="hover:text-black dark:hover:text-white mx-2"
+        >
+          LinkedIn
+        </Link>
+      </motion.div>
+
+      <motion.div className="mb-2" {...fadeInUp}>
         <a
           href="/privacy-policy"
           className="hover:text-black dark:hover:text-white mx-2"

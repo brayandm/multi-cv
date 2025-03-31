@@ -70,7 +70,7 @@ export default function PrivacyPolicyPage() {
           identified or identifiable individual.
         </li>
         <li>
-          <strong>Service</strong>: The Website available at
+          <strong>Service</strong>: The Website available at{" "}
           <a href="https://multicv.space/" target="_blank">
             https://multicv.space/
           </a>
@@ -171,13 +171,13 @@ export default function PrivacyPolicyPage() {
         </li>
       </ul>
       <p>
-        To exercise these rights, contact Us at
+        To exercise these rights, contact Us at{" "}
         <strong>hello.multicv@gmail.com</strong>.
       </p>
 
       <h2>Your Rights Under CCPA/CPRA (California Residents)</h2>
       <p>
-        Under the
+        Under the{" "}
         <strong>
           California Consumer Privacy Act (CCPA) and California Privacy Rights
           Act (CPRA)
@@ -204,13 +204,13 @@ export default function PrivacyPolicyPage() {
         </li>
       </ul>
       <p>
-        To exercise these rights, email Us at
+        To exercise these rights, email Us at{" "}
         <strong>hello.multicv@gmail.com</strong>.
       </p>
 
       <h2>Age Restriction and Children&apos;s Privacy</h2>
       <p>
-        Our Service is
+        Our Service is{" "}
         <strong>strictly intended for users aged 18 years and older</strong>. If
         You are under the age of 18, You are not permitted to use this Service.
       </p>
@@ -218,8 +218,7 @@ export default function PrivacyPolicyPage() {
         We do not knowingly collect personally identifiable information from
         anyone under the age of 18. If You are a parent or guardian and believe
         that Your child has provided us with personal data, please contact us
-        immediately at
-        <strong> hello.multicv@gmail.com</strong>.
+        immediately at <strong> hello.multicv@gmail.com</strong>.
       </p>
       <p>
         If we discover that we have collected Personal Data from anyone under

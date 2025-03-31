@@ -111,7 +111,7 @@ export default function PrivacyPolicyPage() {
         their respective privacy policies.
       </p>
       <p>
-        For more information about Google Analytics cookies, visit
+        For more information about Google Analytics cookies, visit{" "}
         <a
           href="https://policies.google.com/technologies/cookies"
           target="_blank"

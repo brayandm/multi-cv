@@ -83,7 +83,7 @@ export default function TermsAndConditionsPage() {
           for reviewing and verifying all content before using it.
         </li>
         <li>
-          By using our Service, You also agree to
+          By using our Service, You also agree to{" "}
           <a href="https://openai.com/policies">OpenAI’s Terms and Policies</a>.
         </li>
       </ol>
@@ -103,8 +103,7 @@ export default function TermsAndConditionsPage() {
         handles this data beyond their publicly stated policies. However, we
         store the generated CVs on our servers to enhance user experience and
         allow access to previously generated CVs. For more details on data
-        privacy, please review our
-        <a href="privacy-policy">Privacy Policy</a>.
+        privacy, please review our <a href="privacy-policy">Privacy Policy</a>.
       </p>
       <p>
         Our Service is strictly intended for users aged 18 years and older. If
@@ -275,7 +274,7 @@ export default function TermsAndConditionsPage() {
       <h2>Cookies and Tracking Technologies</h2>
       <p>
         By using MultiCV, You agree to the use of cookies and similar tracking
-        technologies as described in our
+        technologies as described in our{" "}
         <a href="cookies-policy">Cookies Policy</a>.
       </p>
       <p>
@@ -300,7 +299,7 @@ export default function TermsAndConditionsPage() {
       <p>
         You can manage or disable cookies at any time through Your browser
         settings. For more information on how we use cookies and how You can
-        manage them, please refer to our
+        manage them, please refer to our{" "}
         <a href="cookies-policy">Cookies Policy</a>.
       </p>
 
