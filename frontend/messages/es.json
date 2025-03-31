@@ -45,7 +45,7 @@
             "native": "Nativo",
             "upload_cv": "Sube tu CV (PDF)",
             "loading_autofill_title": "Procesando tu CV",
-            "loading_autofill_description": "Por favor espera mientras llenamos tu perfil...",
+            "loading_autofill_description": "Por favor espera mientras completamos tu perfil...",
             "loading_generating_cv_title": "Generando tu CV",
             "loading_generating_cv_description": "Por favor espera mientras generamos tu CV...",
             "only_year": "Solo año"
@@ -69,7 +69,7 @@
             "discard": "Descartar",
             "keep_editing": "Seguir editando",
             "clear": "Limpiar",
-            "autofill_button": "Llenar perfil desde CV"
+            "autofill_button": "Completar perfil desde CV"
         },
         "errors": {
             "login": "Error de inicio de sesión",
@@ -94,8 +94,9 @@
             "invalid_phone": "El número de teléfono no es válido",
             "settings": "Error al actualizar configuraciones",
             "file_size": "El tamaño del archivo debe ser menor a {max}MB",
-            "autofill": "Error al autocompletar",
-            "dates_impossible": "La fecha de finalización debe ser posterior a la fecha de inicio"
+            "autofill": "Error al completar automáticamente",
+            "dates_impossible": "La fecha de finalización debe ser después de la fecha de inicio",
+            "expiration_impossible": "La fecha de expiración debe ser después de la fecha de emisión"
         },
         "success": {
             "password_change": "Contraseña cambiada",
@@ -151,7 +152,7 @@
             "enter_about": "Soy un/a ...",
             "enter_company_name": "Nombre de la empresa",
             "enter_institution_name": "Nombre de la institución",
-            "enter_career": "La carrera que estudiaste / estudias aquí",
+            "enter_career": "El título que estudiaste / estudias aquí",
             "enter_role": "Tu rol en la empresa",
             "enter_job_description": "Una descripción de tus deberes y responsabilidades en el trabajo",
             "enter_your_location": "Ciudad, País",
@@ -287,8 +288,8 @@
                 "message": "Tu cuenta está lista. Ahora puedes acceder a todas las funciones de la plataforma."
             },
             "auto_fill": {
-                "title": "Sube tu CV para llenar tu perfil",
-                "message": "Ahorra tiempo subiendo tu CV existente; extraeremos la información y llenaremos tu perfil automáticamente."
+                "title": "Sube tu CV para completar tu perfil",
+                "message": "Ahorra tiempo subiendo tu CV existente; extraeremos la información y completaremos tu perfil automáticamente."
             }
         },
         "terms_and_conditions": {

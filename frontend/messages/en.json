@@ -95,7 +95,8 @@
       "settings": "Settings update failed",
       "file_size": "The file size should be less than {max}MB",
       "autofill": "Autofill failed",
-      "dates_impossible": "The end date must be after the start date"
+      "dates_impossible": "The end date must be after the start date",
+      "expiration_impossible": "The expiration date must be after the issue date"
     },
     "success": {
       "password_change": "Password changed",

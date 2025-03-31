@@ -81,21 +81,22 @@
             "old_password_incorrect": "Maujooda password galat hai",
             "server": "Server mein galti",
             "under_age": "Aapko 18 saal se upar hona chahiye",
-            "accept_terms": "Aapko shartein aur niyam manzoor karne chahiye",
-            "length": "Yeh {field} {current_length}/{length} aksharon ka hona chahiye",
+            "accept_terms": "Aapko terms aur conditions ko sweekar karna hoga",
+            "length": "{field} ki lambai {current_length}/{length} characters honi chahiye",
             "skill_length": "Aapko kam se kam {min} skill daalni chahiye",
             "country_code_required": "Ek desh ka code chuniye",
-            "max_elements": "Adhikतम {element} ki sankhya pahunch gayi",
+            "max_elements": "{element} ki adhiktam sankhya pahunch gayi",
             "max_elements_description": "Aap sirf {max} {element} jod sakte hain",
             "required": "Kripya is kshetra ko bharein.",
             "invalid_email": "Aapka diya gaya email valid nahi hai",
-            "password_too_short": "Password kam se kam {min} aksharon ka hona chahiye",
+            "password_too_short": "Password kam se kam {min} characters lamba hona chahiye",
             "select_date": "Kripya ek tareekh chuniye",
             "invalid_phone": "Phone number valid nahi hai",
             "settings": "Settings update mein asafalta",
             "file_size": "File ka size {max}MB se kam hona chahiye",
             "autofill": "Autofill mein asafalta",
-            "dates_impossible": "Antim tareekh shuruati tareekh ke baad honi chahiye"
+            "dates_impossible": "Antim tareekh shuru hone wale tareekh ke baad honi chahiye",
+            "expiration_impossible": "Antim tareekh issue tareekh ke baad honi chahiye"
         },
         "success": {
             "password_change": "Password badal gaya",
@@ -108,7 +109,7 @@
             "password": "Password",
             "current_password": "Maujooda password",
             "new_password": "Naya password",
-            "repeat_password": "Password dohraein",
+            "repeat_password": "Password dohraayein",
             "your_location": "Aapka sthal",
             "phone": "Phone number",
             "about": "Aapke baare mein",
@@ -131,10 +132,10 @@
             "certification_name": "Pramanpatra ka naam",
             "certification_description": "Pramanpatra ka varnan",
             "certificate_id": "Pramanpatra ID",
-            "verification_url": "Paryavekshan Link",
+            "verification_url": "Satyapan Link",
             "issuer": "Pramanpatra ka jari karne wala",
             "issue_date": "Jari hone ki tareekh",
-            "expiration_date": "Samapti tareekh",
+            "expiration_date": "Antim tareekh",
             "language": "Bhasha",
             "level": "Star"
         },
@@ -151,13 +152,13 @@
             "enter_about": "Main ek ... hoon",
             "enter_company_name": "Company ka naam",
             "enter_institution_name": "Sansthan ka naam",
-            "enter_career": "Aapne yahan kaun si degree padhi / padh rahe hain",
+            "enter_career": "Jo degree aapne yahan padhi / padh rahe hain",
             "enter_role": "Aapki company mein bhumika",
             "enter_job_description": "Aapke kaam aur zimmedariyon ka varnan",
             "enter_your_location": "Sheher, Desh",
             "enter_location": "\"Sheher, Desh\" ya \"Remote\"",
             "enter_project_name": "Pariyojana ka naam daalein",
-            "enter_project_description": "Ek sankshipt varnan daalein",
+            "enter_project_description": "Chhota varnan daalein",
             "enter_project_link": "Aapki pariyojana ka link",
             "enter_institution_link": "Sansthan ka link",
             "enter_company_link": "Company ka link",
@@ -166,27 +167,27 @@
             "enter_certification_name": "Pramanpatra ka naam daalein",
             "enter_certification_issuer": "Jari karne wale ka naam daalein",
             "enter_certification_certificate_id": "Pramanpatra ID",
-            "enter_certification_verification_url": "Paryavekshan URL daalein",
-            "enter_certification_description": "Ek sankshipt varnan daalein",
+            "enter_certification_verification_url": "Satyapan URL daalein",
+            "enter_certification_description": "Chhota varnan daalein",
             "enter_language": "Ek bhasha daalein",
             "select_language_level": "Ek star chuniye"
         },
         "legal": {
-            "terms_conditions": "Shartein & Niyam",
+            "terms_conditions": "Terms & Conditions",
             "privacy_policy": "Gopniyata Niti",
-            "confirm_age": "Main yah pushti karta hoon ki main 18 saal se upar hoon",
-            "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko manzoor karta hoon",
+            "confirm_age": "Main sweekar karta hoon ki main 18 saal se upar hoon",
+            "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko sweekar karta hoon",
             "talent_pool": "Recruiters ko meri profile dekhne ki anumati dein."
         },
         "months": {
             "january": "Janvari",
-            "february": "Farvari",
+            "february": "Februari",
             "march": "March",
             "april": "April",
             "may": "May",
-            "june": "June",
-            "july": "July",
-            "august": "August",
+            "june": "Juni",
+            "july": "Juli",
+            "august": "Agast",
             "september": "September",
             "october": "October",
             "november": "November",
@@ -196,36 +197,36 @@
     "components": {
         "cv": {
             "download": "Download",
-            "to_expire": "<days></days> Samapti ke liye",
+            "to_expire": "<days></days> khatam hone wale hain",
             "days": "{count, plural, =1 {1 din} other {# din}}"
         }
     },
     "pages": {
         "email_verification": {
-            "title": "Email Pushti",
+            "title": "Email Satyapan",
             "already_verified": {
-                "title": "Email Pushti Pehle Se Pusht",
-                "message": "Aapka email pehle hi pusht ho chuka hai."
+                "title": "Email Satyapan Pehle Se Hi Ho Chuka Hai",
+                "message": "Aapka email pehle se hi satyapit ho chuka hai."
             },
             "success": {
-                "title": "Email Pushti Safal",
-                "message": "Aapka email pusht ho gaya hai."
+                "title": "Email Satyapan Safal",
+                "message": "Aapka email satyapit ho gaya hai."
             },
             "expired": {
-                "title": "Email Pushti Samapti",
-                "message": "Aapka email pushti link samapt ho gaya hai."
+                "title": "Email Satyapan Khatam",
+                "message": "Aapka email satyapan link khatam ho gaya hai."
             },
-            "instructions": "Humne aapko ek email bheja hai jisme pushti link hai."
+            "instructions": "Humne aapko ek email bheja hai jisme ek satyapan link hai."
         },
         "password_recovery": {
-            "title": "Password Recovery",
+            "title": "Password Punarprapti",
             "success": {
-                "title": "Password Recovery Safal",
+                "title": "Password Punarprapti Safal",
                 "message": "Aapka password badal gaya hai."
             },
             "fail": {
-                "title": "Password Recovery Galat ya Samapt",
-                "message": "Aapka password recovery link galat ya samapt ho gaya hai."
+                "title": "Password Punarprapti Galat ya Khatam",
+                "message": "Aapka password punarprapti link galat ya khatam ho gaya hai."
             },
             "instructions": "Hum aapko ek email bhejenge jisme aapka password reset karne ka link hoga."
         },
@@ -247,7 +248,7 @@
             "description": "Apne aap ko parichit karayein"
         },
         "profile": {
-            "subtitle": "Yeh jankari aapka CV sahi tarike se banane ke liye avashyak hai.",
+            "subtitle": "Yeh jankari aapka CV sahi se banane ke liye avashyak hai.",
             "sections": {
                 "basic_info": {
                     "title": "Vyaktigat"
@@ -273,7 +274,7 @@
                 "certifications": {
                     "title": "Pramanpatra",
                     "element": "Pramanpatra",
-                    "hasnt_expiration_date": "Is pramanpatra ki samapti tareekh nahi hai"
+                    "hasnt_expiration_date": "Is pramanpatra ki koi antim tareekh nahi hai"
                 },
                 "languages": {
                     "title": "Bhashaen"
@@ -283,7 +284,7 @@
                 }
             },
             "success": {
-                "title": "Registration Pura",
+                "title": "Registration Pura Hua",
                 "message": "Aapka account tayar hai. Aap ab platform ke sabhi features ka istemal kar sakte hain."
             },
             "auto_fill": {
@@ -292,10 +293,10 @@
             }
         },
         "terms_and_conditions": {
-            "title": "Gopniyata Niti aur Shartein & Niyam",
-            "description_first_time": "Kripya padhein aur manzoor karein.",
-            "updating_notice": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. Naye shartein ek mahine mein lagu hongi aur usse pehle unhe dekhne ke liye uplabdh honge. Kripya aane wale badlaav ko dekhne ke liye kuch samay nikaalein.",
-            "accept_terms": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. \"Aage badhein\" par click karke, aap naye shartein ko manzoor karte hain."
+            "title": "Gopniyata Niti aur Terms & Conditions",
+            "description_first_time": "Kripya padhein aur sweekar karein.",
+            "updating_notice": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. Naye terms ek mahine mein lagu honge aur usse pehle review ke liye uplabdh honge. Kripya aane wale badlaav ko dekhne ke liye kuch samay nikaalein.",
+            "accept_terms": "Hum apne <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko update kar rahe hain. \"Aage badhein\" par click karke, aap naye terms ko sweekar karte hain."
         }
     }
 }

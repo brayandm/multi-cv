@@ -190,7 +190,7 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
             certification?.expiration_date
           )
             ? undefined
-            : t("common.errors.dates_impossible"),
+            : t("common.errors.expiration_impossible"),
         };
 
         const hasntExpirationDateInput: IDynamicInput<string & boolean> = {
