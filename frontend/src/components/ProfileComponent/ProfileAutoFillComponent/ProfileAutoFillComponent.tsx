@@ -122,15 +122,15 @@ export default function ProfileAutoCvComponent() {
             <CardBody className="flex flex-col gap-6">
               <label
                 htmlFor="pdf-upload"
-                className="flex items-center justify-center gap-2 border border-dashed border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 transition"
+                className="flex items-center justify-center gap-2 border border-dashed border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-default-100 transition"
               >
                 {file ? (
-                  <div className="flex items-center gap-2 text-sm text-gray-700">
+                  <div className="flex items-center gap-2 text-sm text-gray-700 dark:text-gray-300">
                     <DocumentTextIcon className="w-5 h-5 text-primary" />
                     {file.name}
                   </div>
                 ) : (
-                  <div className="flex items-center gap-2 text-gray-500">
+                  <div className="flex items-center gap-2 text-gray-500 dark:text-gray-300">
                     <PlusIcon className="w-5 h-5" />
                     <span>{t("common.texts.upload_cv")}</span>
                   </div>
