@@ -2,13 +2,18 @@
 
 import Navbar from "@/shared/components/Navbar";
 import { NavbarWrapper } from "../main.styles";
+import { useEffect, useState } from "react";
 
 export default function PasswordLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const isIframe = window.self !== window.top;
+  const [isIframe, setIsIframe] = useState(false);
+
+  useEffect(() => {
+    setIsIframe(window.self !== window.top);
+  }, []);
   return (
     <>
       <NavbarWrapper>
