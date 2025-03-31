@@ -115,7 +115,9 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
 
         static::created(function ($user) {
 
-            Mail::to(config('app.notification_mail'))->queue(new NewUserRegistered($user));
+            if(config("app.environment") == "production") {
+                Mail::to(config('app.notification_mail'))->queue(new NewUserRegistered($user));
+            }
 
             Quota::create([
                 'user_id' => $user->id,
