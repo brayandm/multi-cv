@@ -11,7 +11,7 @@ import { useChat } from "@/contexts/ChatContext";
 export const professionalLinks = [
   {
     name: "GitHub",
-    avatar: "/icons/companies/github.png",
+    avatar: "/icons/companies/github.webp",
     url: "https://github.com/",
   },
   {
@@ -98,10 +98,10 @@ const ProfessionalLinks: React.FC = () => {
       >
         {(item) => (
           <SelectItem key={item.name.toLowerCase()} textValue={item.name}>
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center ">
               <Avatar
                 alt={item.name}
-                className="flex-shrink-0 bg-white mix-blend-multiply"
+                className="flex-shrink-0 bg-white mix-blend-multiply dark:bg-default-100 dark:mix-blend-normal"
                 size="sm"
                 src={item.avatar}
               />
