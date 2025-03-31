@@ -10,7 +10,7 @@ export default function LandingPage() {
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
       {/* Hero Section */}
-      <section className="py-28 px-6 text-center bg-gradient-to-b from-white to-blue-50 dark:from-gray-900 dark:to-gray-800">
+      <section className="py-28 px-6 text-center bg-white dark:bg-gray-900">
         <motion.h1
           className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight"
           initial={{ opacity: 0, y: -20 }}
@@ -26,7 +26,7 @@ export default function LandingPage() {
           transition={{ delay: 0.3 }}
         >
           MultiCV helps you generate personalized resumes tailored to each job
-          offer. Designed for technical professionals-fast, elegant, and
+          offer. Designed for technical professionals - fast, elegant, and
           AI-assisted.
         </motion.p>
         <div className="mt-10">
@@ -41,37 +41,37 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-8 text-center">
+      <section className="py-24 px-8 text-center bg-gray-100 dark:bg-gray-950">
         <h2 className="text-4xl font-bold mb-16">
           What can you do with MultiCV?
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-14 max-w-7xl mx-auto">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg"
+            className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
           >
             <h3 className="text-2xl font-semibold mb-3">Smart Assistant</h3>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-700 dark:text-gray-300">
               Get help writing your experience, achievements, and skills in a
               clear, engaging, and optimized way.
             </p>
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg"
+            className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
           >
             <h3 className="text-2xl font-semibold mb-3">Multiple CVs</h3>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-700 dark:text-gray-300">
               Manage different versions of your resume for different companies,
               industries, or technical roles.
             </p>
           </motion.div>
           <motion.div
             whileHover={{ scale: 1.05 }}
-            className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl shadow-lg"
+            className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
           >
             <h3 className="text-2xl font-semibold mb-3">Instant Adaptation</h3>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-gray-700 dark:text-gray-300">
               Automatically generate job-specific resumes with a single click.
             </p>
           </motion.div>
@@ -79,7 +79,7 @@ export default function LandingPage() {
       </section>
 
       {/* Vision Section */}
-      <section className="py-28 px-6 text-center bg-gray-100 dark:bg-gray-800">
+      <section className="py-28 px-6 text-center bg-white dark:bg-gray-900">
         <motion.h2
           className="text-4xl md:text-5xl font-bold mb-8"
           initial={{ opacity: 0 }}
@@ -89,7 +89,7 @@ export default function LandingPage() {
           The Future of MultiCV
         </motion.h2>
         <motion.p
-          className="max-w-3xl mx-auto text-lg text-gray-700 dark:text-gray-300 mb-10"
+          className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300 mb-10"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
@@ -109,7 +109,7 @@ export default function LandingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-28 px-6 text-center bg-gradient-to-t from-white to-blue-50 dark:from-gray-900 dark:to-gray-800">
+      <section className="py-28 px-6 text-center bg-gray-100 dark:bg-gray-950">
         <motion.h2
           className="text-4xl md:text-5xl font-bold mb-6"
           initial={{ opacity: 0, y: 10 }}
@@ -130,6 +130,35 @@ export default function LandingPage() {
           Get started now
         </Button>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-gray-200 dark:border-gray-800">
+        <div className="mb-2">
+          <a
+            href="/privacy-policy.html"
+            className="hover:text-black dark:hover:text-white mx-2"
+          >
+            Privacy Policy
+          </a>
+          <a
+            href="/terms-and-conditions.html"
+            className="hover:text-black dark:hover:text-white mx-2"
+          >
+            Terms of Service
+          </a>
+        </div>
+        <div className="mb-2">
+          <a
+            href="mailto:hello.multicv@gmail.com"
+            className="hover:text-black dark:hover:text-white"
+          >
+            Contact: hello.multicv@gmail.com
+          </a>
+        </div>
+        <div>
+          &copy; {new Date().getFullYear()} MultiCV. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 }
