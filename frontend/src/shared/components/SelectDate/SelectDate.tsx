@@ -174,7 +174,7 @@ export default function SelectDate({
         </div>
       </PopoverTrigger>
 
-      <PopoverContent className="z-[9999] w-52 bg-white rounded-xl shadow-lg p-4 border border-gray-200">
+      <PopoverContent className="z-[9999] w-52 bg-white dark:bg-default-100  rounded-xl shadow-lg p-4 border border-gray-200 dark:border-default-200">
         <div className="relative mb-2 h-5 w-full">
           <span
             onClick={handleClear}
@@ -183,14 +183,14 @@ export default function SelectDate({
             {t("common.buttons.clear")}
           </span>
           <XMarkIcon
-            className="absolute right-0 w-5 h-5 text-gray-400 hover:text-gray-600 cursor-pointer"
+            className="absolute right-0 w-5 h-5 text-gray-400 hover:text-gray-600  dark:text-gray-300 cursor-pointer"
             onClick={handleConfirm}
           />
         </div>
 
         <div className="flex gap-2">
           <div className="relative">
-            <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+            <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white dark:from-default-100  to-transparent pointer-events-none" />
             <div
               ref={monthsContainerRef}
               className="flex-1 max-h-52 relative overflow-y-auto space-y-1 scrollbar-none pr-1"
@@ -199,8 +199,10 @@ export default function SelectDate({
               {months.map((month) => (
                 <div
                   key={month}
-                  className={`cursor-pointer h-7 px-2 py-1 rounded-md hover:bg-gray-100 ${
-                    draftMonth === month ? "bg-gray-200 font-medium" : ""
+                  className={`cursor-pointer h-7 px-2 py-1 rounded-md hover:bg-gray-100 dark:hover:bg-default-200 ${
+                    draftMonth === month
+                      ? "bg-gray-200 dark:bg-default-300 font-medium"
+                      : ""
                   }`}
                   onClick={() => handleSelectMonth(month)}
                 >
@@ -209,10 +211,10 @@ export default function SelectDate({
               ))}
               <div className="h-1" />
             </div>
-            <div className="absolute z-10 bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+            <div className="absolute z-10 bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white dark:from-default-100  to-transparent pointer-events-none" />
           </div>
           <div className="relative">
-            <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white to-transparent pointer-events-none" />
+            <div className="absolute z-10 top-0 left-0 right-0 h-6 bg-gradient-to-b from-white dark:from-default-100  to-transparent pointer-events-none" />
             <div
               ref={yearsContainerRef}
               className="flex-1 max-h-52 overflow-y-auto space-y-1 scrollbar-none pl-1"
@@ -221,8 +223,10 @@ export default function SelectDate({
               {years.map((year) => (
                 <div
                   key={year}
-                  className={`cursor-pointer h-7 px-2 py-1 rounded-md text-center hover:bg-gray-100 ${
-                    draftYear === year ? "bg-gray-200 font-medium" : ""
+                  className={`cursor-pointer h-7 px-2 py-1 rounded-md text-center hover:bg-gray-100 dark:hover:bg-default-200 ${
+                    draftYear === year
+                      ? "bg-gray-200 dark:bg-default-300 font-medium"
+                      : ""
                   }`}
                   onClick={() => handleSelectYear(year)}
                 >
@@ -231,7 +235,7 @@ export default function SelectDate({
               ))}
               <div className="h-1" />
             </div>
-            <div className="absolute z-10 bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+            <div className="absolute z-10 bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-white dark:from-default-100 to-transparent pointer-events-none" />
           </div>
         </div>
       </PopoverContent>

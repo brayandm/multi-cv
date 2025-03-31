@@ -82,7 +82,7 @@ export default function SettingsComponent() {
                       onValueChange={changeTalentPool}
                       aria-label="Accept switch"
                     />
-                    <span className="text-xs font-medium text-gray-600 max-w-[30ch]">
+                    <span className="text-xs font-medium text-gray-600 dark:text-gray-300 max-w-[30ch]">
                       {t("common.legal.talent_pool")}
                     </span>
                   </div>

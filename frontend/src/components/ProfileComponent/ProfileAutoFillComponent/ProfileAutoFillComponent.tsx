@@ -182,7 +182,7 @@ export default function ProfileAutoCvComponent() {
               </ModalHeader>
               <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
                 <Spinner />
-                <p className="text-center text-sm text-gray-600">
+                <p className="text-center text-sm text-gray-600 dark:text-gray-300">
                   {t("common.texts.loading_autofill")}
                 </p>
               </ModalBody>

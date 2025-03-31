@@ -14,7 +14,7 @@ export default function ThemeToggle() {
   return (
     <button
       onClick={toggleTheme}
-      className="text-xl cursor-pointer text-gray-600 dark:text-gray-300"
+      className="text-xl cursor-pointer text-gray-600 dark:text-gray-300 "
       aria-label="Toggle Theme"
     >
       {theme === "dark" ? (

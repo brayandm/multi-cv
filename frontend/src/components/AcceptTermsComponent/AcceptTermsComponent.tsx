@@ -133,7 +133,7 @@ export default function AcceptTermsComponent({
               size="sm"
             />
             <span
-              className="text-[9px] text-gray-600 text-left
+              className="text-[9px] text-gray-600 dark:text-gray-300 text-left
           "
             >
               {t("common.legal.confirm_age")}
@@ -148,7 +148,7 @@ export default function AcceptTermsComponent({
               onChange={handleCheckboxChange}
               size="sm"
             />
-            <span className="text-[9px] text-gray-600 text-left">
+            <span className="text-[9px] text-gray-600 dark:text-gray-300 text-left">
               {t.rich("common.legal.accept_terms", {
                 termsConditions: () => (
                   <Link
@@ -181,7 +181,7 @@ export default function AcceptTermsComponent({
               size="sm"
             />
             <span
-              className="text-[9px] text-gray-600 text-left
+              className="text-[9px] text-gray-600 dark:text-gray-300 text-left
           "
             >
               {t("common.legal.talent_pool")}
