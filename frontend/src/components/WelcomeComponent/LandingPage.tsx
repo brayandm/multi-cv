@@ -8,7 +8,7 @@ export default function LandingPage() {
   const router = useRouter();
 
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white mt-[-80px] pt-[80px]">
       {/* Hero Section */}
       <section className="py-28 px-6 text-center bg-white dark:bg-gray-900">
         <motion.h1
