@@ -33,8 +33,8 @@ export default function LandingPage() {
           transition={{ delay: 0.3 }}
         >
           MultiCV helps you generate personalized resumes tailored to each job
-          offer. Designed for technical professionals - fast, elegant, and
-          AI-assisted.
+          offer. Built to support technical professionals with a fast and
+          elegant AI-powered experience.
         </motion.p>
         <motion.div className="mt-10" {...fadeInUp} transition={{ delay: 0.5 }}>
           <Button
@@ -57,25 +57,41 @@ export default function LandingPage() {
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-14 max-w-7xl mx-auto">
           {["Smart Assistant", "Multiple CVs", "Instant Adaptation"].map(
-            (title, idx) => (
-              <motion.div
-                key={title}
-                whileHover={{ scale: 1.05 }}
-                {...fadeInUp}
-                transition={{ delay: 0.2 * idx }}
-                className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg"
-              >
-                <h3 className="text-2xl font-semibold mb-3">{title}</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  {title === "Smart Assistant" &&
-                    "Get help writing your experience, achievements, and skills in a clear, engaging, and optimized way."}
-                  {title === "Multiple CVs" &&
-                    "Manage different versions of your resume for different companies, industries, or technical roles."}
-                  {title === "Instant Adaptation" &&
-                    "Automatically generate job-specific resumes with a single click."}
-                </p>
-              </motion.div>
-            )
+            (title, idx) => {
+              const isComingSoon =
+                title === "Multiple CVs" || title === "Instant Adaptation";
+
+              return (
+                <motion.div
+                  key={title}
+                  whileHover={{ scale: 1.05 }}
+                  {...fadeInUp}
+                  transition={{ delay: 0.2 * idx }}
+                  className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg relative overflow-visible"
+                >
+                  {isComingSoon && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="absolute top-[-10px] right-2 flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 text-xs font-semibold text-black shadow-sm"
+                    >
+                      Coming soon
+                    </motion.div>
+                  )}
+                  <h3 className="text-2xl font-semibold mb-3">{title}</h3>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    {title === "Smart Assistant" &&
+                      "Get help writing your experience, achievements, and skills in a clear, engaging, and optimized way."}
+                    {title === "Multiple CVs" &&
+                      "Manage different versions of your resume for different companies, industries, or technical roles."}
+                    {title === "Instant Adaptation" &&
+                      "Automatically generate job-specific resumes with a single click."}
+                  </p>
+                </motion.div>
+              );
+            }
           )}
         </div>
       </motion.section>
@@ -128,8 +144,8 @@ export default function LandingPage() {
           {...fadeInUp}
           transition={{ delay: 0.2 }}
         >
-          Join hundreds of professionals already using MultiCV to stand out in
-          their job applications and land real opportunities.
+          Be part of our beta phase and help shape MultiCV. Start crafting
+          smarter resumes with AI and get a head start on your job search.
         </motion.p>
         <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
           <Button
