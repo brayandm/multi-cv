@@ -74,3 +74,20 @@ body {
 .animate-grow-shrink {
   animation: grow-shrink 0.5s ease-in-out infinite;
 }
+
+/* styles/globals.css */
+.documents-typography p {
+  @apply text-lg leading-relaxed;
+}
+
+.documents-typography h1 {
+  @apply text-4xl font-bold;
+}
+
+.documents-typography h2 {
+  @apply text-2xl font-semibold;
+}
+
+.documents-typography h3 {
+  @apply text-xl font-medium;
+}
