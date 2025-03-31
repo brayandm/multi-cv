@@ -64,7 +64,7 @@ export default function LandingPage() {
               return (
                 <motion.div
                   key={title}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
                   {...fadeInUp}
                   transition={{ delay: 0.2 * idx }}
                   className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg relative overflow-visible"
