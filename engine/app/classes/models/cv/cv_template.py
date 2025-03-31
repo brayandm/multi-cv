@@ -16,4 +16,3 @@ CvTemplateType = Annotated[
 class CvTemplate(BaseModel):
     id: ShortStr
     type: CvTemplateType
-    theme: ShortStr
