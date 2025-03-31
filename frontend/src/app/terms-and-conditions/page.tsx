@@ -66,10 +66,10 @@ export default function TermsAndConditionsPage() {
 
       <h2>Use of AI-Generated Content</h2>
       <p>
-        Our Service leverages OpenAI’s API to generate CVs. We do not guarantee
-        the accuracy or appropriateness of AI-generated content and are not
-        responsible for any incorrect, misleading, or offensive output. By using
-        the Service, You acknowledge that:
+        Our Service leverages OpenAI&apos;s API to generate CVs. We do not
+        guarantee the accuracy or appropriateness of AI-generated content and
+        are not responsible for any incorrect, misleading, or offensive output.
+        By using the Service, You acknowledge that:
       </p>
       <ol>
         <li>
@@ -84,7 +84,10 @@ export default function TermsAndConditionsPage() {
         </li>
         <li>
           By using our Service, You also agree to{" "}
-          <a href="https://openai.com/policies">OpenAI’s Terms and Policies</a>.
+          <a href="https://openai.com/policies">
+            OpenAI&apos;s Terms and Policies
+          </a>
+          .
         </li>
       </ol>
 
@@ -99,9 +102,9 @@ export default function TermsAndConditionsPage() {
       <h2>Data Storage and Privacy</h2>
       <p>
         When using MultiCV, the data You provide is stored on our servers and is
-        also sent to OpenAI’s API for processing. We do not control how OpenAI
-        handles this data beyond their publicly stated policies. However, we
-        store the generated CVs on our servers to enhance user experience and
+        also sent to OpenAI&apos;s API for processing. We do not control how
+        OpenAI handles this data beyond their publicly stated policies. However,
+        we store the generated CVs on our servers to enhance user experience and
         allow access to previously generated CVs. For more details on data
         privacy, please review our <a href="privacy-policy">Privacy Policy</a>.
       </p>
@@ -197,9 +200,9 @@ export default function TermsAndConditionsPage() {
         </li>
       </ol>
       <p>
-        We verify the user’s age through a checkbox at the time of registration.
-        If we discover that a user under 18 has used the Service, their account
-        will be suspended immediately.
+        We verify the user&apos;s age through a checkbox at the time of
+        registration. If we discover that a user under 18 has used the Service,
+        their account will be suspended immediately.
       </p>
 
       <h2>Limitation of Liability</h2>

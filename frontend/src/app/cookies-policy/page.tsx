@@ -116,7 +116,7 @@ export default function PrivacyPolicyPage() {
           href="https://policies.google.com/technologies/cookies"
           target="_blank"
         >
-          Google’s Cookie Policy
+          Google&apos;s Cookie Policy
         </a>
         .
       </p>
