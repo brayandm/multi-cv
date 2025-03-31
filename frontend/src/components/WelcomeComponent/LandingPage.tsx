@@ -19,7 +19,7 @@ export default function LandingPage() {
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white ">
       {/* Hero Section */}
       <motion.section
-        className="mt-[-80px] pt-[200px] py-28 px-6 text-center bg-gradient-to-b from-blue-100 to-white dark:from-secondary-100 dark:to-gray-900"
+        className="mt-[-80px] pt-[200px] py-28 px-6 text-center bg-gradient-to-br from-blue-100 to-white dark:from-secondary-100 dark:to-gray-900"
         {...fadeInUp}
       >
         <motion.h1
