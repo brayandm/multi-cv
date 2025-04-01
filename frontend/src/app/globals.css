@@ -75,19 +75,32 @@ body {
   animation: grow-shrink 0.5s ease-in-out infinite;
 }
 
-/* styles/globals.css */
-.documents-typography p {
-  @apply text-lg leading-relaxed;
-}
+@layer components {
+  .documents-typography p {
+    @apply text-lg leading-relaxed;
+  }
 
-.documents-typography h1 {
-  @apply text-4xl font-bold;
-}
+  .documents-typography h1 {
+    @apply text-4xl font-bold;
+  }
 
-.documents-typography h2 {
-  @apply text-2xl font-semibold;
-}
+  .documents-typography h2 {
+    @apply text-2xl font-semibold;
+  }
 
-.documents-typography h3 {
-  @apply text-xl font-medium;
+  .documents-typography h3 {
+    @apply text-xl font-medium;
+  }
+
+  .documents-typography ul {
+    @apply list-disc pl-6 my-2;
+  }
+
+  .documents-typography ol {
+    @apply list-decimal pl-6 my-2;
+  }
+
+  .documents-typography li {
+    @apply mb-1;
+  }
 }
