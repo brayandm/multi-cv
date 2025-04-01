@@ -2,8 +2,8 @@
 
 import { styled } from "styled-components";
 
-export const MarginTopContainer = styled.div`
-  margin-top: 80px;
+export const SpacerDefault = styled.div`
+  height: 80px;
 `;
 
 export const NavbarWrapper = styled.div`

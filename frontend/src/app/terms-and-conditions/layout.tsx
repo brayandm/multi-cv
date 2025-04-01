@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper } from "../main.styles";
+import { NavbarWrapper, SpacerDefault } from "../main.styles";
 import { useEffect, useState } from "react";
 import { Footer } from "@/components/WelcomeComponent/LandingPage";
 
@@ -24,6 +24,7 @@ export default function TermsAndConditionsLayout({
           <Navbar withAuthMethods disableLanguageSelector />
         )}
       </NavbarWrapper>
+      <SpacerDefault />
       {children}
       <Footer />
     </>

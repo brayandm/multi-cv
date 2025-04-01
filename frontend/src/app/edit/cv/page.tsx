@@ -1,4 +1,4 @@
-import { NavbarWrapper } from "@/app/main.styles";
+import { NavbarWrapper, SpacerDefault } from "@/app/main.styles";
 import EditCvComponent from "@/components/EditCvComponent";
 import Navbar from "@/shared/components/Navbar";
 
@@ -8,6 +8,7 @@ export default async function EditCv() {
       <NavbarWrapper>
         <Navbar homeRoute />
       </NavbarWrapper>
+      <SpacerDefault />
       <EditCvComponent />
     </>
   );

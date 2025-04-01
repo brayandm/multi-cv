@@ -1,5 +1,5 @@
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper } from "../main.styles";
+import { NavbarWrapper, SpacerDefault } from "../main.styles";
 
 export default function HomeLayout({
   children,
@@ -11,6 +11,7 @@ export default function HomeLayout({
       <NavbarWrapper>
         <Navbar homeRoute />
       </NavbarWrapper>
+      <SpacerDefault />
       {children}
     </>
   );

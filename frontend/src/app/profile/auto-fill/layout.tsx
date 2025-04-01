@@ -1,4 +1,4 @@
-import { NavbarWrapper } from "@/app/main.styles";
+import { NavbarWrapper, SpacerDefault } from "@/app/main.styles";
 import Navbar from "@/shared/components/Navbar";
 
 export default function ProfileAutoFillLayout({
@@ -11,6 +11,7 @@ export default function ProfileAutoFillLayout({
       <NavbarWrapper>
         <Navbar onlyLogout />
       </NavbarWrapper>
+      <SpacerDefault />
       {children}
     </>
   );

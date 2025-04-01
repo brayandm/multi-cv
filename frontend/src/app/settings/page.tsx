@@ -1,5 +1,5 @@
 import SettingsComponent from "@/components/SettingsComponent";
-import { NavbarWrapper } from "../main.styles";
+import { NavbarWrapper, SpacerDefault } from "../main.styles";
 import Navbar from "@/shared/components/Navbar";
 
 export default function Settings() {
@@ -8,6 +8,7 @@ export default function Settings() {
       <NavbarWrapper>
         <Navbar settingsRoute />
       </NavbarWrapper>
+      <SpacerDefault />
       <SettingsComponent />
     </>
   );

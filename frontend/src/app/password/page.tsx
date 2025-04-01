@@ -1,5 +1,5 @@
 import PasswordComponent from "@/components/PasswordComponent";
-import { NavbarWrapper } from "../main.styles";
+import { NavbarWrapper, SpacerDefault } from "../main.styles";
 import Navbar from "@/shared/components/Navbar";
 
 export default function Password() {
@@ -8,6 +8,7 @@ export default function Password() {
       <NavbarWrapper>
         <Navbar settingsRoute />
       </NavbarWrapper>
+      <SpacerDefault />
       <PasswordComponent />
     </>
   );

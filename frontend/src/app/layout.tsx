@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { MarginTopContainer } from "./main.styles";
 import { getLocale } from "next-intl/server";
 import { ClientLayout } from "./ClientLayout";
 import Providers from "./providers";
@@ -58,9 +57,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex-grow `}
       >
         <Providers>
-          <ClientLayout>
-            <MarginTopContainer>{children}</MarginTopContainer>
-          </ClientLayout>
+          <ClientLayout>{children}</ClientLayout>
         </Providers>
       </body>
     </html>
