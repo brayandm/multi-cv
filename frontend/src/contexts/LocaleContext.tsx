@@ -109,7 +109,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
         router.refresh();
       });
     }
-  }, [locale]); // eslint-disable-line
+  }, [locale, initialized]); // eslint-disable-line
 
   return (
     <LocaleContext.Provider

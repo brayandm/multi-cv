@@ -88,7 +88,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         router.refresh();
       });
     }
-  }, [theme]); // eslint-disable-line
+  }, [theme, initialized]); // eslint-disable-line
 
   return (
     <ThemeContext.Provider value={{ theme, updateTheme, syncTheme }}>
