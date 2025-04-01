@@ -1,6 +1,6 @@
 import { setCookie } from "cookies-next";
 
-export const setCookieClient = (
+export const setCookieClient = async (
   name: string,
   value: string,
   expiration_date: number | null = null
@@ -11,14 +11,14 @@ export const setCookieClient = (
     maxAge = Math.floor((expiration_date * 1000 - Date.now()) / 1000);
   }
 
-  setCookie(name, value, {
+  await setCookie(name, value, {
     domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
     path: "/",
     maxAge: maxAge,
     partitioned: true,
   });
 
-  setCookie(name, value, {
+  await setCookie(name, value, {
     secure: true,
     sameSite: "none",
     domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,

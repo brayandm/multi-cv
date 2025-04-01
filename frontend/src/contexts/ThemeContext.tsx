@@ -59,8 +59,6 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     } else {
       setTheme(newTheme);
     }
-
-    router.refresh();
   };
 
   const syncTheme = useCallback((newTheme: string) => {
@@ -80,13 +78,15 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     if (isIframe) {
       storeExtensionStorageValue("theme", newTheme, () => {});
     }
-
-    router.refresh();
-  }, []); // eslint-disable-line
+  }, []);
 
   useEffect(() => {
-    setCookieClient("theme", theme);
-  }, [theme]);
+    if ((getCookie("theme") as string) !== theme) {
+      setCookieClient("theme", theme).then(() => {
+        router.refresh();
+      });
+    }
+  }, [theme]); // eslint-disable-line
 
   return (
     <ThemeContext.Provider value={{ theme, updateTheme, syncTheme }}>
