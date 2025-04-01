@@ -19,7 +19,7 @@ export default function LandingPage() {
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white ">
       {/* Hero Section */}
       <motion.section
-        className="mt-[-80px] pt-[200px] py-28 px-6 text-center bg-gradient-to-br from-blue-100 to-white dark:from-secondary-100 dark:to-gray-900"
+        className="mt-[-80px] pt-[200px] py-28 px-6 text-center bg-gradient-to-br from-primary-100 to-white dark:from-secondary-100 dark:to-gray-900"
         {...fadeInUp}
       >
         <motion.h1
@@ -50,7 +50,7 @@ export default function LandingPage() {
 
       {/* Features Section */}
       <motion.section
-        className="py-24 px-8 text-center bg-gray-100 dark:bg-gray-950"
+        className="py-24 px-8 text-center bg-gray-50 dark:bg-gray-950"
         {...fadeInUp}
       >
         <motion.h2 className="text-4xl font-bold mb-16" {...fadeInUp}>
