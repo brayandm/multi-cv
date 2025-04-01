@@ -4,6 +4,7 @@ import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -14,6 +15,8 @@ const fadeInUp = {
 
 export default function LandingPage() {
   const router = useRouter();
+
+  const t = useTranslations();
 
   return (
     <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white ">
@@ -26,16 +29,14 @@ export default function LandingPage() {
           className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight"
           {...fadeInUp}
         >
-          Create impactful resumes with AI
+          {t("pages.landing_page.title")}
         </motion.h1>
         <motion.p
           className="max-w-3xl mx-auto text-xl text-gray-800 dark:text-gray-300"
           {...fadeInUp}
           transition={{ delay: 0.3 }}
         >
-          MultiCV helps you generate personalized resumes tailored to each job
-          offer. Built to support technical professionals with a fast and
-          elegant AI-powered experience.
+          {t("pages.landing_page.description")}
         </motion.p>
         <motion.div className="mt-10" {...fadeInUp} transition={{ delay: 0.5 }}>
           <Button
@@ -43,7 +44,7 @@ export default function LandingPage() {
             size="lg"
             onPress={() => router.push("/register")}
           >
-            Start for free
+            {t("pages.landing_page.start_free")}
           </Button>
         </motion.div>
       </motion.section>
@@ -54,46 +55,57 @@ export default function LandingPage() {
         {...fadeInUp}
       >
         <motion.h2 className="text-4xl font-bold mb-16" {...fadeInUp}>
-          What can you do with MultiCV?
+          {t("pages.landing_page.features.title")}
         </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-14 max-w-7xl mx-auto">
-          {["Smart Assistant", "Multiple CVs", "Instant Adaptation"].map(
-            (title, idx) => {
-              const isComingSoon =
-                title === "Multiple CVs" || title === "Instant Adaptation";
+          {(() => {
+            const features = [
+              {
+                title: t("pages.landing_page.features.first.title"),
+                description: t("pages.landing_page.features.first.description"),
+              },
+              {
+                title: t("pages.landing_page.features.second.title"),
+                description: t(
+                  "pages.landing_page.features.second.description"
+                ),
+                comingSoon: true,
+              },
+              {
+                title: t("pages.landing_page.features.third.title"),
+                description: t("pages.landing_page.features.third.description"),
+                comingSoon: true,
+              },
+            ];
 
-              return (
-                <motion.div
-                  key={title}
-                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                  {...fadeInUp}
-                  transition={{ delay: 0.2 * idx }}
-                  className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg relative overflow-visible"
-                >
-                  {isComingSoon && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6 }}
-                      className="absolute top-[-10px] right-2 flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 text-xs font-semibold text-black shadow-sm"
-                    >
-                      Coming soon
-                    </motion.div>
-                  )}
-                  <h3 className="text-2xl font-semibold mb-3">{title}</h3>
-                  <p className="text-gray-700 dark:text-gray-300">
-                    {title === "Smart Assistant" &&
-                      "Get help writing your experience, achievements, and skills in a clear, engaging, and optimized way."}
-                    {title === "Multiple CVs" &&
-                      "Manage different versions of your resume for different companies, industries, or technical roles."}
-                    {title === "Instant Adaptation" &&
-                      "Automatically generate job-specific resumes with a single click."}
-                  </p>
-                </motion.div>
-              );
-            }
-          )}
+            return features.map(({ title, description, comingSoon }, idx) => (
+              <motion.div
+                key={title}
+                whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 * idx }}
+                className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg relative overflow-visible"
+              >
+                {comingSoon && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="absolute top-[-10px] right-2 flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 text-xs font-semibold text-black shadow-sm"
+                  >
+                    {t("pages.landing_page.features.coming_soon")}
+                  </motion.div>
+                )}
+                <h3 className="text-2xl font-semibold mb-3">{title}</h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  {description}
+                </p>
+              </motion.div>
+            ));
+          })()}
         </div>
       </motion.section>
 
@@ -106,17 +118,14 @@ export default function LandingPage() {
           className="text-4xl md:text-5xl font-bold mb-8"
           {...fadeInUp}
         >
-          The Future of MultiCV
+          {t("pages.landing_page.vision.title")}
         </motion.h2>
         <motion.p
           className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300 mb-10"
           {...fadeInUp}
           transition={{ delay: 0.2 }}
         >
-          Imagine a world where you don’t even need to create a resume. Our
-          mission is to connect people and companies directly, using AI to
-          structure your profile, highlight your strengths, and eliminate unfair
-          filters.
+          {t("pages.landing_page.vision.description")}
         </motion.p>
         <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
           <Button
@@ -124,7 +133,7 @@ export default function LandingPage() {
             size="lg"
             onPress={() => router.push("/register")}
           >
-            I want to be part of the future
+            {t("pages.landing_page.vision.start_now")}
           </Button>
         </motion.div>
       </motion.section>
@@ -138,15 +147,14 @@ export default function LandingPage() {
           className="text-4xl md:text-5xl font-bold mb-6"
           {...fadeInUp}
         >
-          Start building your resume with AI
+          {t("pages.landing_page.cta.title")}
         </motion.h2>
         <motion.p
           className="max-w-2xl mx-auto text-lg text-gray-700 dark:text-gray-300 mb-8"
           {...fadeInUp}
           transition={{ delay: 0.2 }}
         >
-          Be part of our beta phase and help shape MultiCV. Start crafting
-          smarter resumes with AI and get a head start on your job search.
+          {t("pages.landing_page.cta.description")}
         </motion.p>
         <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
           <Button
@@ -154,7 +162,7 @@ export default function LandingPage() {
             size="lg"
             onPress={() => router.push("/register")}
           >
-            Get started now
+            {t("pages.landing_page.cta.start_now")}
           </Button>
         </motion.div>
       </motion.section>
@@ -165,6 +173,8 @@ export default function LandingPage() {
 }
 
 export const Footer = () => {
+  const t = useTranslations();
+
   return (
     <motion.footer
       className="bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-gray-200 dark:border-gray-800"
@@ -172,14 +182,14 @@ export const Footer = () => {
     >
       <motion.div className="mb-2" {...fadeInUp}>
         <Link href="/" className="hover:text-black dark:hover:text-white mx-2">
-          Main Page
+          {t("pages.landing_page.footer.home")}
         </Link>
         <Link
           href="https://www.linkedin.com/company/multicv-space/"
           target="_blank"
           className="hover:text-black dark:hover:text-white mx-2"
         >
-          LinkedIn
+          {t("pages.landing_page.footer.linkedin")}
         </Link>
       </motion.div>
 
@@ -188,31 +198,33 @@ export const Footer = () => {
           href="/privacy-policy"
           className="hover:text-black dark:hover:text-white mx-2"
         >
-          Privacy Policy
+          {t("pages.landing_page.footer.privacy_policy")}
         </a>
         <a
           href="/terms-and-conditions"
           className="hover:text-black dark:hover:text-white mx-2"
         >
-          Terms of Service
+          {t("pages.landing_page.footer.terms_and_conditions")}
         </a>
         <a
           href="/cookies-policy"
           className="hover:text-black dark:hover:text-white mx-2"
         >
-          Cookies Policy
+          {t("pages.landing_page.footer.cookies_policy")}
         </a>
       </motion.div>
+
       <motion.div className="mb-2" {...fadeInUp} transition={{ delay: 0.2 }}>
         <a
           href="mailto:hello.multicv@gmail.com"
           className="hover:text-black dark:hover:text-white"
         >
-          Contact: hello.multicv@gmail.com
+          {t("pages.landing_page.footer.contact")}: hello.multicv@gmail.com
         </a>
       </motion.div>
       <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
-        &copy; {new Date().getFullYear()} MultiCV. All rights reserved.
+        &copy; {new Date().getFullYear()} MultiCV.{" "}
+        {t("pages.landing_page.footer.all_rights_reserved")}.
       </motion.div>
     </motion.footer>
   );

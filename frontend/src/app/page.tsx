@@ -15,11 +15,7 @@ export default function Home() {
   return (
     <>
       <NavbarWrapper>
-        {isIframe ? (
-          <Navbar empty />
-        ) : (
-          <Navbar withAuthMethods disableLanguageSelector />
-        )}
+        {isIframe ? <Navbar empty /> : <Navbar withAuthMethods />}
       </NavbarWrapper>
       <WelcomeComponent />
     </>

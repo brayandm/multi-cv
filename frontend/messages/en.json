@@ -297,6 +297,51 @@
       "description_first_time": "Please read and accept.",
       "updating_notice": "We are updating our <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>. The new terms will take effect in one month and will be available for review before then. Please take a moment to review the upcoming changes.",
       "accept_terms": "We are updating our <termsConditions></termsConditions> and <privacyPolicy></privacyPolicy>. By clicking \"Continue\", you agree to the updated terms."
+    },
+    "not_found": {
+      "title": "Page Not Found",
+      "description": "Sorry, the page you are looking for does not exist or has been moved.",
+      "back": "Back to home"
+    },
+    "landing_page": {
+      "title": "Create impactful resumes with AI",
+      "description": " MultiCV helps you generate personalized resumes tailored to each job offer. Built to support technical professionals with a fast and elegant AI-powered experience.",
+      "start_free": "Start for free",
+      "features": {
+        "title": "What can you do with MultiCV?",
+        "first": {
+          "title": "Smart Assistant",
+          "description": "Get help writing your experience, achievements, and skills in a clear, engaging, and optimized way."
+        },
+        "second": {
+          "title": "Multiple CVs",
+          "description": "Manage different versions of your resume for different companies, industries, or technical roles."
+        },
+        "third": {
+          "title": "Instant Adaptation",
+          "description": "Automatically generate job-specific resumes with a single click."
+        },
+        "coming_soon": "Coming soon"
+      },
+      "vision": {
+        "title": "The Future of MultiCV",
+        "description": "Imagine a world where you don't even need to create a resume. Our mission is to connect people and companies directly, using AI to structure your profile, highlight your strengths, and eliminate unfair filters.",
+        "start_now": "I want to be part of the future"
+      },
+      "cta": {
+        "title": "Start building your resume with AI",
+        "description": "Be part of our beta phase and help shape MultiCV. Start crafting smarter resumes with AI and get a head start on your job search.",
+        "start_now": "Get started now"
+      },
+      "footer": {
+        "home": "Main Page",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "Privacy Policy",
+        "cookies_policy": "Cookies Policy",
+        "terms_and_conditions": "Terms & Conditions",
+        "contact": "Contact",
+        "all_rights_reserved": "All rights reserved"
+      }
     }
   }
 }
