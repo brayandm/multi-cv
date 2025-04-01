@@ -35,9 +35,11 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const [theme, setTheme] = useState("light");
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     setTheme((getCookie("theme") as string) || getSystemTheme());
+    setInitialized(true);
   }, []);
 
   useEffect(() => {
@@ -81,7 +83,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if ((getCookie("theme") as string) !== theme) {
+    if ((getCookie("theme") as string) !== theme && initialized) {
       setCookieClient("theme", theme).then(() => {
         router.refresh();
       });

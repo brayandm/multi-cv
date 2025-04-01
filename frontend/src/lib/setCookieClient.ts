@@ -11,12 +11,19 @@ export const setCookieClient = async (
     maxAge = Math.floor((expiration_date * 1000 - Date.now()) / 1000);
   }
 
-  await setCookie(name, value, {
-    domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
-    path: "/",
-    maxAge: maxAge,
-    partitioned: true,
-  });
+  const isNotChrome =
+    !/Chrome/.test(navigator.userAgent) ||
+    /Edg|OPR|Brave|Firefox|Safari/.test(navigator.userAgent);
+
+  if (isNotChrome) {
+    await setCookie(name, value, {
+      domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
+      path: "/",
+      maxAge: maxAge,
+      partitioned: true,
+    });
+    return;
+  }
 
   await setCookie(name, value, {
     secure: true,

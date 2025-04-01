@@ -54,9 +54,11 @@ const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const [locale, setLocale] = useState("en");
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     setLocale((getCookie("locale") as string) || getSystemLocale());
+    setInitialized(true);
   }, []);
 
   const updateLocale = async (newLocale: string) => {
@@ -102,7 +104,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   }, [locale]);
 
   useEffect(() => {
-    if ((getCookie("locale") as string) !== locale) {
+    if ((getCookie("locale") as string) !== locale && initialized) {
       setCookieClient("locale", locale).then(() => {
         router.refresh();
       });
