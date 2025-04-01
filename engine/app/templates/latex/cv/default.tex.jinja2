@@ -183,7 +183,7 @@
 
 {% for cert in cv.certifications %}
 \resumeCertificateHeading
-{\href{ {{-cert.verification_url-}} }{ \textbf{ {{-cert.name-}} } \textit{at} {{ cert.issuer }} } }  { {{ cert.issue_date }} }
+{\href{ {{-cert.verification_url-}} }{ \textbf{ {{-cert.name-}} } | {{ cert.issuer }} } }  { {{ cert.issue_date }} }
 
 {% endfor %}
 
