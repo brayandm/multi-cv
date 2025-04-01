@@ -7,5 +7,8 @@ Allow: /login
 Allow: /register
 Allow: /favicon.ico
 Allow: /sitemap.xml
+Allow: /privacy-policy
+Allow: /terms-and-conditions
+Allow: /cookies-policy
 
 Sitemap: https://multicv.space/sitemap.xml
