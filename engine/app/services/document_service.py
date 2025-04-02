@@ -1,20 +1,15 @@
+import uuid
+from datetime import datetime, timezone
+from io import BytesIO
 from typing import Any
 
 from fastapi import Depends
 from motor.core import AgnosticDatabase
 
 from app.classes.models import Cv, CvTemplate
-
-from datetime import datetime, timezone
-
 from app.database.mongodb import get_database
-
-from app.framework.logging import logger
-
-import uuid
-from io import BytesIO
-
 from app.facades.filesystem_facade import FilesystemFacade
+from app.framework.logging import logger
 
 
 class DocumentService:
@@ -53,15 +48,15 @@ class DocumentService:
                     "created_at": datetime.now(timezone.utc),
                     "updated_at": datetime.now(timezone.utc),
                     "type": "cv",
-                    "cv": cv,
-                    "cv_template": cv_template,
+                    "cv": cv.model_dump(),
+                    "cv_template": cv_template.model_dump(),
                 }
             )
         except Exception as e:
             logger.info(f"Error saving CV document: {e}")
 
             if fs.exists(dest_folder):
-                fs.remove(dest_folder)
+                fs.removetree(dest_folder)
 
             raise e
 
