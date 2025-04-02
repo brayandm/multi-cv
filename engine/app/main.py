@@ -10,12 +10,12 @@ from app.classes.models import (
     Cv,
     CvTemplate,
     CvTexts,
+    Document,
     ExperienceId,
     Html,
     Profile,
     Traduction,
     WebhookPayload,
-    Document,
 )
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
