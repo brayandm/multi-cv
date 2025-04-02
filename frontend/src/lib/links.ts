@@ -29,3 +29,4 @@ export const userProfilePictureApiLink =
 export const autoFillCvFromDocumentEngineLink = "/auto-fill/cv/from-document";
 export const userSetThemeApiLink = "/user/set-theme";
 export const userThemeApiLink = "/user/theme";
+export const documentsEngineLink = "/documents";

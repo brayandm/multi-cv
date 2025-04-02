@@ -28,6 +28,7 @@ import {
   autoFillCvFromDocumentEngineLink,
   userSetThemeApiLink,
   userThemeApiLink,
+  documentsEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -40,6 +41,7 @@ import {
   MessageResponse,
   generateCvInlineNoRenderResponse,
   UserThemeResponse,
+  Document,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -384,4 +386,8 @@ export const userThemeApi = async (): Promise<
   AxiosResponse<UserThemeResponse>
 > => {
   return await api.get(userThemeApiLink);
+};
+
+export const documentsEngine = async (): Promise<AxiosResponse<Document[]>> => {
+  return await engine.get(documentsEngineLink);
 };
