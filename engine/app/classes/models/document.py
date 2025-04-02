@@ -6,18 +6,17 @@ from pydantic import BaseModel, Field
 from app.classes.models import (
     CoverLetter,
     CoverLetterTemplate,
-    CoverLetterTexts,
     Cv,
     CvTemplate,
-    CvTexts,
 )
-from app.utils.pydantic_custom_types import ShortStr
+from app.utils.pydantic_custom_types import LongStr, ShortStr
 
 
 class Document(BaseModel):
-    id: ShortStr = Field(alias="_id")
-    user_id: ShortStr
-    name: ShortStr
+    document_id: ShortStr
+    user_id: int
+    name: LongStr  # Is concatenation of a ShortStr + something
+    size: int
     created_at: datetime = Field(
         default_factory=lambda: datetime.now(timezone.utc)
     )
@@ -27,18 +26,20 @@ class Document(BaseModel):
     type: ShortStr
 
     class Config:
-        allow_population_by_field_name = True
+        json_encoders = {
+            datetime: lambda v: v.astimezone(timezone.utc)
+            .isoformat()
+            .replace("+00:00", "Z")
+        }
 
 
 class CvDocument(Document):
     type: Literal["cv"]
     cv: Cv
     cv_template: CvTemplate
-    cv_texts: CvTexts
 
 
 class CoverLetterDocument(Document):
     type: Literal["cover_letter"]
     cover_letter: CoverLetter
     cover_letter_template: CoverLetterTemplate
-    cover_letter_texts: CoverLetterTexts

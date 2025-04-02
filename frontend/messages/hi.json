@@ -69,7 +69,8 @@
       "discard": "Hataana",
       "keep_editing": "Editing jaari rakhein",
       "clear": "Saaf karein",
-      "autofill_button": "CV se profile bharein"
+      "autofill_button": "CV se profile bharein",
+      "download": "Download"
     },
     "errors": {
       "login": "Login mein asafalta",
@@ -97,7 +98,8 @@
       "autofill": "Autofill mein asafalta",
       "dates_impossible": "Antim tareekh shuru hone wale tareekh ke baad honi chahiye",
       "expiration_impossible": "Antim tareekh issue tareekh ke baad honi chahiye",
-      "generate_cv": "CV banaane mein asafalta hui"
+      "generate_cv": "CV banaane mein asafalta hui",
+      "download_document": "Dastavej download mein asafalta hui"
     },
     "success": {
       "password_change": "Password badal gaya",
@@ -195,13 +197,6 @@
       "december": "December"
     }
   },
-  "components": {
-    "cv": {
-      "download": "Download",
-      "to_expire": "<days></days> Kharch hone ke liye",
-      "days": "{count, plural, =1 {1 din} other {# din}}"
-    }
-  },
   "pages": {
     "email_verification": {
       "title": "Email Paryavekshan",
@@ -240,7 +235,18 @@
       "description": "Anokhe naukri ke liye anokhe CV banayein."
     },
     "home": {
-      "your_resumes": "Aapke Resumes"
+      "tabs": {
+        "builder": {
+          "title": "CV Builder"
+        },
+        "applications": {
+          "title": "Aavedan"
+        },
+        "documents": {
+          "title": "Dastavej",
+          "empty": "Koi dastavej nahi mila."
+        }
+      }
     },
     "login": {
       "description": "Kripya apne credentials daalein"

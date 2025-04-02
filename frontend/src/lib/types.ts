@@ -72,6 +72,16 @@ export interface UserThemeResponse {
   theme: string;
 }
 
+export interface Document {
+  document_id: string;
+  user_id: number;
+  name: string;
+  size: number;
+  created_at: string;
+  updated_at: string;
+  type: "cv" | "cover_letter";
+}
+
 export interface CV {
   id: number;
   company: string;

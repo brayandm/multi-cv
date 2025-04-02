@@ -28,6 +28,8 @@ import {
   autoFillCvFromDocumentEngineLink,
   userSetThemeApiLink,
   userThemeApiLink,
+  documentsEngineLink,
+  documentDownloadEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -40,6 +42,7 @@ import {
   MessageResponse,
   generateCvInlineNoRenderResponse,
   UserThemeResponse,
+  Document,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -58,10 +61,17 @@ export const engine = axios.create({
 });
 
 export const fetcherApi = (url: string) => api.get(url).then((res) => res.data);
-
+export const fetcherApiPost = <T>(args: [string, T]) => {
+  const [url, data] = args;
+  return api.post(url, data).then((res) => res.data);
+};
 export const fetcherEngine = (url: string) =>
   engine.get(url).then((res) => res.data);
 
+export const fetcherEnginePost = <T>(args: [string, T]) => {
+  const [url, data] = args;
+  return engine.post(url, data).then((res) => res.data);
+};
 export const loginApi = async (formData: {
   email: string;
   password: string;
@@ -384,4 +394,22 @@ export const userThemeApi = async (): Promise<
   AxiosResponse<UserThemeResponse>
 > => {
   return await api.get(userThemeApiLink);
+};
+
+export const documentsEngine = async (): Promise<AxiosResponse<Document[]>> => {
+  return await engine.get(documentsEngineLink);
+};
+
+export const documentDownloadEngine = async (
+  documentId: string
+): Promise<AxiosResponse<Blob>> => {
+  return await engine.post(
+    documentDownloadEngineLink,
+    {
+      document_id: documentId,
+    },
+    {
+      responseType: "blob",
+    }
+  );
 };

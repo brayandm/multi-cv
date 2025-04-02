@@ -69,7 +69,8 @@
       "discard": "Discard",
       "keep_editing": "Keep editing",
       "clear": "Clear",
-      "autofill_button": "Fill profile from CV"
+      "autofill_button": "Fill profile from CV",
+      "download": "Download"
     },
     "errors": {
       "login": "Login failed",
@@ -97,7 +98,8 @@
       "autofill": "Autofill failed",
       "dates_impossible": "The end date must be after the start date",
       "expiration_impossible": "The expiration date must be after the issue date",
-      "generate_cv": "CV generation failed"
+      "generate_cv": "CV generation failed",
+      "download_document": "Document download failed"
     },
     "success": {
       "password_change": "Password changed",
@@ -195,13 +197,6 @@
       "december": "December"
     }
   },
-  "components": {
-    "cv": {
-      "download": "Download",
-      "to_expire": "<days></days> To expire",
-      "days": "{count, plural, =1 {1 day} other {# days}}"
-    }
-  },
   "pages": {
     "email_verification": {
       "title": "Email Verification",
@@ -240,7 +235,18 @@
       "description": "Create unique CVs for unique job offers."
     },
     "home": {
-      "your_resumes": "Your Resumes"
+      "tabs": {
+        "builder": {
+          "title": "CV Builder"
+        },
+        "applications": {
+          "title": "Applications"
+        },
+        "documents": {
+          "title": "Documents",
+          "empty": "No documents found."
+        }
+      }
     },
     "login": {
       "description": "Please enter your credentials"

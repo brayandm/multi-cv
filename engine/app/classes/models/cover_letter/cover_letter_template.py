@@ -4,6 +4,8 @@ from pydantic import BaseModel, Field
 
 from app.utils.pydantic_custom_types import ShortStr
 
+from .cover_letter_texts import CoverLetterTexts
+
 CoverLetterTemplateType = Annotated[
     Literal[
         "latex",
@@ -16,3 +18,4 @@ CoverLetterTemplateType = Annotated[
 class CoverLetterTemplate(BaseModel):
     id: ShortStr
     type: CoverLetterTemplateType
+    cover_letter_texts: CoverLetterTexts

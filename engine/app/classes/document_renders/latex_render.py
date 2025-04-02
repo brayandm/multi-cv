@@ -1,4 +1,3 @@
-import json
 import os
 import re
 import shutil
@@ -11,7 +10,7 @@ from jinja2 import Environment, FileSystemLoader
 from app.classes.base.document_render import (
     DocumentRender,
 )
-from app.classes.models import Cv, CvTemplate, Traduction
+from app.classes.models import Cv, CvTemplate
 from app.facades.filesystem_facade import FilesystemFacade
 
 
@@ -75,9 +74,7 @@ class LatexRender(DocumentRender):
 
         return sanitize_data(sanitized_cv)  # type: ignore
 
-    def render_cv(
-        self, cv: Cv, cv_template: CvTemplate, traduction: Traduction
-    ) -> None:
+    def render_cv(self, cv: Cv, cv_template: CvTemplate) -> None:
 
         if cv_template.type != "latex":
             raise ValueError("Invalid template type. Expected 'latex'.")
@@ -87,14 +84,8 @@ class LatexRender(DocumentRender):
 
         sanitized_cv = self.sanitize_cv(cv)
 
-        traductions_path = os.path.join(
-            "app", "utils", "traductions", "cv", f"{traduction.locale}.json"
-        )
-        with open(traductions_path, "r", encoding="utf-8") as traductions_file:
-            traductions = json.load(traductions_file)
-
         with open(self.tex_path, "w", encoding="utf-8") as f:
-            f.write(template.render(cv=sanitized_cv, traductions=traductions))
+            f.write(template.render(cv=sanitized_cv, cv_template=cv_template))
 
         try:
             subprocess.run(
