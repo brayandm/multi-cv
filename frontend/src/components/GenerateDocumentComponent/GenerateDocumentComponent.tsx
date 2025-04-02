@@ -145,7 +145,7 @@ export default function GenerateDocumentComponent() {
                 quotaInfo?.pending >= quotaInfo?.max_pending
               }
             >
-              {quotaInfo?.pending >= quotaInfo?.max_pending
+              {isCvLoading || quotaInfo?.pending >= quotaInfo?.max_pending
                 ? t("common.texts.pending_generation")
                 : t("common.texts.generate_cv")}
             </Button>
