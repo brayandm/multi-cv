@@ -9,7 +9,7 @@
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
-{% if traductions.locale == 'ru' %}
+{% if cv_template.cv_texts.locale == 'ru' %}
 \usepackage[english,russian]{babel}
 {% else %}
 \usepackage[english]{babel}
@@ -104,12 +104,12 @@
 \end{center}
 
 % SUMMARY
-\section{ {{-traductions.summary-}} }
+\section{ {{-cv_template.cv_texts.summary-}} }
 {{ cv.summary }}
 
 % PROFESSIONAL EXPERIENCE
 {% if cv.experiences %}
-\section{ {{-traductions.experience-}} }
+\section{ {{-cv_template.cv_texts.experience-}} }
 \resumeSubHeadingListStart
 {% for exp in cv.experiences %}
 \resumeSubheading
@@ -130,14 +130,14 @@
 
 % TECHNICAL SKILLS
 {% if cv.skill_categories %}
-\section{ {{-traductions.skills-}} }
+\section{ {{-cv_template.cv_texts.skills-}} }
 \begin{itemize}[leftmargin=0.15in, label={}]
     \setstretch{1.2}
     \small{\item{
         {% for skill in cv.skill_categories %}
             \textbf{ {{-skill.category-}} }:{ {{ skill.list | join(', ') }} } \\
         {% endfor %}
-        \textbf{ {{-traductions.languages-}} }:{ {% for lang in cv.languages %}{{ lang.name }} ({{ lang.level }}){% if not loop.last %}, {% endif %}
+        \textbf{ {{-cv_template.cv_texts.languages-}} }:{ {% for lang in cv.languages %}{{ lang.name }} ({{ lang.level }}){% if not loop.last %}, {% endif %}
         {% endfor %} }
     }}
 \end{itemize}
@@ -145,7 +145,7 @@
 
 % EDUCATION
 {% if cv.educations %}
-\section{ {{-traductions.education-}} }
+\section{ {{-cv_template.cv_texts.education-}} }
 
 \resumeSubHeadingListStart
 
@@ -160,7 +160,7 @@
 
 % PROJECTS
 {% if cv.projects %}
-\section{ {{-traductions.projects-}} }
+\section{ {{-cv_template.cv_texts.projects-}} }
 
 \resumeSubHeadingListStart
 
@@ -177,7 +177,7 @@
 
 % CERTIFICATIONS
 {% if cv.certifications %}
-\section{ {{-traductions.certifications-}} }
+\section{ {{-cv_template.cv_texts.certifications-}} }
 
 \resumeSubHeadingListStart
 
