@@ -356,7 +356,10 @@ class AuthController extends Controller
 
         $user->clearMediaCollection('profile_picture');
 
+        $extension = $request->file('photo')->getClientOriginalExtension();
+
         $user->addMediaFromRequest('photo')
+            ->usingFileName("picture.$extension")
             ->toMediaCollection('profile_picture');
 
         return response()->json([
