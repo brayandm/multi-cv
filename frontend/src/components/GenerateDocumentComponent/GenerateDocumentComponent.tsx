@@ -1,9 +1,9 @@
 "use client";
 
 import {
+  fetcherApiPost,
   generateCvInlineEngine,
   generateCvInlineNoRenderEngine,
-  getQuotaInfoApi,
 } from "@/lib/backendService";
 
 import {
@@ -18,13 +18,14 @@ import {
 } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { GetQuotaInfoResponse } from "@/lib/types";
-import { AxiosResponse } from "axios";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useCv } from "@/contexts/CvContext";
 import { useRouter } from "next/navigation";
 
 import { saveAs } from "file-saver";
+import useSWR from "swr";
+import { getQuotaInfoApiLink } from "@/lib/links";
 
 export default function GenerateDocumentComponent() {
   const { getTraduction } = useLocale();
@@ -33,33 +34,20 @@ export default function GenerateDocumentComponent() {
 
   const router = useRouter();
 
-  const [isQuotaInfoLoading, setIsQuotaInfoLoading] = useState(false);
-  const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
-
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+
+  const {
+    mutate,
+    data: quotaInfo,
+    isLoading: isQuotaInfoLoading,
+  } = useSWR<GetQuotaInfoResponse>(
+    [getQuotaInfoApiLink, { action: "generate_cv_inline" }],
+    fetcherApiPost
+  );
 
   const t = useTranslations();
 
-  const getQuota = () => {
-    getQuotaInfoApi("generate_cv_inline")
-      .then((response: AxiosResponse<GetQuotaInfoResponse>) => {
-        setQuotaInfo(response.data);
-      })
-      .catch((error: unknown) => {
-        if (error instanceof Error) {
-          console.error("Error while fetching quota info", error.message);
-        } else {
-          console.error("Error while fetching quota info", error);
-        }
-      })
-      .finally(() => {
-        setIsQuotaInfoLoading(false);
-      });
-  };
-
-  useEffect(() => {
-    getQuota();
-  }, []);
+  useEffect(() => {}, []);
 
   const [isCvLoading, setIsCvLoading] = useState(false);
 
@@ -102,7 +90,8 @@ export default function GenerateDocumentComponent() {
     }
 
     setIsCvLoading(false);
-    getQuota();
+
+    mutate();
   };
 
   const redirectEditCv = async () => {
@@ -127,7 +116,8 @@ export default function GenerateDocumentComponent() {
     }
 
     setIsCvLoading(false);
-    getQuota();
+
+    mutate();
   };
 
   return (

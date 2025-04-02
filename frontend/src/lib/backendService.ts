@@ -60,10 +60,17 @@ export const engine = axios.create({
 });
 
 export const fetcherApi = (url: string) => api.get(url).then((res) => res.data);
-
+export const fetcherApiPost = <T>(args: [string, T]) => {
+  const [url, data] = args;
+  return api.post(url, data).then((res) => res.data);
+};
 export const fetcherEngine = (url: string) =>
   engine.get(url).then((res) => res.data);
 
+export const fetcherEnginePost = <T>(args: [string, T]) => {
+  const [url, data] = args;
+  return engine.post(url, data).then((res) => res.data);
+};
 export const loginApi = async (formData: {
   email: string;
   password: string;
