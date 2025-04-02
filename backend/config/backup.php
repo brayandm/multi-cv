@@ -7,7 +7,7 @@ return [
          * The name of this application. You can use this name to monitor
          * the backups.
          */
-        'name' => env('APP_NAME', 'laravel-backup'),
+        'name' => env('BACKUP_FOLDER', 'backups'),
 
         'source' => [
             'files' => [
@@ -146,7 +146,7 @@ return [
             /*
              * The filename prefix used for the backup zip file.
              */
-            'filename_prefix' => '',
+            'filename_prefix' => 'backups',
 
             /*
              * The disk names on which the backups will be stored.
