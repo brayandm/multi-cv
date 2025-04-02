@@ -11,6 +11,7 @@ import { addToast, Spinner } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import useSWR from "swr";
 import { saveAs } from "file-saver";
+import { useState } from "react";
 
 export default function DocumentsComponent() {
   const { data: documents, isLoading } = useSWR<Document[]>(
@@ -20,7 +21,11 @@ export default function DocumentsComponent() {
 
   const t = useTranslations();
 
+  const [downloading, setDownloading] = useState<Record<string, boolean>>({});
+
   const handleDownload = async (doc: Document) => {
+    setDownloading((prev) => ({ ...prev, [doc.document_id]: true }));
+
     try {
       const response = await documentDownloadEngine(doc.document_id);
 
@@ -45,6 +50,8 @@ export default function DocumentsComponent() {
         color: "danger",
         timeout: 5000,
       });
+    } finally {
+      setDownloading((prev) => ({ ...prev, [doc.document_id]: false }));
     }
   };
 
@@ -92,8 +99,13 @@ export default function DocumentsComponent() {
                 <button
                   onClick={() => handleDownload(doc)}
                   className="flex items-center gap-1 text-xs text-primary font-medium hover:underline"
+                  disabled={downloading[doc.document_id]}
                 >
-                  <ArrowDownTrayIcon className="w-6 h-6" />
+                  {downloading[doc.document_id] ? (
+                    <Spinner size="sm" />
+                  ) : (
+                    <ArrowDownTrayIcon className="w-6 h-6" />
+                  )}
                 </button>
               </li>
             ))}

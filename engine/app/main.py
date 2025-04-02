@@ -17,7 +17,6 @@ from app.classes.models import (
     Traduction,
     WebhookPayload,
 )
-from app.framework.types.request import DocumentDownloadRequest
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
     ChatExperiencePipeline,
@@ -41,6 +40,7 @@ from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
+from app.framework.types.request import DocumentDownloadRequest
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
 from app.services.text_extractor import InvalidPDFError, TextExtractor
