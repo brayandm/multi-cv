@@ -15,10 +15,15 @@ from app.database.mongodb import get_database
 from app.facades.filesystem_facade import FilesystemFacade
 from app.framework.logging import logger
 
+import os
+
 
 class DocumentService:
     def __init__(self, db: AgnosticDatabase[Any]):
         self.db = db
+
+    def get_file_extension(self, filename: str) -> str:
+        return os.path.splitext(filename)[1]
 
     async def save_cv(
         self,
@@ -40,7 +45,7 @@ class DocumentService:
                 fs.makedirs(dest_folder)
 
             fs.writefile(
-                dest_folder + filename,
+                dest_folder + "document" + self.get_file_extension(filename),
                 BytesIO(file),
             )
 
@@ -86,7 +91,9 @@ class DocumentService:
         fs = FilesystemFacade.get_filesystem()
         dest_folder = f"/documents/cv/{user_id}/{document_id}/"
         filename = document["name"]
-        file = fs.readbytes(dest_folder + filename)
+        file = fs.readbytes(
+            dest_folder + "document" + self.get_file_extension(filename)
+        )
 
         if not file:
             raise ValueError("File not found")
