@@ -48,7 +48,8 @@
       "loading_autofill_description": "Пожалуйста, подождите, пока мы заполним ваш профиль...",
       "loading_generating_cv_title": "Создание вашего резюме",
       "loading_generating_cv_description": "Пожалуйста, подождите, пока мы создадим ваше резюме...",
-      "only_year": "Только год"
+      "only_year": "Только год",
+      "pending_generation": "Ожидается генерация"
     },
     "buttons": {
       "continue": "Продолжить",

@@ -132,9 +132,15 @@ export default function GenerateDocumentComponent() {
                 }
                 onClose();
               }}
-              isDisabled={isCvLoading || quotaInfo?.left === 0}
+              isDisabled={
+                isCvLoading ||
+                quotaInfo?.left === 0 ||
+                quotaInfo?.pending >= quotaInfo?.max_pending
+              }
             >
-              {t("common.texts.generate_cv")}
+              {quotaInfo?.pending >= quotaInfo?.max_pending
+                ? t("common.texts.pending_generation")
+                : t("common.texts.generate_cv")}
             </Button>
           </div>
           <div className="mt-4 text-center">

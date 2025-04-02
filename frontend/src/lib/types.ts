@@ -57,6 +57,8 @@ export interface GetQuotaInfoResponse {
   quota: number;
   frequency: string;
   left: number;
+  pending: number;
+  max_pending: number;
 }
 
 export interface MessageResponse {

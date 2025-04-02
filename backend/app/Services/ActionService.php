@@ -415,6 +415,8 @@ class ActionService
             'quota' => $quota->quota,
             'frequency' => $quota->frequency,
             'left' => $quota->left,
+            'pending' => $quota->pending,
+            'max_pending' => $quota->max_pending,
         ];
     }
 }

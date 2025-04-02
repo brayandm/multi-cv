@@ -48,7 +48,8 @@
       "loading_autofill_description": "Kripya intezaar karein jab tak hum aapka profile bharte hain...",
       "loading_generating_cv_title": "Aapka CV bana rahe hain",
       "loading_generating_cv_description": "Kripya intezaar karein jab tak hum aapka CV banaate hain...",
-      "only_year": "Sirf saal"
+      "only_year": "Sirf saal",
+      "pending_generation": "Pratiksha mein utpadan"
     },
     "buttons": {
       "continue": "Aage badhein",
