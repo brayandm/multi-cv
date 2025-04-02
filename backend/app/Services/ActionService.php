@@ -385,14 +385,14 @@ class ActionService
         return $missedPeriods > 0;
     }
 
-    public function getQuotaInfo(int $user_id, string $action): array
+    public function getQuotaInfo(int $user_id, string $action): ?array
     {
         $quota = Quota::where('user_id', $user_id)
             ->where('action', $action)
             ->first();
 
         if (! $quota) {
-            throw new \Exception('Quota not found');
+            return null;
         }
 
         $lastReset = $quota->last_reset_at

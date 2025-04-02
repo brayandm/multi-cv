@@ -81,7 +81,10 @@ export default function ProfileAutoCvComponent() {
   const getQuota = useCallback(() => {
     getQuotaInfoApi("auto_fill_cv_from_document")
       .then((response: AxiosResponse<GetQuotaInfoResponse>) => {
-        if (response.data && response.data.left <= 0) {
+        if (
+          Object.keys(response.data).length === 0 ||
+          response.data.left <= 0
+        ) {
           router.push("/profile/initial");
         } else {
           setIsQuotaInfoLoading(false);
