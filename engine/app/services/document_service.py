@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime, timezone
 from io import BytesIO
-from typing import Any
+from typing import Any, Tuple
 
 from fastapi import Depends
 from motor.core import AgnosticDatabase
@@ -72,6 +72,26 @@ class DocumentService:
             .to_list(length=None)
         )
         return documents
+
+    async def get_document_file(
+        self, user_id: int, document_id: str
+    ) -> Tuple[str, bytes]:
+
+        document = await self.db["documents"].find_one(
+            {"user_id": user_id, "document_id": document_id}
+        )
+        if not document:
+            raise ValueError("Document not found")
+
+        fs = FilesystemFacade.get_filesystem()
+        dest_folder = f"/documents/cv/{user_id}/{document_id}/"
+        filename = document["name"]
+        file = fs.readbytes(dest_folder + filename)
+
+        if not file:
+            raise ValueError("File not found")
+
+        return filename, file
 
 
 def get_document_service(

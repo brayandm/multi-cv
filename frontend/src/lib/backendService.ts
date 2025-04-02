@@ -29,6 +29,7 @@ import {
   userSetThemeApiLink,
   userThemeApiLink,
   documentsEngineLink,
+  documentDownloadEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -397,4 +398,18 @@ export const userThemeApi = async (): Promise<
 
 export const documentsEngine = async (): Promise<AxiosResponse<Document[]>> => {
   return await engine.get(documentsEngineLink);
+};
+
+export const documentDownloadEngine = async (
+  documentId: string
+): Promise<AxiosResponse<Blob>> => {
+  return await engine.post(
+    documentDownloadEngineLink,
+    {
+      document_id: documentId,
+    },
+    {
+      responseType: "blob",
+    }
+  );
 };

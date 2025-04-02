@@ -1,15 +1,16 @@
 "use client";
 
-import { fetcherEngine } from "@/lib/backendService";
+import { documentDownloadEngine, fetcherEngine } from "@/lib/backendService";
 import { documentsEngineLink } from "@/lib/links";
 import { Document } from "@/lib/types";
 import {
   DocumentTextIcon,
   ArrowDownTrayIcon,
 } from "@heroicons/react/24/outline";
-import { Spinner } from "@heroui/react";
+import { addToast, Spinner } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import useSWR from "swr";
+import { saveAs } from "file-saver";
 
 export default function DocumentsComponent() {
   const { data: documents, isLoading } = useSWR<Document[]>(
@@ -18,6 +19,34 @@ export default function DocumentsComponent() {
   );
 
   const t = useTranslations();
+
+  const handleDownload = async (doc: Document) => {
+    try {
+      const response = await documentDownloadEngine(doc.document_id);
+
+      const blob = new Blob([response.data], { type: "application/pdf" });
+
+      const contentDisposition = response.headers["content-disposition"];
+      let filename = "cv.pdf";
+
+      if (contentDisposition) {
+        const match = contentDisposition.match(/filename="(.+)"/);
+        if (match && match[1]) {
+          filename = match[1];
+        }
+      }
+
+      saveAs(blob, filename);
+    } catch (error) {
+      console.error("Error while generating CV", error);
+      addToast({
+        title: t("common.errors.download_document"),
+        description: t("common.errors.server"),
+        color: "danger",
+        timeout: 5000,
+      });
+    }
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
@@ -61,7 +90,7 @@ export default function DocumentsComponent() {
                 </div>
 
                 <button
-                  // onClick={() => handleDownload(doc)}
+                  onClick={() => handleDownload(doc)}
                   className="flex items-center gap-1 text-xs text-primary font-medium hover:underline"
                 >
                   <ArrowDownTrayIcon className="w-6 h-6" />

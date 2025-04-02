@@ -98,7 +98,8 @@
       "autofill": "Autofill failed",
       "dates_impossible": "The end date must be after the start date",
       "expiration_impossible": "The expiration date must be after the issue date",
-      "generate_cv": "CV generation failed"
+      "generate_cv": "CV generation failed",
+      "download_document": "Document download failed"
     },
     "success": {
       "password_change": "Password changed",

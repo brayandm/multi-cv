@@ -17,6 +17,7 @@ from app.classes.models import (
     Traduction,
     WebhookPayload,
 )
+from app.framework.types.request import DocumentDownloadRequest
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
     ChatExperiencePipeline,
@@ -207,6 +208,34 @@ async def get_documents(
 ) -> list[Document]:
     documents = await document_service.get_all_documents(get_user_id())
     return documents
+
+
+@router.post("/document/download")
+@authenticate()
+async def download_document(
+    document_download_request: DocumentDownloadRequest,
+    document_service: DocumentService = Depends(get_document_service),
+) -> Response:
+    document_id = document_download_request.document_id
+
+    filename, document = await document_service.get_document_file(
+        get_user_id(), document_id
+    )
+
+    if not document or not filename:
+        return JSONResponse(
+            status_code=404,
+            content={"error": "Document not found."},
+        )
+
+    return StreamingResponse(
+        BytesIO(document),
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Access-Control-Expose-Headers": "Content-Disposition",
+        },
+    )
 
 
 @router.post("/chat/experience")
