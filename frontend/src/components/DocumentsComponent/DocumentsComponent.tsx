@@ -33,9 +33,9 @@ export default function DocumentsComponent() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       {isLoading ? (
-        <p className="text-center text-gray-500 dark:text-gray-400">
+        <div className="text-center text-gray-500 dark:text-gray-400">
           <Spinner variant="dots" />
-        </p>
+        </div>
       ) : documents.length === 0 ? (
         <p className="text-center text-gray-500 dark:text-gray-400">
           {t("pages.home.tabs.documents.empty")}
