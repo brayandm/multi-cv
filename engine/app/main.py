@@ -1,5 +1,6 @@
 from io import BytesIO
 from typing import Any, Dict, Optional
+from urllib.parse import quote
 
 from fastapi import APIRouter, Depends, FastAPI, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
@@ -48,8 +49,6 @@ from app.utils.parsers import get_first_name_last_name
 from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
 from app.worker.queue_manager import QueueManager
-
-from urllib.parse import quote
 
 app = FastAPI(lifespan=lifespan)
 
