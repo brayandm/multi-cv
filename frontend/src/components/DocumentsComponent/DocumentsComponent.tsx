@@ -41,21 +41,21 @@ export default function DocumentsComponent() {
           {t("pages.home.tabs.documents.empty")}
         </p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="flex flex-col items-center space-y-4">
           {documents.map((doc) => (
             <li
               key={doc.document_id}
-              className="flex items-center justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
+              className="flex items-center w-[300px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
             >
               <div className="flex items-center gap-4">
                 <div className="bg-primary/10 text-primary dark:bg-primary/20 p-2 rounded-full">
                   <DocumentTextIcon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-gray-800 dark:text-white">
+                  <h2 className="text-sm font-semibold text-gray-800 dark:text-white">
                     {doc.name}
                   </h2>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
                     {doc.type === "cv" ? "CV" : "Cover Letter"} ·{" "}
                     {(doc.size / 1024).toFixed(1)} KB ·{" "}
                     {new Date(doc.created_at).toLocaleDateString()}
@@ -65,10 +65,9 @@ export default function DocumentsComponent() {
 
               <button
                 // onClick={() => handleDownload(doc)}
-                className="flex items-center gap-1 text-sm text-primary font-medium hover:underline"
+                className="flex items-center gap-1 text-xs text-primary font-medium hover:underline"
               >
-                <ArrowDownTrayIcon className="w-5 h-5" />
-                {t("common.buttons.download")}
+                <ArrowDownTrayIcon className="w-6 h-6" />
               </button>
             </li>
           ))}

@@ -28,7 +28,7 @@ export default function HomeComponent() {
           variant="underlined"
         >
           <Tab
-            key="main"
+            key="builder"
             title={
               <div className="flex items-center space-x-2">
                 <span>{t("pages.home.tabs.builder.title")}</span>
@@ -37,16 +37,16 @@ export default function HomeComponent() {
           >
             <GenerateDocumentComponent />
           </Tab>
-          <Tab
-            key="music"
+          {/* <Tab
+            key="applications"
             title={
               <div className="flex items-center space-x-2">
                 <span>{t("pages.home.tabs.applications.title")}</span>
               </div>
             }
-          />
+          /> */}
           <Tab
-            key="videos"
+            key="documents"
             title={
               <div className="flex items-center space-x-2">
                 <span>{t("pages.home.tabs.documents.title")}</span>
