@@ -63,9 +63,13 @@ export default function DocumentsComponent() {
     return grouped;
   };
 
-  const groupedDocuments = documents
-    ? groupByDate(documents.slice().reverse())
-    : {};
+  const groupedDocuments = documents ? groupByDate(documents) : {};
+
+  const sortedDates = Object.keys(groupedDocuments).sort((a, b) => {
+    const dateA = new Date(a.split("/").reverse().join("-")).getTime();
+    const dateB = new Date(b.split("/").reverse().join("-")).getTime();
+    return dateB - dateA;
+  });
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
@@ -79,13 +83,13 @@ export default function DocumentsComponent() {
         </p>
       ) : (
         <div className="space-y-8">
-          {Object.entries(groupedDocuments).map(([date, docs]) => (
+          {sortedDates.map((date) => (
             <div key={date} className="w-full">
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-1 border-gray-300 dark:border-gray-600">
                 {date}
               </h3>
               <ul className="flex flex-col items-center space-y-4">
-                {docs.map((doc) => (
+                {groupedDocuments[date].map((doc) => (
                   <li
                     key={doc.document_id}
                     className="flex items-center w-[300px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
