@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Services\GoogleOauthService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class GoogleAuthController extends Controller
 {
@@ -80,9 +81,25 @@ class GoogleAuthController extends Controller
             ]);
 
             if (isset($userInfo['picture'])) {
+                $response = Http::head($userInfo['picture']);
+                $contentType = $response->header('Content-Type');
+
+                $extension = match ($contentType) {
+                    'image/jpeg', 'image/jpg'         => 'jpg',
+                    'image/png'                       => 'png',
+                    'image/gif'                       => 'gif',
+                    'image/webp'                      => 'webp',
+                    'image/bmp'                       => 'bmp',
+                    'image/svg+xml'                  => 'svg',
+                    'image/x-icon', 'image/vnd.microsoft.icon' => 'ico',
+                    'image/tiff'                      => 'tiff',
+                    default                           => 'jpg',
+                };
+
                 $user->clearMediaCollection('profile_picture');
 
                 $user->addMediaFromUrl($userInfo['picture'])
+                    ->usingFileName("profile_picture.$extension")
                     ->toMediaCollection('profile_picture');
             }
         }

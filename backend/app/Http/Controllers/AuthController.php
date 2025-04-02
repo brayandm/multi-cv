@@ -359,7 +359,7 @@ class AuthController extends Controller
         $extension = $request->file('photo')->getClientOriginalExtension();
 
         $user->addMediaFromRequest('photo')
-            ->usingFileName("picture.$extension")
+            ->usingFileName("profile_picture.$extension")
             ->toMediaCollection('profile_picture');
 
         return response()->json([
