@@ -1,7 +1,7 @@
 import json
 import os
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from collections.abc import MutableMapping
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any
 
 from dotenv import load_dotenv
@@ -115,7 +115,7 @@ def translate_and_sync_nested(target: dict[str, str]) -> str:
 
     final_nested: dict[str, Any] = unflatten(updated_flat)
     with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(final_nested, f, ensure_ascii=False, indent=4)
+        json.dump(final_nested, f, ensure_ascii=False, indent=2)
 
     return output_path
 
