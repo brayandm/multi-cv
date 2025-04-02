@@ -51,10 +51,6 @@ export default function GenerateDocumentComponent() {
 
   const [isCvLoading, setIsCvLoading] = useState(false);
 
-  if (isQuotaInfoLoading) {
-    return null;
-  }
-
   const handleDocument = async (download = false) => {
     try {
       setIsCvLoading(true);
@@ -122,7 +118,7 @@ export default function GenerateDocumentComponent() {
 
   return (
     <div className="mt-20">
-      {quotaInfo ? (
+      {!isQuotaInfoLoading && quotaInfo ? (
         <>
           <div className="flex justify-center">
             <Button

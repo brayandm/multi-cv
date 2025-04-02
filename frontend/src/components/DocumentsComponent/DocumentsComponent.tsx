@@ -1,38 +1,27 @@
 "use client";
 
-import { documentsEngine } from "@/lib/backendService";
+import { fetcherEngine } from "@/lib/backendService";
+import { documentsEngineLink } from "@/lib/links";
 import { Document } from "@/lib/types";
-import { AxiosResponse } from "axios";
-import { useEffect, useState } from "react";
 import {
   DocumentTextIcon,
   ArrowDownTrayIcon,
 } from "@heroicons/react/24/outline";
 import { Spinner } from "@heroui/react";
 import { useTranslations } from "next-intl";
+import useSWR from "swr";
 
 export default function DocumentsComponent() {
-  const [documents, setDocuments] = useState<Document[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    documentsEngine()
-      .then((response: AxiosResponse<Document[]>) => {
-        setDocuments(response.data);
-      })
-      .catch((error: unknown) => {
-        console.error("Error while fetching documents", error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+  const { data: documents, isLoading } = useSWR<Document[]>(
+    documentsEngineLink,
+    fetcherEngine
+  );
 
   const t = useTranslations();
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
-      {isLoading ? (
+      {isLoading || !documents ? (
         <div className="text-center text-gray-500 dark:text-gray-400">
           <Spinner variant="dots" />
         </div>
@@ -42,7 +31,7 @@ export default function DocumentsComponent() {
         </p>
       ) : (
         <ul className="flex flex-col items-center space-y-4">
-          {documents.map((doc) => (
+          {documents.map((doc: Document) => (
             <li
               key={doc.document_id}
               className="flex items-center w-[300px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
