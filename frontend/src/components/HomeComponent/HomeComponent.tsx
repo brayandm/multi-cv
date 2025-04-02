@@ -21,7 +21,7 @@ export default function HomeComponent() {
             tabList:
               "flex justify-evenly flex-row mt-16 gap-x-0 sm:justify-center sm:gap-x-16 w-full relative rounded-none p-0 border-b border-divider",
             cursor: "w-full bg-primary",
-            tab: "max-w-fit px-0 h-12",
+            tab: "w-full sm:max-w-fit h-12 flex justify-center items-center",
             tabContent: "group-data-[selected=true]:text-primary",
           }}
           color="primary"
