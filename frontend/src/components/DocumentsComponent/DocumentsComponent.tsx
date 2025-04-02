@@ -84,7 +84,11 @@ export default function DocumentsComponent() {
                       {doc.name}
                     </h2>
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {doc.type === "cv" ? "CV" : "Cover Letter"} ·{" "}
+                      {doc.type === "cv"
+                        ? t("common.texts.cv")
+                        : t("common.texts.cover_letter")}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
                       {(doc.size / 1024).toFixed(1)} KB ·{" "}
                       {new Date(doc.created_at).toLocaleDateString()}{" "}
                       {new Date(doc.created_at).toLocaleTimeString([], {

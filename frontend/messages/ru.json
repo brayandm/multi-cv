@@ -49,7 +49,9 @@
       "loading_generating_cv_title": "Создание вашего резюме",
       "loading_generating_cv_description": "Пожалуйста, подождите, пока мы создадим ваше резюме...",
       "only_year": "Только год",
-      "pending_generation": "Ожидается генерация"
+      "pending_generation": "Ожидается генерация",
+      "cv": "Резюме",
+      "cover_letter": "Сопроводительное письмо"
     },
     "buttons": {
       "continue": "Продолжить",

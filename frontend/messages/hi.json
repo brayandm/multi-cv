@@ -49,7 +49,9 @@
       "loading_generating_cv_title": "Aapka CV bana rahe hain",
       "loading_generating_cv_description": "Kripya intezaar karein jab tak hum aapka CV banaate hain...",
       "only_year": "Sirf saal",
-      "pending_generation": "Pratiksha mein utpadan"
+      "pending_generation": "Pratiksha mein utpadan",
+      "cv": "CV",
+      "cover_letter": "Kavār patra"
     },
     "buttons": {
       "continue": "Aage badhein",

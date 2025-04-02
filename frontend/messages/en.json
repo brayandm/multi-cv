@@ -49,7 +49,9 @@
       "loading_generating_cv_title": "Generating your CV",
       "loading_generating_cv_description": "Please wait while we generate your CV...",
       "only_year": "Only year",
-      "pending_generation": "Pending generation"
+      "pending_generation": "Pending generation",
+      "cv": "CV",
+      "cover_letter": "Cover letter"
     },
     "buttons": {
       "continue": "Continue",
