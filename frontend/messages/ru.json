@@ -69,7 +69,8 @@
       "discard": "Отменить",
       "keep_editing": "Продолжить редактирование",
       "clear": "Очистить",
-      "autofill_button": "Заполнить профиль из резюме"
+      "autofill_button": "Заполнить профиль из резюме",
+      "download": "Скачать"
     },
     "errors": {
       "login": "Ошибка входа",
@@ -195,13 +196,6 @@
       "december": "Декабрь"
     }
   },
-  "components": {
-    "cv": {
-      "download": "Скачать",
-      "to_expire": "<days></days> До истечения",
-      "days": "{count, plural, =1 {1 день} other {# дней}}"
-    }
-  },
   "pages": {
     "email_verification": {
       "title": "Подтверждение Email",
@@ -240,7 +234,18 @@
       "description": "Создавайте уникальные резюме для уникальных вакансий."
     },
     "home": {
-      "your_resumes": "Ваши резюме"
+      "tabs": {
+        "builder": {
+          "title": "Конструктор резюме"
+        },
+        "applications": {
+          "title": "Заявления"
+        },
+        "documents": {
+          "title": "Документы",
+          "empty": "Документы не найдены."
+        }
+      }
     },
     "login": {
       "description": "Пожалуйста, введите ваши учетные данные"

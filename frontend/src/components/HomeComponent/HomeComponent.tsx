@@ -1,22 +1,15 @@
 "use client";
 
-import { fetcherApi } from "@/lib/backendService";
-import { userApiLink } from "@/lib/links";
-
-import useSWR from "swr";
 // import CvList from "../../shared/components/CvList";
 // import { CV } from "@/lib/types";
 import { Tab, Tabs } from "@heroui/react";
 
 import GenerateDocumentComponent from "../GenerateDocumentComponent";
 import DocumentsComponent from "../DocumentsComponent";
+import { useTranslations } from "next-intl";
 
 export default function HomeComponent() {
-  const { isLoading: isUserDataLoading } = useSWR(userApiLink, fetcherApi);
-
-  if (isUserDataLoading) {
-    return null;
-  }
+  const t = useTranslations();
 
   return (
     <main className="">
@@ -38,7 +31,7 @@ export default function HomeComponent() {
             key="main"
             title={
               <div className="flex items-center space-x-2">
-                <span>CV Builder</span>
+                <span>{t("pages.home.tabs.builder.title")}</span>
               </div>
             }
           >
@@ -48,7 +41,7 @@ export default function HomeComponent() {
             key="music"
             title={
               <div className="flex items-center space-x-2">
-                <span>Applications</span>
+                <span>{t("pages.home.tabs.applications.title")}</span>
               </div>
             }
           />
@@ -56,7 +49,7 @@ export default function HomeComponent() {
             key="videos"
             title={
               <div className="flex items-center space-x-2">
-                <span>Documents</span>
+                <span>{t("pages.home.tabs.documents.title")}</span>
               </div>
             }
           >

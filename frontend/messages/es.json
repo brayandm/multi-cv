@@ -69,7 +69,8 @@
       "discard": "Descartar",
       "keep_editing": "Seguir editando",
       "clear": "Limpiar",
-      "autofill_button": "Llenar perfil desde CV"
+      "autofill_button": "Llenar perfil desde CV",
+      "download": "Descargar"
     },
     "errors": {
       "login": "Error de inicio de sesión",
@@ -195,13 +196,6 @@
       "december": "Diciembre"
     }
   },
-  "components": {
-    "cv": {
-      "download": "Descargar",
-      "to_expire": "<days></days> Para expirar",
-      "days": "{count, plural, =1 {1 día} other {# días}}"
-    }
-  },
   "pages": {
     "email_verification": {
       "title": "Verificación de Correo",
@@ -240,7 +234,18 @@
       "description": "Crea CVs únicos para ofertas de trabajo únicas."
     },
     "home": {
-      "your_resumes": "Tus CVs"
+      "tabs": {
+        "builder": {
+          "title": "Constructor de CV"
+        },
+        "applications": {
+          "title": "Solicitudes"
+        },
+        "documents": {
+          "title": "Documentos",
+          "empty": "No se encontraron documentos."
+        }
+      }
     },
     "login": {
       "description": "Por favor ingresa tus credenciales"
