@@ -53,7 +53,7 @@ const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
-  const [locale, setLocale] = useState("en");
+  const [locale, setLocale] = useState("");
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {

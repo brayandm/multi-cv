@@ -34,7 +34,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("");
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
@@ -43,9 +43,10 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
+    if (!initialized) return;
     document.documentElement.classList.remove("light", "dark");
     document.documentElement.classList.add(theme);
-  }, [theme]);
+  }, [theme, initialized]);
 
   const updateTheme = async (newTheme: string) => {
     let userThemeResponse;
