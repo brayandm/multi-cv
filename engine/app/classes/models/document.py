@@ -26,7 +26,11 @@ class Document(BaseModel):
     type: ShortStr
 
     class Config:
-        allow_population_by_field_name = True
+        json_encoders = {
+            datetime: lambda v: v.astimezone(timezone.utc)
+            .isoformat()
+            .replace("+00:00", "Z")
+        }
 
 
 class CvDocument(Document):

@@ -47,7 +47,12 @@ export default function DocumentsComponent() {
                   <p className="text-xs text-gray-500 dark:text-gray-400">
                     {doc.type === "cv" ? "CV" : "Cover Letter"} ·{" "}
                     {(doc.size / 1024).toFixed(1)} KB ·{" "}
-                    {new Date(doc.created_at).toLocaleDateString()}
+                    {new Date(doc.created_at).toLocaleDateString()}{" "}
+                    {new Date(doc.created_at).toLocaleTimeString([], {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: false,
+                    })}
                   </p>
                 </div>
               </div>
