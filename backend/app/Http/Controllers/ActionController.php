@@ -60,6 +60,29 @@ class ActionController extends Controller
         ]);
     }
 
+    public function cancelAction(Request $request)
+    {
+        $validator = $this->validateActionId($request);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        $action_id = $validator->validated()['action_id'];
+
+        $result = $this->actionService->cancelAction($action_id);
+
+        if (! $result) {
+            return response()->json([
+                'code' => 500,
+            ]);
+        }
+
+        return response()->json([
+            'code' => 200,
+        ]);
+    }
+
     public function rollbackAction(Request $request)
     {
         $validator = $this->validateActionId($request);

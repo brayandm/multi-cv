@@ -84,6 +84,38 @@ def rollback_action() -> None:
         )
 
 
+def cancel_action() -> None:
+
+    action_id = get_action_id()
+
+    try:
+        response = requests.post(
+            f"{BACKEND_API_URL}/action/cancel",
+            json={"action_id": action_id},
+            headers={
+                "X-API-Key": INTER_COMMUNICATION_TOKEN,
+            },
+        )
+
+    except Exception as e:
+        logger.error(
+            "Cancelation failed with error %s",
+            e,
+        )
+        raise e
+
+    if response.status_code != 200 or response.json().get("code") != 200:
+        logger.error(
+            "Cancelation failed for action_id %s",
+            action_id,
+        )
+    else:
+        logger.info(
+            "Cancelation successful for action_id %s",
+            action_id,
+        )
+
+
 def commit_action_after() -> Callable[..., Any]:
     def decorator(func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(func)

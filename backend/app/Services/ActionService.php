@@ -146,6 +146,55 @@ class ActionService
     }
 
     /**
+     * Cancels the consumption of an action from the user's quota.
+     *
+     * @return bool Indicates whether the cancellation was successful.
+     */
+    public function cancelAction(string $action_id): bool
+    {
+        try {
+            return DB::transaction(function () use ($action_id) {
+                $actionRecord = Action::where('action_id', $action_id)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $actionRecord) {
+                    return true;
+                }
+
+                $action = $actionRecord->action;
+                $user_id = $actionRecord->user_id;
+
+                $actionRecord->delete();
+
+                $quota = Quota::where('user_id', $user_id)
+                    ->where('action', $action)
+                    ->lockForUpdate()
+                    ->first();
+
+                if (! $quota) {
+                    return true;
+                }
+
+                $newLeft = $quota->left + 1;
+
+                $newPending = max(0, $quota->pending - 1);
+
+                $quota->update([
+                    'left' => $newLeft,
+                    'pending' => $newPending,
+                ]);
+
+                return true;
+            });
+        } catch (\Throwable $e) {
+            Log::error($e->getMessage());
+
+            return false;
+        }
+    }
+
+    /**
      * Commits the consumption of an action from the user's quota.
      *
      * @return bool Indicates whether the commit was successful.

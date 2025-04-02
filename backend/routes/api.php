@@ -43,6 +43,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::middleware(['auth.inter.communication'])->group(function () {
         Route::post('/action/rollback', 'App\Http\Controllers\ActionController@rollbackAction');
+        Route::post('/action/cancel', 'App\Http\Controllers\ActionController@cancelAction');
         Route::post('/action/commit', 'App\Http\Controllers\ActionController@commitAction');
     });
 
