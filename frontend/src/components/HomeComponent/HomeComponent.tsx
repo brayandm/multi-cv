@@ -12,6 +12,7 @@ import useSWR from "swr";
 // import CvList from "../../shared/components/CvList";
 // import { CV } from "@/lib/types";
 import {
+  addToast,
   Button,
   Modal,
   ModalBody,
@@ -135,6 +136,12 @@ export default function HomeComponent() {
       }
     } catch (error) {
       console.error("Error while generating CV", error);
+      addToast({
+        title: t("common.errors.generate_cv"),
+        description: t("common.errors.server"),
+        color: "danger",
+        timeout: 5000,
+      });
     }
 
     setIsCvLoading(false);
@@ -154,6 +161,12 @@ export default function HomeComponent() {
       router.push("/edit/cv");
     } catch (error) {
       console.error("Error while generating CV", error);
+      addToast({
+        title: t("common.errors.generate_cv"),
+        description: t("common.errors.server"),
+        color: "danger",
+        timeout: 5000,
+      });
     }
 
     setIsCvLoading(false);

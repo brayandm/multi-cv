@@ -96,7 +96,8 @@
       "file_size": "The file size should be less than {max}MB",
       "autofill": "Autofill failed",
       "dates_impossible": "The end date must be after the start date",
-      "expiration_impossible": "The expiration date must be after the issue date"
+      "expiration_impossible": "The expiration date must be after the issue date",
+      "generate_cv": "CV generation failed"
     },
     "success": {
       "password_change": "Password changed",

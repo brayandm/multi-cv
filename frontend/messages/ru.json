@@ -1,347 +1,348 @@
 {
-    "app": {
-        "name": "MultiCV"
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Главная",
+      "settings": "Настройки",
+      "profile": "Профиль"
     },
-    "common": {
-        "menu": {
-            "home": "Главная",
-            "settings": "Настройки",
-            "profile": "Профиль"
-        },
-        "auth": {
-            "login": "Войти",
-            "register": "Регистрация",
-            "logout": "Выйти",
-            "google_sign_in": "Войти с Google",
-            "google_sign_up": "Зарегистрироваться с Google",
-            "use_other_method": "Использовать другой метод",
-            "forgot_password": "Забыли пароль?"
-        },
-        "texts": {
-            "delete": "Удаление {element}",
-            "delete_confirmation": "Вы уверены, что хотите удалить этот {element}?",
-            "skills": "навыки",
-            "draft_changes": "Изменения в черновике",
-            "draft_changes_description": "У вас есть несохраненные изменения. Хотите их сохранить?",
-            "havent_finished": "Вы еще не завершили этот {element}.",
-            "discard_changes": "Хотите продолжить редактирование или отменить изменения?",
-            "saved": "Сохранено",
-            "saved_description": "Ваши изменения были сохранены.",
-            "unfinished_element": "Незавершенный {element}",
-            "unfinished_element_description": "Вы еще не завершили этот {element}.",
-            "chat": "Чат с ИИ",
-            "chat_description": "Общайтесь с нашим ИИ для получения помощи",
-            "ai_assistant": "ИИ Ассистент",
-            "type_message": "Введите сообщение...",
-            "generate_cv": "Создать резюме",
-            "quota_info": "Информация о квоте",
-            "used": "Использовано",
-            "message_left": "Осталось сообщений: {count}",
-            "generation_left": "Осталось генераций: {count}",
-            "languages": "Языки",
-            "basic": "Базовый",
-            "intermediate": "Средний",
-            "professional": "Профессиональный",
-            "native": "Родной",
-            "upload_cv": "Загрузите ваше резюме (PDF)",
-            "loading_autofill_title": "Обработка вашего резюме",
-            "loading_autofill_description": "Пожалуйста, подождите, пока мы заполним ваш профиль...",
-            "loading_generating_cv_title": "Создание вашего резюме",
-            "loading_generating_cv_description": "Пожалуйста, подождите, пока мы создадим ваше резюме...",
-            "only_year": "Только год"
-        },
-        "buttons": {
-            "continue": "Продолжить",
-            "add": "Добавить",
-            "resend_email": "Повторно отправить email",
-            "send_email": "Отправить email",
-            "change_password": "Сменить пароль",
-            "resend_in": "Повторно отправить через {timeleft}с",
-            "try_again": "Попробуйте снова",
-            "too_many_requests": "Слишком много запросов, попробуйте через 24 часа",
-            "next": "Далее",
-            "previous": "Назад",
-            "go_home": "На главную",
-            "add_element": "Добавить {element}",
-            "delete": "Удалить",
-            "cancel": "Отмена",
-            "save": "Сохранить",
-            "discard": "Отменить",
-            "keep_editing": "Продолжить редактирование",
-            "clear": "Очистить",
-            "autofill_button": "Заполнить профиль из резюме"
-        },
-        "errors": {
-            "login": "Ошибка входа",
-            "login_description": "Email или пароль неверны.",
-            "register": "Ошибка регистрации",
-            "register_description": "Email уже используется.",
-            "passwords_not_match": "Пароли не совпадают",
-            "password_change": "Ошибка смены пароля",
-            "old_password_incorrect": "Текущий пароль неверен",
-            "server": "Ошибка сервера",
-            "under_age": "Вам должно быть больше 18 лет",
-            "accept_terms": "Вы должны принять условия",
-            "length": "Поле {field} должно содержать {current_length}/{length} символов",
-            "skill_length": "Вы должны ввести как минимум {min} навык",
-            "country_code_required": "Выберите код страны",
-            "max_elements": "Достигнуто максимальное количество {element}",
-            "max_elements_description": "Вы можете добавить только {max} {element}",
-            "required": "Пожалуйста, заполните это поле.",
-            "invalid_email": "Введенный email недействителен",
-            "password_too_short": "Пароль должен содержать не менее {min} символов",
-            "select_date": "Пожалуйста, выберите дату",
-            "invalid_phone": "Номер телефона недействителен",
-            "settings": "Ошибка обновления настроек",
-            "file_size": "Размер файла должен быть менее {max}MB",
-            "autofill": "Ошибка автозаполнения",
-            "dates_impossible": "Дата окончания должна быть позже даты начала",
-            "expiration_impossible": "Дата истечения должна быть позже даты выдачи"
-        },
-        "success": {
-            "password_change": "Пароль изменен",
-            "password_change_description": "Ваш пароль был успешно изменен."
-        },
-        "form": {
-            "first_name": "Имя",
-            "last_name": "Фамилия",
-            "email": "Email",
-            "password": "Пароль",
-            "current_password": "Текущий пароль",
-            "new_password": "Новый пароль",
-            "repeat_password": "Повторите пароль",
-            "your_location": "Ваше местоположение",
-            "phone": "Номер телефона",
-            "about": "О вас",
-            "company_name": "Компания",
-            "institution": "Учебное заведение",
-            "career": "Карьера",
-            "skill": "Навык",
-            "role": "Роль",
-            "phone_number": "Номер телефона",
-            "phone_country_code": "Код страны",
-            "company_description": "Описание работы",
-            "location": "Местоположение",
-            "start_date": "Дата начала",
-            "end_date": "Дата окончания",
-            "project_name": "Название проекта",
-            "project_description": "Описание проекта",
-            "link": "Ссылка",
-            "professional_links_select": "Выберите ссылку",
-            "skill_description": "Введите как минимум {min} навыков",
-            "certification_name": "Название сертификата",
-            "certification_description": "Описание сертификата",
-            "certificate_id": "ID сертификата",
-            "verification_url": "Ссылка для проверки",
-            "issuer": "Выдавший сертификат",
-            "issue_date": "Дата выдачи",
-            "expiration_date": "Дата истечения",
-            "language": "Язык",
-            "level": "Уровень"
-        },
-        "placeholders": {
-            "enter_first_name": "Введите ваше имя",
-            "enter_last_name": "Введите вашу фамилию",
-            "enter_email": "Введите ваш email",
-            "enter_password": "Введите ваш пароль",
-            "enter_current_password": "Введите ваш текущий пароль",
-            "enter_new_password": "Введите ваш новый пароль",
-            "enter_password_again": "Введите ваш пароль еще раз",
-            "enter_skill": "Введите новый навык",
-            "enter_phone": "Введите ваш номер телефона",
-            "enter_about": "Я ...",
-            "enter_company_name": "Название компании",
-            "enter_institution_name": "Название учебного заведения",
-            "enter_career": "Степень, которую вы изучали / изучаете здесь",
-            "enter_role": "Ваша роль в компании",
-            "enter_job_description": "Описание ваших обязанностей и ответственности на работе",
-            "enter_your_location": "Город, Страна",
-            "enter_location": "\"Город, Страна\" или \"Удаленно\"",
-            "enter_project_name": "Введите название проекта",
-            "enter_project_description": "Введите краткое описание",
-            "enter_project_link": "Ссылка на ваш проект",
-            "enter_institution_link": "Ссылка на учебное заведение",
-            "enter_company_link": "Ссылка на компанию",
-            "professional_links_select": "Нажмите, чтобы выбрать",
-            "enter_your_link": "Введите вашу ссылку на {field}",
-            "enter_certification_name": "Введите название сертификата",
-            "enter_certification_issuer": "Введите выдавшего",
-            "enter_certification_certificate_id": "ID сертификата",
-            "enter_certification_verification_url": "Введите ссылку для проверки",
-            "enter_certification_description": "Введите краткое описание",
-            "enter_language": "Введите язык",
-            "select_language_level": "Выберите уровень"
-        },
-        "legal": {
-            "terms_conditions": "Условия и положения",
-            "privacy_policy": "Политика конфиденциальности",
-            "confirm_age": "Я подтверждаю, что мне больше 18 лет",
-            "accept_terms": "Я принимаю <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>",
-            "talent_pool": "Разрешить рекрутерам просматривать мой профиль для трудоустройства."
-        },
-        "months": {
-            "january": "Январь",
-            "february": "Февраль",
-            "march": "Март",
-            "april": "Апрель",
-            "may": "Май",
-            "june": "Июнь",
-            "july": "Июль",
-            "august": "Август",
-            "september": "Сентябрь",
-            "october": "Октябрь",
-            "november": "Ноябрь",
-            "december": "Декабрь"
-        }
+    "auth": {
+      "login": "Войти",
+      "register": "Регистрация",
+      "logout": "Выйти",
+      "google_sign_in": "Войти с Google",
+      "google_sign_up": "Зарегистрироваться с Google",
+      "use_other_method": "Использовать другой метод",
+      "forgot_password": "Забыли пароль?"
     },
-    "components": {
-        "cv": {
-            "download": "Скачать",
-            "to_expire": "<days></days> До истечения",
-            "days": "{count, plural, =1 {1 день} other {# дней}}"
-        }
+    "texts": {
+      "delete": "Удаление {element}",
+      "delete_confirmation": "Вы уверены, что хотите удалить этот {element}?",
+      "skills": "навыки",
+      "draft_changes": "Изменения в черновике",
+      "draft_changes_description": "У вас есть несохраненные изменения. Хотите их сохранить?",
+      "havent_finished": "Вы еще не завершили этот {element}.",
+      "discard_changes": "Хотите продолжить редактирование или отменить изменения?",
+      "saved": "Сохранено",
+      "saved_description": "Ваши изменения были сохранены.",
+      "unfinished_element": "Незавершенный {element}",
+      "unfinished_element_description": "Вы еще не завершили этот {element}.",
+      "chat": "Чат с ИИ",
+      "chat_description": "Общайтесь с нашим ИИ для получения помощи",
+      "ai_assistant": "ИИ Ассистент",
+      "type_message": "Введите сообщение...",
+      "generate_cv": "Создать резюме",
+      "quota_info": "Информация о квоте",
+      "used": "Использовано",
+      "message_left": "Осталось сообщений: {count}",
+      "generation_left": "Осталось генераций: {count}",
+      "languages": "Языки",
+      "basic": "Базовый",
+      "intermediate": "Средний",
+      "professional": "Профессиональный",
+      "native": "Родной",
+      "upload_cv": "Загрузите ваше резюме (PDF)",
+      "loading_autofill_title": "Обработка вашего резюме",
+      "loading_autofill_description": "Пожалуйста, подождите, пока мы заполним ваш профиль...",
+      "loading_generating_cv_title": "Создание вашего резюме",
+      "loading_generating_cv_description": "Пожалуйста, подождите, пока мы создадим ваше резюме...",
+      "only_year": "Только год"
     },
-    "pages": {
-        "email_verification": {
-            "title": "Подтверждение Email",
-            "already_verified": {
-                "title": "Подтверждение Email уже выполнено",
-                "message": "Ваш email уже подтвержден."
-            },
-            "success": {
-                "title": "Успешное подтверждение Email",
-                "message": "Ваш email был подтвержден."
-            },
-            "expired": {
-                "title": "Ссылка для подтверждения Email истекла",
-                "message": "Ссылка для подтверждения вашего email истекла."
-            },
-            "instructions": "Мы отправили вам email с ссылкой для подтверждения."
-        },
-        "password_recovery": {
-            "title": "Восстановление пароля",
-            "success": {
-                "title": "Успешное восстановление пароля",
-                "message": "Ваш пароль был изменен."
-            },
-            "fail": {
-                "title": "Недействительная или истекшая ссылка для восстановления пароля",
-                "message": "Ссылка для восстановления пароля недействительна или истекла."
-            },
-            "instructions": "Мы отправим вам email со ссылкой для сброса пароля."
-        },
-        "settings": {
-            "subtitle": "Измените настройки вашей учетной записи",
-            "password": "Настройки пароля"
-        },
-        "welcome": {
-            "title": "Добро пожаловать в <appName></appName>",
-            "description": "Создавайте уникальные резюме для уникальных вакансий."
-        },
-        "home": {
-            "your_resumes": "Ваши резюме"
-        },
-        "login": {
-            "description": "Пожалуйста, введите ваши учетные данные"
-        },
-        "register": {
-            "description": "Представьтесь"
-        },
-        "profile": {
-            "subtitle": "Эта информация необходима для правильного создания вашего резюме.",
-            "sections": {
-                "basic_info": {
-                    "title": "Личная информация"
-                },
-                "professional_links": {
-                    "title": "Ссылки"
-                },
-                "experience": {
-                    "title": "Опыт",
-                    "element": "Опыт",
-                    "is_present": "Я сейчас работаю здесь"
-                },
-                "education": {
-                    "title": "Образование",
-                    "element": "Образование",
-                    "is_present": "Я сейчас учусь здесь"
-                },
-                "projects": {
-                    "title": "Проекты",
-                    "element": "Проект",
-                    "is_present": "Я сейчас работаю над этим проектом"
-                },
-                "certifications": {
-                    "title": "Сертификаты",
-                    "element": "Сертификат",
-                    "hasnt_expiration_date": "У этого сертификата нет даты истечения"
-                },
-                "languages": {
-                    "title": "Языки"
-                },
-                "skills": {
-                    "title": "Навыки"
-                }
-            },
-            "success": {
-                "title": "Регистрация завершена",
-                "message": "Ваша учетная запись готова. Теперь вы можете получить доступ ко всем функциям платформы."
-            },
-            "auto_fill": {
-                "title": "Загрузите ваше резюме для заполнения профиля",
-                "message": "Сэкономьте время, загрузив ваше существующее резюме — мы извлечем информацию и автоматически заполним ваш профиль."
-            }
-        },
-        "terms_and_conditions": {
-            "title": "Политика конфиденциальности и Условия",
-            "description_first_time": "Пожалуйста, прочитайте и примите.",
-            "updating_notice": "Мы обновляем наши <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>. Новые условия вступят в силу через месяц и будут доступны для ознакомления до этого. Пожалуйста, уделите время, чтобы ознакомиться с предстоящими изменениями.",
-            "accept_terms": "Мы обновляем наши <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>. Нажимая \"Продолжить\", вы соглашаетесь с обновленными условиями."
-        },
-        "not_found": {
-            "title": "Страница не найдена",
-            "description": "Извините, страница, которую вы ищете, не существует или была перемещена.",
-            "back": "Назад на главную"
-        },
-        "landing_page": {
-            "title": "Создавайте впечатляющие резюме с помощью ИИ",
-            "description": "MultiCV помогает вам создавать персонализированные резюме, адаптированные к каждой вакансии. Создано для поддержки технических специалистов с быстрым и элегантным опытом на основе ИИ.",
-            "start_free": "Начать бесплатно",
-            "features": {
-                "title": "Что вы можете сделать с MultiCV?",
-                "first": {
-                    "title": "Умный Ассистент",
-                    "description": "Получите помощь в написании вашего опыта, достижений и навыков ясным, увлекательным и оптимизированным способом."
-                },
-                "second": {
-                    "title": "Несколько резюме",
-                    "description": "Управляйте разными версиями вашего резюме для разных компаний, отраслей или технических ролей."
-                },
-                "third": {
-                    "title": "Мгновенная Адаптация",
-                    "description": "Автоматически создавайте резюме, специфичные для вакансии, одним щелчком."
-                },
-                "coming_soon": "Скоро"
-            },
-            "vision": {
-                "title": "Будущее MultiCV",
-                "description": "Представьте мир, где вам даже не нужно создавать резюме. Наша миссия — соединить людей и компании напрямую, используя ИИ для структурирования вашего профиля, подчеркивания ваших сильных сторон и устранения несправедливых фильтров.",
-                "start_now": "Я хочу быть частью будущего"
-            },
-            "cta": {
-                "title": "Начните создавать ваше резюме с помощью ИИ",
-                "description": "Станьте частью нашей бета-фазы и помогите формировать MultiCV. Начните создавать более умные резюме с помощью ИИ и получите преимущество в поиске работы.",
-                "start_now": "Начать сейчас"
-            },
-            "footer": {
-                "home": "Главная страница",
-                "linkedin": "LinkedIn",
-                "privacy_policy": "Политика конфиденциальности",
-                "cookies_policy": "Политика использования файлов cookie",
-                "terms_and_conditions": "Условия и положения",
-                "contact": "Контакт",
-                "all_rights_reserved": "Все права защищены"
-            }
-        }
+    "buttons": {
+      "continue": "Продолжить",
+      "add": "Добавить",
+      "resend_email": "Повторно отправить email",
+      "send_email": "Отправить email",
+      "change_password": "Сменить пароль",
+      "resend_in": "Повторно отправить через {timeleft}с",
+      "try_again": "Попробуйте снова",
+      "too_many_requests": "Слишком много запросов, попробуйте через 24 часа",
+      "next": "Далее",
+      "previous": "Назад",
+      "go_home": "На главную",
+      "add_element": "Добавить {element}",
+      "delete": "Удалить",
+      "cancel": "Отмена",
+      "save": "Сохранить",
+      "discard": "Отменить",
+      "keep_editing": "Продолжить редактирование",
+      "clear": "Очистить",
+      "autofill_button": "Заполнить профиль из резюме"
+    },
+    "errors": {
+      "login": "Ошибка входа",
+      "login_description": "Email или пароль неверны.",
+      "register": "Ошибка регистрации",
+      "register_description": "Email уже используется.",
+      "passwords_not_match": "Пароли не совпадают",
+      "password_change": "Ошибка смены пароля",
+      "old_password_incorrect": "Текущий пароль неверен",
+      "server": "Ошибка сервера",
+      "under_age": "Вам должно быть больше 18 лет",
+      "accept_terms": "Вы должны принять условия",
+      "length": "Поле {field} должно содержать {current_length}/{length} символов",
+      "skill_length": "Вы должны ввести как минимум {min} навык",
+      "country_code_required": "Выберите код страны",
+      "max_elements": "Достигнуто максимальное количество {element}",
+      "max_elements_description": "Вы можете добавить только {max} {element}",
+      "required": "Пожалуйста, заполните это поле.",
+      "invalid_email": "Введенный email недействителен",
+      "password_too_short": "Пароль должен содержать не менее {min} символов",
+      "select_date": "Пожалуйста, выберите дату",
+      "invalid_phone": "Номер телефона недействителен",
+      "settings": "Ошибка обновления настроек",
+      "file_size": "Размер файла должен быть менее {max}MB",
+      "autofill": "Ошибка автозаполнения",
+      "dates_impossible": "Дата окончания должна быть позже даты начала",
+      "expiration_impossible": "Дата истечения должна быть позже даты выдачи",
+      "generate_cv": "Не удалось сгенерировать резюме"
+    },
+    "success": {
+      "password_change": "Пароль изменен",
+      "password_change_description": "Ваш пароль был успешно изменен."
+    },
+    "form": {
+      "first_name": "Имя",
+      "last_name": "Фамилия",
+      "email": "Email",
+      "password": "Пароль",
+      "current_password": "Текущий пароль",
+      "new_password": "Новый пароль",
+      "repeat_password": "Повторите пароль",
+      "your_location": "Ваше местоположение",
+      "phone": "Номер телефона",
+      "about": "О вас",
+      "company_name": "Компания",
+      "institution": "Учебное заведение",
+      "career": "Карьера",
+      "skill": "Навык",
+      "role": "Роль",
+      "phone_number": "Номер телефона",
+      "phone_country_code": "Код страны",
+      "company_description": "Описание работы",
+      "location": "Местоположение",
+      "start_date": "Дата начала",
+      "end_date": "Дата окончания",
+      "project_name": "Название проекта",
+      "project_description": "Описание проекта",
+      "link": "Ссылка",
+      "professional_links_select": "Выберите ссылку",
+      "skill_description": "Введите как минимум {min} навыков",
+      "certification_name": "Название сертификата",
+      "certification_description": "Описание сертификата",
+      "certificate_id": "ID сертификата",
+      "verification_url": "Ссылка для проверки",
+      "issuer": "Выдавший сертификат",
+      "issue_date": "Дата выдачи",
+      "expiration_date": "Дата истечения",
+      "language": "Язык",
+      "level": "Уровень"
+    },
+    "placeholders": {
+      "enter_first_name": "Введите ваше имя",
+      "enter_last_name": "Введите вашу фамилию",
+      "enter_email": "Введите ваш email",
+      "enter_password": "Введите ваш пароль",
+      "enter_current_password": "Введите ваш текущий пароль",
+      "enter_new_password": "Введите ваш новый пароль",
+      "enter_password_again": "Введите ваш пароль еще раз",
+      "enter_skill": "Введите новый навык",
+      "enter_phone": "Введите ваш номер телефона",
+      "enter_about": "Я ...",
+      "enter_company_name": "Название компании",
+      "enter_institution_name": "Название учебного заведения",
+      "enter_career": "Степень, которую вы изучали / изучаете здесь",
+      "enter_role": "Ваша роль в компании",
+      "enter_job_description": "Описание ваших обязанностей и ответственности на работе",
+      "enter_your_location": "Город, Страна",
+      "enter_location": "\"Город, Страна\" или \"Удаленно\"",
+      "enter_project_name": "Введите название проекта",
+      "enter_project_description": "Введите краткое описание",
+      "enter_project_link": "Ссылка на ваш проект",
+      "enter_institution_link": "Ссылка на учебное заведение",
+      "enter_company_link": "Ссылка на компанию",
+      "professional_links_select": "Нажмите, чтобы выбрать",
+      "enter_your_link": "Введите вашу ссылку на {field}",
+      "enter_certification_name": "Введите название сертификата",
+      "enter_certification_issuer": "Введите выдавшего",
+      "enter_certification_certificate_id": "ID сертификата",
+      "enter_certification_verification_url": "Введите ссылку для проверки",
+      "enter_certification_description": "Введите краткое описание",
+      "enter_language": "Введите язык",
+      "select_language_level": "Выберите уровень"
+    },
+    "legal": {
+      "terms_conditions": "Условия и положения",
+      "privacy_policy": "Политика конфиденциальности",
+      "confirm_age": "Я подтверждаю, что мне больше 18 лет",
+      "accept_terms": "Я принимаю <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>",
+      "talent_pool": "Разрешить рекрутерам просматривать мой профиль для трудоустройства."
+    },
+    "months": {
+      "january": "Январь",
+      "february": "Февраль",
+      "march": "Март",
+      "april": "Апрель",
+      "may": "Май",
+      "june": "Июнь",
+      "july": "Июль",
+      "august": "Август",
+      "september": "Сентябрь",
+      "october": "Октябрь",
+      "november": "Ноябрь",
+      "december": "Декабрь"
     }
+  },
+  "components": {
+    "cv": {
+      "download": "Скачать",
+      "to_expire": "<days></days> До истечения",
+      "days": "{count, plural, =1 {1 день} other {# дней}}"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "Подтверждение Email",
+      "already_verified": {
+        "title": "Подтверждение Email уже выполнено",
+        "message": "Ваш email уже подтвержден."
+      },
+      "success": {
+        "title": "Успешное подтверждение Email",
+        "message": "Ваш email был подтвержден."
+      },
+      "expired": {
+        "title": "Ссылка для подтверждения Email истекла",
+        "message": "Ссылка для подтверждения вашего email истекла."
+      },
+      "instructions": "Мы отправили вам email с ссылкой для подтверждения."
+    },
+    "password_recovery": {
+      "title": "Восстановление пароля",
+      "success": {
+        "title": "Успешное восстановление пароля",
+        "message": "Ваш пароль был изменен."
+      },
+      "fail": {
+        "title": "Недействительная или истекшая ссылка для восстановления пароля",
+        "message": "Ссылка для восстановления пароля недействительна или истекла."
+      },
+      "instructions": "Мы отправим вам email со ссылкой для сброса пароля."
+    },
+    "settings": {
+      "subtitle": "Измените настройки вашей учетной записи",
+      "password": "Настройки пароля"
+    },
+    "welcome": {
+      "title": "Добро пожаловать в <appName></appName>",
+      "description": "Создавайте уникальные резюме для уникальных вакансий."
+    },
+    "home": {
+      "your_resumes": "Ваши резюме"
+    },
+    "login": {
+      "description": "Пожалуйста, введите ваши учетные данные"
+    },
+    "register": {
+      "description": "Представьтесь"
+    },
+    "profile": {
+      "subtitle": "Эта информация необходима для правильного создания вашего резюме.",
+      "sections": {
+        "basic_info": {
+          "title": "Личная информация"
+        },
+        "professional_links": {
+          "title": "Ссылки"
+        },
+        "experience": {
+          "title": "Опыт",
+          "element": "Опыт",
+          "is_present": "Я сейчас работаю здесь"
+        },
+        "education": {
+          "title": "Образование",
+          "element": "Образование",
+          "is_present": "Я сейчас учусь здесь"
+        },
+        "projects": {
+          "title": "Проекты",
+          "element": "Проект",
+          "is_present": "Я сейчас работаю над этим проектом"
+        },
+        "certifications": {
+          "title": "Сертификаты",
+          "element": "Сертификат",
+          "hasnt_expiration_date": "У этого сертификата нет даты истечения"
+        },
+        "languages": {
+          "title": "Языки"
+        },
+        "skills": {
+          "title": "Навыки"
+        }
+      },
+      "success": {
+        "title": "Регистрация завершена",
+        "message": "Ваша учетная запись готова. Теперь вы можете получить доступ ко всем функциям платформы."
+      },
+      "auto_fill": {
+        "title": "Загрузите ваше резюме для заполнения профиля",
+        "message": "Сэкономьте время, загрузив ваше существующее резюме — мы извлечем информацию и автоматически заполним ваш профиль."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Политика конфиденциальности и Условия",
+      "description_first_time": "Пожалуйста, прочитайте и примите.",
+      "updating_notice": "Мы обновляем наши <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>. Новые условия вступят в силу через месяц и будут доступны для ознакомления до этого. Пожалуйста, уделите время, чтобы ознакомиться с предстоящими изменениями.",
+      "accept_terms": "Мы обновляем наши <termsConditions></termsConditions> и <privacyPolicy></privacyPolicy>. Нажимая \"Продолжить\", вы соглашаетесь с обновленными условиями."
+    },
+    "not_found": {
+      "title": "Страница не найдена",
+      "description": "Извините, страница, которую вы ищете, не существует или была перемещена.",
+      "back": "Назад на главную"
+    },
+    "landing_page": {
+      "title": "Создавайте впечатляющие резюме с помощью ИИ",
+      "description": "MultiCV помогает вам создавать персонализированные резюме, адаптированные к каждой вакансии. Создано для поддержки технических специалистов с быстрым и элегантным опытом на основе ИИ.",
+      "start_free": "Начать бесплатно",
+      "features": {
+        "title": "Что вы можете сделать с MultiCV?",
+        "first": {
+          "title": "Умный Ассистент",
+          "description": "Получите помощь в написании вашего опыта, достижений и навыков ясным, увлекательным и оптимизированным способом."
+        },
+        "second": {
+          "title": "Несколько резюме",
+          "description": "Управляйте разными версиями вашего резюме для разных компаний, отраслей или технических ролей."
+        },
+        "third": {
+          "title": "Мгновенная Адаптация",
+          "description": "Автоматически создавайте резюме, специфичные для вакансии, одним щелчком."
+        },
+        "coming_soon": "Скоро"
+      },
+      "vision": {
+        "title": "Будущее MultiCV",
+        "description": "Представьте мир, где вам даже не нужно создавать резюме. Наша миссия — соединить людей и компании напрямую, используя ИИ для структурирования вашего профиля, подчеркивания ваших сильных сторон и устранения несправедливых фильтров.",
+        "start_now": "Я хочу быть частью будущего"
+      },
+      "cta": {
+        "title": "Начните создавать ваше резюме с помощью ИИ",
+        "description": "Станьте частью нашей бета-фазы и помогите формировать MultiCV. Начните создавать более умные резюме с помощью ИИ и получите преимущество в поиске работы.",
+        "start_now": "Начать сейчас"
+      },
+      "footer": {
+        "home": "Главная страница",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "Политика конфиденциальности",
+        "cookies_policy": "Политика использования файлов cookie",
+        "terms_and_conditions": "Условия и положения",
+        "contact": "Контакт",
+        "all_rights_reserved": "Все права защищены"
+      }
+    }
+  }
 }

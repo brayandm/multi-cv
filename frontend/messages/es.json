@@ -96,7 +96,8 @@
       "file_size": "El tamaño del archivo debe ser menor a {max}MB",
       "autofill": "Error al autocompletar",
       "dates_impossible": "La fecha de finalización debe ser posterior a la fecha de inicio",
-      "expiration_impossible": "La fecha de expiración debe ser posterior a la fecha de emisión"
+      "expiration_impossible": "La fecha de expiración debe ser posterior a la fecha de emisión",
+      "generate_cv": "La generación del CV falló"
     },
     "success": {
       "password_change": "Contraseña cambiada",
