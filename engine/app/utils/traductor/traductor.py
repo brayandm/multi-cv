@@ -1,5 +1,6 @@
 import json
 import os
+from collections import OrderedDict
 from collections.abc import MutableMapping
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any
@@ -16,35 +17,38 @@ api_key: str = os.environ.get("OPENAI_API_KEY") or ""
 source_path: str = "../frontend/messages/en.json"
 
 with open(source_path, "r", encoding="utf-8") as f:
-    en_data: dict[str, Any] = json.load(f)
+    en_data: OrderedDict[str, Any] = json.load(
+        f, object_pairs_hook=OrderedDict
+    )
 
 
 def flatten(
     d: dict[str, Any], parent_key: str = "", sep: str = "."
-) -> dict[str, str]:
+) -> OrderedDict[str, str]:
     items: list[tuple[str, str]] = []
     for k, v in d.items():
         new_key = f"{parent_key}{sep}{k}" if parent_key else k
-        if isinstance(v, MutableMapping):
-            if isinstance(v, dict):
-                items.extend(flatten(v, new_key, sep=sep).items())
+        if isinstance(v, MutableMapping) and isinstance(v, dict):
+            items.extend(flatten(v, new_key, sep=sep).items())
         else:
             items.append((new_key, str(v)))
-    return dict(items)
+    return OrderedDict(items)
 
 
-def unflatten(d: dict[str, str], sep: str = ".") -> dict[str, Any]:
-    result: dict[str, Any] = {}
+def unflatten(d: dict[str, str], sep: str = ".") -> OrderedDict[str, Any]:
+    result: OrderedDict[str, Any] = OrderedDict()
     for k, v in d.items():
         parts = k.split(sep)
-        target = result
+        target: OrderedDict[str, Any] = result
         for part in parts[:-1]:
-            target = target.setdefault(part, {})
+            if part not in target or not isinstance(target[part], dict):
+                target[part] = OrderedDict()
+            target = target[part]
         target[parts[-1]] = v
     return result
 
 
-en_flat: dict[str, str] = flatten(en_data)
+en_flat: OrderedDict[str, str] = flatten(en_data)
 
 target_languages: list[dict[str, str]] = [
     {"code": "es", "language": "Spanish"},
@@ -91,13 +95,13 @@ def translate_and_sync_nested(target: dict[str, str]) -> str:
     else:
         existing_flat = {}
 
-    new_keys: dict[str, str] = {
-        k: v for k, v in en_flat.items() if k not in existing_flat
-    }
+    new_keys: OrderedDict[str, str] = OrderedDict(
+        (k, v) for k, v in en_flat.items() if k not in existing_flat
+    )
     keys_to_keep: set[str] = set(en_flat.keys())
-    updated_flat: dict[str, str] = {
-        k: v for k, v in existing_flat.items() if k in keys_to_keep
-    }
+    updated_flat: OrderedDict[str, str] = OrderedDict(
+        (k, v) for k, v in existing_flat.items() if k in keys_to_keep
+    )
 
     if new_keys:
         input_json_str: str = json.dumps(
@@ -111,9 +115,16 @@ def translate_and_sync_nested(target: dict[str, str]) -> str:
             if isinstance(result.content, str)
             else json.dumps(result.content)
         )
-        updated_flat.update(translated_flat)
+        for k in new_keys:
+            if k in translated_flat:
+                updated_flat[k] = translated_flat[k]
 
-    final_nested: dict[str, Any] = unflatten(updated_flat)
+    ordered_final: OrderedDict[str, str] = OrderedDict()
+    for k in en_flat.keys():
+        if k in updated_flat:
+            ordered_final[k] = updated_flat[k]
+
+    final_nested: OrderedDict[str, Any] = unflatten(ordered_final)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(final_nested, f, ensure_ascii=False, indent=2)
 
