@@ -181,34 +181,40 @@ export const Footer = () => {
       {...fadeInUp}
     >
       <motion.div className="mb-2" {...fadeInUp}>
-        <Link href="/" className="hover:text-black dark:hover:text-white mx-2">
+        <Link
+          href="/"
+          className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
+        >
           {t("pages.landing_page.footer.home")}
         </Link>
         <Link
           href="https://www.linkedin.com/company/multicv-space/"
           target="_blank"
-          className="hover:text-black dark:hover:text-white mx-2"
+          className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.linkedin")}
         </Link>
       </motion.div>
 
-      <motion.div className="mb-2" {...fadeInUp}>
+      <motion.div
+        className="mb-2 flex flex-wrap gap-y-2 justify-center text-center"
+        {...fadeInUp}
+      >
         <a
           href="/privacy-policy"
-          className="hover:text-black dark:hover:text-white mx-2"
+          className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.privacy_policy")}
         </a>
         <a
           href="/terms-and-conditions"
-          className="hover:text-black dark:hover:text-white mx-2"
+          className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.terms_and_conditions")}
         </a>
         <a
           href="/cookies-policy"
-          className="hover:text-black dark:hover:text-white mx-2"
+          className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.cookies_policy")}
         </a>
