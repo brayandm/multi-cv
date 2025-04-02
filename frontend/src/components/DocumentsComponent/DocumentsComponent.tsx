@@ -31,9 +31,16 @@ export default function DocumentsComponent() {
       let filename = "cv.pdf";
 
       if (contentDisposition) {
-        const match = contentDisposition.match(/filename="(.+)"/);
-        if (match && match[1]) {
-          filename = match[1];
+        const utf8FilenameMatch = contentDisposition.match(
+          /filename\*\=UTF-8''([^;]+)/
+        );
+        if (utf8FilenameMatch && utf8FilenameMatch[1]) {
+          filename = decodeURIComponent(utf8FilenameMatch[1]);
+        } else {
+          const fallbackMatch = contentDisposition.match(/filename="(.+?)"/);
+          if (fallbackMatch && fallbackMatch[1]) {
+            filename = fallbackMatch[1];
+          }
         }
       }
 

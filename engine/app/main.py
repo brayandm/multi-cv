@@ -49,6 +49,8 @@ from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
 from app.worker.queue_manager import QueueManager
 
+from urllib.parse import quote
+
 app = FastAPI(lifespan=lifespan)
 
 app.add_middleware(
@@ -163,11 +165,15 @@ async def generate_cv_inline(
         file=pdf_bytes,
     )
 
+    quoted_filename = quote(filename)
+
     return Response(
         content=pdf_bytes,
         media_type="application/pdf",
         headers={
-            "Content-Disposition": f'inline; filename="{filename}"',
+            "Content-Disposition": (
+                f"inline; filename*=UTF-8''{quoted_filename}"
+            ),
             "Access-Control-Expose-Headers": "Content-Disposition",
         },
     )
@@ -228,11 +234,15 @@ async def download_document(
             content={"error": "Document not found."},
         )
 
-    return StreamingResponse(
-        BytesIO(document),
+    quoted_filename = quote(filename)
+
+    return Response(
+        content=document,
         media_type="application/pdf",
         headers={
-            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Content-Disposition": (
+                f"inline; filename*=UTF-8''{quoted_filename}"
+            ),
             "Access-Control-Expose-Headers": "Content-Disposition",
         },
     )
