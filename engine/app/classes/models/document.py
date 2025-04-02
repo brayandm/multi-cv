@@ -13,8 +13,8 @@ from app.utils.pydantic_custom_types import LongStr, ShortStr
 
 
 class Document(BaseModel):
-    id: ShortStr = Field(alias="_id")
-    user_id: ShortStr
+    document_id: ShortStr
+    user_id: int
     name: LongStr  # Is concatenation of a ShortStr + something
     size: int
     created_at: datetime = Field(

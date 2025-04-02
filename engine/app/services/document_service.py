@@ -6,7 +6,11 @@ from typing import Any
 from fastapi import Depends
 from motor.core import AgnosticDatabase
 
-from app.classes.models import Cv, CvTemplate
+from app.classes.models import (
+    Cv,
+    CvTemplate,
+    Document,
+)
 from app.database.mongodb import get_database
 from app.facades.filesystem_facade import FilesystemFacade
 from app.framework.logging import logger
@@ -42,6 +46,7 @@ class DocumentService:
 
             await self.db["documents"].insert_one(
                 {
+                    "document_id": cv_id,
                     "user_id": user_id,
                     "name": filename,
                     "size": len(file),
@@ -59,6 +64,14 @@ class DocumentService:
                 fs.removetree(dest_folder)
 
             raise e
+
+    async def get_all_documents(self, user_id: int) -> list[Document]:
+        documents = (
+            await self.db["documents"]
+            .find({"user_id": user_id})
+            .to_list(length=None)
+        )
+        return documents
 
 
 def get_document_service(

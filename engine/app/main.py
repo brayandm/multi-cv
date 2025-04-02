@@ -15,6 +15,7 @@ from app.classes.models import (
     Profile,
     Traduction,
     WebhookPayload,
+    Document,
 )
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
@@ -197,6 +198,15 @@ async def generate_cv_inline_norender(
         },
         status_code=200,
     )
+
+
+@router.get("/documents")
+@authenticate()
+async def get_documents(
+    document_service: DocumentService = Depends(get_document_service),
+) -> list[Document]:
+    documents = await document_service.get_all_documents(get_user_id())
+    return documents
 
 
 @router.post("/chat/experience")
