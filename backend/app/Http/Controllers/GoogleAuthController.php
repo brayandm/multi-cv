@@ -85,15 +85,15 @@ class GoogleAuthController extends Controller
                 $contentType = $response->header('Content-Type');
 
                 $extension = match ($contentType) {
-                    'image/jpeg', 'image/jpg'         => 'jpg',
-                    'image/png'                       => 'png',
-                    'image/gif'                       => 'gif',
-                    'image/webp'                      => 'webp',
-                    'image/bmp'                       => 'bmp',
-                    'image/svg+xml'                  => 'svg',
+                    'image/jpeg', 'image/jpg' => 'jpg',
+                    'image/png' => 'png',
+                    'image/gif' => 'gif',
+                    'image/webp' => 'webp',
+                    'image/bmp' => 'bmp',
+                    'image/svg+xml' => 'svg',
                     'image/x-icon', 'image/vnd.microsoft.icon' => 'ico',
-                    'image/tiff'                      => 'tiff',
-                    default                           => 'jpg',
+                    'image/tiff' => 'tiff',
+                    default => 'jpg',
                 };
 
                 $user->clearMediaCollection('profile_picture');
