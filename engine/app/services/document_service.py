@@ -1,3 +1,4 @@
+import os
 import uuid
 from datetime import datetime, timezone
 from io import BytesIO
@@ -14,8 +15,6 @@ from app.classes.models import (
 from app.database.mongodb import get_database
 from app.facades.filesystem_facade import FilesystemFacade
 from app.framework.logging import logger
-
-import os
 
 
 class DocumentService:
