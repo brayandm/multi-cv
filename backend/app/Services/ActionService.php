@@ -29,7 +29,9 @@ class ActionService
                     ? Carbon::parse($quota->last_reset_at)
                     : Carbon::parse($quota->created_at);
 
-                if ($this->shouldResetQuota($quota->frequency, $lastReset, Carbon::now())) {
+                $expiresAt = $quota->expires_at ? Carbon::parse($quota->expires_at) : null;
+
+                if ($this->shouldResetQuota($quota->frequency, $lastReset, Carbon::now(), $expiresAt)) {
                     $result = $this->resetQuota($user_id, $action);
 
                     if (! $result) {
@@ -326,8 +328,10 @@ class ActionService
 
                 $now = Carbon::now();
 
-                if ($this->shouldResetQuota($quota->frequency, $lastReset, $now)) {
-                    $missedPeriods = $this->getMissedResetPeriods($quota->frequency, $lastReset, $now);
+                $expiresAt = $quota->expires_at ? Carbon::parse($quota->expires_at) : null;
+
+                if ($this->shouldResetQuota($quota->frequency, $lastReset, $now, $expiresAt)) {
+                    $missedPeriods = $this->getMissedResetPeriods($quota->frequency, $lastReset, $now, $expiresAt);
 
                     $newLeft = $quota->cumulative
                         ? min($quota->left + ($missedPeriods * $quota->quota), $quota->max_left) // Accumulate up to max_left
@@ -378,21 +382,23 @@ class ActionService
     /**
      * Determines the number of missed reset periods since last_reset_at.
      */
-    private function getMissedResetPeriods(string $frequency, Carbon $lastReset, Carbon $now): int
+    private function getMissedResetPeriods(string $frequency, Carbon $lastReset, Carbon $now, ?Carbon $expiresAt = null): int
     {
+        $effectiveDate = $expiresAt && $expiresAt->lt($now) ? $expiresAt : $now;
+
         switch ($frequency) {
             case 'minutes':
-                return $lastReset->diffInMinutes($now);
+                return $lastReset->diffInMinutes($effectiveDate);
             case 'hours':
-                return $lastReset->diffInHours($now);
+                return $lastReset->diffInHours($effectiveDate);
             case 'days':
-                return $lastReset->diffInDays($now);
+                return $lastReset->diffInDays($effectiveDate);
             case 'weeks':
-                return $lastReset->diffInWeeks($now);
+                return $lastReset->diffInWeeks($effectiveDate);
             case 'months':
-                return $lastReset->diffInMonths($now);
+                return $lastReset->diffInMonths($effectiveDate);
             case 'years':
-                return $lastReset->diffInYears($now);
+                return $lastReset->diffInYears($effectiveDate);
             case 'onetime':
                 return 0; // One-time quotas do not reset
             default:
@@ -403,10 +409,9 @@ class ActionService
     /**
      * Determines if the quota should be reset based on frequency.
      */
-    private function shouldResetQuota(string $frequency, Carbon $lastReset, Carbon $now): bool
+    private function shouldResetQuota(string $frequency, Carbon $lastReset, Carbon $now, ?Carbon $expiresAt = null): bool
     {
-        // If at least one period has passed, reset the quota
-        $missedPeriods = $this->getMissedResetPeriods($frequency, $lastReset, $now);
+        $missedPeriods = $this->getMissedResetPeriods($frequency, $lastReset, $now, $expiresAt);
 
         return $missedPeriods > 0;
     }
@@ -425,7 +430,9 @@ class ActionService
             ? Carbon::parse($quota->last_reset_at)
             : Carbon::parse($quota->created_at);
 
-        if ($this->shouldResetQuota($quota->frequency, $lastReset, Carbon::now())) {
+        $expiresAt = $quota->expires_at ? Carbon::parse($quota->expires_at) : null;
+
+        if ($this->shouldResetQuota($quota->frequency, $lastReset, Carbon::now(), $expiresAt)) {
             $result = $this->resetQuota($user_id, $action);
 
             if (! $result) {
