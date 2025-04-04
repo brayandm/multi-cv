@@ -333,10 +333,12 @@ class ActionService
                         ? min($quota->left + ($missedPeriods * $quota->quota), $quota->max_left) // Accumulate up to max_left
                         : $quota->quota; // Reset quota to default
 
+                    $newLastReset = $this->calculateNewLastReset($quota->frequency, $lastReset, $missedPeriods);
+
                     $quota->update([
                         'left' => $newLeft,
                         'failed' => 0,
-                        'last_reset_at' => $now,
+                        'last_reset_at' => $newLastReset,
                     ]);
                 }
 
@@ -346,6 +348,30 @@ class ActionService
             Log::error($e->getMessage());
 
             return false;
+        }
+    }
+
+    /**
+     * Calculates the new last reset timestamp based on missed periods.
+     */
+    private function calculateNewLastReset(string $frequency, Carbon $lastReset, int $missedPeriods): Carbon
+    {
+        switch ($frequency) {
+            case 'minutes':
+                return $lastReset->copy()->addMinutes($missedPeriods);
+            case 'hours':
+                return $lastReset->copy()->addHours($missedPeriods);
+            case 'days':
+                return $lastReset->copy()->addDays($missedPeriods);
+            case 'weeks':
+                return $lastReset->copy()->addWeeks($missedPeriods);
+            case 'months':
+                return $lastReset->copy()->addMonths($missedPeriods);
+            case 'years':
+                return $lastReset->copy()->addYears($missedPeriods);
+            case 'onetime':
+            default:
+                return $lastReset;
         }
     }
 
