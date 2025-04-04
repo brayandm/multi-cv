@@ -4,8 +4,8 @@ import { userStatusApiLink } from "./lib/links";
 import { UserStatusResponse } from "./lib/types";
 import { AxiosResponse } from "axios";
 
-const authPages = ["/", "/login", "/register"];
-const unProtectedPages: string[] = [];
+const authPages = ["/login", "/register"];
+const unProtectedPages: string[] = ["/"];
 const badEmailVerificationPages = ["/email/verify", "/email/verify/expired"];
 const goodEmailVerificationPages = [
   "/email/verify/success",
@@ -30,8 +30,6 @@ export async function middleware(req: NextRequest) {
   const isProfileInitialPage =
     url.pathname === "/profile/initial" ||
     url.pathname === "/profile/auto-fill";
-
-  const isLandingPage = url.pathname === "/";
 
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
 
@@ -70,6 +68,10 @@ export async function middleware(req: NextRequest) {
 
   if (data.status === 200) {
     isNoticeTermsVersion = data.data.notice_new_terms_version;
+  }
+
+  if (!isProtectedPage) {
+    return NextResponse.next();
   }
 
   if (isAuthenticated) {
@@ -120,7 +122,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    if (isAuthPage && !isLandingPage) {
+    if (isAuthPage) {
       url.pathname = "/home";
       return NextResponse.redirect(url);
     }
