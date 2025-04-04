@@ -426,7 +426,6 @@ class ActionService
         };
     }
 
-
     /**
      * Determines if the quota should be reset based on frequency.
      */
