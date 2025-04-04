@@ -384,7 +384,11 @@ class ActionService
      */
     private function getMissedResetPeriods(string $frequency, Carbon $lastReset, Carbon $now, ?Carbon $expiresAt = null): int
     {
-        $effectiveDate = $expiresAt && $expiresAt->lt($now) ? $expiresAt : $now;
+        if ($expiresAt && $expiresAt->lte($now)) {
+            $effectiveDate = $this->subtractOnePeriod($expiresAt, $frequency);
+        } else {
+            $effectiveDate = $now;
+        }
 
         switch ($frequency) {
             case 'minutes':
@@ -405,6 +409,23 @@ class ActionService
                 return 0;
         }
     }
+
+    /**
+     * Subtracts one period from the given date based on the frequency.
+     */
+    private function subtractOnePeriod(Carbon $date, string $frequency): Carbon
+    {
+        return match ($frequency) {
+            'minutes' => $date->copy()->subMinute(),
+            'hours' => $date->copy()->subHour(),
+            'days' => $date->copy()->subDay(),
+            'weeks' => $date->copy()->subWeek(),
+            'months' => $date->copy()->subMonth(),
+            'years' => $date->copy()->subYear(),
+            default => $date->copy(),
+        };
+    }
+
 
     /**
      * Determines if the quota should be reset based on frequency.
