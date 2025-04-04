@@ -42,8 +42,9 @@ export default function RedirectBack() {
           auth_cookie.name,
           auth_cookie.value,
           auth_cookie.expiration_date
-        );
-        router.push("/home");
+        ).then(() => {
+          router.push("/home");
+        });
       }
     }
   }, []); // eslint-disable-line

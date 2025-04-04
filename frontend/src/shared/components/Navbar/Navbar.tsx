@@ -19,6 +19,7 @@ import { useTranslations } from "next-intl";
 import { useInterceptor } from "@/contexts/InterceptorContext";
 import { usePathname, useRouter } from "next/navigation";
 import ThemeToggle from "../ThemeToggle";
+import { useUserStatus } from "@/contexts/UserStatusContext";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   onlyLogout,
@@ -33,9 +34,13 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
 
   const pathname = usePathname();
 
+  const { refreshUserStatus } = useUserStatus();
+
   const logout = async () => {
     try {
       const logoutResponse = await logoutApi();
+
+      await refreshUserStatus();
 
       if (logoutResponse.status === 200) {
         router.push("/");

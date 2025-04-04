@@ -111,8 +111,9 @@ export default function RegisterComponent() {
             auth_cookie.name,
             auth_cookie.value,
             auth_cookie.expiration_date
-          );
-          router.push("/home");
+          ).then(() => {
+            router.push("/home");
+          });
         }
       }
     } catch (error: unknown) {

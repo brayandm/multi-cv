@@ -31,6 +31,8 @@ export async function middleware(req: NextRequest) {
     url.pathname === "/profile/initial" ||
     url.pathname === "/profile/auto-fill";
 
+  const isLandingPage = url.pathname === "/";
+
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
 
   let data: AxiosResponse<UserStatusResponse>;
@@ -118,7 +120,7 @@ export async function middleware(req: NextRequest) {
       return NextResponse.redirect(url);
     }
 
-    if (isAuthPage) {
+    if (isAuthPage && !isLandingPage) {
       url.pathname = "/home";
       return NextResponse.redirect(url);
     }

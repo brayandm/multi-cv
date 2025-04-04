@@ -13,6 +13,7 @@ import {
 interface UserStatusContextType {
   userStatus: UserStatusResponse;
   refreshUserStatus: () => void;
+  isLoading: boolean;
 }
 
 const UserStatusContext = createContext<UserStatusContextType | undefined>(
@@ -24,20 +25,28 @@ export const UserStatusProvider = ({ children }: { children: ReactNode }) => {
     authenticated: false,
   });
 
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
+    setIsLoading(true);
     userStatusApi().then((response) => {
       setUserStatus(response.data);
+      setIsLoading(false);
     });
   }, []);
 
-  const refreshUserStatus = () => {
-    userStatusApi().then((response) => {
+  const refreshUserStatus = async () => {
+    setIsLoading(true);
+    await userStatusApi().then((response) => {
       setUserStatus(response.data);
+      setIsLoading(false);
     });
   };
 
   return (
-    <UserStatusContext.Provider value={{ userStatus, refreshUserStatus }}>
+    <UserStatusContext.Provider
+      value={{ userStatus, refreshUserStatus, isLoading }}
+    >
       {children}
     </UserStatusContext.Provider>
   );
