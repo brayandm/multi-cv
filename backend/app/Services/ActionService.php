@@ -25,6 +25,10 @@ class ActionService
                     ->lockForUpdate()
                     ->first();
 
+                if($this->isQuotaFinished($quota)) {
+                    return null;
+                }
+
                 $lastReset = $quota->last_reset_at
                     ? Carbon::parse($quota->last_reset_at)
                     : Carbon::parse($quota->created_at);
@@ -322,6 +326,14 @@ class ActionService
                     return false;
                 }
 
+                if($this->isQuotaFinished($quota)) {
+                    $quota->update([
+                        'left' => 0,
+                        'failed' => 0,
+                    ]);
+                    return true;
+                }
+
                 $lastReset = $quota->last_reset_at
                 ? Carbon::parse($quota->last_reset_at)
                 : Carbon::parse($quota->created_at);
@@ -427,6 +439,31 @@ class ActionService
     }
 
     /**
+     * Determines if the quota is finished based on the left count.
+     */
+    private function isQuotaFinished($quota): bool
+    {
+        $expiresAt = $quota->expires_at ? Carbon::parse($quota->expires_at) : null;
+
+        if (Carbon::now()->gte($quota->expires_at)) {
+            return true;
+        }
+
+        if (is_null($expiresAt)) {
+            return $quota->frequency === 'onetime' && $quota->left === 0;
+        }
+
+        $lastReset = $quota->last_reset_at
+            ? Carbon::parse($quota->last_reset_at)
+            : Carbon::parse($quota->created_at);
+
+
+        $missedPeriods = $this->getMissedResetPeriods($quota->frequency, $lastReset, $expiresAt, $expiresAt);
+
+        return $missedPeriods === 0 && $quota->left === 0;
+    }
+
+    /**
      * Determines if the quota should be reset based on frequency.
      */
     private function shouldResetQuota(string $frequency, Carbon $lastReset, Carbon $now, ?Carbon $expiresAt = null): bool
@@ -464,12 +501,15 @@ class ActionService
                 ->first();
         }
 
+        $isQuotaFinished = $this->isQuotaFinished($quota);
+
         return [
             'quota' => $quota->quota,
             'frequency' => $quota->frequency,
-            'left' => $quota->left,
+            'left' => $isQuotaFinished ? 0 : $quota->left,
             'pending' => $quota->pending,
             'max_pending' => $quota->max_pending,
+            'finished' => $isQuotaFinished,
         ];
     }
 }
