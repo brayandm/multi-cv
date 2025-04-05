@@ -18,6 +18,7 @@ export async function middleware(req: NextRequest) {
   const isProtectedPage =
     !authPages.includes(url.pathname) &&
     !unProtectedPages.includes(url.pathname);
+  const isUnProtectedPage = unProtectedPages.includes(url.pathname);
   const isAcceptTermsPage = url.pathname === "/accept-terms";
   const isBadEmailVerificationPage = badEmailVerificationPages.includes(
     url.pathname
@@ -70,7 +71,7 @@ export async function middleware(req: NextRequest) {
     isNoticeTermsVersion = data.data.notice_new_terms_version;
   }
 
-  if (!isProtectedPage) {
+  if (isUnProtectedPage) {
     return NextResponse.next();
   }
 

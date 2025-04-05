@@ -224,7 +224,13 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
             onPress={() => {
               run({
                 "navbar-routing": () => {
-                  router.push("/");
+                  const isIframe = window.self !== window.top;
+
+                  if (isIframe) {
+                    router.push("/home");
+                  } else {
+                    router.push("/");
+                  }
                 },
               });
             }}
