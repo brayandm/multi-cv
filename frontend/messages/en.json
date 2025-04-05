@@ -378,7 +378,7 @@
       },
       "daily_15_plan": {
         "title": "Daily Plan 15",
-        "price": "€14.99 / 30 days",
+        "price": "€9.99 / 30 days",
         "description": "15 CVs per day, for 30 days.",
         "features": {
           "1": "Non-cumulative daily limit.",
