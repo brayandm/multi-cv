@@ -36,6 +36,7 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'notified_terms_at',
         'email_verified_at',
         'locale',
+        'app_theme',
         'is_first_login',
     ];
 
