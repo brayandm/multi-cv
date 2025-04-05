@@ -13,26 +13,27 @@ class PaymentPlanService
             ->orderBy('priority', 'desc')
             ->first();
     }
+
     public function getQuota($userId, $action, $lock = false)
     {
         $paymentsPlan = PaymentPlan::where('user_id', $userId)
             ->orderBy('priority', 'desc')
             ->first();
 
-        if (!$paymentsPlan) {
+        if (! $paymentsPlan) {
             return null;
         }
 
         $paymentPlanId = $paymentsPlan->id;
 
         $quotaQuery = Quota::where('payment_plan_id', $paymentPlanId)
-                    ->where('user_id', $userId)
-                    ->where('action', $action);
+            ->where('user_id', $userId)
+            ->where('action', $action);
 
         if ($lock) {
             $quotaQuery->lockForUpdate();
         }
 
-        return  $quotaQuery->first();
+        return $quotaQuery->first();
     }
 }
