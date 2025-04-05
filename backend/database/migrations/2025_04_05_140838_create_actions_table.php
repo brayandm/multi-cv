@@ -8,23 +8,29 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('actions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->index('actions_user_id_foreign');
+            $table->unsignedBigInteger('payment_plan_id');
             $table->string('action');
             $table->string('action_id')->unique();
             $table->timestamps();
-            $table->index(['user_id', 'action']);
+
+            $table->index(['payment_plan_id', 'user_id', 'action']);
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('actions');
     }

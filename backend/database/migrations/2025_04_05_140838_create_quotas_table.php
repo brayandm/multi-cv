@@ -8,12 +8,15 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * @return void
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('quotas', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id')->index('quotas_user_id_foreign');
+            $table->unsignedBigInteger('payment_plan_id');
             $table->string('action');
             $table->integer('quota');
             $table->string('frequency');
@@ -28,15 +31,19 @@ return new class extends Migration
             $table->integer('total_succeeded')->default(0);
             $table->timestamp('last_used_at')->nullable();
             $table->timestamp('last_reset_at')->nullable();
+            $table->timestamp('expires_at')->nullable();
             $table->timestamps();
-            $table->unique(['user_id', 'action']);
+
+            $table->unique(['payment_plan_id', 'user_id', 'action']);
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::dropIfExists('quotas');
     }
