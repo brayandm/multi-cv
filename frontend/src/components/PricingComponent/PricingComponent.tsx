@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
+import { Button } from "@heroui/react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -110,16 +111,15 @@ export default function PricingComponent() {
                 </li>
               ))}
             </ul>
-            <button
+            <Button
               className={`
                 w-full py-2 px-4 rounded-lg font-semibold text-white
                 bg-gradient-to-r ${bgGradientMap[plan.color]}
                 shadow-md hover:shadow-lg 
-                transition-all duration-300 ease-in-out
               `}
             >
               {t("pages.pricing.select_button")}
-            </button>
+            </Button>
           </motion.div>
         ))}
       </div>
