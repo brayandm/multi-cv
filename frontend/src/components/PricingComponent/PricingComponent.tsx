@@ -113,7 +113,7 @@ export default function PricingComponent() {
             </ul>
             <Button
               className={`
-                w-full py-2 px-4 rounded-lg font-semibold text-white
+                w-full font-semibold
                 bg-gradient-to-r ${bgGradientMap[plan.color]}
                 shadow-md hover:shadow-lg 
               `}
