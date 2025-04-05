@@ -357,6 +357,7 @@
     "pricing": {
       "title": "Pricing Yojanayen",
       "description": "Woh yojana chuniye jo aapke liye sabse behtar ho.",
+      "select_button": "Yojana Chune",
       "free_plan": {
         "title": "Muft Yojana",
         "price": "Muft",

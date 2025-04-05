@@ -96,7 +96,7 @@ export default function PricingComponent() {
             <p className="text-gray-700 dark:text-gray-300 mb-4">
               {plan.description}
             </p>
-            <ul className="space-y-2 text-left text-sm text-gray-800 dark:text-gray-300">
+            <ul className="space-y-2 text-left text-sm text-gray-800 dark:text-gray-300 mb-6">
               {plan.bullets.map((bullet, i) => (
                 <li key={i} className="flex gap-2 items-center">
                   <span className="text-lg mt-1">•</span>
@@ -104,6 +104,13 @@ export default function PricingComponent() {
                 </li>
               ))}
             </ul>
+            <button
+              className={`w-full py-2 px-4 rounded-md font-semibold border ${
+                colorMap[plan.color]
+              } hover:bg-opacity-10 dark:hover:bg-opacity-10 transition`}
+            >
+              {t("pages.pricing.select_button")}
+            </button>
           </motion.div>
         ))}
       </div>
