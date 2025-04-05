@@ -87,7 +87,7 @@ class ActionService
 
                 $actionRecord = Action::create([
                     'user_id' => $user_id,
-                    'payment_plan_id' =>  $this->getPlanId($user_id),
+                    'payment_plan_id' => $this->getPlanId($user_id),
                     'action' => $action,
                     'action_id' => Str::uuid(),
                 ]);
