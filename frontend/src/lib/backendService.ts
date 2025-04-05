@@ -345,7 +345,7 @@ export const chatExperienceEngine = async ({
 
 export const userUploadProfilePictureApi = async (
   file: File
-): Promise<AxiosResponse<UserResponse>> => {
+): Promise<AxiosResponse<MessageResponse>> => {
   const formData = new FormData();
   formData.append("photo", file);
 

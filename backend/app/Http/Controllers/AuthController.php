@@ -364,7 +364,6 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Profile picture updated successfully.',
-            'url' => $user->profile_picture,
         ]);
     }
 
@@ -389,14 +388,32 @@ class AuthController extends Controller
             return response()->json(['error' => 'No profile picture found.'], 404);
         }
 
+        $lastModified = $media->updated_at;
+        $etag = md5($media->id . $media->updated_at);
+
+        $headers = [
+            'Content-Type' => $media->mime_type,
+            'Content-Disposition' => 'inline; filename="'.$media->file_name.'"',
+            'Cache-Control' => 'public, max-age=0, must-revalidate',
+            'Last-Modified' => $lastModified->format(DATE_RFC7231),
+            'ETag' => $etag,
+        ];
+
+
+        $request = request();
+
+        if (
+            $request->getETags() && in_array($etag, $request->getETags()) ||
+            strtotime($request->header('If-Modified-Since')) >= strtotime($lastModified)
+        ) {
+            return response('', 304, $headers);
+        }
+
         return new StreamedResponse(function () use ($media) {
             $stream = $media->stream();
             fpassthru($stream);
             fclose($stream);
-        }, 200, [
-            'Content-Type' => $media->mime_type,
-            'Content-Disposition' => 'inline; filename="'.$media->file_name.'"',
-        ]);
+        }, 200, $headers);
     }
 
     public function updateTheme(Request $request)

@@ -23,6 +23,8 @@ const ProfilePhotoUploader = ({
   const [onSubmitting, setOnSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
+  const [version, setVersion] = useState<number | null>(null);
+
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
     setOnSubmitting(true);
@@ -35,8 +37,12 @@ const ProfilePhotoUploader = ({
         if (fileInputRef.current) fileInputRef.current.value = "";
         return;
       }
+
       await onImageChange(file);
+
+      setVersion(Date.now());
     }
+
     setOnSubmitting(false);
   };
 
@@ -61,7 +67,7 @@ const ProfilePhotoUploader = ({
         {image ? (
           /* eslint-disable-next-line @next/next/no-img-element */
           <img
-            src={image}
+            src={image ? `${image}?v=${version ?? 0}` : undefined}
             alt="Profile"
             className="w-full h-full object-cover"
           />
