@@ -389,7 +389,7 @@ class AuthController extends Controller
         }
 
         $lastModified = $media->updated_at;
-        $etag = md5($media->id . $media->updated_at);
+        $etag = md5($media->id.$media->updated_at);
 
         $headers = [
             'Content-Type' => $media->mime_type,
@@ -398,7 +398,6 @@ class AuthController extends Controller
             'Last-Modified' => $lastModified->format(DATE_RFC7231),
             'ETag' => $etag,
         ];
-
 
         $request = request();
 
