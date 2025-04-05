@@ -428,7 +428,7 @@ class AuthController extends Controller
         }
 
         $user->update([
-            'theme' => $request->theme,
+            'app_theme' => $request->theme,
         ]);
 
         return response()->json(['message' => 'Theme updated successfully']);
@@ -438,6 +438,6 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        return response()->json(['theme' => $user->theme]);
+        return response()->json(['theme' => $user->app_theme]);
     }
 }
