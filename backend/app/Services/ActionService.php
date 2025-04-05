@@ -11,6 +11,18 @@ use Illuminate\Support\Str;
 
 class ActionService
 {
+    protected PaymentPlanService $paymentPlanService;
+
+    public function __construct(PaymentPlanService $paymentPlanService)
+    {
+        $this->paymentPlanService = $paymentPlanService;
+    }
+
+    private function getQuota($user_id, $action, $lock = false)
+    {
+        return $this->paymentPlanService->getQuota($user_id, $action, $lock);
+    }
+
     /**
      * Consumes an action from the user's quota.
      *
@@ -20,10 +32,8 @@ class ActionService
     {
         try {
             return DB::transaction(function () use ($user_id, $action) {
-                $quota = Quota::where('user_id', $user_id)
-                    ->where('action', $action)
-                    ->lockForUpdate()
-                    ->first();
+
+                $quota = $this->getQuota($user_id, $action, true);
 
                 if ($this->isQuotaFinished($quota)) {
                     return null;
@@ -42,10 +52,7 @@ class ActionService
                         return null;
                     }
 
-                    $quota = Quota::where('user_id', $user_id)
-                        ->where('action', $action)
-                        ->lockForUpdate()
-                        ->first();
+                    $quota = $this->getQuota($user_id, $action, true);
                 }
 
                 if (! $quota || $quota->left <= 0) {
@@ -60,10 +67,7 @@ class ActionService
                         return null;
                     }
 
-                    $quota = Quota::where('user_id', $user_id)
-                        ->where('action', $action)
-                        ->lockForUpdate()
-                        ->first();
+                    $quota = $this->getQuota($user_id, $action, true);
 
                     if (! $quota || $quota->pending >= $quota->max_pending) {
                         return null;
@@ -116,10 +120,7 @@ class ActionService
 
                 $actionRecord->delete();
 
-                $quota = Quota::where('user_id', $user_id)
-                    ->where('action', $action)
-                    ->lockForUpdate()
-                    ->first();
+                $quota = $this->getQuota($user_id, $action, true);
 
                 if (! $quota) {
                     return true;
@@ -173,10 +174,7 @@ class ActionService
 
                 $actionRecord->delete();
 
-                $quota = Quota::where('user_id', $user_id)
-                    ->where('action', $action)
-                    ->lockForUpdate()
-                    ->first();
+                $quota = $this->getQuota($user_id, $action, true);
 
                 if (! $quota) {
                     return true;
@@ -222,10 +220,7 @@ class ActionService
 
                 $actionRecord->delete();
 
-                $quota = Quota::where('user_id', $user_id)
-                    ->where('action', $action)
-                    ->lockForUpdate()
-                    ->first();
+                $quota = $this->getQuota($user_id, $action, true);
 
                 if (! $quota) {
                     return false;
@@ -273,10 +268,7 @@ class ActionService
 
                 Action::whereIn('id', $actionRecords->pluck('id'))->delete();
 
-                $quota = Quota::where('user_id', $user_id)
-                    ->where('action', $action)
-                    ->lockForUpdate()
-                    ->first();
+                $quota = $this->getQuota($user_id, $action, true);
 
                 if ($quota) {
                     $newPending = max(0, $quota->pending - $count);
@@ -317,10 +309,7 @@ class ActionService
     {
         try {
             return DB::transaction(function () use ($user_id, $action) {
-                $quota = Quota::where('user_id', $user_id)
-                    ->where('action', $action)
-                    ->lockForUpdate()
-                    ->first();
+                $quota = $this->getQuota($user_id, $action, true);
 
                 if (! $quota) {
                     return false;
@@ -475,9 +464,7 @@ class ActionService
 
     public function getQuotaInfo(int $user_id, string $action): ?array
     {
-        $quota = Quota::where('user_id', $user_id)
-            ->where('action', $action)
-            ->first();
+        $quota = $this->getQuota($user_id, $action);
 
         if (! $quota) {
             return null;
@@ -496,9 +483,7 @@ class ActionService
                 throw new \Exception('Failed to reset quota');
             }
 
-            $quota = Quota::where('user_id', $user_id)
-                ->where('action', $action)
-                ->first();
+            $quota = $this->getQuota($user_id, $action);
         }
 
         $isQuotaFinished = $this->isQuotaFinished($quota);
