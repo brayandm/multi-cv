@@ -36,4 +36,51 @@ class PaymentPlanService
 
         return $quotaQuery->first();
     }
+
+    public static function createFreemiumPlan($userId)
+    {
+        $paymentPlan = PaymentPlan::create([
+            'name' => 'Freemium',
+            'price' => 0,
+            'description' => 'Freemium plan',
+            'user_id' => $userId,
+            'priority' => 1,
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'generate_cv_inline',
+            'quota' => 3,
+            'frequency' => 'months',
+            'cumulative' => false,
+            'left' => 3,
+            'max_failed' => 3,
+            'max_pending' => 1,
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'chat',
+            'quota' => 0,
+            'frequency' => 'onetime',
+            'cumulative' => false,
+            'left' => 20,
+            'max_failed' => 10,
+            'max_pending' => 1,
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'auto_fill_cv_from_document',
+            'quota' => 0,
+            'frequency' => 'onetime',
+            'cumulative' => false,
+            'left' => 1,
+            'max_failed' => 1,
+            'max_pending' => 1,
+        ]);
+    }
 }

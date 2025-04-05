@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('quotas', function (Blueprint $table) {
-            $table->foreignId('payment_plan_id')->constrained()->after('user_id');
+            $table->unsignedBigInteger('payment_plan_id')->after('user_id');
+            $table->foreign('payment_plan_id')->references('id')->on('payment_plans');
             $table->unique(['payment_plan_id', 'user_id', 'action']);
         });
     }
