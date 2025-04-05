@@ -17,6 +17,12 @@ const colorMap = {
   red: "border-red-500 text-red-500",
 };
 
+const bgGradientMap = {
+  green: "from-green-500 to-green-600 hover:from-green-600 hover:to-green-700",
+  blue: "from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700",
+  red: "from-red-500 to-red-600 hover:from-red-600 hover:to-red-700",
+};
+
 export default function PricingComponent() {
   const t = useTranslations();
 
@@ -105,9 +111,12 @@ export default function PricingComponent() {
               ))}
             </ul>
             <button
-              className={`w-full py-2 px-4 rounded-md font-semibold border ${
-                colorMap[plan.color]
-              } hover:bg-opacity-10 dark:hover:bg-opacity-10 transition`}
+              className={`
+                w-full py-2 px-4 rounded-lg font-semibold text-white
+                bg-gradient-to-r ${bgGradientMap[plan.color]}
+                shadow-md hover:shadow-lg 
+                transition-all duration-300 ease-in-out
+              `}
             >
               {t("pages.pricing.select_button")}
             </button>
