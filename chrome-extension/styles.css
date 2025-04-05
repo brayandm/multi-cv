@@ -18,7 +18,7 @@ iframe {
   justify-content: center;
   cursor: pointer;
   font-size: 16px;
-  z-index: 10000;
+  z-index: 1000000001;
   transition: right 0.3s ease;
 }
 
@@ -27,7 +27,7 @@ iframe {
   top: 0;
   height: 100vh;
   border: none;
-  z-index: 10001;
+  z-index: 1000000002;
   transition: right 0.3s ease;
 }
 
@@ -47,7 +47,7 @@ iframe {
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   font-size: 14px;
   font-weight: bold;
-  z-index: 9999;
+  z-index: 1000000000;
   opacity: 0;
   transition: opacity 0.3s ease;
   cursor: pointer;
