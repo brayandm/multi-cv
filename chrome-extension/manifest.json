@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "MultiCV",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "Multicv is an extension that able you to create personalized cv for diferent jobs offers",
   "permissions": ["activeTab", "storage"],
   "externally_connectable": {
