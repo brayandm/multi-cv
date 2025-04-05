@@ -188,6 +188,12 @@ export const Footer = () => {
           {t("pages.landing_page.footer.home")}
         </Link>
         <Link
+          href="/pricing"
+          className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
+        >
+          {t("pages.landing_page.footer.pricing")}
+        </Link>
+        <Link
           href="https://www.linkedin.com/company/multicv-space/"
           target="_blank"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
