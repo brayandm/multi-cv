@@ -25,7 +25,7 @@ class ActionService
                     ->lockForUpdate()
                     ->first();
 
-                if($this->isQuotaFinished($quota)) {
+                if ($this->isQuotaFinished($quota)) {
                     return null;
                 }
 
@@ -326,11 +326,12 @@ class ActionService
                     return false;
                 }
 
-                if($this->isQuotaFinished($quota)) {
+                if ($this->isQuotaFinished($quota)) {
                     $quota->update([
                         'left' => 0,
                         'failed' => 0,
                     ]);
+
                     return true;
                 }
 
@@ -456,7 +457,6 @@ class ActionService
         $lastReset = $quota->last_reset_at
             ? Carbon::parse($quota->last_reset_at)
             : Carbon::parse($quota->created_at);
-
 
         $missedPeriods = $this->getMissedResetPeriods($quota->frequency, $lastReset, $expiresAt, $expiresAt);
 
