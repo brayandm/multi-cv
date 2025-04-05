@@ -353,6 +353,37 @@
         "contact": "Contacto",
         "all_rights_reserved": "Todos los derechos reservados"
       }
+    },
+    "pricing": {
+      "title": "Planes de Precios",
+      "description": "Elige el plan que mejor se adapte a ti.",
+      "free_plan": {
+        "title": "Plan Gratuito",
+        "price": "Gratis",
+        "description": "Hasta 3 CVs por mes.",
+        "features": {
+          "1": "¡Prueba antes de comprar!",
+          "2": "Limitado a 3 CVs por mes."
+        }
+      },
+      "occasional_plan": {
+        "title": "Plan Ocasional",
+        "price": "€1.99 (pago único)",
+        "description": "10 CVs en total, sin fecha de caducidad.",
+        "features": {
+          "1": "Usuarios ocasionales que quieren crear algunos CVs.",
+          "2": "Genera 10 CVs personalizados por menos del precio de una cerveza 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "Plan Diario 15",
+        "price": "€14.99 / 30 días",
+        "description": "15 CVs por día, durante 30 días.",
+        "features": {
+          "1": "Límite diario no acumulativo.",
+          "2": "Buscadores de empleo que aplican de manera activa y regular."
+        }
+      }
     }
   }
 }

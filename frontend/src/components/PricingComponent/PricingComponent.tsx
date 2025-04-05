@@ -11,49 +11,70 @@ const fadeInUp = {
   transition: { duration: 0.6 },
 };
 
-const plans = [
-  {
-    color: "green",
-    title: "Freemium Plan",
-    price: "Free",
-    description: "Up to 3 CVs per month.",
-    bullets: ["Try before you buy!", "Limited to 3 CVs per month."],
-  },
-  {
-    color: "blue",
-    title: "Occasional Plan",
-    price: "€1.99 (one-time)",
-    description: "10 total CVs, no expiration.",
-    bullets: [
-      "Casual users who want to create a few CVs.",
-      "Generate 10 personalized CVs for less than the price of a beer 🍺",
-    ],
-  },
-  {
-    color: "red",
-    title: "Daily Plan 15",
-    price: "€9.99 / 30 days",
-    description: "15 CVs per day, for 30 days.",
-    bullets: [
-      "Non-cumulative daily limit.",
-      "Job seekers actively applying on a regular basis.",
-    ],
-  },
-];
+const colorMap = {
+  green: "border-green-500 text-green-500",
+  blue: "border-blue-500 text-blue-500",
+  red: "border-red-500 text-red-500",
+};
 
 export default function PricingComponent() {
   const t = useTranslations();
+
+  const plans: {
+    color: keyof typeof colorMap;
+    title: string;
+    price: string;
+    description: string;
+    bullets: string[];
+  }[] = [
+    {
+      color: "green",
+      title: t("pages.pricing.free_plan.title"),
+      price: t("pages.pricing.free_plan.price"),
+      description: t("pages.pricing.free_plan.description"),
+      bullets: [
+        t("pages.pricing.free_plan.features.1"),
+        t("pages.pricing.free_plan.features.2"),
+      ],
+    },
+    {
+      color: "blue",
+      title: t("pages.pricing.occasional_plan.title"),
+      price: t("pages.pricing.occasional_plan.price"),
+      description: t("pages.pricing.occasional_plan.description"),
+      bullets: [
+        t("pages.pricing.occasional_plan.features.1"),
+        t("pages.pricing.occasional_plan.features.2"),
+      ],
+    },
+    {
+      color: "red",
+      title: t("pages.pricing.daily_15_plan.title"),
+      price: t("pages.pricing.daily_15_plan.price"),
+      description: t("pages.pricing.daily_15_plan.description"),
+      bullets: [
+        t("pages.pricing.daily_15_plan.features.1"),
+        t("pages.pricing.daily_15_plan.features.2"),
+      ],
+    },
+  ];
 
   return (
     <motion.section
       className="py-28 px-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
       {...fadeInUp}
     >
-      <motion.h2 className="text-4xl font-bold text-center mb-16" {...fadeInUp}>
-        {t("pages.landing_page.pricing.title", {
-          defaultValue: "Pricing Plans",
-        })}
+      <motion.h2 className="text-5xl font-bold text-center mb-16" {...fadeInUp}>
+        {t("pages.pricing.title")}
       </motion.h2>
+
+      <motion.p
+        className="max-w-3xl mx-auto text-center text-2xl mb-12"
+        {...fadeInUp}
+        transition={{ delay: 0.3 }}
+      >
+        {t("pages.pricing.description")}
+      </motion.p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
         {plans.map((plan) => (
@@ -64,7 +85,9 @@ export default function PricingComponent() {
             transition={{ duration: 0.3 }}
           >
             <div className="flex items-center gap-2 mb-4">
-              <CheckCircleIcon className={`h-6 w-6 text-${plan.color}-500`} />
+              <CheckCircleIcon
+                className={`h-6 w-6 ${colorMap[plan.color].split(" ")[1]}`}
+              />
               <h3 className="text-2xl font-semibold">{plan.title}</h3>
             </div>
             <div className="text-3xl font-bold mb-2 flex items-center gap-1">
