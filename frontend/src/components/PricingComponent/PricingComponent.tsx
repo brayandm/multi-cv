@@ -68,7 +68,7 @@ export default function PricingComponent() {
 
   return (
     <motion.section
-      className="py-28 px-6 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
+      className="py-28 px-6 bg-default-100 dark:bg-gray-900 text-gray-900 dark:text-white"
       {...fadeInUp}
     >
       <motion.h2 className="text-5xl font-bold text-center mb-16" {...fadeInUp}>
