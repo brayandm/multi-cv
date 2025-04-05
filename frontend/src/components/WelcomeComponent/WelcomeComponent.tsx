@@ -16,6 +16,12 @@ export default function WelcomeComponent() {
     setIsIframe(window.self !== window.top);
   }, []);
 
+  useEffect(() => {
+    if (isIframe) {
+      router.push("/home");
+    }
+  }, [isIframe]); // eslint-disable-line
+
   return isIframe ? (
     <div className="flex flex-col mt-40 w-[280px] mx-auto">
       <h1 className="text-center">
