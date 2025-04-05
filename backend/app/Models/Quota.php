@@ -11,6 +11,7 @@ class Quota extends Model
 
     protected $fillable = [
         'user_id',
+        'payment_plan_id',
         'action',
         'quota',
         'frequency',

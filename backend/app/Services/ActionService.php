@@ -23,6 +23,17 @@ class ActionService
         return $this->paymentPlanService->getQuota($user_id, $action, $lock);
     }
 
+    private function getPlanId($user_id)
+    {
+        $paymentPlan = $this->paymentPlanService->getPlan($user_id);
+
+        if (! $paymentPlan) {
+            return null;
+        }
+
+        return $paymentPlan->id;
+    }
+
     /**
      * Consumes an action from the user's quota.
      *
@@ -76,6 +87,7 @@ class ActionService
 
                 $actionRecord = Action::create([
                     'user_id' => $user_id,
+                    'payment_plan_id' =>  $this->getPlanId($user_id),
                     'action' => $action,
                     'action_id' => Str::uuid(),
                 ]);
@@ -255,7 +267,8 @@ class ActionService
 
                 $threshold = Carbon::now()->subMinutes(5);
 
-                $actionRecords = Action::where('user_id', $user_id)
+                $actionRecords = Action::where('payment_plan_id', $this->getPlanId($user_id))
+                    ->where('user_id', $user_id)
                     ->where('action', $action)
                     ->where('created_at', '<', $threshold)
                     ->get();

@@ -11,6 +11,7 @@ class Action extends Model
 
     protected $fillable = [
         'user_id',
+        'payment_plan_id',
         'action',
         'action_id',
     ];
