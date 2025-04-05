@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::table('actions', function (Blueprint $table) {
             $table->unsignedBigInteger('payment_plan_id')->after('user_id');
             $table->foreign('payment_plan_id')->references('id')->on('payment_plans');
-            $table->unique(['payment_plan_id', 'user_id', 'action']);
+            $table->index(['payment_plan_id', 'user_id', 'action']);
         });
     }
 
@@ -26,7 +26,7 @@ return new class extends Migration
         Schema::table('actions', function (Blueprint $table) {
             $table->dropForeign(['payment_plan_id']);
             $table->dropColumn('payment_plan_id');
-            $table->dropUnique(['payment_plan_id', 'user_id', 'action']);
+            $table->dropIndex(['payment_plan_id', 'user_id', 'action']);
         });
     }
 };

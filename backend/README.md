@@ -59,3 +59,9 @@ docker run --rm \
     brayand/fullstack-project-template-php:1.0.0 \
     composer require [package-name]
 ```
+
+## Generate migrations
+
+```bash
+bash run.sh php artisan migrate:generate
+```
