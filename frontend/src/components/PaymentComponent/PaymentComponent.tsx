@@ -22,7 +22,6 @@ export default function PaymentComponent({ plan }: IPaymentComponentProps) {
         const { id } = response.data;
 
         const stripe = await stripePromise;
-        console.log("Redirecting to Stripe Checkout with session ID:", id);
         if (!stripe) throw new Error("Stripe.js has not loaded.");
 
         if (isMounted) {
