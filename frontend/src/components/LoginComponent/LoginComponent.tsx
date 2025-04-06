@@ -15,6 +15,7 @@ import { setCookieClient } from "@/lib/setCookieClient";
 import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 import { emailValidator, requiredValidator } from "@/lib/validator";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -23,6 +24,8 @@ export default function LoginComponent() {
     password: "",
   });
   const [onLogin, setOnLogin] = useState(false);
+
+  const { callbackUrl, redirectToCallback } = useCallbackRedirect();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -61,7 +64,11 @@ export default function LoginComponent() {
           auth_cookie.value,
           auth_cookie.expiration_date
         ).then(() => {
-          router.push("/home");
+          if (callbackUrl) {
+            redirectToCallback();
+          } else {
+            router.push("/home");
+          }
         });
       }
     } catch (error) {

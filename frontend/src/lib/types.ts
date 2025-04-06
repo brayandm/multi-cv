@@ -11,6 +11,7 @@ export interface UserStatusResponse {
   is_first_login?: boolean;
   is_in_talent_pool?: boolean | null;
   has_profile_picture?: boolean;
+  is_freemium?: boolean;
 }
 
 export interface LoginResponse {
@@ -59,6 +60,8 @@ export interface GetQuotaInfoResponse {
   left: number;
   pending: number;
   max_pending: number;
+  finished: boolean;
+  is_freemium: boolean;
 }
 
 export interface MessageResponse {
@@ -74,6 +77,9 @@ export interface UserThemeResponse {
   theme: string;
 }
 
+export interface CheckoutSessionResponse {
+  id: string;
+}
 export interface Document {
   document_id: string;
   user_id: number;

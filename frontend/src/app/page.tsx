@@ -31,7 +31,7 @@ export default function Home() {
           </>
         )}
       </NavbarWrapper>
-      <WelcomeComponent />{" "}
+      <WelcomeComponent />
     </>
   );
 }

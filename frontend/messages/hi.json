@@ -51,7 +51,9 @@
       "only_year": "Sirf saal",
       "pending_generation": "Pratiksha mein utpadan",
       "cv": "CV",
-      "cover_letter": "Kavār patra"
+      "cover_letter": "Kavār patra",
+      "generation_finished": "Punarutpādan pūrā huā",
+      "upgrade_plan": "Apne yojanā ko sudhāre"
     },
     "buttons": {
       "continue": "Aage badhein",
@@ -345,12 +347,59 @@
       },
       "footer": {
         "home": "Mukhya Page",
+        "pricing": "Moolya",
         "linkedin": "LinkedIn",
         "privacy_policy": "Gopniyata Niti",
         "cookies_policy": "Cookies Niti",
         "terms_and_conditions": "Terms & Conditions",
         "contact": "Sampark",
         "all_rights_reserved": "Sabhi adhikaar surakshit hain"
+      }
+    },
+    "pricing": {
+      "title": "Pricing Yojanayen",
+      "description": "Woh yojana chuniye jo aapke liye sabse behtar ho.",
+      "select_button": "Yojana Chune",
+      "free_plan": {
+        "title": "Muft Yojana",
+        "price": "Muft",
+        "description": "Mahine mein 3 CV tak.",
+        "features": {
+          "1": "Kharidne se pehle koshish karein!",
+          "2": "Mahine mein 3 CV tak simit."
+        }
+      },
+      "occasional_plan": {
+        "title": "Aam Yojana",
+        "price": "€1.99 (ek baar ka)",
+        "description": "Kul 10 CV, koi samay sima nahi.",
+        "features": {
+          "1": "Aam upbhokta jo kuch CV banana chahte hain.",
+          "2": "Ek beer 🍺 ke daam se kam mein 10 vyaktigat CV banayein."
+        }
+      },
+      "daily_15_plan": {
+        "title": "Daily Yojana 15",
+        "price": "€9.99 / 30 din",
+        "description": "30 dinon ke liye pratidin 15 CV.",
+        "features": {
+          "1": "Ghatak pratidin ki sima.",
+          "2": "Naukri ke liye niyamit roop se aavedan karne wale."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Bhugtaan Radd Kiya Gaya",
+        "description": "Aapka bhugtaan radd kar diya gaya hai."
+      },
+      "success": {
+        "title": "Bhugtaan Safal",
+        "description": "Aapka bhugtaan safalta se prakriya kiya gaya hai."
+      },
+      "already_premium": {
+        "title": "Pehele se Premium Upyogakarta",
+        "description": "Aap pehle se ek premium upyogakarta hain. Naya yojana kharidne se pehle apne vartaman yojana ka istemal karein."
       }
     }
   }

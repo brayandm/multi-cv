@@ -30,6 +30,7 @@ import {
   userThemeApiLink,
   documentsEngineLink,
   documentDownloadEngineLink,
+  checkoutSessionApiLink,
 } from "./links";
 import {
   UserResponse,
@@ -43,6 +44,7 @@ import {
   generateCvInlineNoRenderResponse,
   UserThemeResponse,
   Document,
+  CheckoutSessionResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -412,4 +414,12 @@ export const documentDownloadEngine = async (
       responseType: "blob",
     }
   );
+};
+
+export const checkoutSessionApi = async (
+  plan: string
+): Promise<AxiosResponse<CheckoutSessionResponse>> => {
+  return await api.post(checkoutSessionApiLink, {
+    plan: plan,
+  });
 };

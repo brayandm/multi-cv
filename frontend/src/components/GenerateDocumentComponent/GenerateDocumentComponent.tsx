@@ -154,11 +154,23 @@ export default function GenerateDocumentComponent() {
             <p>
               <strong>{t("common.texts.quota_info")}:</strong>
             </p>
-            <p>
-              {t("common.texts.generation_left", {
-                count: quotaInfo.left,
-              })}
-            </p>
+            {quotaInfo.is_freemium && quotaInfo.left === 0 ? (
+              <>
+                <p>{t("common.texts.generation_finished")}</p>
+                <a
+                  href="/pricing"
+                  className="text-primary-500 underline hover:text-primary-700"
+                >
+                  {t("common.texts.upgrade_plan")}
+                </a>
+              </>
+            ) : (
+              <p>
+                {t("common.texts.generation_left", {
+                  count: quotaInfo.left,
+                })}
+              </p>
+            )}
           </div>
         </>
       ) : (

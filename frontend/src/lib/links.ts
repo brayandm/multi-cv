@@ -31,3 +31,4 @@ export const userSetThemeApiLink = "/user/set-theme";
 export const userThemeApiLink = "/user/theme";
 export const documentsEngineLink = "/documents";
 export const documentDownloadEngineLink = "/document/download";
+export const checkoutSessionApiLink = "/checkout-session";

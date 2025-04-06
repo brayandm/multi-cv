@@ -36,6 +36,8 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
 
+    Route::post('/stripe/webhook', 'App\Http\Controllers\PaymentController@handleWebhook');
+
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified', 'auth.inter.communication'])->group(function () {
         Route::post('/action/consume', 'App\Http\Controllers\ActionController@consumeAction');
         Route::post('/auth/get-id', 'App\Http\Controllers\AuthController@getId');
@@ -84,5 +86,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/user/upload/profile-picture', 'App\Http\Controllers\AuthController@uploadProfilePicture');
         Route::delete('/user/delete/profile-picture', 'App\Http\Controllers\AuthController@deleteProfilePicture');
         Route::get('/user/profile-picture', 'App\Http\Controllers\AuthController@getProfilePicture');
+
+        Route::post('/checkout-session', 'App\Http\Controllers\PaymentController@createCheckoutSession');
     });
 });

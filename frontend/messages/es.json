@@ -51,7 +51,9 @@
       "only_year": "Solo año",
       "pending_generation": "Generación pendiente",
       "cv": "CV",
-      "cover_letter": "Carta de presentación"
+      "cover_letter": "Carta de presentación",
+      "generation_finished": "Generación finalizada",
+      "upgrade_plan": "Actualiza tu plan"
     },
     "buttons": {
       "continue": "Continuar",
@@ -345,12 +347,59 @@
       },
       "footer": {
         "home": "Página Principal",
+        "pricing": "Precios",
         "linkedin": "LinkedIn",
         "privacy_policy": "Política de Privacidad",
         "cookies_policy": "Política de Cookies",
         "terms_and_conditions": "Términos y Condiciones",
         "contact": "Contacto",
         "all_rights_reserved": "Todos los derechos reservados"
+      }
+    },
+    "pricing": {
+      "title": "Planes de Precios",
+      "description": "Elige el plan que mejor se adapte a ti.",
+      "select_button": "Seleccionar Plan",
+      "free_plan": {
+        "title": "Plan Gratuito",
+        "price": "Gratis",
+        "description": "Hasta 3 CVs por mes.",
+        "features": {
+          "1": "¡Prueba antes de comprar!",
+          "2": "Limitado a 3 CVs por mes."
+        }
+      },
+      "occasional_plan": {
+        "title": "Plan Ocasional",
+        "price": "€1.99 (pago único)",
+        "description": "10 CVs en total, sin fecha de caducidad.",
+        "features": {
+          "1": "Usuarios ocasionales que quieren crear algunos CVs.",
+          "2": "Genera 10 CVs personalizados por menos del precio de una cerveza 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "Plan Diario 15",
+        "price": "€9.99 / 30 días",
+        "description": "15 CVs por día, durante 30 días.",
+        "features": {
+          "1": "Límite diario no acumulativo.",
+          "2": "Buscadores de empleo que aplican de manera activa y regular."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Pago Cancelado",
+        "description": "Su pago ha sido cancelado."
+      },
+      "success": {
+        "title": "Pago Exitoso",
+        "description": "Su pago ha sido procesado con éxito."
+      },
+      "already_premium": {
+        "title": "Ya eres un usuario Premium",
+        "description": "Ya eres un usuario premium. Gasta tu plan actual antes de comprar uno nuevo."
       }
     }
   }

@@ -3,7 +3,6 @@
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 const fadeInUp = {
@@ -181,19 +180,26 @@ export const Footer = () => {
       {...fadeInUp}
     >
       <motion.div className="mb-2" {...fadeInUp}>
-        <Link
+        {/* eslint-disable-next-line */}
+        <a
           href="/"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.home")}
-        </Link>
-        <Link
+        </a>
+        <a
+          href="/pricing"
+          className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
+        >
+          {t("pages.landing_page.footer.pricing")}
+        </a>
+        <a
           href="https://www.linkedin.com/company/multicv-space/"
           target="_blank"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.linkedin")}
-        </Link>
+        </a>
       </motion.div>
 
       <motion.div
