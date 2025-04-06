@@ -15,6 +15,7 @@ class PaymentPlan extends Model
         'description',
         'user_id',
         'priority',
+        'expires_at',
     ];
 
     protected $casts = [

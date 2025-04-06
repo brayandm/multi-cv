@@ -23,6 +23,15 @@ class PaymentPlanService
             return false;
         }
 
+        if($paymentPlan->name === 'occasional') {
+            $quota = Quota::where('payment_plan_id', $paymentPlan->id)
+                ->where('user_id', $userId)
+                ->where('action', 'generate_cv_inline')
+                ->first();
+
+            return $quota && $quota->left === 0;
+        }
+
         return $paymentPlan->expires_at && $paymentPlan->expires_at < now();
     }
 
@@ -171,15 +180,17 @@ class PaymentPlanService
 
     public static function createDaily15Plan($userId)
     {
+        $now = now();
+
         $paymentPlan = PaymentPlan::create([
             'name' => 'daily_15',
             'price' => 9.99,
             'description' => 'Daily 15 Plan',
             'user_id' => $userId,
             'priority' => 3,
+            'expires_at' => $now->addMonth(),
         ]);
 
-        $now = now();
 
         Quota::create([
             'user_id' => $userId,

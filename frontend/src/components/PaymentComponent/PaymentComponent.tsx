@@ -4,6 +4,7 @@ import { checkoutSessionApi } from "@/lib/backendService";
 import { useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Spinner } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
@@ -12,8 +13,15 @@ interface IPaymentComponentProps {
 }
 
 export default function PaymentComponent({ plan }: IPaymentComponentProps) {
+  const router = useRouter();
+
   useEffect(() => {
     if (!plan) return;
+
+    if (plan === "free") {
+      router.push("/home");
+      return;
+    }
 
     let isMounted = true;
 
