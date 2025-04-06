@@ -2,6 +2,8 @@
 
 set -e
 
+export HOT_RELOAD=false
+
 pushd engine/
 docker compose up -d --force-recreate &
 engine_pid=$!
