@@ -18,6 +18,7 @@ import {
   requiredValidator,
 } from "@/lib/validator";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
+import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 
 export default function RegisterComponent() {
   const router = useRouter();
@@ -36,6 +37,8 @@ export default function RegisterComponent() {
   });
 
   const [onRegister, setOnRegister] = useState(false);
+
+  const { callbackUrl, redirectToCallback } = useCallbackRedirect();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -112,7 +115,11 @@ export default function RegisterComponent() {
             auth_cookie.value,
             auth_cookie.expiration_date
           ).then(() => {
-            router.push("/home");
+            if (callbackUrl) {
+              redirectToCallback();
+            } else {
+              router.push("/home");
+            }
           });
         }
       }
