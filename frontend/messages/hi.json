@@ -385,6 +385,16 @@
           "2": "Naukri ke liye niyamit roop se aavedan karne wale."
         }
       }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Bhugtaan Radd Kiya Gaya",
+        "description": "Aapka bhugtaan radd kar diya gaya hai."
+      },
+      "success": {
+        "title": "Bhugtaan Safal",
+        "description": "Aapka bhugtaan safalta se prakriya kiya gaya hai."
+      }
     }
   }
 }

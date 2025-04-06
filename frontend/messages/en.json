@@ -385,6 +385,16 @@
           "2": "Job seekers actively applying on a regular basis."
         }
       }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Payment Cancelled",
+        "description": "Your payment has been cancelled."
+      },
+      "success": {
+        "title": "Payment Successful",
+        "description": "Your payment has been processed successfully."
+      }
     }
   }
 }

@@ -385,6 +385,16 @@
           "2": "Buscadores de empleo que aplican de manera activa y regular."
         }
       }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Pago Cancelado",
+        "description": "Su pago ha sido cancelado."
+      },
+      "success": {
+        "title": "Pago Exitoso",
+        "description": "Su pago ha sido procesado con éxito."
+      }
     }
   }
 }

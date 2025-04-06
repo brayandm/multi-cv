@@ -139,7 +139,7 @@ export const config = {
     "/register",
     "/accept-terms",
     "/home",
-    "/payment",
+    "/payment/:path*",
     "/edit/:path*",
     "/settings",
     "/profile/:path*",
