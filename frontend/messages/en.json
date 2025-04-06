@@ -53,7 +53,9 @@
       "cv": "CV",
       "cover_letter": "Cover letter",
       "generation_finished": "No more generations left",
-      "upgrade_plan": "Upgrade your plan"
+      "upgrade_plan": "Upgrade your plan",
+      "payment_redirecting": "Redirecting to payment...",
+      "analizing_plan": "Analyzing your plan..."
     },
     "buttons": {
       "continue": "Continue",

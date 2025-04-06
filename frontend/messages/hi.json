@@ -53,7 +53,9 @@
       "cv": "CV",
       "cover_letter": "Kavār patra",
       "generation_finished": "Aur koi utpaad nahi bacha",
-      "upgrade_plan": "Apne yojanā ko sudhāre"
+      "upgrade_plan": "Apne yojanā ko sudhāre",
+      "payment_redirecting": "Bhugtaan ki or redirect kiya ja raha hai...",
+      "analizing_plan": "Aapke yojana ka vishleshan kiya ja raha hai..."
     },
     "buttons": {
       "continue": "Aage badhein",

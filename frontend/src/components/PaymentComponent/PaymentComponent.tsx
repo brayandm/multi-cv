@@ -7,6 +7,7 @@ import { Spinner } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import { useUserStatus } from "@/contexts/UserStatusContext";
+import { useTranslations } from "next-intl";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
@@ -30,7 +31,9 @@ export default function PaymentComponent({ plan }: IPaymentComponentProps) {
     hasProcessedRef.current = true;
 
     if (plan === "freemium") {
-      router.push("/home");
+      setTimeout(() => {
+        router.push("/home");
+      }, 1000);
       return;
     }
 
@@ -54,8 +57,19 @@ export default function PaymentComponent({ plan }: IPaymentComponentProps) {
     redirectToStripe();
   }, [plan, userStatus]); // eslint-disable-line
 
+  const t = useTranslations();
+
   return (
     <div className="flex mt-20 flex-col items-center justify-center">
+      {plan === "freemium" ? (
+        <h1 className="text-2xl font-bold mb-4">
+          {t("common.texts.analizing_plan")}
+        </h1>
+      ) : (
+        <h1 className="text-2xl font-bold mb-4">
+          {t("common.texts.payment_redirecting")}
+        </h1>
+      )}
       <Spinner variant="dots" />
     </div>
   );

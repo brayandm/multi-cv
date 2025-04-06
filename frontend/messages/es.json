@@ -53,7 +53,9 @@
       "cv": "CV",
       "cover_letter": "Carta de presentación",
       "generation_finished": "No quedan más generaciones",
-      "upgrade_plan": "Actualiza tu plan"
+      "upgrade_plan": "Actualiza tu plan",
+      "payment_redirecting": "Redirigiendo al pago...",
+      "analizing_plan": "Analizando tu plan..."
     },
     "buttons": {
       "continue": "Continuar",
