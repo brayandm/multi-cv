@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Services\PaymentPlanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -24,10 +23,9 @@ class PaymentController extends Controller
 
     private function createPlan($userId, $plan)
     {
-        if($plan === 'occasional') {
+        if ($plan === 'occasional') {
             PaymentPlanService::createOccasionalPlan($userId);
-        }
-        else if($plan === 'daily_15') {
+        } elseif ($plan === 'daily_15') {
             PaymentPlanService::createDaily15Plan($userId);
         }
     }
@@ -88,7 +86,6 @@ class PaymentController extends Controller
             case 'checkout.session.completed':
                 $session = $event->data->object;
 
-
                 $userId = $session->metadata->user_id ?? null;
                 $plan = $session->metadata->plan ?? null;
 
@@ -103,7 +100,7 @@ class PaymentController extends Controller
                 break;
 
             default:
-                Log::info('📩 Stripe Event Received: ' . $event->type);
+                Log::info('📩 Stripe Event Received: '.$event->type);
         }
 
         return response('Webhook received', 200);
