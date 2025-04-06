@@ -29,7 +29,7 @@ export default function PaymentComponent({ plan }: IPaymentComponentProps) {
     }
     hasProcessedRef.current = true;
 
-    if (plan === "free") {
+    if (plan === "freemium") {
       router.push("/home");
       return;
     }

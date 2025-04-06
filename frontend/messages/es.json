@@ -360,6 +360,7 @@
       "title": "Planes de Precios",
       "description": "Elige el plan que mejor se adapte a ti.",
       "select_button": "Seleccionar Plan",
+      "current_plan": "Plan Actual",
       "free_plan": {
         "title": "Plan Gratuito",
         "price": "Gratis",

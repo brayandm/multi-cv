@@ -360,6 +360,7 @@
       "title": "Pricing Yojanayen",
       "description": "Woh yojana chuniye jo aapke liye sabse behtar ho.",
       "select_button": "Yojana Chune",
+      "current_plan": "Vartaman Yojana",
       "free_plan": {
         "title": "Muft Yojana",
         "price": "Muft",

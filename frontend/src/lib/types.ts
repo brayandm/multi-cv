@@ -11,6 +11,7 @@ export interface UserStatusResponse {
   is_first_login?: boolean;
   is_in_talent_pool?: boolean | null;
   has_profile_picture?: boolean;
+  payment_plan?: string;
   is_freemium?: boolean;
 }
 

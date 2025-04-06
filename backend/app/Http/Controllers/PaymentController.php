@@ -15,7 +15,7 @@ class PaymentController extends Controller
     private function validateRequest(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'plan' => 'required|string|in:free,occasional,daily_15',
+            'plan' => 'required|string|in:freemium,occasional,daily_15',
         ]);
 
         return $validator;
@@ -38,21 +38,21 @@ class PaymentController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
 
-        if ($request->plan === 'free') {
-            return response()->json(['id' => 'free'], 200);
+        if ($request->plan === 'freemium') {
+            return response()->json(['id' => 'freemium'], 200);
         }
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
         if (config('app.env') === 'production') {
             $priceIdMap = [
-                'free' => '',
+                'freemium' => '',
                 'occasional' => 'price_1RAXuEBydkY3MlDEZkIKjGjO',
                 'daily_15' => 'price_1RAXrgBydkY3MlDEvKs2xvsZ',
             ];
         } else {
             $priceIdMap = [
-                'free' => '',
+                'freemium' => '',
                 'occasional' => 'price_1RAhfpR9gIm0VrhqhhEMGey5',
                 'daily_15' => 'price_1RAhgTR9gIm0VrhqVc2DdjIY',
             ];

@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { useUserStatus } from "@/contexts/UserStatusContext";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -27,8 +28,9 @@ const bgGradientMap = {
 
 export default function PricingComponent() {
   const t = useTranslations();
-
   const router = useRouter();
+
+  const { userStatus } = useUserStatus();
 
   const plans: {
     color: keyof typeof colorMap;
@@ -37,6 +39,7 @@ export default function PricingComponent() {
     description: string;
     bullets: string[];
     planId?: string;
+    currentPlan?: boolean;
   }[] = [
     {
       color: "green",
@@ -47,7 +50,8 @@ export default function PricingComponent() {
         t("pages.pricing.free_plan.features.1"),
         t("pages.pricing.free_plan.features.2"),
       ],
-      planId: "free",
+      planId: "freemium",
+      currentPlan: userStatus.payment_plan === "freemium",
     },
     {
       color: "blue",
@@ -59,6 +63,7 @@ export default function PricingComponent() {
         t("pages.pricing.occasional_plan.features.2"),
       ],
       planId: "occasional",
+      currentPlan: userStatus.payment_plan === "occasional",
     },
     {
       color: "red",
@@ -70,6 +75,7 @@ export default function PricingComponent() {
         t("pages.pricing.daily_15_plan.features.2"),
       ],
       planId: "daily_15",
+      currentPlan: userStatus.payment_plan === "daily_15",
     },
   ];
 
@@ -91,47 +97,58 @@ export default function PricingComponent() {
       </motion.p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-        {plans.map((plan) => (
-          <motion.div
-            key={plan.title}
-            className={`border-t-8 rounded-xl shadow-md p-6 bg-white dark:bg-gray-800 border-${plan.color}-500`}
-            whileHover={{ scale: 1.03 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <CheckCircleIcon
-                className={`h-6 w-6 ${colorMap[plan.color].split(" ")[1]}`}
-              />
-              <h3 className="text-2xl font-semibold">{plan.title}</h3>
-            </div>
-            <div className="text-3xl font-bold mb-2 flex items-center gap-1">
-              {plan.price}
-            </div>
-            <p className="text-gray-700 dark:text-gray-300 mb-4">
-              {plan.description}
-            </p>
-            <ul className="space-y-2 text-left text-sm text-gray-800 dark:text-gray-300 mb-6">
-              {plan.bullets.map((bullet, i) => (
-                <li key={i} className="flex gap-2 items-center">
-                  <span className="text-lg mt-1">•</span>
-                  <span>{bullet}</span>
-                </li>
-              ))}
-            </ul>
-            <Button
-              className={`
-                w-full font-semibold
-                bg-gradient-to-r ${bgGradientMap[plan.color]}
-                shadow-md hover:shadow-lg 
-              `}
-              onPress={() => {
-                router.push(`/payment?plan=${plan.planId}`);
-              }}
+        {plans.map((plan) => {
+          const isCurrent = plan.currentPlan;
+          return (
+            <motion.div
+              key={plan.title}
+              className={`relative border-t-8 rounded-xl shadow-md p-6 bg-white dark:bg-gray-800 border-${
+                plan.color
+              }-500 ${isCurrent ? "ring-2 ring-yellow-400" : ""}`}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
             >
-              {t("pages.pricing.select_button")}
-            </Button>
-          </motion.div>
-        ))}
+              {isCurrent && (
+                <span className="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-semibold px-2 py-1 rounded-full">
+                  {t("pages.pricing.current_plan")}
+                </span>
+              )}
+
+              <div className="flex items-center gap-2 mb-4">
+                <CheckCircleIcon
+                  className={`h-6 w-6 ${colorMap[plan.color].split(" ")[1]}`}
+                />
+                <h3 className="text-2xl font-semibold">{plan.title}</h3>
+              </div>
+              <div className="text-3xl font-bold mb-2 flex items-center gap-1">
+                {plan.price}
+              </div>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                {plan.description}
+              </p>
+              <ul className="space-y-2 text-left text-sm text-gray-800 dark:text-gray-300 mb-6">
+                {plan.bullets.map((bullet, i) => (
+                  <li key={i} className="flex gap-2 items-center">
+                    <span className="text-lg mt-1">•</span>
+                    <span>{bullet}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button
+                className={`
+                  w-full font-semibold
+                  bg-gradient-to-r ${bgGradientMap[plan.color]}
+                  shadow-md hover:shadow-lg
+                `}
+                onPress={() => {
+                  router.push(`/payment?plan=${plan.planId}`);
+                }}
+              >
+                {t("pages.pricing.select_button")}
+              </Button>
+            </motion.div>
+          );
+        })}
       </div>
     </motion.section>
   );

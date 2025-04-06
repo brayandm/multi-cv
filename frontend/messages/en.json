@@ -360,6 +360,7 @@
       "title": "Pricing Plans",
       "description": "Choose the plan that suits you best.",
       "select_button": "Select Plan",
+      "current_plan": "Current Plan",
       "free_plan": {
         "title": "Free Plan",
         "price": "Free",
