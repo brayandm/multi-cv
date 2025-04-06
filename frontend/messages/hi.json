@@ -51,7 +51,9 @@
       "only_year": "Sirf saal",
       "pending_generation": "Pratiksha mein utpadan",
       "cv": "CV",
-      "cover_letter": "Kavār patra"
+      "cover_letter": "Kavār patra",
+      "generation_finished": "Punarutpādan pūrā huā",
+      "upgrade_plan": "Apne yojanā ko sudhāre"
     },
     "buttons": {
       "continue": "Aage badhein",

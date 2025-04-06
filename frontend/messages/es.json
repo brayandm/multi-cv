@@ -51,7 +51,9 @@
       "only_year": "Solo año",
       "pending_generation": "Generación pendiente",
       "cv": "CV",
-      "cover_letter": "Carta de presentación"
+      "cover_letter": "Carta de presentación",
+      "generation_finished": "Generación finalizada",
+      "upgrade_plan": "Actualiza tu plan"
     },
     "buttons": {
       "continue": "Continuar",

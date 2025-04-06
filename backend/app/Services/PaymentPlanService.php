@@ -7,11 +7,22 @@ use App\Models\Quota;
 
 class PaymentPlanService
 {
-    public function getPlan($userId)
+    public static function getPlan($userId)
     {
         return PaymentPlan::where('user_id', $userId)
             ->orderBy('priority', 'desc')
             ->first();
+    }
+
+    public static function isFreemium($userId)
+    {
+        $paymentPlan = self::getPlan($userId);
+
+        if (! $paymentPlan) {
+            return false;
+        }
+
+        return $paymentPlan->name === 'freemium';
     }
 
     public function getQuota($userId, $action, $lock = false)
@@ -40,7 +51,7 @@ class PaymentPlanService
     public static function createFreemiumPlan($userId)
     {
         $paymentPlan = PaymentPlan::create([
-            'name' => 'Freemium',
+            'name' => 'freemium',
             'price' => 0,
             'description' => 'Freemium Plan',
             'user_id' => $userId,

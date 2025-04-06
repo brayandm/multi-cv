@@ -51,7 +51,9 @@
       "only_year": "Только год",
       "pending_generation": "Ожидается генерация",
       "cv": "Резюме",
-      "cover_letter": "Сопроводительное письмо"
+      "cover_letter": "Сопроводительное письмо",
+      "generation_finished": "Генерация завершена",
+      "upgrade_plan": "Обновите свой тарифный план"
     },
     "buttons": {
       "continue": "Продолжить",

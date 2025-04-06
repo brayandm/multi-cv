@@ -51,7 +51,9 @@
       "only_year": "Only year",
       "pending_generation": "Pending generation",
       "cv": "CV",
-      "cover_letter": "Cover letter"
+      "cover_letter": "Cover letter",
+      "generation_finished": "Generation finished",
+      "upgrade_plan": "Upgrade your plan"
     },
     "buttons": {
       "continue": "Continue",

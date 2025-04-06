@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\CookiesHelper;
 use App\Models\User;
+use App\Services\PaymentPlanService;
 use App\Services\UserService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -208,6 +209,8 @@ class AuthController extends Controller
 
         $is_in_talent_pool = $user->is_in_talent_pool;
 
+        $is_freemium = PaymentPlanService::isFreemium($user->id);
+
         return response()->json(['authenticated' => true,
             'is_valid_terms_version' => $is_valid_terms_version,
             'notice_new_terms_version' => $notice_new_terms_version,
@@ -218,6 +221,7 @@ class AuthController extends Controller
             'is_first_login' => $is_first_login,
             'is_in_talent_pool' => $is_in_talent_pool,
             'has_profile_picture' => $user->hasMedia('profile_picture'),
+            'is_freemium' => $is_freemium,
         ]);
     }
 
