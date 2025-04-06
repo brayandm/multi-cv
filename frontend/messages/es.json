@@ -52,7 +52,7 @@
       "pending_generation": "Generación pendiente",
       "cv": "CV",
       "cover_letter": "Carta de presentación",
-      "generation_finished": "Generación finalizada",
+      "generation_finished": "No quedan más generaciones",
       "upgrade_plan": "Actualiza tu plan"
     },
     "buttons": {

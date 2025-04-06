@@ -52,7 +52,7 @@
       "pending_generation": "Pending generation",
       "cv": "CV",
       "cover_letter": "Cover letter",
-      "generation_finished": "Generation finished",
+      "generation_finished": "No more generations left",
       "upgrade_plan": "Upgrade your plan"
     },
     "buttons": {

@@ -52,7 +52,7 @@
       "pending_generation": "Ожидается генерация",
       "cv": "Резюме",
       "cover_letter": "Сопроводительное письмо",
-      "generation_finished": "Генерация завершена",
+      "generation_finished": "Больше нет доступных генераций",
       "upgrade_plan": "Обновите свой тарифный план"
     },
     "buttons": {
