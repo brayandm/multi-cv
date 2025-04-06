@@ -23,7 +23,7 @@ export default function PaymentComponent({ plan }: IPaymentComponentProps) {
   useEffect(() => {
     if (!plan || hasProcessedRef.current) return;
     if (!userStatus) return;
-    if (!userStatus.is_freemium) {
+    if (userStatus.authenticated && !userStatus.is_freemium) {
       router.push("/payment/already-premium");
       return;
     }
