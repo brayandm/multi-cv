@@ -223,7 +223,7 @@ class AuthController extends Controller
             'is_first_login' => $is_first_login,
             'is_in_talent_pool' => $is_in_talent_pool,
             'has_profile_picture' => $user->hasMedia('profile_picture'),
-            'payment_plan' => $payment_plan,
+            'payment_plan' => $payment_plan->name,
             'is_freemium' => $is_freemium,
         ]);
     }

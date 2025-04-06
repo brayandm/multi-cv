@@ -104,12 +104,12 @@ export default function PricingComponent() {
               key={plan.title}
               className={`relative border-t-8 rounded-xl shadow-md p-6 bg-white dark:bg-gray-800 border-${
                 plan.color
-              }-500 ${isCurrent ? "ring-2 ring-yellow-400" : ""}`}
+              }-500 ${isCurrent ? "ring-4 ring-warning-400" : ""}`}
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.3 }}
             >
               {isCurrent && (
-                <span className="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-semibold px-2 py-1 rounded-full">
+                <span className="absolute top-[-20px] right-1 bg-warning-400 text-black text-sm font-semibold px-2 py-1 rounded-full">
                   {t("pages.pricing.current_plan")}
                 </span>
               )}
@@ -139,6 +139,7 @@ export default function PricingComponent() {
                   w-full font-semibold
                   bg-gradient-to-r ${bgGradientMap[plan.color]}
                   shadow-md hover:shadow-lg
+                  text-white
                 `}
                 onPress={() => {
                   router.push(`/payment?plan=${plan.planId}`);
