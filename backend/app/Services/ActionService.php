@@ -56,7 +56,7 @@ class ActionService
 
                 $quota = $this->getQuota($user_id, $action, true);
 
-                if($this->paymentPlanExpired($user_id)) {
+                if ($this->paymentPlanExpired($user_id)) {
                     $this->deletePaymentPlanAndQuotas($user_id);
 
                     return null;
@@ -344,7 +344,7 @@ class ActionService
                     return false;
                 }
 
-                if($this->paymentPlanExpired($user_id)) {
+                if ($this->paymentPlanExpired($user_id)) {
                     $this->deletePaymentPlanAndQuotas($user_id);
 
                     return null;
@@ -521,7 +521,7 @@ class ActionService
             $quota = $this->getQuota($user_id, $action);
         }
 
-        if($this->paymentPlanExpired($user_id)) {
+        if ($this->paymentPlanExpired($user_id)) {
             $this->deletePaymentPlanAndQuotas($user_id);
 
             return null;
