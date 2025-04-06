@@ -206,7 +206,7 @@ export const Footer = () => {
 
   return (
     <motion.footer
-      className="bg-default-100 dark:bg-default-100 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-gray-200 dark:border-gray-800"
+      className="bg-default-100 dark:bg-default-50 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-default-200 dark:border-default-100"
       {...fadeInUp}
     >
       <motion.div className="mb-2" {...fadeInUp}>
