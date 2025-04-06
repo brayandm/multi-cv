@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Action;
 use App\Models\PaymentPlan;
 use App\Models\Quota;
 
@@ -12,6 +13,32 @@ class PaymentPlanService
         return PaymentPlan::where('user_id', $userId)
             ->orderBy('priority', 'desc')
             ->first();
+    }
+
+    public static function paymentPlanExpired($userId)
+    {
+        $paymentPlan = self::getPlan($userId);
+
+        if (! $paymentPlan) {
+            return false;
+        }
+
+        return $paymentPlan->expires_at && $paymentPlan->expires_at < now();
+    }
+
+    public function deletePaymentPlanAndQuotas($userId)
+    {
+        $paymentPlan = self::getPlan($userId);
+
+        Action::where('user_id', $userId)
+            ->where('payment_plan_id', $paymentPlan->id)
+            ->delete();
+
+        Quota::where('user_id', $userId)
+            ->where('payment_plan_id', $paymentPlan->id)
+            ->delete();
+
+        $paymentPlan->delete();
     }
 
     public static function isFreemium($userId)

@@ -23,6 +23,16 @@ class ActionService
         return $this->paymentPlanService->getQuota($user_id, $action, $lock);
     }
 
+    private function paymentPlanExpired($user_id)
+    {
+        return $this->paymentPlanService->paymentPlanExpired($user_id);
+    }
+
+    private function deletePaymentPlanAndQuotas($user_id)
+    {
+        $this->paymentPlanService->deletePaymentPlanAndQuotas($user_id);
+    }
+
     private function getPlanId($user_id)
     {
         $paymentPlan = $this->paymentPlanService->getPlan($user_id);
@@ -45,6 +55,12 @@ class ActionService
             return DB::transaction(function () use ($user_id, $action) {
 
                 $quota = $this->getQuota($user_id, $action, true);
+
+                if($this->paymentPlanExpired($user_id)) {
+                    $this->deletePaymentPlanAndQuotas($user_id);
+
+                    return null;
+                }
 
                 if ($this->isQuotaFinished($quota)) {
                     return null;
@@ -328,6 +344,12 @@ class ActionService
                     return false;
                 }
 
+                if($this->paymentPlanExpired($user_id)) {
+                    $this->deletePaymentPlanAndQuotas($user_id);
+
+                    return null;
+                }
+
                 if ($this->isQuotaFinished($quota)) {
                     $quota->update([
                         'left' => 0,
@@ -497,6 +519,12 @@ class ActionService
             }
 
             $quota = $this->getQuota($user_id, $action);
+        }
+
+        if($this->paymentPlanExpired($user_id)) {
+            $this->deletePaymentPlanAndQuotas($user_id);
+
+            return null;
         }
 
         $isQuotaFinished = $this->isQuotaFinished($quota);
