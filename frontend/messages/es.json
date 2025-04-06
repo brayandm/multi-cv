@@ -396,6 +396,10 @@
       "success": {
         "title": "Pago Exitoso",
         "description": "Su pago ha sido procesado con éxito."
+      },
+      "already_premium": {
+        "title": "Ya eres un usuario Premium",
+        "description": "Ya eres un usuario premium. Gasta tu plan actual antes de comprar uno nuevo."
       }
     }
   }

@@ -396,6 +396,10 @@
       "success": {
         "title": "Bhugtaan Safal",
         "description": "Aapka bhugtaan safalta se prakriya kiya gaya hai."
+      },
+      "already_premium": {
+        "title": "Pehele se Premium Upyogakarta",
+        "description": "Aap pehle se ek premium upyogakarta hain. Naya yojana kharidne se pehle apne vartaman yojana ka istemal karein."
       }
     }
   }
