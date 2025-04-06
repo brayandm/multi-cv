@@ -44,7 +44,7 @@ class PaymentController extends Controller
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        if(config('app.env') === 'production') {
+        if (config('app.env') === 'production') {
             $priceIdMap = [
                 'free' => '',
                 'occasional' => 'price_1RAXuEBydkY3MlDEZkIKjGjO',
