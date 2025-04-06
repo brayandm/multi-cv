@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 import {
   acceptTermsVersionApi,
   notifiedTermsVersionApi,
@@ -36,6 +37,8 @@ export default function AcceptTermsComponent({
     });
   };
 
+  const { callbackUrl, redirectToCallback } = useCallbackRedirect();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -46,13 +49,21 @@ export default function AcceptTermsComponent({
       if (acceptTerms === false && noticeTerms === true) {
         response = await notifiedTermsVersionApi();
         if (response.status === 200) {
-          router.push("/home");
+          if (callbackUrl) {
+            redirectToCallback();
+          } else {
+            router.push("/home");
+          }
         }
       } else {
         responseTalentPool = await talentPoolApi(formData.talentPool);
         response = await acceptTermsVersionApi();
         if (response.status === 200 && responseTalentPool.status === 200) {
-          router.push("/home");
+          if (callbackUrl) {
+            redirectToCallback();
+          } else {
+            router.push("/home");
+          }
         }
       }
     } catch (error) {

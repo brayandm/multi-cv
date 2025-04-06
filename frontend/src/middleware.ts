@@ -44,8 +44,7 @@ export async function middleware(req: NextRequest) {
     });
   } catch {
     if (isProtectedPage) {
-      url.pathname = "/";
-      return NextResponse.redirect(url);
+      return NextResponse.redirect(new URL("/", req.url));
     } else {
       return NextResponse.next();
     }
@@ -82,8 +81,7 @@ export async function middleware(req: NextRequest) {
         (isValidTermsVersion ||
           (!isValidTermsVersion && isNoticeTermsVersion === null))
       ) {
-        url.pathname = "/home";
-        return NextResponse.redirect(url);
+        return NextResponse.redirect(new URL("/home", req.url));
       }
 
       return NextResponse.next();
@@ -92,15 +90,13 @@ export async function middleware(req: NextRequest) {
         isFirstTermsVersion ||
         (!isValidTermsVersion && isNoticeTermsVersion !== null)
       ) {
-        url.pathname = "/accept-terms";
-        return NextResponse.redirect(url);
+        return NextResponse.redirect(new URL("/accept-terms", req.url));
       }
     }
 
     if (isEmailVerified) {
       if (isBadEmailVerificationPage) {
-        url.pathname = "/home";
-        return NextResponse.redirect(url);
+        return NextResponse.redirect(new URL("/home", req.url));
       }
 
       if (isGoodEmailVerificationPage) {
@@ -111,21 +107,17 @@ export async function middleware(req: NextRequest) {
         return NextResponse.next();
       }
 
-      url.pathname = "/email/verify";
-      return NextResponse.redirect(url);
+      return NextResponse.redirect(new URL("/email/verify", req.url));
     }
 
     if (isFirstLogin && !isProfileInitialPage) {
-      url.pathname = "/profile/auto-fill";
-      return NextResponse.redirect(url);
+      return NextResponse.redirect(new URL("/profile/auto-fill", req.url));
     } else if (!isFirstLogin && isProfileInitialPage) {
-      url.pathname = "/profile";
-      return NextResponse.redirect(url);
+      return NextResponse.redirect(new URL("/profile", req.url));
     }
 
     if (isAuthPage) {
-      url.pathname = "/home";
-      return NextResponse.redirect(url);
+      return NextResponse.redirect(new URL("/home", req.url));
     }
   } else {
     if (isProtectedPage) {

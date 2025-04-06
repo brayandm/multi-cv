@@ -3,12 +3,20 @@
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
+import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 export default function ProfileSuccessComponent() {
   const router = useRouter();
 
+  const { callbackUrl, redirectToCallback } = useCallbackRedirect();
+
   const handleContinue = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/home");
+
+    if (callbackUrl) {
+      redirectToCallback();
+    } else {
+      router.push("/home");
+    }
   };
 
   const t = useTranslations();

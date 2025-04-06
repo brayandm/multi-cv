@@ -33,7 +33,6 @@ export function useCallbackRedirect() {
     const url = sessionStorage.getItem(CALLBACK_KEY);
 
     if (url) {
-      sessionStorage.removeItem(CALLBACK_KEY);
       router.push(url);
     }
   };
