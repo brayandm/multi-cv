@@ -129,8 +129,12 @@ export async function middleware(req: NextRequest) {
     }
   } else {
     if (isProtectedPage) {
-      url.pathname = "/";
-      return NextResponse.redirect(url);
+      const callbackUrl = req.nextUrl.pathname + req.nextUrl.search;
+
+      const loginUrl = new URL("/login", req.url);
+      loginUrl.searchParams.set("callbackUrl", callbackUrl);
+
+      return NextResponse.redirect(loginUrl);
     }
   }
 
@@ -143,6 +147,7 @@ export const config = {
     "/register",
     "/accept-terms",
     "/home",
+    "/payment",
     "/edit/:path*",
     "/settings",
     "/profile/:path*",

@@ -5,10 +5,13 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { AuthCookie } from "@/lib/types";
 import { setCookieClient } from "@/lib/setCookieClient";
+import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 
 export default function RedirectBack() {
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  const { callbackUrl, redirectToCallback } = useCallbackRedirect();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -43,7 +46,11 @@ export default function RedirectBack() {
           auth_cookie.value,
           auth_cookie.expiration_date
         ).then(() => {
-          router.push("/home");
+          if (callbackUrl) {
+            redirectToCallback();
+          } else {
+            router.push("/home");
+          }
         });
       }
     }

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { Button } from "@heroui/react";
+import { useRouter } from "next/navigation";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -27,12 +28,15 @@ const bgGradientMap = {
 export default function PricingComponent() {
   const t = useTranslations();
 
+  const router = useRouter();
+
   const plans: {
     color: keyof typeof colorMap;
     title: string;
     price: string;
     description: string;
     bullets: string[];
+    planId?: string;
   }[] = [
     {
       color: "green",
@@ -43,6 +47,7 @@ export default function PricingComponent() {
         t("pages.pricing.free_plan.features.1"),
         t("pages.pricing.free_plan.features.2"),
       ],
+      planId: "free",
     },
     {
       color: "blue",
@@ -53,6 +58,7 @@ export default function PricingComponent() {
         t("pages.pricing.occasional_plan.features.1"),
         t("pages.pricing.occasional_plan.features.2"),
       ],
+      planId: "occasional",
     },
     {
       color: "red",
@@ -63,6 +69,7 @@ export default function PricingComponent() {
         t("pages.pricing.daily_15_plan.features.1"),
         t("pages.pricing.daily_15_plan.features.2"),
       ],
+      planId: "daily_15",
     },
   ];
 
@@ -117,6 +124,9 @@ export default function PricingComponent() {
                 bg-gradient-to-r ${bgGradientMap[plan.color]}
                 shadow-md hover:shadow-lg 
               `}
+              onPress={() => {
+                router.push(`/payment?plan=${plan.planId}`);
+              }}
             >
               {t("pages.pricing.select_button")}
             </Button>
