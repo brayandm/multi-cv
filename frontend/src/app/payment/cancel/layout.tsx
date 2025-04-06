@@ -1,9 +1,16 @@
 "use client";
 
+import { SpacerDefault } from "@/app/main.styles";
+
 export default function PaymentCancelLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <SpacerDefault />
+      {children}
+    </>
+  );
 }

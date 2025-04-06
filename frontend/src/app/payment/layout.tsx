@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper, SpacerDefault } from "../main.styles";
+import { NavbarWrapper } from "../main.styles";
 
 export default function PaymentLayout({
   children,
@@ -13,7 +13,6 @@ export default function PaymentLayout({
       <NavbarWrapper>
         <Navbar profileRoute />
       </NavbarWrapper>
-      <SpacerDefault />
       {children}
     </>
   );
