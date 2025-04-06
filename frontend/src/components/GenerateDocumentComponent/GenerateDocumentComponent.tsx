@@ -123,8 +123,6 @@ export default function GenerateDocumentComponent() {
     mutate();
   };
 
-  const isIframe = window.self !== window.top;
-
   return (
     <div className="mt-20">
       {!isQuotaInfoLoading && quotaInfo ? (
@@ -159,22 +157,14 @@ export default function GenerateDocumentComponent() {
             {quotaInfo.is_freemium && quotaInfo.left === 0 ? (
               <>
                 <p>{t("common.texts.generation_finished")}</p>
-                {isIframe ? (
-                  <a
-                    href="/pricing"
-                    target="_blank"
-                    className="text-primary-500 underline hover:text-primary-700"
-                  >
-                    {t("common.texts.upgrade_plan")}
-                  </a>
-                ) : (
-                  <a
-                    href="/pricing"
-                    className="text-primary-500 underline hover:text-primary-700"
-                  >
-                    {t("common.texts.upgrade_plan")}
-                  </a>
-                )}
+                <p
+                  className="font-semibold text-primary underline hover:text-primary-700 cursor-pointer"
+                  onClick={() => {
+                    router.push("/pricing");
+                  }}
+                >
+                  {t("common.texts.upgrade_plan")}
+                </p>
               </>
             ) : (
               <p>

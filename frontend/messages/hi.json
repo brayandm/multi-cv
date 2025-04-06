@@ -345,6 +345,11 @@
         "description": "Hamare beta phase ka hissa banein aur MultiCV ko shape dene mein madad karein. AI ke saath samajhdar resumes banana shuru karein aur apne naukri ki talash mein aage badhein.",
         "start_now": "Ab shuru karein"
       },
+      "pricing_teaser": {
+        "title": "Hamare lachile yojnaon ka anusandhan karein",
+        "description": "Hamare paas sabke liye ek yojna hai. Hamari pricing page par sabhi vivaron ka pata karein.",
+        "button": "Yojnaen dekhein"
+      },
       "footer": {
         "home": "Mukhya Page",
         "pricing": "Moolya",

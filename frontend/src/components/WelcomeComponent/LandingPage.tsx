@@ -165,6 +165,36 @@ export default function LandingPage() {
           </Button>
         </motion.div>
       </motion.section>
+
+      {/* Explore Pricing Section */}
+      <motion.section
+        className="py-28 px-6 text-center bg-white dark:bg-gray-900"
+        {...fadeInUp}
+      >
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold mb-6"
+          {...fadeInUp}
+        >
+          {t("pages.landing_page.pricing_teaser.title")}
+        </motion.h2>
+        <motion.p
+          className="max-w-2xl mx-auto text-lg text-gray-700 dark:text-gray-300 mb-8"
+          {...fadeInUp}
+          transition={{ delay: 0.2 }}
+        >
+          {t("pages.landing_page.pricing_teaser.description")}
+        </motion.p>
+        <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
+          <Button
+            color="secondary"
+            size="lg"
+            onPress={() => router.push("/pricing")}
+          >
+            {t("pages.landing_page.pricing_teaser.button")}
+          </Button>
+        </motion.div>
+      </motion.section>
+
       {/* Footer Section */}
       <Footer />
     </div>
@@ -176,7 +206,7 @@ export const Footer = () => {
 
   return (
     <motion.footer
-      className="bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-gray-200 dark:border-gray-800"
+      className="bg-default-100 dark:bg-default-100 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-gray-200 dark:border-gray-800"
       {...fadeInUp}
     >
       <motion.div className="mb-2" {...fadeInUp}>

@@ -142,7 +142,13 @@ export default function PricingComponent() {
                   text-white
                 `}
                 onPress={() => {
-                  router.push(`/payment?plan=${plan.planId}`);
+                  const isIframe = window.self !== window.top;
+
+                  if (isIframe) {
+                    window.open(`/payment?plan=${plan.planId}`, "_blank");
+                  } else {
+                    router.push(`/payment?plan=${plan.planId}`);
+                  }
                 }}
               >
                 {t("pages.pricing.select_button")}

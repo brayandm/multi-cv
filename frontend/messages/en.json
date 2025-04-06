@@ -345,6 +345,11 @@
         "description": "Be part of our beta phase and help shape MultiCV. Start crafting smarter resumes with AI and get a head start on your job search.",
         "start_now": "Get started now"
       },
+      "pricing_teaser": {
+        "title": "Explore our flexible plans",
+        "description": "We've got a plan for everyone. Discover all the details on our pricing page.",
+        "button": "See Plans"
+      },
       "footer": {
         "home": "Main Page",
         "pricing": "Pricing",

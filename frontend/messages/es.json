@@ -345,6 +345,11 @@
         "description": "Sé parte de nuestra fase beta y ayuda a dar forma a MultiCV. Comienza a crear currículos más inteligentes con IA y adelántate en tu búsqueda de empleo.",
         "start_now": "Empieza ahora"
       },
+      "pricing_teaser": {
+        "title": "Explora nuestros planes flexibles",
+        "description": "Tenemos un plan para todos. Descubre todos los detalles en nuestra página de precios.",
+        "button": "Ver Planes"
+      },
       "footer": {
         "home": "Página Principal",
         "pricing": "Precios",
