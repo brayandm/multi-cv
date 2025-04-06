@@ -61,6 +61,7 @@ export interface GetQuotaInfoResponse {
   pending: number;
   max_pending: number;
   finished: boolean;
+  is_freemium: boolean;
 }
 
 export interface MessageResponse {

@@ -347,7 +347,7 @@ class ActionService
                 if ($this->paymentPlanExpired($user_id)) {
                     $this->deletePaymentPlanAndQuotas($user_id);
 
-                    return null;
+                    return false;
                 }
 
                 if ($this->isQuotaFinished($quota)) {
@@ -524,7 +524,7 @@ class ActionService
         if ($this->paymentPlanExpired($user_id)) {
             $this->deletePaymentPlanAndQuotas($user_id);
 
-            return null;
+            $quota = $this->getQuota($user_id, $action);
         }
 
         $isQuotaFinished = $this->isQuotaFinished($quota);
@@ -536,6 +536,7 @@ class ActionService
             'pending' => $quota->pending,
             'max_pending' => $quota->max_pending,
             'finished' => $isQuotaFinished,
+            'is_freemium' => $this->paymentPlanService->isFreemium($user_id),
         ];
     }
 }

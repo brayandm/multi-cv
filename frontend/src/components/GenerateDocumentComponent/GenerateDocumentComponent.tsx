@@ -26,14 +26,11 @@ import { useRouter } from "next/navigation";
 import { saveAs } from "file-saver";
 import useSWR from "swr";
 import { getQuotaInfoApiLink } from "@/lib/links";
-import { useUserStatus } from "@/contexts/UserStatusContext";
 
 export default function GenerateDocumentComponent() {
   const { getTraduction } = useLocale();
 
   const { setCv, setCvTexts } = useCv();
-
-  const { userStatus } = useUserStatus();
 
   const router = useRouter();
 
@@ -157,7 +154,7 @@ export default function GenerateDocumentComponent() {
             <p>
               <strong>{t("common.texts.quota_info")}:</strong>
             </p>
-            {userStatus.is_freemium && quotaInfo.left === 0 ? (
+            {quotaInfo.is_freemium && quotaInfo.left === 0 ? (
               <>
                 <p>{t("common.texts.generation_finished")}</p>
                 <a
