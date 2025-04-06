@@ -42,7 +42,7 @@ class PaymentPlanService
         $paymentPlan = PaymentPlan::create([
             'name' => 'Freemium',
             'price' => 0,
-            'description' => 'Freemium plan',
+            'description' => 'Freemium Plan',
             'user_id' => $userId,
             'priority' => 1,
         ]);
@@ -67,6 +67,104 @@ class PaymentPlanService
             'frequency' => 'onetime',
             'cumulative' => false,
             'left' => 20,
+            'max_failed' => 10,
+            'max_pending' => 1,
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'auto_fill_cv_from_document',
+            'quota' => 0,
+            'frequency' => 'onetime',
+            'cumulative' => false,
+            'left' => 1,
+            'max_failed' => 1,
+            'max_pending' => 1,
+        ]);
+    }
+
+    public static function createOccasionalPlan($userId)
+    {
+        $paymentPlan = PaymentPlan::create([
+            'name' => 'occasional',
+            'price' => 1.99,
+            'description' => 'Occasional Plan',
+            'user_id' => $userId,
+            'priority' => 2,
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'generate_cv_inline',
+            'quota' => 0,
+            'frequency' => 'onetime',
+            'cumulative' => false,
+            'left' => 10,
+            'max_failed' => 3,
+            'max_pending' => 1,
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'chat',
+            'quota' => 0,
+            'frequency' => 'onetime',
+            'cumulative' => false,
+            'left' => 100,
+            'max_failed' => 10,
+            'max_pending' => 1,
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'auto_fill_cv_from_document',
+            'quota' => 0,
+            'frequency' => 'onetime',
+            'cumulative' => false,
+            'left' => 1,
+            'max_failed' => 1,
+            'max_pending' => 1,
+        ]);
+    }
+
+    public static function createDaily15Plan($userId)
+    {
+        $paymentPlan = PaymentPlan::create([
+            'name' => 'daily_15',
+            'price' => 9.99,
+            'description' => 'Daily 15 Plan',
+            'user_id' => $userId,
+            'priority' => 3,
+        ]);
+
+        $now = now();
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'generate_cv_inline',
+            'quota' => 0,
+            'frequency' => 'daily',
+            'cumulative' => false,
+            'left' => 15,
+            'max_failed' => 3,
+            'max_pending' => 1,
+            'last_reset_at' => $now,
+            'expires_at' => $now->addMonth(),
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
+            'action' => 'chat',
+            'quota' => 0,
+            'frequency' => 'onetime',
+            'cumulative' => false,
+            'left' => 100,
             'max_failed' => 10,
             'max_pending' => 1,
         ]);

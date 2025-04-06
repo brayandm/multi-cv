@@ -26,6 +26,7 @@ class Quota extends Model
         'total_succeeded',
         'last_used_at',
         'last_reset_at',
+        'expires_at',
     ];
 
     protected $casts = [

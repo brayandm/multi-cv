@@ -36,6 +36,8 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
 
+    Route::post('/stripe/webhook', 'App\Http\Controllers\PaymentController@handleWebhook');
+
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified', 'auth.inter.communication'])->group(function () {
         Route::post('/action/consume', 'App\Http\Controllers\ActionController@consumeAction');
         Route::post('/auth/get-id', 'App\Http\Controllers\AuthController@getId');
