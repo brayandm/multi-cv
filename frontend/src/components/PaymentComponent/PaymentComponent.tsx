@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Spinner } from "@heroui/react";
 import { useRouter } from "next/navigation";
+import { useRef } from "react";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
@@ -14,16 +15,16 @@ interface IPaymentComponentProps {
 
 export default function PaymentComponent({ plan }: IPaymentComponentProps) {
   const router = useRouter();
+  const hasProcessedRef = useRef(false);
 
   useEffect(() => {
-    if (!plan) return;
+    if (!plan || hasProcessedRef.current) return;
+    hasProcessedRef.current = true;
 
     if (plan === "free") {
       router.push("/home");
       return;
     }
-
-    let isMounted = true;
 
     const redirectToStripe = async () => {
       try {
@@ -33,11 +34,9 @@ export default function PaymentComponent({ plan }: IPaymentComponentProps) {
         const stripe = await stripePromise;
         if (!stripe) throw new Error("Stripe.js has not loaded.");
 
-        if (isMounted) {
-          const result = await stripe.redirectToCheckout({ sessionId: id });
-          if (result.error) {
-            console.error(result.error.message);
-          }
+        const result = await stripe.redirectToCheckout({ sessionId: id });
+        if (result.error) {
+          console.error(result.error.message);
         }
       } catch (err) {
         console.error("Error redirecting to checkout:", err);
@@ -45,11 +44,7 @@ export default function PaymentComponent({ plan }: IPaymentComponentProps) {
     };
 
     redirectToStripe();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [plan]);
+  }, [plan]); // eslint-disable-line
 
   return (
     <div className="flex mt-20 flex-col items-center justify-center">

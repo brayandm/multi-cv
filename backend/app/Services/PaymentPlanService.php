@@ -23,7 +23,7 @@ class PaymentPlanService
             return false;
         }
 
-        if($paymentPlan->name === 'occasional') {
+        if ($paymentPlan->name === 'occasional') {
             $quota = Quota::where('payment_plan_id', $paymentPlan->id)
                 ->where('user_id', $userId)
                 ->where('action', 'generate_cv_inline')
@@ -190,7 +190,6 @@ class PaymentPlanService
             'priority' => 3,
             'expires_at' => $now->addMonth(),
         ]);
-
 
         Quota::create([
             'user_id' => $userId,
