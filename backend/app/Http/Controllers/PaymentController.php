@@ -44,11 +44,19 @@ class PaymentController extends Controller
 
         Stripe::setApiKey(config('services.stripe.secret'));
 
-        $priceIdMap = [
-            'free' => '',
-            'occasional' => 'price_1RAhfpR9gIm0VrhqhhEMGey5',
-            'daily_15' => 'price_1RAhgTR9gIm0VrhqVc2DdjIY',
-        ];
+        if(config('app.env') === 'production') {
+            $priceIdMap = [
+                'free' => '',
+                'occasional' => 'price_1RAXuEBydkY3MlDEZkIKjGjO',
+                'daily_15' => 'price_1RAXrgBydkY3MlDEvKs2xvsZ',
+            ];
+        } else {
+            $priceIdMap = [
+                'free' => '',
+                'occasional' => 'price_1RAhfpR9gIm0VrhqhhEMGey5',
+                'daily_15' => 'price_1RAhgTR9gIm0VrhqVc2DdjIY',
+            ];
+        }
 
         $session = Session::create([
             'payment_method_types' => ['card'],
