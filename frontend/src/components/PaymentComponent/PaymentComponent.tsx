@@ -3,6 +3,7 @@
 import { checkoutSessionApi } from "@/lib/backendService";
 import { useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
+import { Spinner } from "@heroui/react";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY!);
 
@@ -42,5 +43,9 @@ export default function PaymentComponent({ plan }: IPaymentComponentProps) {
     };
   }, [plan]);
 
-  return null;
+  return (
+    <div className="flex mt-20 flex-col items-center justify-center">
+      <Spinner variant="dots" />
+    </div>
+  );
 }
