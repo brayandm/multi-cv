@@ -74,6 +74,9 @@ export interface UserThemeResponse {
   theme: string;
 }
 
+export interface CheckoutSessionResponse {
+  id: string;
+}
 export interface Document {
   document_id: string;
   user_id: number;

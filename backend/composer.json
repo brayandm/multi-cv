@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.0",
         "spatie/laravel-backup": "^8.8",
-        "spatie/laravel-medialibrary": "^10.15"
+        "spatie/laravel-medialibrary": "^10.15",
+        "stripe/stripe-php": "^17.1"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",

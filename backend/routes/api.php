@@ -84,5 +84,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/user/upload/profile-picture', 'App\Http\Controllers\AuthController@uploadProfilePicture');
         Route::delete('/user/delete/profile-picture', 'App\Http\Controllers\AuthController@deleteProfilePicture');
         Route::get('/user/profile-picture', 'App\Http\Controllers\AuthController@getProfilePicture');
+
+        Route::post('/checkout-session', 'App\Http\Controllers\PaymentController@createCheckoutSession');
     });
 });
