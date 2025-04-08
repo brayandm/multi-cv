@@ -12,6 +12,7 @@ import {
   useCallback,
 } from "react";
 import { routing } from "@/i18n/routing";
+import { getCookie } from "cookies-next";
 
 interface LocaleContextType {
   locale: string;
@@ -50,6 +51,47 @@ export const getSystemLocale = () => {
   return systemLocale || "en";
 };
 
+export const getCookieLocale = () => {
+  return getCookie("NEXT_LOCALE");
+};
+
+export const getPathLocale = (pathname: string) => {
+  const segments = pathname.split("/");
+  const localeFromPath = segments[1];
+
+  if (!localeFromPath) {
+    return routing.defaultLocale;
+  }
+
+  if (!routing.locales.includes(localeFromPath as Language)) {
+    return routing.defaultLocale;
+  }
+
+  return localeFromPath;
+};
+
+export const getLocaleFromSources = (pathname: string) => {
+  const cookieLocale = getCookieLocale();
+
+  if (cookieLocale && routing.locales.includes(cookieLocale as Language)) {
+    return cookieLocale as string;
+  }
+
+  const pathLocale = getPathLocale(pathname);
+
+  if (pathLocale && routing.locales.includes(pathLocale as Language)) {
+    return pathLocale;
+  }
+
+  const systemLocale = getSystemLocale();
+
+  if (systemLocale && routing.locales.includes(systemLocale as Language)) {
+    return systemLocale;
+  }
+
+  return routing.defaultLocale;
+};
+
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
@@ -60,14 +102,9 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    const { locales } = routing;
-    const segments = pathname.split("/");
-    const localeFromPath = locales.includes(segments[1] as Language)
-      ? segments[1]
-      : getSystemLocale();
-
-    setLocale(localeFromPath);
     setInitialized(true);
+
+    setLocale(getLocaleFromSources(pathname));
   }, [pathname]);
 
   const updateRoute = async () => {

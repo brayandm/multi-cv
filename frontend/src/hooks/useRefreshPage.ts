@@ -3,10 +3,9 @@
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { setCookieClient } from "@/lib/setCookieClient";
-import { getSystemLocale, Language, useLocale } from "@/contexts/LocaleContext";
+import { getLocaleFromSources, useLocale } from "@/contexts/LocaleContext";
 import { getSystemTheme, useTheme } from "@/contexts/ThemeContext";
 import { getCookie } from "cookies-next";
-import { routing } from "@/i18n/routing";
 
 export const useRefreshPage = () => {
   const router = useRouter();
@@ -54,13 +53,7 @@ export const useRefreshPage = () => {
 
     const handleVisibilityChange = async () => {
       if (document.visibilityState === "visible") {
-        const { locales } = routing;
-        const segments = pathname.split("/");
-        const localeFromPath = locales.includes(segments[1] as Language)
-          ? segments[1]
-          : getSystemLocale();
-
-        await updateLocale(localeFromPath);
+        await updateLocale(getLocaleFromSources(pathname));
         await updateTheme((getCookie("theme") as string) || getSystemTheme());
 
         router.refresh();
