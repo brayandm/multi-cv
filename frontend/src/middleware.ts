@@ -6,7 +6,7 @@ import { routing } from "@/i18n/routing";
 
 const intlMiddleware = createIntlMiddleware(routing);
 
-const middlewares = [intlMiddleware, authMiddleware];
+const middlewares = [authMiddleware, intlMiddleware];
 
 export async function middleware(req: NextRequest) {
   for (const mw of middlewares) {

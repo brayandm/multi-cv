@@ -4,9 +4,11 @@ import { userStatusApiLink } from "@/lib/links";
 import { UserStatusResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
 import { routePatternsToRegex } from "@/lib/matchers";
+import { routing } from "@/i18n/routing"; // donde tienes locales y defaultLocale
+import { Language } from "@/contexts/LocaleContext";
 
 const authPages = ["/login", "/register"];
-const unProtectedPages: string[] = ["/"];
+const unProtectedPages = ["/"];
 const badEmailVerificationPages = ["/email/verify", "/email/verify/expired"];
 const goodEmailVerificationPages = [
   "/email/verify/success",
@@ -14,36 +16,35 @@ const goodEmailVerificationPages = [
 ];
 
 export async function authMiddleware(req: NextRequest) {
-  const pathname = req.nextUrl.pathname;
+  const originalPathname = req.nextUrl.pathname;
+  const segments = originalPathname.split("/");
+  const maybeLocale = segments[1];
+  const isLocale = routing.locales.includes(maybeLocale as Language);
+  const cleanPathname = isLocale
+    ? "/" + segments.slice(2).join("/")
+    : originalPathname;
 
   const matchesAuthRoute = authRoutesRegexps.some((regex) =>
-    regex.test(pathname)
+    regex.test(cleanPathname)
   );
 
   if (!matchesAuthRoute) return;
 
-  const url = req.nextUrl.clone();
-
-  const isAuthPage = authPages.includes(url.pathname);
+  const isAuthPage = authPages.includes(cleanPathname);
   const isProtectedPage =
-    !authPages.includes(url.pathname) &&
-    !unProtectedPages.includes(url.pathname);
-  const isUnProtectedPage = unProtectedPages.includes(url.pathname);
-  const isAcceptTermsPage = url.pathname === "/accept-terms";
-  const isBadEmailVerificationPage = badEmailVerificationPages.includes(
-    url.pathname
-  );
-
-  const isGoodEmailVerificationPage = goodEmailVerificationPages.includes(
-    url.pathname
-  );
-
+    !authPages.includes(cleanPathname) &&
+    !unProtectedPages.includes(cleanPathname);
+  const isUnProtectedPage = unProtectedPages.includes(cleanPathname);
+  const isAcceptTermsPage = cleanPathname === "/accept-terms";
+  const isBadEmailVerificationPage =
+    badEmailVerificationPages.includes(cleanPathname);
+  const isGoodEmailVerificationPage =
+    goodEmailVerificationPages.includes(cleanPathname);
   const isProfileInitialPage =
-    url.pathname === "/profile/initial" ||
-    url.pathname === "/profile/auto-fill";
+    cleanPathname === "/profile/initial" ||
+    cleanPathname === "/profile/auto-fill";
 
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
-
   let data: AxiosResponse<UserStatusResponse>;
 
   try {
@@ -80,9 +81,7 @@ export async function authMiddleware(req: NextRequest) {
     isNoticeTermsVersion = data.data.notice_new_terms_version;
   }
 
-  if (isUnProtectedPage) {
-    return;
-  }
+  if (isUnProtectedPage) return;
 
   if (isAuthenticated) {
     if (isAcceptTermsPage) {
@@ -108,14 +107,9 @@ export async function authMiddleware(req: NextRequest) {
       if (isBadEmailVerificationPage) {
         return NextResponse.redirect(new URL("/home", req.url));
       }
-
-      if (isGoodEmailVerificationPage) {
-        return;
-      }
+      if (isGoodEmailVerificationPage) return;
     } else {
-      if (isBadEmailVerificationPage) {
-        return;
-      }
+      if (isBadEmailVerificationPage) return;
 
       return NextResponse.redirect(new URL("/email/verify", req.url));
     }
@@ -132,10 +126,8 @@ export async function authMiddleware(req: NextRequest) {
   } else {
     if (isProtectedPage) {
       const callbackUrl = req.nextUrl.pathname + req.nextUrl.search;
-
       const loginUrl = new URL("/login", req.url);
       loginUrl.searchParams.set("callbackUrl", callbackUrl);
-
       return NextResponse.redirect(loginUrl);
     }
   }

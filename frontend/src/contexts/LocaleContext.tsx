@@ -27,6 +27,8 @@ export interface Traduction {
   name: string;
 }
 
+export type Language = "en" | "es" | "hi" | "ru";
+
 export const languages = [
   { code: "en", label: "English", name: "English" },
   { code: "es", label: "Spanish", name: "Spanish" },
@@ -68,16 +70,21 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     const { locales } = routing;
 
     const segments = pathname.split("/");
-    const hasLocale = locales.includes(
-      segments[1] as "en" | "es" | "hi" | "ru"
-    );
-    const path = hasLocale
+    const currentLocaleFromPath = locales.includes(segments[1] as Language)
+      ? segments[1]
+      : null;
+
+    if (currentLocaleFromPath === locale) {
+      return;
+    }
+
+    const path = currentLocaleFromPath
       ? segments.slice(2).join("/")
       : segments.slice(1).join("/");
 
     const newPath = `/${locale}/${path}`;
-
     const query = searchParams.toString();
+
     await router.replace(query ? `${newPath}?${query}` : newPath);
     await router.refresh();
   };
