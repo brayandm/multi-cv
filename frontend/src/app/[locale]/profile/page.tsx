@@ -1,5 +1,5 @@
 import ProfileComponent from "@/components/ProfileComponent";
-import { NavbarWrapper, SpacerDefault } from "../../main.styles";
+import { NavbarWrapper, SpacerDefault } from "@/app/main.styles";
 import Navbar from "@/shared/components/Navbar";
 
 export default async function Profile() {

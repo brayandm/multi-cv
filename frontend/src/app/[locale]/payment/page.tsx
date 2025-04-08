@@ -2,7 +2,7 @@
 
 import PaymentComponent from "@/components/PaymentComponent";
 import { useSearchParams } from "next/navigation";
-import { SpacerDefault } from "../../main.styles";
+import { SpacerDefault } from "@/app/main.styles";
 
 export default function Payment() {
   const searchParams = useSearchParams();

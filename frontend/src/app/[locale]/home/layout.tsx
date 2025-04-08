@@ -1,5 +1,5 @@
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper } from "../../main.styles";
+import { NavbarWrapper } from "@/app/main.styles";
 
 export default function HomeLayout({
   children,
