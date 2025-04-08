@@ -46,21 +46,27 @@ def generate_robots_txt(data: SitemapData) -> str:
 
     allow_rules: List[str] = []
 
-    # Allow root only
+    # ✅ First: Allow root
     allow_rules.append("Allow: /$")
+
+    # ✅ Then: Base language paths like /es/, /ru/
+    for lang in data["languages"]:
+        if lang == "en":
+            continue
+        allow_rules.append(f"Allow: /{lang}/")
     allow_rules.append("")
 
-    # Shared paths
+    # Shared non-localized paths
     for path in shared_paths:
         allow_rules.append(f"Allow: {path}")
     allow_rules.append("")
 
-    # Non-localized paths (English only)
+    # English-only paths
     for path in non_localized_paths:
         allow_rules.append(f"Allow: {path}")
     allow_rules.append("")
 
-    # Localized paths
+    # Localized paths with versions per language
     for path in localized_paths:
         allow_rules.append(f"Allow: {path}")  # default (en)
         for lang in data["languages"]:
@@ -70,20 +76,10 @@ def generate_robots_txt(data: SitemapData) -> str:
             allow_rules.append(f"Allow: {lang_path}")
         allow_rules.append("")  # spacing
 
-    # Base language home paths (like /es/, /ru/, etc.)
-    language_home_rules: List[str] = []
-    for lang in data["languages"]:
-        if lang == "en":
-            continue
-        language_home_rules.append(f"Allow: /{lang}/")
-    language_home_rules.append("")
-
     # Sitemap link
     sitemap_line = f"Sitemap: {BASE_URL}/sitemap.xml"
 
-    return "\n".join(
-        disallow_rules + language_home_rules + allow_rules + [sitemap_line]
-    )
+    return "\n".join(disallow_rules + allow_rules + [sitemap_line])
 
 
 if __name__ == "__main__":

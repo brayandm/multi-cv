@@ -2,11 +2,10 @@ User-agent: *
 Disallow: /
 Disallow: /*?callbackUrl=
 
+Allow: /$
 Allow: /es/
 Allow: /ru/
 Allow: /hi/
-
-Allow: /$
 
 Allow: /favicon.ico
 Allow: /sitemap.xml
