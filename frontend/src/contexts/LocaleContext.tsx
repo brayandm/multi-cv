@@ -64,7 +64,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     setInitialized(true);
   }, []);
 
-  const updateRoute = () => {
+  const updateRoute = async () => {
     const { locales } = routing;
 
     const segments = pathname.split("/");
@@ -78,8 +78,8 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     const newPath = `/${locale}/${path}`;
 
     const query = searchParams.toString();
-    router.replace(query ? `${newPath}?${query}` : newPath);
-    router.refresh();
+    await router.replace(query ? `${newPath}?${query}` : newPath);
+    await router.refresh();
   };
 
   const updateLocale = async (newLocale: string) => {
@@ -96,8 +96,6 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     } else {
       setLocale(newLocale);
     }
-
-    updateRoute();
   };
 
   const syncLocale = useCallback((newLocale: string) => {

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { getSystemLocale, useLocale } from "@/contexts/LocaleContext";
-import { useTheme } from "@/contexts/ThemeContext";
+import { getSystemTheme, useTheme } from "@/contexts/ThemeContext";
 import { getCookie } from "cookies-next";
 
 export const useRefreshPage = () => {
@@ -31,7 +31,7 @@ export const useRefreshPage = () => {
         const theme = content.theme;
 
         if (locale) {
-          await updateLocale(locale);
+          updateLocale(locale);
         }
 
         if (theme) {
@@ -47,9 +47,9 @@ export const useRefreshPage = () => {
 
     const handleVisibilityChange = async () => {
       if (document.visibilityState === "visible") {
-        await updateLocale(
-          (getCookie("locale") as string) || getSystemLocale()
-        );
+        updateLocale((getCookie("locale") as string) || getSystemLocale());
+        updateTheme((getCookie("theme") as string) || getSystemTheme());
+
         router.refresh();
       }
     };
