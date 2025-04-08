@@ -1,10 +1,11 @@
 "use client";
 
+import { usePathname, useRouter } from "@/i18n/navigation";
 import { userLocaleApi, userSetLocaleApi } from "@/lib/backendService";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import {
   createContext,
   useContext,
@@ -53,6 +54,8 @@ const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams();
   const [locale, setLocale] = useState("");
   const [initialized, setInitialized] = useState(false);
 
@@ -106,6 +109,13 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if ((getCookie("locale") as string) !== locale && initialized) {
       setCookieClient("locale", locale).then(() => {
+        router.replace(
+          // @ts-expect-error -- TypeScript will validate that only known `params`
+          // are used in combination with a given `pathname`. Since the two will
+          // always match for the current route, we can skip runtime checks.
+          { pathname, params },
+          { locale: locale }
+        );
         router.refresh();
       });
     }
