@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper, SpacerDefault } from "../main.styles";
+import { NavbarWrapper, SpacerDefault } from "../../main.styles";
 import { useEffect, useState } from "react";
 
 export default function PasswordLayout({

@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper } from "../main.styles";
+import { NavbarWrapper } from "../../main.styles";
 import { useEffect, useState } from "react";
 import { useUserStatus } from "@/contexts/UserStatusContext";
 import { Footer } from "@/components/WelcomeComponent/LandingPage";

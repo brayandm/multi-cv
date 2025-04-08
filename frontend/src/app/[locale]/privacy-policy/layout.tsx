@@ -1,11 +1,11 @@
 "use client";
 
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper, SpacerDefault } from "../main.styles";
+import { NavbarWrapper, SpacerDefault } from "../../main.styles";
 import { useEffect, useState } from "react";
 import { Footer } from "@/components/WelcomeComponent/LandingPage";
 
-export default function TermsAndConditionsLayout({
+export default function PrivacyPolicyLayout({
   children,
 }: {
   children: React.ReactNode;

@@ -1,7 +1,7 @@
 "use client";
 
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper } from "../main.styles";
+import { NavbarWrapper } from "../../main.styles";
 
 export default function PaymentLayout({
   children,

@@ -1,11 +1,10 @@
 "use client";
 
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper, SpacerDefault } from "../main.styles";
+import { NavbarWrapper, SpacerDefault } from "../../main.styles";
 import { useEffect, useState } from "react";
-import { Footer } from "@/components/WelcomeComponent/LandingPage";
 
-export default function PrivacyPolicyLayout({
+export default function LoginLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -18,15 +17,10 @@ export default function PrivacyPolicyLayout({
   return (
     <>
       <NavbarWrapper>
-        {isIframe ? (
-          <Navbar empty />
-        ) : (
-          <Navbar withAuthMethods disableLanguageSelector />
-        )}
+        {isIframe ? <Navbar empty /> : <Navbar withAuthMethods />}
       </NavbarWrapper>
       <SpacerDefault />
       {children}
-      <Footer />
     </>
   );
 }
