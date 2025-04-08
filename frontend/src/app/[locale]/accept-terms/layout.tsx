@@ -1,5 +1,5 @@
 import Navbar from "@/shared/components/Navbar";
-import { NavbarWrapper, SpacerDefault } from "../main.styles";
+import { NavbarWrapper, SpacerDefault } from "@/app/main.styles";
 
 export default function AcceptTermsLayout({
   children,
