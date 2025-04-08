@@ -115,7 +115,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
       ? segments[1]
       : null;
 
-    if (currentLocaleFromPath === locale) {
+    if (currentLocaleFromPath === locale || !currentLocaleFromPath) {
       return;
     }
 
