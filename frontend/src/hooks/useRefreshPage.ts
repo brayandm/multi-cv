@@ -31,24 +31,31 @@ export const useRefreshPage = () => {
         const theme = content.theme;
 
         if (locale) {
-          updateLocale(locale);
+          await updateLocale(locale);
         }
 
         if (theme) {
-          updateTheme(theme);
+          await updateTheme(theme);
         }
 
         if (cookie) {
-          setCookieClient(cookie.name, cookie.value, cookie.expiration_date);
+          await setCookieClient(
+            cookie.name,
+            cookie.value,
+            cookie.expiration_date
+          );
         }
+
         router.refresh();
       }
     };
 
     const handleVisibilityChange = async () => {
       if (document.visibilityState === "visible") {
-        updateLocale((getCookie("locale") as string) || getSystemLocale());
-        updateTheme((getCookie("theme") as string) || getSystemTheme());
+        await updateLocale(
+          (getCookie("locale") as string) || getSystemLocale()
+        );
+        await updateTheme((getCookie("theme") as string) || getSystemTheme());
 
         router.refresh();
       }
