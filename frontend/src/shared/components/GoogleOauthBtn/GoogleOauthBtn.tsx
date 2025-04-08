@@ -8,7 +8,7 @@ export const GoogleIcon = () => {
       alt="Google Logo"
       width={20}
       height={20}
-      src="icons/companies/google.svg"
+      src="/icons/companies/google.svg"
     />
   );
 };

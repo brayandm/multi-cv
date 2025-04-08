@@ -5,19 +5,21 @@ import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import LandingPage from "./LandingPage";
 import { useEffect, useState } from "react";
+import { useUserStatus } from "@/contexts/UserStatusContext";
 
 export default function WelcomeComponent() {
   const router = useRouter();
   const t = useTranslations();
 
   const [isIframe, setIsIframe] = useState(false);
+  const { userStatus } = useUserStatus();
 
   useEffect(() => {
     setIsIframe(window.self !== window.top);
   }, []);
 
   useEffect(() => {
-    if (isIframe) {
+    if (isIframe && userStatus.authenticated) {
       router.push("/home");
     }
   }, [isIframe]); // eslint-disable-line

@@ -1,10 +1,8 @@
 "use client";
 
 import { userLocaleApi, userSetLocaleApi } from "@/lib/backendService";
-import { setCookieClient } from "@/lib/setCookieClient";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
-import { getCookie } from "cookies-next";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   createContext,
   useContext,
@@ -13,6 +11,8 @@ import {
   useEffect,
   useCallback,
 } from "react";
+import { routing } from "@/i18n/routing";
+import { getCookie } from "cookies-next";
 
 interface LocaleContextType {
   locale: string;
@@ -25,6 +25,8 @@ export interface Traduction {
   locale: string;
   name: string;
 }
+
+export type Language = "en" | "es" | "hi" | "ru";
 
 export const languages = [
   { code: "en", label: "English", name: "English" },
@@ -49,17 +51,84 @@ export const getSystemLocale = () => {
   return systemLocale || "en";
 };
 
+export const getCookieLocale = () => {
+  return getCookie("NEXT_LOCALE");
+};
+
+export const getPathLocale = (pathname: string) => {
+  const segments = pathname.split("/");
+  const localeFromPath = segments[1];
+
+  if (!localeFromPath) {
+    return routing.defaultLocale;
+  }
+
+  if (!routing.locales.includes(localeFromPath as Language)) {
+    return routing.defaultLocale;
+  }
+
+  return localeFromPath;
+};
+
+export const getLocaleFromSources = (pathname: string) => {
+  const cookieLocale = getCookieLocale();
+
+  if (cookieLocale && routing.locales.includes(cookieLocale as Language)) {
+    return cookieLocale as string;
+  }
+
+  const pathLocale = getPathLocale(pathname);
+
+  if (pathLocale && routing.locales.includes(pathLocale as Language)) {
+    return pathLocale;
+  }
+
+  const systemLocale = getSystemLocale();
+
+  if (systemLocale && routing.locales.includes(systemLocale as Language)) {
+    return systemLocale;
+  }
+
+  return routing.defaultLocale;
+};
+
 const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [locale, setLocale] = useState("");
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    setLocale((getCookie("locale") as string) || getSystemLocale());
     setInitialized(true);
-  }, []);
+
+    setLocale(getLocaleFromSources(pathname));
+  }, [pathname]);
+
+  const updateRoute = async () => {
+    const { locales } = routing;
+
+    const segments = pathname.split("/");
+    const currentLocaleFromPath = locales.includes(segments[1] as Language)
+      ? segments[1]
+      : null;
+
+    if (currentLocaleFromPath === locale || !currentLocaleFromPath) {
+      return;
+    }
+
+    const path = currentLocaleFromPath
+      ? segments.slice(2).join("/")
+      : segments.slice(1).join("/");
+
+    const newPath = `/${locale}/${path}`;
+    const query = searchParams.toString();
+
+    await router.replace(query ? `${newPath}?${query}` : newPath);
+    await router.refresh();
+  };
 
   const updateLocale = async (newLocale: string) => {
     let userLocaleResponse;
@@ -104,10 +173,8 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   }, [locale]);
 
   useEffect(() => {
-    if ((getCookie("locale") as string) !== locale && initialized) {
-      setCookieClient("locale", locale).then(() => {
-        router.refresh();
-      });
+    if (initialized && locale) {
+      updateRoute();
     }
   }, [locale, initialized]); // eslint-disable-line
 

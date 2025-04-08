@@ -1,13 +1,15 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { setCookieClient } from "@/lib/setCookieClient";
-import { useLocale } from "@/contexts/LocaleContext";
-import { useTheme } from "@/contexts/ThemeContext";
+import { getLocaleFromSources, useLocale } from "@/contexts/LocaleContext";
+import { getSystemTheme, useTheme } from "@/contexts/ThemeContext";
+import { getCookie } from "cookies-next";
 
 export const useRefreshPage = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const { updateLocale } = useLocale();
   const { updateTheme } = useTheme();
@@ -30,23 +32,30 @@ export const useRefreshPage = () => {
         const theme = content.theme;
 
         if (locale) {
-          updateLocale(locale);
+          await updateLocale(locale);
         }
 
         if (theme) {
-          updateTheme(theme);
+          await updateTheme(theme);
         }
 
         if (cookie) {
-          setCookieClient(cookie.name, cookie.value, cookie.expiration_date);
+          await setCookieClient(
+            cookie.name,
+            cookie.value,
+            cookie.expiration_date
+          );
         }
 
         router.refresh();
       }
     };
 
-    const handleVisibilityChange = () => {
+    const handleVisibilityChange = async () => {
       if (document.visibilityState === "visible") {
+        await updateLocale(getLocaleFromSources(pathname));
+        await updateTheme((getCookie("theme") as string) || getSystemTheme());
+
         router.refresh();
       }
     };
@@ -71,5 +80,5 @@ export const useRefreshPage = () => {
         );
       }
     };
-  }, [router, updateLocale]);
+  }, [router, updateLocale, updateTheme, pathname]);
 };

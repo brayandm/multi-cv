@@ -22,7 +22,7 @@ interface ThemeContextType {
   syncTheme: (newTheme: string) => void;
 }
 
-const getSystemTheme = (): Theme => {
+export const getSystemTheme = (): Theme => {
   return "dark";
   // if (typeof window === "undefined") return "light";
   // return window.matchMedia("(prefers-color-scheme: dark)").matches

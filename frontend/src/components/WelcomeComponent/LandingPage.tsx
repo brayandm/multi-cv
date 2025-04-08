@@ -4,6 +4,8 @@ import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -17,8 +19,17 @@ export default function LandingPage() {
 
   const t = useTranslations();
 
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    setKey(Math.random());
+  }, []);
+
   return (
-    <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white ">
+    <div
+      key={key}
+      className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white "
+    >
       {/* Hero Section */}
       <motion.section
         className="pt-[200px] py-28 px-6 text-center bg-gradient-to-br from-primary-100 to-white dark:from-secondary-100 dark:to-gray-900"
@@ -204,65 +215,71 @@ export default function LandingPage() {
 export const Footer = () => {
   const t = useTranslations();
 
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    setKey(Math.random());
+  }, []);
+
   return (
     <motion.footer
+      key={key}
       className="bg-default-100 dark:bg-default-50 text-gray-600 dark:text-gray-400 py-10 px-6 text-sm text-center border-t border-default-200 dark:border-default-100"
       {...fadeInUp}
     >
       <motion.div className="mb-2" {...fadeInUp}>
-        {/* eslint-disable-next-line */}
-        <a
+        <Link
           href="/"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.home")}
-        </a>
-        <a
+        </Link>
+        <Link
           href="/pricing"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.pricing")}
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://www.linkedin.com/company/multicv-space/"
           target="_blank"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.linkedin")}
-        </a>
+        </Link>
       </motion.div>
 
       <motion.div
         className="mb-2 flex flex-wrap gap-y-2 justify-center text-center"
         {...fadeInUp}
       >
-        <a
+        <Link
           href="/privacy-policy"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.privacy_policy")}
-        </a>
-        <a
+        </Link>
+        <Link
           href="/terms-and-conditions"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.terms_and_conditions")}
-        </a>
-        <a
+        </Link>
+        <Link
           href="/cookies-policy"
           className="hover:text-black dark:hover:text-white mx-2 whitespace-nowrap"
         >
           {t("pages.landing_page.footer.cookies_policy")}
-        </a>
+        </Link>
       </motion.div>
 
       <motion.div className="mb-2" {...fadeInUp} transition={{ delay: 0.2 }}>
-        <a
+        <Link
           href="mailto:hello.multicv@gmail.com"
           className="hover:text-black dark:hover:text-white"
         >
           {t("pages.landing_page.footer.contact")}: hello.multicv@gmail.com
-        </a>
+        </Link>
       </motion.div>
       <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
         &copy; {new Date().getFullYear()} MultiCV.{" "}
