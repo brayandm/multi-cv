@@ -1,0 +1,35 @@
+{
+  "languages": ["es", "en", "ru", "hi"],
+  "routes": [
+    {
+      "path": "/",
+      "priority": 1.0,
+      "changefreq": "daily"
+    },
+    {
+      "path": "/privacy-policy",
+      "priority": 0.5,
+      "changefreq": "daily"
+    },
+    {
+      "path": "/terms-and-conditions",
+      "priority": 0.5,
+      "changefreq": "daily"
+    },
+    {
+      "path": "/cookies-policy",
+      "priority": 0.5,
+      "changefreq": "daily"
+    },
+    {
+      "path": "/login",
+      "priority": 0.5,
+      "changefreq": "daily"
+    },
+    {
+      "path": "/register",
+      "priority": 0.5,
+      "changefreq": "daily"
+    }
+  ]
+}

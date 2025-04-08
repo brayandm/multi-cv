@@ -1,1 +1,3 @@
+#!/bin/bash
+
 PIPENV_VENV_IN_PROJECT=1 pipenv run python3 -m app.utils.traductor.traductor
