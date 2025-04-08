@@ -111,8 +111,11 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     const { locales } = routing;
 
     const segments = pathname.split("/");
-    const currentLocaleFromPath = locales.includes(segments[1] as Language)
-      ? segments[1]
+
+    const localePath = segments[1] ? segments[1] : routing.defaultLocale;
+
+    const currentLocaleFromPath = locales.includes(localePath as Language)
+      ? localePath
       : null;
 
     if (currentLocaleFromPath === locale || !currentLocaleFromPath) {
