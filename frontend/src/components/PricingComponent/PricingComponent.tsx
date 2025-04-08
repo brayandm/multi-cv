@@ -120,7 +120,12 @@ export default function PricingComponent() {
                 />
                 <h3 className="text-2xl font-semibold">{plan.title}</h3>
               </div>
-              <div className="text-3xl font-bold mb-2 flex items-center gap-1">
+              <div
+                className="text-3xl font-bold mb-2 flex items-center gap-1"
+                style={{
+                  wordBreak: "break-word",
+                }}
+              >
                 {plan.price}
               </div>
               <p className="text-gray-700 dark:text-gray-300 mb-4">
