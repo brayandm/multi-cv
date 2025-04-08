@@ -70,6 +70,17 @@ export const getPathLocale = (pathname: string) => {
   return localeFromPath;
 };
 
+export const isDefaultLocale = (pathname: string) => {
+  const segments = pathname.split("/");
+  const localeFromPath = segments[1];
+
+  if (!localeFromPath) {
+    return true;
+  }
+
+  return false;
+};
+
 export const getLocaleFromSources = (pathname: string) => {
   const cookieLocale = getCookieLocale();
 
@@ -77,13 +88,21 @@ export const getLocaleFromSources = (pathname: string) => {
     return cookieLocale as string;
   }
 
+  const systemLocale = getSystemLocale();
+
+  if (isDefaultLocale(pathname)) {
+    if (systemLocale && routing.locales.includes(systemLocale as Language)) {
+      return systemLocale;
+    }
+
+    return routing.defaultLocale;
+  }
+
   const pathLocale = getPathLocale(pathname);
 
   if (pathLocale && routing.locales.includes(pathLocale as Language)) {
     return pathLocale;
   }
-
-  const systemLocale = getSystemLocale();
 
   if (systemLocale && routing.locales.includes(systemLocale as Language)) {
     return systemLocale;
