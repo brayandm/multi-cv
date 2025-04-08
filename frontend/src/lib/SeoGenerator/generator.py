@@ -1,6 +1,11 @@
 import json
 from typing import Any, Dict, List, TypedDict
-from xml.etree.ElementTree import Element, SubElement, tostring
+from xml.etree.ElementTree import (
+    Element,
+    SubElement,
+    tostring,
+    register_namespace,
+)
 from xml.dom import minidom
 from pathlib import Path
 
@@ -25,38 +30,42 @@ def prettify(xml_bytes: bytes) -> str:
 
 def generate_sitemap(data: SitemapData) -> str:
     """Generate the XML sitemap string from given route and language data."""
+    # Register the xhtml namespace to use the xhtml:link prefix in output
+    register_namespace("xhtml", "http://www.w3.org/1999/xhtml")
+
     urlset: Element = Element(
         "urlset",
         {
             "xmlns": "http://www.sitemaps.org/schemas/sitemap/0.9",
-            "xmlns:xhtml": "http://www.w3.org/1999/xhtml",
         },
     )
 
     for route in data["routes"]:
+        url = SubElement(urlset, "url")
+
+        # Use the first language as the canonical <loc>
+        base_path = f"{BASE_URL}/{route['path']}".replace("//", "/").replace(
+            ":/", "://"
+        )
+        SubElement(url, "loc").text = base_path
+
+        # Add hreflang alternates
         for lang in data["languages"]:
-            url = SubElement(urlset, "url")
-            full_path = f"{BASE_URL}/{lang}{route['path']}".replace(
+            alt_href = f"{BASE_URL}/{lang}{route['path']}".replace(
                 "//", "/"
             ).replace(":/", "://")
-            SubElement(url, "loc").text = full_path
+            SubElement(
+                url,
+                "{http://www.w3.org/1999/xhtml}link",
+                {
+                    "rel": "alternate",
+                    "hreflang": lang,
+                    "href": alt_href,
+                },
+            )
 
-            for alt_lang in data["languages"]:
-                alt_href = f"{BASE_URL}/{alt_lang}{route['path']}".replace(
-                    "//", "/"
-                ).replace(":/", "://")
-                SubElement(
-                    url,
-                    "{http://www.w3.org/1999/xhtml}link",
-                    {
-                        "rel": "alternate",
-                        "hreflang": alt_lang,
-                        "href": alt_href,
-                    },
-                )
-
-            SubElement(url, "priority").text = str(route["priority"])
-            SubElement(url, "changefreq").text = route["changefreq"]
+        SubElement(url, "priority").text = str(route["priority"])
+        SubElement(url, "changefreq").text = route["changefreq"]
 
     xml_bytes = tostring(urlset, encoding="utf-8", method="xml")
     return prettify(xml_bytes)
@@ -78,4 +87,4 @@ if __name__ == "__main__":
     with open("./public/sitemap.xml", "w", encoding="utf-8") as f:
         f.write(sitemap_xml)
 
-    print("✅ Sitemap successfully generated as 'sitemap.xml'")
+    print("✅ Sitemap successfully generated as 'public/sitemap.xml'")
