@@ -19,7 +19,7 @@ class Route(TypedDict):
 
 
 class SitemapData(TypedDict):
-    languages: List[str]
+    languages: List[str]  # should include "en" as the default language
     routes: List[Route]
 
 
@@ -30,7 +30,7 @@ def prettify(xml_bytes: bytes) -> str:
 
 def generate_sitemap(data: SitemapData) -> str:
     """Generate the XML sitemap string from given route and language data."""
-    # Register the xhtml namespace to use the xhtml:link prefix in output
+    # Register xhtml prefix to avoid ns0 in the output
     register_namespace("xhtml", "http://www.w3.org/1999/xhtml")
 
     urlset: Element = Element(
@@ -43,14 +43,27 @@ def generate_sitemap(data: SitemapData) -> str:
     for route in data["routes"]:
         url = SubElement(urlset, "url")
 
-        # Use the first language as the canonical <loc>
-        base_path = f"{BASE_URL}/{route['path']}".replace("//", "/").replace(
-            ":/", "://"
-        )
-        SubElement(url, "loc").text = base_path
+        # English (default) route: no prefix
+        default_href = f"{BASE_URL}/{route['path']}".replace(
+            "//", "/"
+        ).replace(":/", "://")
+        SubElement(url, "loc").text = default_href
 
-        # Add hreflang alternates
+        # hreflang: en (no prefix)
+        SubElement(
+            url,
+            "{http://www.w3.org/1999/xhtml}link",
+            {
+                "rel": "alternate",
+                "hreflang": "en",
+                "href": default_href,
+            },
+        )
+
+        # Other languages (with prefix)
         for lang in data["languages"]:
+            if lang == "en":
+                continue  # skip generating /en/ prefixed URLs
             alt_href = f"{BASE_URL}/{lang}{route['path']}".replace(
                 "//", "/"
             ).replace(":/", "://")
@@ -63,6 +76,17 @@ def generate_sitemap(data: SitemapData) -> str:
                     "href": alt_href,
                 },
             )
+
+        # hreflang: x-default (last)
+        SubElement(
+            url,
+            "{http://www.w3.org/1999/xhtml}link",
+            {
+                "rel": "alternate",
+                "hreflang": "x-default",
+                "href": default_href,
+            },
+        )
 
         SubElement(url, "priority").text = str(route["priority"])
         SubElement(url, "changefreq").text = route["changefreq"]
