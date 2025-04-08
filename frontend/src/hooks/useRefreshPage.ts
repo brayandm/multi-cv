@@ -31,7 +31,7 @@ export const useRefreshPage = () => {
         const theme = content.theme;
 
         if (locale) {
-          updateLocale(locale);
+          await updateLocale(locale);
         }
 
         if (theme) {
@@ -41,15 +41,15 @@ export const useRefreshPage = () => {
         if (cookie) {
           setCookieClient(cookie.name, cookie.value, cookie.expiration_date);
         }
-
         router.refresh();
       }
     };
 
-    const handleVisibilityChange = () => {
+    const handleVisibilityChange = async () => {
       if (document.visibilityState === "visible") {
-        updateLocale((getCookie("locale") as string) || getSystemLocale());
-
+        await updateLocale(
+          (getCookie("locale") as string) || getSystemLocale()
+        );
         router.refresh();
       }
     };

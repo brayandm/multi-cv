@@ -64,6 +64,24 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     setInitialized(true);
   }, []);
 
+  const updateRoute = () => {
+    const { locales } = routing;
+
+    const segments = pathname.split("/");
+    const hasLocale = locales.includes(
+      segments[1] as "en" | "es" | "hi" | "ru"
+    );
+    const path = hasLocale
+      ? segments.slice(2).join("/")
+      : segments.slice(1).join("/");
+
+    const newPath = `/${locale}/${path}`;
+
+    const query = searchParams.toString();
+    router.replace(query ? `${newPath}?${query}` : newPath);
+    router.refresh();
+  };
+
   const updateLocale = async (newLocale: string) => {
     let userLocaleResponse;
 
@@ -78,6 +96,8 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     } else {
       setLocale(newLocale);
     }
+
+    updateRoute();
   };
 
   const syncLocale = useCallback((newLocale: string) => {
@@ -107,23 +127,9 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   }, [locale]);
 
   useEffect(() => {
-    if ((getCookie("locale") as string) !== locale && initialized) {
+    if (initialized && locale) {
       setCookieClient("locale", locale).then(() => {
-        const { locales } = routing;
-
-        const segments = pathname.split("/");
-        const hasLocale = locales.includes(
-          segments[1] as "en" | "es" | "hi" | "ru"
-        );
-        const path = hasLocale
-          ? segments.slice(2).join("/")
-          : segments.slice(1).join("/");
-
-        const newPath = `/${locale}/${path}`;
-
-        const query = searchParams.toString();
-        router.replace(query ? `${newPath}?${query}` : newPath);
-        router.refresh();
+        updateRoute();
       });
     }
   }, [locale, initialized]); // eslint-disable-line
