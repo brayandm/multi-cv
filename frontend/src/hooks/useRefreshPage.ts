@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { setCookieClient } from "@/lib/setCookieClient";
-import { getSystemLocale, useLocale } from "@/contexts/LocaleContext";
+import { getSystemLocale, Language, useLocale } from "@/contexts/LocaleContext";
 import { getSystemTheme, useTheme } from "@/contexts/ThemeContext";
 import { getCookie } from "cookies-next";
+import { routing } from "@/i18n/routing";
 
 export const useRefreshPage = () => {
   const router = useRouter();
+  const pathname = usePathname();
 
   const { updateLocale } = useLocale();
   const { updateTheme } = useTheme();
@@ -52,9 +54,13 @@ export const useRefreshPage = () => {
 
     const handleVisibilityChange = async () => {
       if (document.visibilityState === "visible") {
-        await updateLocale(
-          (getCookie("locale") as string) || getSystemLocale()
-        );
+        const { locales } = routing;
+        const segments = pathname.split("/");
+        const localeFromPath = locales.includes(segments[1] as Language)
+          ? segments[1]
+          : getSystemLocale();
+
+        await updateLocale(localeFromPath);
         await updateTheme((getCookie("theme") as string) || getSystemTheme());
 
         router.refresh();
@@ -81,5 +87,5 @@ export const useRefreshPage = () => {
         );
       }
     };
-  }, [router, updateLocale, updateTheme]);
+  }, [router, updateLocale, updateTheme, pathname]);
 };

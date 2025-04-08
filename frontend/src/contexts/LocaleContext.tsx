@@ -1,9 +1,7 @@
 "use client";
 
 import { userLocaleApi, userSetLocaleApi } from "@/lib/backendService";
-import { setCookieClient } from "@/lib/setCookieClient";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
-import { getCookie } from "cookies-next";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   createContext,
@@ -62,9 +60,15 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
-    setLocale((getCookie("locale") as string) || getSystemLocale());
+    const { locales } = routing;
+    const segments = pathname.split("/");
+    const localeFromPath = locales.includes(segments[1] as Language)
+      ? segments[1]
+      : getSystemLocale();
+
+    setLocale(localeFromPath);
     setInitialized(true);
-  }, []);
+  }, [pathname]);
 
   const updateRoute = async () => {
     const { locales } = routing;
@@ -133,9 +137,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     if (initialized && locale) {
-      setCookieClient("locale", locale).then(() => {
-        updateRoute();
-      });
+      updateRoute();
     }
   }, [locale, initialized]); // eslint-disable-line
 
