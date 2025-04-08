@@ -38,6 +38,7 @@ import {
 import { useUserStatus } from "@/contexts/UserStatusContext";
 import { AxiosResponse } from "axios";
 import { GetQuotaInfoResponse } from "@/lib/types";
+import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 
 interface IProfileComponentProps {
   isFirstLogin: boolean;
@@ -55,6 +56,8 @@ const ProfileComponent = ({ isFirstLogin = false }: IProfileComponentProps) => {
   }, []); // eslint-disable-line
 
   const router = useRouter();
+
+  const {} = useCallbackRedirect();
 
   const { unlock, lock, setCallback } = useInterceptor();
 

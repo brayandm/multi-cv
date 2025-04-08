@@ -31,6 +31,7 @@ import {
 import { useProfile } from "@/contexts/ProfileContext";
 import { AxiosResponse } from "axios";
 import { GetQuotaInfoResponse } from "@/lib/types";
+import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 
 export default function ProfileAutoCvComponent() {
   const width = DEFAULT_CARD_WIDTH;
@@ -45,6 +46,8 @@ export default function ProfileAutoCvComponent() {
 
   const [file, setFile] = useState<File | null>(null);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+
+  const {} = useCallbackRedirect();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
