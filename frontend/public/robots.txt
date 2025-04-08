@@ -7,8 +7,13 @@ Allow: /ru/
 Allow: /hi/
 
 Allow: /$
+
 Allow: /favicon.ico
 Allow: /sitemap.xml
+
+Allow: /privacy-policy
+Allow: /terms-and-conditions
+Allow: /cookies-policy
 
 Allow: /login
 Allow: /es/login
@@ -19,20 +24,5 @@ Allow: /register
 Allow: /es/register
 Allow: /ru/register
 Allow: /hi/register
-
-Allow: /privacy-policy
-Allow: /es/privacy-policy
-Allow: /ru/privacy-policy
-Allow: /hi/privacy-policy
-
-Allow: /terms-and-conditions
-Allow: /es/terms-and-conditions
-Allow: /ru/terms-and-conditions
-Allow: /hi/terms-and-conditions
-
-Allow: /cookies-policy
-Allow: /es/cookies-policy
-Allow: /ru/cookies-policy
-Allow: /hi/cookies-policy
 
 Sitemap: https://multicv.space/sitemap.xml

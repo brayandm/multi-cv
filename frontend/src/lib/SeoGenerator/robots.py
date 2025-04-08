@@ -25,30 +25,40 @@ def generate_robots_txt(data: SitemapData) -> str:
         "",
     ]
 
-    # Paths that don't require multilingual variants
-    shared_paths = [
-        "/favicon.ico",
-        "/sitemap.xml",
-    ]
-
-    # Paths that should be localized
-    localized_paths = [
-        "/login",
-        "/register",
+    # Routes only available without language prefix (for now)
+    non_localized_paths = [
         "/privacy-policy",
         "/terms-and-conditions",
         "/cookies-policy",
     ]
 
-    # Build Allow rules
-    allow_rules = []
+    # Routes that are available with language prefixes
+    localized_paths = [
+        "/login",
+        "/register",
+    ]
 
+    # Shared single-version routes
+    shared_paths = [
+        "/favicon.ico",
+        "/sitemap.xml",
+    ]
+
+    allow_rules: List[str] = []
+
+    # Allow root only
     allow_rules.append("Allow: /$")
+    allow_rules.append("")
 
-    # Shared paths (only once, no languages)
+    # Shared paths
     for path in shared_paths:
         allow_rules.append(f"Allow: {path}")
-    allow_rules.append("")  # spacing
+    allow_rules.append("")
+
+    # Non-localized paths (English only)
+    for path in non_localized_paths:
+        allow_rules.append(f"Allow: {path}")
+    allow_rules.append("")
 
     # Localized paths
     for path in localized_paths:
@@ -58,17 +68,17 @@ def generate_robots_txt(data: SitemapData) -> str:
                 continue
             lang_path = f"/{lang}{path}"
             allow_rules.append(f"Allow: {lang_path}")
-        allow_rules.append("")  # spacing between blocks
+        allow_rules.append("")  # spacing
 
-    # Also include base paths for languages: /es/, /ru/, /hi/
-    language_home_rules = []
+    # Base language home paths (like /es/, /ru/, etc.)
+    language_home_rules: List[str] = []
     for lang in data["languages"]:
         if lang == "en":
             continue
         language_home_rules.append(f"Allow: /{lang}/")
     language_home_rules.append("")
 
-    # Sitemap line
+    # Sitemap link
     sitemap_line = f"Sitemap: {BASE_URL}/sitemap.xml"
 
     return "\n".join(
