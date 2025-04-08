@@ -34,6 +34,7 @@ export function useCallbackRedirect() {
 
     if (url) {
       router.push(url);
+      sessionStorage.removeItem(CALLBACK_KEY);
     }
   };
 

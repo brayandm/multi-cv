@@ -6,6 +6,7 @@ import { AxiosResponse } from "axios";
 import { routePatternsToRegex } from "@/lib/matchers";
 import { routing } from "@/i18n/routing"; // donde tienes locales y defaultLocale
 import { Language } from "@/contexts/LocaleContext";
+import { NextURL } from "next/dist/server/web/next-url";
 
 const authPages = ["/login", "/register"];
 const unProtectedPages = ["/"];
@@ -14,6 +15,18 @@ const goodEmailVerificationPages = [
   "/email/verify/success",
   "/email/verify/already-verified",
 ];
+
+export function createRedirectWithCallback(
+  targetPath: string,
+  nextUrl: NextURL
+) {
+  const callbackUrl = nextUrl.pathname + nextUrl.search;
+
+  const redirectUrl = new URL(targetPath, nextUrl.origin);
+  redirectUrl.searchParams.set("callbackUrl", callbackUrl);
+
+  return NextResponse.redirect(redirectUrl);
+}
 
 export async function authMiddleware(req: NextRequest) {
   const originalPathname = req.nextUrl.pathname;
@@ -99,7 +112,7 @@ export async function authMiddleware(req: NextRequest) {
         isFirstTermsVersion ||
         (!isValidTermsVersion && isNoticeTermsVersion !== null)
       ) {
-        return NextResponse.redirect(new URL("/accept-terms", req.url));
+        return createRedirectWithCallback("/accept-terms", req.nextUrl);
       }
     }
 
@@ -111,13 +124,13 @@ export async function authMiddleware(req: NextRequest) {
     } else {
       if (isBadEmailVerificationPage) return;
 
-      return NextResponse.redirect(new URL("/email/verify", req.url));
+      return createRedirectWithCallback("/email/verify", req.nextUrl);
     }
 
     if (isFirstLogin && !isProfileInitialPage) {
-      return NextResponse.redirect(new URL("/profile/auto-fill", req.url));
+      return createRedirectWithCallback("/profile/auto-fill", req.nextUrl);
     } else if (!isFirstLogin && isProfileInitialPage) {
-      return NextResponse.redirect(new URL("/profile", req.url));
+      return createRedirectWithCallback("/profile", req.nextUrl);
     }
 
     if (isAuthPage) {
@@ -125,10 +138,7 @@ export async function authMiddleware(req: NextRequest) {
     }
   } else {
     if (isProtectedPage) {
-      const callbackUrl = req.nextUrl.pathname + req.nextUrl.search;
-      const loginUrl = new URL("/login", req.url);
-      loginUrl.searchParams.set("callbackUrl", callbackUrl);
-      return NextResponse.redirect(loginUrl);
+      return createRedirectWithCallback("/login", req.nextUrl);
     }
   }
 
