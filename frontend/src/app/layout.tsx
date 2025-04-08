@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { getLocale } from "next-intl/server";
 import { ClientLayout } from "./ClientLayout";
 import Providers from "./providers";
 import { cookies } from "next/headers";
@@ -45,11 +44,16 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params,
 }: Readonly<{
   children: React.ReactNode;
+  params: {
+    locale: string;
+  };
 }>) {
-  const locale = await getLocale();
   const theme = (await cookies()).get("theme")?.value || "light";
+
+  const { locale } = await params;
 
   return (
     <html lang={locale} className={`flex h-screen ${theme}`}>

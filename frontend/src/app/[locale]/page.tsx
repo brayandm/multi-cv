@@ -1,7 +1,7 @@
 "use client";
 
 import WelcomeComponent from "@/components/WelcomeComponent";
-import { NavbarWrapper } from "./main.styles";
+import { NavbarWrapper } from "@/app/main.styles";
 import Navbar from "@/shared/components/Navbar";
 import { useEffect, useState } from "react";
 import { useUserStatus } from "@/contexts/UserStatusContext";
