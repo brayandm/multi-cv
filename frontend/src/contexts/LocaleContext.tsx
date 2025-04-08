@@ -1,11 +1,10 @@
 "use client";
 
-import { usePathname, useRouter } from "@/i18n/navigation";
 import { userLocaleApi, userSetLocaleApi } from "@/lib/backendService";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { getCookie } from "cookies-next";
-import { useParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import {
   createContext,
   useContext,
@@ -14,6 +13,7 @@ import {
   useEffect,
   useCallback,
 } from "react";
+import { routing } from "@/i18n/routing";
 
 interface LocaleContextType {
   locale: string;
@@ -55,7 +55,7 @@ const LocaleContext = createContext<LocaleContextType | undefined>(undefined);
 export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const pathname = usePathname();
-  const params = useParams();
+  const searchParams = useSearchParams();
   const [locale, setLocale] = useState("");
   const [initialized, setInitialized] = useState(false);
 
@@ -109,13 +109,20 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if ((getCookie("locale") as string) !== locale && initialized) {
       setCookieClient("locale", locale).then(() => {
-        router.replace(
-          // @ts-expect-error -- TypeScript will validate that only known `params`
-          // are used in combination with a given `pathname`. Since the two will
-          // always match for the current route, we can skip runtime checks.
-          { pathname, params },
-          { locale: locale }
+        const { locales } = routing;
+
+        const segments = pathname.split("/");
+        const hasLocale = locales.includes(
+          segments[1] as "en" | "es" | "hi" | "ru"
         );
+        const path = hasLocale
+          ? segments.slice(2).join("/")
+          : segments.slice(1).join("/");
+
+        const newPath = `/${locale}/${path}`;
+
+        const query = searchParams.toString();
+        router.replace(query ? `${newPath}?${query}` : newPath);
         router.refresh();
       });
     }

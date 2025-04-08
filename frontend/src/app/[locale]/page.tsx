@@ -6,7 +6,7 @@ import Navbar from "@/shared/components/Navbar";
 import { useEffect, useState } from "react";
 import { useUserStatus } from "@/contexts/UserStatusContext";
 
-export default function Home() {
+export default function Welcome() {
   const [isIframe, setIsIframe] = useState(false);
 
   const { userStatus, isLoading, refreshUserStatus } = useUserStatus();

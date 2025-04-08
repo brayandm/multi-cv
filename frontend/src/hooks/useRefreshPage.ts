@@ -3,8 +3,9 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { setCookieClient } from "@/lib/setCookieClient";
-import { useLocale } from "@/contexts/LocaleContext";
+import { getSystemLocale, useLocale } from "@/contexts/LocaleContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import { getCookie } from "cookies-next";
 
 export const useRefreshPage = () => {
   const router = useRouter();
@@ -47,6 +48,8 @@ export const useRefreshPage = () => {
 
     const handleVisibilityChange = () => {
       if (document.visibilityState === "visible") {
+        updateLocale((getCookie("locale") as string) || getSystemLocale());
+
         router.refresh();
       }
     };
@@ -71,5 +74,5 @@ export const useRefreshPage = () => {
         );
       }
     };
-  }, [router, updateLocale]);
+  }, [router, updateLocale, updateTheme]);
 };
