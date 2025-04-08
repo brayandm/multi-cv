@@ -33,7 +33,6 @@ def generate_robots_txt(data: SitemapData) -> str:
 
     # Paths that should be localized
     localized_paths = [
-        "/",
         "/login",
         "/register",
         "/privacy-policy",
@@ -43,6 +42,8 @@ def generate_robots_txt(data: SitemapData) -> str:
 
     # Build Allow rules
     allow_rules = []
+
+    allow_rules.append("Allow: /$")
 
     # Shared paths (only once, no languages)
     for path in shared_paths:

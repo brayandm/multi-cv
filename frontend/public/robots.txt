@@ -6,13 +6,9 @@ Allow: /es/
 Allow: /ru/
 Allow: /hi/
 
+Allow: /$
 Allow: /favicon.ico
 Allow: /sitemap.xml
-
-Allow: /
-Allow: /es/
-Allow: /ru/
-Allow: /hi/
 
 Allow: /login
 Allow: /es/login
