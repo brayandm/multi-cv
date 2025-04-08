@@ -13,14 +13,14 @@ const goodEmailVerificationPages = [
   "/email/verify/already-verified",
 ];
 
-export async function middleware(req: NextRequest) {
+export async function authMiddleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname;
 
   const matchesAuthRoute = authRoutesRegexps.some((regex) =>
     regex.test(pathname)
   );
 
-  if (!matchesAuthRoute) return NextResponse.next();
+  if (!matchesAuthRoute) return;
 
   const url = req.nextUrl.clone();
 
@@ -56,7 +56,7 @@ export async function middleware(req: NextRequest) {
     if (isProtectedPage) {
       return NextResponse.redirect(new URL("/", req.url));
     } else {
-      return NextResponse.next();
+      return;
     }
   }
 
@@ -81,7 +81,7 @@ export async function middleware(req: NextRequest) {
   }
 
   if (isUnProtectedPage) {
-    return NextResponse.next();
+    return;
   }
 
   if (isAuthenticated) {
@@ -94,7 +94,7 @@ export async function middleware(req: NextRequest) {
         return NextResponse.redirect(new URL("/home", req.url));
       }
 
-      return NextResponse.next();
+      return;
     } else {
       if (
         isFirstTermsVersion ||
@@ -110,11 +110,11 @@ export async function middleware(req: NextRequest) {
       }
 
       if (isGoodEmailVerificationPage) {
-        return NextResponse.next();
+        return;
       }
     } else {
       if (isBadEmailVerificationPage) {
-        return NextResponse.next();
+        return;
       }
 
       return NextResponse.redirect(new URL("/email/verify", req.url));
@@ -140,7 +140,7 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  return NextResponse.next();
+  return;
 }
 
 const authRoutePatterns = [
