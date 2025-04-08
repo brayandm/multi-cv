@@ -84,7 +84,7 @@ class GoogleAuthController extends Controller
                 $response = Http::head($userInfo['picture']);
                 $contentType = $response->header('Content-Type');
 
-                $extension = match ($contentType) {
+                $fileExtension = match ($contentType) {
                     'image/jpeg', 'image/jpg' => 'jpg',
                     'image/png' => 'png',
                     'image/gif' => 'gif',
@@ -99,7 +99,7 @@ class GoogleAuthController extends Controller
                 $user->clearMediaCollection('profile_picture');
 
                 $user->addMediaFromUrl($userInfo['picture'])
-                    ->usingFileName("profile_picture.$extension")
+                    ->usingFileName("profile_picture.$fileExtension")
                     ->toMediaCollection('profile_picture');
             }
         }
