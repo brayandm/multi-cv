@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Input, Spinner } from "@heroui/react";
 import { XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
+import imageCompression from "browser-image-compression";
 
 export interface IProfilePhotoUploaderProps {
   image: string | null;
@@ -30,17 +31,30 @@ const ProfilePhotoUploader = ({
     setOnSubmitting(true);
     const file = e.target.files?.[0];
 
-    if (file) {
-      if (file.size > MAX_IMAGE_SIZE) {
+    if (!file) {
+      setOnSubmitting(false);
+      return;
+    }
+
+    try {
+      const compressedFile = await imageCompression(file, {
+        maxSizeMB: 2,
+        maxWidthOrHeight: 1024,
+        useWebWorker: true,
+      });
+
+      if (compressedFile.size > MAX_IMAGE_SIZE) {
         setError(t("common.errors.file_size", { max: 2 }));
-        setOnSubmitting(false);
         if (fileInputRef.current) fileInputRef.current.value = "";
+        setOnSubmitting(false);
         return;
       }
 
-      await onImageChange(file);
-
+      await onImageChange(compressedFile);
       setVersion(Date.now());
+    } catch (err) {
+      console.error("Compression error:", err);
+      setError("There was a problem processing the image.");
     }
 
     setOnSubmitting(false);
@@ -48,9 +62,7 @@ const ProfilePhotoUploader = ({
 
   const handleRemoveImage = () => {
     onImageRemove();
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
+    if (fileInputRef.current) fileInputRef.current.value = "";
     setError(null);
   };
 
