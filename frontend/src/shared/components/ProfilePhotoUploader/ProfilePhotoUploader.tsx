@@ -50,7 +50,11 @@ const ProfilePhotoUploader = ({
         useWebWorker: true,
       });
 
-      await onImageChange(compressedFile);
+      const smallerFile =
+        compressedFile.size < file.size ? compressedFile : file;
+
+      await onImageChange(smallerFile);
+
       setVersion(Date.now());
     } catch (err) {
       console.error("Compression error:", err);
