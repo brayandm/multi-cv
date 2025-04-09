@@ -356,7 +356,7 @@ class AuthController extends Controller
     public function uploadProfilePicture(Request $request)
     {
         $request->validate([
-            'photo' => 'required|image|max:5120',
+            'photo' => 'required|image|max:10240', // 10MB
         ]);
 
         $user = User::find(auth()->user()->id);

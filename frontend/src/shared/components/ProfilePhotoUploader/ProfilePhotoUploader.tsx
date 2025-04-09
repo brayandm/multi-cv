@@ -10,7 +10,7 @@ export interface IProfilePhotoUploaderProps {
   onImageRemove?: () => void;
 }
 
-const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_IMAGE_SIZE = 10 * 1024 * 1024; // 10MB
 
 const ProfilePhotoUploader = ({
   image,
@@ -37,7 +37,7 @@ const ProfilePhotoUploader = ({
     }
 
     if (file.size > MAX_IMAGE_SIZE) {
-      setError(t("common.errors.file_size", { max: 5 }));
+      setError(t("common.errors.file_size", { max: 10 }));
       if (fileInputRef.current) fileInputRef.current.value = "";
       setOnSubmitting(false);
       return;
