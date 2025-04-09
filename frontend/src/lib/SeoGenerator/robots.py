@@ -1,4 +1,4 @@
-from typing import List, TypedDict
+from typing import List, TypedDict, NotRequired
 import json
 from pathlib import Path
 
@@ -10,6 +10,7 @@ class Route(TypedDict):
     path: str
     priority: float
     changefreq: str
+    localizable: NotRequired[bool]
 
 
 class SitemapData(TypedDict):
@@ -25,24 +26,27 @@ def generate_robots_txt(data: SitemapData) -> str:
         "",
     ]
 
-    # Routes only available without language prefix (for now)
-    non_localized_paths = [
-        "/privacy-policy",
-        "/terms-and-conditions",
-        "/cookies-policy",
-    ]
-
-    # Routes that are available with language prefixes
-    localized_paths = [
-        "/login",
-        "/register",
-    ]
-
-    # Shared single-version routes
+    # Extra technical files that are shared and do not appear in the routes
     shared_paths = [
         "/favicon.ico",
         "/sitemap.xml",
     ]
+
+    # Build path lists dynamically
+    non_localized_paths: List[str] = []
+    localized_paths: List[str] = []
+
+    for route in data["routes"]:
+        localizable = route.get("localizable", True)
+        path = route["path"]
+
+        if path == "/":
+            continue
+
+        if localizable:
+            localized_paths.append(path)
+        else:
+            non_localized_paths.append(path)
 
     allow_rules: List[str] = []
 
@@ -56,7 +60,7 @@ def generate_robots_txt(data: SitemapData) -> str:
         allow_rules.append(f"Allow: /{lang}/")
     allow_rules.append("")
 
-    # Shared non-localized paths
+    # Shared non-routed paths
     for path in shared_paths:
         allow_rules.append(f"Allow: {path}")
     allow_rules.append("")
@@ -66,7 +70,7 @@ def generate_robots_txt(data: SitemapData) -> str:
         allow_rules.append(f"Allow: {path}")
     allow_rules.append("")
 
-    # Localized paths with versions per language
+    # Localized paths with language variants
     for path in localized_paths:
         allow_rules.append(f"Allow: {path}")  # default (en)
         for lang in data["languages"]:
