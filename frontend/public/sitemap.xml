@@ -51,4 +51,14 @@
     <priority>0.5</priority>
     <changefreq>daily</changefreq>
   </url>
+  <url>
+    <loc>https://multicv.space/pricing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://multicv.space/pricing"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://multicv.space/es/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://multicv.space/ru/pricing"/>
+    <xhtml:link rel="alternate" hreflang="hi" href="https://multicv.space/hi/pricing"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://multicv.space/pricing"/>
+    <priority>0.5</priority>
+    <changefreq>daily</changefreq>
+  </url>
 </urlset>

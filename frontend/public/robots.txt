@@ -24,4 +24,9 @@ Allow: /es/register
 Allow: /ru/register
 Allow: /hi/register
 
+Allow: /pricing
+Allow: /es/pricing
+Allow: /ru/pricing
+Allow: /hi/pricing
+
 Sitemap: https://multicv.space/sitemap.xml

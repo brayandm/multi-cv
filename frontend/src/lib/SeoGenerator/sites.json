@@ -33,6 +33,11 @@
       "path": "/register",
       "priority": 0.5,
       "changefreq": "daily"
+    },
+    {
+      "path": "/pricing",
+      "priority": 0.5,
+      "changefreq": "daily"
     }
   ]
 }
