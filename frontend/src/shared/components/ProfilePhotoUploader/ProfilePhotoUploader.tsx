@@ -45,8 +45,8 @@ const ProfilePhotoUploader = ({
 
     try {
       const compressedFile = await imageCompression(file, {
-        maxSizeMB: 0.5,
-        maxWidthOrHeight: 1024,
+        maxSizeMB: 0.3,
+        maxWidthOrHeight: 400,
         useWebWorker: true,
       });
 
