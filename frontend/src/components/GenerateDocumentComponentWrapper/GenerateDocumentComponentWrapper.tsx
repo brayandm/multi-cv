@@ -15,8 +15,10 @@ export default function GenerateDocumentComponentWrapper() {
         variant="bordered"
         placement="bottom"
         classNames={{
-          base: "self-center",
-          tabList: "flex-col sm:flex-row ",
+          tabWrapper: "w-full",
+          base: "self-center w-full sm:w-auto",
+          tabList: "flex flex-wrap sm:flex-nowrap w-full",
+          tab: "h-12 sm:h-8 w-full",
         }}
       >
         <Tab
@@ -27,7 +29,7 @@ export default function GenerateDocumentComponentWrapper() {
             </div>
           }
         >
-          <div className="flex w-full h-64 flex-col items-center">
+          <div className="flex w-full h-96 flex-col items-center">
             <GenerateDocumentComponent />
           </div>
         </Tab>
@@ -42,7 +44,7 @@ export default function GenerateDocumentComponentWrapper() {
           }
         >
           {" "}
-          <div className="flex w-full h-64 flex-col items-center"></div>
+          <div className="flex w-full h-96 flex-col items-center"></div>
         </Tab>
         <Tab
           key="videos"
@@ -55,7 +57,7 @@ export default function GenerateDocumentComponentWrapper() {
           }
         >
           {" "}
-          <div className="flex w-full h-64 flex-col items-center"></div>
+          <div className="flex w-full h-96 flex-col items-center"></div>
         </Tab>
       </Tabs>
     </div>
