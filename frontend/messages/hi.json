@@ -245,7 +245,18 @@
     "home": {
       "tabs": {
         "builder": {
-          "title": "CV Builder"
+          "title": "CV Builder",
+          "tabs": {
+            "simple_cv": {
+              "title": "Sadharan CV"
+            },
+            "optimized_role": {
+              "title": "Bhumika ke liye Sudharit"
+            },
+            "based_on_offer": {
+              "title": "Naukri Prastav par Aadharit"
+            }
+          }
         },
         "applications": {
           "title": "Aavedan"

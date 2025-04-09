@@ -245,7 +245,18 @@
     "home": {
       "tabs": {
         "builder": {
-          "title": "Конструктор резюме"
+          "title": "Конструктор резюме",
+          "tabs": {
+            "simple_cv": {
+              "title": "Простой резюме"
+            },
+            "optimized_role": {
+              "title": "Оптимизировано для роли"
+            },
+            "based_on_offer": {
+              "title": "На основе предложения о работе"
+            }
+          }
         },
         "applications": {
           "title": "Заявления"

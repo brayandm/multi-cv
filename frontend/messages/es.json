@@ -245,7 +245,18 @@
     "home": {
       "tabs": {
         "builder": {
-          "title": "Constructor de CV"
+          "title": "Constructor de CV",
+          "tabs": {
+            "simple_cv": {
+              "title": "CV Simple"
+            },
+            "optimized_role": {
+              "title": "Optimizado para el Rol"
+            },
+            "based_on_offer": {
+              "title": "Basado en la Oferta de Trabajo"
+            }
+          }
         },
         "applications": {
           "title": "Solicitudes"
