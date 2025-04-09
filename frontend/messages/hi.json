@@ -102,6 +102,7 @@
       "invalid_phone": "Phone number valid nahi hai",
       "settings": "Settings update mein asafalta",
       "file_size": "File ka size {max}MB se kam hona chahiye",
+      "compression": "Chitra prakriya karne mein samasya aayi",
       "autofill": "Autofill mein asafalta",
       "dates_impossible": "Antim tareekh shuru hone wale tareekh ke baad honi chahiye",
       "expiration_impossible": "Antim tareekh issue tareekh ke baad honi chahiye",

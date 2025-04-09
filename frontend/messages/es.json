@@ -102,6 +102,7 @@
       "invalid_phone": "El número de teléfono no es válido",
       "settings": "Error al actualizar configuraciones",
       "file_size": "El tamaño del archivo debe ser menor a {max}MB",
+      "compression": "Hubo un problema al procesar la imagen",
       "autofill": "Error al autocompletar",
       "dates_impossible": "La fecha de finalización debe ser posterior a la fecha de inicio",
       "expiration_impossible": "La fecha de expiración debe ser posterior a la fecha de emisión",

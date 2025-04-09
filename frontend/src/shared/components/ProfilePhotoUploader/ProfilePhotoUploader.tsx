@@ -58,7 +58,7 @@ const ProfilePhotoUploader = ({
       setVersion(Date.now());
     } catch (err) {
       console.error("Compression error:", err);
-      setError("There was a problem processing the image.");
+      setError(t("common.errors.compression"));
     }
 
     setOnSubmitting(false);
