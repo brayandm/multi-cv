@@ -10,7 +10,7 @@ export interface IProfilePhotoUploaderProps {
   onImageRemove?: () => void;
 }
 
-const MAX_IMAGE_SIZE = 2 * 1024 * 1024; // 2MB
+const MAX_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
 
 const ProfilePhotoUploader = ({
   image,
@@ -36,19 +36,19 @@ const ProfilePhotoUploader = ({
       return;
     }
 
+    if (file.size > MAX_IMAGE_SIZE) {
+      setError(t("common.errors.file_size", { max: 5 }));
+      if (fileInputRef.current) fileInputRef.current.value = "";
+      setOnSubmitting(false);
+      return;
+    }
+
     try {
       const compressedFile = await imageCompression(file, {
-        maxSizeMB: 2,
+        maxSizeMB: 0.5,
         maxWidthOrHeight: 1024,
         useWebWorker: true,
       });
-
-      if (compressedFile.size > MAX_IMAGE_SIZE) {
-        setError(t("common.errors.file_size", { max: 2 }));
-        if (fileInputRef.current) fileInputRef.current.value = "";
-        setOnSubmitting(false);
-        return;
-      }
 
       await onImageChange(compressedFile);
       setVersion(Date.now());
