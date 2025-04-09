@@ -14,6 +14,10 @@ export default function GenerateDocumentComponentWrapper() {
         color="primary"
         variant="bordered"
         placement="bottom"
+        classNames={{
+          base: "self-center",
+          tabList: "flex-col sm:flex-row ",
+        }}
       >
         <Tab
           key="photos"

@@ -129,7 +129,7 @@ export default function GenerateDocumentComponent() {
         <>
           <div className="flex justify-center">
             <Button
-              color="primary"
+              color="secondary"
               onPress={async () => {
                 onOpen();
                 if (true) {
