@@ -10,19 +10,6 @@ Allow: /hi/
 Allow: /favicon.ico
 Allow: /sitemap.xml
 
-Allow: /privacy-policy
-Allow: /terms-and-conditions
-Allow: /cookies-policy
-
-Allow: /login
-Allow: /es/login
-Allow: /ru/login
-Allow: /hi/login
-
-Allow: /register
-Allow: /es/register
-Allow: /ru/register
-Allow: /hi/register
 
 Allow: /pricing
 Allow: /es/pricing

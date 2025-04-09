@@ -7,34 +7,6 @@
       "changefreq": "daily"
     },
     {
-      "path": "/privacy-policy",
-      "priority": 0.5,
-      "changefreq": "daily",
-      "localizable": false
-    },
-    {
-      "path": "/terms-and-conditions",
-      "priority": 0.5,
-      "changefreq": "daily",
-      "localizable": false
-    },
-    {
-      "path": "/cookies-policy",
-      "priority": 0.5,
-      "changefreq": "daily",
-      "localizable": false
-    },
-    {
-      "path": "/login",
-      "priority": 0.5,
-      "changefreq": "daily"
-    },
-    {
-      "path": "/register",
-      "priority": 0.5,
-      "changefreq": "daily"
-    },
-    {
       "path": "/pricing",
       "priority": 0.5,
       "changefreq": "daily"
