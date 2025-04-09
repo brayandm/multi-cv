@@ -9,17 +9,20 @@
     {
       "path": "/privacy-policy",
       "priority": 0.5,
-      "changefreq": "daily"
+      "changefreq": "daily",
+      "localizable": false
     },
     {
       "path": "/terms-and-conditions",
       "priority": 0.5,
-      "changefreq": "daily"
+      "changefreq": "daily",
+      "localizable": false
     },
     {
       "path": "/cookies-policy",
       "priority": 0.5,
-      "changefreq": "daily"
+      "changefreq": "daily",
+      "localizable": false
     },
     {
       "path": "/login",

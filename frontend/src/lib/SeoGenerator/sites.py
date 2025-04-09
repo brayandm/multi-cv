@@ -1,5 +1,5 @@
 import json
-from typing import Any, Dict, List, TypedDict
+from typing import Any, Dict, List, TypedDict, NotRequired
 from xml.etree.ElementTree import (
     Element,
     SubElement,
@@ -16,10 +16,11 @@ class Route(TypedDict):
     path: str
     priority: float
     changefreq: str
+    localizable: NotRequired[bool]  # optional
 
 
 class SitemapData(TypedDict):
-    languages: List[str]  # should include "en" as the default language
+    languages: List[str]
     routes: List[Route]
 
 
@@ -41,6 +42,7 @@ def generate_sitemap(data: SitemapData) -> str:
     )
 
     for route in data["routes"]:
+        localizable = route.get("localizable", True)
         url = SubElement(urlset, "url")
 
         # English (default) route: no prefix
@@ -49,7 +51,7 @@ def generate_sitemap(data: SitemapData) -> str:
         ).replace(":/", "://")
         SubElement(url, "loc").text = default_href
 
-        # hreflang: en (no prefix)
+        # hreflang: en
         SubElement(
             url,
             "{http://www.w3.org/1999/xhtml}link",
@@ -60,24 +62,25 @@ def generate_sitemap(data: SitemapData) -> str:
             },
         )
 
-        # Other languages (with prefix)
-        for lang in data["languages"]:
-            if lang == "en":
-                continue  # skip generating /en/ prefixed URLs
-            alt_href = f"{BASE_URL}/{lang}{route['path']}".replace(
-                "//", "/"
-            ).replace(":/", "://")
-            SubElement(
-                url,
-                "{http://www.w3.org/1999/xhtml}link",
-                {
-                    "rel": "alternate",
-                    "hreflang": lang,
-                    "href": alt_href,
-                },
-            )
+        if localizable:
+            # hreflang for other languages
+            for lang in data["languages"]:
+                if lang == "en":
+                    continue
+                alt_href = f"{BASE_URL}/{lang}{route['path']}".replace(
+                    "//", "/"
+                ).replace(":/", "://")
+                SubElement(
+                    url,
+                    "{http://www.w3.org/1999/xhtml}link",
+                    {
+                        "rel": "alternate",
+                        "hreflang": lang,
+                        "href": alt_href,
+                    },
+                )
 
-        # hreflang: x-default (last)
+        # hreflang: x-default always goes last
         SubElement(
             url,
             "{http://www.w3.org/1999/xhtml}link",
