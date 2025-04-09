@@ -18,7 +18,7 @@ export default function GenerateDocumentComponentWrapper() {
           tabWrapper: "w-full",
           base: "self-center w-full sm:w-auto",
           tabList: "flex flex-wrap sm:flex-nowrap w-full",
-          tab: "h-12 sm:h-8 w-full",
+          tab: "h-12 sm:h-8 w-full dark:bg-default-100",
         }}
       >
         <Tab
