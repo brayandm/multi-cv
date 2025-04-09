@@ -114,7 +114,7 @@ class PaymentPlanService
             'frequency' => 'onetime',
             'cumulative' => false,
             'left' => 20,
-            'max_failed' => 10,
+            'max_failed' => 5,
             'max_pending' => 1,
         ]);
 
@@ -160,20 +160,8 @@ class PaymentPlanService
             'quota' => 0,
             'frequency' => 'onetime',
             'cumulative' => false,
-            'left' => 100,
-            'max_failed' => 10,
-            'max_pending' => 1,
-        ]);
-
-        Quota::create([
-            'user_id' => $userId,
-            'payment_plan_id' => $paymentPlan->id,
-            'action' => 'auto_fill_cv_from_document',
-            'quota' => 0,
-            'frequency' => 'onetime',
-            'cumulative' => false,
-            'left' => 1,
-            'max_failed' => 1,
+            'left' => 50,
+            'max_failed' => 5,
             'max_pending' => 1,
         ]);
     }
@@ -212,21 +200,11 @@ class PaymentPlanService
             'quota' => 0,
             'frequency' => 'onetime',
             'cumulative' => false,
-            'left' => 100,
-            'max_failed' => 10,
+            'left' => 50,
+            'max_failed' => 5,
             'max_pending' => 1,
-        ]);
-
-        Quota::create([
-            'user_id' => $userId,
-            'payment_plan_id' => $paymentPlan->id,
-            'action' => 'auto_fill_cv_from_document',
-            'quota' => 0,
-            'frequency' => 'onetime',
-            'cumulative' => false,
-            'left' => 1,
-            'max_failed' => 1,
-            'max_pending' => 1,
+            'last_reset_at' => $now,
+            'expires_at' => $now->addMonth(),
         ]);
     }
 }
