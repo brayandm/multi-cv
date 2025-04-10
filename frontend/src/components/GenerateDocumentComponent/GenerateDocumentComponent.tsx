@@ -29,9 +29,11 @@ import useSWR from "swr";
 import { getQuotaInfoApiLink } from "@/lib/links";
 import {
   MAX_EXTRA_LONG_TEXT_LENGTH,
+  MAX_LONG_TEXT_LENGTH,
   MAX_SHORT_TEXT_LENGTH,
 } from "@/lib/consts";
 import { requiredValidator } from "@/lib/validator";
+import InputModalComponent from "@/shared/components/InputModalComponent";
 
 interface IGenerateDocumentComponentProps {
   type?: "simple" | "role" | "job";
@@ -49,6 +51,7 @@ export default function GenerateDocumentComponent({
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const [input, setInput] = useState("");
+  const [inputModalOpen, setInputModalOpen] = useState(false);
 
   const {
     mutate,
@@ -171,9 +174,25 @@ export default function GenerateDocumentComponent({
             variant={"light"}
             color="secondary"
             className={type !== "simple" ? "self-end" : "mb-10"}
+            onPress={() => {
+              setInputModalOpen(true);
+            }}
           >
             {t("common.buttons.custom_prompt")}
           </Button>
+          {inputModalOpen && (
+            <InputModalComponent
+              title={t("pages.home.tabs.builder.custom_prompt.title")}
+              placeholder={t(
+                "pages.home.tabs.builder.custom_prompt.placeholder"
+              )}
+              input={input}
+              setInput={setInput}
+              open={inputModalOpen}
+              setOpen={setInputModalOpen}
+              maxCharacters={MAX_LONG_TEXT_LENGTH}
+            />
+          )}
           {type === "role" && (
             <div className="mb-10 w-full  flex flex-col items-center">
               <Textarea

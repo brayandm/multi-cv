@@ -247,6 +247,10 @@
       "tabs": {
         "builder": {
           "title": "Constructor de CV",
+          "custom_prompt": {
+            "title": "Prompt Personalizado",
+            "placeholder": "Escribe un prompt personalizado para generar tu CV."
+          },
           "tabs": {
             "simple_cv": {
               "title": "CV Simple"

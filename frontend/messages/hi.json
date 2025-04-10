@@ -247,6 +247,10 @@
       "tabs": {
         "builder": {
           "title": "CV Builder",
+          "custom_prompt": {
+            "title": "Kustom Prompt",
+            "placeholder": "Apna kustom prompt likhein taaki aapka CV tayar ho sake."
+          },
           "tabs": {
             "simple_cv": {
               "title": "Sadharan CV"
