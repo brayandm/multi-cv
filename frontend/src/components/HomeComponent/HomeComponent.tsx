@@ -4,9 +4,9 @@
 // import { CV } from "@/lib/types";
 import { Tab, Tabs } from "@heroui/react";
 
-import GenerateDocumentComponent from "../GenerateDocumentComponent";
 import DocumentsComponent from "../DocumentsComponent";
 import { useTranslations } from "next-intl";
+import GenerateDocumentComponentWrapper from "../GenerateDocumentComponentWrapper";
 
 export default function HomeComponent() {
   const t = useTranslations();
@@ -35,7 +35,7 @@ export default function HomeComponent() {
               </div>
             }
           >
-            <GenerateDocumentComponent />
+            <GenerateDocumentComponentWrapper />
           </Tab>
           {/* <Tab
             key="applications"

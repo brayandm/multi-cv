@@ -4,6 +4,7 @@ from pydantic import BeforeValidator, Field
 
 MAX_SHORT_STR_LENGTH = 100
 MAX_LONG_STR_LENGTH = 1000
+MAX_EXTRA_LONG_STR_LENGTH = 10000
 MAX_NOTES_LENGTH = 2000
 MAX_GENERAL_NOTES_LENGTH = 5000
 MAX_PROFESSIONAL_LINKS_LENGTH = 10
@@ -44,6 +45,8 @@ def crop_str(max_length: int) -> BeforeValidator:
 ShortStr = Annotated[str, Field(..., max_length=MAX_SHORT_STR_LENGTH)]
 
 LongStr = Annotated[str, Field(..., max_length=MAX_LONG_STR_LENGTH)]
+
+ExtraLongStr = Annotated[str, Field(..., max_length=MAX_EXTRA_LONG_STR_LENGTH)]
 
 ForceShortStr = Annotated[
     str,

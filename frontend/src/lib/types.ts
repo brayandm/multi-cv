@@ -91,6 +91,12 @@ export interface Document {
   type: "cv" | "cover_letter";
 }
 
+export interface GenerationInput {
+  type: "simple" | "role" | "job";
+  role_input: string | null;
+  job_input: string | null;
+}
+
 export interface CV {
   id: number;
   company: string;

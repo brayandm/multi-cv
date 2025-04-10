@@ -13,6 +13,7 @@ from app.classes.models import (
     CvTexts,
     Document,
     ExperienceId,
+    GenerationInput,
     Html,
     Profile,
     Traduction,
@@ -45,7 +46,6 @@ from app.framework.types.request import DocumentDownloadRequest
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
 from app.services.text_extractor import InvalidPDFError, TextExtractor
-from app.utils.parsers import get_first_name_last_name
 from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
 from app.worker.queue_manager import QueueManager
@@ -125,8 +125,9 @@ async def auto_fill_cv_from_document(
 
 @router.post("/generate/cv/inline")
 @commit_action_after()
-@consume_action("generate_cv_inline")
+@consume_action("generate_cv")
 async def generate_cv_inline(
+    input: GenerationInput,
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
     document_service: DocumentService = Depends(get_document_service),
@@ -140,31 +141,15 @@ async def generate_cv_inline(
             status_code=404,
         )
 
+    cv = await GenerateCvPipeline().run(profile, input, traduction)
+
     cv_template = CvTemplate(
         id="default", type="latex", cv_texts=get_traductions(traduction.locale)
     )
 
-    cv = await GenerateCvPipeline().run(profile, traduction)
-
-    document_render = DocumentRenderFacade.get_render()
-
-    document_render.render_cv(cv, cv_template)
-
-    pdf_bytes = document_render.get_cv()
-
-    first_name = profile.basic_info.first_name
-    last_name = profile.basic_info.last_name
-    filename = f"{get_first_name_last_name(first_name, last_name)}_CV.pdf"
-
-    await document_service.save_cv(
-        user_id=get_user_id(),
-        cv=cv,
-        cv_template=cv_template,
-        filename=filename,
-        file=pdf_bytes,
+    quoted_filename, pdf_bytes = await document_service.process_cv(
+        profile, cv, cv_template
     )
-
-    quoted_filename = quote(filename)
 
     return Response(
         content=pdf_bytes,
@@ -180,8 +165,9 @@ async def generate_cv_inline(
 
 @router.post("/generate/cv/inline/norender")
 @commit_action_after()
-@consume_action("generate_cv_inline")
+@consume_action("generate_cv")
 async def generate_cv_inline_norender(
+    input: GenerationInput,
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Response:
@@ -194,7 +180,7 @@ async def generate_cv_inline_norender(
             status_code=404,
         )
 
-    cv = await GenerateCvPipeline().run(profile, traduction)
+    cv = await GenerateCvPipeline().run(profile, input, traduction)
     cv_texts = CvTexts(**get_traductions(traduction.locale))
 
     return JSONResponse(

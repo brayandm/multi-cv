@@ -14,6 +14,7 @@ import {
   ModalContent,
   ModalHeader,
   Spinner,
+  Textarea,
   useDisclosure,
 } from "@heroui/react";
 import { useEffect, useState } from "react";
@@ -26,8 +27,19 @@ import { useRouter } from "next/navigation";
 import { saveAs } from "file-saver";
 import useSWR from "swr";
 import { getQuotaInfoApiLink } from "@/lib/links";
+import {
+  MAX_EXTRA_LONG_TEXT_LENGTH,
+  MAX_SHORT_TEXT_LENGTH,
+} from "@/lib/consts";
+import { requiredValidator } from "@/lib/validator";
 
-export default function GenerateDocumentComponent() {
+interface IGenerateDocumentComponentProps {
+  type?: "simple" | "role" | "job";
+}
+
+export default function GenerateDocumentComponent({
+  type = "simple",
+}: IGenerateDocumentComponentProps) {
   const { getTraduction } = useLocale();
 
   const { setCv, setCvTexts } = useCv();
@@ -36,12 +48,14 @@ export default function GenerateDocumentComponent() {
 
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
+  const [input, setInput] = useState("");
+
   const {
     mutate,
     data: quotaInfo,
     isLoading: isQuotaInfoLoading,
   } = useSWR<GetQuotaInfoResponse>(
-    [getQuotaInfoApiLink, { action: "generate_cv_inline" }],
+    [getQuotaInfoApiLink, { action: "generate_cv" }],
     fetcherApiPost
   );
 
@@ -54,7 +68,14 @@ export default function GenerateDocumentComponent() {
   const handleDocument = async (download = false) => {
     try {
       setIsCvLoading(true);
-      const response = await generateCvInlineEngine(getTraduction());
+      const response = await generateCvInlineEngine(
+        {
+          type: type,
+          role_input: type === "role" ? input : null,
+          job_input: type === "job" ? input : null,
+        },
+        getTraduction()
+      );
 
       const blob = new Blob([response.data], { type: "application/pdf" });
 
@@ -101,7 +122,14 @@ export default function GenerateDocumentComponent() {
     try {
       setIsCvLoading(true);
       const traduction = getTraduction();
-      const response = await generateCvInlineNoRenderEngine(traduction);
+      const response = await generateCvInlineNoRenderEngine(
+        {
+          type: type,
+          role_input: type === "role" ? input : null,
+          job_input: type === "job" ? input : null,
+        },
+        traduction
+      );
       if (response.data) {
         setCv(response.data.cv);
         setCvTexts(response.data.cv_texts);
@@ -124,21 +152,67 @@ export default function GenerateDocumentComponent() {
   };
 
   return (
-    <div className="mt-20">
+    <form
+      className="w-full flex flex-col items-center"
+      onSubmit={async (e) => {
+        e.preventDefault();
+        onOpen();
+        if (true) {
+          await handleDocument(true);
+        } else {
+          await redirectEditCv();
+        }
+        onClose();
+      }}
+    >
       {!isQuotaInfoLoading && quotaInfo ? (
         <>
+          {type === "role" && (
+            <div className="mb-10 w-full max-w-96 flex flex-col items-center">
+              <Textarea
+                label={t(
+                  "pages.home.tabs.builder.tabs.optimized_role.input.label"
+                )}
+                placeholder={t(
+                  "pages.home.tabs.builder.tabs.optimized_role.input.placeholder"
+                )}
+                labelPlacement="outside"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                maxLength={MAX_SHORT_TEXT_LENGTH}
+                description={`${input.length} / 100`}
+                isRequired
+                validate={(value) => {
+                  return requiredValidator(t, value);
+                }}
+              />
+            </div>
+          )}
+          {type === "job" && (
+            <div className="mb-10 w-full max-w-96 flex flex-col items-center">
+              <Textarea
+                label={t(
+                  "pages.home.tabs.builder.tabs.based_on_job_post.input.label"
+                )}
+                placeholder={t(
+                  "pages.home.tabs.builder.tabs.based_on_job_post.input.placeholder"
+                )}
+                labelPlacement="outside"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                maxLength={MAX_EXTRA_LONG_TEXT_LENGTH}
+                description={`${input.length} / 10000`}
+                isRequired
+                validate={(value) => {
+                  return requiredValidator(t, value);
+                }}
+              />
+            </div>
+          )}
           <div className="flex justify-center">
             <Button
-              color="primary"
-              onPress={async () => {
-                onOpen();
-                if (true) {
-                  await handleDocument(true);
-                } else {
-                  await redirectEditCv();
-                }
-                onClose();
-              }}
+              color="secondary"
+              type="submit"
               isDisabled={
                 isCvLoading ||
                 quotaInfo?.left === 0 ||
@@ -158,7 +232,7 @@ export default function GenerateDocumentComponent() {
               <>
                 <p>{t("common.texts.generation_finished")}</p>
                 <p
-                  className="font-semibold text-primary underline hover:text-primary-700 cursor-pointer"
+                  className="font-semibold text-warning underline hover:text-warning-600 cursor-pointer"
                   onClick={() => {
                     router.push("/pricing");
                   }}
@@ -202,6 +276,6 @@ export default function GenerateDocumentComponent() {
           )}
         </ModalContent>
       </Modal>
-    </div>
+    </form>
   );
 }

@@ -7,6 +7,7 @@ from .cv.cv_experience import CvExperience
 from .cv.cv_template import CvTemplate
 from .cv.cv_texts import CvTexts
 from .document import CoverLetterDocument, CvDocument, Document
+from .generation_input import GenerationInput
 from .html import Html
 from .profile.basic_info import BasicInfo
 from .profile.certificate import Certificate
@@ -43,4 +44,5 @@ __all__ = [
     "CvDocument",
     "CoverLetterDocument",
     "Html",
+    "GenerationInput",
 ]

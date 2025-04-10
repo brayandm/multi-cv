@@ -3,18 +3,18 @@ import uuid
 from datetime import datetime, timezone
 from io import BytesIO
 from typing import Any, Tuple
+from urllib.parse import quote
 
 from fastapi import Depends
 from motor.core import AgnosticDatabase
 
-from app.classes.models import (
-    Cv,
-    CvTemplate,
-    Document,
-)
+from app.classes.models import Cv, CvTemplate, Document, Profile
 from app.database.mongodb import get_database
+from app.facades.document_render_facade import DocumentRenderFacade
 from app.facades.filesystem_facade import FilesystemFacade
+from app.framework.decorators.context_vars import get_user_id
 from app.framework.logging import logger
+from app.utils.parsers import get_first_name_last_name
 
 
 class DocumentService:
@@ -98,6 +98,31 @@ class DocumentService:
             raise ValueError("File not found")
 
         return filename, file
+
+    async def process_cv(
+        self, profile: Profile, cv: Cv, cv_template: CvTemplate
+    ) -> Tuple[str, bytes]:
+        document_render = DocumentRenderFacade.get_render()
+
+        document_render.render_cv(cv, cv_template)
+
+        pdf_bytes = document_render.get_cv()
+
+        first_name = profile.basic_info.first_name
+        last_name = profile.basic_info.last_name
+        filename = f"{get_first_name_last_name(first_name, last_name)}_CV.pdf"
+
+        await self.save_cv(
+            user_id=get_user_id(),
+            cv=cv,
+            cv_template=cv_template,
+            filename=filename,
+            file=pdf_bytes,
+        )
+
+        quoted_filename = quote(filename)
+
+        return (quoted_filename, pdf_bytes)
 
 
 def get_document_service(
