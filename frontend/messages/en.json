@@ -240,7 +240,7 @@
     },
     "welcome": {
       "title": "Welcome to <appName></appName>",
-      "description": "Create unique CVs for unique job offers."
+      "description": "Create unique CVs for unique job posts."
     },
     "home": {
       "tabs": {
@@ -257,11 +257,11 @@
                 "placeholder": "Enter the role or position you are applying for"
               }
             },
-            "based_on_offer": {
-              "title": "Based on Job Offer",
+            "based_on_job_post": {
+              "title": "Based on Job Post",
               "input": {
-                "label": "Job offer description",
-                "placeholder": "Paste the job offer description here"
+                "label": "Job post description",
+                "placeholder": "Paste the job post description here"
               }
             }
           }
@@ -339,7 +339,7 @@
     },
     "landing_page": {
       "title": "Create impactful resumes with AI",
-      "description": " MultiCV helps you generate personalized resumes tailored to each job offer. Built to support technical professionals with a fast and elegant AI-powered experience.",
+      "description": " MultiCV helps you generate personalized resumes tailored to each job post. Built to support technical professionals with a fast and elegant AI-powered experience.",
       "start_free": "Start for free",
       "features": {
         "title": "What can you do with MultiCV?",

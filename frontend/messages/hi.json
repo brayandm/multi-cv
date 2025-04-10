@@ -257,11 +257,11 @@
                 "placeholder": "Us bhumika ya pad ko daalein jiske liye aap avedan kar rahe hain"
               }
             },
-            "based_on_offer": {
-              "title": "Naukri Prastav par Aadharit",
+            "based_on_job_post": {
+              "title": "Naukri ke Adhar Par",
               "input": {
-                "label": "Naukri ki prastav varnan",
-                "placeholder": "Yahan naukri ki prastav varnan chipkayein"
+                "label": "Naukri ki vigyapan varnan",
+                "placeholder": "Yahan naukri ki vigyapan varnan chipkayein"
               }
             }
           }
@@ -339,7 +339,7 @@
     },
     "landing_page": {
       "title": "AI ke saath prabhavit resumes banayein",
-      "description": "MultiCV aapko har naukri ke liye vyaktigat resumes generate karne mein madad karta hai. Yeh takneekik professionals ke liye ek tezi se aur elegant AI-powered anubhav ke liye bana hai.",
+      "description": "MultiCV aapko har naukri ke liye vyaktigat resume tayar karne mein madad karta hai. Yeh takneekik peshewaron ke liye tezi se aur sundar AI-samarthit anubhav pradan karne ke liye bana hai.",
       "start_free": "Muft shuru karein",
       "features": {
         "title": "Aap MultiCV ke saath kya kar sakte hain?",

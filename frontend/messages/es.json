@@ -257,11 +257,11 @@
                 "placeholder": "Ingresa el rol o posición para el que estás aplicando"
               }
             },
-            "based_on_offer": {
-              "title": "Basado en la Oferta de Trabajo",
+            "based_on_job_post": {
+              "title": "Basado en la oferta de trabajo",
               "input": {
                 "label": "Descripción de la oferta de trabajo",
-                "placeholder": "Pega aquí la descripción de la oferta de trabajo"
+                "placeholder": "Pega la descripción de la oferta de trabajo aquí"
               }
             }
           }
