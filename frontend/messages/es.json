@@ -78,7 +78,7 @@
       "clear": "Limpiar",
       "autofill_button": "Llenar perfil desde CV",
       "download": "Descargar",
-      "custom_prompt": "Solicitud Personalizada"
+      "custom_prompt": "Prompt personalizado"
     },
     "errors": {
       "login": "Error de inicio de sesión",
