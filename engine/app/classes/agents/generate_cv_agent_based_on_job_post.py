@@ -81,7 +81,9 @@ class GenerateCvAgentBasedOnJobPost(Agent):
         to be more relevant to the Job Post provided in the input and
         pass the ATS test.
 
-        The user provided the following custom prompt for the CV:
+        The user provided the following custom prompt for the CV Geration,
+        so you have to take it into account and force the CV to be
+        generated based on this custom prompt of the user:
 
         **Custom Prompt:**
         {custom_prompt}

@@ -56,7 +56,9 @@ class GenerateCvAgent(Agent):
         - A `list` of specific skills within that category.
         - Avoid duplicate categories and ensure a logical grouping of skills.
 
-        The user provided the following custom prompt for the CV:
+        The user provided the following custom prompt for the CV Geration,
+        so you have to take it into account and force the CV to be
+        generated based on this custom prompt of the user:
 
         **Custom Prompt:**
         {custom_prompt}
