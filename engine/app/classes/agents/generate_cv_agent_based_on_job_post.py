@@ -56,9 +56,9 @@ class GenerateCvAgentBasedOnJobPost(Agent):
        **Additional Input Job Post:**
         - You have to generate a CV based on the provided input, that is
         a Job Post, so you have to adapt the CV to this Job Post.
-        - You need to add or remove some information from the CV, and
-        adjust the role or position title in the experiences
-        to be more relevant to the input.
+        - You need to add or remove some information from the CV
+        - You need to adjust the role or position title in the experiences
+        to be more relevant to the Role or Position Title in the Job Post
         - You need to restructure and order the bullet points in the CV to be
         more relevant to the Job Post provided in the input.
         - You need to create a summary, experience, educations, skills,
