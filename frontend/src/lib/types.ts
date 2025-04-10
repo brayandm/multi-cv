@@ -97,6 +97,10 @@ export interface GenerationInput {
   job_input: string | null;
 }
 
+export interface Settings {
+  custom_prompt?: string;
+}
+
 export interface CV {
   id: number;
   company: string;

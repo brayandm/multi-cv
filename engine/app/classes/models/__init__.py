@@ -16,9 +16,9 @@ from .profile.experience import Experience, ExperienceId
 from .profile.language import Language
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
+from .settings import Settings
 from .traduction import Traduction
 from .webhook_payload import WebhookPayload
-from .settings import Settings
 
 __all__ = [
     "Profile",

@@ -16,8 +16,8 @@ from app.classes.models import (
     GenerationInput,
     Html,
     Profile,
-    Traduction,
     Settings,
+    Traduction,
     WebhookPayload,
 )
 from app.classes.pipelines import (
