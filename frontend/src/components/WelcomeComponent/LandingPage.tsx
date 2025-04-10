@@ -79,42 +79,57 @@ export default function LandingPage() {
                 description: t(
                   "pages.landing_page.features.second.description"
                 ),
-                comingSoon: true,
+                comingSoon: false,
+                nowAvailable: true,
               },
               {
                 title: t("pages.landing_page.features.third.title"),
                 description: t("pages.landing_page.features.third.description"),
-                comingSoon: true,
+                comingSoon: false,
+                nowAvailable: true,
               },
             ];
 
-            return features.map(({ title, description, comingSoon }, idx) => (
-              <motion.div
-                key={title}
-                whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 * idx }}
-                className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg relative overflow-visible"
-              >
-                {comingSoon && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="absolute top-[-10px] right-2 flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 text-xs font-semibold text-black shadow-sm"
-                  >
-                    {t("pages.landing_page.features.coming_soon")}
-                  </motion.div>
-                )}
-                <h3 className="text-2xl font-semibold mb-3">{title}</h3>
-                <p className="text-gray-700 dark:text-gray-300">
-                  {description}
-                </p>
-              </motion.div>
-            ));
+            return features.map(
+              ({ title, description, comingSoon, nowAvailable }, idx) => (
+                <motion.div
+                  key={title}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 * idx }}
+                  className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg relative overflow-visible"
+                >
+                  {comingSoon && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="absolute top-[-10px] right-2 flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 text-xs font-semibold text-black shadow-sm"
+                    >
+                      {t("pages.landing_page.features.coming_soon")}
+                    </motion.div>
+                  )}
+                  {nowAvailable && (
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                      className="absolute top-[-10px] right-2 flex items-center gap-2 px-3 py-1 rounded-full bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500 text-xs font-semibold text-black shadow-sm"
+                    >
+                      {t("pages.landing_page.features.now_available")}
+                    </motion.div>
+                  )}
+                  <h3 className="text-2xl font-semibold mb-3">{title}</h3>
+                  <p className="text-gray-700 dark:text-gray-300">
+                    {description}
+                  </p>
+                </motion.div>
+              )
+            );
           })()}
         </div>
       </motion.section>

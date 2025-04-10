@@ -355,7 +355,8 @@
           "title": "Adaptación Instantánea",
           "description": "Genera automáticamente currículos específicos para trabajos con un solo clic."
         },
-        "coming_soon": "Próximamente"
+        "coming_soon": "Próximamente",
+        "now_available": "Ahora disponible"
       },
       "vision": {
         "title": "El Futuro de MultiCV",

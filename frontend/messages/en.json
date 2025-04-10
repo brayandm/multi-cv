@@ -355,7 +355,8 @@
           "title": "Instant Adaptation",
           "description": "Automatically generate job-specific resumes with a single click."
         },
-        "coming_soon": "Coming soon"
+        "coming_soon": "Coming soon",
+        "now_available": "Now available"
       },
       "vision": {
         "title": "The Future of MultiCV",
