@@ -76,6 +76,11 @@ class GenerateCvAgentBasedOnPrompt(Agent):
         and certifications that you are sure are not relevant to the role
         or position title provided in the input.
 
+        The user provided the following custom prompt for the CV:
+
+        **Custom Prompt:**
+        {custom_prompt}
+
         **Input Role or Position Title:**
         {input}
 

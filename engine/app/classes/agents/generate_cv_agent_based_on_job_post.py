@@ -81,6 +81,11 @@ class GenerateCvAgentBasedOnJobPost(Agent):
         to be more relevant to the Job Post provided in the input and
         pass the ATS test.
 
+        The user provided the following custom prompt for the CV:
+
+        **Custom Prompt:**
+        {custom_prompt}
+
         **Input Job Post**
         {input}
 

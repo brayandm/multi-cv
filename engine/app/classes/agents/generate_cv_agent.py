@@ -56,6 +56,11 @@ class GenerateCvAgent(Agent):
         - A `list` of specific skills within that category.
         - Avoid duplicate categories and ensure a logical grouping of skills.
 
+        The user provided the following custom prompt for the CV:
+
+        **Custom Prompt:**
+        {custom_prompt}
+
         **Input Profile (JSON format):**
         {profile_json}
 
