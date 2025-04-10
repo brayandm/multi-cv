@@ -154,6 +154,11 @@ export default function GenerateDocumentComponent({
     mutate();
   };
 
+  const savePrompt = async () => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log("Fake save prompt executed");
+  };
+
   return (
     <form
       className="w-full max-w-96 flex flex-col items-center"
@@ -190,6 +195,7 @@ export default function GenerateDocumentComponent({
               setInput={setInput}
               open={inputModalOpen}
               setOpen={setInputModalOpen}
+              onSave={savePrompt}
               maxCharacters={MAX_LONG_TEXT_LENGTH}
             />
           )}

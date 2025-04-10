@@ -8,6 +8,7 @@ import {
   Button,
 } from "@heroui/react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 
 interface IInputModalComponentProps {
   title: string;
@@ -16,6 +17,7 @@ interface IInputModalComponentProps {
   setInput: (input: string) => void;
   open: boolean;
   setOpen: (open: boolean) => void;
+  onSave: () => void;
   maxCharacters: number;
 }
 
@@ -26,6 +28,7 @@ export default function InputModalComponent({
   setInput,
   open,
   setOpen,
+  onSave,
   maxCharacters,
 }: IInputModalComponentProps) {
   const onOpenChange = (isOpen: boolean) => {
@@ -37,6 +40,8 @@ export default function InputModalComponent({
   };
 
   const t = useTranslations();
+
+  const [onSaving, setOnSaving] = useState(false);
 
   return (
     <Modal
@@ -58,10 +63,26 @@ export default function InputModalComponent({
               />
             </ModalBody>
             <ModalFooter className="flex justify-end gap-2">
-              <Button variant="light" onPress={handleClose}>
+              <Button
+                variant="light"
+                color="danger"
+                className="w-32"
+                onPress={handleClose}
+                isDisabled={onSaving}
+              >
                 {t("common.buttons.cancel")}
               </Button>
-              <Button color="primary" onPress={handleClose}>
+              <Button
+                color="primary"
+                className="w-32"
+                onPress={async () => {
+                  setOnSaving(true);
+                  await onSave();
+                  setOnSaving(false);
+                  handleClose();
+                }}
+                isLoading={onSaving}
+              >
                 {t("common.buttons.save")}
               </Button>
             </ModalFooter>
