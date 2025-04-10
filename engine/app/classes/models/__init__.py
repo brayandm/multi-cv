@@ -18,6 +18,7 @@ from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .traduction import Traduction
 from .webhook_payload import WebhookPayload
+from .settings import Settings
 
 __all__ = [
     "Profile",
@@ -45,4 +46,5 @@ __all__ = [
     "CoverLetterDocument",
     "Html",
     "GenerationInput",
+    "Settings",
 ]
