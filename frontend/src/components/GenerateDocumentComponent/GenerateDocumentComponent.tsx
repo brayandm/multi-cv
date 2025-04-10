@@ -165,7 +165,7 @@ export default function GenerateDocumentComponent({
 
   const savePrompt = async () => {
     await storeSettingsEngine({
-      custom_prompt: input,
+      custom_prompt: customPrompt,
     });
     mutateSettings();
   };
