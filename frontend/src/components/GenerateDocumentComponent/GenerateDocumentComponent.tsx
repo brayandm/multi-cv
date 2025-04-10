@@ -171,10 +171,10 @@ export default function GenerateDocumentComponent({
             <div className="mb-10 w-full max-w-96 flex flex-col items-center">
               <Textarea
                 label={t(
-                  "pages.home.tabs.builder.tabs.optimized_role.input.label"
+                  "pages.home.tabs.builder.tabs.based_on_role.input.label"
                 )}
                 placeholder={t(
-                  "pages.home.tabs.builder.tabs.optimized_role.input.placeholder"
+                  "pages.home.tabs.builder.tabs.based_on_role.input.placeholder"
                 )}
                 labelPlacement="outside"
                 value={input}

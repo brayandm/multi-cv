@@ -38,7 +38,7 @@ export default function GenerateDocumentComponentWrapper() {
           title={
             <div className="flex items-center space-x-2">
               <span>
-                {t("pages.home.tabs.builder.tabs.optimized_role.title")}
+                {t("pages.home.tabs.builder.tabs.based_on_role.title")}
               </span>
             </div>
           }

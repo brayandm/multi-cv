@@ -250,11 +250,11 @@
             "simple_cv": {
               "title": "CV Simple"
             },
-            "optimized_role": {
-              "title": "Optimizado para el Rol",
+            "based_on_role": {
+              "title": "Basado en el rol o posición",
               "input": {
                 "label": "Rol o posición",
-                "placeholder": "Ingresa el rol o posición para el que estás aplicando"
+                "placeholder": "Ingrese el rol o posición para el que está solicitando"
               }
             },
             "based_on_job_post": {
