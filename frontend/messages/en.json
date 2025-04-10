@@ -77,7 +77,8 @@
       "keep_editing": "Keep editing",
       "clear": "Clear",
       "autofill_button": "Fill profile from CV",
-      "download": "Download"
+      "download": "Download",
+      "custom_prompt": "Custom Prompt"
     },
     "errors": {
       "login": "Login failed",

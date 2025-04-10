@@ -77,7 +77,8 @@
       "keep_editing": "Seguir editando",
       "clear": "Limpiar",
       "autofill_button": "Llenar perfil desde CV",
-      "download": "Descargar"
+      "download": "Descargar",
+      "custom_prompt": "Solicitud Personalizada"
     },
     "errors": {
       "login": "Error de inicio de sesión",

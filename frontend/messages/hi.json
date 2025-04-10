@@ -77,7 +77,8 @@
       "keep_editing": "Editing jaari rakhein",
       "clear": "Saaf karein",
       "autofill_button": "CV se profile bharein",
-      "download": "Download"
+      "download": "Download",
+      "custom_prompt": "Kustom Prompt"
     },
     "errors": {
       "login": "Login mein asafalta",

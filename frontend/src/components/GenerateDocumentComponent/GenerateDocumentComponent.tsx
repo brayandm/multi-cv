@@ -153,7 +153,7 @@ export default function GenerateDocumentComponent({
 
   return (
     <form
-      className="w-full flex flex-col items-center"
+      className="w-full max-w-96 flex flex-col items-center"
       onSubmit={async (e) => {
         e.preventDefault();
         onOpen();
@@ -167,8 +167,15 @@ export default function GenerateDocumentComponent({
     >
       {!isQuotaInfoLoading && quotaInfo ? (
         <>
+          <Button
+            variant={"light"}
+            color="secondary"
+            className={type !== "simple" ? "self-end" : "mb-10"}
+          >
+            {t("common.buttons.custom_prompt")}
+          </Button>
           {type === "role" && (
-            <div className="mb-10 w-full max-w-96 flex flex-col items-center">
+            <div className="mb-10 w-full  flex flex-col items-center">
               <Textarea
                 label={t(
                   "pages.home.tabs.builder.tabs.based_on_role.input.label"
