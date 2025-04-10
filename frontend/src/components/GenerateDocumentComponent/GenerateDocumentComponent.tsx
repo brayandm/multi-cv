@@ -27,6 +27,10 @@ import { useRouter } from "next/navigation";
 import { saveAs } from "file-saver";
 import useSWR from "swr";
 import { getQuotaInfoApiLink } from "@/lib/links";
+import {
+  MAX_EXTRA_LONG_TEXT_LENGTH,
+  MAX_SHORT_TEXT_LENGTH,
+} from "@/lib/consts";
 
 interface IGenerateDocumentComponentProps {
   type?: "simple" | "role" | "job";
@@ -148,6 +152,8 @@ export default function GenerateDocumentComponent({
                 labelPlacement="outside"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                maxLength={MAX_SHORT_TEXT_LENGTH}
+                description={`${input.length} / 100`}
               />
             </div>
           )}
@@ -163,6 +169,8 @@ export default function GenerateDocumentComponent({
                 labelPlacement="outside"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
+                maxLength={MAX_EXTRA_LONG_TEXT_LENGTH}
+                description={`${input.length} / 10000`}
               />
             </div>
           )}
