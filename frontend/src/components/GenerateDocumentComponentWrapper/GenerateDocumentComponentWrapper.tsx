@@ -29,7 +29,7 @@ export default function GenerateDocumentComponentWrapper() {
             </div>
           }
         >
-          <div className="flex w-full h-96 flex-col items-center">
+          <div className="flex w-full h-96 flex-col items-center align-middle justify-center">
             <GenerateDocumentComponent />
           </div>
         </Tab>
@@ -43,8 +43,9 @@ export default function GenerateDocumentComponentWrapper() {
             </div>
           }
         >
-          {" "}
-          <div className="flex w-full h-96 flex-col items-center"></div>
+          <div className="flex w-full h-96 flex-col items-center align-middle justify-center">
+            <GenerateDocumentComponent type="role" />
+          </div>
         </Tab>
         <Tab
           key="videos"
@@ -56,8 +57,9 @@ export default function GenerateDocumentComponentWrapper() {
             </div>
           }
         >
-          {" "}
-          <div className="flex w-full h-96 flex-col items-center"></div>
+          <div className="flex w-full h-96 flex-col items-center align-middle justify-center">
+            <GenerateDocumentComponent type="job" />
+          </div>
         </Tab>
       </Tabs>
     </div>

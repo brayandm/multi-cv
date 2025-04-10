@@ -14,6 +14,7 @@ import {
   ModalContent,
   ModalHeader,
   Spinner,
+  Textarea,
   useDisclosure,
 } from "@heroui/react";
 import { useEffect, useState } from "react";
@@ -27,7 +28,13 @@ import { saveAs } from "file-saver";
 import useSWR from "swr";
 import { getQuotaInfoApiLink } from "@/lib/links";
 
-export default function GenerateDocumentComponent() {
+interface IGenerateDocumentComponentProps {
+  type?: "simple" | "role" | "job";
+}
+
+export default function GenerateDocumentComponent({
+  type = "simple",
+}: IGenerateDocumentComponentProps) {
   const { getTraduction } = useLocale();
 
   const { setCv, setCvTexts } = useCv();
@@ -35,6 +42,8 @@ export default function GenerateDocumentComponent() {
   const router = useRouter();
 
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+
+  const [input, setInput] = useState("");
 
   const {
     mutate,
@@ -124,9 +133,39 @@ export default function GenerateDocumentComponent() {
   };
 
   return (
-    <div className="mt-20">
+    <div className="w-full flex flex-col items-center">
       {!isQuotaInfoLoading && quotaInfo ? (
         <>
+          {type === "role" && (
+            <div className="mb-10 w-full max-w-96 flex flex-col items-center">
+              <Textarea
+                label={t(
+                  "pages.home.tabs.builder.tabs.optimized_role.input.label"
+                )}
+                placeholder={t(
+                  "pages.home.tabs.builder.tabs.optimized_role.input.placeholder"
+                )}
+                labelPlacement="outside"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+              />
+            </div>
+          )}
+          {type === "job" && (
+            <div className="mb-10 w-full max-w-96 flex flex-col items-center">
+              <Textarea
+                label={t(
+                  "pages.home.tabs.builder.tabs.based_on_offer.input.label"
+                )}
+                placeholder={t(
+                  "pages.home.tabs.builder.tabs.based_on_offer.input.placeholder"
+                )}
+                labelPlacement="outside"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+              />
+            </div>
+          )}
           <div className="flex justify-center">
             <Button
               color="secondary"

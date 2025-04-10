@@ -251,10 +251,18 @@
               "title": "Simple CV"
             },
             "optimized_role": {
-              "title": "Optimized for Role"
+              "title": "Optimized for Role",
+              "input": {
+                "label": "Role or position",
+                "placeholder": "Enter the role or position you are applying for"
+              }
             },
             "based_on_offer": {
-              "title": "Based on Job Offer"
+              "title": "Based on Job Offer",
+              "input": {
+                "label": "Job offer description",
+                "placeholder": "Paste the job offer description here"
+              }
             }
           }
         },

@@ -251,10 +251,18 @@
               "title": "Sadharan CV"
             },
             "optimized_role": {
-              "title": "Bhumika ke liye Sudharit"
+              "title": "Bhumika ke liye Sudharit",
+              "input": {
+                "label": "Bhumika ya pad",
+                "placeholder": "Us bhumika ya pad ko daalein jiske liye aap avedan kar rahe hain"
+              }
             },
             "based_on_offer": {
-              "title": "Naukri Prastav par Aadharit"
+              "title": "Naukri Prastav par Aadharit",
+              "input": {
+                "label": "Naukri ki prastav varnan",
+                "placeholder": "Yahan naukri ki prastav varnan chipkayein"
+              }
             }
           }
         },
