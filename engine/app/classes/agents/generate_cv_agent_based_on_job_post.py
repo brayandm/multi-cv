@@ -58,15 +58,16 @@ class GenerateCvAgentBasedOnJobPost(Agent):
         a Job Post, so you have to adapt the CV to this Job Post.
         - You need to add or remove some information from the CV
         - You need to adjust the role or position title in the experiences
-        to be more relevant to the Role or Position Title in the Job Post
+        to be more relevant to the Role or Position Title in the Job Post and
+        try to be consistent with the role among the experiences if are similar
         - You need to restructure and order the bullet points in the CV to be
         more relevant to the Job Post provided in the input.
         - You need to create a summary, experience, educations, skills,
         projects, and certifications that are relevant to the Job Post
         provided in the input.
         - You can omit experience, educations, skills, projects,
-        and certifications that you are sure are not relevant to the
-        Job Post provided in the input.
+        and certifications that you are 100% sure are not relevant to the
+        field of the Job Post provided in the input.
         - You need to highlight the most important information in the CV
         to be more relevant to the Job Post provided in the input and
         pass the ATS test.
