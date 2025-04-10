@@ -125,7 +125,7 @@ async def auto_fill_cv_from_document(
 
 @router.post("/generate/cv/inline")
 @commit_action_after()
-@consume_action("generate_cv_inline")
+@consume_action("generate_cv")
 async def generate_cv_inline(
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
@@ -180,7 +180,7 @@ async def generate_cv_inline(
 
 @router.post("/generate/cv/inline/norender")
 @commit_action_after()
-@consume_action("generate_cv_inline")
+@consume_action("generate_cv")
 async def generate_cv_inline_norender(
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),

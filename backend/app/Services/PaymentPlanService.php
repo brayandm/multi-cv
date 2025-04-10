@@ -26,7 +26,7 @@ class PaymentPlanService
         if ($paymentPlan->name === 'occasional') {
             $quota = Quota::where('payment_plan_id', $paymentPlan->id)
                 ->where('user_id', $userId)
-                ->where('action', 'generate_cv_inline')
+                ->where('action', 'generate_cv')
                 ->first();
 
             return $quota && $quota->left === 0;
@@ -97,7 +97,7 @@ class PaymentPlanService
         Quota::create([
             'user_id' => $userId,
             'payment_plan_id' => $paymentPlan->id,
-            'action' => 'generate_cv_inline',
+            'action' => 'generate_cv',
             'quota' => 3,
             'frequency' => 'months',
             'cumulative' => false,
@@ -144,7 +144,7 @@ class PaymentPlanService
         Quota::create([
             'user_id' => $userId,
             'payment_plan_id' => $paymentPlan->id,
-            'action' => 'generate_cv_inline',
+            'action' => 'generate_cv',
             'quota' => 0,
             'frequency' => 'onetime',
             'cumulative' => false,
@@ -182,7 +182,7 @@ class PaymentPlanService
         Quota::create([
             'user_id' => $userId,
             'payment_plan_id' => $paymentPlan->id,
-            'action' => 'generate_cv_inline',
+            'action' => 'generate_cv',
             'quota' => 0,
             'frequency' => 'daily',
             'cumulative' => false,

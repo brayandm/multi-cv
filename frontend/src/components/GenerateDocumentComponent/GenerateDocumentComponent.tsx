@@ -41,7 +41,7 @@ export default function GenerateDocumentComponent() {
     data: quotaInfo,
     isLoading: isQuotaInfoLoading,
   } = useSWR<GetQuotaInfoResponse>(
-    [getQuotaInfoApiLink, { action: "generate_cv_inline" }],
+    [getQuotaInfoApiLink, { action: "generate_cv" }],
     fetcherApiPost
   );
 
