@@ -70,8 +70,8 @@ export default function GenerateDocumentComponent({
       const response = await generateCvInlineEngine(
         {
           type: type,
-          role_input: type === "role" ? input : "",
-          job_input: type === "job" ? input : "",
+          role_input: type === "role" ? input : null,
+          job_input: type === "job" ? input : null,
         },
         getTraduction()
       );
@@ -124,8 +124,8 @@ export default function GenerateDocumentComponent({
       const response = await generateCvInlineNoRenderEngine(
         {
           type: type,
-          role_input: type === "role" ? input : "",
-          job_input: type === "job" ? input : "",
+          role_input: type === "role" ? input : null,
+          job_input: type === "job" ? input : null,
         },
         traduction
       );

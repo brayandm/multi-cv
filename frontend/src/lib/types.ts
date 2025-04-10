@@ -93,8 +93,8 @@ export interface Document {
 
 export interface GenerationInput {
   type: "simple" | "role" | "job";
-  role_input: string;
-  job_input: string;
+  role_input: string | null;
+  job_input: string | null;
 }
 
 export interface CV {
