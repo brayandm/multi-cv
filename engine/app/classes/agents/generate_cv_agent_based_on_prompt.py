@@ -53,6 +53,21 @@ class GenerateCvAgentBasedOnPrompt(Agent):
         - A `list` of specific skills within that category.
         - Avoid duplicate categories and ensure a logical grouping of skills.
 
+        **Additional Input Role or Position Title:**
+        - You have to generate a CV based on the provided input, that is
+        a role or a position title, so you have to adapt the CV to this role
+        or position.
+        - You need to restructure the bullet points in the CV to be more
+        relevant to the role or position title provided in the input.
+        - You need to add a summary, experience, educations, skills, projects,
+        and certifications that are relevant to the role or position title
+        provided in the input.
+        - You can omit experience, educations, skills, projects,
+        and certifications that are not relevant to the role or position title
+
+        **Input Role or Position Title:**
+        {input}
+
         **Input Profile (JSON format):**
         {profile_json}
 
