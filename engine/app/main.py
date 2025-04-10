@@ -45,7 +45,6 @@ from app.framework.types.request import DocumentDownloadRequest
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
 from app.services.text_extractor import InvalidPDFError, TextExtractor
-from app.utils.parsers import get_first_name_last_name
 from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
 from app.worker.queue_manager import QueueManager
@@ -140,31 +139,15 @@ async def generate_cv_inline(
             status_code=404,
         )
 
+    cv = await GenerateCvPipeline().run(profile, traduction)
+
     cv_template = CvTemplate(
         id="default", type="latex", cv_texts=get_traductions(traduction.locale)
     )
 
-    cv = await GenerateCvPipeline().run(profile, traduction)
-
-    document_render = DocumentRenderFacade.get_render()
-
-    document_render.render_cv(cv, cv_template)
-
-    pdf_bytes = document_render.get_cv()
-
-    first_name = profile.basic_info.first_name
-    last_name = profile.basic_info.last_name
-    filename = f"{get_first_name_last_name(first_name, last_name)}_CV.pdf"
-
-    await document_service.save_cv(
-        user_id=get_user_id(),
-        cv=cv,
-        cv_template=cv_template,
-        filename=filename,
-        file=pdf_bytes,
+    quoted_filename, pdf_bytes = await document_service.process_cv(
+        profile, cv, cv_template
     )
-
-    quoted_filename = quote(filename)
 
     return Response(
         content=pdf_bytes,
