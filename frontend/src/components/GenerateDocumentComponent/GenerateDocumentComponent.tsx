@@ -2,8 +2,10 @@
 
 import {
   fetcherApiPost,
+  fetcherEngine,
   generateCvInlineEngine,
   generateCvInlineNoRenderEngine,
+  storeSettingsEngine,
 } from "@/lib/backendService";
 
 import {
@@ -17,8 +19,8 @@ import {
   Textarea,
   useDisclosure,
 } from "@heroui/react";
-import { useEffect, useState } from "react";
-import { GetQuotaInfoResponse } from "@/lib/types";
+import { useState } from "react";
+import { GetQuotaInfoResponse, Settings } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useCv } from "@/contexts/CvContext";
@@ -26,7 +28,7 @@ import { useRouter } from "next/navigation";
 
 import { saveAs } from "file-saver";
 import useSWR from "swr";
-import { getQuotaInfoApiLink } from "@/lib/links";
+import { getQuotaInfoApiLink, getSettingsEngineLink } from "@/lib/links";
 import {
   MAX_EXTRA_LONG_TEXT_LENGTH,
   MAX_LONG_TEXT_LENGTH,
@@ -62,9 +64,13 @@ export default function GenerateDocumentComponent({
     fetcherApiPost
   );
 
-  const t = useTranslations();
+  const {
+    mutate: mutateSettings,
+    data: Settings,
+    isLoading: isSettingsLoading,
+  } = useSWR<Settings>(getSettingsEngineLink, fetcherEngine);
 
-  useEffect(() => {}, []);
+  const t = useTranslations();
 
   const [isCvLoading, setIsCvLoading] = useState(false);
 
@@ -155,8 +161,10 @@ export default function GenerateDocumentComponent({
   };
 
   const savePrompt = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("Fake save prompt executed");
+    await storeSettingsEngine({
+      custom_prompt: input,
+    });
+    mutateSettings();
   };
 
   return (
@@ -181,6 +189,7 @@ export default function GenerateDocumentComponent({
             className={type !== "simple" ? "self-end mb-5" : "mb-10"}
             onPress={() => {
               setInputModalOpen(true);
+              setInput(Settings?.custom_prompt || "");
             }}
           >
             {t("common.buttons.custom_prompt")}
@@ -191,11 +200,15 @@ export default function GenerateDocumentComponent({
               placeholder={t(
                 "pages.home.tabs.builder.custom_prompt.placeholder"
               )}
+              isInputLoading={isSettingsLoading}
               input={input}
               setInput={setInput}
               open={inputModalOpen}
               setOpen={setInputModalOpen}
               onSave={savePrompt}
+              onCancel={async () => {
+                await mutateSettings();
+              }}
               maxCharacters={MAX_LONG_TEXT_LENGTH}
             />
           )}
