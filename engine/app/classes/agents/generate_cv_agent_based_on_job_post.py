@@ -53,6 +53,27 @@ class GenerateCvAgentBasedOnJobPost(Agent):
         - A `list` of specific skills within that category.
         - Avoid duplicate categories and ensure a logical grouping of skills.
 
+       **Additional Input Job Post:**
+        - You have to generate a CV based on the provided input, that is
+        a Job Post, so you have to adapt the CV to this Job Post.
+        - You need to add or remove some information from the CV, and
+        adjust the role or position title in the experiences
+        to be more relevant to the input.
+        - You need to restructure and order the bullet points in the CV to be
+        more relevant to the Job Post provided in the input.
+        - You need to create a summary, experience, educations, skills,
+        projects, and certifications that are relevant to the Job Post
+        provided in the input.
+        - You can omit experience, educations, skills, projects,
+        and certifications that you are sure are not relevant to the
+        Job Post provided in the input.
+        - You need to highlight the most important information in the CV
+        to be more relevant to the Job Post provided in the input and
+        pass the ATS test.
+
+        **Input Job Post**
+        {input}
+
         **Input Profile (JSON format):**
         {profile_json}
 
