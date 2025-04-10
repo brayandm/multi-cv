@@ -31,6 +31,7 @@ import {
   MAX_EXTRA_LONG_TEXT_LENGTH,
   MAX_SHORT_TEXT_LENGTH,
 } from "@/lib/consts";
+import { requiredValidator } from "@/lib/validator";
 
 interface IGenerateDocumentComponentProps {
   type?: "simple" | "role" | "job";
@@ -151,7 +152,19 @@ export default function GenerateDocumentComponent({
   };
 
   return (
-    <div className="w-full flex flex-col items-center">
+    <form
+      className="w-full flex flex-col items-center"
+      onSubmit={async (e) => {
+        e.preventDefault();
+        onOpen();
+        if (true) {
+          await handleDocument(true);
+        } else {
+          await redirectEditCv();
+        }
+        onClose();
+      }}
+    >
       {!isQuotaInfoLoading && quotaInfo ? (
         <>
           {type === "role" && (
@@ -168,6 +181,10 @@ export default function GenerateDocumentComponent({
                 onChange={(e) => setInput(e.target.value)}
                 maxLength={MAX_SHORT_TEXT_LENGTH}
                 description={`${input.length} / 100`}
+                isRequired
+                validate={(value) => {
+                  return requiredValidator(t, value);
+                }}
               />
             </div>
           )}
@@ -185,21 +202,17 @@ export default function GenerateDocumentComponent({
                 onChange={(e) => setInput(e.target.value)}
                 maxLength={MAX_EXTRA_LONG_TEXT_LENGTH}
                 description={`${input.length} / 10000`}
+                isRequired
+                validate={(value) => {
+                  return requiredValidator(t, value);
+                }}
               />
             </div>
           )}
           <div className="flex justify-center">
             <Button
               color="secondary"
-              onPress={async () => {
-                onOpen();
-                if (true) {
-                  await handleDocument(true);
-                } else {
-                  await redirectEditCv();
-                }
-                onClose();
-              }}
+              type="submit"
               isDisabled={
                 isCvLoading ||
                 quotaInfo?.left === 0 ||
@@ -263,6 +276,6 @@ export default function GenerateDocumentComponent({
           )}
         </ModalContent>
       </Modal>
-    </div>
+    </form>
   );
 }
