@@ -57,10 +57,10 @@ class GenerateCvAgentBasedOnPrompt(Agent):
         - You have to generate a CV based on the provided input, that is
         a role or a position title, so you have to adapt the CV to this role
         or position.
-        - You can possibly add or remove some information from the CV, and
-        adjust the role or position title.
-        - You need to restructure the bullet points in the CV to be more
-        relevant to the role or position title provided in the input.
+        - You need to add or remove some information from the CV, and
+        adjust the role or position title to be more relevant to the input.
+        - You need to restructure and order the bullet points in the CV to be
+        more relevant to the role or position title provided in the input.
         - You need to create a summary, experience, educations, skills,
         projects, and certifications that are relevant to the role or
         position title provided in the input.
