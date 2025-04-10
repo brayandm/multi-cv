@@ -12,7 +12,11 @@ from app.utils.phone import to_international_format
 class GenerateCvAgentBasedOnPrompt(Agent):
 
     async def run(
-        self, profile: Profile, input: str, traduction: Traduction
+        self,
+        profile: Profile,
+        custom_prompt: str,
+        input: str,
+        traduction: Traduction,
     ) -> Cv:
         profile_json = profile.model_dump_json()
 

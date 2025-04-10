@@ -11,7 +11,9 @@ from app.utils.phone import to_international_format
 
 class GenerateCvAgent(Agent):
 
-    async def run(self, profile: Profile, traduction: Traduction) -> Cv:
+    async def run(
+        self, profile: Profile, custom_prompt: str, traduction: Traduction
+    ) -> Cv:
         profile_json = profile.model_dump_json()
 
         cv_structure = get_schema(Cv)
