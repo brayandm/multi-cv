@@ -95,6 +95,7 @@ export interface GenerationInput {
   type: "simple" | "role" | "job";
   role_input: string | null;
   job_input: string | null;
+  custom_prompt: string;
 }
 
 export interface Settings {

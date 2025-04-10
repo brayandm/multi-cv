@@ -83,6 +83,7 @@ export default function GenerateDocumentComponent({
           type: type,
           role_input: type === "role" ? input : null,
           job_input: type === "job" ? input : null,
+          custom_prompt: customPrompt,
         },
         getTraduction()
       );
@@ -137,6 +138,7 @@ export default function GenerateDocumentComponent({
           type: type,
           role_input: type === "role" ? input : null,
           job_input: type === "job" ? input : null,
+          custom_prompt: customPrompt,
         },
         traduction
       );
@@ -262,7 +264,9 @@ export default function GenerateDocumentComponent({
               isDisabled={
                 isCvLoading ||
                 quotaInfo?.left === 0 ||
-                quotaInfo?.pending >= quotaInfo?.max_pending
+                quotaInfo?.pending >= quotaInfo?.max_pending ||
+                isQuotaInfoLoading ||
+                isSettingsLoading
               }
             >
               {isCvLoading || quotaInfo?.pending >= quotaInfo?.max_pending
