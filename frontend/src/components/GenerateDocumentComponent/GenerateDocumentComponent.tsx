@@ -178,7 +178,7 @@ export default function GenerateDocumentComponent({
           <Button
             variant={"light"}
             color="secondary"
-            className={type !== "simple" ? "self-end" : "mb-10"}
+            className={type !== "simple" ? "self-end mb-5" : "mb-10"}
             onPress={() => {
               setInputModalOpen(true);
             }}
