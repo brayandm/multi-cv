@@ -11,7 +11,9 @@ from app.utils.phone import to_international_format
 
 class GenerateCvAgent(Agent):
 
-    async def run(self, profile: Profile, traduction: Traduction) -> Cv:
+    async def run(
+        self, profile: Profile, custom_prompt: str, traduction: Traduction
+    ) -> Cv:
         profile_json = profile.model_dump_json()
 
         cv_structure = get_schema(Cv)
@@ -53,6 +55,13 @@ class GenerateCvAgent(Agent):
         Languages", "Frameworks & Libraries", "Databases", "DevOps Tools").
         - A `list` of specific skills within that category.
         - Avoid duplicate categories and ensure a logical grouping of skills.
+
+        The user provided the following custom prompt for the CV Geration,
+        so you have to take it into account and force the CV to be
+        generated based on this custom prompt of the user:
+
+        **Custom Prompt:**
+        {custom_prompt}
 
         **Input Profile (JSON format):**
         {profile_json}

@@ -12,7 +12,11 @@ from app.utils.phone import to_international_format
 class GenerateCvAgentBasedOnJobPost(Agent):
 
     async def run(
-        self, profile: Profile, input: str, traduction: Traduction
+        self,
+        profile: Profile,
+        custom_prompt: str,
+        input: str,
+        traduction: Traduction,
     ) -> Cv:
         profile_json = profile.model_dump_json()
 
@@ -76,6 +80,13 @@ class GenerateCvAgentBasedOnJobPost(Agent):
         - You need to highlight the most important information in the CV
         to be more relevant to the Job Post provided in the input and
         pass the ATS test.
+
+        The user provided the following custom prompt for the CV Geration,
+        so you have to take it into account and force the CV to be
+        generated based on this custom prompt of the user:
+
+        **Custom Prompt:**
+        {custom_prompt}
 
         **Input Job Post**
         {input}

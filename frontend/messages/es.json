@@ -77,7 +77,8 @@
       "keep_editing": "Seguir editando",
       "clear": "Limpiar",
       "autofill_button": "Llenar perfil desde CV",
-      "download": "Descargar"
+      "download": "Descargar",
+      "custom_prompt": "Prompt personalizado"
     },
     "errors": {
       "login": "Error de inicio de sesión",
@@ -246,6 +247,10 @@
       "tabs": {
         "builder": {
           "title": "Constructor de CV",
+          "custom_prompt": {
+            "title": "Prompt Personalizado",
+            "placeholder": "Escribe un prompt personalizado para generar tu CV."
+          },
           "tabs": {
             "simple_cv": {
               "title": "CV Simple"

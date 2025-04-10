@@ -31,6 +31,8 @@ import {
   documentsEngineLink,
   documentDownloadEngineLink,
   checkoutSessionApiLink,
+  getSettingsEngineLink,
+  storeSettingsEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -46,6 +48,7 @@ import {
   Document,
   CheckoutSessionResponse,
   GenerationInput,
+  Settings,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -439,4 +442,13 @@ export const checkoutSessionApi = async (
   return await api.post(checkoutSessionApiLink, {
     plan: plan,
   });
+};
+
+export const getSettingsEngine = async (): Promise<AxiosResponse<Settings>> => {
+  return await engine.get(getSettingsEngineLink);
+};
+export const storeSettingsEngine = async (
+  settings: Settings
+): Promise<AxiosResponse<MessageResponse>> => {
+  return await engine.post(storeSettingsEngineLink, settings);
 };

@@ -77,7 +77,8 @@
       "keep_editing": "Keep editing",
       "clear": "Clear",
       "autofill_button": "Fill profile from CV",
-      "download": "Download"
+      "download": "Download",
+      "custom_prompt": "Custom Prompt"
     },
     "errors": {
       "login": "Login failed",
@@ -246,6 +247,10 @@
       "tabs": {
         "builder": {
           "title": "CV Builder",
+          "custom_prompt": {
+            "title": "Custom Prompt",
+            "placeholder": "Write a custom prompt to generate your CV."
+          },
           "tabs": {
             "simple_cv": {
               "title": "Simple CV"

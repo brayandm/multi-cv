@@ -2,7 +2,7 @@ from typing import Annotated, Literal, Optional
 
 from pydantic import BaseModel, Field, model_validator
 
-from app.utils.pydantic_custom_types import ExtraLongStr, ShortStr
+from app.utils.pydantic_custom_types import ExtraLongStr, LongStr, ShortStr
 
 GenerationInputType = Annotated[
     Literal["simple", "role", "job"],
@@ -14,6 +14,7 @@ class GenerationInput(BaseModel):
     type: GenerationInputType
     role_input: Optional[ShortStr] = None
     job_input: Optional[ExtraLongStr] = None
+    custom_prompt: LongStr
 
     @model_validator(mode="after")
     def check_inputs(self) -> "GenerationInput":

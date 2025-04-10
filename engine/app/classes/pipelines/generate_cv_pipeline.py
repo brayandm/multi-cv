@@ -19,14 +19,16 @@ class GenerateCvPipeline(Pipeline):
     ) -> Cv:
 
         if input.type == "simple":
-            result = await self.agent.run(profile, traduction)
+            result = await self.agent.run(
+                profile, input.custom_prompt, traduction
+            )
         elif input.type == "role" and input.role_input is not None:
             result = await self.agent_role.run(
-                profile, input.role_input, traduction
+                profile, input.custom_prompt, input.role_input, traduction
             )
         elif input.type == "job" and input.job_input is not None:
             result = await self.agent_job.run(
-                profile, input.job_input, traduction
+                profile, input.custom_prompt, input.job_input, traduction
             )
         else:
             raise ValueError("Invalid input type or missing input data.")

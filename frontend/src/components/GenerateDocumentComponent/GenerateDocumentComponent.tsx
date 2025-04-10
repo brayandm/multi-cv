@@ -2,8 +2,10 @@
 
 import {
   fetcherApiPost,
+  fetcherEngine,
   generateCvInlineEngine,
   generateCvInlineNoRenderEngine,
+  storeSettingsEngine,
 } from "@/lib/backendService";
 
 import {
@@ -17,8 +19,8 @@ import {
   Textarea,
   useDisclosure,
 } from "@heroui/react";
-import { useEffect, useState } from "react";
-import { GetQuotaInfoResponse } from "@/lib/types";
+import { useState } from "react";
+import { GetQuotaInfoResponse, Settings } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { useLocale } from "@/contexts/LocaleContext";
 import { useCv } from "@/contexts/CvContext";
@@ -26,12 +28,14 @@ import { useRouter } from "next/navigation";
 
 import { saveAs } from "file-saver";
 import useSWR from "swr";
-import { getQuotaInfoApiLink } from "@/lib/links";
+import { getQuotaInfoApiLink, getSettingsEngineLink } from "@/lib/links";
 import {
   MAX_EXTRA_LONG_TEXT_LENGTH,
+  MAX_LONG_TEXT_LENGTH,
   MAX_SHORT_TEXT_LENGTH,
 } from "@/lib/consts";
 import { requiredValidator } from "@/lib/validator";
+import InputModalComponent from "@/shared/components/InputModalComponent";
 
 interface IGenerateDocumentComponentProps {
   type?: "simple" | "role" | "job";
@@ -49,6 +53,8 @@ export default function GenerateDocumentComponent({
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const [input, setInput] = useState("");
+  const [customPrompt, setCustomPrompt] = useState("");
+  const [inputModalOpen, setInputModalOpen] = useState(false);
 
   const {
     mutate,
@@ -59,9 +65,13 @@ export default function GenerateDocumentComponent({
     fetcherApiPost
   );
 
-  const t = useTranslations();
+  const {
+    mutate: mutateSettings,
+    data: Settings,
+    isLoading: isSettingsLoading,
+  } = useSWR<Settings>(getSettingsEngineLink, fetcherEngine);
 
-  useEffect(() => {}, []);
+  const t = useTranslations();
 
   const [isCvLoading, setIsCvLoading] = useState(false);
 
@@ -73,6 +83,7 @@ export default function GenerateDocumentComponent({
           type: type,
           role_input: type === "role" ? input : null,
           job_input: type === "job" ? input : null,
+          custom_prompt: customPrompt,
         },
         getTraduction()
       );
@@ -127,6 +138,7 @@ export default function GenerateDocumentComponent({
           type: type,
           role_input: type === "role" ? input : null,
           job_input: type === "job" ? input : null,
+          custom_prompt: customPrompt,
         },
         traduction
       );
@@ -151,9 +163,16 @@ export default function GenerateDocumentComponent({
     mutate();
   };
 
+  const savePrompt = async () => {
+    await storeSettingsEngine({
+      custom_prompt: input,
+    });
+    mutateSettings();
+  };
+
   return (
     <form
-      className="w-full flex flex-col items-center"
+      className="w-full max-w-96 flex flex-col items-center"
       onSubmit={async (e) => {
         e.preventDefault();
         onOpen();
@@ -167,8 +186,37 @@ export default function GenerateDocumentComponent({
     >
       {!isQuotaInfoLoading && quotaInfo ? (
         <>
+          <Button
+            variant={"light"}
+            color="secondary"
+            className={type !== "simple" ? "self-end mb-5" : "mb-10"}
+            onPress={() => {
+              setInputModalOpen(true);
+              setCustomPrompt(Settings?.custom_prompt || "");
+            }}
+          >
+            {t("common.buttons.custom_prompt")}
+          </Button>
+          {inputModalOpen && (
+            <InputModalComponent
+              title={t("pages.home.tabs.builder.custom_prompt.title")}
+              placeholder={t(
+                "pages.home.tabs.builder.custom_prompt.placeholder"
+              )}
+              isInputLoading={isSettingsLoading}
+              input={customPrompt}
+              setInput={setCustomPrompt}
+              open={inputModalOpen}
+              setOpen={setInputModalOpen}
+              onSave={savePrompt}
+              onCancel={async () => {
+                await mutateSettings();
+              }}
+              maxCharacters={MAX_LONG_TEXT_LENGTH}
+            />
+          )}
           {type === "role" && (
-            <div className="mb-10 w-full max-w-96 flex flex-col items-center">
+            <div className="mb-10 w-full  flex flex-col items-center">
               <Textarea
                 label={t(
                   "pages.home.tabs.builder.tabs.based_on_role.input.label"
@@ -216,7 +264,9 @@ export default function GenerateDocumentComponent({
               isDisabled={
                 isCvLoading ||
                 quotaInfo?.left === 0 ||
-                quotaInfo?.pending >= quotaInfo?.max_pending
+                quotaInfo?.pending >= quotaInfo?.max_pending ||
+                isQuotaInfoLoading ||
+                isSettingsLoading
               }
             >
               {isCvLoading || quotaInfo?.pending >= quotaInfo?.max_pending

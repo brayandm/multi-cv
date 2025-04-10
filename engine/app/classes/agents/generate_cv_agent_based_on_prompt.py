@@ -12,7 +12,11 @@ from app.utils.phone import to_international_format
 class GenerateCvAgentBasedOnPrompt(Agent):
 
     async def run(
-        self, profile: Profile, input: str, traduction: Traduction
+        self,
+        profile: Profile,
+        custom_prompt: str,
+        input: str,
+        traduction: Traduction,
     ) -> Cv:
         profile_json = profile.model_dump_json()
 
@@ -71,6 +75,13 @@ class GenerateCvAgentBasedOnPrompt(Agent):
         - You can omit experience, educations, skills, projects,
         and certifications that you are sure are not relevant to the role
         or position title provided in the input.
+
+        The user provided the following custom prompt for the CV Geration,
+        so you have to take it into account and force the CV to be
+        generated based on this custom prompt of the user:
+
+        **Custom Prompt:**
+        {custom_prompt}
 
         **Input Role or Position Title:**
         {input}

@@ -16,6 +16,7 @@ from app.classes.models import (
     GenerationInput,
     Html,
     Profile,
+    Settings,
     Traduction,
     WebhookPayload,
 )
@@ -45,6 +46,7 @@ from app.framework.middlewares import (
 from app.framework.types.request import DocumentDownloadRequest
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
+from app.services.settings_service import SettingsService, get_settings_service
 from app.services.text_extractor import InvalidPDFError, TextExtractor
 from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
@@ -352,6 +354,33 @@ async def get_profile(
         return None
 
     return profile.model_dump(exclude_none=True)
+
+
+@router.post("/settings")
+@authenticate()
+async def store_settings(
+    settings: Settings,
+    settings_service: SettingsService = Depends(get_settings_service),
+) -> Dict[str, str]:
+
+    user_id = get_user_id()
+
+    await settings_service.sync_settings(user_id, settings)
+
+    return {"message": "Settings synced successfully."}
+
+
+@router.get("/settings")
+@authenticate()
+async def get_settings(
+    settings_service: SettingsService = Depends(get_settings_service),
+) -> Dict[str, str]:
+
+    user_id = get_user_id()
+
+    settings = await settings_service.get_settings(user_id)
+
+    return settings.model_dump(exclude_none=True)
 
 
 @router.post("/webhook")
