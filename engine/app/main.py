@@ -13,11 +13,11 @@ from app.classes.models import (
     CvTexts,
     Document,
     ExperienceId,
+    GenerationInput,
     Html,
     Profile,
     Traduction,
     WebhookPayload,
-    GenerationInput,
 )
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
