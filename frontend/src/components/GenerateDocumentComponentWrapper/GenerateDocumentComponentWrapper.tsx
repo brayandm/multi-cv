@@ -19,6 +19,7 @@ export default function GenerateDocumentComponentWrapper() {
           base: "self-center w-full sm:w-auto",
           tabList: "flex flex-wrap sm:flex-nowrap w-full",
           tab: "h-12 sm:h-8 w-full dark:bg-default-100",
+          panel: "pt-0",
         }}
       >
         <Tab
@@ -29,7 +30,7 @@ export default function GenerateDocumentComponentWrapper() {
             </div>
           }
         >
-          <div className="flex w-full h-96 flex-col items-center align-middle justify-center">
+          <div className="flex w-full h-[420px] flex-col items-center align-middle justify-center">
             <GenerateDocumentComponent key="simple" />
           </div>
         </Tab>
@@ -43,7 +44,7 @@ export default function GenerateDocumentComponentWrapper() {
             </div>
           }
         >
-          <div className="flex w-full h-96 flex-col items-center align-middle justify-center">
+          <div className="flex w-full h-[420px] flex-col items-center align-middle justify-center">
             <GenerateDocumentComponent key="role" type="role" />
           </div>
         </Tab>
@@ -57,7 +58,7 @@ export default function GenerateDocumentComponentWrapper() {
             </div>
           }
         >
-          <div className="flex w-full h-96 flex-col items-center align-middle justify-center">
+          <div className="flex w-full h-[420px] flex-col items-center align-middle justify-center">
             <GenerateDocumentComponent key="job" type="job" />
           </div>
         </Tab>
