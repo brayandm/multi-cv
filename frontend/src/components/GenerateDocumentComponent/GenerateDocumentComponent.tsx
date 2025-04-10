@@ -53,6 +53,7 @@ export default function GenerateDocumentComponent({
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
 
   const [input, setInput] = useState("");
+  const [customPrompt, setCustomPrompt] = useState("");
   const [inputModalOpen, setInputModalOpen] = useState(false);
 
   const {
@@ -189,7 +190,7 @@ export default function GenerateDocumentComponent({
             className={type !== "simple" ? "self-end mb-5" : "mb-10"}
             onPress={() => {
               setInputModalOpen(true);
-              setInput(Settings?.custom_prompt || "");
+              setCustomPrompt(Settings?.custom_prompt || "");
             }}
           >
             {t("common.buttons.custom_prompt")}
@@ -201,8 +202,8 @@ export default function GenerateDocumentComponent({
                 "pages.home.tabs.builder.custom_prompt.placeholder"
               )}
               isInputLoading={isSettingsLoading}
-              input={input}
-              setInput={setInput}
+              input={customPrompt}
+              setInput={setCustomPrompt}
               open={inputModalOpen}
               setOpen={setInputModalOpen}
               onSave={savePrompt}
