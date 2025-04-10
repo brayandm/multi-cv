@@ -21,8 +21,9 @@ export default function WelcomeComponent() {
   useEffect(() => {
     if (isIframe && userStatus.authenticated) {
       router.push("/home");
+      router.refresh();
     }
-  }, [isIframe]); // eslint-disable-line
+  }, [isIframe, userStatus, router]);
 
   return isIframe ? (
     <div className="flex flex-col mt-40 w-[280px] mx-auto">
