@@ -7,6 +7,8 @@ from app.classes.models import Cv, Profile, Traduction
 from app.utils.get_schema import get_schema
 from app.utils.phone import to_international_format
 
+from datetime import date
+
 
 class GenerateCvAgent(Agent):
 
@@ -20,6 +22,8 @@ class GenerateCvAgent(Agent):
         {traduction.name} language so any results should be in this language.
         Your task is to generate a CV strictly in the JSON format provided
         below.
+
+        The date right now is: {date.today()}
 
         **Requirements:**
         - Ensure the CV is well-written, formatted correctly, and
