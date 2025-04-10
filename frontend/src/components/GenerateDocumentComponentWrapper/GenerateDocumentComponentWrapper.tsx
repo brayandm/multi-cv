@@ -52,7 +52,7 @@ export default function GenerateDocumentComponentWrapper() {
           title={
             <div className="flex items-center space-x-2">
               <span>
-                {t("pages.home.tabs.builder.tabs.based_on_offer.title")}
+                {t("pages.home.tabs.builder.tabs.based_on_job_post.title")}
               </span>
             </div>
           }
