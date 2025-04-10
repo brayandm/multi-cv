@@ -36,6 +36,7 @@ import {
 } from "@/lib/consts";
 import { requiredValidator } from "@/lib/validator";
 import InputModalComponent from "@/shared/components/InputModalComponent";
+import { generalInputsStyles } from "@/lib/customStyles";
 
 interface IGenerateDocumentComponentProps {
   type?: "simple" | "role" | "job";
@@ -233,6 +234,7 @@ export default function GenerateDocumentComponent({
                 validate={(value) => {
                   return requiredValidator(t, value);
                 }}
+                classNames={generalInputsStyles}
               />
             </div>
           )}
@@ -254,6 +256,7 @@ export default function GenerateDocumentComponent({
                 validate={(value) => {
                   return requiredValidator(t, value);
                 }}
+                classNames={generalInputsStyles}
               />
             </div>
           )}
