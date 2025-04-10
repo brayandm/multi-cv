@@ -158,7 +158,7 @@ export default function GenerateDocumentComponent() {
               <>
                 <p>{t("common.texts.generation_finished")}</p>
                 <p
-                  className="font-semibold text-primary underline hover:text-primary-700 cursor-pointer"
+                  className="font-semibold text-warning underline hover:text-warning-600 cursor-pointer"
                   onClick={() => {
                     router.push("/pricing");
                   }}
