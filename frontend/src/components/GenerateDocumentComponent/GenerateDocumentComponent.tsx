@@ -67,7 +67,14 @@ export default function GenerateDocumentComponent({
   const handleDocument = async (download = false) => {
     try {
       setIsCvLoading(true);
-      const response = await generateCvInlineEngine(getTraduction());
+      const response = await generateCvInlineEngine(
+        {
+          type: type,
+          role_input: type === "role" ? input : "",
+          job_input: type === "job" ? input : "",
+        },
+        getTraduction()
+      );
 
       const blob = new Blob([response.data], { type: "application/pdf" });
 
@@ -114,7 +121,14 @@ export default function GenerateDocumentComponent({
     try {
       setIsCvLoading(true);
       const traduction = getTraduction();
-      const response = await generateCvInlineNoRenderEngine(traduction);
+      const response = await generateCvInlineNoRenderEngine(
+        {
+          type: type,
+          role_input: type === "role" ? input : "",
+          job_input: type === "job" ? input : "",
+        },
+        traduction
+      );
       if (response.data) {
         setCv(response.data.cv);
         setCvTexts(response.data.cv_texts);

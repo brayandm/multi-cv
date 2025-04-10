@@ -17,6 +17,7 @@ from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .traduction import Traduction
 from .webhook_payload import WebhookPayload
+from .generation_input import GenerationInput
 
 __all__ = [
     "Profile",
@@ -43,4 +44,5 @@ __all__ = [
     "CvDocument",
     "CoverLetterDocument",
     "Html",
+    "GenerationInput",
 ]

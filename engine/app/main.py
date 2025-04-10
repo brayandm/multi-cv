@@ -17,6 +17,7 @@ from app.classes.models import (
     Profile,
     Traduction,
     WebhookPayload,
+    GenerationInput,
 )
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
@@ -126,6 +127,7 @@ async def auto_fill_cv_from_document(
 @commit_action_after()
 @consume_action("generate_cv")
 async def generate_cv_inline(
+    input: GenerationInput,
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
     document_service: DocumentService = Depends(get_document_service),
@@ -139,7 +141,7 @@ async def generate_cv_inline(
             status_code=404,
         )
 
-    cv = await GenerateCvPipeline().run(profile, traduction)
+    cv = await GenerateCvPipeline().run(profile, input, traduction)
 
     cv_template = CvTemplate(
         id="default", type="latex", cv_texts=get_traductions(traduction.locale)
@@ -165,6 +167,7 @@ async def generate_cv_inline(
 @commit_action_after()
 @consume_action("generate_cv")
 async def generate_cv_inline_norender(
+    input: GenerationInput,
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Response:
@@ -177,7 +180,7 @@ async def generate_cv_inline_norender(
             status_code=404,
         )
 
-    cv = await GenerateCvPipeline().run(profile, traduction)
+    cv = await GenerateCvPipeline().run(profile, input, traduction)
     cv_texts = CvTexts(**get_traductions(traduction.locale))
 
     return JSONResponse(

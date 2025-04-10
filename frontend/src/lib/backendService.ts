@@ -45,6 +45,7 @@ import {
   UserThemeResponse,
   Document,
   CheckoutSessionResponse,
+  GenerationInput,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -290,19 +291,35 @@ export const getProfileEngine = async (): Promise<
 };
 
 export const generateCvInlineEngine = async (
+  input: GenerationInput,
   traduction: Traduction
 ): Promise<AxiosResponse<Blob>> => {
-  return await engine.post(generateCvInlineEngineLink, traduction, {
-    responseType: "blob",
-  });
+  return await engine.post(
+    generateCvInlineEngineLink,
+    {
+      input: input,
+      traduction: traduction,
+    },
+    {
+      responseType: "blob",
+    }
+  );
 };
 
 export const generateCvInlineNoRenderEngine = async (
+  input: GenerationInput,
   traduction: Traduction
 ): Promise<AxiosResponse<generateCvInlineNoRenderResponse>> => {
-  return await engine.post(generateCvInlineNoRenderEngineLink, traduction, {
-    responseType: "json",
-  });
+  return await engine.post(
+    generateCvInlineNoRenderEngineLink,
+    {
+      input: input,
+      traduction: traduction,
+    },
+    {
+      responseType: "json",
+    }
+  );
 };
 
 export const renderHtmlInlineEngine = async (

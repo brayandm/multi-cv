@@ -3,18 +3,18 @@ import uuid
 from datetime import datetime, timezone
 from io import BytesIO
 from typing import Any, Tuple
+from urllib.parse import quote
 
 from fastapi import Depends
 from motor.core import AgnosticDatabase
 
 from app.classes.models import Cv, CvTemplate, Document, Profile
 from app.database.mongodb import get_database
-from app.facades.filesystem_facade import FilesystemFacade
 from app.facades.document_render_facade import DocumentRenderFacade
-from app.framework.logging import logger
+from app.facades.filesystem_facade import FilesystemFacade
 from app.framework.decorators.context_vars import get_user_id
+from app.framework.logging import logger
 from app.utils.parsers import get_first_name_last_name
-from urllib.parse import quote
 
 
 class DocumentService:
