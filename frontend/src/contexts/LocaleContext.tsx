@@ -131,19 +131,18 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
 
     const segments = pathname.split("/");
 
-    const localePath = segments[1] ? segments[1] : routing.defaultLocale;
+    const currentLocaleFromPath = locales.includes(segments[1] as Language)
+      ? segments[1]
+      : routing.defaultLocale;
 
-    const currentLocaleFromPath = locales.includes(localePath as Language)
-      ? localePath
-      : null;
-
-    if (currentLocaleFromPath === locale || !currentLocaleFromPath) {
+    if (currentLocaleFromPath === locale) {
       return;
     }
 
-    const path = currentLocaleFromPath
-      ? segments.slice(2).join("/")
-      : segments.slice(1).join("/");
+    const path =
+      currentLocaleFromPath !== routing.defaultLocale
+        ? segments.slice(2).join("/")
+        : segments.slice(1).join("/");
 
     const newPath = `/${locale}/${path}`;
     const query = searchParams.toString();
