@@ -1,7 +1,7 @@
 from app.classes.agents import (
     GenerateCvAgent,
-    GenerateCvAgentBasedOnPrompt,
     GenerateCvAgentBasedOnJobPost,
+    GenerateCvAgentBasedOnPrompt,
 )
 from app.classes.base import Pipeline
 from app.classes.models import Cv, GenerationInput, Profile, Traduction
