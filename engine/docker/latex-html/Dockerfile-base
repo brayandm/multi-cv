@@ -4,8 +4,12 @@ ENV LANG=C.UTF-8
 
 WORKDIR /app
 
+RUN apt-get update
+
 RUN pip install playwright
 
 RUN apt-get install -y libxkbcommon0
 
 RUN playwright install chromium
+
+RUN rm -rf /var/lib/apt/lists/*

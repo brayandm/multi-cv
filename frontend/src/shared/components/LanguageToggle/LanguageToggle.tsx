@@ -29,7 +29,11 @@ export default function LanguageToggle() {
           </span>
         </Link>
       </DropdownTrigger>
-      <DropdownMenu>
+      <DropdownMenu
+        classNames={{
+          base: "h-96 overflow-y-auto",
+        }}
+      >
         <DropdownSection>
           {languages.map((lang) => (
             <DropdownItem
