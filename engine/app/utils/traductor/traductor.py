@@ -21,8 +21,25 @@ base_paths: list[str] = [
 
 target_languages: list[dict[str, str]] = [
     {"code": "es", "language": "Spanish"},
+    {"code": "fr", "language": "French"},
+    {"code": "de", "language": "German"},
+    {"code": "it", "language": "Italian"},
+    {"code": "pt", "language": "Portuguese"},
     {"code": "ru", "language": "Russian"},
+    {"code": "zh", "language": "Chinese"},
+    {"code": "ja", "language": "Japanese"},
+    {"code": "ko", "language": "Korean"},
     {"code": "hi", "language": "Romanized Hindi"},
+    {"code": "ar", "language": "Arabic"},
+    {"code": "tr", "language": "Turkish"},
+    {"code": "pl", "language": "Polish"},
+    {"code": "nl", "language": "Dutch"},
+    {"code": "sv", "language": "Swedish"},
+    {"code": "th", "language": "Thai"},
+    {"code": "id", "language": "Indonesian"},
+    {"code": "vi", "language": "Vietnamese"},
+    {"code": "he", "language": "Hebrew"},
+    {"code": "uk", "language": "Ukrainian"},
 ]
 
 
