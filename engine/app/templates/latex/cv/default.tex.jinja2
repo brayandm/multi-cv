@@ -9,17 +9,47 @@
 \usepackage{verbatim}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
-{% if cv_template.cv_texts.locale == 'ru' %}
-\usepackage[english,russian]{babel}
-{% else %}
-\usepackage[english]{babel}
-{% endif %}
 \usepackage{tabularx}
 \usepackage{setspace}
 \usepackage{ifthen}
+\usepackage{fontspec}
+\usepackage{polyglossia}
 
-\input{glyphtounicode}
-\pdfgentounicode=1
+{% endraw %}
+
+{% set latex_languages_by_locale = {'ar': 'arabic', 'de': 'german', 'en': 'english', 'es': 'spanish', 'fr': 'french', 'he': 'hebrew', 'hi': 'hindi', 'id': 'indonesian', 'it': 'italian', 'ja': 'japanese', 'ko': 'korean', 'nl': 'dutch', 'pl': 'polish', 'pt': 'portuguese', 'ru': 'russian', 'sv': 'swedish', 'th': 'thai', 'tr': 'turkish', 'uk': 'ukrainian', 'vi': 'vietnamese', 'zh': 'chinese'} %}
+{% set locale = cv_template.cv_texts.locale %}
+{% set latex_lang = latex_languages_by_locale.get(locale, 'english') %}
+
+\setdefaultlanguage{english}
+\setotherlanguage{ {{-latex_lang-}} }
+
+% For Cyrillic languages (Russian, Ukrainian)
+\newfontfamily\russianfont{Noto Sans}
+\newfontfamily\ukrainianfont{Noto Sans}
+
+% For Arabic
+\newfontfamily\arabicfont[Script=Arabic]{Noto Naskh Arabic}
+
+% For Hebrew
+\newfontfamily\hebrewfont[Script=Hebrew]{Noto Sans Hebrew}
+
+% For Hindi and other languages using Devanagari script
+\newfontfamily\hindifont[Script=Devanagari]{Noto Sans Devanagari}
+
+% For Chinese (Simplified)
+\newfontfamily\chinesefont{Noto Sans CJK SC}
+
+% For Japanese
+\newfontfamily\japanesefont{Noto Sans CJK JP}
+
+% For Korean
+\newfontfamily\koreanfont{Noto Sans CJK KR}
+
+% For Thai
+\newfontfamily\thaifont{Noto Sans Thai}
+
+{% raw %}
 
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
@@ -82,6 +112,7 @@
 {% endraw %}
 
 \begin{document}
+\begin{otherlanguage*}{ {{-latex_lang-}} }
 
 % HEADER
 \begin{center}
@@ -189,5 +220,7 @@
 
 \resumeSubHeadingListEnd
 {% endif %}
+
+\end{otherlanguage*}
 
 \end{document}

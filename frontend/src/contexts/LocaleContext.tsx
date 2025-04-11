@@ -11,7 +11,7 @@ import {
   useEffect,
   useCallback,
 } from "react";
-import { routing } from "@/i18n/routing";
+import { Language, routing } from "@/i18n/routing";
 import { getCookie } from "cookies-next";
 
 interface LocaleContextType {
@@ -23,17 +23,37 @@ interface LocaleContextType {
 
 export interface Traduction {
   locale: string;
-  name: string;
 }
 
-export type Language = "en" | "es" | "hi" | "ru";
-
 export const languages = [
+  { code: "ar", label: "العربية", name: "Arabic" },
+  { code: "de", label: "Deutsch", name: "German" },
   { code: "en", label: "English", name: "English" },
-  { code: "es", label: "Spanish", name: "Spanish" },
+  { code: "es", label: "Español", name: "Spanish" },
+  { code: "fr", label: "Français", name: "French" },
+  { code: "he", label: "עברית", name: "Hebrew" },
   { code: "hi", label: "Hindi", name: "Romanized Hindi" },
-  { code: "ru", label: "Russian", name: "Russian" },
+  { code: "id", label: "Bahasa Indonesia", name: "Indonesian" },
+  { code: "it", label: "Italiano", name: "Italian" },
+  {
+    code: "ja",
+    label: "日本語",
+    name: "Japanese",
+  },
+  { code: "ko", label: "한국어", name: "Korean" },
+  { code: "nl", label: "Nederlands", name: "Dutch" },
+  { code: "pl", label: "Polski", name: "Polish" },
+  { code: "pt", label: "Português", name: "Portuguese" },
+  { code: "ru", label: "Русский", name: "Russian" },
+  { code: "sv", label: "Svenska", name: "Swedish" },
+  { code: "th", label: "ไทย", name: "Thai" },
+  { code: "tr", label: "Türkçe", name: "Turkish" },
+  { code: "uk", label: "Українська", name: "Ukrainian" },
+  { code: "vi", label: "Tiếng Việt", name: "Vietnamese" },
+  { code: "zh", label: "中文", name: "Chinese" },
 ];
+
+export const unsupportedLanguages = ["ar", "he", "ja", "th"];
 
 export const mapLocaleToLanguage = (locale: string) => {
   const language = languages.find((lang) => lang.code === locale)?.name;
@@ -189,7 +209,6 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const getTraduction = useCallback(() => {
     return {
       locale: locale,
-      name: mapLocaleToLanguage(locale || "en"),
     };
   }, [locale]);
 

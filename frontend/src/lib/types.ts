@@ -100,6 +100,7 @@ export interface GenerationInput {
 
 export interface Settings {
   custom_prompt?: string;
+  target_locale?: string;
 }
 
 export interface CV {

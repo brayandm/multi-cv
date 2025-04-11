@@ -1,0 +1,441 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "หน้าแรก",
+      "settings": "การตั้งค่า",
+      "profile": "โปรไฟล์"
+    },
+    "auth": {
+      "login": "เข้าสู่ระบบ",
+      "register": "ลงทะเบียน",
+      "logout": "ออกจากระบบ",
+      "google_sign_in": "เข้าสู่ระบบด้วย Google",
+      "google_sign_up": "ลงทะเบียนด้วย Google",
+      "use_other_method": "ใช้วิธีอื่น",
+      "forgot_password": "ลืมรหัสผ่าน?"
+    },
+    "texts": {
+      "delete": "กำลังลบ {element}",
+      "delete_confirmation": "คุณแน่ใจหรือว่าต้องการลบ {element} นี้?",
+      "skills": "ทักษะ",
+      "draft_changes": "การเปลี่ยนแปลงร่าง",
+      "draft_changes_description": "คุณมีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก คุณต้องการบันทึกหรือไม่?",
+      "havent_finished": "คุณยังไม่เสร็จสิ้น {element} นี้.",
+      "discard_changes": "คุณต้องการเก็บการแก้ไขหรือยกเลิกการเปลี่ยนแปลง?",
+      "saved": "บันทึกแล้ว",
+      "saved_description": "การเปลี่ยนแปลงของคุณได้ถูกบันทึกแล้ว.",
+      "unfinished_element": "{element} ที่ยังไม่เสร็จ",
+      "unfinished_element_description": "คุณยังไม่เสร็จสิ้น {element} นี้.",
+      "chat": "แชท AI",
+      "chat_description": "แชทกับ AI ของเราเพื่อขอความช่วยเหลือ",
+      "ai_assistant": "ผู้ช่วย AI",
+      "type_message": "พิมพ์ข้อความ...",
+      "generate_cv": "สร้าง CV",
+      "quota_info": "ข้อมูลโควต้า",
+      "used": "ใช้แล้ว",
+      "message_left": "ข้อความที่เหลือ: {count}",
+      "generation_left": "การสร้างที่เหลือ: {count}",
+      "languages": "ภาษา",
+      "basic": "พื้นฐาน",
+      "intermediate": "ระดับกลาง",
+      "professional": "ระดับมืออาชีพ",
+      "native": "เจ้าของภาษา",
+      "upload_cv": "อัปโหลด CV ของคุณ (PDF)",
+      "loading_autofill_title": "กำลังประมวลผล CV ของคุณ",
+      "loading_autofill_description": "กรุณารอสักครู่ในขณะที่เรากำลังกรอกข้อมูลโปรไฟล์ของคุณ...",
+      "loading_generating_cv_title": "กำลังสร้าง CV ของคุณ",
+      "loading_generating_cv_description": "กรุณารอสักครู่ในขณะที่เรากำลังสร้าง CV ของคุณ...",
+      "only_year": "เฉพาะปี",
+      "pending_generation": "การสร้างที่รอดำเนินการ",
+      "cv": "CV",
+      "cover_letter": "จดหมายสมัครงาน",
+      "generation_finished": "ไม่มีการสร้างที่เหลือ",
+      "upgrade_plan": "อัปเกรดแผนของคุณ",
+      "payment_redirecting": "กำลังเปลี่ยนเส้นทางไปยังการชำระเงิน...",
+      "analizing_plan": "กำลังวิเคราะห์แผนของคุณ...",
+      "target_language": "ภาษาเป้าหมาย"
+    },
+    "buttons": {
+      "continue": "ดำเนินการต่อ",
+      "add": "เพิ่ม",
+      "resend_email": "ส่งอีเมลอีกครั้ง",
+      "send_email": "ส่งอีเมล",
+      "change_password": "เปลี่ยนรหัสผ่าน",
+      "resend_in": "ส่งอีกครั้งใน {timeleft} วินาที",
+      "try_again": "ลองอีกครั้ง",
+      "too_many_requests": "มีการร้องขอมากเกินไป ลองใหม่ใน 24 ชั่วโมง",
+      "next": "ถัดไป",
+      "previous": "ก่อนหน้า",
+      "go_home": "กลับไปที่หน้าแรก",
+      "add_element": "เพิ่ม {element}",
+      "delete": "ลบ",
+      "cancel": "ยกเลิก",
+      "save": "บันทึก",
+      "discard": "ยกเลิก",
+      "keep_editing": "เก็บการแก้ไข",
+      "clear": "ล้าง",
+      "autofill_button": "กรอกโปรไฟล์จาก CV",
+      "download": "ดาวน์โหลด",
+      "custom_prompt": "คำสั่งที่กำหนดเอง"
+    },
+    "errors": {
+      "login": "การเข้าสู่ระบบล้มเหลว",
+      "login_description": "อีเมลหรือรหัสผ่านไม่ถูกต้อง.",
+      "register": "การลงทะเบียนล้มเหลว",
+      "register_description": "อีเมลนี้ถูกใช้งานแล้ว.",
+      "passwords_not_match": "รหัสผ่านไม่ตรงกัน",
+      "password_change": "การเปลี่ยนรหัสผ่านล้มเหลว",
+      "old_password_incorrect": "รหัสผ่านปัจจุบันไม่ถูกต้อง",
+      "server": "ข้อผิดพลาดของเซิร์ฟเวอร์",
+      "under_age": "คุณต้องมีอายุมากกว่า 18 ปี",
+      "accept_terms": "คุณต้องยอมรับข้อกำหนดและเงื่อนไข",
+      "length": "{field} ต้องมีความยาว {current_length}/{length} ตัวอักษร",
+      "skill_length": "คุณควรป้อนทักษะอย่างน้อย {min} ทักษะ",
+      "country_code_required": "เลือกรหัสประเทศ",
+      "max_elements": "จำนวน {element} สูงสุดที่อนุญาต",
+      "max_elements_description": "คุณสามารถเพิ่ม {max} {element} เท่านั้น",
+      "required": "กรุณากรอกข้อมูลในฟิลด์นี้.",
+      "invalid_email": "อีเมลที่คุณป้อนไม่ถูกต้อง",
+      "password_too_short": "รหัสผ่านควรมีความยาวอย่างน้อย {min} ตัวอักษร",
+      "select_date": "กรุณาเลือกวันที่",
+      "invalid_phone": "หมายเลขโทรศัพท์ไม่ถูกต้อง",
+      "settings": "การอัปเดตการตั้งค่าล้มเหลว",
+      "file_size": "ขนาดไฟล์ควรน้อยกว่า {max}MB",
+      "compression": "มีปัญหาในการประมวลผลภาพ",
+      "autofill": "การกรอกอัตโนมัติล้มเหลว",
+      "dates_impossible": "วันที่สิ้นสุดต้องอยู่หลังวันที่เริ่มต้น",
+      "expiration_impossible": "วันที่หมดอายุต้องอยู่หลังวันที่ออก",
+      "generate_cv": "การสร้าง CV ล้มเหลว",
+      "download_document": "การดาวน์โหลดเอกสารล้มเหลว"
+    },
+    "success": {
+      "password_change": "เปลี่ยนรหัสผ่านแล้ว",
+      "password_change_description": "รหัสผ่านของคุณได้ถูกเปลี่ยนเรียบร้อยแล้ว."
+    },
+    "form": {
+      "first_name": "ชื่อ",
+      "last_name": "นามสกุล",
+      "email": "อีเมล",
+      "password": "รหัสผ่าน",
+      "current_password": "รหัสผ่านปัจจุบัน",
+      "new_password": "รหัสผ่านใหม่",
+      "repeat_password": "กรอกรหัสผ่านอีกครั้ง",
+      "your_location": "สถานที่ของคุณ",
+      "phone": "หมายเลขโทรศัพท์",
+      "about": "เกี่ยวกับคุณ",
+      "company_name": "ชื่อบริษัท",
+      "institution": "สถาบัน",
+      "career": "อาชีพ",
+      "skill": "ทักษะ",
+      "role": "บทบาท",
+      "phone_number": "หมายเลขโทรศัพท์",
+      "phone_country_code": "รหัสประเทศ",
+      "company_description": "คำอธิบายงาน",
+      "location": "สถานที่",
+      "start_date": "วันที่เริ่มต้น",
+      "end_date": "วันที่สิ้นสุด",
+      "project_name": "ชื่อโครงการ",
+      "project_description": "คำอธิบายโครงการ",
+      "link": "ลิงก์",
+      "professional_links_select": "เลือกลิงก์",
+      "skill_description": "ใส่ทักษะอย่างน้อย {min} ทักษะ",
+      "certification_name": "ชื่อการรับรอง",
+      "certification_description": "คำอธิบายการรับรอง",
+      "certificate_id": "รหัสใบรับรอง",
+      "verification_url": "ลิงก์การตรวจสอบ",
+      "issuer": "ผู้ออกใบรับรอง",
+      "issue_date": "วันที่ออก",
+      "expiration_date": "วันที่หมดอายุ",
+      "language": "ภาษา",
+      "level": "ระดับ"
+    },
+    "placeholders": {
+      "enter_first_name": "กรุณากรอกชื่อของคุณ",
+      "enter_last_name": "กรุณากรอกนามสกุลของคุณ",
+      "enter_email": "กรุณากรอกอีเมลของคุณ",
+      "enter_password": "กรุณากรอกรหัสผ่านของคุณ",
+      "enter_current_password": "กรุณากรอกรหัสผ่านปัจจุบันของคุณ",
+      "enter_new_password": "กรุณากรอกรหัสผ่านใหม่ของคุณ",
+      "enter_password_again": "กรุณากรอกรหัสผ่านอีกครั้ง",
+      "enter_skill": "กรุณากรอกทักษะใหม่",
+      "enter_phone": "กรุณากรอกหมายเลขโทรศัพท์ของคุณ",
+      "enter_about": "ฉันคือ ...",
+      "enter_company_name": "ชื่อบริษัท",
+      "enter_institution_name": "ชื่อสถาบัน",
+      "enter_career": "ระดับการศึกษาที่คุณศึกษาอยู่ที่นี่",
+      "enter_role": "บทบาทของคุณในบริษัท",
+      "enter_job_description": "คำอธิบายหน้าที่และความรับผิดชอบในงาน",
+      "enter_your_location": "เมือง, ประเทศ",
+      "enter_location": "\"เมือง, ประเทศ\" หรือ \"ระยะไกล\"",
+      "enter_project_name": "กรุณากรอกชื่อโครงการ",
+      "enter_project_description": "กรุณากรอกคำอธิบายสั้น ๆ",
+      "enter_project_link": "ลิงก์ไปยังโครงการของคุณ",
+      "enter_institution_link": "ลิงก์สถาบัน",
+      "enter_company_link": "ลิงก์บริษัท",
+      "professional_links_select": "คลิกเพื่อเลือก",
+      "enter_your_link": "กรุณากรอกลิงก์ {field} ของคุณ",
+      "enter_certification_name": "กรุณากรอกชื่อการรับรอง",
+      "enter_certification_issuer": "กรุณากรอกผู้ออกใบรับรอง",
+      "enter_certification_certificate_id": "รหัสใบรับรอง",
+      "enter_certification_verification_url": "กรุณากรอกลิงก์การตรวจสอบ",
+      "enter_certification_description": "กรุณากรอกคำอธิบายสั้น ๆ",
+      "enter_language": "กรุณากรอกภาษา",
+      "select_language_level": "เลือกระดับ"
+    },
+    "legal": {
+      "terms_conditions": "ข้อกำหนดและเงื่อนไข",
+      "privacy_policy": "นโยบายความเป็นส่วนตัว",
+      "confirm_age": "ฉันยืนยันว่าฉันมีอายุมากกว่า 18 ปี",
+      "accept_terms": "ฉันยอมรับ <termsConditions></termsConditions> และ <privacyPolicy></privacyPolicy>",
+      "talent_pool": "อนุญาตให้ผู้สรรหาสามารถดูโปรไฟล์ของฉันเพื่อโอกาสในการทำงาน."
+    },
+    "months": {
+      "january": "มกราคม",
+      "february": "กุมภาพันธ์",
+      "march": "มีนาคม",
+      "april": "เมษายน",
+      "may": "พฤษภาคม",
+      "june": "มิถุนายน",
+      "july": "กรกฎาคม",
+      "august": "สิงหาคม",
+      "september": "กันยายน",
+      "october": "ตุลาคม",
+      "november": "พฤศจิกายน",
+      "december": "ธันวาคม"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "การตรวจสอบอีเมล",
+      "already_verified": {
+        "title": "การตรวจสอบอีเมลได้รับการยืนยันแล้ว",
+        "message": "อีเมลของคุณได้รับการยืนยันแล้ว."
+      },
+      "success": {
+        "title": "การตรวจสอบอีเมลสำเร็จ",
+        "message": "อีเมลของคุณได้รับการยืนยันแล้ว."
+      },
+      "expired": {
+        "title": "การตรวจสอบอีเมลหมดอายุ",
+        "message": "ลิงก์การตรวจสอบอีเมลของคุณหมดอายุแล้ว."
+      },
+      "instructions": "เราได้ส่งอีเมลพร้อมลิงก์การตรวจสอบให้คุณแล้ว."
+    },
+    "password_recovery": {
+      "title": "การกู้คืนรหัสผ่าน",
+      "success": {
+        "title": "การกู้คืนรหัสผ่านสำเร็จ",
+        "message": "รหัสผ่านของคุณได้ถูกเปลี่ยนแล้ว."
+      },
+      "fail": {
+        "title": "การกู้คืนรหัสผ่านไม่ถูกต้องหรือหมดอายุ",
+        "message": "ลิงก์การกู้คืนรหัสผ่านของคุณไม่ถูกต้องหรือหมดอายุ."
+      },
+      "instructions": "เราจะส่งอีเมลพร้อมลิงก์เพื่อรีเซ็ตรหัสผ่านของคุณ."
+    },
+    "settings": {
+      "subtitle": "เปลี่ยนการตั้งค่าบัญชีของคุณ",
+      "password": "การตั้งค่ารหัสผ่าน"
+    },
+    "welcome": {
+      "title": "ยินดีต้อนรับสู่ <appName></appName>",
+      "description": "สร้าง CV ที่ไม่ซ้ำกันสำหรับงานที่ไม่ซ้ำกัน."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "เครื่องมือสร้าง CV",
+          "custom_prompt": {
+            "title": "คำสั่งที่กำหนดเอง",
+            "placeholder": "เขียนคำสั่งที่กำหนดเองเพื่อสร้าง CV ของคุณ."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "CV แบบง่าย"
+            },
+            "based_on_role": {
+              "title": "ตามบทบาทหรือตำแหน่ง",
+              "input": {
+                "label": "บทบาทหรือตำแหน่ง",
+                "placeholder": "กรุณากรอกบทบาทหรือตำแหน่งที่คุณสมัคร"
+              }
+            },
+            "based_on_job_post": {
+              "title": "ตามประกาศงาน",
+              "input": {
+                "label": "คำอธิบายประกาศงาน",
+                "placeholder": "วางคำอธิบายประกาศงานที่นี่"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "การสมัครงาน"
+        },
+        "documents": {
+          "title": "เอกสาร",
+          "empty": "ไม่พบเอกสาร."
+        }
+      }
+    },
+    "login": {
+      "description": "กรุณากรอกข้อมูลประจำตัวของคุณ"
+    },
+    "register": {
+      "description": "แนะนำตัวเอง"
+    },
+    "profile": {
+      "subtitle": "ข้อมูลนี้จำเป็นสำหรับการสร้าง CV ของคุณอย่างถูกต้อง.",
+      "sections": {
+        "basic_info": {
+          "title": "ข้อมูลส่วนบุคคล"
+        },
+        "professional_links": {
+          "title": "ลิงก์"
+        },
+        "experience": {
+          "title": "ประสบการณ์",
+          "element": "ประสบการณ์",
+          "is_present": "ฉันกำลังทำงานที่นี่"
+        },
+        "education": {
+          "title": "การศึกษา",
+          "element": "การศึกษา",
+          "is_present": "ฉันกำลังศึกษาอยู่ที่นี่"
+        },
+        "projects": {
+          "title": "โครงการ",
+          "element": "โครงการ",
+          "is_present": "ฉันกำลังทำงานในโครงการนี้"
+        },
+        "certifications": {
+          "title": "การรับรอง",
+          "element": "การรับรอง",
+          "hasnt_expiration_date": "การรับรองนี้ไม่มีวันหมดอายุ"
+        },
+        "languages": {
+          "title": "ภาษา"
+        },
+        "skills": {
+          "title": "ทักษะ"
+        }
+      },
+      "success": {
+        "title": "การลงทะเบียนเสร็จสมบูรณ์",
+        "message": "บัญชีของคุณพร้อมใช้งานแล้ว คุณสามารถเข้าถึงฟีเจอร์ทั้งหมดของแพลตฟอร์มได้แล้ว."
+      },
+      "auto_fill": {
+        "title": "อัปโหลด CV ของคุณเพื่อกรอกโปรไฟล์",
+        "message": "ประหยัดเวลาโดยการอัปโหลด CV ที่มีอยู่ของคุณ — เราจะดึงข้อมูลและกรอกโปรไฟล์ของคุณโดยอัตโนมัติ."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "นโยบายความเป็นส่วนตัวและข้อกำหนดและเงื่อนไข",
+      "description_first_time": "กรุณาอ่านและยอมรับ.",
+      "updating_notice": "เรากำลังอัปเดต <termsConditions></termsConditions> และ <privacyPolicy></privacyPolicy> ของเรา ข้อกำหนดใหม่จะมีผลในหนึ่งเดือนและจะสามารถตรวจสอบได้ก่อนหน้านั้น กรุณาใช้เวลาสักครู่ในการตรวจสอบการเปลี่ยนแปลงที่จะเกิดขึ้น.",
+      "accept_terms": "เรากำลังอัปเดต <termsConditions></termsConditions> และ <privacyPolicy></privacyPolicy> ของเรา โดยการคลิก \"ดำเนินการต่อ\" คุณยอมรับข้อกำหนดที่อัปเดตแล้ว."
+    },
+    "not_found": {
+      "title": "ไม่พบหน้า",
+      "description": "ขออภัย หน้าเว็บที่คุณกำลังมองหาไม่มีอยู่หรือถูกย้าย.",
+      "back": "กลับไปที่หน้าแรก"
+    },
+    "landing_page": {
+      "title": "สร้างเรซูเม่ที่มีผลกระทบด้วย AI",
+      "description": "MultiCV ช่วยให้คุณสร้างเรซูเม่ที่ปรับแต่งตามประกาศงานแต่ละรายการ สร้างขึ้นเพื่อสนับสนุนผู้เชี่ยวชาญด้านเทคนิคด้วยประสบการณ์ที่รวดเร็วและสง่างามที่ขับเคลื่อนด้วย AI.",
+      "start_free": "เริ่มต้นฟรี",
+      "features": {
+        "title": "คุณสามารถทำอะไรกับ MultiCV?",
+        "first": {
+          "title": "ผู้ช่วยอัจฉริยะ",
+          "description": "ขอความช่วยเหลือในการเขียนประสบการณ์ ความสำเร็จ และทักษะของคุณในลักษณะที่ชัดเจน น่าสนใจ และได้รับการปรับแต่ง."
+        },
+        "second": {
+          "title": "เรซูเม่หลายฉบับ",
+          "description": "จัดการเวอร์ชันต่าง ๆ ของเรซูเม่ของคุณสำหรับบริษัท อุตสาหกรรม หรือบทบาททางเทคนิคที่แตกต่างกัน."
+        },
+        "third": {
+          "title": "การปรับเปลี่ยนทันที",
+          "description": "สร้างเรซูเม่เฉพาะงานโดยอัตโนมัติด้วยการคลิกเพียงครั้งเดียว."
+        },
+        "coming_soon": "เร็ว ๆ นี้",
+        "now_available": "พร้อมใช้งานแล้ว"
+      },
+      "vision": {
+        "title": "อนาคตของ MultiCV",
+        "description": "จินตนาการถึงโลกที่คุณไม่ต้องสร้างเรซูเม่เลย ภารกิจของเราคือการเชื่อมต่อผู้คนและบริษัทโดยตรง โดยใช้ AI ในการจัดโครงสร้างโปรไฟล์ของคุณ เน้นจุดแข็งของคุณ และกำจัดการกรองที่ไม่เป็นธรรม.",
+        "start_now": "ฉันต้องการเป็นส่วนหนึ่งของอนาคต"
+      },
+      "cta": {
+        "title": "เริ่มสร้างเรซูเม่ของคุณด้วย AI",
+        "description": "เป็นส่วนหนึ่งของระยะเบต้าและช่วยกำหนดรูปแบบ MultiCV เริ่มสร้างเรซูเม่ที่ชาญฉลาดด้วย AI และเริ่มต้นการค้นหางานของคุณ.",
+        "start_now": "เริ่มต้นตอนนี้"
+      },
+      "pricing_teaser": {
+        "title": "สำรวจแผนที่ยืดหยุ่นของเรา",
+        "description": "เรามีแผนสำหรับทุกคน ค้นหาทุกข้อมูลในหน้าราคาของเรา.",
+        "button": "ดูแผน"
+      },
+      "footer": {
+        "home": "หน้าแรก",
+        "pricing": "ราคา",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "นโยบายความเป็นส่วนตัว",
+        "cookies_policy": "นโยบายคุกกี้",
+        "terms_and_conditions": "ข้อกำหนดและเงื่อนไข",
+        "contact": "ติดต่อ",
+        "all_rights_reserved": "สงวนลิขสิทธิ์ทั้งหมด"
+      }
+    },
+    "pricing": {
+      "title": "แผนราคา",
+      "description": "เลือกแผนที่เหมาะสมกับคุณที่สุด.",
+      "select_button": "เลือกแผน",
+      "current_plan": "แผนปัจจุบัน",
+      "free_plan": {
+        "title": "แผนฟรี",
+        "price": "ฟรี",
+        "description": "สูงสุด 3 CV ต่อเดือน.",
+        "features": {
+          "1": "ลองก่อนซื้อ!",
+          "2": "จำกัดที่ 3 CV ต่อเดือน."
+        }
+      },
+      "occasional_plan": {
+        "title": "แผนชั่วคราว",
+        "price": "€1.99 (ครั้งเดียว)",
+        "description": "CV รวม 10 ฉบับ ไม่มีวันหมดอายุ.",
+        "features": {
+          "1": "ผู้ใช้ทั่วไปที่ต้องการสร้าง CV สักสองสามฉบับ.",
+          "2": "สร้าง CV ส่วนบุคคล 10 ฉบับในราคาน้อยกว่าราคาของเบียร์ 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "แผนรายวัน 15",
+        "price": "€9.99 / 30 วัน",
+        "description": "15 CV ต่อวัน เป็นเวลา 30 วัน.",
+        "features": {
+          "1": "ขีดจำกัดรายวันไม่สะสม.",
+          "2": "ผู้หางานที่สมัครงานอย่างสม่ำเสมอ."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "การชำระเงินถูกยกเลิก",
+        "description": "การชำระเงินของคุณถูกยกเลิก."
+      },
+      "success": {
+        "title": "การชำระเงินสำเร็จ",
+        "description": "การชำระเงินของคุณได้รับการประมวลผลเรียบร้อยแล้ว."
+      },
+      "already_premium": {
+        "title": "เป็นผู้ใช้พรีเมียมอยู่แล้ว",
+        "description": "คุณเป็นผู้ใช้พรีเมียมอยู่แล้ว ใช้แผนปัจจุบันของคุณก่อนที่จะซื้อแผนใหม่."
+      }
+    }
+  }
+}

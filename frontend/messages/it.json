@@ -1,0 +1,441 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Home",
+      "settings": "Impostazioni",
+      "profile": "Profilo"
+    },
+    "auth": {
+      "login": "Accedi",
+      "register": "Registrati",
+      "logout": "Disconnettiti",
+      "google_sign_in": "Accedi con Google",
+      "google_sign_up": "Registrati con Google",
+      "use_other_method": "Usa un altro metodo",
+      "forgot_password": "Hai dimenticato la password?"
+    },
+    "texts": {
+      "delete": "Eliminando {element}",
+      "delete_confirmation": "Sei sicuro di voler eliminare questo {element}?",
+      "skills": "competenze",
+      "draft_changes": "Modifiche in bozza",
+      "draft_changes_description": "Hai modifiche non salvate. Vuoi salvarle?",
+      "havent_finished": "Non hai ancora finito questo {element}.",
+      "discard_changes": "Vuoi continuare a modificare o scartare le modifiche?",
+      "saved": "Salvato",
+      "saved_description": "Le tue modifiche sono state salvate.",
+      "unfinished_element": "{element} non completato",
+      "unfinished_element_description": "Non hai ancora finito questo {element}.",
+      "chat": "Chat AI",
+      "chat_description": "Chatta con la nostra AI per ricevere aiuto",
+      "ai_assistant": "Assistente AI",
+      "type_message": "Scrivi un messaggio...",
+      "generate_cv": "Genera CV",
+      "quota_info": "Informazioni sulla quota",
+      "used": "Utilizzato",
+      "message_left": "Messaggi rimasti: {count}",
+      "generation_left": "Generazioni rimaste: {count}",
+      "languages": "Lingue",
+      "basic": "Base",
+      "intermediate": "Intermedio",
+      "professional": "Professionale",
+      "native": "Madrelingua",
+      "upload_cv": "Carica il tuo CV (PDF)",
+      "loading_autofill_title": "Elaborazione del tuo CV",
+      "loading_autofill_description": "Attendi mentre compiliamo il tuo profilo...",
+      "loading_generating_cv_title": "Generazione del tuo CV",
+      "loading_generating_cv_description": "Attendi mentre generiamo il tuo CV...",
+      "only_year": "Solo anno",
+      "pending_generation": "Generazione in attesa",
+      "cv": "CV",
+      "cover_letter": "Lettera di presentazione",
+      "generation_finished": "Non ci sono più generazioni disponibili",
+      "upgrade_plan": "Aggiorna il tuo piano",
+      "payment_redirecting": "Reindirizzamento al pagamento...",
+      "analizing_plan": "Analizzando il tuo piano...",
+      "target_language": "Lingua target"
+    },
+    "buttons": {
+      "continue": "Continua",
+      "add": "Aggiungi",
+      "resend_email": "Reinvia email",
+      "send_email": "Invia email",
+      "change_password": "Cambia password",
+      "resend_in": "Reinvia tra {timeleft}s",
+      "try_again": "Riprova",
+      "too_many_requests": "Troppe richieste, riprova tra 24 ore",
+      "next": "Avanti",
+      "previous": "Precedente",
+      "go_home": "Torna alla Home",
+      "add_element": "Aggiungi {element}",
+      "delete": "Elimina",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "discard": "Scarta",
+      "keep_editing": "Continua a modificare",
+      "clear": "Pulisci",
+      "autofill_button": "Compila il profilo dal CV",
+      "download": "Scarica",
+      "custom_prompt": "Richiesta personalizzata"
+    },
+    "errors": {
+      "login": "Accesso non riuscito",
+      "login_description": "L'email o la password sono errate.",
+      "register": "Registrazione non riuscita",
+      "register_description": "L'email è già in uso.",
+      "passwords_not_match": "Le password non corrispondono",
+      "password_change": "Cambio password non riuscito",
+      "old_password_incorrect": "La password attuale è errata",
+      "server": "Errore del server",
+      "under_age": "Devi avere più di 18 anni",
+      "accept_terms": "Devi accettare i termini e le condizioni",
+      "length": "Il {field} deve essere lungo {current_length}/{length} caratteri",
+      "skill_length": "Devi inserire almeno {min} competenza",
+      "country_code_required": "Seleziona un codice paese",
+      "max_elements": "Numero massimo di {element} raggiunto",
+      "max_elements_description": "Puoi aggiungere solo {max} {element}",
+      "required": "Per favore, compila questo campo.",
+      "invalid_email": "L'email inserita non è valida",
+      "password_too_short": "La password deve essere lunga almeno {min} caratteri",
+      "select_date": "Seleziona una data",
+      "invalid_phone": "Il numero di telefono non è valido",
+      "settings": "Aggiornamento delle impostazioni non riuscito",
+      "file_size": "La dimensione del file deve essere inferiore a {max}MB",
+      "compression": "C'è stato un problema nell'elaborazione dell'immagine",
+      "autofill": "Compilazione automatica non riuscita",
+      "dates_impossible": "La data di fine deve essere dopo la data di inizio",
+      "expiration_impossible": "La data di scadenza deve essere dopo la data di emissione",
+      "generate_cv": "Generazione del CV non riuscita",
+      "download_document": "Download del documento non riuscito"
+    },
+    "success": {
+      "password_change": "Password cambiata",
+      "password_change_description": "La tua password è stata cambiata con successo."
+    },
+    "form": {
+      "first_name": "Nome",
+      "last_name": "Cognome",
+      "email": "Email",
+      "password": "Password",
+      "current_password": "Password attuale",
+      "new_password": "Nuova password",
+      "repeat_password": "Ripeti password",
+      "your_location": "La tua posizione",
+      "phone": "Numero di telefono",
+      "about": "Informazioni su di te",
+      "company_name": "Azienda",
+      "institution": "Istituzione",
+      "career": "Carriera",
+      "skill": "Competenza",
+      "role": "Ruolo",
+      "phone_number": "Numero di telefono",
+      "phone_country_code": "Codice paese",
+      "company_description": "Descrizione del lavoro",
+      "location": "Posizione",
+      "start_date": "Data di inizio",
+      "end_date": "Data di fine",
+      "project_name": "Nome del progetto",
+      "project_description": "Descrizione del progetto",
+      "link": "Link",
+      "professional_links_select": "Seleziona un link",
+      "skill_description": "Inserisci almeno {min} competenze",
+      "certification_name": "Nome della certificazione",
+      "certification_description": "Descrizione della certificazione",
+      "certificate_id": "ID certificato",
+      "verification_url": "Link di verifica",
+      "issuer": "Emittente della certificazione",
+      "issue_date": "Data di emissione",
+      "expiration_date": "Data di scadenza",
+      "language": "Lingua",
+      "level": "Livello"
+    },
+    "placeholders": {
+      "enter_first_name": "Inserisci il tuo nome",
+      "enter_last_name": "Inserisci il tuo cognome",
+      "enter_email": "Inserisci la tua email",
+      "enter_password": "Inserisci la tua password",
+      "enter_current_password": "Inserisci la tua password attuale",
+      "enter_new_password": "Inserisci la tua nuova password",
+      "enter_password_again": "Inserisci di nuovo la tua password",
+      "enter_skill": "Inserisci una nuova competenza",
+      "enter_phone": "Inserisci il tuo numero di telefono",
+      "enter_about": "Io sono un ...",
+      "enter_company_name": "Nome dell'azienda",
+      "enter_institution_name": "Nome dell'istituzione",
+      "enter_career": "Il titolo di studio che hai studiato / stai studiando qui",
+      "enter_role": "Il tuo ruolo nell'azienda",
+      "enter_job_description": "Una descrizione dei tuoi doveri e responsabilità nel lavoro",
+      "enter_your_location": "Città, Paese",
+      "enter_location": "\"Città, Paese\" o \"Remoto\"",
+      "enter_project_name": "Inserisci il nome del progetto",
+      "enter_project_description": "Inserisci una breve descrizione",
+      "enter_project_link": "Link al tuo progetto",
+      "enter_institution_link": "Link dell'istituzione",
+      "enter_company_link": "Link dell'azienda",
+      "professional_links_select": "Clicca per selezionare",
+      "enter_your_link": "Inserisci il tuo link {field}",
+      "enter_certification_name": "Inserisci il nome della certificazione",
+      "enter_certification_issuer": "Inserisci l'emittente",
+      "enter_certification_certificate_id": "ID certificato",
+      "enter_certification_verification_url": "Inserisci l'URL di verifica",
+      "enter_certification_description": "Inserisci una breve descrizione",
+      "enter_language": "Inserisci una lingua",
+      "select_language_level": "Seleziona un livello"
+    },
+    "legal": {
+      "terms_conditions": "Termini e Condizioni",
+      "privacy_policy": "Informativa sulla privacy",
+      "confirm_age": "Confermo di avere più di 18 anni",
+      "accept_terms": "Accetto i <termsConditions></termsConditions> e <privacyPolicy></privacyPolicy>",
+      "talent_pool": "Consenti ai reclutatori di visualizzare il mio profilo per opportunità di lavoro."
+    },
+    "months": {
+      "january": "Gennaio",
+      "february": "Febbraio",
+      "march": "Marzo",
+      "april": "Aprile",
+      "may": "Maggio",
+      "june": "Giugno",
+      "july": "Luglio",
+      "august": "Agosto",
+      "september": "Settembre",
+      "october": "Ottobre",
+      "november": "Novembre",
+      "december": "Dicembre"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "Verifica Email",
+      "already_verified": {
+        "title": "Verifica Email Già Completata",
+        "message": "La tua email è già stata verificata."
+      },
+      "success": {
+        "title": "Verifica Email Riuscita",
+        "message": "La tua email è stata verificata."
+      },
+      "expired": {
+        "title": "Verifica Email Scaduta",
+        "message": "Il tuo link di verifica email è scaduto."
+      },
+      "instructions": "Ti abbiamo inviato un'email con un link di verifica."
+    },
+    "password_recovery": {
+      "title": "Recupero Password",
+      "success": {
+        "title": "Recupero Password Riuscito",
+        "message": "La tua password è stata cambiata."
+      },
+      "fail": {
+        "title": "Recupero Password Non Valido o Scaduto",
+        "message": "Il tuo link di recupero password è non valido o è scaduto."
+      },
+      "instructions": "Ti invieremo un'email con un link per reimpostare la tua password."
+    },
+    "settings": {
+      "subtitle": "Cambia le impostazioni del tuo account",
+      "password": "Impostazioni password"
+    },
+    "welcome": {
+      "title": "Benvenuto in <appName></appName>",
+      "description": "Crea CV unici per offerte di lavoro uniche."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "Costruttore di CV",
+          "custom_prompt": {
+            "title": "Richiesta Personalizzata",
+            "placeholder": "Scrivi una richiesta personalizzata per generare il tuo CV."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "CV Semplice"
+            },
+            "based_on_role": {
+              "title": "Basato su Ruolo o Posizione",
+              "input": {
+                "label": "Ruolo o posizione",
+                "placeholder": "Inserisci il ruolo o la posizione per cui ti candidi"
+              }
+            },
+            "based_on_job_post": {
+              "title": "Basato su Offerta di Lavoro",
+              "input": {
+                "label": "Descrizione dell'offerta di lavoro",
+                "placeholder": "Incolla qui la descrizione dell'offerta di lavoro"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "Candidature"
+        },
+        "documents": {
+          "title": "Documenti",
+          "empty": "Nessun documento trovato."
+        }
+      }
+    },
+    "login": {
+      "description": "Inserisci le tue credenziali"
+    },
+    "register": {
+      "description": "Presentati"
+    },
+    "profile": {
+      "subtitle": "Queste informazioni sono necessarie per creare correttamente il tuo CV.",
+      "sections": {
+        "basic_info": {
+          "title": "Personali"
+        },
+        "professional_links": {
+          "title": "Link"
+        },
+        "experience": {
+          "title": "Esperienza",
+          "element": "Esperienza",
+          "is_present": "Attualmente lavoro qui"
+        },
+        "education": {
+          "title": "Istruzione",
+          "element": "Istruzione",
+          "is_present": "Attualmente studio qui"
+        },
+        "projects": {
+          "title": "Progetti",
+          "element": "Progetto",
+          "is_present": "Attualmente lavoro a questo progetto"
+        },
+        "certifications": {
+          "title": "Certificazioni",
+          "element": "Certificazione",
+          "hasnt_expiration_date": "Questa certificazione non ha una data di scadenza"
+        },
+        "languages": {
+          "title": "Lingue"
+        },
+        "skills": {
+          "title": "Competenze"
+        }
+      },
+      "success": {
+        "title": "Registrazione Completata",
+        "message": "Il tuo account è pronto. Ora puoi accedere a tutte le funzionalità della piattaforma."
+      },
+      "auto_fill": {
+        "title": "Carica il tuo CV per compilare il tuo profilo",
+        "message": "Risparmia tempo caricando il tuo CV esistente: estrarremo le informazioni e compileremo automaticamente il tuo profilo."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Informativa sulla Privacy e Termini e Condizioni",
+      "description_first_time": "Per favore, leggi e accetta.",
+      "updating_notice": "Stiamo aggiornando i nostri <termsConditions></termsConditions> e <privacyPolicy></privacyPolicy>. I nuovi termini entreranno in vigore tra un mese e saranno disponibili per la revisione prima di allora. Ti preghiamo di prendere un momento per rivedere i prossimi cambiamenti.",
+      "accept_terms": "Stiamo aggiornando i nostri <termsConditions></termsConditions> e <privacyPolicy></privacyPolicy>. Cliccando su \"Continua\", accetti i termini aggiornati."
+    },
+    "not_found": {
+      "title": "Pagina Non Trovata",
+      "description": "Ci dispiace, la pagina che stai cercando non esiste o è stata spostata.",
+      "back": "Torna alla home"
+    },
+    "landing_page": {
+      "title": "Crea curriculum impattanti con l'AI",
+      "description": "MultiCV ti aiuta a generare curriculum personalizzati su misura per ogni offerta di lavoro. Progettato per supportare professionisti tecnici con un'esperienza rapida ed elegante alimentata dall'AI.",
+      "start_free": "Inizia gratuitamente",
+      "features": {
+        "title": "Cosa puoi fare con MultiCV?",
+        "first": {
+          "title": "Assistente Intelligente",
+          "description": "Ricevi aiuto per scrivere la tua esperienza, i tuoi successi e le tue competenze in modo chiaro, coinvolgente e ottimizzato."
+        },
+        "second": {
+          "title": "CV Multipli",
+          "description": "Gestisci diverse versioni del tuo curriculum per diverse aziende, settori o ruoli tecnici."
+        },
+        "third": {
+          "title": "Adattamento Istantaneo",
+          "description": "Genera automaticamente curriculum specifici per il lavoro con un solo clic."
+        },
+        "coming_soon": "In arrivo",
+        "now_available": "Ora disponibile"
+      },
+      "vision": {
+        "title": "Il Futuro di MultiCV",
+        "description": "Immagina un mondo in cui non è nemmeno necessario creare un curriculum. La nostra missione è connettere direttamente persone e aziende, utilizzando l'AI per strutturare il tuo profilo, evidenziare i tuoi punti di forza ed eliminare filtri ingiusti.",
+        "start_now": "Voglio far parte del futuro"
+      },
+      "cta": {
+        "title": "Inizia a costruire il tuo curriculum con l'AI",
+        "description": "Fai parte della nostra fase beta e aiuta a plasmare MultiCV. Inizia a creare curriculum più intelligenti con l'AI e ottieni un vantaggio nella tua ricerca di lavoro.",
+        "start_now": "Inizia ora"
+      },
+      "pricing_teaser": {
+        "title": "Esplora i nostri piani flessibili",
+        "description": "Abbiamo un piano per tutti. Scopri tutti i dettagli nella nostra pagina dei prezzi.",
+        "button": "Vedi Piani"
+      },
+      "footer": {
+        "home": "Pagina Principale",
+        "pricing": "Prezzi",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "Informativa sulla Privacy",
+        "cookies_policy": "Informativa sui Cookie",
+        "terms_and_conditions": "Termini e Condizioni",
+        "contact": "Contatto",
+        "all_rights_reserved": "Tutti i diritti riservati"
+      }
+    },
+    "pricing": {
+      "title": "Piani di Prezzo",
+      "description": "Scegli il piano che meglio si adatta a te.",
+      "select_button": "Seleziona Piano",
+      "current_plan": "Piano Attuale",
+      "free_plan": {
+        "title": "Piano Gratuito",
+        "price": "Gratuito",
+        "description": "Fino a 3 CV al mese.",
+        "features": {
+          "1": "Prova prima di acquistare!",
+          "2": "Limitato a 3 CV al mese."
+        }
+      },
+      "occasional_plan": {
+        "title": "Piano Occasionale",
+        "price": "€1.99 (una tantum)",
+        "description": "10 CV totali, senza scadenza.",
+        "features": {
+          "1": "Utenti occasionali che vogliono creare alcuni CV.",
+          "2": "Genera 10 CV personalizzati per meno del prezzo di una birra 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "Piano Giornaliero 15",
+        "price": "€9.99 / 30 giorni",
+        "description": "15 CV al giorno, per 30 giorni.",
+        "features": {
+          "1": "Limite giornaliero non cumulativo.",
+          "2": "Candidati attivamente che si candidano regolarmente."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Pagamento Annullato",
+        "description": "Il tuo pagamento è stato annullato."
+      },
+      "success": {
+        "title": "Pagamento Riuscito",
+        "description": "Il tuo pagamento è stato elaborato con successo."
+      },
+      "already_premium": {
+        "title": "Già Utente Premium",
+        "description": "Sei già un utente premium. Utilizza il tuo piano attuale prima di acquistarne uno nuovo."
+      }
+    }
+  }
+}

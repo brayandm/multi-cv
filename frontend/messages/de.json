@@ -1,0 +1,441 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Startseite",
+      "settings": "Einstellungen",
+      "profile": "Profil"
+    },
+    "auth": {
+      "login": "Anmelden",
+      "register": "Registrieren",
+      "logout": "Abmelden",
+      "google_sign_in": "Mit Google anmelden",
+      "google_sign_up": "Mit Google registrieren",
+      "use_other_method": "Eine andere Methode verwenden",
+      "forgot_password": "Passwort vergessen?"
+    },
+    "texts": {
+      "delete": "Löschen von {element}",
+      "delete_confirmation": "Sind Sie sicher, dass Sie dieses {element} löschen möchten?",
+      "skills": "Fähigkeiten",
+      "draft_changes": "Entwurf Änderungen",
+      "draft_changes_description": "Sie haben ungespeicherte Änderungen. Möchten Sie sie speichern?",
+      "havent_finished": "Sie haben dieses {element} noch nicht abgeschlossen.",
+      "discard_changes": "Möchten Sie weiter bearbeiten oder die Änderungen verwerfen?",
+      "saved": "Gespeichert",
+      "saved_description": "Ihre Änderungen wurden gespeichert.",
+      "unfinished_element": "Unvollendetes {element}",
+      "unfinished_element_description": "Sie haben dieses {element} noch nicht abgeschlossen.",
+      "chat": "Chat KI",
+      "chat_description": "Chatten Sie mit unserer KI, um Hilfe zu erhalten",
+      "ai_assistant": "KI-Assistent",
+      "type_message": "Nachricht eingeben...",
+      "generate_cv": "CV generieren",
+      "quota_info": "Quota-Info",
+      "used": "Verwendet",
+      "message_left": "Verbleibende Nachrichten: {count}",
+      "generation_left": "Verbleibende Generationen: {count}",
+      "languages": "Sprachen",
+      "basic": "Grundlegend",
+      "intermediate": "Mittelstufe",
+      "professional": "Professionell",
+      "native": "Muttersprache",
+      "upload_cv": "Laden Sie Ihren Lebenslauf hoch (PDF)",
+      "loading_autofill_title": "Verarbeitung Ihres Lebenslaufs",
+      "loading_autofill_description": "Bitte warten Sie, während wir Ihr Profil ausfüllen...",
+      "loading_generating_cv_title": "Generierung Ihres Lebenslaufs",
+      "loading_generating_cv_description": "Bitte warten Sie, während wir Ihren Lebenslauf generieren...",
+      "only_year": "Nur Jahr",
+      "pending_generation": "Ausstehende Generation",
+      "cv": "Lebenslauf",
+      "cover_letter": "Anschreiben",
+      "generation_finished": "Keine weiteren Generationen übrig",
+      "upgrade_plan": "Upgrade Ihren Plan",
+      "payment_redirecting": "Weiterleitung zur Zahlung...",
+      "analizing_plan": "Analyse Ihres Plans...",
+      "target_language": "Zielsprache"
+    },
+    "buttons": {
+      "continue": "Fortfahren",
+      "add": "Hinzufügen",
+      "resend_email": "E-Mail erneut senden",
+      "send_email": "E-Mail senden",
+      "change_password": "Passwort ändern",
+      "resend_in": "Erneut senden in {timeleft}s",
+      "try_again": "Erneut versuchen",
+      "too_many_requests": "Zu viele Anfragen, versuchen Sie es in 24 Stunden erneut",
+      "next": "Weiter",
+      "previous": "Zurück",
+      "go_home": "Zur Startseite",
+      "add_element": "{element} hinzufügen",
+      "delete": "Löschen",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "discard": "Verwerfen",
+      "keep_editing": "Weiter bearbeiten",
+      "clear": "Löschen",
+      "autofill_button": "Profil aus Lebenslauf ausfüllen",
+      "download": "Herunterladen",
+      "custom_prompt": "Benutzerdefinierte Eingabeaufforderung"
+    },
+    "errors": {
+      "login": "Anmeldung fehlgeschlagen",
+      "login_description": "Die E-Mail oder das Passwort ist falsch.",
+      "register": "Registrierung fehlgeschlagen",
+      "register_description": "Die E-Mail wird bereits verwendet.",
+      "passwords_not_match": "Die Passwörter stimmen nicht überein",
+      "password_change": "Passwortänderung fehlgeschlagen",
+      "old_password_incorrect": "Das aktuelle Passwort ist falsch",
+      "server": "Serverfehler",
+      "under_age": "Sie müssen über 18 Jahre alt sein",
+      "accept_terms": "Sie müssen die Allgemeinen Geschäftsbedingungen akzeptieren",
+      "length": "Das {field} muss {current_length}/{length} Zeichen lang sein",
+      "skill_length": "Sie sollten mindestens {min} Fähigkeit eingeben",
+      "country_code_required": "Wählen Sie einen Ländercode aus",
+      "max_elements": "Maximale Anzahl von {element} erreicht",
+      "max_elements_description": "Sie können nur {max} {element} hinzufügen",
+      "required": "Bitte füllen Sie dieses Feld aus.",
+      "invalid_email": "Die eingegebene E-Mail ist nicht gültig",
+      "password_too_short": "Das Passwort sollte mindestens {min} Zeichen lang sein",
+      "select_date": "Bitte wählen Sie ein Datum aus",
+      "invalid_phone": "Die Telefonnummer ist nicht gültig",
+      "settings": "Einstellungen konnten nicht aktualisiert werden",
+      "file_size": "Die Dateigröße sollte weniger als {max}MB betragen",
+      "compression": "Es gab ein Problem bei der Verarbeitung des Bildes",
+      "autofill": "Autofill fehlgeschlagen",
+      "dates_impossible": "Das Enddatum muss nach dem Startdatum liegen",
+      "expiration_impossible": "Das Ablaufdatum muss nach dem Ausstellungsdatum liegen",
+      "generate_cv": "CV-Generierung fehlgeschlagen",
+      "download_document": "Dokumenten-Download fehlgeschlagen"
+    },
+    "success": {
+      "password_change": "Passwort geändert",
+      "password_change_description": "Ihr Passwort wurde erfolgreich geändert."
+    },
+    "form": {
+      "first_name": "Vorname",
+      "last_name": "Nachname",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "current_password": "Aktuelles Passwort",
+      "new_password": "Neues Passwort",
+      "repeat_password": "Passwort wiederholen",
+      "your_location": "Ihr Standort",
+      "phone": "Telefonnummer",
+      "about": "Über Sie",
+      "company_name": "Unternehmen",
+      "institution": "Institution",
+      "career": "Karriere",
+      "skill": "Fähigkeit",
+      "role": "Rolle",
+      "phone_number": "Telefonnummer",
+      "phone_country_code": "Ländercode",
+      "company_description": "Stellenbeschreibung",
+      "location": "Standort",
+      "start_date": "Startdatum",
+      "end_date": "Enddatum",
+      "project_name": "Projektname",
+      "project_description": "Projektbeschreibung",
+      "link": "Link",
+      "professional_links_select": "Link auswählen",
+      "skill_description": "Geben Sie mindestens {min} Fähigkeiten ein",
+      "certification_name": "Zertifikatsname",
+      "certification_description": "Zertifikatsbeschreibung",
+      "certificate_id": "Zertifikat-ID",
+      "verification_url": "Überprüfungslink",
+      "issuer": "Zertifikatsaussteller",
+      "issue_date": "Ausstellungsdatum",
+      "expiration_date": "Ablaufdatum",
+      "language": "Sprache",
+      "level": "Niveau"
+    },
+    "placeholders": {
+      "enter_first_name": "Geben Sie Ihren Vornamen ein",
+      "enter_last_name": "Geben Sie Ihren Nachnamen ein",
+      "enter_email": "Geben Sie Ihre E-Mail ein",
+      "enter_password": "Geben Sie Ihr Passwort ein",
+      "enter_current_password": "Geben Sie Ihr aktuelles Passwort ein",
+      "enter_new_password": "Geben Sie Ihr neues Passwort ein",
+      "enter_password_again": "Geben Sie Ihr Passwort erneut ein",
+      "enter_skill": "Geben Sie eine neue Fähigkeit ein",
+      "enter_phone": "Geben Sie Ihre Telefonnummer ein",
+      "enter_about": "Ich bin ein ...",
+      "enter_company_name": "Unternehmensname",
+      "enter_institution_name": "Institutionsname",
+      "enter_career": "Der Abschluss, den Sie hier studiert haben / studieren",
+      "enter_role": "Ihre Rolle im Unternehmen",
+      "enter_job_description": "Eine Beschreibung Ihrer Aufgaben und Verantwortlichkeiten im Job",
+      "enter_your_location": "Stadt, Land",
+      "enter_location": "\"Stadt, Land\" oder \"Remote\"",
+      "enter_project_name": "Geben Sie den Projektnamen ein",
+      "enter_project_description": "Geben Sie eine kurze Beschreibung ein",
+      "enter_project_link": "Link zu Ihrem Projekt",
+      "enter_institution_link": "Institutionslink",
+      "enter_company_link": "Unternehmenslink",
+      "professional_links_select": "Klicken Sie, um auszuwählen",
+      "enter_your_link": "Geben Sie Ihren {field} Link ein",
+      "enter_certification_name": "Geben Sie den Zertifikatsnamen ein",
+      "enter_certification_issuer": "Geben Sie den Aussteller ein",
+      "enter_certification_certificate_id": "Zertifikat-ID",
+      "enter_certification_verification_url": "Geben Sie die Überprüfungs-URL ein",
+      "enter_certification_description": "Geben Sie eine kurze Beschreibung ein",
+      "enter_language": "Geben Sie eine Sprache ein",
+      "select_language_level": "Wählen Sie ein Niveau"
+    },
+    "legal": {
+      "terms_conditions": "Allgemeine Geschäftsbedingungen",
+      "privacy_policy": "Datenschutzrichtlinie",
+      "confirm_age": "Ich bestätige, dass ich über 18 Jahre alt bin",
+      "accept_terms": "Ich akzeptiere die <termsConditions></termsConditions> und <privacyPolicy></privacyPolicy>",
+      "talent_pool": "Erlauben Sie Recruitern, mein Profil für Jobmöglichkeiten zu sehen."
+    },
+    "months": {
+      "january": "Januar",
+      "february": "Februar",
+      "march": "März",
+      "april": "April",
+      "may": "Mai",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "August",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "Dezember"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "E-Mail-Verifizierung",
+      "already_verified": {
+        "title": "E-Mail-Verifizierung bereits bestätigt",
+        "message": "Ihre E-Mail wurde bereits verifiziert."
+      },
+      "success": {
+        "title": "E-Mail-Verifizierung erfolgreich",
+        "message": "Ihre E-Mail wurde verifiziert."
+      },
+      "expired": {
+        "title": "E-Mail-Verifizierung abgelaufen",
+        "message": "Ihr Verifizierungslink für die E-Mail ist abgelaufen."
+      },
+      "instructions": "Wir haben Ihnen eine E-Mail mit einem Verifizierungslink gesendet."
+    },
+    "password_recovery": {
+      "title": "Passwort-Wiederherstellung",
+      "success": {
+        "title": "Passwort-Wiederherstellung erfolgreich",
+        "message": "Ihr Passwort wurde geändert."
+      },
+      "fail": {
+        "title": "Passwort-Wiederherstellung ungültig oder abgelaufen",
+        "message": "Ihr Link zur Passwortwiederherstellung ist ungültig oder abgelaufen."
+      },
+      "instructions": "Wir senden Ihnen eine E-Mail mit einem Link zum Zurücksetzen Ihres Passworts."
+    },
+    "settings": {
+      "subtitle": "Ändern Sie Ihre Kontoeinstellungen",
+      "password": "Passworteinstellungen"
+    },
+    "welcome": {
+      "title": "Willkommen bei <appName></appName>",
+      "description": "Erstellen Sie einzigartige Lebensläufe für einzigartige Stellenangebote."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "CV-Builder",
+          "custom_prompt": {
+            "title": "Benutzerdefinierte Eingabeaufforderung",
+            "placeholder": "Schreiben Sie eine benutzerdefinierte Eingabeaufforderung, um Ihren Lebenslauf zu generieren."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "Einfacher Lebenslauf"
+            },
+            "based_on_role": {
+              "title": "Basierend auf Rolle oder Position",
+              "input": {
+                "label": "Rolle oder Position",
+                "placeholder": "Geben Sie die Rolle oder Position ein, für die Sie sich bewerben"
+              }
+            },
+            "based_on_job_post": {
+              "title": "Basierend auf Stellenangebot",
+              "input": {
+                "label": "Stellenangebotsbeschreibung",
+                "placeholder": "Fügen Sie hier die Stellenangebotsbeschreibung ein"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "Bewerbungen"
+        },
+        "documents": {
+          "title": "Dokumente",
+          "empty": "Keine Dokumente gefunden."
+        }
+      }
+    },
+    "login": {
+      "description": "Bitte geben Sie Ihre Anmeldedaten ein"
+    },
+    "register": {
+      "description": "Stellen Sie sich vor"
+    },
+    "profile": {
+      "subtitle": "Diese Informationen sind notwendig, um Ihren Lebenslauf korrekt zu erstellen.",
+      "sections": {
+        "basic_info": {
+          "title": "Persönlich"
+        },
+        "professional_links": {
+          "title": "Links"
+        },
+        "experience": {
+          "title": "Erfahrung",
+          "element": "Erfahrung",
+          "is_present": "Ich arbeite derzeit hier"
+        },
+        "education": {
+          "title": "Bildung",
+          "element": "Bildung",
+          "is_present": "Ich studiere derzeit hier"
+        },
+        "projects": {
+          "title": "Projekte",
+          "element": "Projekt",
+          "is_present": "Ich arbeite derzeit an diesem Projekt"
+        },
+        "certifications": {
+          "title": "Zertifizierungen",
+          "element": "Zertifizierung",
+          "hasnt_expiration_date": "Diese Zertifizierung hat kein Ablaufdatum"
+        },
+        "languages": {
+          "title": "Sprachen"
+        },
+        "skills": {
+          "title": "Fähigkeiten"
+        }
+      },
+      "success": {
+        "title": "Registrierung abgeschlossen",
+        "message": "Ihr Konto ist bereit. Sie können jetzt auf alle Funktionen der Plattform zugreifen."
+      },
+      "auto_fill": {
+        "title": "Laden Sie Ihren Lebenslauf hoch, um Ihr Profil auszufüllen",
+        "message": "Sparen Sie Zeit, indem Sie Ihren vorhandenen Lebenslauf hochladen – wir extrahieren die Informationen und füllen Ihr Profil automatisch aus."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Datenschutzrichtlinie und Allgemeine Geschäftsbedingungen",
+      "description_first_time": "Bitte lesen und akzeptieren Sie.",
+      "updating_notice": "Wir aktualisieren unsere <termsConditions></termsConditions> und <privacyPolicy></privacyPolicy>. Die neuen Bedingungen treten in einem Monat in Kraft und sind vorher zur Überprüfung verfügbar. Bitte nehmen Sie sich einen Moment Zeit, um die bevorstehenden Änderungen zu überprüfen.",
+      "accept_terms": "Wir aktualisieren unsere <termsConditions></termsConditions> und <privacyPolicy></privacyPolicy>. Durch Klicken auf \"Fortfahren\" stimmen Sie den aktualisierten Bedingungen zu."
+    },
+    "not_found": {
+      "title": "Seite nicht gefunden",
+      "description": "Entschuldigung, die von Ihnen gesuchte Seite existiert nicht oder wurde verschoben.",
+      "back": "Zurück zur Startseite"
+    },
+    "landing_page": {
+      "title": "Erstellen Sie beeindruckende Lebensläufe mit KI",
+      "description": "MultiCV hilft Ihnen, personalisierte Lebensläufe zu erstellen, die auf jedes Stellenangebot zugeschnitten sind. Entwickelt, um technischen Fachleuten eine schnelle und elegante KI-gestützte Erfahrung zu bieten.",
+      "start_free": "Kostenlos starten",
+      "features": {
+        "title": "Was können Sie mit MultiCV tun?",
+        "first": {
+          "title": "Intelligenter Assistent",
+          "description": "Holen Sie sich Hilfe beim Schreiben Ihrer Erfahrungen, Erfolge und Fähigkeiten auf klare, ansprechende und optimierte Weise."
+        },
+        "second": {
+          "title": "Mehrere Lebensläufe",
+          "description": "Verwalten Sie verschiedene Versionen Ihres Lebenslaufs für verschiedene Unternehmen, Branchen oder technische Rollen."
+        },
+        "third": {
+          "title": "Sofortige Anpassung",
+          "description": "Generieren Sie mit einem einzigen Klick automatisch jobspezifische Lebensläufe."
+        },
+        "coming_soon": "Demnächst",
+        "now_available": "Jetzt verfügbar"
+      },
+      "vision": {
+        "title": "Die Zukunft von MultiCV",
+        "description": "Stellen Sie sich eine Welt vor, in der Sie nicht einmal einen Lebenslauf erstellen müssen. Unsere Mission ist es, Menschen und Unternehmen direkt zu verbinden, indem KI Ihr Profil strukturiert, Ihre Stärken hervorhebt und ungerechte Filter eliminiert.",
+        "start_now": "Ich möchte Teil der Zukunft sein"
+      },
+      "cta": {
+        "title": "Beginnen Sie mit dem Erstellen Ihres Lebenslaufs mit KI",
+        "description": "Seien Sie Teil unserer Beta-Phase und helfen Sie, MultiCV zu gestalten. Beginnen Sie damit, intelligentere Lebensläufe mit KI zu erstellen und sich einen Vorsprung bei Ihrer Jobsuche zu verschaffen.",
+        "start_now": "Jetzt starten"
+      },
+      "pricing_teaser": {
+        "title": "Entdecken Sie unsere flexiblen Pläne",
+        "description": "Wir haben einen Plan für jeden. Entdecken Sie alle Details auf unserer Preisseite.",
+        "button": "Pläne ansehen"
+      },
+      "footer": {
+        "home": "Hauptseite",
+        "pricing": "Preise",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "Datenschutzrichtlinie",
+        "cookies_policy": "Cookies-Richtlinie",
+        "terms_and_conditions": "Allgemeine Geschäftsbedingungen",
+        "contact": "Kontakt",
+        "all_rights_reserved": "Alle Rechte vorbehalten"
+      }
+    },
+    "pricing": {
+      "title": "Preise",
+      "description": "Wählen Sie den Plan, der am besten zu Ihnen passt.",
+      "select_button": "Plan auswählen",
+      "current_plan": "Aktueller Plan",
+      "free_plan": {
+        "title": "Kostenloser Plan",
+        "price": "Kostenlos",
+        "description": "Bis zu 3 Lebensläufe pro Monat.",
+        "features": {
+          "1": "Testen Sie, bevor Sie kaufen!",
+          "2": "Begrenzt auf 3 Lebensläufe pro Monat."
+        }
+      },
+      "occasional_plan": {
+        "title": "Gelegentlicher Plan",
+        "price": "€1,99 (einmalig)",
+        "description": "10 insgesamt Lebensläufe, kein Ablaufdatum.",
+        "features": {
+          "1": "Gelegentliche Nutzer, die ein paar Lebensläufe erstellen möchten.",
+          "2": "Generieren Sie 10 personalisierte Lebensläufe für weniger als den Preis eines Biers 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "Täglicher Plan 15",
+        "price": "€9,99 / 30 Tage",
+        "description": "15 Lebensläufe pro Tag, für 30 Tage.",
+        "features": {
+          "1": "Nicht kumulativer täglicher Limit.",
+          "2": "Stellenbewerber, die regelmäßig aktiv Bewerbungen einreichen."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Zahlung abgebrochen",
+        "description": "Ihre Zahlung wurde abgebrochen."
+      },
+      "success": {
+        "title": "Zahlung erfolgreich",
+        "description": "Ihre Zahlung wurde erfolgreich verarbeitet."
+      },
+      "already_premium": {
+        "title": "Bereits ein Premium-Nutzer",
+        "description": "Sie sind bereits ein Premium-Nutzer. Nutzen Sie Ihren aktuellen Plan, bevor Sie einen neuen kaufen."
+      }
+    }
+  }
+}

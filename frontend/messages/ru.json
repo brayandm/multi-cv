@@ -55,7 +55,8 @@
       "generation_finished": "Больше нет доступных генераций",
       "upgrade_plan": "Обновите свой тарифный план",
       "payment_redirecting": "Перенаправление на оплату...",
-      "analizing_plan": "Анализ вашего плана..."
+      "analizing_plan": "Анализ вашего плана...",
+      "target_language": "Целевой язык"
     },
     "buttons": {
       "continue": "Продолжить",

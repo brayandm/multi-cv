@@ -11,15 +11,23 @@ from langchain.schema import SystemMessage
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
 
+from app.classes.models.traduction import LANGUAGE_NAME_BY_LOCALE
+
 load_dotenv(dotenv_path=".env")
 api_key: str = os.environ.get("OPENAI_API_KEY") or ""
 
-source_path: str = "../frontend/messages/en.json"
+base_paths: list[str] = [
+    "../frontend/messages",
+    "./app/utils/traductions/cv",
+]
 
-with open(source_path, "r", encoding="utf-8") as f:
-    en_data: OrderedDict[str, Any] = json.load(
-        f, object_pairs_hook=OrderedDict
-    )
+target_languages: list[dict[str, str]] = [
+    {"code": code, "language": name}
+    for code, name in LANGUAGE_NAME_BY_LOCALE.items()
+    if code != "en"
+]
+
+print("Available languages:", target_languages)
 
 
 def flatten(
@@ -48,14 +56,6 @@ def unflatten(d: dict[str, str], sep: str = ".") -> OrderedDict[str, Any]:
     return result
 
 
-en_flat: OrderedDict[str, str] = flatten(en_data)
-
-target_languages: list[dict[str, str]] = [
-    {"code": "es", "language": "Spanish"},
-    {"code": "ru", "language": "Russian"},
-    {"code": "hi", "language": "Romanized Hindi"},
-]
-
 chat_prompt: ChatPromptTemplate = ChatPromptTemplate.from_messages(
     [
         SystemMessage(
@@ -63,9 +63,9 @@ chat_prompt: ChatPromptTemplate = ChatPromptTemplate.from_messages(
                 "You are an expert translator and developer familiar with "
                 "the NextIntl file format used in Next.js applications. "
                 "You will be given a JSON file with translation strings in "
-                "English. Your task is to translate the values into the target"
-                "language, keeping the JSON structure and keys identical. "
-                "Return only the translated JSON with flat keys."
+                "English. Your task is to translate the values into the"
+                "target language, keeping the JSON structure and keys"
+                "identical. Return only the translated JSON with flat keys. "
                 "No extra text."
             )
         ),
@@ -84,10 +84,20 @@ llm: ChatOpenAI = ChatOpenAI(
 chain = chat_prompt | llm
 
 
-def translate_and_sync_nested(target: dict[str, str]) -> str:
+def translate_and_sync_nested(base_path: str, target: dict[str, str]) -> str:
+    source_path: str = os.path.join(base_path, "en.json")
+    if not os.path.exists(source_path):
+        raise FileNotFoundError(f"Missing source file: {source_path}")
+
+    with open(source_path, "r", encoding="utf-8") as f:
+        en_data: OrderedDict[str, Any] = json.load(
+            f, object_pairs_hook=OrderedDict
+        )
+    en_flat: OrderedDict[str, str] = flatten(en_data)
+
     code: str = target["code"]
     lang: str = target["language"]
-    output_path: str = f"../frontend/messages/{code}.json"
+    output_path: str = os.path.join(base_path, f"{code}.json")
 
     if os.path.exists(output_path):
         with open(output_path, "r", encoding="utf-8") as f:
@@ -134,7 +144,8 @@ def translate_and_sync_nested(target: dict[str, str]) -> str:
 def main() -> None:
     with ThreadPoolExecutor() as executor:
         futures = [
-            executor.submit(translate_and_sync_nested, target)
+            executor.submit(translate_and_sync_nested, base_path, target)
+            for base_path in base_paths
             for target in target_languages
         ]
         for future in as_completed(futures):

@@ -6,16 +6,11 @@ WORKDIR /app
 
 RUN pip install --no-cache-dir pipenv
 
-RUN apt-get update
-
-RUN apt-get install -y \
-        texlive-latex-base \
-        texlive-latex-extra \
-        texlive-latex-recommended \
-        texlive-fonts-recommended
-
-RUN apt-get install -y texlive-lang-european \
-        texlive-lang-cyrillic \
-        texlive-lang-chinese \
-        texlive-lang-japanese \
-        texlive-lang-korean
+RUN apt-get update && apt-get install -y \
+    texlive-xetex \                       
+    texlive-latex-base \
+    texlive-latex-recommended \
+    texlive-latex-extra \
+    texlive-fonts-recommended \
+    texlive-lang-all && \
+    apt-get clean && rm -rf /var/lib/apt/lists/*

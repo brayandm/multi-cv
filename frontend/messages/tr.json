@@ -1,0 +1,441 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Ana Sayfa",
+      "settings": "Ayarlar",
+      "profile": "Profil"
+    },
+    "auth": {
+      "login": "Giriş Yap",
+      "register": "Kayıt Ol",
+      "logout": "Çıkış Yap",
+      "google_sign_in": "Google ile Giriş Yap",
+      "google_sign_up": "Google ile Kayıt Ol",
+      "use_other_method": "Başka bir yöntem kullan",
+      "forgot_password": "Şifrenizi mi unuttunuz?"
+    },
+    "texts": {
+      "delete": "{element} siliniyor",
+      "delete_confirmation": "Bu {element} silmek istediğinize emin misiniz?",
+      "skills": "yetenekler",
+      "draft_changes": "Taslak değişiklikler",
+      "draft_changes_description": "Kaydedilmemiş değişiklikleriniz var. Onları kaydetmek ister misiniz?",
+      "havent_finished": "Bu {element} henüz tamamlanmadı.",
+      "discard_changes": "Düzenlemeye devam etmek mi yoksa değişiklikleri iptal etmek mi istersiniz?",
+      "saved": "Kaydedildi",
+      "saved_description": "Değişiklikleriniz kaydedildi.",
+      "unfinished_element": "Tamamlanmamış {element}",
+      "unfinished_element_description": "Bu {element} henüz tamamlanmadı.",
+      "chat": "AI Sohbeti",
+      "chat_description": "Yardım almak için AI ile sohbet edin",
+      "ai_assistant": "AI Asistanı",
+      "type_message": "Bir mesaj yazın...",
+      "generate_cv": "CV Oluştur",
+      "quota_info": "Kota Bilgisi",
+      "used": "Kullanıldı",
+      "message_left": "Kalan mesajlar: {count}",
+      "generation_left": "Kalan üretimler: {count}",
+      "languages": "Diller",
+      "basic": "Temel",
+      "intermediate": "Orta",
+      "professional": "Profesyonel",
+      "native": "Ana dil",
+      "upload_cv": "CV'nizi yükleyin (PDF)",
+      "loading_autofill_title": "CV'nizi işliyoruz",
+      "loading_autofill_description": "Profilinizi doldururken lütfen bekleyin...",
+      "loading_generating_cv_title": "CV'nizi oluşturuyoruz",
+      "loading_generating_cv_description": "CV'nizi oluştururken lütfen bekleyin...",
+      "only_year": "Sadece yıl",
+      "pending_generation": "Bekleyen üretim",
+      "cv": "CV",
+      "cover_letter": "Ön Yazı",
+      "generation_finished": "Başka üretim kalmadı",
+      "upgrade_plan": "Planınızı yükseltin",
+      "payment_redirecting": "Ödeme sayfasına yönlendiriliyor...",
+      "analizing_plan": "Planınızı analiz ediyoruz...",
+      "target_language": "Hedef dil"
+    },
+    "buttons": {
+      "continue": "Devam Et",
+      "add": "Ekle",
+      "resend_email": "E-postayı yeniden gönder",
+      "send_email": "E-posta gönder",
+      "change_password": "Şifreyi değiştir",
+      "resend_in": "{timeleft}s içinde yeniden gönder",
+      "try_again": "Tekrar dene",
+      "too_many_requests": "Çok fazla istek, 24 saat içinde tekrar deneyin",
+      "next": "Sonraki",
+      "previous": "Önceki",
+      "go_home": "Ana Sayfaya Git",
+      "add_element": "{element} Ekle",
+      "delete": "Sil",
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "discard": "İptal Et",
+      "keep_editing": "Düzenlemeye devam et",
+      "clear": "Temizle",
+      "autofill_button": "CV'den profili doldur",
+      "download": "İndir",
+      "custom_prompt": "Özel İstek"
+    },
+    "errors": {
+      "login": "Giriş başarısız",
+      "login_description": "E-posta veya şifre yanlış.",
+      "register": "Kayıt başarısız",
+      "register_description": "E-posta zaten kullanılıyor.",
+      "passwords_not_match": "Şifreler eşleşmiyor",
+      "password_change": "Şifre değişikliği başarısız",
+      "old_password_incorrect": "Mevcut şifre yanlış",
+      "server": "Sunucu hatası",
+      "under_age": "18 yaşından büyük olmalısınız",
+      "accept_terms": "Şartlar ve koşulları kabul etmelisiniz",
+      "length": "{field} {current_length}/{length} karakter uzunluğunda olmalıdır",
+      "skill_length": "En az {min} yetenek girmelisiniz",
+      "country_code_required": "Bir ülke kodu seçin",
+      "max_elements": "Maksimum {element} sayısına ulaşıldı",
+      "max_elements_description": "Sadece {max} {element} ekleyebilirsiniz",
+      "required": "Lütfen bu alanı doldurun.",
+      "invalid_email": "Girdiğiniz e-posta geçerli değil",
+      "password_too_short": "Şifre en az {min} karakter uzunluğunda olmalıdır",
+      "select_date": "Lütfen bir tarih seçin",
+      "invalid_phone": "Telefon numarası geçerli değil",
+      "settings": "Ayarlar güncellemesi başarısız",
+      "file_size": "Dosya boyutu {max}MB'dan az olmalıdır",
+      "compression": "Görüntüyü işlerken bir sorun oluştu",
+      "autofill": "Otomatik doldurma başarısız",
+      "dates_impossible": "Bitiş tarihi başlangıç tarihinden sonra olmalıdır",
+      "expiration_impossible": "Son kullanma tarihi, düzenleme tarihinden sonra olmalıdır",
+      "generate_cv": "CV oluşturma başarısız",
+      "download_document": "Belge indirme başarısız"
+    },
+    "success": {
+      "password_change": "Şifre değiştirildi",
+      "password_change_description": "Şifreniz başarıyla değiştirildi."
+    },
+    "form": {
+      "first_name": "Ad",
+      "last_name": "Soyad",
+      "email": "E-posta",
+      "password": "Şifre",
+      "current_password": "Mevcut şifre",
+      "new_password": "Yeni şifre",
+      "repeat_password": "Şifreyi tekrar et",
+      "your_location": "Konumunuz",
+      "phone": "Telefon numarası",
+      "about": "Hakkınızda",
+      "company_name": "Şirket",
+      "institution": "Kurum",
+      "career": "Kariyer",
+      "skill": "Yetenek",
+      "role": "Rol",
+      "phone_number": "Telefon numarası",
+      "phone_country_code": "Ülke kodu",
+      "company_description": "İş Tanımı",
+      "location": "Konum",
+      "start_date": "Başlangıç tarihi",
+      "end_date": "Bitiş tarihi",
+      "project_name": "Proje adı",
+      "project_description": "Proje açıklaması",
+      "link": "Bağlantı",
+      "professional_links_select": "Bir bağlantı seçin",
+      "skill_description": "En az {min} yetenek girin",
+      "certification_name": "Sertifika adı",
+      "certification_description": "Sertifika açıklaması",
+      "certificate_id": "Sertifika ID",
+      "verification_url": "Doğrulama Bağlantısı",
+      "issuer": "Sertifika veren",
+      "issue_date": "Veriliş tarihi",
+      "expiration_date": "Son kullanma tarihi",
+      "language": "Dil",
+      "level": "Seviye"
+    },
+    "placeholders": {
+      "enter_first_name": "Adınızı girin",
+      "enter_last_name": "Soyadınızı girin",
+      "enter_email": "E-posta adresinizi girin",
+      "enter_password": "Şifrenizi girin",
+      "enter_current_password": "Mevcut şifrenizi girin",
+      "enter_new_password": "Yeni şifrenizi girin",
+      "enter_password_again": "Şifrenizi tekrar girin",
+      "enter_skill": "Yeni bir yetenek girin",
+      "enter_phone": "Telefon numaranızı girin",
+      "enter_about": "Ben bir ...",
+      "enter_company_name": "Şirket adı",
+      "enter_institution_name": "Kurum adı",
+      "enter_career": "Burada okuduğunuz/okuduğunuz bölüm",
+      "enter_role": "Şirketteki rolünüz",
+      "enter_job_description": "İşteki görev ve sorumluluklarınızın açıklaması",
+      "enter_your_location": "Şehir, Ülke",
+      "enter_location": "\"Şehir, Ülke\" veya \"Uzaktan\"",
+      "enter_project_name": "Proje adını girin",
+      "enter_project_description": "Kısa bir açıklama girin",
+      "enter_project_link": "Projenize bağlantı",
+      "enter_institution_link": "Kurum bağlantısı",
+      "enter_company_link": "Şirket bağlantısı",
+      "professional_links_select": "Seçmek için tıklayın",
+      "enter_your_link": "{field} bağlantınızı girin",
+      "enter_certification_name": "Sertifika adını girin",
+      "enter_certification_issuer": "Vereni girin",
+      "enter_certification_certificate_id": "Sertifika ID",
+      "enter_certification_verification_url": "Doğrulama URL'sini girin",
+      "enter_certification_description": "Kısa bir açıklama girin",
+      "enter_language": "Bir dil girin",
+      "select_language_level": "Bir seviye seçin"
+    },
+    "legal": {
+      "terms_conditions": "Şartlar ve Koşullar",
+      "privacy_policy": "Gizlilik Politikası",
+      "confirm_age": "18 yaşından büyük olduğumu onaylıyorum",
+      "accept_terms": "<termsConditions></termsConditions> ve <privacyPolicy></privacyPolicy> kabul ediyorum",
+      "talent_pool": "İş fırsatları için profilimi görüntülemelerine izin ver."
+    },
+    "months": {
+      "january": "Ocak",
+      "february": "Şubat",
+      "march": "Mart",
+      "april": "Nisan",
+      "may": "Mayıs",
+      "june": "Haziran",
+      "july": "Temmuz",
+      "august": "Ağustos",
+      "september": "Eylül",
+      "october": "Ekim",
+      "november": "Kasım",
+      "december": "Aralık"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "E-posta Doğrulama",
+      "already_verified": {
+        "title": "E-posta Doğrulaması Zaten Doğrulandı",
+        "message": "E-posta adresiniz zaten doğrulandı."
+      },
+      "success": {
+        "title": "E-posta Doğrulama Başarılı",
+        "message": "E-posta adresiniz doğrulandı."
+      },
+      "expired": {
+        "title": "E-posta Doğrulama Süresi Dolmuş",
+        "message": "E-posta doğrulama bağlantınızın süresi dolmuş."
+      },
+      "instructions": "Size bir doğrulama bağlantısı içeren bir e-posta gönderdik."
+    },
+    "password_recovery": {
+      "title": "Şifre Kurtarma",
+      "success": {
+        "title": "Şifre Kurtarma Başarılı",
+        "message": "Şifreniz değiştirildi."
+      },
+      "fail": {
+        "title": "Şifre Kurtarma Geçersiz veya Süresi Dolmuş",
+        "message": "Şifre kurtarma bağlantınız geçersiz veya süresi dolmuş."
+      },
+      "instructions": "Size şifrenizi sıfırlamak için bir bağlantı içeren bir e-posta göndereceğiz."
+    },
+    "settings": {
+      "subtitle": "Hesap ayarlarınızı değiştirin",
+      "password": "Şifre ayarları"
+    },
+    "welcome": {
+      "title": "<appName></appName>'ya Hoş Geldiniz",
+      "description": "Eşsiz iş ilanları için eşsiz CV'ler oluşturun."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "CV Oluşturucu",
+          "custom_prompt": {
+            "title": "Özel İstek",
+            "placeholder": "CV'nizi oluşturmak için özel bir istek yazın."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "Basit CV"
+            },
+            "based_on_role": {
+              "title": "Rol veya Pozisyona Göre",
+              "input": {
+                "label": "Rol veya pozisyon",
+                "placeholder": "Başvurduğunuz rol veya pozisyonu girin"
+              }
+            },
+            "based_on_job_post": {
+              "title": "İş İlanına Göre",
+              "input": {
+                "label": "İş ilanı açıklaması",
+                "placeholder": "İş ilanı açıklamasını buraya yapıştırın"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "Başvurular"
+        },
+        "documents": {
+          "title": "Belgeler",
+          "empty": "Hiç belge bulunamadı."
+        }
+      }
+    },
+    "login": {
+      "description": "Lütfen kimlik bilgilerinizi girin"
+    },
+    "register": {
+      "description": "Kendinizi tanıtın"
+    },
+    "profile": {
+      "subtitle": "Bu bilgi, CV'nizi doğru bir şekilde oluşturmak için gereklidir.",
+      "sections": {
+        "basic_info": {
+          "title": "Kişisel"
+        },
+        "professional_links": {
+          "title": "Bağlantılar"
+        },
+        "experience": {
+          "title": "Deneyim",
+          "element": "Deneyim",
+          "is_present": "Şu anda burada çalışıyorum"
+        },
+        "education": {
+          "title": "Eğitim",
+          "element": "Eğitim",
+          "is_present": "Şu anda burada okuyorum"
+        },
+        "projects": {
+          "title": "Projeler",
+          "element": "Proje",
+          "is_present": "Şu anda bu projede çalışıyorum"
+        },
+        "certifications": {
+          "title": "Sertifikalar",
+          "element": "Sertifika",
+          "hasnt_expiration_date": "Bu sertifikanın son kullanma tarihi yok"
+        },
+        "languages": {
+          "title": "Diller"
+        },
+        "skills": {
+          "title": "Yetenekler"
+        }
+      },
+      "success": {
+        "title": "Kayıt Tamamlandı",
+        "message": "Hesabınız hazır. Artık platformun tüm özelliklerine erişebilirsiniz."
+      },
+      "auto_fill": {
+        "title": "Profilinizi doldurmak için CV'nizi yükleyin",
+        "message": "Mevcut CV'nizi yükleyerek zaman kazanın — bilgileri çıkaracağız ve profilinizi otomatik olarak dolduracağız."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Gizlilik Politikası ve Şartlar & Koşullar",
+      "description_first_time": "Lütfen okuyun ve kabul edin.",
+      "updating_notice": "Şartlar ve koşullarımızı güncelliyoruz. Yeni şartlar bir ay içinde yürürlüğe girecek ve öncesinde gözden geçirmeniz için mevcut olacaktır. Lütfen yaklaşan değişiklikleri gözden geçirmek için bir an ayırın.",
+      "accept_terms": "Şartlar ve koşullarımızı güncelliyoruz. \"Devam Et\" butonuna tıklayarak güncellenmiş şartları kabul ediyorsunuz."
+    },
+    "not_found": {
+      "title": "Sayfa Bulunamadı",
+      "description": "Üzgünüz, aradığınız sayfa mevcut değil veya taşındı.",
+      "back": "Ana sayfaya dön"
+    },
+    "landing_page": {
+      "title": "AI ile etkileyici özgeçmişler oluşturun",
+      "description": "MultiCV, her iş ilanına özel kişiselleştirilmiş özgeçmişler oluşturmanıza yardımcı olur. Teknik profesyonelleri desteklemek için hızlı ve şık bir AI destekli deneyim sunar.",
+      "start_free": "Ücretsiz Başlayın",
+      "features": {
+        "title": "MultiCV ile neler yapabilirsiniz?",
+        "first": {
+          "title": "Akıllı Asistan",
+          "description": "Deneyimlerinizi, başarılarınızı ve yeteneklerinizi net, ilgi çekici ve optimize edilmiş bir şekilde yazmanıza yardımcı olun."
+        },
+        "second": {
+          "title": "Birden Fazla CV",
+          "description": "Farklı şirketler, sektörler veya teknik roller için özgeçmişlerinizin farklı versiyonlarını yönetin."
+        },
+        "third": {
+          "title": "Anlık Uyarlama",
+          "description": "Tek bir tıklama ile iş spesifik özgeçmişleri otomatik olarak oluşturun."
+        },
+        "coming_soon": "Yakında",
+        "now_available": "Şimdi mevcut"
+      },
+      "vision": {
+        "title": "MultiCV'nin Geleceği",
+        "description": "Bir özgeçmiş oluşturmanıza bile gerek kalmadığı bir dünyayı hayal edin. Misyonumuz, insanları ve şirketleri doğrudan bağlamak, profilinizi yapılandırmak, güçlü yönlerinizi vurgulamak ve haksız filtreleri ortadan kaldırmak için AI kullanmaktır.",
+        "start_now": "Geleceğin bir parçası olmak istiyorum"
+      },
+      "cta": {
+        "title": "AI ile özgeçmişinizi oluşturmaya başlayın",
+        "description": "Beta aşamamızın bir parçası olun ve MultiCV'yi şekillendirmeye yardımcı olun. AI ile daha akıllı özgeçmişler oluşturmaya başlayın ve iş aramanıza bir adım önde başlayın.",
+        "start_now": "Hemen başlayın"
+      },
+      "pricing_teaser": {
+        "title": "Esnek planlarımızı keşfedin",
+        "description": "Herkes için bir planımız var. Fiyatlandırma sayfamızda tüm detayları keşfedin.",
+        "button": "Planları Gör"
+      },
+      "footer": {
+        "home": "Ana Sayfa",
+        "pricing": "Fiyatlandırma",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "Gizlilik Politikası",
+        "cookies_policy": "Çerez Politikası",
+        "terms_and_conditions": "Şartlar & Koşullar",
+        "contact": "İletişim",
+        "all_rights_reserved": "Tüm hakları saklıdır"
+      }
+    },
+    "pricing": {
+      "title": "Fiyatlandırma Planları",
+      "description": "Size en uygun planı seçin.",
+      "select_button": "Planı Seç",
+      "current_plan": "Mevcut Plan",
+      "free_plan": {
+        "title": "Ücretsiz Plan",
+        "price": "Ücretsiz",
+        "description": "Ayda 3 CV'ye kadar.",
+        "features": {
+          "1": "Önce dene, sonra al!",
+          "2": "Ayda 3 CV ile sınırlıdır."
+        }
+      },
+      "occasional_plan": {
+        "title": "Ara Plan",
+        "price": "€1.99 (tek seferlik)",
+        "description": "Toplam 10 CV, süresi yok.",
+        "features": {
+          "1": "Birkaç CV oluşturmak isteyen sıradan kullanıcılar.",
+          "2": "Biradan daha ucuza 10 kişiselleştirilmiş CV oluşturun 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "Günlük Plan 15",
+        "price": "€9.99 / 30 gün",
+        "description": "Günde 15 CV, 30 gün boyunca.",
+        "features": {
+          "1": "Biriken günlük limit yok.",
+          "2": "Düzenli olarak başvuran iş arayanlar."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Ödeme İptal Edildi",
+        "description": "Ödemeniz iptal edildi."
+      },
+      "success": {
+        "title": "Ödeme Başarılı",
+        "description": "Ödemeniz başarıyla işlenmiştir."
+      },
+      "already_premium": {
+        "title": "Zaten Premium Kullanıcısınız",
+        "description": "Zaten premium bir kullanıcısınız. Yeni bir plan satın almadan önce mevcut planınızı harcayın."
+      }
+    }
+  }
+}

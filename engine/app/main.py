@@ -367,6 +367,9 @@ async def store_settings(
 
     await settings_service.sync_settings(user_id, settings)
 
+    logger.info(f"Settings: {settings}")
+    print(f"Settings: {settings}")
+
     return {"message": "Settings synced successfully."}
 
 
@@ -379,6 +382,9 @@ async def get_settings(
     user_id = get_user_id()
 
     settings = await settings_service.get_settings(user_id)
+
+    logger.info(f"Settings: {settings}")
+    print(f"Settings: {settings}")
 
     return settings.model_dump(exclude_none=True)
 

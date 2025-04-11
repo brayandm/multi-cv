@@ -1,0 +1,441 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Home",
+      "settings": "Instellingen",
+      "profile": "Profiel"
+    },
+    "auth": {
+      "login": "Inloggen",
+      "register": "Registreren",
+      "logout": "Uitloggen",
+      "google_sign_in": "Inloggen met Google",
+      "google_sign_up": "Registreren met Google",
+      "use_other_method": "Gebruik een andere methode",
+      "forgot_password": "Wachtwoord vergeten?"
+    },
+    "texts": {
+      "delete": "Verwijderen {element}",
+      "delete_confirmation": "Weet je zeker dat je deze {element} wilt verwijderen?",
+      "skills": "vaardigheden",
+      "draft_changes": "Conceptwijzigingen",
+      "draft_changes_description": "Je hebt niet-opgeslagen wijzigingen. Wil je ze opslaan?",
+      "havent_finished": "Je hebt deze {element} nog niet afgemaakt.",
+      "discard_changes": "Wil je doorgaan met bewerken of de wijzigingen verwerpen?",
+      "saved": "Opgeslagen",
+      "saved_description": "Je wijzigingen zijn opgeslagen.",
+      "unfinished_element": "Onvoltooide {element}",
+      "unfinished_element_description": "Je hebt deze {element} nog niet afgemaakt.",
+      "chat": "Chat AI",
+      "chat_description": "Chat met onze AI voor hulp",
+      "ai_assistant": "AI Assistent",
+      "type_message": "Typ een bericht...",
+      "generate_cv": "CV genereren",
+      "quota_info": "Quota-informatie",
+      "used": "Gebruikt",
+      "message_left": "Berichten over: {count}",
+      "generation_left": "Generaties over: {count}",
+      "languages": "Talen",
+      "basic": "Basis",
+      "intermediate": "Tussenliggend",
+      "professional": "Professioneel",
+      "native": "Moedertaal",
+      "upload_cv": "Upload je CV (PDF)",
+      "loading_autofill_title": "Verwerken van je CV",
+      "loading_autofill_description": "Even geduld terwijl we je profiel invullen...",
+      "loading_generating_cv_title": "Je CV genereren",
+      "loading_generating_cv_description": "Even geduld terwijl we je CV genereren...",
+      "only_year": "Alleen jaar",
+      "pending_generation": "In afwachting van generatie",
+      "cv": "CV",
+      "cover_letter": "Sollicitatiebrief",
+      "generation_finished": "Geen generaties meer over",
+      "upgrade_plan": "Upgrade je plan",
+      "payment_redirecting": "Doorverwijzen naar betaling...",
+      "analizing_plan": "Je plan analyseren...",
+      "target_language": "Doeltaal"
+    },
+    "buttons": {
+      "continue": "Doorgaan",
+      "add": "Toevoegen",
+      "resend_email": "E-mail opnieuw verzenden",
+      "send_email": "E-mail verzenden",
+      "change_password": "Wachtwoord wijzigen",
+      "resend_in": "Opnieuw verzenden in {timeleft}s",
+      "try_again": "Probeer opnieuw",
+      "too_many_requests": "Te veel verzoeken, probeer het over 24 uur opnieuw",
+      "next": "Volgende",
+      "previous": "Vorige",
+      "go_home": "Ga naar huis",
+      "add_element": "Voeg {element} toe",
+      "delete": "Verwijderen",
+      "cancel": "Annuleren",
+      "save": "Opslaan",
+      "discard": "Verwerpen",
+      "keep_editing": "Blijf bewerken",
+      "clear": "Wissen",
+      "autofill_button": "Profiel invullen vanuit CV",
+      "download": "Downloaden",
+      "custom_prompt": "Aangepaste Prompt"
+    },
+    "errors": {
+      "login": "Inloggen mislukt",
+      "login_description": "Het e-mailadres of wachtwoord is onjuist.",
+      "register": "Registratie mislukt",
+      "register_description": "Het e-mailadres is al in gebruik.",
+      "passwords_not_match": "Wachtwoorden komen niet overeen",
+      "password_change": "Wachtwoord wijzigen mislukt",
+      "old_password_incorrect": "Het huidige wachtwoord is onjuist",
+      "server": "Serverfout",
+      "under_age": "Je moet ouder zijn dan 18 jaar",
+      "accept_terms": "Je moet de voorwaarden accepteren",
+      "length": "Het {field} moet {current_length}/{length} tekens lang zijn",
+      "skill_length": "Je moet minimaal {min} vaardigheid invoeren",
+      "country_code_required": "Selecteer een landcode",
+      "max_elements": "Maximaal aantal {element} bereikt",
+      "max_elements_description": "Je kunt slechts {max} {element} toevoegen",
+      "required": "Vul dit veld alstublieft in.",
+      "invalid_email": "Het ingevoerde e-mailadres is ongeldig",
+      "password_too_short": "Het wachtwoord moet minimaal {min} tekens lang zijn",
+      "select_date": "Selecteer alstublieft een datum",
+      "invalid_phone": "Het telefoonnummer is ongeldig",
+      "settings": "Instellingen bijwerken mislukt",
+      "file_size": "De bestandsgrootte moet minder zijn dan {max}MB",
+      "compression": "Er was een probleem met het verwerken van de afbeelding",
+      "autofill": "Autofill mislukt",
+      "dates_impossible": "De einddatum moet na de startdatum liggen",
+      "expiration_impossible": "De vervaldatum moet na de uitgiftedatum liggen",
+      "generate_cv": "CV-generatie mislukt",
+      "download_document": "Document downloaden mislukt"
+    },
+    "success": {
+      "password_change": "Wachtwoord gewijzigd",
+      "password_change_description": "Je wachtwoord is succesvol gewijzigd."
+    },
+    "form": {
+      "first_name": "Voornaam",
+      "last_name": "Achternaam",
+      "email": "E-mail",
+      "password": "Wachtwoord",
+      "current_password": "Huidig wachtwoord",
+      "new_password": "Nieuw wachtwoord",
+      "repeat_password": "Herhaal wachtwoord",
+      "your_location": "Jouw locatie",
+      "phone": "Telefoonnummer",
+      "about": "Over jou",
+      "company_name": "Bedrijf",
+      "institution": "Instelling",
+      "career": "Carrière",
+      "skill": "Vaardigheid",
+      "role": "Rol",
+      "phone_number": "Telefoonnummer",
+      "phone_country_code": "Landcode",
+      "company_description": "Functieomschrijving",
+      "location": "Locatie",
+      "start_date": "Startdatum",
+      "end_date": "Einddatum",
+      "project_name": "Projectnaam",
+      "project_description": "Projectbeschrijving",
+      "link": "Link",
+      "professional_links_select": "Selecteer een link",
+      "skill_description": "Voer minimaal {min} vaardigheden in",
+      "certification_name": "Naam van de certificering",
+      "certification_description": "Beschrijving van de certificering",
+      "certificate_id": "Certificaat ID",
+      "verification_url": "Verificatie Link",
+      "issuer": "Uitgevende instantie",
+      "issue_date": "Uitgiftedatum",
+      "expiration_date": "Vervaldatum",
+      "language": "Taal",
+      "level": "Niveau"
+    },
+    "placeholders": {
+      "enter_first_name": "Voer je voornaam in",
+      "enter_last_name": "Voer je achternaam in",
+      "enter_email": "Voer je e-mailadres in",
+      "enter_password": "Voer je wachtwoord in",
+      "enter_current_password": "Voer je huidige wachtwoord in",
+      "enter_new_password": "Voer je nieuwe wachtwoord in",
+      "enter_password_again": "Voer je wachtwoord opnieuw in",
+      "enter_skill": "Voer een nieuwe vaardigheid in",
+      "enter_phone": "Voer je telefoonnummer in",
+      "enter_about": "Ik ben een ...",
+      "enter_company_name": "Bedrijfsnaam",
+      "enter_institution_name": "Naam van de instelling",
+      "enter_career": "De opleiding die je hier hebt gestudeerd / studeert",
+      "enter_role": "Jouw rol in het bedrijf",
+      "enter_job_description": "Een beschrijving van je taken en verantwoordelijkheden in de baan",
+      "enter_your_location": "Stad, Land",
+      "enter_location": "\"Stad, Land\" of \"Op afstand\"",
+      "enter_project_name": "Voer de projectnaam in",
+      "enter_project_description": "Voer een korte beschrijving in",
+      "enter_project_link": "Link naar je project",
+      "enter_institution_link": "Link naar de instelling",
+      "enter_company_link": "Link naar het bedrijf",
+      "professional_links_select": "Klik om te selecteren",
+      "enter_your_link": "Voer je {field} link in",
+      "enter_certification_name": "Voer de naam van de certificering in",
+      "enter_certification_issuer": "Voer de uitgevende instantie in",
+      "enter_certification_certificate_id": "Certificaat ID",
+      "enter_certification_verification_url": "Voer de verificatie-URL in",
+      "enter_certification_description": "Voer een korte beschrijving in",
+      "enter_language": "Voer een taal in",
+      "select_language_level": "Selecteer een niveau"
+    },
+    "legal": {
+      "terms_conditions": "Voorwaarden & Condities",
+      "privacy_policy": "Privacybeleid",
+      "confirm_age": "Ik bevestig dat ik ouder ben dan 18 jaar",
+      "accept_terms": "Ik accepteer de <termsConditions></termsConditions> en <privacyPolicy></privacyPolicy>",
+      "talent_pool": "Sta recruiters toe mijn profiel te bekijken voor werkgelegenheid."
+    },
+    "months": {
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Maart",
+      "april": "April",
+      "may": "Mei",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Augustus",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "E-mailverificatie",
+      "already_verified": {
+        "title": "E-mailverificatie Al Geverifieerd",
+        "message": "Je e-mailadres is al geverifieerd."
+      },
+      "success": {
+        "title": "E-mailverificatie Succes",
+        "message": "Je e-mailadres is geverifieerd."
+      },
+      "expired": {
+        "title": "E-mailverificatie Verlopen",
+        "message": "Je e-mailverificatie link is verlopen."
+      },
+      "instructions": "We hebben je een e-mail gestuurd met een verificatielink."
+    },
+    "password_recovery": {
+      "title": "Wachtwoordherstel",
+      "success": {
+        "title": "Wachtwoordherstel Succes",
+        "message": "Je wachtwoord is gewijzigd."
+      },
+      "fail": {
+        "title": "Wachtwoordherstel Ongeldig of Verlopen",
+        "message": "Je wachtwoordherstel link is ongeldig of is verlopen."
+      },
+      "instructions": "We sturen je een e-mail met een link om je wachtwoord opnieuw in te stellen."
+    },
+    "settings": {
+      "subtitle": "Wijzig je accountinstellingen",
+      "password": "Wachtwoordinstellingen"
+    },
+    "welcome": {
+      "title": "Welkom bij <appName></appName>",
+      "description": "Creëer unieke CV's voor unieke vacatures."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "CV Bouwer",
+          "custom_prompt": {
+            "title": "Aangepaste Prompt",
+            "placeholder": "Schrijf een aangepaste prompt om je CV te genereren."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "Eenvoudig CV"
+            },
+            "based_on_role": {
+              "title": "Gebaseerd op Rol of Positie",
+              "input": {
+                "label": "Rol of positie",
+                "placeholder": "Voer de rol of positie in waarvoor je solliciteert"
+              }
+            },
+            "based_on_job_post": {
+              "title": "Gebaseerd op Vacature",
+              "input": {
+                "label": "Vacaturebeschrijving",
+                "placeholder": "Plak hier de vacaturebeschrijving"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "Sollicitaties"
+        },
+        "documents": {
+          "title": "Documenten",
+          "empty": "Geen documenten gevonden."
+        }
+      }
+    },
+    "login": {
+      "description": "Voer je inloggegevens in"
+    },
+    "register": {
+      "description": "Stel jezelf voor"
+    },
+    "profile": {
+      "subtitle": "Deze informatie is nodig om je CV correct te maken.",
+      "sections": {
+        "basic_info": {
+          "title": "Persoonlijk"
+        },
+        "professional_links": {
+          "title": "Links"
+        },
+        "experience": {
+          "title": "Ervaring",
+          "element": "Ervaring",
+          "is_present": "Ik werk hier momenteel"
+        },
+        "education": {
+          "title": "Opleiding",
+          "element": "Opleiding",
+          "is_present": "Ik studeer hier momenteel"
+        },
+        "projects": {
+          "title": "Projecten",
+          "element": "Project",
+          "is_present": "Ik werk momenteel aan dit project"
+        },
+        "certifications": {
+          "title": "Certificeringen",
+          "element": "Certificering",
+          "hasnt_expiration_date": "Deze certificering heeft geen vervaldatum"
+        },
+        "languages": {
+          "title": "Talen"
+        },
+        "skills": {
+          "title": "Vaardigheden"
+        }
+      },
+      "success": {
+        "title": "Registratie Voltooid",
+        "message": "Je account is klaar. Je kunt nu toegang krijgen tot alle functies van het platform."
+      },
+      "auto_fill": {
+        "title": "Upload je CV om je profiel in te vullen",
+        "message": "Bespaar tijd door je bestaande CV te uploaden — we extraheren de informatie en vullen je profiel automatisch in."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Privacybeleid en Voorwaarden & Condities",
+      "description_first_time": "Lees en accepteer alstublieft.",
+      "updating_notice": "We zijn onze <termsConditions></termsConditions> en <privacyPolicy></privacyPolicy> aan het bijwerken. De nieuwe voorwaarden gaan over een maand in en zijn voor die tijd beschikbaar voor beoordeling. Neem even de tijd om de komende wijzigingen te bekijken.",
+      "accept_terms": "We zijn onze <termsConditions></termsConditions> en <privacyPolicy></privacyPolicy> aan het bijwerken. Door op \"Doorgaan\" te klikken, ga je akkoord met de bijgewerkte voorwaarden."
+    },
+    "not_found": {
+      "title": "Pagina Niet Gevonden",
+      "description": "Sorry, de pagina die je zoekt bestaat niet of is verplaatst.",
+      "back": "Terug naar huis"
+    },
+    "landing_page": {
+      "title": "Creëer impactvolle cv's met AI",
+      "description": "MultiCV helpt je gepersonaliseerde cv's te genereren die zijn afgestemd op elke vacature. Ontworpen om technische professionals te ondersteunen met een snelle en elegante AI-gestuurde ervaring.",
+      "start_free": "Begin gratis",
+      "features": {
+        "title": "Wat kun je doen met MultiCV?",
+        "first": {
+          "title": "Slimme Assistent",
+          "description": "Krijg hulp bij het schrijven van je ervaring, prestaties en vaardigheden op een duidelijke, boeiende en geoptimaliseerde manier."
+        },
+        "second": {
+          "title": "Meerdere CV's",
+          "description": "Beheer verschillende versies van je cv voor verschillende bedrijven, sectoren of technische rollen."
+        },
+        "third": {
+          "title": "Directe Aanpassing",
+          "description": "Genereer automatisch vacature-specifieke cv's met één klik."
+        },
+        "coming_soon": "Binnenkort beschikbaar",
+        "now_available": "Nu beschikbaar"
+      },
+      "vision": {
+        "title": "De Toekomst van MultiCV",
+        "description": "Stel je een wereld voor waarin je zelfs geen cv hoeft te maken. Onze missie is om mensen en bedrijven rechtstreeks met elkaar te verbinden, met behulp van AI om je profiel te structureren, je sterke punten te benadrukken en oneerlijke filters te elimineren.",
+        "start_now": "Ik wil deel uitmaken van de toekomst"
+      },
+      "cta": {
+        "title": "Begin met het bouwen van je cv met AI",
+        "description": "Maak deel uit van onze bètaversie en help MultiCV vorm te geven. Begin met het maken van slimmere cv's met AI en krijg een voorsprong op je zoektocht naar werk.",
+        "start_now": "Begin nu"
+      },
+      "pricing_teaser": {
+        "title": "Ontdek onze flexibele plannen",
+        "description": "We hebben een plan voor iedereen. Ontdek alle details op onze prijs pagina.",
+        "button": "Bekijk Plannen"
+      },
+      "footer": {
+        "home": "Hoofdpagina",
+        "pricing": "Prijzen",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "Privacybeleid",
+        "cookies_policy": "Cookiesbeleid",
+        "terms_and_conditions": "Voorwaarden & Condities",
+        "contact": "Contact",
+        "all_rights_reserved": "Alle rechten voorbehouden"
+      }
+    },
+    "pricing": {
+      "title": "Prijsplannen",
+      "description": "Kies het plan dat het beste bij je past.",
+      "select_button": "Selecteer Plan",
+      "current_plan": "Huidig Plan",
+      "free_plan": {
+        "title": "Gratis Plan",
+        "price": "Gratis",
+        "description": "Tot 3 cv's per maand.",
+        "features": {
+          "1": "Probeer voordat je koopt!",
+          "2": "Beperkt tot 3 cv's per maand."
+        }
+      },
+      "occasional_plan": {
+        "title": "Occasioneel Plan",
+        "price": "€1,99 (eenmalig)",
+        "description": "10 totale cv's, geen vervaldatum.",
+        "features": {
+          "1": "Casual gebruikers die een paar cv's willen maken.",
+          "2": "Genereer 10 gepersonaliseerde cv's voor minder dan de prijs van een biertje 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "Dagelijks Plan 15",
+        "price": "€9,99 / 30 dagen",
+        "description": "15 cv's per dag, gedurende 30 dagen.",
+        "features": {
+          "1": "Niet-cumulatieve dagelijkse limiet.",
+          "2": "Werkzoekenden die regelmatig solliciteren."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Betaling Geannuleerd",
+        "description": "Je betaling is geannuleerd."
+      },
+      "success": {
+        "title": "Betaling Succesvol",
+        "description": "Je betaling is succesvol verwerkt."
+      },
+      "already_premium": {
+        "title": "Al een Premium Gebruiker",
+        "description": "Je bent al een premium gebruiker. Gebruik je huidige plan voordat je een nieuw plan koopt."
+      }
+    }
+  }
+}
