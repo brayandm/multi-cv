@@ -55,7 +55,7 @@ services:
             if [ \"$HOT_RELOAD\" = \"true\" ]; then
                 echo 'Running Celery with watchmedo auto-restart';
                 pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- \
-                celery -A app.worker.celery worker --loglevel=info -Q openai_queue --pool=threads --concurrency=5;
+                pipenv run celery -A app.worker.celery worker --loglevel=info -Q openai_queue --pool=threads --concurrency=5;
             else
                 echo 'Running Celery normally';
                 pipenv run celery -A app.worker.celery worker --loglevel=info -Q openai_queue --pool=threads --concurrency=5;
