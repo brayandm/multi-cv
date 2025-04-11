@@ -15,14 +15,16 @@ import {
   ModalBody,
   ModalContent,
   ModalHeader,
+  Select,
+  SelectItem,
   Spinner,
   Textarea,
   useDisclosure,
 } from "@heroui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { GetQuotaInfoResponse, Settings } from "@/lib/types";
 import { useTranslations } from "next-intl";
-import { useLocale } from "@/contexts/LocaleContext";
+import { languages, useLocale } from "@/contexts/LocaleContext";
 import { useCv } from "@/contexts/CvContext";
 import { useRouter } from "next/navigation";
 
@@ -55,6 +57,7 @@ export default function GenerateDocumentComponent({
 
   const [input, setInput] = useState("");
   const [customPrompt, setCustomPrompt] = useState("");
+  const [targetLocale, setTargetLocale] = useState("");
   const [inputModalOpen, setInputModalOpen] = useState(false);
 
   const {
@@ -71,6 +74,13 @@ export default function GenerateDocumentComponent({
     data: Settings,
     isLoading: isSettingsLoading,
   } = useSWR<Settings>(getSettingsEngineLink, fetcherEngine);
+
+  useEffect(() => {
+    if (Settings) {
+      const locale = Settings.target_locale || getTraduction().locale;
+      setTargetLocale(locale);
+    }
+  }, [Settings, getTraduction]);
 
   const t = useTranslations();
 
@@ -171,6 +181,8 @@ export default function GenerateDocumentComponent({
     mutateSettings();
   };
 
+  console.log("Target locale", targetLocale);
+
   return (
     <form
       className="w-full max-w-96 flex flex-col items-center"
@@ -187,35 +199,50 @@ export default function GenerateDocumentComponent({
     >
       {!isQuotaInfoLoading && quotaInfo ? (
         <>
-          <Button
-            variant={"light"}
-            color="secondary"
-            className={type !== "simple" ? "self-end mb-5" : "mb-10"}
-            onPress={() => {
-              setInputModalOpen(true);
-              setCustomPrompt(Settings?.custom_prompt || "");
-            }}
-          >
-            {t("common.buttons.custom_prompt")}
-          </Button>
-          {inputModalOpen && (
-            <InputModalComponent
-              title={t("pages.home.tabs.builder.custom_prompt.title")}
-              placeholder={t(
-                "pages.home.tabs.builder.custom_prompt.placeholder"
+          <div className="flex flex-row items-center justify-between w-full mb-5">
+            <Select
+              className={"max-w-40 " + (type !== "simple" ? "mb-5" : "mb-10")}
+              items={languages}
+              variant="bordered"
+              label="Target Language"
+              defaultSelectedKeys={[targetLocale]}
+              labelPlacement="outside"
+            >
+              {(language) => (
+                <SelectItem key={language.code}>{language.label}</SelectItem>
               )}
-              isInputLoading={isSettingsLoading}
-              input={customPrompt}
-              setInput={setCustomPrompt}
-              open={inputModalOpen}
-              setOpen={setInputModalOpen}
-              onSave={savePrompt}
-              onCancel={async () => {
-                await mutateSettings();
+            </Select>
+
+            <Button
+              variant={"light"}
+              color="secondary"
+              className={type !== "simple" ? "self-end mb-5" : "mt-6 mb-10"}
+              onPress={() => {
+                setInputModalOpen(true);
+                setCustomPrompt(Settings?.custom_prompt || "");
               }}
-              maxCharacters={MAX_LONG_TEXT_LENGTH}
-            />
-          )}
+            >
+              {t("common.buttons.custom_prompt")}
+            </Button>
+            {inputModalOpen && (
+              <InputModalComponent
+                title={t("pages.home.tabs.builder.custom_prompt.title")}
+                placeholder={t(
+                  "pages.home.tabs.builder.custom_prompt.placeholder"
+                )}
+                isInputLoading={isSettingsLoading}
+                input={customPrompt}
+                setInput={setCustomPrompt}
+                open={inputModalOpen}
+                setOpen={setInputModalOpen}
+                onSave={savePrompt}
+                onCancel={async () => {
+                  await mutateSettings();
+                }}
+                maxCharacters={MAX_LONG_TEXT_LENGTH}
+              />
+            )}
+          </div>
           {type === "role" && (
             <div className="mb-10 w-full  flex flex-col items-center">
               <Textarea
@@ -235,6 +262,7 @@ export default function GenerateDocumentComponent({
                   return requiredValidator(t, value);
                 }}
                 classNames={generalInputsStyles}
+                maxRows={5}
               />
             </div>
           )}
@@ -257,6 +285,7 @@ export default function GenerateDocumentComponent({
                   return requiredValidator(t, value);
                 }}
                 classNames={generalInputsStyles}
+                maxRows={5}
               />
             </div>
           )}

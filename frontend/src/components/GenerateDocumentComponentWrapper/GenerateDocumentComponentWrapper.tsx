@@ -19,7 +19,7 @@ export default function GenerateDocumentComponentWrapper() {
           base: "self-center w-full sm:w-auto",
           tabList: "flex flex-wrap sm:flex-nowrap w-full border-none",
           tab: "h-12 sm:h-8 w-full bg-white dark:bg-default-100 shadow-md",
-          panel: "pt-0",
+          panel: "pt-0 py-0",
         }}
       >
         <Tab
