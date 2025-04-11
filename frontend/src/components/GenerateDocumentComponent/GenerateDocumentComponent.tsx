@@ -217,7 +217,7 @@ export default function GenerateDocumentComponent({
             <Select
               key={type}
               className={"max-w-40 " + (type !== "simple" ? "mb-5" : "mb-10")}
-              items={languages}
+              items={languages.filter((lang) => lang.unsupported !== true)}
               variant="bordered"
               label={t("common.texts.target_language")}
               selectedKeys={[targetLocale]}
