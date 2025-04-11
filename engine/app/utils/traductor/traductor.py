@@ -11,6 +11,8 @@ from langchain.schema import SystemMessage
 from langchain_openai import ChatOpenAI
 from pydantic import SecretStr
 
+from app.classes.models.traduction import LANGUAGE_NAME_BY_LOCALE
+
 load_dotenv(dotenv_path=".env")
 api_key: str = os.environ.get("OPENAI_API_KEY") or ""
 
@@ -20,27 +22,12 @@ base_paths: list[str] = [
 ]
 
 target_languages: list[dict[str, str]] = [
-    {"code": "es", "language": "Spanish"},
-    {"code": "fr", "language": "French"},
-    {"code": "de", "language": "German"},
-    {"code": "it", "language": "Italian"},
-    {"code": "pt", "language": "Portuguese"},
-    {"code": "ru", "language": "Russian"},
-    {"code": "zh", "language": "Chinese"},
-    {"code": "ja", "language": "Japanese"},
-    {"code": "ko", "language": "Korean"},
-    {"code": "hi", "language": "Romanized Hindi"},
-    {"code": "ar", "language": "Arabic"},
-    {"code": "tr", "language": "Turkish"},
-    {"code": "pl", "language": "Polish"},
-    {"code": "nl", "language": "Dutch"},
-    {"code": "sv", "language": "Swedish"},
-    {"code": "th", "language": "Thai"},
-    {"code": "id", "language": "Indonesian"},
-    {"code": "vi", "language": "Vietnamese"},
-    {"code": "he", "language": "Hebrew"},
-    {"code": "uk", "language": "Ukrainian"},
+    {"code": code, "language": name}
+    for code, name in LANGUAGE_NAME_BY_LOCALE.items()
+    if code != "en"
 ]
+
+print("Available languages:", target_languages)
 
 
 def flatten(

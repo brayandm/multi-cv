@@ -5,10 +5,27 @@ from pydantic import BaseModel, Field, model_validator
 from app.utils.pydantic_custom_types import ShortStr
 
 LANGUAGE_NAME_BY_LOCALE: Mapping[str, str] = {
+    "ar": "Arabic",
+    "de": "German",
     "en": "English",
     "es": "Spanish",
+    "fr": "French",
+    "he": "Hebrew",
     "hi": "Romanized Hindi",
+    "id": "Indonesian",
+    "it": "Italian",
+    "ja": "Japanese",
+    "ko": "Korean",
+    "nl": "Dutch",
+    "pl": "Polish",
+    "pt": "Portuguese",
     "ru": "Russian",
+    "sv": "Swedish",
+    "th": "Thai",
+    "tr": "Turkish",
+    "uk": "Ukrainian",
+    "vi": "Vietnamese",
+    "zh": "Chinese",
 }
 
 
