@@ -21,7 +21,7 @@ import {
   Textarea,
   useDisclosure,
 } from "@heroui/react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GetQuotaInfoResponse, Settings } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { languages, useLocale } from "@/contexts/LocaleContext";
@@ -75,12 +75,25 @@ export default function GenerateDocumentComponent({
     isLoading: isSettingsLoading,
   } = useSWR<Settings>(getSettingsEngineLink, fetcherEngine);
 
+  const saveTargetLocale = useCallback(
+    async (locale: string) => {
+      await storeSettingsEngine({
+        target_locale: locale,
+      });
+      mutateSettings();
+    },
+    [mutateSettings]
+  );
+
   useEffect(() => {
     if (Settings) {
       const locale = Settings.target_locale || getTraduction().locale;
       setTargetLocale(locale);
+      if (!Settings.target_locale) {
+        saveTargetLocale(getTraduction().locale);
+      }
     }
-  }, [Settings, getTraduction]);
+  }, [Settings, getTraduction, saveTargetLocale]);
 
   const t = useTranslations();
 
@@ -181,8 +194,6 @@ export default function GenerateDocumentComponent({
     mutateSettings();
   };
 
-  console.log("Target locale", targetLocale);
-
   return (
     <form
       className="w-full max-w-96 flex flex-col items-center"
@@ -201,11 +212,16 @@ export default function GenerateDocumentComponent({
         <>
           <div className="flex flex-row items-center justify-between w-full mb-5">
             <Select
+              key={type}
               className={"max-w-40 " + (type !== "simple" ? "mb-5" : "mb-10")}
               items={languages}
               variant="bordered"
               label="Target Language"
-              defaultSelectedKeys={[targetLocale]}
+              selectedKeys={[targetLocale]}
+              onChange={(e) => {
+                setTargetLocale(e.target.value);
+                saveTargetLocale(e.target.value);
+              }}
               labelPlacement="outside"
             >
               {(language) => (

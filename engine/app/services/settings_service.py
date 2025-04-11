@@ -12,7 +12,7 @@ class SettingsService:
         self.db = db
 
     async def sync_settings(self, user_id: int, settings: Settings) -> None:
-        new_settings = settings.model_dump()
+        new_settings = settings.model_dump(exclude_none=True)
         new_settings["user_id"] = user_id
 
         await self.db.settings.update_one(
