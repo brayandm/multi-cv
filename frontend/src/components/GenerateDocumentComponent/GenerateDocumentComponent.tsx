@@ -24,11 +24,7 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import { GetQuotaInfoResponse, Settings } from "@/lib/types";
 import { useTranslations } from "next-intl";
-import {
-  languages,
-  mapLocaleToLanguage,
-  useLocale,
-} from "@/contexts/LocaleContext";
+import { languages, useLocale } from "@/contexts/LocaleContext";
 import { useCv } from "@/contexts/CvContext";
 import { useRouter } from "next/navigation";
 
@@ -115,7 +111,6 @@ export default function GenerateDocumentComponent({
         },
         {
           locale: targetLocale,
-          name: mapLocaleToLanguage(targetLocale),
         }
       );
 
@@ -172,7 +167,6 @@ export default function GenerateDocumentComponent({
         },
         {
           locale: targetLocale,
-          name: mapLocaleToLanguage(targetLocale),
         }
       );
       if (response.data) {
