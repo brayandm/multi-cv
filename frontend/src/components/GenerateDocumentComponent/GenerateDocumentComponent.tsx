@@ -24,7 +24,11 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import { GetQuotaInfoResponse, Settings } from "@/lib/types";
 import { useTranslations } from "next-intl";
-import { languages, useLocale } from "@/contexts/LocaleContext";
+import {
+  languages,
+  mapLocaleToLanguage,
+  useLocale,
+} from "@/contexts/LocaleContext";
 import { useCv } from "@/contexts/CvContext";
 import { useRouter } from "next/navigation";
 
@@ -109,7 +113,10 @@ export default function GenerateDocumentComponent({
           job_input: type === "job" ? input : null,
           custom_prompt: customPrompt,
         },
-        getTraduction()
+        {
+          locale: targetLocale,
+          name: mapLocaleToLanguage(targetLocale),
+        }
       );
 
       const blob = new Blob([response.data], { type: "application/pdf" });
@@ -156,7 +163,6 @@ export default function GenerateDocumentComponent({
   const redirectEditCv = async () => {
     try {
       setIsCvLoading(true);
-      const traduction = getTraduction();
       const response = await generateCvInlineNoRenderEngine(
         {
           type: type,
@@ -164,7 +170,10 @@ export default function GenerateDocumentComponent({
           job_input: type === "job" ? input : null,
           custom_prompt: customPrompt,
         },
-        traduction
+        {
+          locale: targetLocale,
+          name: mapLocaleToLanguage(targetLocale),
+        }
       );
       if (response.data) {
         setCv(response.data.cv);
