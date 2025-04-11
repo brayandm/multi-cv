@@ -14,8 +14,4 @@ RUN apt-get install -y \
         texlive-latex-recommended \
         texlive-fonts-recommended
 
-RUN apt-get install -y texlive-lang-european \
-        texlive-lang-cyrillic \
-        texlive-lang-chinese \
-        texlive-lang-japanese \
-        texlive-lang-korean
+RUN apt-get install -y texlive-lang-all
