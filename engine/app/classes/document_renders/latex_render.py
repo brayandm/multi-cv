@@ -90,7 +90,7 @@ class LatexRender(DocumentRender):
         try:
             subprocess.run(
                 [
-                    "pdflatex",
+                    "xelatex",
                     "-output-directory",
                     self.cv_folder,
                     self.tex_path,
