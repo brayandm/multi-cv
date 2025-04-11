@@ -55,7 +55,8 @@
       "generation_finished": "No quedan más generaciones",
       "upgrade_plan": "Actualiza tu plan",
       "payment_redirecting": "Redirigiendo al pago...",
-      "analizing_plan": "Analizando tu plan..."
+      "analizing_plan": "Analizando tu plan...",
+      "target_language": "Idioma objetivo"
     },
     "buttons": {
       "continue": "Continuar",

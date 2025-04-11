@@ -55,7 +55,8 @@
       "generation_finished": "Aur koi utpaad nahi bacha",
       "upgrade_plan": "Apne yojanā ko sudhāre",
       "payment_redirecting": "Bhugtaan ki or redirect kiya ja raha hai...",
-      "analizing_plan": "Aapke yojana ka vishleshan kiya ja raha hai..."
+      "analizing_plan": "Aapke yojana ka vishleshan kiya ja raha hai...",
+      "target_language": "Lakshya bhasha"
     },
     "buttons": {
       "continue": "Aage badhein",

@@ -55,7 +55,8 @@
       "generation_finished": "Geen generaties meer over",
       "upgrade_plan": "Upgrade je plan",
       "payment_redirecting": "Doorverwijzen naar betaling...",
-      "analizing_plan": "Je plan analyseren..."
+      "analizing_plan": "Je plan analyseren...",
+      "target_language": "Doeltaal"
     },
     "buttons": {
       "continue": "Doorgaan",

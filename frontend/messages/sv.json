@@ -55,7 +55,8 @@
       "generation_finished": "Inga fler generationer kvar",
       "upgrade_plan": "Uppgradera din plan",
       "payment_redirecting": "Omdirigerar till betalning...",
-      "analizing_plan": "Analyserar din plan..."
+      "analizing_plan": "Analyserar din plan...",
+      "target_language": "Målspråk"
     },
     "buttons": {
       "continue": "Fortsätt",

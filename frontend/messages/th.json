@@ -55,7 +55,8 @@
       "generation_finished": "ไม่มีการสร้างที่เหลือ",
       "upgrade_plan": "อัปเกรดแผนของคุณ",
       "payment_redirecting": "กำลังเปลี่ยนเส้นทางไปยังการชำระเงิน...",
-      "analizing_plan": "กำลังวิเคราะห์แผนของคุณ..."
+      "analizing_plan": "กำลังวิเคราะห์แผนของคุณ...",
+      "target_language": "ภาษาเป้าหมาย"
     },
     "buttons": {
       "continue": "ดำเนินการต่อ",

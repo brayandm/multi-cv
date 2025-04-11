@@ -55,7 +55,8 @@
       "generation_finished": "אין עוד גנרציות שנותרו",
       "upgrade_plan": "שדרג את התוכנית שלך",
       "payment_redirecting": "מופנה לתשלום...",
-      "analizing_plan": "מנתח את התוכנית שלך..."
+      "analizing_plan": "מנתח את התוכנית שלך...",
+      "target_language": "שפת יעד"
     },
     "buttons": {
       "continue": "המשך",

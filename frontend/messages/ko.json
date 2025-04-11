@@ -55,7 +55,8 @@
       "generation_finished": "더 이상 생성할 수 없습니다",
       "upgrade_plan": "플랜 업그레이드",
       "payment_redirecting": "결제로 리디렉션 중...",
-      "analizing_plan": "플랜 분석 중..."
+      "analizing_plan": "플랜 분석 중...",
+      "target_language": "대상 언어"
     },
     "buttons": {
       "continue": "계속",

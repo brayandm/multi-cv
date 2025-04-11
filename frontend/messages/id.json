@@ -55,7 +55,8 @@
       "generation_finished": "Tidak ada lagi generasi yang tersisa",
       "upgrade_plan": "Tingkatkan rencana Anda",
       "payment_redirecting": "Mengalihkan ke pembayaran...",
-      "analizing_plan": "Menganalisis rencana Anda..."
+      "analizing_plan": "Menganalisis rencana Anda...",
+      "target_language": "Bahasa target"
     },
     "buttons": {
       "continue": "Lanjutkan",

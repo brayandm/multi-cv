@@ -55,7 +55,8 @@
       "generation_finished": "Більше генерацій немає",
       "upgrade_plan": "Оновіть свій план",
       "payment_redirecting": "Перенаправлення на оплату...",
-      "analizing_plan": "Аналізуємо ваш план..."
+      "analizing_plan": "Аналізуємо ваш план...",
+      "target_language": "Цільова мова"
     },
     "buttons": {
       "continue": "Продовжити",

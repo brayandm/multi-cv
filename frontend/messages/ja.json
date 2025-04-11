@@ -55,7 +55,8 @@
       "generation_finished": "これ以上の生成はありません",
       "upgrade_plan": "プランをアップグレード",
       "payment_redirecting": "支払いにリダイレクト中...",
-      "analizing_plan": "プランを分析中..."
+      "analizing_plan": "プランを分析中...",
+      "target_language": "ターゲット言語"
     },
     "buttons": {
       "continue": "続ける",

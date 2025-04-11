@@ -55,7 +55,8 @@
       "generation_finished": "没有更多生成次数",
       "upgrade_plan": "升级您的计划",
       "payment_redirecting": "正在重定向到支付...",
-      "analizing_plan": "正在分析您的计划..."
+      "analizing_plan": "正在分析您的计划...",
+      "target_language": "目标语言"
     },
     "buttons": {
       "continue": "继续",

@@ -55,7 +55,8 @@
       "generation_finished": "لا توجد إنشاءات متبقية",
       "upgrade_plan": "ترقية خطتك",
       "payment_redirecting": "يتم إعادة التوجيه إلى الدفع...",
-      "analizing_plan": "تحليل خطتك..."
+      "analizing_plan": "تحليل خطتك...",
+      "target_language": "اللغة المستهدفة"
     },
     "buttons": {
       "continue": "استمر",

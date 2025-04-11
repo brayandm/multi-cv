@@ -219,7 +219,7 @@ export default function GenerateDocumentComponent({
               className={"max-w-40 " + (type !== "simple" ? "mb-5" : "mb-10")}
               items={languages}
               variant="bordered"
-              label="Target Language"
+              label={t("common.texts.target_language")}
               selectedKeys={[targetLocale]}
               onChange={(e) => {
                 setTargetLocale(e.target.value);

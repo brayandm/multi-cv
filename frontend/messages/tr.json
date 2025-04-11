@@ -55,7 +55,8 @@
       "generation_finished": "Başka üretim kalmadı",
       "upgrade_plan": "Planınızı yükseltin",
       "payment_redirecting": "Ödeme sayfasına yönlendiriliyor...",
-      "analizing_plan": "Planınızı analiz ediyoruz..."
+      "analizing_plan": "Planınızı analiz ediyoruz...",
+      "target_language": "Hedef dil"
     },
     "buttons": {
       "continue": "Devam Et",
