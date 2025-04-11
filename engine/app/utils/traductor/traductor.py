@@ -14,12 +14,7 @@ from pydantic import SecretStr
 load_dotenv(dotenv_path=".env")
 api_key: str = os.environ.get("OPENAI_API_KEY") or ""
 
-source_path: str = "../frontend/messages/en.json"
-
-with open(source_path, "r", encoding="utf-8") as f:
-    en_data: OrderedDict[str, Any] = json.load(
-        f, object_pairs_hook=OrderedDict
-    )
+base_path: str = "../frontend/messages"
 
 
 def flatten(
@@ -46,6 +41,14 @@ def unflatten(d: dict[str, str], sep: str = ".") -> OrderedDict[str, Any]:
             target = target[part]
         target[parts[-1]] = v
     return result
+
+
+source_path: str = os.path.join(base_path, "en.json")
+
+with open(source_path, "r", encoding="utf-8") as f:
+    en_data: OrderedDict[str, Any] = json.load(
+        f, object_pairs_hook=OrderedDict
+    )
 
 
 en_flat: OrderedDict[str, str] = flatten(en_data)
@@ -87,7 +90,7 @@ chain = chat_prompt | llm
 def translate_and_sync_nested(target: dict[str, str]) -> str:
     code: str = target["code"]
     lang: str = target["language"]
-    output_path: str = f"../frontend/messages/{code}.json"
+    output_path: str = os.path.join(base_path, f"{code}.json")
 
     if os.path.exists(output_path):
         with open(output_path, "r", encoding="utf-8") as f:
