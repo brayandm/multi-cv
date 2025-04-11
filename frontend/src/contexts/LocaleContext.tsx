@@ -30,9 +30,9 @@ export type Language = "en" | "es" | "hi" | "ru";
 
 export const languages = [
   { code: "en", label: "English", name: "English" },
-  { code: "es", label: "Spanish", name: "Spanish" },
-  { code: "hi", label: "Hindi", name: "Romanized Hindi" },
-  { code: "ru", label: "Russian", name: "Russian" },
+  { code: "es", label: "Español", name: "Español" },
+  { code: "hi", label: "हिन्दी", name: "हिन्दी (लैटिन लिपि)" },
+  { code: "ru", label: "Русский", name: "Русский" },
 ];
 
 export const mapLocaleToLanguage = (locale: string) => {
