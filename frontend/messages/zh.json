@@ -1,0 +1,440 @@
+{
+  "app": {
+    "name": "多简历"
+  },
+  "common": {
+    "menu": {
+      "home": "首页",
+      "settings": "设置",
+      "profile": "个人资料"
+    },
+    "auth": {
+      "login": "登录",
+      "register": "注册",
+      "logout": "登出",
+      "google_sign_in": "使用 Google 登录",
+      "google_sign_up": "使用 Google 注册",
+      "use_other_method": "使用其他方式",
+      "forgot_password": "忘记密码？"
+    },
+    "texts": {
+      "delete": "正在删除 {element}",
+      "delete_confirmation": "您确定要删除这个 {element} 吗？",
+      "skills": "技能",
+      "draft_changes": "草稿更改",
+      "draft_changes_description": "您有未保存的更改。您想保存它们吗？",
+      "havent_finished": "您还没有完成这个 {element}。",
+      "discard_changes": "您想继续编辑还是放弃更改？",
+      "saved": "已保存",
+      "saved_description": "您的更改已被保存。",
+      "unfinished_element": "未完成的 {element}",
+      "unfinished_element_description": "您还没有完成这个 {element}。",
+      "chat": "聊天 AI",
+      "chat_description": "与我们的 AI 聊天以获得帮助",
+      "ai_assistant": "AI 助手",
+      "type_message": "输入消息...",
+      "generate_cv": "生成简历",
+      "quota_info": "配额信息",
+      "used": "已使用",
+      "message_left": "剩余消息：{count}",
+      "generation_left": "剩余生成次数：{count}",
+      "languages": "语言",
+      "basic": "基础",
+      "intermediate": "中级",
+      "professional": "专业",
+      "native": "母语",
+      "upload_cv": "上传您的简历 (PDF)",
+      "loading_autofill_title": "正在处理您的简历",
+      "loading_autofill_description": "请稍候，我们正在填写您的个人资料...",
+      "loading_generating_cv_title": "正在生成您的简历",
+      "loading_generating_cv_description": "请稍候，我们正在生成您的简历...",
+      "only_year": "仅年份",
+      "pending_generation": "待生成",
+      "cv": "简历",
+      "cover_letter": "求职信",
+      "generation_finished": "没有更多生成次数",
+      "upgrade_plan": "升级您的计划",
+      "payment_redirecting": "正在重定向到支付...",
+      "analizing_plan": "正在分析您的计划..."
+    },
+    "buttons": {
+      "continue": "继续",
+      "add": "添加",
+      "resend_email": "重新发送电子邮件",
+      "send_email": "发送电子邮件",
+      "change_password": "更改密码",
+      "resend_in": "{timeleft}秒后重新发送",
+      "try_again": "再试一次",
+      "too_many_requests": "请求过多，请在 24 小时后再试",
+      "next": "下一步",
+      "previous": "上一步",
+      "go_home": "返回首页",
+      "add_element": "添加 {element}",
+      "delete": "删除",
+      "cancel": "取消",
+      "save": "保存",
+      "discard": "放弃",
+      "keep_editing": "继续编辑",
+      "clear": "清除",
+      "autofill_button": "从简历填写个人资料",
+      "download": "下载",
+      "custom_prompt": "自定义提示"
+    },
+    "errors": {
+      "login": "登录失败",
+      "login_description": "电子邮件或密码不正确。",
+      "register": "注册失败",
+      "register_description": "该电子邮件已被使用。",
+      "passwords_not_match": "密码不匹配",
+      "password_change": "密码更改失败",
+      "old_password_incorrect": "当前密码不正确",
+      "server": "服务器错误",
+      "under_age": "您必须年满 18 岁",
+      "accept_terms": "您必须接受条款和条件",
+      "length": "{field} 必须为 {current_length}/{length} 个字符",
+      "skill_length": "您应该至少输入 {min} 个技能",
+      "country_code_required": "请选择国家代码",
+      "max_elements": "已达到最大 {element} 数量",
+      "max_elements_description": "您只能添加 {max} 个 {element}",
+      "required": "请填写此字段。",
+      "invalid_email": "您输入的电子邮件无效",
+      "password_too_short": "密码长度应至少为 {min} 个字符",
+      "select_date": "请选择日期",
+      "invalid_phone": "电话号码无效",
+      "settings": "设置更新失败",
+      "file_size": "文件大小应小于 {max}MB",
+      "compression": "处理图像时出现问题",
+      "autofill": "自动填写失败",
+      "dates_impossible": "结束日期必须在开始日期之后",
+      "expiration_impossible": "到期日期必须在发行日期之后",
+      "generate_cv": "简历生成失败",
+      "download_document": "文档下载失败"
+    },
+    "success": {
+      "password_change": "密码已更改",
+      "password_change_description": "您的密码已成功更改。"
+    },
+    "form": {
+      "first_name": "名字",
+      "last_name": "姓氏",
+      "email": "电子邮件",
+      "password": "密码",
+      "current_password": "当前密码",
+      "new_password": "新密码",
+      "repeat_password": "重复密码",
+      "your_location": "您的位置",
+      "phone": "电话号码",
+      "about": "关于您",
+      "company_name": "公司",
+      "institution": "机构",
+      "career": "职业",
+      "skill": "技能",
+      "role": "角色",
+      "phone_number": "电话号码",
+      "phone_country_code": "国家代码",
+      "company_description": "职位描述",
+      "location": "地点",
+      "start_date": "开始日期",
+      "end_date": "结束日期",
+      "project_name": "项目名称",
+      "project_description": "项目描述",
+      "link": "链接",
+      "professional_links_select": "选择一个链接",
+      "skill_description": "至少插入 {min} 个技能",
+      "certification_name": "认证名称",
+      "certification_description": "认证描述",
+      "certificate_id": "证书 ID",
+      "verification_url": "验证链接",
+      "issuer": "认证颁发者",
+      "issue_date": "发行日期",
+      "expiration_date": "到期日期",
+      "language": "语言",
+      "level": "级别"
+    },
+    "placeholders": {
+      "enter_first_name": "输入您的名字",
+      "enter_last_name": "输入您的姓氏",
+      "enter_email": "输入您的电子邮件",
+      "enter_password": "输入您的密码",
+      "enter_current_password": "输入您的当前密码",
+      "enter_new_password": "输入您的新密码",
+      "enter_password_again": "再次输入您的密码",
+      "enter_skill": "输入新技能",
+      "enter_phone": "输入您的电话号码",
+      "enter_about": "我是一名 ...",
+      "enter_company_name": "公司名称",
+      "enter_institution_name": "机构名称",
+      "enter_career": "您在这里学习的学位",
+      "enter_role": "您在公司的角色",
+      "enter_job_description": "您在工作中的职责和责任描述",
+      "enter_your_location": "城市，国家",
+      "enter_location": "\"城市，国家\" 或 \"远程\"",
+      "enter_project_name": "输入项目名称",
+      "enter_project_description": "输入简要描述",
+      "enter_project_link": "项目链接",
+      "enter_institution_link": "机构链接",
+      "enter_company_link": "公司链接",
+      "professional_links_select": "点击选择",
+      "enter_your_link": "输入您的 {field} 链接",
+      "enter_certification_name": "输入认证名称",
+      "enter_certification_issuer": "输入颁发者",
+      "enter_certification_certificate_id": "证书 ID",
+      "enter_certification_verification_url": "输入验证 URL",
+      "enter_certification_description": "输入简要描述",
+      "enter_language": "输入语言",
+      "select_language_level": "选择一个级别"
+    },
+    "legal": {
+      "terms_conditions": "条款与条件",
+      "privacy_policy": "隐私政策",
+      "confirm_age": "我确认我已年满 18 岁",
+      "accept_terms": "我接受 <termsConditions></termsConditions> 和 <privacyPolicy></privacyPolicy>",
+      "talent_pool": "允许招聘人员查看我的个人资料以获取工作机会。"
+    },
+    "months": {
+      "january": "一月",
+      "february": "二月",
+      "march": "三月",
+      "april": "四月",
+      "may": "五月",
+      "june": "六月",
+      "july": "七月",
+      "august": "八月",
+      "september": "九月",
+      "october": "十月",
+      "november": "十一月",
+      "december": "十二月"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "电子邮件验证",
+      "already_verified": {
+        "title": "电子邮件验证已验证",
+        "message": "您的电子邮件已被验证。"
+      },
+      "success": {
+        "title": "电子邮件验证成功",
+        "message": "您的电子邮件已被验证。"
+      },
+      "expired": {
+        "title": "电子邮件验证已过期",
+        "message": "您的电子邮件验证链接已过期。"
+      },
+      "instructions": "我们已向您发送了一封包含验证链接的电子邮件。"
+    },
+    "password_recovery": {
+      "title": "密码恢复",
+      "success": {
+        "title": "密码恢复成功",
+        "message": "您的密码已更改。"
+      },
+      "fail": {
+        "title": "密码恢复无效或已过期",
+        "message": "您的密码恢复链接无效或已过期。"
+      },
+      "instructions": "我们将向您发送一封电子邮件，包含重置密码的链接。"
+    },
+    "settings": {
+      "subtitle": "更改您的帐户设置",
+      "password": "密码设置"
+    },
+    "welcome": {
+      "title": "欢迎来到 <appName></appName>",
+      "description": "为独特的职位创建独特的简历。"
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "简历生成器",
+          "custom_prompt": {
+            "title": "自定义提示",
+            "placeholder": "写一个自定义提示以生成您的简历。"
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "简单简历"
+            },
+            "based_on_role": {
+              "title": "基于角色或职位",
+              "input": {
+                "label": "角色或职位",
+                "placeholder": "输入您申请的角色或职位"
+              }
+            },
+            "based_on_job_post": {
+              "title": "基于职位发布",
+              "input": {
+                "label": "职位发布描述",
+                "placeholder": "在此粘贴职位发布描述"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "申请"
+        },
+        "documents": {
+          "title": "文档",
+          "empty": "未找到文档。"
+        }
+      }
+    },
+    "login": {
+      "description": "请输入您的凭据"
+    },
+    "register": {
+      "description": "介绍一下自己"
+    },
+    "profile": {
+      "subtitle": "这些信息对于正确创建您的简历是必要的。",
+      "sections": {
+        "basic_info": {
+          "title": "个人信息"
+        },
+        "professional_links": {
+          "title": "链接"
+        },
+        "experience": {
+          "title": "经验",
+          "element": "经验",
+          "is_present": "我目前在这里工作"
+        },
+        "education": {
+          "title": "教育",
+          "element": "教育",
+          "is_present": "我目前在这里学习"
+        },
+        "projects": {
+          "title": "项目",
+          "element": "项目",
+          "is_present": "我目前在这个项目上工作"
+        },
+        "certifications": {
+          "title": "认证",
+          "element": "认证",
+          "hasnt_expiration_date": "此认证没有到期日期"
+        },
+        "languages": {
+          "title": "语言"
+        },
+        "skills": {
+          "title": "技能"
+        }
+      },
+      "success": {
+        "title": "注册完成",
+        "message": "您的帐户已准备好。您现在可以访问平台的所有功能。"
+      },
+      "auto_fill": {
+        "title": "上传您的简历以填写您的个人资料",
+        "message": "通过上传您现有的简历来节省时间——我们将提取信息并自动填写您的个人资料。"
+      }
+    },
+    "terms_and_conditions": {
+      "title": "隐私政策和条款与条件",
+      "description_first_time": "请阅读并接受。",
+      "updating_notice": "我们正在更新我们的 <termsConditions></termsConditions> 和 <privacyPolicy></privacyPolicy>。新条款将在一个月内生效，并将在此之前提供审阅。请花一点时间查看即将发生的变化。",
+      "accept_terms": "我们正在更新我们的 <termsConditions></termsConditions> 和 <privacyPolicy></privacyPolicy>。点击“继续”即表示您同意更新后的条款。"
+    },
+    "not_found": {
+      "title": "页面未找到",
+      "description": "抱歉，您要查找的页面不存在或已被移动。",
+      "back": "返回首页"
+    },
+    "landing_page": {
+      "title": "使用 AI 创建有影响力的简历",
+      "description": "多简历帮助您生成针对每个职位发布的个性化简历。旨在支持技术专业人员，提供快速而优雅的 AI 驱动体验。",
+      "start_free": "免费开始",
+      "features": {
+        "title": "您可以使用多简历做什么？",
+        "first": {
+          "title": "智能助手",
+          "description": "帮助您以清晰、引人入胜和优化的方式撰写您的经验、成就和技能。"
+        },
+        "second": {
+          "title": "多个简历",
+          "description": "为不同的公司、行业或技术角色管理不同版本的简历。"
+        },
+        "third": {
+          "title": "即时适应",
+          "description": "只需单击一下即可自动生成特定于工作的简历。"
+        },
+        "coming_soon": "即将推出",
+        "now_available": "现已可用"
+      },
+      "vision": {
+        "title": "多简历的未来",
+        "description": "想象一个您甚至不需要创建简历的世界。我们的使命是直接连接人和公司，利用 AI 结构化您的个人资料，突出您的优势，消除不公平的筛选。",
+        "start_now": "我想成为未来的一部分"
+      },
+      "cta": {
+        "title": "开始使用 AI 构建您的简历",
+        "description": "成为我们测试阶段的一部分，帮助塑造多简历。开始使用 AI 制作更智能的简历，并在求职中抢占先机。",
+        "start_now": "立即开始"
+      },
+      "pricing_teaser": {
+        "title": "探索我们的灵活计划",
+        "description": "我们为每个人提供了一个计划。请在我们的定价页面上查看所有详细信息。",
+        "button": "查看计划"
+      },
+      "footer": {
+        "home": "主页",
+        "pricing": "定价",
+        "linkedin": "领英",
+        "privacy_policy": "隐私政策",
+        "cookies_policy": "Cookies 政策",
+        "terms_and_conditions": "条款与条件",
+        "contact": "联系",
+        "all_rights_reserved": "版权所有"
+      }
+    },
+    "pricing": {
+      "title": "定价计划",
+      "description": "选择最适合您的计划。",
+      "select_button": "选择计划",
+      "current_plan": "当前计划",
+      "free_plan": {
+        "title": "免费计划",
+        "price": "免费",
+        "description": "每月最多 3 份简历。",
+        "features": {
+          "1": "先试后买！",
+          "2": "每月限 3 份简历。"
+        }
+      },
+      "occasional_plan": {
+        "title": "偶尔计划",
+        "price": "€1.99（一次性）",
+        "description": "10 份简历，无到期限制。",
+        "features": {
+          "1": "偶尔使用者希望创建几份简历。",
+          "2": "以低于一杯啤酒的价格生成 10 份个性化简历 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "每日计划 15",
+        "price": "€9.99 / 30 天",
+        "description": "每天 15 份简历，持续 30 天。",
+        "features": {
+          "1": "非累积每日限制。",
+          "2": "定期申请的求职者。"
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "支付已取消",
+        "description": "您的支付已被取消。"
+      },
+      "success": {
+        "title": "支付成功",
+        "description": "您的支付已成功处理。"
+      },
+      "already_premium": {
+        "title": "已是高级用户",
+        "description": "您已经是高级用户。在购买新计划之前，请先使用当前计划。"
+      }
+    }
+  }
+}

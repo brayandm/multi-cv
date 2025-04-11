@@ -1,0 +1,440 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Hem",
+      "settings": "Inställningar",
+      "profile": "Profil"
+    },
+    "auth": {
+      "login": "Logga in",
+      "register": "Registrera",
+      "logout": "Logga ut",
+      "google_sign_in": "Logga in med Google",
+      "google_sign_up": "Registrera med Google",
+      "use_other_method": "Använd en annan metod",
+      "forgot_password": "Glömt ditt lösenord?"
+    },
+    "texts": {
+      "delete": "Tar bort {element}",
+      "delete_confirmation": "Är du säker på att du vill ta bort detta {element}?",
+      "skills": "kunskaper",
+      "draft_changes": "Utkaständringar",
+      "draft_changes_description": "Du har osparade ändringar. Vill du spara dem?",
+      "havent_finished": "Du har inte avslutat detta {element} än.",
+      "discard_changes": "Vill du fortsätta redigera eller kassera ändringarna?",
+      "saved": "Sparad",
+      "saved_description": "Dina ändringar har sparats.",
+      "unfinished_element": "Ofullständigt {element}",
+      "unfinished_element_description": "Du har inte avslutat detta {element} än.",
+      "chat": "Chatta med AI",
+      "chat_description": "Chatta med vår AI för att få hjälp",
+      "ai_assistant": "AI-assistent",
+      "type_message": "Skriv ett meddelande...",
+      "generate_cv": "Generera CV",
+      "quota_info": "Kvoteinformation",
+      "used": "Använt",
+      "message_left": "Meddelanden kvar: {count}",
+      "generation_left": "Genereringar kvar: {count}",
+      "languages": "Språk",
+      "basic": "Grundläggande",
+      "intermediate": "Medelnivå",
+      "professional": "Professionell",
+      "native": "Modersmål",
+      "upload_cv": "Ladda upp ditt CV (PDF)",
+      "loading_autofill_title": "Behandlar ditt CV",
+      "loading_autofill_description": "Vänligen vänta medan vi fyller i din profil...",
+      "loading_generating_cv_title": "Genererar ditt CV",
+      "loading_generating_cv_description": "Vänligen vänta medan vi genererar ditt CV...",
+      "only_year": "Endast år",
+      "pending_generation": "Väntande generation",
+      "cv": "CV",
+      "cover_letter": "Personligt brev",
+      "generation_finished": "Inga fler generationer kvar",
+      "upgrade_plan": "Uppgradera din plan",
+      "payment_redirecting": "Omdirigerar till betalning...",
+      "analizing_plan": "Analyserar din plan..."
+    },
+    "buttons": {
+      "continue": "Fortsätt",
+      "add": "Lägg till",
+      "resend_email": "Skicka e-post igen",
+      "send_email": "Skicka e-post",
+      "change_password": "Ändra lösenord",
+      "resend_in": "Skicka igen om {timeleft}s",
+      "try_again": "Försök igen",
+      "too_many_requests": "För många förfrågningar, försök igen om 24 timmar",
+      "next": "Nästa",
+      "previous": "Föregående",
+      "go_home": "Gå hem",
+      "add_element": "Lägg till {element}",
+      "delete": "Ta bort",
+      "cancel": "Avbryt",
+      "save": "Spara",
+      "discard": "Kassera",
+      "keep_editing": "Fortsätt redigera",
+      "clear": "Rensa",
+      "autofill_button": "Fyll i profil från CV",
+      "download": "Ladda ner",
+      "custom_prompt": "Anpassad uppmaning"
+    },
+    "errors": {
+      "login": "Inloggning misslyckades",
+      "login_description": "E-postadressen eller lösenordet är felaktigt.",
+      "register": "Registrering misslyckades",
+      "register_description": "E-postadressen används redan.",
+      "passwords_not_match": "Lösenorden matchar inte",
+      "password_change": "Ändring av lösenord misslyckades",
+      "old_password_incorrect": "Det nuvarande lösenordet är felaktigt",
+      "server": "Serverfel",
+      "under_age": "Du måste vara över 18 år gammal",
+      "accept_terms": "Du måste acceptera villkoren",
+      "length": "{field} måste vara {current_length}/{length} tecken långt",
+      "skill_length": "Du bör ange minst {min} kunskap",
+      "country_code_required": "Välj en landskod",
+      "max_elements": "Maximalt antal {element} nått",
+      "max_elements_description": "Du kan bara lägga till {max} {element}",
+      "required": "Vänligen fyll i detta fält.",
+      "invalid_email": "Den e-postadress du angav är inte giltig",
+      "password_too_short": "Lösenordet bör vara minst {min} tecken långt",
+      "select_date": "Vänligen välj ett datum",
+      "invalid_phone": "Telefonnumret är inte giltigt",
+      "settings": "Uppdatering av inställningar misslyckades",
+      "file_size": "Filstorleken bör vara mindre än {max}MB",
+      "compression": "Det uppstod ett problem med att bearbeta bilden",
+      "autofill": "Autofyll misslyckades",
+      "dates_impossible": "Slutdatumet måste vara efter startdatumet",
+      "expiration_impossible": "Utgångsdatumet måste vara efter utfärdandedatumet",
+      "generate_cv": "CV-generering misslyckades",
+      "download_document": "Nedladdning av dokument misslyckades"
+    },
+    "success": {
+      "password_change": "Lösenordet har ändrats",
+      "password_change_description": "Ditt lösenord har ändrats framgångsrikt."
+    },
+    "form": {
+      "first_name": "Förnamn",
+      "last_name": "Efternamn",
+      "email": "E-post",
+      "password": "Lösenord",
+      "current_password": "Nuvarande lösenord",
+      "new_password": "Nytt lösenord",
+      "repeat_password": "Upprepa lösenord",
+      "your_location": "Din plats",
+      "phone": "Telefonnummer",
+      "about": "Om dig",
+      "company_name": "Företag",
+      "institution": "Institution",
+      "career": "Karriär",
+      "skill": "Kunskap",
+      "role": "Roll",
+      "phone_number": "Telefonnummer",
+      "phone_country_code": "Landskod",
+      "company_description": "Jobbbeskrivning",
+      "location": "Plats",
+      "start_date": "Startdatum",
+      "end_date": "Slutdatum",
+      "project_name": "Projektnamn",
+      "project_description": "Projektbeskrivning",
+      "link": "Länk",
+      "professional_links_select": "Välj en länk",
+      "skill_description": "Ange minst {min} kunskaper",
+      "certification_name": "Certifieringsnamn",
+      "certification_description": "Certifieringsbeskrivning",
+      "certificate_id": "Certifikat-ID",
+      "verification_url": "Verifieringslänk",
+      "issuer": "Utfärdare av certifiering",
+      "issue_date": "Utfärdandedatum",
+      "expiration_date": "Utgångsdatum",
+      "language": "Språk",
+      "level": "Nivå"
+    },
+    "placeholders": {
+      "enter_first_name": "Ange ditt förnamn",
+      "enter_last_name": "Ange ditt efternamn",
+      "enter_email": "Ange din e-post",
+      "enter_password": "Ange ditt lösenord",
+      "enter_current_password": "Ange ditt nuvarande lösenord",
+      "enter_new_password": "Ange ditt nya lösenord",
+      "enter_password_again": "Ange ditt lösenord igen",
+      "enter_skill": "Ange en ny kunskap",
+      "enter_phone": "Ange ditt telefonnummer",
+      "enter_about": "Jag är en ...",
+      "enter_company_name": "Företagsnamn",
+      "enter_institution_name": "Institutionsnamn",
+      "enter_career": "Den examen du studerade / studerar här",
+      "enter_role": "Din roll i företaget",
+      "enter_job_description": "En beskrivning av dina arbetsuppgifter och ansvar",
+      "enter_your_location": "Stad, Land",
+      "enter_location": "\"Stad, Land\" eller \"Fjärr\"",
+      "enter_project_name": "Ange projektnamnet",
+      "enter_project_description": "Ange en kort beskrivning",
+      "enter_project_link": "Länk till ditt projekt",
+      "enter_institution_link": "Institutionslänk",
+      "enter_company_link": "Företagslänk",
+      "professional_links_select": "Klicka för att välja",
+      "enter_your_link": "Ange din {field} länk",
+      "enter_certification_name": "Ange certifieringsnamnet",
+      "enter_certification_issuer": "Ange utfärdaren",
+      "enter_certification_certificate_id": "Certifikat-ID",
+      "enter_certification_verification_url": "Ange verifierings-URL",
+      "enter_certification_description": "Ange en kort beskrivning",
+      "enter_language": "Ange ett språk",
+      "select_language_level": "Välj en nivå"
+    },
+    "legal": {
+      "terms_conditions": "Villkor",
+      "privacy_policy": "Integritetspolicy",
+      "confirm_age": "Jag bekräftar att jag är över 18 år gammal",
+      "accept_terms": "Jag accepterar <termsConditions></termsConditions> och <privacyPolicy></privacyPolicy>",
+      "talent_pool": "Tillåt rekryterare att se min profil för jobbmöjligheter."
+    },
+    "months": {
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Mars",
+      "april": "April",
+      "may": "Maj",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Augusti",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "December"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "E-postverifiering",
+      "already_verified": {
+        "title": "E-postverifiering redan verifierad",
+        "message": "Din e-post har redan verifierats."
+      },
+      "success": {
+        "title": "E-postverifiering lyckades",
+        "message": "Din e-post har verifierats."
+      },
+      "expired": {
+        "title": "E-postverifiering har gått ut",
+        "message": "Din länk för e-postverifiering har gått ut."
+      },
+      "instructions": "Vi har skickat dig ett e-postmeddelande med en verifieringslänk."
+    },
+    "password_recovery": {
+      "title": "Återställning av lösenord",
+      "success": {
+        "title": "Återställning av lösenord lyckades",
+        "message": "Ditt lösenord har ändrats."
+      },
+      "fail": {
+        "title": "Återställning av lösenord ogiltig eller utgången",
+        "message": "Din länk för återställning av lösenord är ogiltig eller har gått ut."
+      },
+      "instructions": "Vi kommer att skicka dig ett e-postmeddelande med en länk för att återställa ditt lösenord."
+    },
+    "settings": {
+      "subtitle": "Ändra dina kontoinställningar",
+      "password": "Lösenordsinställningar"
+    },
+    "welcome": {
+      "title": "Välkommen till <appName></appName>",
+      "description": "Skapa unika CV:n för unika jobbannonser."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "CV-byggare",
+          "custom_prompt": {
+            "title": "Anpassad uppmaning",
+            "placeholder": "Skriv en anpassad uppmaning för att generera ditt CV."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "Enkelt CV"
+            },
+            "based_on_role": {
+              "title": "Baserat på roll eller position",
+              "input": {
+                "label": "Roll eller position",
+                "placeholder": "Ange rollen eller positionen du söker"
+              }
+            },
+            "based_on_job_post": {
+              "title": "Baserat på jobbannons",
+              "input": {
+                "label": "Jobbannonsbeskrivning",
+                "placeholder": "Klistra in jobbannonsbeskrivningen här"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "Ansökningar"
+        },
+        "documents": {
+          "title": "Dokument",
+          "empty": "Inga dokument hittades."
+        }
+      }
+    },
+    "login": {
+      "description": "Vänligen ange dina uppgifter"
+    },
+    "register": {
+      "description": "Presentera dig själv"
+    },
+    "profile": {
+      "subtitle": "Denna information är nödvändig för att korrekt skapa ditt CV.",
+      "sections": {
+        "basic_info": {
+          "title": "Personlig"
+        },
+        "professional_links": {
+          "title": "Länkar"
+        },
+        "experience": {
+          "title": "Erfarenhet",
+          "element": "Erfarenhet",
+          "is_present": "Jag arbetar för närvarande här"
+        },
+        "education": {
+          "title": "Utbildning",
+          "element": "Utbildning",
+          "is_present": "Jag studerar för närvarande här"
+        },
+        "projects": {
+          "title": "Projekt",
+          "element": "Projekt",
+          "is_present": "Jag arbetar för närvarande med detta projekt"
+        },
+        "certifications": {
+          "title": "Certifieringar",
+          "element": "Certifiering",
+          "hasnt_expiration_date": "Denna certifiering har inget utgångsdatum"
+        },
+        "languages": {
+          "title": "Språk"
+        },
+        "skills": {
+          "title": "Kunskaper"
+        }
+      },
+      "success": {
+        "title": "Registrering slutförd",
+        "message": "Ditt konto är klart. Du kan nu få tillgång till alla plattformens funktioner."
+      },
+      "auto_fill": {
+        "title": "Ladda upp ditt CV för att fylla i din profil",
+        "message": "Spara tid genom att ladda upp ditt befintliga CV — vi kommer att extrahera informationen och fylla i din profil automatiskt."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Integritetspolicy och villkor",
+      "description_first_time": "Vänligen läs och acceptera.",
+      "updating_notice": "Vi uppdaterar våra <termsConditions></termsConditions> och <privacyPolicy></privacyPolicy>. De nya villkoren träder i kraft om en månad och kommer att finnas tillgängliga för granskning innan dess. Vänligen ta en stund att granska de kommande ändringarna.",
+      "accept_terms": "Vi uppdaterar våra <termsConditions></termsConditions> och <privacyPolicy></privacyPolicy>. Genom att klicka på \"Fortsätt\" godkänner du de uppdaterade villkoren."
+    },
+    "not_found": {
+      "title": "Sidan hittades inte",
+      "description": "Tyvärr, sidan du letar efter finns inte eller har flyttats.",
+      "back": "Tillbaka till hem"
+    },
+    "landing_page": {
+      "title": "Skapa effektiva CV:n med AI",
+      "description": "MultiCV hjälper dig att generera personliga CV:n anpassade för varje jobbannons. Utformad för att stödja tekniska yrkesverksamma med en snabb och elegant AI-driven upplevelse.",
+      "start_free": "Börja gratis",
+      "features": {
+        "title": "Vad kan du göra med MultiCV?",
+        "first": {
+          "title": "Smart assistent",
+          "description": "Få hjälp med att skriva din erfarenhet, prestationer och kunskaper på ett klart, engagerande och optimerat sätt."
+        },
+        "second": {
+          "title": "Flera CV:n",
+          "description": "Hantera olika versioner av ditt CV för olika företag, branscher eller tekniska roller."
+        },
+        "third": {
+          "title": "Omedelbar anpassning",
+          "description": "Generera automatiskt jobb-specifika CV:n med ett enda klick."
+        },
+        "coming_soon": "Kommer snart",
+        "now_available": "Nu tillgänglig"
+      },
+      "vision": {
+        "title": "Framtiden för MultiCV",
+        "description": "Föreställ dig en värld där du inte ens behöver skapa ett CV. Vårt uppdrag är att koppla samman människor och företag direkt, med hjälp av AI för att strukturera din profil, lyfta fram dina styrkor och eliminera orättvisa filter.",
+        "start_now": "Jag vill vara en del av framtiden"
+      },
+      "cta": {
+        "title": "Börja bygga ditt CV med AI",
+        "description": "Var en del av vår beta-fas och hjälp till att forma MultiCV. Börja skapa smartare CV:n med AI och få ett försprång i din jobbsökning.",
+        "start_now": "Börja nu"
+      },
+      "pricing_teaser": {
+        "title": "Utforska våra flexibla planer",
+        "description": "Vi har en plan för alla. Upptäck alla detaljer på vår prissida.",
+        "button": "Se planer"
+      },
+      "footer": {
+        "home": "Huvudsida",
+        "pricing": "Priser",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "Integritetspolicy",
+        "cookies_policy": "Cookiespolicy",
+        "terms_and_conditions": "Villkor",
+        "contact": "Kontakt",
+        "all_rights_reserved": "Alla rättigheter förbehållna"
+      }
+    },
+    "pricing": {
+      "title": "Priser",
+      "description": "Välj den plan som passar dig bäst.",
+      "select_button": "Välj plan",
+      "current_plan": "Aktuell plan",
+      "free_plan": {
+        "title": "Gratis plan",
+        "price": "Gratis",
+        "description": "Upp till 3 CV:n per månad.",
+        "features": {
+          "1": "Prova innan du köper!",
+          "2": "Begränsad till 3 CV:n per månad."
+        }
+      },
+      "occasional_plan": {
+        "title": "Tillfällig plan",
+        "price": "€1.99 (engångsbetalning)",
+        "description": "10 totalt CV:n, utan utgångsdatum.",
+        "features": {
+          "1": "Tillfälliga användare som vill skapa några CV:n.",
+          "2": "Generera 10 personliga CV:n för mindre än priset av en öl 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "Daglig plan 15",
+        "price": "€9.99 / 30 dagar",
+        "description": "15 CV:n per dag, i 30 dagar.",
+        "features": {
+          "1": "Icke-kumulativt dagligt tak.",
+          "2": "Jobbsökande som aktivt ansöker regelbundet."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Betalning avbruten",
+        "description": "Din betalning har avbrutits."
+      },
+      "success": {
+        "title": "Betalning lyckades",
+        "description": "Din betalning har behandlats framgångsrikt."
+      },
+      "already_premium": {
+        "title": "Redan en premiumanvändare",
+        "description": "Du är redan en premiumanvändare. Använd din nuvarande plan innan du köper en ny."
+      }
+    }
+  }
+}

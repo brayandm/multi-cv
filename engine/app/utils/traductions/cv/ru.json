@@ -1,11 +1,11 @@
 {
-    "locale": "ru",
-    "contact_info": "Контактная информация",
-    "summary": "Резюме",
-    "experience": "Опыт работы",
-    "education": "Образование",
-    "projects": "Проекты",
-    "certifications": "Сертификаты",
-    "languages": "Языки",
-    "skills": "Навыки"
+  "locale": "ru",
+  "contact_info": "Контактная информация",
+  "summary": "Резюме",
+  "experience": "Опыт работы",
+  "education": "Образование",
+  "projects": "Проекты",
+  "certifications": "Сертификаты",
+  "languages": "Языки",
+  "skills": "Навыки"
 }

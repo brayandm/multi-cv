@@ -1,0 +1,440 @@
+{
+  "app": {
+    "name": "マルチCV"
+  },
+  "common": {
+    "menu": {
+      "home": "ホーム",
+      "settings": "設定",
+      "profile": "プロフィール"
+    },
+    "auth": {
+      "login": "ログイン",
+      "register": "登録",
+      "logout": "ログアウト",
+      "google_sign_in": "Googleでログイン",
+      "google_sign_up": "Googleで登録",
+      "use_other_method": "別の方法を使用",
+      "forgot_password": "パスワードを忘れましたか？"
+    },
+    "texts": {
+      "delete": "{element}を削除中",
+      "delete_confirmation": "この{element}を削除してもよろしいですか？",
+      "skills": "スキル",
+      "draft_changes": "ドラフトの変更",
+      "draft_changes_description": "保存されていない変更があります。保存しますか？",
+      "havent_finished": "この{element}はまだ完了していません。",
+      "discard_changes": "編集を続けますか、それとも変更を破棄しますか？",
+      "saved": "保存されました",
+      "saved_description": "変更が保存されました。",
+      "unfinished_element": "未完成の{element}",
+      "unfinished_element_description": "この{element}はまだ完了していません。",
+      "chat": "AIチャット",
+      "chat_description": "AIとチャットしてヘルプを得る",
+      "ai_assistant": "AIアシスタント",
+      "type_message": "メッセージを入力...",
+      "generate_cv": "CVを生成",
+      "quota_info": "クォータ情報",
+      "used": "使用済み",
+      "message_left": "残りのメッセージ: {count}",
+      "generation_left": "残りの生成: {count}",
+      "languages": "言語",
+      "basic": "基本",
+      "intermediate": "中級",
+      "professional": "専門的",
+      "native": "ネイティブ",
+      "upload_cv": "CVをアップロード（PDF）",
+      "loading_autofill_title": "CVを処理中",
+      "loading_autofill_description": "プロフィールを入力するまでお待ちください...",
+      "loading_generating_cv_title": "CVを生成中",
+      "loading_generating_cv_description": "CVを生成するまでお待ちください...",
+      "only_year": "年のみ",
+      "pending_generation": "生成待ち",
+      "cv": "CV",
+      "cover_letter": "カバーレター",
+      "generation_finished": "これ以上の生成はありません",
+      "upgrade_plan": "プランをアップグレード",
+      "payment_redirecting": "支払いにリダイレクト中...",
+      "analizing_plan": "プランを分析中..."
+    },
+    "buttons": {
+      "continue": "続ける",
+      "add": "追加",
+      "resend_email": "メールを再送",
+      "send_email": "メールを送信",
+      "change_password": "パスワードを変更",
+      "resend_in": "{timeleft}秒後に再送",
+      "try_again": "再試行",
+      "too_many_requests": "リクエストが多すぎます。24時間後に再試行してください",
+      "next": "次へ",
+      "previous": "前へ",
+      "go_home": "ホームに戻る",
+      "add_element": "{element}を追加",
+      "delete": "削除",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "discard": "破棄",
+      "keep_editing": "編集を続ける",
+      "clear": "クリア",
+      "autofill_button": "CVからプロフィールを入力",
+      "download": "ダウンロード",
+      "custom_prompt": "カスタムプロンプト"
+    },
+    "errors": {
+      "login": "ログインに失敗しました",
+      "login_description": "メールアドレスまたはパスワードが正しくありません。",
+      "register": "登録に失敗しました",
+      "register_description": "そのメールアドレスはすでに使用されています。",
+      "passwords_not_match": "パスワードが一致しません",
+      "password_change": "パスワードの変更に失敗しました",
+      "old_password_incorrect": "現在のパスワードが正しくありません",
+      "server": "サーバーエラー",
+      "under_age": "18歳以上でなければなりません",
+      "accept_terms": "利用規約に同意する必要があります",
+      "length": "{field}は{current_length}/{length}文字でなければなりません",
+      "skill_length": "少なくとも{min}のスキルを入力してください",
+      "country_code_required": "国コードを選択してください",
+      "max_elements": "{element}の最大数に達しました",
+      "max_elements_description": "最大{max}の{element}を追加できます",
+      "required": "このフィールドを入力してください。",
+      "invalid_email": "入力したメールアドレスは無効です",
+      "password_too_short": "パスワードは少なくとも{min}文字でなければなりません",
+      "select_date": "日付を選択してください",
+      "invalid_phone": "電話番号が無効です",
+      "settings": "設定の更新に失敗しました",
+      "file_size": "ファイルサイズは{max}MB未満でなければなりません",
+      "compression": "画像の処理中に問題が発生しました",
+      "autofill": "自動入力に失敗しました",
+      "dates_impossible": "終了日が開始日より後でなければなりません",
+      "expiration_impossible": "有効期限が発行日より後でなければなりません",
+      "generate_cv": "CVの生成に失敗しました",
+      "download_document": "ドキュメントのダウンロードに失敗しました"
+    },
+    "success": {
+      "password_change": "パスワードが変更されました",
+      "password_change_description": "パスワードが正常に変更されました。"
+    },
+    "form": {
+      "first_name": "名",
+      "last_name": "姓",
+      "email": "メール",
+      "password": "パスワード",
+      "current_password": "現在のパスワード",
+      "new_password": "新しいパスワード",
+      "repeat_password": "パスワードを再入力",
+      "your_location": "あなたの場所",
+      "phone": "電話番号",
+      "about": "あなたについて",
+      "company_name": "会社名",
+      "institution": "機関",
+      "career": "キャリア",
+      "skill": "スキル",
+      "role": "役割",
+      "phone_number": "電話番号",
+      "phone_country_code": "国コード",
+      "company_description": "職務内容",
+      "location": "場所",
+      "start_date": "開始日",
+      "end_date": "終了日",
+      "project_name": "プロジェクト名",
+      "project_description": "プロジェクトの説明",
+      "link": "リンク",
+      "professional_links_select": "リンクを選択",
+      "skill_description": "少なくとも{min}のスキルを挿入してください",
+      "certification_name": "認証名",
+      "certification_description": "認証の説明",
+      "certificate_id": "証明書ID",
+      "verification_url": "検証リンク",
+      "issuer": "認証発行者",
+      "issue_date": "発行日",
+      "expiration_date": "有効期限",
+      "language": "言語",
+      "level": "レベル"
+    },
+    "placeholders": {
+      "enter_first_name": "名を入力してください",
+      "enter_last_name": "姓を入力してください",
+      "enter_email": "メールを入力してください",
+      "enter_password": "パスワードを入力してください",
+      "enter_current_password": "現在のパスワードを入力してください",
+      "enter_new_password": "新しいパスワードを入力してください",
+      "enter_password_again": "パスワードを再入力してください",
+      "enter_skill": "新しいスキルを入力してください",
+      "enter_phone": "電話番号を入力してください",
+      "enter_about": "私は...",
+      "enter_company_name": "会社名を入力してください",
+      "enter_institution_name": "機関名を入力してください",
+      "enter_career": "ここで学んだ学位",
+      "enter_role": "会社での役割",
+      "enter_job_description": "職務の説明",
+      "enter_your_location": "市、国",
+      "enter_location": "\"市、国\"または\"リモート\"",
+      "enter_project_name": "プロジェクト名を入力してください",
+      "enter_project_description": "簡単な説明を入力してください",
+      "enter_project_link": "プロジェクトへのリンク",
+      "enter_institution_link": "機関のリンク",
+      "enter_company_link": "会社のリンク",
+      "professional_links_select": "クリックして選択",
+      "enter_your_link": "{field}のリンクを入力してください",
+      "enter_certification_name": "認証名を入力してください",
+      "enter_certification_issuer": "発行者を入力してください",
+      "enter_certification_certificate_id": "証明書IDを入力してください",
+      "enter_certification_verification_url": "検証URLを入力してください",
+      "enter_certification_description": "簡単な説明を入力してください",
+      "enter_language": "言語を入力してください",
+      "select_language_level": "レベルを選択"
+    },
+    "legal": {
+      "terms_conditions": "利用規約",
+      "privacy_policy": "プライバシーポリシー",
+      "confirm_age": "私は18歳以上であることを確認します",
+      "accept_terms": "<termsConditions></termsConditions>と<privacyPolicy></privacyPolicy>に同意します",
+      "talent_pool": "リクルーターが私のプロフィールを求人機会のために見ることを許可します。"
+    },
+    "months": {
+      "january": "1月",
+      "february": "2月",
+      "march": "3月",
+      "april": "4月",
+      "may": "5月",
+      "june": "6月",
+      "july": "7月",
+      "august": "8月",
+      "september": "9月",
+      "october": "10月",
+      "november": "11月",
+      "december": "12月"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "メール認証",
+      "already_verified": {
+        "title": "メール認証はすでに確認済み",
+        "message": "あなたのメールはすでに確認されています。"
+      },
+      "success": {
+        "title": "メール認証成功",
+        "message": "あなたのメールが確認されました。"
+      },
+      "expired": {
+        "title": "メール認証が期限切れ",
+        "message": "あなたのメール認証リンクは期限切れです。"
+      },
+      "instructions": "認証リンクを含むメールを送信しました。"
+    },
+    "password_recovery": {
+      "title": "パスワード回復",
+      "success": {
+        "title": "パスワード回復成功",
+        "message": "あなたのパスワードが変更されました。"
+      },
+      "fail": {
+        "title": "パスワード回復無効または期限切れ",
+        "message": "あなたのパスワード回復リンクは無効または期限切れです。"
+      },
+      "instructions": "パスワードをリセットするためのリンクを含むメールを送信します。"
+    },
+    "settings": {
+      "subtitle": "アカウント設定を変更",
+      "password": "パスワード設定"
+    },
+    "welcome": {
+      "title": "<appName></appName>へようこそ",
+      "description": "ユニークな求人に対してユニークなCVを作成します。"
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "CVビルダー",
+          "custom_prompt": {
+            "title": "カスタムプロンプト",
+            "placeholder": "CVを生成するためのカスタムプロンプトを書いてください。"
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "シンプルCV"
+            },
+            "based_on_role": {
+              "title": "役割またはポジションに基づく",
+              "input": {
+                "label": "役割またはポジション",
+                "placeholder": "応募する役割またはポジションを入力してください"
+              }
+            },
+            "based_on_job_post": {
+              "title": "求人に基づく",
+              "input": {
+                "label": "求人の説明",
+                "placeholder": "ここに求人の説明を貼り付けてください"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "応募"
+        },
+        "documents": {
+          "title": "ドキュメント",
+          "empty": "ドキュメントが見つかりません。"
+        }
+      }
+    },
+    "login": {
+      "description": "資格情報を入力してください"
+    },
+    "register": {
+      "description": "自己紹介をしてください"
+    },
+    "profile": {
+      "subtitle": "この情報はCVを正しく作成するために必要です。",
+      "sections": {
+        "basic_info": {
+          "title": "個人情報"
+        },
+        "professional_links": {
+          "title": "リンク"
+        },
+        "experience": {
+          "title": "経験",
+          "element": "経験",
+          "is_present": "現在ここで働いています"
+        },
+        "education": {
+          "title": "教育",
+          "element": "教育",
+          "is_present": "現在ここで学んでいます"
+        },
+        "projects": {
+          "title": "プロジェクト",
+          "element": "プロジェクト",
+          "is_present": "現在このプロジェクトに取り組んでいます"
+        },
+        "certifications": {
+          "title": "認証",
+          "element": "認証",
+          "hasnt_expiration_date": "この認証には有効期限がありません"
+        },
+        "languages": {
+          "title": "言語"
+        },
+        "skills": {
+          "title": "スキル"
+        }
+      },
+      "success": {
+        "title": "登録完了",
+        "message": "あなたのアカウントは準備が整いました。プラットフォームのすべての機能にアクセスできます。"
+      },
+      "auto_fill": {
+        "title": "CVをアップロードしてプロフィールを入力",
+        "message": "既存のCVをアップロードすることで時間を節約できます。情報を抽出して自動的にプロフィールを入力します。"
+      }
+    },
+    "terms_and_conditions": {
+      "title": "プライバシーポリシーと利用規約",
+      "description_first_time": "お読みいただき、同意してください。",
+      "updating_notice": "私たちは<termsConditions></termsConditions>と<privacyPolicy></privacyPolicy>を更新しています。新しい条件は1か月後に発効し、それまでにレビュー可能です。今後の変更を確認するために少し時間を取ってください。",
+      "accept_terms": "私たちは<termsConditions></termsConditions>と<privacyPolicy></privacyPolicy>を更新しています。「続ける」をクリックすることで、更新された条件に同意します。"
+    },
+    "not_found": {
+      "title": "ページが見つかりません",
+      "description": "申し訳ありませんが、探しているページは存在しないか、移動されました。",
+      "back": "ホームに戻る"
+    },
+    "landing_page": {
+      "title": "AIでインパクトのある履歴書を作成",
+      "description": "MultiCVは、各求人に合わせたパーソナライズされた履歴書を生成するのを助けます。技術専門家をサポートするために設計された迅速でエレガントなAI駆動の体験です。",
+      "start_free": "無料で始める",
+      "features": {
+        "title": "MultiCVで何ができますか？",
+        "first": {
+          "title": "スマートアシスタント",
+          "description": "経験、成果、スキルを明確で魅力的、最適化された方法で書く手助けをします。"
+        },
+        "second": {
+          "title": "複数のCV",
+          "description": "異なる会社、業界、または技術的役割のために異なるバージョンの履歴書を管理します。"
+        },
+        "third": {
+          "title": "瞬時の適応",
+          "description": "ワンクリックで求人特有の履歴書を自動生成します。"
+        },
+        "coming_soon": "近日公開",
+        "now_available": "現在利用可能"
+      },
+      "vision": {
+        "title": "MultiCVの未来",
+        "description": "履歴書を作成する必要すらない世界を想像してください。私たちの使命は、人々と企業を直接つなげ、AIを使用してプロフィールを構造化し、強みを強調し、不公平なフィルターを排除することです。",
+        "start_now": "未来の一部になりたい"
+      },
+      "cta": {
+        "title": "AIで履歴書を作成し始める",
+        "description": "私たちのベータフェーズに参加し、MultiCVを形作る手助けをしてください。AIでよりスマートな履歴書を作成し、就職活動を先取りしましょう。",
+        "start_now": "今すぐ始める"
+      },
+      "pricing_teaser": {
+        "title": "柔軟なプランを探る",
+        "description": "誰にでも合うプランがあります。価格ページで詳細を確認してください。",
+        "button": "プランを見る"
+      },
+      "footer": {
+        "home": "メインページ",
+        "pricing": "価格",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "プライバシーポリシー",
+        "cookies_policy": "クッキーポリシー",
+        "terms_and_conditions": "利用規約",
+        "contact": "お問い合わせ",
+        "all_rights_reserved": "全著作権所有"
+      }
+    },
+    "pricing": {
+      "title": "価格プラン",
+      "description": "あなたに最適なプランを選択してください。",
+      "select_button": "プランを選択",
+      "current_plan": "現在のプラン",
+      "free_plan": {
+        "title": "無料プラン",
+        "price": "無料",
+        "description": "月に最大3つのCV。",
+        "features": {
+          "1": "購入前に試す！",
+          "2": "月に3つのCVに制限されています。"
+        }
+      },
+      "occasional_plan": {
+        "title": "偶発的プラン",
+        "price": "€1.99（1回限り）",
+        "description": "合計10のCV、有効期限なし。",
+        "features": {
+          "1": "数枚のCVを作成したいカジュアルユーザー。",
+          "2": "ビール1杯の価格で10のパーソナライズされたCVを生成🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "デイリープラン15",
+        "price": "€9.99 / 30日",
+        "description": "30日間、1日15CV。",
+        "features": {
+          "1": "累積しない日次制限。",
+          "2": "定期的に応募している求職者。"
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "支払いキャンセル",
+        "description": "あなたの支払いはキャンセルされました。"
+      },
+      "success": {
+        "title": "支払い成功",
+        "description": "あなたの支払いは正常に処理されました。"
+      },
+      "already_premium": {
+        "title": "すでにプレミアムユーザー",
+        "description": "あなたはすでにプレミアムユーザーです。新しいプランを購入する前に現在のプランを使い切ってください。"
+      }
+    }
+  }
+}

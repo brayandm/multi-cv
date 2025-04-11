@@ -1,0 +1,440 @@
+{
+  "app": {
+    "name": "MultiCV"
+  },
+  "common": {
+    "menu": {
+      "home": "Beranda",
+      "settings": "Pengaturan",
+      "profile": "Profil"
+    },
+    "auth": {
+      "login": "Masuk",
+      "register": "Daftar",
+      "logout": "Keluar",
+      "google_sign_in": "Masuk dengan Google",
+      "google_sign_up": "Daftar dengan Google",
+      "use_other_method": "Gunakan metode lain",
+      "forgot_password": "Lupa kata sandi?"
+    },
+    "texts": {
+      "delete": "Menghapus {element}",
+      "delete_confirmation": "Apakah Anda yakin ingin menghapus {element} ini?",
+      "skills": "keahlian",
+      "draft_changes": "Perubahan draf",
+      "draft_changes_description": "Anda memiliki perubahan yang belum disimpan. Apakah Anda ingin menyimpannya?",
+      "havent_finished": "Anda belum menyelesaikan {element} ini.",
+      "discard_changes": "Apakah Anda ingin terus mengedit atau membuang perubahan?",
+      "saved": "Tersimpan",
+      "saved_description": "Perubahan Anda telah disimpan.",
+      "unfinished_element": "{element} yang belum selesai",
+      "unfinished_element_description": "Anda belum menyelesaikan {element} ini.",
+      "chat": "Chat AI",
+      "chat_description": "Chat dengan AI kami untuk mendapatkan bantuan",
+      "ai_assistant": "Asisten AI",
+      "type_message": "Ketik pesan...",
+      "generate_cv": "Hasilkan CV",
+      "quota_info": "Info Kuota",
+      "used": "Digunakan",
+      "message_left": "Pesan tersisa: {count}",
+      "generation_left": "Generasi tersisa: {count}",
+      "languages": "Bahasa",
+      "basic": "Dasar",
+      "intermediate": "Menengah",
+      "professional": "Profesional",
+      "native": "Asli",
+      "upload_cv": "Unggah CV Anda (PDF)",
+      "loading_autofill_title": "Memproses CV Anda",
+      "loading_autofill_description": "Silakan tunggu sementara kami mengisi profil Anda...",
+      "loading_generating_cv_title": "Menghasilkan CV Anda",
+      "loading_generating_cv_description": "Silakan tunggu sementara kami menghasilkan CV Anda...",
+      "only_year": "Hanya tahun",
+      "pending_generation": "Generasi tertunda",
+      "cv": "CV",
+      "cover_letter": "Surat lamaran",
+      "generation_finished": "Tidak ada lagi generasi yang tersisa",
+      "upgrade_plan": "Tingkatkan rencana Anda",
+      "payment_redirecting": "Mengalihkan ke pembayaran...",
+      "analizing_plan": "Menganalisis rencana Anda..."
+    },
+    "buttons": {
+      "continue": "Lanjutkan",
+      "add": "Tambah",
+      "resend_email": "Kirim ulang email",
+      "send_email": "Kirim email",
+      "change_password": "Ubah kata sandi",
+      "resend_in": "Kirim ulang dalam {timeleft}s",
+      "try_again": "Coba lagi",
+      "too_many_requests": "Terlalu banyak permintaan, coba dalam 24 jam",
+      "next": "Selanjutnya",
+      "previous": "Sebelumnya",
+      "go_home": "Kembali ke Beranda",
+      "add_element": "Tambah {element}",
+      "delete": "Hapus",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "discard": "Buang",
+      "keep_editing": "Terus mengedit",
+      "clear": "Bersihkan",
+      "autofill_button": "Isi profil dari CV",
+      "download": "Unduh",
+      "custom_prompt": "Prompt Kustom"
+    },
+    "errors": {
+      "login": "Masuk gagal",
+      "login_description": "Email atau kata sandi salah.",
+      "register": "Pendaftaran gagal",
+      "register_description": "Email sudah digunakan.",
+      "passwords_not_match": "Kata sandi tidak cocok",
+      "password_change": "Perubahan kata sandi gagal",
+      "old_password_incorrect": "Kata sandi saat ini salah",
+      "server": "Kesalahan server",
+      "under_age": "Anda harus berusia di atas 18 tahun",
+      "accept_terms": "Anda harus menerima syarat dan ketentuan",
+      "length": "{field} harus memiliki panjang {current_length}/{length} karakter",
+      "skill_length": "Anda harus memasukkan setidaknya {min} keahlian",
+      "country_code_required": "Pilih kode negara",
+      "max_elements": "Jumlah maksimum {element} tercapai",
+      "max_elements_description": "Anda hanya dapat menambahkan {max} {element}",
+      "required": "Silakan isi bidang ini.",
+      "invalid_email": "Email yang Anda masukkan tidak valid",
+      "password_too_short": "Kata sandi harus memiliki panjang setidaknya {min} karakter",
+      "select_date": "Silakan pilih tanggal",
+      "invalid_phone": "Nomor telepon tidak valid",
+      "settings": "Pembaruan pengaturan gagal",
+      "file_size": "Ukuran file harus kurang dari {max}MB",
+      "compression": "Ada masalah saat memproses gambar",
+      "autofill": "Pengisian otomatis gagal",
+      "dates_impossible": "Tanggal akhir harus setelah tanggal mulai",
+      "expiration_impossible": "Tanggal kedaluwarsa harus setelah tanggal penerbitan",
+      "generate_cv": "Generasi CV gagal",
+      "download_document": "Unduhan dokumen gagal"
+    },
+    "success": {
+      "password_change": "Kata sandi telah diubah",
+      "password_change_description": "Kata sandi Anda telah berhasil diubah."
+    },
+    "form": {
+      "first_name": "Nama depan",
+      "last_name": "Nama belakang",
+      "email": "Email",
+      "password": "Kata sandi",
+      "current_password": "Kata sandi saat ini",
+      "new_password": "Kata sandi baru",
+      "repeat_password": "Ulangi kata sandi",
+      "your_location": "Lokasi Anda",
+      "phone": "Nomor telepon",
+      "about": "Tentang Anda",
+      "company_name": "Perusahaan",
+      "institution": "Institusi",
+      "career": "Karir",
+      "skill": "Keahlian",
+      "role": "Peran",
+      "phone_number": "Nomor telepon",
+      "phone_country_code": "Kode negara",
+      "company_description": "Deskripsi Pekerjaan",
+      "location": "Lokasi",
+      "start_date": "Tanggal mulai",
+      "end_date": "Tanggal akhir",
+      "project_name": "Nama proyek",
+      "project_description": "Deskripsi proyek",
+      "link": "Tautan",
+      "professional_links_select": "Pilih tautan",
+      "skill_description": "Masukkan setidaknya {min} keahlian",
+      "certification_name": "Nama sertifikasi",
+      "certification_description": "Deskripsi sertifikasi",
+      "certificate_id": "ID Sertifikat",
+      "verification_url": "Tautan Verifikasi",
+      "issuer": "Penerbit sertifikasi",
+      "issue_date": "Tanggal penerbitan",
+      "expiration_date": "Tanggal kedaluwarsa",
+      "language": "Bahasa",
+      "level": "Tingkat"
+    },
+    "placeholders": {
+      "enter_first_name": "Masukkan nama depan Anda",
+      "enter_last_name": "Masukkan nama belakang Anda",
+      "enter_email": "Masukkan email Anda",
+      "enter_password": "Masukkan kata sandi Anda",
+      "enter_current_password": "Masukkan kata sandi saat ini",
+      "enter_new_password": "Masukkan kata sandi baru",
+      "enter_password_again": "Masukkan kata sandi Anda lagi",
+      "enter_skill": "Masukkan keahlian baru",
+      "enter_phone": "Masukkan nomor telepon Anda",
+      "enter_about": "Saya adalah seorang ...",
+      "enter_company_name": "Nama perusahaan",
+      "enter_institution_name": "Nama institusi",
+      "enter_career": "Gelar yang Anda pelajari / pelajari di sini",
+      "enter_role": "Peran Anda di perusahaan",
+      "enter_job_description": "Deskripsi tugas dan tanggung jawab Anda di pekerjaan",
+      "enter_your_location": "Kota, Negara",
+      "enter_location": "\"Kota, Negara\" atau \"Jarak jauh\"",
+      "enter_project_name": "Masukkan nama proyek",
+      "enter_project_description": "Masukkan deskripsi singkat",
+      "enter_project_link": "Tautan ke proyek Anda",
+      "enter_institution_link": "Tautan institusi",
+      "enter_company_link": "Tautan perusahaan",
+      "professional_links_select": "Klik untuk memilih",
+      "enter_your_link": "Masukkan tautan {field} Anda",
+      "enter_certification_name": "Masukkan nama sertifikasi",
+      "enter_certification_issuer": "Masukkan penerbit",
+      "enter_certification_certificate_id": "ID Sertifikat",
+      "enter_certification_verification_url": "Masukkan URL verifikasi",
+      "enter_certification_description": "Masukkan deskripsi singkat",
+      "enter_language": "Masukkan bahasa",
+      "select_language_level": "Pilih tingkat"
+    },
+    "legal": {
+      "terms_conditions": "Syarat & Ketentuan",
+      "privacy_policy": "Kebijakan Privasi",
+      "confirm_age": "Saya mengonfirmasi bahwa saya berusia di atas 18 tahun",
+      "accept_terms": "Saya menerima <termsConditions></termsConditions> dan <privacyPolicy></privacyPolicy>",
+      "talent_pool": "Izinkan perekrut melihat profil saya untuk peluang kerja."
+    },
+    "months": {
+      "january": "Januari",
+      "february": "Februari",
+      "march": "Maret",
+      "april": "April",
+      "may": "Mei",
+      "june": "Juni",
+      "july": "Juli",
+      "august": "Agustus",
+      "september": "September",
+      "october": "Oktober",
+      "november": "November",
+      "december": "Desember"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "Verifikasi Email",
+      "already_verified": {
+        "title": "Verifikasi Email Sudah Diverifikasi",
+        "message": "Email Anda sudah diverifikasi."
+      },
+      "success": {
+        "title": "Verifikasi Email Berhasil",
+        "message": "Email Anda telah diverifikasi."
+      },
+      "expired": {
+        "title": "Verifikasi Email Kedaluwarsa",
+        "message": "Tautan verifikasi email Anda telah kedaluwarsa."
+      },
+      "instructions": "Kami telah mengirimkan email kepada Anda dengan tautan verifikasi."
+    },
+    "password_recovery": {
+      "title": "Pemulihan Kata Sandi",
+      "success": {
+        "title": "Pemulihan Kata Sandi Berhasil",
+        "message": "Kata sandi Anda telah diubah."
+      },
+      "fail": {
+        "title": "Pemulihan Kata Sandi Tidak Valid atau Kedaluwarsa",
+        "message": "Tautan pemulihan kata sandi Anda tidak valid atau telah kedaluwarsa."
+      },
+      "instructions": "Kami akan mengirimkan email kepada Anda dengan tautan untuk mengatur ulang kata sandi Anda."
+    },
+    "settings": {
+      "subtitle": "Ubah pengaturan akun Anda",
+      "password": "Pengaturan kata sandi"
+    },
+    "welcome": {
+      "title": "Selamat datang di <appName></appName>",
+      "description": "Buat CV unik untuk lowongan pekerjaan yang unik."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "Pembuat CV",
+          "custom_prompt": {
+            "title": "Prompt Kustom",
+            "placeholder": "Tulis prompt kustom untuk menghasilkan CV Anda."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "CV Sederhana"
+            },
+            "based_on_role": {
+              "title": "Berdasarkan Peran atau Posisi",
+              "input": {
+                "label": "Peran atau posisi",
+                "placeholder": "Masukkan peran atau posisi yang Anda lamar"
+              }
+            },
+            "based_on_job_post": {
+              "title": "Berdasarkan Lowongan Pekerjaan",
+              "input": {
+                "label": "Deskripsi lowongan pekerjaan",
+                "placeholder": "Tempel deskripsi lowongan pekerjaan di sini"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "Aplikasi"
+        },
+        "documents": {
+          "title": "Dokumen",
+          "empty": "Tidak ada dokumen ditemukan."
+        }
+      }
+    },
+    "login": {
+      "description": "Silakan masukkan kredensial Anda"
+    },
+    "register": {
+      "description": "Perkenalkan diri Anda"
+    },
+    "profile": {
+      "subtitle": "Informasi ini diperlukan untuk membuat CV Anda dengan benar.",
+      "sections": {
+        "basic_info": {
+          "title": "Pribadi"
+        },
+        "professional_links": {
+          "title": "Tautan"
+        },
+        "experience": {
+          "title": "Pengalaman",
+          "element": "Pengalaman",
+          "is_present": "Saya saat ini bekerja di sini"
+        },
+        "education": {
+          "title": "Pendidikan",
+          "element": "Pendidikan",
+          "is_present": "Saya saat ini belajar di sini"
+        },
+        "projects": {
+          "title": "Proyek",
+          "element": "Proyek",
+          "is_present": "Saya saat ini bekerja pada proyek ini"
+        },
+        "certifications": {
+          "title": "Sertifikasi",
+          "element": "Sertifikasi",
+          "hasnt_expiration_date": "Sertifikasi ini tidak memiliki tanggal kedaluwarsa"
+        },
+        "languages": {
+          "title": "Bahasa"
+        },
+        "skills": {
+          "title": "Keahlian"
+        }
+      },
+      "success": {
+        "title": "Pendaftaran Selesai",
+        "message": "Akun Anda sudah siap. Anda sekarang dapat mengakses semua fitur platform."
+      },
+      "auto_fill": {
+        "title": "Unggah CV Anda untuk mengisi profil Anda",
+        "message": "Hemat waktu dengan mengunggah CV Anda yang sudah ada — kami akan mengekstrak informasi dan mengisi profil Anda secara otomatis."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "Kebijakan Privasi dan Syarat & Ketentuan",
+      "description_first_time": "Silakan baca dan terima.",
+      "updating_notice": "Kami sedang memperbarui <termsConditions></termsConditions> dan <privacyPolicy></privacyPolicy> kami. Syarat baru akan berlaku dalam satu bulan dan akan tersedia untuk ditinjau sebelum itu. Silakan luangkan waktu untuk meninjau perubahan yang akan datang.",
+      "accept_terms": "Kami sedang memperbarui <termsConditions></termsConditions> dan <privacyPolicy></privacyPolicy> kami. Dengan mengklik \"Lanjutkan\", Anda setuju dengan syarat yang diperbarui."
+    },
+    "not_found": {
+      "title": "Halaman Tidak Ditemukan",
+      "description": "Maaf, halaman yang Anda cari tidak ada atau telah dipindahkan.",
+      "back": "Kembali ke beranda"
+    },
+    "landing_page": {
+      "title": "Buat resume berdampak dengan AI",
+      "description": "MultiCV membantu Anda menghasilkan resume yang dipersonalisasi sesuai dengan setiap lowongan pekerjaan. Dibangun untuk mendukung profesional teknis dengan pengalaman yang cepat dan elegan yang didukung AI.",
+      "start_free": "Mulai gratis",
+      "features": {
+        "title": "Apa yang bisa Anda lakukan dengan MultiCV?",
+        "first": {
+          "title": "Asisten Cerdas",
+          "description": "Dapatkan bantuan menulis pengalaman, pencapaian, dan keahlian Anda dengan cara yang jelas, menarik, dan teroptimasi."
+        },
+        "second": {
+          "title": "Beberapa CV",
+          "description": "Kelola berbagai versi resume Anda untuk perusahaan, industri, atau peran teknis yang berbeda."
+        },
+        "third": {
+          "title": "Adaptasi Instan",
+          "description": "Secara otomatis menghasilkan resume yang spesifik untuk pekerjaan dengan satu klik."
+        },
+        "coming_soon": "Segera hadir",
+        "now_available": "Sekarang tersedia"
+      },
+      "vision": {
+        "title": "Masa Depan MultiCV",
+        "description": "Bayangkan dunia di mana Anda bahkan tidak perlu membuat resume. Misi kami adalah menghubungkan orang dan perusahaan secara langsung, menggunakan AI untuk menyusun profil Anda, menyoroti kekuatan Anda, dan menghilangkan filter yang tidak adil.",
+        "start_now": "Saya ingin menjadi bagian dari masa depan"
+      },
+      "cta": {
+        "title": "Mulai membangun resume Anda dengan AI",
+        "description": "Jadilah bagian dari fase beta kami dan bantu membentuk MultiCV. Mulailah menyusun resume yang lebih cerdas dengan AI dan dapatkan keunggulan dalam pencarian kerja Anda.",
+        "start_now": "Mulai sekarang"
+      },
+      "pricing_teaser": {
+        "title": "Jelajahi rencana fleksibel kami",
+        "description": "Kami memiliki rencana untuk semua orang. Temukan semua detail di halaman harga kami.",
+        "button": "Lihat Rencana"
+      },
+      "footer": {
+        "home": "Halaman Utama",
+        "pricing": "Harga",
+        "linkedin": "LinkedIn",
+        "privacy_policy": "Kebijakan Privasi",
+        "cookies_policy": "Kebijakan Cookies",
+        "terms_and_conditions": "Syarat & Ketentuan",
+        "contact": "Kontak",
+        "all_rights_reserved": "Hak cipta dilindungi"
+      }
+    },
+    "pricing": {
+      "title": "Rencana Harga",
+      "description": "Pilih rencana yang paling sesuai untuk Anda.",
+      "select_button": "Pilih Rencana",
+      "current_plan": "Rencana Saat Ini",
+      "free_plan": {
+        "title": "Rencana Gratis",
+        "price": "Gratis",
+        "description": "Hingga 3 CV per bulan.",
+        "features": {
+          "1": "Coba sebelum Anda membeli!",
+          "2": "Terbatas pada 3 CV per bulan."
+        }
+      },
+      "occasional_plan": {
+        "title": "Rencana Sesekali",
+        "price": "€1.99 (sekali bayar)",
+        "description": "10 total CV, tanpa kedaluwarsa.",
+        "features": {
+          "1": "Pengguna kasual yang ingin membuat beberapa CV.",
+          "2": "Hasilkan 10 CV yang dipersonalisasi dengan harga kurang dari harga bir 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "Rencana Harian 15",
+        "price": "€9.99 / 30 hari",
+        "description": "15 CV per hari, selama 30 hari.",
+        "features": {
+          "1": "Batas harian yang tidak terakumulasi.",
+          "2": "Pencari kerja yang aktif melamar secara teratur."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "Pembayaran Dibatalkan",
+        "description": "Pembayaran Anda telah dibatalkan."
+      },
+      "success": {
+        "title": "Pembayaran Berhasil",
+        "description": "Pembayaran Anda telah diproses dengan sukses."
+      },
+      "already_premium": {
+        "title": "Sudah Pengguna Premium",
+        "description": "Anda sudah menjadi pengguna premium. Gunakan rencana Anda saat ini sebelum membeli yang baru."
+      }
+    }
+  }
+}

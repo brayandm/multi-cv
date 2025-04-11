@@ -1,0 +1,440 @@
+{
+  "app": {
+    "name": "متعدد السيرة الذاتية"
+  },
+  "common": {
+    "menu": {
+      "home": "الرئيسية",
+      "settings": "الإعدادات",
+      "profile": "الملف الشخصي"
+    },
+    "auth": {
+      "login": "تسجيل الدخول",
+      "register": "تسجيل",
+      "logout": "تسجيل الخروج",
+      "google_sign_in": "تسجيل الدخول باستخدام جوجل",
+      "google_sign_up": "التسجيل باستخدام جوجل",
+      "use_other_method": "استخدام طريقة أخرى",
+      "forgot_password": "نسيت كلمة المرور؟"
+    },
+    "texts": {
+      "delete": "حذف {element}",
+      "delete_confirmation": "هل أنت متأكد أنك تريد حذف هذا {element}؟",
+      "skills": "المهارات",
+      "draft_changes": "تغييرات المسودة",
+      "draft_changes_description": "لديك تغييرات غير محفوظة. هل تريد حفظها؟",
+      "havent_finished": "لم تنتهِ بعد من هذا {element}.",
+      "discard_changes": "هل تريد الاستمرار في التحرير أم التخلص من التغييرات؟",
+      "saved": "تم الحفظ",
+      "saved_description": "تم حفظ تغييراتك.",
+      "unfinished_element": "عنصر غير مكتمل {element}",
+      "unfinished_element_description": "لم تنتهِ بعد من هذا {element}.",
+      "chat": "دردشة الذكاء الاصطناعي",
+      "chat_description": "تحدث مع الذكاء الاصطناعي لدينا للحصول على المساعدة",
+      "ai_assistant": "مساعد الذكاء الاصطناعي",
+      "type_message": "اكتب رسالة...",
+      "generate_cv": "إنشاء سيرة ذاتية",
+      "quota_info": "معلومات الحصة",
+      "used": "مستخدم",
+      "message_left": "الرسائل المتبقية: {count}",
+      "generation_left": "الإنشاءات المتبقية: {count}",
+      "languages": "اللغات",
+      "basic": "أساسي",
+      "intermediate": "متوسط",
+      "professional": "محترف",
+      "native": "ناطق أصلي",
+      "upload_cv": "قم بتحميل سيرتك الذاتية (PDF)",
+      "loading_autofill_title": "معالجة سيرتك الذاتية",
+      "loading_autofill_description": "يرجى الانتظار بينما نقوم بملء ملفك الشخصي...",
+      "loading_generating_cv_title": "إنشاء سيرتك الذاتية",
+      "loading_generating_cv_description": "يرجى الانتظار بينما نقوم بإنشاء سيرتك الذاتية...",
+      "only_year": "سنة واحدة فقط",
+      "pending_generation": "الإنشاء قيد الانتظار",
+      "cv": "السيرة الذاتية",
+      "cover_letter": "خطاب التغطية",
+      "generation_finished": "لا توجد إنشاءات متبقية",
+      "upgrade_plan": "ترقية خطتك",
+      "payment_redirecting": "يتم إعادة التوجيه إلى الدفع...",
+      "analizing_plan": "تحليل خطتك..."
+    },
+    "buttons": {
+      "continue": "استمر",
+      "add": "أضف",
+      "resend_email": "إعادة إرسال البريد الإلكتروني",
+      "send_email": "إرسال البريد الإلكتروني",
+      "change_password": "تغيير كلمة المرور",
+      "resend_in": "إعادة الإرسال في {timeleft}ث",
+      "try_again": "حاول مرة أخرى",
+      "too_many_requests": "عدد كبير جدًا من الطلبات، حاول بعد 24 ساعة",
+      "next": "التالي",
+      "previous": "السابق",
+      "go_home": "اذهب إلى الرئيسية",
+      "add_element": "أضف {element}",
+      "delete": "حذف",
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "discard": "تجاهل",
+      "keep_editing": "استمر في التحرير",
+      "clear": "مسح",
+      "autofill_button": "ملء الملف الشخصي من السيرة الذاتية",
+      "download": "تحميل",
+      "custom_prompt": "موجه مخصص"
+    },
+    "errors": {
+      "login": "فشل تسجيل الدخول",
+      "login_description": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+      "register": "فشل التسجيل",
+      "register_description": "البريد الإلكتروني مستخدم بالفعل.",
+      "passwords_not_match": "كلمات المرور غير متطابقة",
+      "password_change": "فشل تغيير كلمة المرور",
+      "old_password_incorrect": "كلمة المرور الحالية غير صحيحة",
+      "server": "خطأ في الخادم",
+      "under_age": "يجب أن تكون فوق 18 عامًا",
+      "accept_terms": "يجب أن تقبل الشروط والأحكام",
+      "length": "يجب أن يكون {field} بطول {current_length}/{length} حرفًا",
+      "skill_length": "يجب عليك إدخال مهارة واحدة على الأقل {min}",
+      "country_code_required": "اختر رمز الدولة",
+      "max_elements": "تم الوصول إلى الحد الأقصى لعدد {element}",
+      "max_elements_description": "يمكنك إضافة {max} {element} فقط",
+      "required": "يرجى ملء هذا الحقل.",
+      "invalid_email": "البريد الإلكتروني الذي أدخلته غير صالح",
+      "password_too_short": "يجب أن تكون كلمة المرور على الأقل {min} حرفًا",
+      "select_date": "يرجى اختيار تاريخ",
+      "invalid_phone": "رقم الهاتف غير صالح",
+      "settings": "فشل تحديث الإعدادات",
+      "file_size": "يجب أن يكون حجم الملف أقل من {max}ميغابايت",
+      "compression": "كانت هناك مشكلة في معالجة الصورة",
+      "autofill": "فشل الملء التلقائي",
+      "dates_impossible": "يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء",
+      "expiration_impossible": "يجب أن يكون تاريخ انتهاء الصلاحية بعد تاريخ الإصدار",
+      "generate_cv": "فشل إنشاء السيرة الذاتية",
+      "download_document": "فشل تحميل المستند"
+    },
+    "success": {
+      "password_change": "تم تغيير كلمة المرور",
+      "password_change_description": "تم تغيير كلمة المرور بنجاح."
+    },
+    "form": {
+      "first_name": "الاسم الأول",
+      "last_name": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "current_password": "كلمة المرور الحالية",
+      "new_password": "كلمة المرور الجديدة",
+      "repeat_password": "كرر كلمة المرور",
+      "your_location": "موقعك",
+      "phone": "رقم الهاتف",
+      "about": "عن نفسك",
+      "company_name": "اسم الشركة",
+      "institution": "المؤسسة",
+      "career": "المهنة",
+      "skill": "مهارة",
+      "role": "الدور",
+      "phone_number": "رقم الهاتف",
+      "phone_country_code": "رمز الدولة",
+      "company_description": "وصف الوظيفة",
+      "location": "الموقع",
+      "start_date": "تاريخ البدء",
+      "end_date": "تاريخ الانتهاء",
+      "project_name": "اسم المشروع",
+      "project_description": "وصف المشروع",
+      "link": "رابط",
+      "professional_links_select": "اختر رابطًا",
+      "skill_description": "أدخل على الأقل {min} مهارات",
+      "certification_name": "اسم الشهادة",
+      "certification_description": "وصف الشهادة",
+      "certificate_id": "معرف الشهادة",
+      "verification_url": "رابط التحقق",
+      "issuer": "جهة إصدار الشهادة",
+      "issue_date": "تاريخ الإصدار",
+      "expiration_date": "تاريخ انتهاء الصلاحية",
+      "language": "اللغة",
+      "level": "المستوى"
+    },
+    "placeholders": {
+      "enter_first_name": "أدخل اسمك الأول",
+      "enter_last_name": "أدخل اسم عائلتك",
+      "enter_email": "أدخل بريدك الإلكتروني",
+      "enter_password": "أدخل كلمة المرور الخاصة بك",
+      "enter_current_password": "أدخل كلمة المرور الحالية",
+      "enter_new_password": "أدخل كلمة المرور الجديدة",
+      "enter_password_again": "أدخل كلمة المرور مرة أخرى",
+      "enter_skill": "أدخل مهارة جديدة",
+      "enter_phone": "أدخل رقم هاتفك",
+      "enter_about": "أنا ...",
+      "enter_company_name": "اسم الشركة",
+      "enter_institution_name": "اسم المؤسسة",
+      "enter_career": "الدرجة التي درستها / تدرسها هنا",
+      "enter_role": "دورك في الشركة",
+      "enter_job_description": "وصف لواجباتك ومسؤولياتك في العمل",
+      "enter_your_location": "المدينة، الدولة",
+      "enter_location": "\"المدينة، الدولة\" أو \"عن بُعد\"",
+      "enter_project_name": "أدخل اسم المشروع",
+      "enter_project_description": "أدخل وصفًا موجزًا",
+      "enter_project_link": "رابط لمشروعك",
+      "enter_institution_link": "رابط المؤسسة",
+      "enter_company_link": "رابط الشركة",
+      "professional_links_select": "انقر للاختيار",
+      "enter_your_link": "أدخل رابط {field} الخاص بك",
+      "enter_certification_name": "أدخل اسم الشهادة",
+      "enter_certification_issuer": "أدخل الجهة المصدرة",
+      "enter_certification_certificate_id": "معرف الشهادة",
+      "enter_certification_verification_url": "أدخل رابط التحقق",
+      "enter_certification_description": "أدخل وصفًا موجزًا",
+      "enter_language": "أدخل لغة",
+      "select_language_level": "اختر مستوى"
+    },
+    "legal": {
+      "terms_conditions": "الشروط والأحكام",
+      "privacy_policy": "سياسة الخصوصية",
+      "confirm_age": "أؤكد أنني فوق 18 عامًا",
+      "accept_terms": "أقبل <termsConditions></termsConditions> و <privacyPolicy></privacyPolicy>",
+      "talent_pool": "السماح للمسؤولين برؤية ملفي الشخصي لفرص العمل."
+    },
+    "months": {
+      "january": "يناير",
+      "february": "فبراير",
+      "march": "مارس",
+      "april": "أبريل",
+      "may": "مايو",
+      "june": "يونيو",
+      "july": "يوليو",
+      "august": "أغسطس",
+      "september": "سبتمبر",
+      "october": "أكتوبر",
+      "november": "نوفمبر",
+      "december": "ديسمبر"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "تحقق من البريد الإلكتروني",
+      "already_verified": {
+        "title": "تم التحقق من البريد الإلكتروني بالفعل",
+        "message": "تم التحقق من بريدك الإلكتروني بالفعل."
+      },
+      "success": {
+        "title": "نجاح تحقق البريد الإلكتروني",
+        "message": "تم التحقق من بريدك الإلكتروني."
+      },
+      "expired": {
+        "title": "انتهت صلاحية تحقق البريد الإلكتروني",
+        "message": "رابط تحقق بريدك الإلكتروني قد انتهت صلاحيته."
+      },
+      "instructions": "لقد أرسلنا لك بريدًا إلكترونيًا يحتوي على رابط تحقق."
+    },
+    "password_recovery": {
+      "title": "استعادة كلمة المرور",
+      "success": {
+        "title": "نجاح استعادة كلمة المرور",
+        "message": "تم تغيير كلمة المرور الخاصة بك."
+      },
+      "fail": {
+        "title": "استعادة كلمة المرور غير صالحة أو منتهية",
+        "message": "رابط استعادة كلمة المرور الخاصة بك غير صالح أو قد انتهت صلاحيته."
+      },
+      "instructions": "سنرسل لك بريدًا إلكترونيًا يحتوي على رابط لإعادة تعيين كلمة المرور الخاصة بك."
+    },
+    "settings": {
+      "subtitle": "قم بتغيير إعدادات حسابك",
+      "password": "إعدادات كلمة المرور"
+    },
+    "welcome": {
+      "title": "مرحبًا بك في <appName></appName>",
+      "description": "أنشئ سير ذاتية فريدة لفرص العمل الفريدة."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "منشئ السيرة الذاتية",
+          "custom_prompt": {
+            "title": "موجه مخصص",
+            "placeholder": "اكتب موجهًا مخصصًا لإنشاء سيرتك الذاتية."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "سيرة ذاتية بسيطة"
+            },
+            "based_on_role": {
+              "title": "استنادًا إلى الدور أو المنصب",
+              "input": {
+                "label": "الدور أو المنصب",
+                "placeholder": "أدخل الدور أو المنصب الذي تتقدم له"
+              }
+            },
+            "based_on_job_post": {
+              "title": "استنادًا إلى إعلان الوظيفة",
+              "input": {
+                "label": "وصف إعلان الوظيفة",
+                "placeholder": "الصق وصف إعلان الوظيفة هنا"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "الطلبات"
+        },
+        "documents": {
+          "title": "المستندات",
+          "empty": "لم يتم العثور على مستندات."
+        }
+      }
+    },
+    "login": {
+      "description": "يرجى إدخال بيانات اعتمادك"
+    },
+    "register": {
+      "description": "قدم نفسك"
+    },
+    "profile": {
+      "subtitle": "هذه المعلومات ضرورية لإنشاء سيرتك الذاتية بشكل صحيح.",
+      "sections": {
+        "basic_info": {
+          "title": "شخصي"
+        },
+        "professional_links": {
+          "title": "روابط"
+        },
+        "experience": {
+          "title": "الخبرة",
+          "element": "خبرة",
+          "is_present": "أنا أعمل هنا حاليًا"
+        },
+        "education": {
+          "title": "التعليم",
+          "element": "تعليم",
+          "is_present": "أنا أدرس هنا حاليًا"
+        },
+        "projects": {
+          "title": "المشاريع",
+          "element": "مشروع",
+          "is_present": "أنا أعمل على هذا المشروع حاليًا"
+        },
+        "certifications": {
+          "title": "الشهادات",
+          "element": "شهادة",
+          "hasnt_expiration_date": "هذه الشهادة ليس لها تاريخ انتهاء"
+        },
+        "languages": {
+          "title": "اللغات"
+        },
+        "skills": {
+          "title": "المهارات"
+        }
+      },
+      "success": {
+        "title": "اكتمل التسجيل",
+        "message": "حسابك جاهز. يمكنك الآن الوصول إلى جميع ميزات المنصة."
+      },
+      "auto_fill": {
+        "title": "قم بتحميل سيرتك الذاتية لملء ملفك الشخصي",
+        "message": "وفر الوقت عن طريق تحميل سيرتك الذاتية الحالية - سنقوم باستخراج المعلومات وملء ملفك الشخصي تلقائيًا."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "سياسة الخصوصية والشروط والأحكام",
+      "description_first_time": "يرجى القراءة والقبول.",
+      "updating_notice": "نحن نقوم بتحديث <termsConditions></termsConditions> و <privacyPolicy></privacyPolicy>. ستدخل الشروط الجديدة حيز التنفيذ خلال شهر واحد وستكون متاحة للمراجعة قبل ذلك. يرجى أخذ لحظة لمراجعة التغييرات القادمة.",
+      "accept_terms": "نحن نقوم بتحديث <termsConditions></termsConditions> و <privacyPolicy></privacyPolicy>. من خلال النقر على \"استمر\"، فإنك توافق على الشروط المحدثة."
+    },
+    "not_found": {
+      "title": "الصفحة غير موجودة",
+      "description": "عذرًا، الصفحة التي تبحث عنها غير موجودة أو تم نقلها.",
+      "back": "العودة إلى الرئيسية"
+    },
+    "landing_page": {
+      "title": "أنشئ سير ذاتية مؤثرة باستخدام الذكاء الاصطناعي",
+      "description": "يساعدك متعدد السيرة الذاتية في إنشاء سير ذاتية مخصصة تتناسب مع كل إعلان وظيفة. تم تصميمه لدعم المحترفين التقنيين بتجربة سريعة وأنيقة مدعومة بالذكاء الاصطناعي.",
+      "start_free": "ابدأ مجانًا",
+      "features": {
+        "title": "ماذا يمكنك أن تفعل مع متعدد السيرة الذاتية؟",
+        "first": {
+          "title": "مساعد ذكي",
+          "description": "احصل على المساعدة في كتابة خبرتك وإنجازاتك ومهاراتك بطريقة واضحة وجذابة ومحسّنة."
+        },
+        "second": {
+          "title": "سير ذاتية متعددة",
+          "description": "إدارة إصدارات مختلفة من سيرتك الذاتية لشركات وصناعات أو أدوار تقنية مختلفة."
+        },
+        "third": {
+          "title": "تكييف فوري",
+          "description": "إنشاء سير ذاتية محددة للوظائف تلقائيًا بنقرة واحدة."
+        },
+        "coming_soon": "قريبًا",
+        "now_available": "متاح الآن"
+      },
+      "vision": {
+        "title": "مستقبل متعدد السيرة الذاتية",
+        "description": "تخيل عالمًا حيث لا تحتاج حتى إلى إنشاء سيرة ذاتية. مهمتنا هي ربط الناس والشركات مباشرة، باستخدام الذكاء الاصطناعي لهيكلة ملفك الشخصي، وتسليط الضوء على نقاط قوتك، والقضاء على الفلاتر غير العادلة.",
+        "start_now": "أريد أن أكون جزءًا من المستقبل"
+      },
+      "cta": {
+        "title": "ابدأ في بناء سيرتك الذاتية باستخدام الذكاء الاصطناعي",
+        "description": "كن جزءًا من مرحلة البيتا الخاصة بنا وساعد في تشكيل متعدد السيرة الذاتية. ابدأ في صياغة سير ذاتية أكثر ذكاءً باستخدام الذكاء الاصطناعي واحصل على ميزة في بحثك عن وظيفة.",
+        "start_now": "ابدأ الآن"
+      },
+      "pricing_teaser": {
+        "title": "استكشف خططنا المرنة",
+        "description": "لدينا خطة تناسب الجميع. اكتشف جميع التفاصيل في صفحة التسعير الخاصة بنا.",
+        "button": "عرض الخطط"
+      },
+      "footer": {
+        "home": "الصفحة الرئيسية",
+        "pricing": "التسعير",
+        "linkedin": "لينكد إن",
+        "privacy_policy": "سياسة الخصوصية",
+        "cookies_policy": "سياسة الكوكيز",
+        "terms_and_conditions": "الشروط والأحكام",
+        "contact": "اتصل",
+        "all_rights_reserved": "جميع الحقوق محفوظة"
+      }
+    },
+    "pricing": {
+      "title": "خطط التسعير",
+      "description": "اختر الخطة التي تناسبك أفضل.",
+      "select_button": "اختر خطة",
+      "current_plan": "الخطة الحالية",
+      "free_plan": {
+        "title": "الخطة المجانية",
+        "price": "مجاني",
+        "description": "حتى 3 سير ذاتية في الشهر.",
+        "features": {
+          "1": "جرب قبل أن تشتري!",
+          "2": "محدود إلى 3 سير ذاتية في الشهر."
+        }
+      },
+      "occasional_plan": {
+        "title": "الخطة العرضية",
+        "price": "€1.99 (مرة واحدة)",
+        "description": "10 سير ذاتية إجمالية، بدون انتهاء.",
+        "features": {
+          "1": "المستخدمون العاديون الذين يرغبون في إنشاء بعض السير الذاتية.",
+          "2": "إنشاء 10 سير ذاتية مخصصة بأقل من ثمن بيرة 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "الخطة اليومية 15",
+        "price": "€9.99 / 30 يومًا",
+        "description": "15 سيرة ذاتية في اليوم، لمدة 30 يومًا.",
+        "features": {
+          "1": "حد يومي غير تراكمي.",
+          "2": "الباحثون عن عمل الذين يتقدمون بانتظام."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "تم إلغاء الدفع",
+        "description": "تم إلغاء الدفع الخاص بك."
+      },
+      "success": {
+        "title": "نجاح الدفع",
+        "description": "تم معالجة الدفع الخاص بك بنجاح."
+      },
+      "already_premium": {
+        "title": "أنت بالفعل مستخدم مميز",
+        "description": "أنت بالفعل مستخدم مميز. أنفق خطتك الحالية قبل شراء واحدة جديدة."
+      }
+    }
+  }
+}

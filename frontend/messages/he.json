@@ -1,0 +1,440 @@
+{
+  "app": {
+    "name": "מולטיCV"
+  },
+  "common": {
+    "menu": {
+      "home": "בית",
+      "settings": "הגדרות",
+      "profile": "פרופיל"
+    },
+    "auth": {
+      "login": "התחברות",
+      "register": "הרשמה",
+      "logout": "התנתקות",
+      "google_sign_in": "התחבר עם גוגל",
+      "google_sign_up": "הרשם עם גוגל",
+      "use_other_method": "השתמש בשיטה אחרת",
+      "forgot_password": "שכחת את הסיסמה שלך?"
+    },
+    "texts": {
+      "delete": "מוחק {element}",
+      "delete_confirmation": "האם אתה בטוח שברצונך למחוק את {element} הזה?",
+      "skills": "מיומנויות",
+      "draft_changes": "שינויים בטיוטה",
+      "draft_changes_description": "יש לך שינויים שלא נשמרו. האם אתה רוצה לשמור אותם?",
+      "havent_finished": "עדיין לא סיימת את {element} הזה.",
+      "discard_changes": "האם אתה רוצה להמשיך לערוך או לזרוק את השינויים?",
+      "saved": "נשמר",
+      "saved_description": "השינויים שלך נשמרו.",
+      "unfinished_element": "אלמנט לא גמור",
+      "unfinished_element_description": "עדיין לא סיימת את {element} הזה.",
+      "chat": "צ'אט AI",
+      "chat_description": "צ'אט עם ה-AI שלנו לקבלת עזרה",
+      "ai_assistant": "עוזר AI",
+      "type_message": "הקלד הודעה...",
+      "generate_cv": "צור CV",
+      "quota_info": "מידע על מכסה",
+      "used": "שימוש",
+      "message_left": "הודעות שנותרו: {count}",
+      "generation_left": "גנרציות שנותרו: {count}",
+      "languages": "שפות",
+      "basic": "בסיסי",
+      "intermediate": "בינוני",
+      "professional": "מקצועי",
+      "native": "שפת אם",
+      "upload_cv": "העלה את ה-CV שלך (PDF)",
+      "loading_autofill_title": "מעבד את ה-CV שלך",
+      "loading_autofill_description": "אנא המתן בזמן שאנו ממלאים את הפרופיל שלך...",
+      "loading_generating_cv_title": "מייצר את ה-CV שלך",
+      "loading_generating_cv_description": "אנא המתן בזמן שאנו מייצרים את ה-CV שלך...",
+      "only_year": "רק שנה",
+      "pending_generation": "גנרציה ממתינה",
+      "cv": "CV",
+      "cover_letter": "מכתב כיסוי",
+      "generation_finished": "אין עוד גנרציות שנותרו",
+      "upgrade_plan": "שדרג את התוכנית שלך",
+      "payment_redirecting": "מופנה לתשלום...",
+      "analizing_plan": "מנתח את התוכנית שלך..."
+    },
+    "buttons": {
+      "continue": "המשך",
+      "add": "הוסף",
+      "resend_email": "שלח מחדש את האימייל",
+      "send_email": "שלח אימייל",
+      "change_password": "שנה סיסמה",
+      "resend_in": "שלח מחדש בעוד {timeleft}s",
+      "try_again": "נסה שוב",
+      "too_many_requests": "יותר מדי בקשות, נסה בעוד 24 שעות",
+      "next": "הבא",
+      "previous": "קודם",
+      "go_home": "חזור הביתה",
+      "add_element": "הוסף {element}",
+      "delete": "מחק",
+      "cancel": "ביטול",
+      "save": "שמור",
+      "discard": "זרוק",
+      "keep_editing": "המשך לערוך",
+      "clear": "נקה",
+      "autofill_button": "מלא פרופיל מ-CV",
+      "download": "הורד",
+      "custom_prompt": "הנחיה מותאמת אישית"
+    },
+    "errors": {
+      "login": "התחברות נכשלה",
+      "login_description": "האימייל או הסיסמה אינם נכונים.",
+      "register": "הרשמה נכשלה",
+      "register_description": "האימייל כבר בשימוש.",
+      "passwords_not_match": "הסיסמאות אינן תואמות",
+      "password_change": "שינוי סיסמה נכשל",
+      "old_password_incorrect": "הסיסמה הנוכחית אינה נכונה",
+      "server": "שגיאת שרת",
+      "under_age": "אתה חייב להיות מעל גיל 18",
+      "accept_terms": "אתה חייב לקבל את התנאים וההגבלות",
+      "length": "ה-{field} חייב להיות באורך {current_length}/{length} תווים",
+      "skill_length": "עליך להזין לפחות {min} מיומנות",
+      "country_code_required": "בחר קוד מדינה",
+      "max_elements": "המספר המרבי של {element} הושג",
+      "max_elements_description": "אתה יכול להוסיף רק {max} {element}",
+      "required": "אנא מלא את השדה הזה.",
+      "invalid_email": "האימייל שהזנת אינו תקף",
+      "password_too_short": "הסיסמה צריכה להיות באורך של לפחות {min} תווים",
+      "select_date": "אנא בחר תאריך",
+      "invalid_phone": "מספר הטלפון אינו תקף",
+      "settings": "עדכון הגדרות נכשל",
+      "file_size": "גודל הקובץ צריך להיות פחות מ-{max}MB",
+      "compression": "הייתה בעיה בעיבוד התמונה",
+      "autofill": "מילוי אוטומטי נכשל",
+      "dates_impossible": "תאריך הסיום חייב להיות לאחר תאריך ההתחלה",
+      "expiration_impossible": "תאריך התפוגה חייב להיות לאחר תאריך ההנפקה",
+      "generate_cv": "יצירת CV נכשלה",
+      "download_document": "הורדת המסמך נכשלה"
+    },
+    "success": {
+      "password_change": "הסיסמה שונתה",
+      "password_change_description": "הסיסמה שלך שונתה בהצלחה."
+    },
+    "form": {
+      "first_name": "שם פרטי",
+      "last_name": "שם משפחה",
+      "email": "אימייל",
+      "password": "סיסמה",
+      "current_password": "סיסמה נוכחית",
+      "new_password": "סיסמה חדשה",
+      "repeat_password": "חזור על הסיסמה",
+      "your_location": "המיקום שלך",
+      "phone": "מספר טלפון",
+      "about": "עליך",
+      "company_name": "שם חברה",
+      "institution": "מוסד",
+      "career": "קריירה",
+      "skill": "מיומנות",
+      "role": "תפקיד",
+      "phone_number": "מספר טלפון",
+      "phone_country_code": "קוד מדינה",
+      "company_description": "תיאור תפקיד",
+      "location": "מיקום",
+      "start_date": "תאריך התחלה",
+      "end_date": "תאריך סיום",
+      "project_name": "שם פרויקט",
+      "project_description": "תיאור פרויקט",
+      "link": "קישור",
+      "professional_links_select": "בחר קישור",
+      "skill_description": "הכנס לפחות {min} מיומנויות",
+      "certification_name": "שם הסמכה",
+      "certification_description": "תיאור הסמכה",
+      "certificate_id": "מספר תעודה",
+      "verification_url": "קישור אימות",
+      "issuer": "מנפיק הסמכה",
+      "issue_date": "תאריך הנפקה",
+      "expiration_date": "תאריך תפוגה",
+      "language": "שפה",
+      "level": "רמה"
+    },
+    "placeholders": {
+      "enter_first_name": "הזן את שמך הפרטי",
+      "enter_last_name": "הזן את שם המשפחה שלך",
+      "enter_email": "הזן את האימייל שלך",
+      "enter_password": "הזן את הסיסמה שלך",
+      "enter_current_password": "הזן את הסיסמה הנוכחית שלך",
+      "enter_new_password": "הזן את הסיסמה החדשה שלך",
+      "enter_password_again": "הזן את הסיסמה שלך שוב",
+      "enter_skill": "הזן מיומנות חדשה",
+      "enter_phone": "הזן את מספר הטלפון שלך",
+      "enter_about": "אני ...",
+      "enter_company_name": "שם החברה",
+      "enter_institution_name": "שם המוסד",
+      "enter_career": "הדרגה שלמדת / לומד כאן",
+      "enter_role": "התפקיד שלך בחברה",
+      "enter_job_description": "תיאור של חובותיך ואחריותך בעבודה",
+      "enter_your_location": "עיר, מדינה",
+      "enter_location": "\"עיר, מדינה\" או \"מרחוק\"",
+      "enter_project_name": "הזן את שם הפרויקט",
+      "enter_project_description": "הזן תיאור קצר",
+      "enter_project_link": "קישור לפרויקט שלך",
+      "enter_institution_link": "קישור למוסד",
+      "enter_company_link": "קישור לחברה",
+      "professional_links_select": "לחץ כדי לבחור",
+      "enter_your_link": "הזן את הקישור שלך ל-{field}",
+      "enter_certification_name": "הזן את שם ההסמכה",
+      "enter_certification_issuer": "הזן את המנפיק",
+      "enter_certification_certificate_id": "מספר תעודה",
+      "enter_certification_verification_url": "הזן את כתובת ה-URL לאימות",
+      "enter_certification_description": "הזן תיאור קצר",
+      "enter_language": "הזן שפה",
+      "select_language_level": "בחר רמה"
+    },
+    "legal": {
+      "terms_conditions": "תנאים והגבלות",
+      "privacy_policy": "מדיניות פרטיות",
+      "confirm_age": "אני מאשר שאני מעל גיל 18",
+      "accept_terms": "אני מקבל את <termsConditions></termsConditions> ואת <privacyPolicy></privacyPolicy>",
+      "talent_pool": "אפשר למגייסים לראות את הפרופיל שלי להזדמנויות עבודה."
+    },
+    "months": {
+      "january": "ינואר",
+      "february": "פברואר",
+      "march": "מרץ",
+      "april": "אפריל",
+      "may": "מאי",
+      "june": "יוני",
+      "july": "יולי",
+      "august": "אוגוסט",
+      "september": "ספטמבר",
+      "october": "אוקטובר",
+      "november": "נובמבר",
+      "december": "דצמבר"
+    }
+  },
+  "pages": {
+    "email_verification": {
+      "title": "אימות אימייל",
+      "already_verified": {
+        "title": "אימות אימייל כבר מאומת",
+        "message": "האימייל שלך כבר אומת."
+      },
+      "success": {
+        "title": "אימות אימייל הצליח",
+        "message": "האימייל שלך אומת."
+      },
+      "expired": {
+        "title": "אימות אימייל פג",
+        "message": "קישור האימות שלך פג."
+      },
+      "instructions": "שלחנו לך אימייל עם קישור אימות."
+    },
+    "password_recovery": {
+      "title": "שחזור סיסמה",
+      "success": {
+        "title": "שחזור סיסמה הצליח",
+        "message": "הסיסמה שלך שונתה."
+      },
+      "fail": {
+        "title": "שחזור סיסמה לא תקף או פג",
+        "message": "קישור השחזור שלך לא תקף או פג."
+      },
+      "instructions": "נשלח לך אימייל עם קישור לאיפוס הסיסמה שלך."
+    },
+    "settings": {
+      "subtitle": "שנה את הגדרות החשבון שלך",
+      "password": "הגדרות סיסמה"
+    },
+    "welcome": {
+      "title": "ברוך הבא ל-<appName></appName>",
+      "description": "צור CVs ייחודיים עבור משרות ייחודיות."
+    },
+    "home": {
+      "tabs": {
+        "builder": {
+          "title": "בונה CV",
+          "custom_prompt": {
+            "title": "הנחיה מותאמת אישית",
+            "placeholder": "כתוב הנחיה מותאמת אישית כדי ליצור את ה-CV שלך."
+          },
+          "tabs": {
+            "simple_cv": {
+              "title": "CV פשוט"
+            },
+            "based_on_role": {
+              "title": "מבוסס על תפקיד או משרה",
+              "input": {
+                "label": "תפקיד או משרה",
+                "placeholder": "הזן את התפקיד או המשרה שאתה מגיש אליה"
+              }
+            },
+            "based_on_job_post": {
+              "title": "מבוסס על משרת עבודה",
+              "input": {
+                "label": "תיאור משרת עבודה",
+                "placeholder": "הדבק כאן את תיאור משרת העבודה"
+              }
+            }
+          }
+        },
+        "applications": {
+          "title": "מועמדויות"
+        },
+        "documents": {
+          "title": "מסמכים",
+          "empty": "לא נמצאו מסמכים."
+        }
+      }
+    },
+    "login": {
+      "description": "אנא הזן את האישורים שלך"
+    },
+    "register": {
+      "description": "הצג את עצמך"
+    },
+    "profile": {
+      "subtitle": "מידע זה הכרחי כדי ליצור את ה-CV שלך כראוי.",
+      "sections": {
+        "basic_info": {
+          "title": "פרטי קשר"
+        },
+        "professional_links": {
+          "title": "קישורים"
+        },
+        "experience": {
+          "title": "ניסיון",
+          "element": "ניסיון",
+          "is_present": "אני עובד כאן כרגע"
+        },
+        "education": {
+          "title": "השכלה",
+          "element": "השכלה",
+          "is_present": "אני לומד כאן כרגע"
+        },
+        "projects": {
+          "title": "פרויקטים",
+          "element": "פרויקט",
+          "is_present": "אני עובד על פרויקט זה כרגע"
+        },
+        "certifications": {
+          "title": "הסמכות",
+          "element": "הסמכה",
+          "hasnt_expiration_date": "להסמכה זו אין תאריך תפוגה"
+        },
+        "languages": {
+          "title": "שפות"
+        },
+        "skills": {
+          "title": "מיומנויות"
+        }
+      },
+      "success": {
+        "title": "הרשמה הושלמה",
+        "message": "החשבון שלך מוכן. אתה יכול עכשיו לגשת לכל הפיצ'רים של הפלטפורמה."
+      },
+      "auto_fill": {
+        "title": "העלה את ה-CV שלך כדי למלא את הפרופיל שלך",
+        "message": "חסוך זמן על ידי העלאת ה-CV הקיים שלך — אנו נחלץ את המידע ונמלא את הפרופיל שלך אוטומטית."
+      }
+    },
+    "terms_and_conditions": {
+      "title": "מדיניות פרטיות ותנאים והגבלות",
+      "description_first_time": "אנא קרא והסכים.",
+      "updating_notice": "אנו מעדכנים את ה-<termsConditions></termsConditions> ואת ה-<privacyPolicy></privacyPolicy>. התנאים החדשים ייכנסו לתוקף בעוד חודש ויהיו זמינים לעיון לפני כן. אנא קח רגע לעיין בשינויים הקרובים.",
+      "accept_terms": "אנו מעדכנים את ה-<termsConditions></termsConditions> ואת ה-<privacyPolicy></privacyPolicy>. על ידי לחיצה על \"המשך\", אתה מסכים לתנאים המעודכנים."
+    },
+    "not_found": {
+      "title": "העמוד לא נמצא",
+      "description": "סליחה, העמוד שאתה מחפש אינו קיים או הועבר.",
+      "back": "חזור הביתה"
+    },
+    "landing_page": {
+      "title": "צור קורות חיים משפיעים עם AI",
+      "description": "מולטיCV עוזר לך ליצור קורות חיים מותאמים אישית לכל משרת עבודה. נבנה כדי לתמוך במקצוענים טכניים עם חוויה מהירה ואלגנטית המונעת על ידי AI.",
+      "start_free": "התחל בחינם",
+      "features": {
+        "title": "מה אתה יכול לעשות עם מולטיCV?",
+        "first": {
+          "title": "עוזר חכם",
+          "description": "קבל עזרה בכתיבת הניסיון, ההישגים והמיומנויות שלך בצורה ברורה, מעניינת ומאופסת."
+        },
+        "second": {
+          "title": "מספר קורות חיים",
+          "description": "נהל גרסאות שונות של קורות החיים שלך עבור חברות, תעשיות או תפקידים טכניים שונים."
+        },
+        "third": {
+          "title": "התאמה מיידית",
+          "description": "צור קורות חיים ספציפיים למשרה בלחיצה אחת."
+        },
+        "coming_soon": "בקרוב",
+        "now_available": "זמין עכשיו"
+      },
+      "vision": {
+        "title": "העתיד של מולטיCV",
+        "description": "דמיין עולם שבו אינך צריך אפילו ליצור קורות חיים. המשימה שלנו היא לחבר בין אנשים לחברות ישירות, תוך שימוש ב-AI כדי למבנה את הפרופיל שלך, להדגיש את החוזקות שלך ולבטל מסננים לא הוגנים.",
+        "start_now": "אני רוצה להיות חלק מהעתיד"
+      },
+      "cta": {
+        "title": "התחל לבנות את קורות החיים שלך עם AI",
+        "description": "היה חלק משלב הבטא שלנו ועזור לעצב את מולטיCV. התחל ליצור קורות חיים חכמים יותר עם AI וקבל יתרון בחיפוש העבודה שלך.",
+        "start_now": "התחל עכשיו"
+      },
+      "pricing_teaser": {
+        "title": "גלה את התוכניות הגמישות שלנו",
+        "description": "יש לנו תוכנית לכל אחד. גלה את כל הפרטים בעמוד התמחור שלנו.",
+        "button": "ראה תוכניות"
+      },
+      "footer": {
+        "home": "עמוד ראשי",
+        "pricing": "תמחור",
+        "linkedin": "לינקדאין",
+        "privacy_policy": "מדיניות פרטיות",
+        "cookies_policy": "מדיניות עוגיות",
+        "terms_and_conditions": "תנאים והגבלות",
+        "contact": "צור קשר",
+        "all_rights_reserved": "כל הזכויות שמורות"
+      }
+    },
+    "pricing": {
+      "title": "תוכניות תמחור",
+      "description": "בחר את התוכנית שמתאימה לך ביותר.",
+      "select_button": "בחר תוכנית",
+      "current_plan": "תוכנית נוכחית",
+      "free_plan": {
+        "title": "תוכנית חינם",
+        "price": "חינם",
+        "description": "עד 3 קורות חיים בחודש.",
+        "features": {
+          "1": "נסה לפני שתקנה!",
+          "2": "מוגבל ל-3 קורות חיים בחודש."
+        }
+      },
+      "occasional_plan": {
+        "title": "תוכנית מזדמנת",
+        "price": "€1.99 (חד פעמי)",
+        "description": "10 קורות חיים סך הכל, ללא תאריך תפוגה.",
+        "features": {
+          "1": "משתמשים מזדמנים שרוצים ליצור כמה קורות חיים.",
+          "2": "צור 10 קורות חיים מותאמים אישית בפחות מהמחיר של בירה 🍺"
+        }
+      },
+      "daily_15_plan": {
+        "title": "תוכנית יומית 15",
+        "price": "€9.99 / 30 ימים",
+        "description": "15 קורות חיים ביום, במשך 30 ימים.",
+        "features": {
+          "1": "מגבלה יומית שאינה מצטברת.",
+          "2": "מחפשי עבודה שמגישים בקשות באופן קבוע."
+        }
+      }
+    },
+    "payment": {
+      "cancel": {
+        "title": "תשלום בוטל",
+        "description": "התשלום שלך בוטל."
+      },
+      "success": {
+        "title": "תשלום הצליח",
+        "description": "התשלום שלך עובד בהצלחה."
+      },
+      "already_premium": {
+        "title": "כבר משתמש פרימיום",
+        "description": "אתה כבר משתמש פרימיום. השתמש בתוכנית הנוכחית שלך לפני רכישת חדשה."
+      }
+    }
+  }
+}
