@@ -79,7 +79,11 @@ class LatexRender(DocumentRender):
         if cv_template.type != "latex":
             raise ValueError("Invalid template type. Expected 'latex'.")
 
-        env = Environment(loader=FileSystemLoader(self.cv_template))
+        env = Environment(
+            loader=FileSystemLoader(self.cv_template),
+            trim_blocks=True,
+            lstrip_blocks=True,
+        )
         template = env.get_template(f"{cv_template.id}.tex.jinja2")
 
         sanitized_cv = self.sanitize_cv(cv)

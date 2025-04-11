@@ -12,17 +12,22 @@
 \usepackage{tabularx}
 \usepackage{setspace}
 \usepackage{ifthen}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+{% endraw %}
 
 {% set latex_languages_by_locale = {'ar': 'arabic', 'de': 'german', 'en': 'english', 'es': 'spanish', 'fr': 'french', 'he': 'hebrew', 'hi': 'hindi', 'id': 'indonesian', 'it': 'italian', 'ja': 'japanese', 'ko': 'korean', 'nl': 'dutch', 'pl': 'polish', 'pt': 'portuguese', 'ru': 'russian', 'sv': 'swedish', 'th': 'thai', 'tr': 'turkish', 'uk': 'ukrainian', 'vi': 'vietnamese', 'zh': 'chinese'} %}
-
 {% set locale = cv_template.cv_texts.locale %}
 {% set latex_lang = latex_languages_by_locale.get(locale, 'english') %}
 
-\usepackage{polyglossia}
 \setdefaultlanguage{english}
-{% if latex_lang != 'english' %}
-\setotherlanguage{{ latex_lang }}
-{% endif %}
+\setotherlanguage{ {{-latex_lang-}} }
+
+\newfontfamily\russianfont[Script=Cyrillic]{DejaVu Sans}
+\newfontfamily\chinesefont{Noto Sans CJK SC}
+
+{% raw %}
 
 \addtolength{\oddsidemargin}{-0.5in}
 \addtolength{\evensidemargin}{-0.5in}
@@ -85,6 +90,7 @@
 {% endraw %}
 
 \begin{document}
+\begin{otherlanguage*}{ {{-latex_lang-}} }
 
 % HEADER
 \begin{center}
@@ -192,5 +198,7 @@
 
 \resumeSubHeadingListEnd
 {% endif %}
+
+\end{otherlanguage*}
 
 \end{document}
