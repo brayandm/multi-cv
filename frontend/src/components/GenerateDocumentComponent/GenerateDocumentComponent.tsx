@@ -24,7 +24,11 @@ import {
 import { useCallback, useEffect, useState } from "react";
 import { GetQuotaInfoResponse, Settings } from "@/lib/types";
 import { useTranslations } from "next-intl";
-import { languages, useLocale } from "@/contexts/LocaleContext";
+import {
+  languages,
+  unsupportedLanguages,
+  useLocale,
+} from "@/contexts/LocaleContext";
 import { useCv } from "@/contexts/CvContext";
 import { useRouter } from "next/navigation";
 
@@ -217,7 +221,9 @@ export default function GenerateDocumentComponent({
             <Select
               key={type}
               className={"max-w-40 " + (type !== "simple" ? "mb-5" : "mb-10")}
-              items={languages.filter((lang) => lang.unsupported !== true)}
+              items={languages.filter(
+                (lang) => !unsupportedLanguages?.includes(lang.code)
+              )}
               variant="bordered"
               label={t("common.texts.target_language")}
               selectedKeys={[targetLocale]}
