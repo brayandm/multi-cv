@@ -1,8 +1,8 @@
 from typing import Mapping
+
 from pydantic import BaseModel, Field, model_validator
 
 from app.utils.pydantic_custom_types import ShortStr
-
 
 LANGUAGE_NAME_BY_LOCALE: Mapping[str, str] = {
     "en": "English",

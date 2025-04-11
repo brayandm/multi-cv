@@ -23,7 +23,6 @@ interface LocaleContextType {
 
 export interface Traduction {
   locale: string;
-  name: string;
 }
 
 export type Language = "en" | "es" | "hi" | "ru";
@@ -189,7 +188,6 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
   const getTraduction = useCallback(() => {
     return {
       locale: locale,
-      name: mapLocaleToLanguage(locale || "en"),
     };
   }, [locale]);
 
