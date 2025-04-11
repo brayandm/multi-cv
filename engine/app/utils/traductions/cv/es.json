@@ -1,11 +1,11 @@
 {
-    "locale": "es",
-    "contact_info": "Información de contacto",
-    "summary": "Resumen",
-    "experience": "Experiencia",
-    "education": "Educación",
-    "projects": "Proyectos",
-    "certifications": "Certificaciones",
-    "languages": "Idiomas",
-    "skills": "Habilidades"
+  "locale": "es",
+  "contact_info": "Información de contacto",
+  "summary": "Resumen",
+  "experience": "Experiencia",
+  "education": "Educación",
+  "projects": "Proyectos",
+  "certifications": "Certificaciones",
+  "languages": "Idiomas",
+  "skills": "Habilidades"
 }
