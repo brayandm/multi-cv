@@ -5,7 +5,7 @@ import { UserStatusResponse } from "@/lib/types";
 import { AxiosResponse } from "axios";
 import { routePatternsToRegex } from "@/lib/matchers";
 import { routing } from "@/i18n/routing"; // donde tienes locales y defaultLocale
-import { Language } from "@/contexts/LocaleContext";
+import { Language } from "@/i18n/routing";
 import { NextURL } from "next/dist/server/web/next-url";
 
 const authPages = ["/login", "/register"];
