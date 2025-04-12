@@ -91,10 +91,15 @@ export default function GenerateDocumentComponent({
 
   useEffect(() => {
     if (Settings) {
-      const locale = Settings.target_locale || getTraduction().locale;
+      let locale = Settings.target_locale || getTraduction().locale;
+
+      if (unsupportedLanguages?.includes(locale)) {
+        locale = "en";
+      }
+
       setTargetLocale(locale);
       if (!Settings.target_locale) {
-        saveTargetLocale(getTraduction().locale);
+        saveTargetLocale(locale);
       }
     }
   }, [Settings, getTraduction, saveTargetLocale]);
