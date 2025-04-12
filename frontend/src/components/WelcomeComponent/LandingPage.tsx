@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import PricingComponent from "../PricingComponent";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -240,7 +241,7 @@ export default function LandingPage() {
         </motion.div>
         <motion.div {...fadeInUp} transition={{ delay: 0.6 }}>
           <Button
-            color="primary"
+            color="secondary"
             size="lg"
             as={Link}
             href="https://chromewebstore.google.com/detail/multicv/kapghnfjdajpnejjdcklkpceliknligj"
@@ -279,35 +280,7 @@ export default function LandingPage() {
           </Button>
         </motion.div>
       </motion.section>
-
-      {/* Explore Pricing Section */}
-      <motion.section
-        className="py-28 px-6 text-center bg-white dark:bg-gray-900"
-        {...fadeInUp}
-      >
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold mb-6"
-          {...fadeInUp}
-        >
-          {t("pages.landing_page.pricing_teaser.title")}
-        </motion.h2>
-        <motion.p
-          className="max-w-2xl mx-auto text-lg text-gray-700 dark:text-gray-300 mb-8"
-          {...fadeInUp}
-          transition={{ delay: 0.2 }}
-        >
-          {t("pages.landing_page.pricing_teaser.description")}
-        </motion.p>
-        <motion.div {...fadeInUp} transition={{ delay: 0.4 }}>
-          <Button
-            color="secondary"
-            size="lg"
-            onPress={() => router.push("/pricing")}
-          >
-            {t("pages.landing_page.pricing_teaser.button")}
-          </Button>
-        </motion.div>
-      </motion.section>
+      <PricingComponent />
 
       {/* Footer Section */}
       <Footer />

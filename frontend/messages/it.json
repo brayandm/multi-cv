@@ -383,11 +383,6 @@
         "description": "Genera CV personalizzati direttamente da qualsiasi annuncio di lavoro senza cambiare scheda. La nostra estensione apre MultiCV in una finestra incorporata, permettendoti di creare e adattare istantaneamente il tuo CV in base al lavoro che stai visualizzando.",
         "install_now": "Installa ora"
       },
-      "pricing_teaser": {
-        "title": "Esplora i nostri piani flessibili",
-        "description": "Abbiamo un piano per tutti. Scopri tutti i dettagli nella nostra pagina dei prezzi.",
-        "button": "Vedi Piani"
-      },
       "footer": {
         "home": "Pagina Principale",
         "pricing": "Prezzi",

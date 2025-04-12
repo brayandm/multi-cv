@@ -383,11 +383,6 @@
         "description": "Genera CVs personalizados directamente desde cualquier oferta de trabajo sin cambiar de pestaña. Nuestra extensión abre MultiCV en una ventana integrada, permitiéndote crear y adaptar tu CV instantáneamente según el trabajo que estés viendo.",
         "install_now": "Instalar ahora"
       },
-      "pricing_teaser": {
-        "title": "Explora nuestros planes flexibles",
-        "description": "Tenemos un plan para todos. Descubre todos los detalles en nuestra página de precios.",
-        "button": "Ver Planes"
-      },
       "footer": {
         "home": "Página Principal",
         "pricing": "Precios",

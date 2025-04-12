@@ -383,11 +383,6 @@
         "description": "Genereer op maat gemaakte CV's rechtstreeks vanuit elke vacature zonder van tabblad te wisselen. Onze extensie opent MultiCV in een ingebouwd venster, zodat je je CV direct kunt maken en aanpassen op basis van de vacature die je bekijkt.",
         "install_now": "Installeer nu"
       },
-      "pricing_teaser": {
-        "title": "Ontdek onze flexibele plannen",
-        "description": "We hebben een plan voor iedereen. Ontdek alle details op onze prijs pagina.",
-        "button": "Bekijk Plannen"
-      },
       "footer": {
         "home": "Hoofdpagina",
         "pricing": "Prijzen",

@@ -383,11 +383,6 @@
         "description": "Generate tailored CVs directly from any job posting without switching tabs. Our extension opens MultiCV in an embedded window, allowing you to instantly craft and adapt your CV based on the job you're viewing.",
         "install_now": "Install now"
       },
-      "pricing_teaser": {
-        "title": "Explore our flexible plans",
-        "description": "We've got a plan for everyone. Discover all the details on our pricing page.",
-        "button": "See Plans"
-      },
       "footer": {
         "home": "Main Page",
         "pricing": "Pricing",

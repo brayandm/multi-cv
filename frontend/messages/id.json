@@ -383,11 +383,6 @@
         "description": "Buat CV yang disesuaikan langsung dari setiap lowongan pekerjaan tanpa beralih tab. Ekstensi kami membuka MultiCV dalam jendela tersemat, memungkinkan Anda untuk segera membuat dan menyesuaikan CV Anda berdasarkan pekerjaan yang Anda lihat.",
         "install_now": "Pasang sekarang"
       },
-      "pricing_teaser": {
-        "title": "Jelajahi rencana fleksibel kami",
-        "description": "Kami memiliki rencana untuk semua orang. Temukan semua detail di halaman harga kami.",
-        "button": "Lihat Rencana"
-      },
       "footer": {
         "home": "Halaman Utama",
         "pricing": "Harga",

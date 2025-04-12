@@ -383,11 +383,6 @@
         "description": "Gere CVs personalizados diretamente de qualquer anúncio de emprego sem mudar de aba. Nossa extensão abre o MultiCV em uma janela incorporada, permitindo que você crie e adapte seu CV instantaneamente com base no trabalho que está visualizando.",
         "install_now": "Instale agora"
       },
-      "pricing_teaser": {
-        "title": "Explore nossos planos flexíveis",
-        "description": "Temos um plano para todos. Descubra todos os detalhes em nossa página de preços.",
-        "button": "Ver Planos"
-      },
       "footer": {
         "home": "Página Principal",
         "pricing": "Preços",

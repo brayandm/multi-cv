@@ -383,11 +383,6 @@
         "description": "Herhangi bir iş ilanından doğrudan özel CV'ler oluşturun, sekmeleri değiştirmeden. Uzantımız, MultiCV'yi gömülü bir pencerede açarak, görüntülediğiniz işe göre CV'nizi anında oluşturmanıza ve uyarlamanıza olanak tanır.",
         "install_now": "Şimdi yükleyin"
       },
-      "pricing_teaser": {
-        "title": "Esnek planlarımızı keşfedin",
-        "description": "Herkes için bir planımız var. Fiyatlandırma sayfamızda tüm detayları keşfedin.",
-        "button": "Planları Gör"
-      },
       "footer": {
         "home": "Ana Sayfa",
         "pricing": "Fiyatlandırma",

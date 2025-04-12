@@ -383,11 +383,6 @@
         "description": "Generuj dostosowane CV bezpośrednio z dowolnego ogłoszenia o pracę bez przełączania kart. Nasze rozszerzenie otwiera MultiCV w osadzonym oknie, umożliwiając natychmiastowe tworzenie i dostosowywanie CV w zależności od oglądanego ogłoszenia.",
         "install_now": "Zainstaluj teraz"
       },
-      "pricing_teaser": {
-        "title": "Poznaj nasze elastyczne plany",
-        "description": "Mamy plan dla każdego. Odkryj wszystkie szczegóły na naszej stronie z cenami.",
-        "button": "Zobacz plany"
-      },
       "footer": {
         "home": "Strona główna",
         "pricing": "Cennik",

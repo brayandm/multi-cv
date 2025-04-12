@@ -383,11 +383,6 @@
         "description": "Tạo CV tùy chỉnh trực tiếp từ bất kỳ tin tuyển dụng nào mà không cần chuyển tab. Tiện ích của chúng tôi mở MultiCV trong một cửa sổ nhúng, cho phép bạn ngay lập tức tạo và điều chỉnh CV của mình dựa trên công việc bạn đang xem.",
         "install_now": "Cài đặt ngay"
       },
-      "pricing_teaser": {
-        "title": "Khám phá các gói linh hoạt của chúng tôi",
-        "description": "Chúng tôi có một gói cho mọi người. Khám phá tất cả các chi tiết trên trang giá của chúng tôi.",
-        "button": "Xem Gói"
-      },
       "footer": {
         "home": "Trang chính",
         "pricing": "Giá cả",

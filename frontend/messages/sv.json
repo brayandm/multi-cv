@@ -383,11 +383,6 @@
         "description": "Skapa skräddarsydda CV:n direkt från vilken jobbannons som helst utan att byta flik. Vårt tillägg öppnar MultiCV i ett inbäddat fönster, vilket gör att du omedelbart kan skapa och anpassa ditt CV baserat på jobbet du tittar på.",
         "install_now": "Installera nu"
       },
-      "pricing_teaser": {
-        "title": "Utforska våra flexibla planer",
-        "description": "Vi har en plan för alla. Upptäck alla detaljer på vår prissida.",
-        "button": "Se planer"
-      },
       "footer": {
         "home": "Huvudsida",
         "pricing": "Priser",

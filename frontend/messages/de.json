@@ -383,11 +383,6 @@
         "description": "Erstellen Sie maßgeschneiderte Lebensläufe direkt aus jeder Stellenanzeige, ohne die Tabs zu wechseln. Unsere Erweiterung öffnet MultiCV in einem eingebetteten Fenster, sodass Sie sofort Ihren Lebenslauf basierend auf der Stelle, die Sie ansehen, erstellen und anpassen können.",
         "install_now": "Jetzt installieren"
       },
-      "pricing_teaser": {
-        "title": "Entdecken Sie unsere flexiblen Pläne",
-        "description": "Wir haben einen Plan für jeden. Entdecken Sie alle Details auf unserer Preisseite.",
-        "button": "Pläne ansehen"
-      },
       "footer": {
         "home": "Hauptseite",
         "pricing": "Preise",

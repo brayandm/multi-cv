@@ -383,11 +383,6 @@
         "description": "Générez des CV sur mesure directement à partir de n'importe quelle offre d'emploi sans changer d'onglet. Notre extension ouvre MultiCV dans une fenêtre intégrée, vous permettant de créer et d'adapter instantanément votre CV en fonction de l'offre que vous consultez.",
         "install_now": "Installer maintenant"
       },
-      "pricing_teaser": {
-        "title": "Explorez nos plans flexibles",
-        "description": "Nous avons un plan pour tout le monde. Découvrez tous les détails sur notre page de tarification.",
-        "button": "Voir les plans"
-      },
       "footer": {
         "home": "Page principale",
         "pricing": "Tarification",
