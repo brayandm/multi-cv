@@ -27,8 +27,6 @@ target_languages: list[dict[str, str]] = [
     if code != "en"
 ]
 
-print("Available languages:", target_languages)
-
 
 def flatten(
     d: dict[str, Any], parent_key: str = "", sep: str = "."
