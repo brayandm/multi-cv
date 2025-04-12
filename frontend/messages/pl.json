@@ -364,6 +364,10 @@
         "coming_soon": "Wkrótce",
         "now_available": "Teraz dostępne"
       },
+      "profile_filling": {
+        "title": "Automatycznie uzupełnij swój profil i popraw go za pomocą AI",
+        "description": "Prześlij swoje CV, aby automatycznie uzupełnić swój profil, a także uzyskaj spersonalizowaną pomoc przez nasz czat AI, aby poprawić swoje doświadczenie i wyróżnić się."
+      },
       "vision": {
         "title": "Przyszłość MultiCV",
         "description": "Wyobraź sobie świat, w którym nie musisz nawet tworzyć CV. Naszą misją jest bezpośrednie łączenie ludzi i firm, wykorzystując AI do strukturyzacji twojego profilu, podkreślenia twoich mocnych stron i eliminacji niesprawiedliwych filtrów.",
@@ -373,6 +377,11 @@
         "title": "Rozpocznij budowanie swojego CV z AI",
         "description": "Bądź częścią naszej fazy beta i pomóż kształtować MultiCV. Zacznij tworzyć mądrzejsze CV z AI i zyskaj przewagę w poszukiwaniach pracy.",
         "start_now": "Rozpocznij teraz"
+      },
+      "extension": {
+        "title": "Rozszerzenie MultiCV dla Chrome",
+        "description": "Generuj dostosowane CV bezpośrednio z dowolnego ogłoszenia o pracę bez przełączania kart. Nasze rozszerzenie otwiera MultiCV w osadzonym oknie, umożliwiając natychmiastowe tworzenie i dostosowywanie CV w zależności od oglądanego ogłoszenia.",
+        "install_now": "Zainstaluj teraz"
       },
       "pricing_teaser": {
         "title": "Poznaj nasze elastyczne plany",

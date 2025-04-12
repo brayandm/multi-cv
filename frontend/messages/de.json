@@ -364,6 +364,10 @@
         "coming_soon": "Demnächst",
         "now_available": "Jetzt verfügbar"
       },
+      "profile_filling": {
+        "title": "Füllen Sie Ihr Profil automatisch aus und verbessern Sie es mit KI",
+        "description": "Laden Sie Ihren Lebenslauf hoch, um Ihr Profil automatisch zu vervollständigen, und erhalten Sie personalisierte Unterstützung über unseren KI-Chat, um Ihr Erlebnis zu verbessern und herauszustechen."
+      },
       "vision": {
         "title": "Die Zukunft von MultiCV",
         "description": "Stellen Sie sich eine Welt vor, in der Sie nicht einmal einen Lebenslauf erstellen müssen. Unsere Mission ist es, Menschen und Unternehmen direkt zu verbinden, indem KI Ihr Profil strukturiert, Ihre Stärken hervorhebt und ungerechte Filter eliminiert.",
@@ -373,6 +377,11 @@
         "title": "Beginnen Sie mit dem Erstellen Ihres Lebenslaufs mit KI",
         "description": "Seien Sie Teil unserer Beta-Phase und helfen Sie, MultiCV zu gestalten. Beginnen Sie damit, intelligentere Lebensläufe mit KI zu erstellen und sich einen Vorsprung bei Ihrer Jobsuche zu verschaffen.",
         "start_now": "Jetzt starten"
+      },
+      "extension": {
+        "title": "MultiCV Chrome-Erweiterung",
+        "description": "Erstellen Sie maßgeschneiderte Lebensläufe direkt aus jeder Stellenanzeige, ohne die Tabs zu wechseln. Unsere Erweiterung öffnet MultiCV in einem eingebetteten Fenster, sodass Sie sofort Ihren Lebenslauf basierend auf der Stelle, die Sie ansehen, erstellen und anpassen können.",
+        "install_now": "Jetzt installieren"
       },
       "pricing_teaser": {
         "title": "Entdecken Sie unsere flexiblen Pläne",

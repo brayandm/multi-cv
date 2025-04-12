@@ -364,6 +364,10 @@
         "coming_soon": "即将推出",
         "now_available": "现已可用"
       },
+      "profile_filling": {
+        "title": "自动填写您的个人资料并通过AI进行改进",
+        "description": "上传您的简历以自动完成个人资料，并通过我们的AI聊天获得个性化帮助，以提升您的体验并脱颖而出。"
+      },
       "vision": {
         "title": "多简历的未来",
         "description": "想象一个您甚至不需要创建简历的世界。我们的使命是直接连接人和公司，利用 AI 结构化您的个人资料，突出您的优势，消除不公平的筛选。",
@@ -373,6 +377,11 @@
         "title": "开始使用 AI 构建您的简历",
         "description": "成为我们测试阶段的一部分，帮助塑造多简历。开始使用 AI 制作更智能的简历，并在求职中抢占先机。",
         "start_now": "立即开始"
+      },
+      "extension": {
+        "title": "MultiCV Chrome扩展",
+        "description": "直接从任何职位发布生成量身定制的简历，无需切换标签。我们的扩展在嵌入窗口中打开MultiCV，让您能够根据正在查看的职位即时制作和调整简历。",
+        "install_now": "立即安装"
       },
       "pricing_teaser": {
         "title": "探索我们的灵活计划",

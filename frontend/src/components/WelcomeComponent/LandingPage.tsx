@@ -59,6 +59,49 @@ export default function LandingPage() {
         </motion.div>
       </motion.section>
 
+      {/* Profile Filling Section */}
+      <motion.section
+        className="py-24 px-6 bg-white dark:bg-gray-900"
+        {...fadeInUp}
+      >
+        <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row items-center lg:items-start gap-12">
+          <motion.div
+            className="w-full lg:w-1/2 text-center lg:text-left"
+            {...fadeInUp}
+          >
+            <motion.h2
+              className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6"
+              {...fadeInUp}
+            >
+              {t("pages.landing_page.profile_filling.title")}
+            </motion.h2>
+            <motion.p
+              className="text-base sm:text-lg text-gray-700 dark:text-gray-300"
+              {...fadeInUp}
+              transition={{ delay: 0.2 }}
+            >
+              {t("pages.landing_page.profile_filling.description")}
+            </motion.p>
+          </motion.div>
+          <motion.div
+            className="w-full lg:w-1/2 flex justify-center"
+            {...fadeInUp}
+            transition={{ delay: 0.4 }}
+          >
+            <div className="w-[300px] md:w-[380px] lg:w-[400px] rounded-xl overflow-hidden shadow-lg">
+              <video
+                src="/profile.webm"
+                className="w-full h-auto object-contain"
+                autoPlay
+                muted
+                loop
+                playsInline
+              />
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+
       {/* Features Section */}
       <motion.section
         className="py-24 px-8 text-center bg-gray-50 dark:bg-gray-950"
@@ -159,6 +202,51 @@ export default function LandingPage() {
             onPress={() => router.push("/register")}
           >
             {t("pages.landing_page.vision.start_now")}
+          </Button>
+        </motion.div>
+      </motion.section>
+
+      {/* Chrome Extension Section */}
+      <motion.section
+        className="py-24 px-6 text-center bg-gray-50 dark:bg-gray-950"
+        {...fadeInUp}
+      >
+        <motion.h2
+          className="text-4xl md:text-5xl font-bold mb-6"
+          {...fadeInUp}
+        >
+          {t("pages.landing_page.extension.title")}
+        </motion.h2>
+        <motion.p
+          className="max-w-3xl mx-auto text-lg text-gray-700 dark:text-gray-300 mb-6"
+          {...fadeInUp}
+          transition={{ delay: 0.2 }}
+        >
+          {t("pages.landing_page.extension.description")}
+        </motion.p>
+        <motion.div
+          className="relative max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-lg mb-6"
+          {...fadeInUp}
+          transition={{ delay: 0.4 }}
+        >
+          <video
+            src="/web-extension.webm"
+            className="w-full h-full"
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        </motion.div>
+        <motion.div {...fadeInUp} transition={{ delay: 0.6 }}>
+          <Button
+            color="primary"
+            size="lg"
+            as={Link}
+            href="https://chromewebstore.google.com/detail/multicv/kapghnfjdajpnejjdcklkpceliknligj"
+            target="_blank"
+          >
+            {t("pages.landing_page.extension.install_now")}
           </Button>
         </motion.div>
       </motion.section>

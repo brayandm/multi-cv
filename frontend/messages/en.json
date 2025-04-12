@@ -364,6 +364,10 @@
         "coming_soon": "Coming soon",
         "now_available": "Now available"
       },
+      "profile_filling": {
+        "title": "Auto-fill your profile and improve it with AI",
+        "description": "Upload your CV to automatically complete your profile, and get personalized assistance through our AI chat to enhance your experience and stand out."
+      },
       "vision": {
         "title": "The Future of MultiCV",
         "description": "Imagine a world where you don't even need to create a resume. Our mission is to connect people and companies directly, using AI to structure your profile, highlight your strengths, and eliminate unfair filters.",
@@ -373,6 +377,11 @@
         "title": "Start building your resume with AI",
         "description": "Be part of our beta phase and help shape MultiCV. Start crafting smarter resumes with AI and get a head start on your job search.",
         "start_now": "Get started now"
+      },
+      "extension": {
+        "title": "MultiCV Chrome Extension",
+        "description": "Generate tailored CVs directly from any job posting without switching tabs. Our extension opens MultiCV in an embedded window, allowing you to instantly craft and adapt your CV based on the job you're viewing.",
+        "install_now": "Install now"
       },
       "pricing_teaser": {
         "title": "Explore our flexible plans",

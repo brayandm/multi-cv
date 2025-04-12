@@ -364,6 +364,10 @@
         "coming_soon": "Sắp ra mắt",
         "now_available": "Hiện có sẵn"
       },
+      "profile_filling": {
+        "title": "Tự động điền hồ sơ của bạn và cải thiện nó bằng AI",
+        "description": "Tải lên CV của bạn để tự động hoàn thành hồ sơ, và nhận sự hỗ trợ cá nhân hóa qua trò chuyện AI của chúng tôi để nâng cao trải nghiệm của bạn và nổi bật hơn."
+      },
       "vision": {
         "title": "Tương lai của MultiCV",
         "description": "Hãy tưởng tượng một thế giới mà bạn không cần phải tạo hồ sơ. Sứ mệnh của chúng tôi là kết nối mọi người và các công ty trực tiếp, sử dụng AI để cấu trúc hồ sơ của bạn, làm nổi bật điểm mạnh của bạn và loại bỏ các bộ lọc không công bằng.",
@@ -373,6 +377,11 @@
         "title": "Bắt đầu xây dựng hồ sơ của bạn với AI",
         "description": "Hãy là một phần của giai đoạn beta của chúng tôi và giúp định hình MultiCV. Bắt đầu tạo hồ sơ thông minh hơn với AI và có lợi thế trong việc tìm kiếm việc làm.",
         "start_now": "Bắt đầu ngay"
+      },
+      "extension": {
+        "title": "Tiện ích mở rộng MultiCV cho Chrome",
+        "description": "Tạo CV tùy chỉnh trực tiếp từ bất kỳ tin tuyển dụng nào mà không cần chuyển tab. Tiện ích của chúng tôi mở MultiCV trong một cửa sổ nhúng, cho phép bạn ngay lập tức tạo và điều chỉnh CV của mình dựa trên công việc bạn đang xem.",
+        "install_now": "Cài đặt ngay"
       },
       "pricing_teaser": {
         "title": "Khám phá các gói linh hoạt của chúng tôi",

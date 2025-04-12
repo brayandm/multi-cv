@@ -364,6 +364,10 @@
         "coming_soon": "Binnenkort beschikbaar",
         "now_available": "Nu beschikbaar"
       },
+      "profile_filling": {
+        "title": "Vul je profiel automatisch in en verbeter het met AI",
+        "description": "Upload je CV om je profiel automatisch te voltooien en krijg persoonlijke hulp via onze AI-chat om je ervaring te verbeteren en op te vallen."
+      },
       "vision": {
         "title": "De Toekomst van MultiCV",
         "description": "Stel je een wereld voor waarin je zelfs geen cv hoeft te maken. Onze missie is om mensen en bedrijven rechtstreeks met elkaar te verbinden, met behulp van AI om je profiel te structureren, je sterke punten te benadrukken en oneerlijke filters te elimineren.",
@@ -373,6 +377,11 @@
         "title": "Begin met het bouwen van je cv met AI",
         "description": "Maak deel uit van onze bètaversie en help MultiCV vorm te geven. Begin met het maken van slimmere cv's met AI en krijg een voorsprong op je zoektocht naar werk.",
         "start_now": "Begin nu"
+      },
+      "extension": {
+        "title": "MultiCV Chrome-extensie",
+        "description": "Genereer op maat gemaakte CV's rechtstreeks vanuit elke vacature zonder van tabblad te wisselen. Onze extensie opent MultiCV in een ingebouwd venster, zodat je je CV direct kunt maken en aanpassen op basis van de vacature die je bekijkt.",
+        "install_now": "Installeer nu"
       },
       "pricing_teaser": {
         "title": "Ontdek onze flexibele plannen",

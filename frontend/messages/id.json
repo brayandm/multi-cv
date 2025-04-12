@@ -364,6 +364,10 @@
         "coming_soon": "Segera hadir",
         "now_available": "Sekarang tersedia"
       },
+      "profile_filling": {
+        "title": "Isi profil Anda secara otomatis dan tingkatkan dengan AI",
+        "description": "Unggah CV Anda untuk secara otomatis melengkapi profil Anda, dan dapatkan bantuan pribadi melalui obrolan AI kami untuk meningkatkan pengalaman Anda dan menonjol."
+      },
       "vision": {
         "title": "Masa Depan MultiCV",
         "description": "Bayangkan dunia di mana Anda bahkan tidak perlu membuat resume. Misi kami adalah menghubungkan orang dan perusahaan secara langsung, menggunakan AI untuk menyusun profil Anda, menyoroti kekuatan Anda, dan menghilangkan filter yang tidak adil.",
@@ -373,6 +377,11 @@
         "title": "Mulai membangun resume Anda dengan AI",
         "description": "Jadilah bagian dari fase beta kami dan bantu membentuk MultiCV. Mulailah menyusun resume yang lebih cerdas dengan AI dan dapatkan keunggulan dalam pencarian kerja Anda.",
         "start_now": "Mulai sekarang"
+      },
+      "extension": {
+        "title": "Ekstensi Chrome MultiCV",
+        "description": "Buat CV yang disesuaikan langsung dari setiap lowongan pekerjaan tanpa beralih tab. Ekstensi kami membuka MultiCV dalam jendela tersemat, memungkinkan Anda untuk segera membuat dan menyesuaikan CV Anda berdasarkan pekerjaan yang Anda lihat.",
+        "install_now": "Pasang sekarang"
       },
       "pricing_teaser": {
         "title": "Jelajahi rencana fleksibel kami",

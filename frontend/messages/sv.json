@@ -364,6 +364,10 @@
         "coming_soon": "Kommer snart",
         "now_available": "Nu tillgänglig"
       },
+      "profile_filling": {
+        "title": "Fyll i din profil automatiskt och förbättra den med AI",
+        "description": "Ladda upp ditt CV för att automatiskt fylla i din profil och få personlig hjälp genom vår AI-chatt för att förbättra din upplevelse och sticka ut."
+      },
       "vision": {
         "title": "Framtiden för MultiCV",
         "description": "Föreställ dig en värld där du inte ens behöver skapa ett CV. Vårt uppdrag är att koppla samman människor och företag direkt, med hjälp av AI för att strukturera din profil, lyfta fram dina styrkor och eliminera orättvisa filter.",
@@ -373,6 +377,11 @@
         "title": "Börja bygga ditt CV med AI",
         "description": "Var en del av vår beta-fas och hjälp till att forma MultiCV. Börja skapa smartare CV:n med AI och få ett försprång i din jobbsökning.",
         "start_now": "Börja nu"
+      },
+      "extension": {
+        "title": "MultiCV Chrome-tillägg",
+        "description": "Skapa skräddarsydda CV:n direkt från vilken jobbannons som helst utan att byta flik. Vårt tillägg öppnar MultiCV i ett inbäddat fönster, vilket gör att du omedelbart kan skapa och anpassa ditt CV baserat på jobbet du tittar på.",
+        "install_now": "Installera nu"
       },
       "pricing_teaser": {
         "title": "Utforska våra flexibla planer",

@@ -364,6 +364,10 @@
         "coming_soon": "Jald aa raha hai",
         "now_available": "Ab uplabdh hai"
       },
+      "profile_filling": {
+        "title": "Apne profile ko auto-fill karein aur AI ke saath sudhaarein",
+        "description": "Apna CV upload karein taaki aapka profile swatah poora ho sake, aur hamare AI chat ke madhyam se vyaktigat sahayata prapt karein taaki aapka anubhav sudharen aur aap alag nazar aayein."
+      },
       "vision": {
         "title": "MultiCV ka Bhavishya",
         "description": "Sochiye ek aise duniya ka jahan aapko resume banane ki bhi zarurat nahi hai. Hamara mission logon aur companies ko seedha jodna hai, AI ka istemal karke aapka profile sanrachit karna, aapki taakat ko ubharna, aur anya filters ko khatam karna.",
@@ -373,6 +377,11 @@
         "title": "AI ke saath apna resume banana shuru karein",
         "description": "Hamare beta phase ka hissa banein aur MultiCV ko shape dene mein madad karein. AI ke saath samajhdar resumes banana shuru karein aur apne naukri ki talash mein aage badhein.",
         "start_now": "Ab shuru karein"
+      },
+      "extension": {
+        "title": "MultiCV Chrome Extension",
+        "description": "Kisi bhi naukri ki posting se seedhe tailored CVs generate karein bina tabs badle. Hamara extension MultiCV ko ek embedded window mein kholta hai, jo aapko turant apna CV tayar karne aur us naukri ke aadhar par badalne ki suvidha deta hai jise aap dekh rahe hain.",
+        "install_now": "Ab install karein"
       },
       "pricing_teaser": {
         "title": "Hamare lachile yojnaon ka anusandhan karein",

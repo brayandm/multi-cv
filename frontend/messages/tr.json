@@ -364,6 +364,10 @@
         "coming_soon": "Yakında",
         "now_available": "Şimdi mevcut"
       },
+      "profile_filling": {
+        "title": "Profilinizi otomatik olarak doldurun ve AI ile geliştirin",
+        "description": "Profilinizi otomatik olarak tamamlamak için CV'nizi yükleyin ve deneyiminizi geliştirmek ve öne çıkmak için AI sohbetimizden kişiselleştirilmiş yardım alın."
+      },
       "vision": {
         "title": "MultiCV'nin Geleceği",
         "description": "Bir özgeçmiş oluşturmanıza bile gerek kalmadığı bir dünyayı hayal edin. Misyonumuz, insanları ve şirketleri doğrudan bağlamak, profilinizi yapılandırmak, güçlü yönlerinizi vurgulamak ve haksız filtreleri ortadan kaldırmak için AI kullanmaktır.",
@@ -373,6 +377,11 @@
         "title": "AI ile özgeçmişinizi oluşturmaya başlayın",
         "description": "Beta aşamamızın bir parçası olun ve MultiCV'yi şekillendirmeye yardımcı olun. AI ile daha akıllı özgeçmişler oluşturmaya başlayın ve iş aramanıza bir adım önde başlayın.",
         "start_now": "Hemen başlayın"
+      },
+      "extension": {
+        "title": "MultiCV Chrome Uzantısı",
+        "description": "Herhangi bir iş ilanından doğrudan özel CV'ler oluşturun, sekmeleri değiştirmeden. Uzantımız, MultiCV'yi gömülü bir pencerede açarak, görüntülediğiniz işe göre CV'nizi anında oluşturmanıza ve uyarlamanıza olanak tanır.",
+        "install_now": "Şimdi yükleyin"
       },
       "pricing_teaser": {
         "title": "Esnek planlarımızı keşfedin",
