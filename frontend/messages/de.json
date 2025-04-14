@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Füllen Sie Ihr Profil automatisch aus und verbessern Sie es mit KI",
-        "description": "Laden Sie Ihren Lebenslauf hoch, um Ihr Profil automatisch zu vervollständigen, und erhalten Sie personalisierte Unterstützung über unseren KI-Chat, um Ihr Erlebnis zu verbessern und herauszustechen."
+        "description": "Laden Sie Ihren Lebenslauf hoch, um Ihr Profil automatisch zu vervollständigen, und erhalten Sie personalisierte Unterstützung über unseren KI-Chat, um Ihr Erlebnis zu verbessern und herauszustechen.",
+        "features": {
+          "1": "Daten automatisch aus Ihrem Lebenslauf extrahieren.",
+          "2": "Erhalten Sie in Sekunden KI-gestützte Vorschläge.",
+          "3": "Verbessern Sie Ihre Chancen mit maßgeschneiderten Lebensläufen."
+        }
       },
       "vision": {
         "title": "Die Zukunft von MultiCV",

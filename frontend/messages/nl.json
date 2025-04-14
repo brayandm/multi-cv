@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Vul je profiel automatisch in en verbeter het met AI",
-        "description": "Upload je CV om je profiel automatisch te voltooien en krijg persoonlijke hulp via onze AI-chat om je ervaring te verbeteren en op te vallen."
+        "description": "Upload je CV om je profiel automatisch te voltooien en krijg persoonlijke hulp via onze AI-chat om je ervaring te verbeteren en op te vallen.",
+        "features": {
+          "1": "Automatisch gegevens uit je cv extraheren.",
+          "2": "Krijg binnen enkele seconden AI-gestuurde suggesties.",
+          "3": "Verbeter je kansen met op maat gemaakte cv's."
+        }
       },
       "vision": {
         "title": "De Toekomst van MultiCV",

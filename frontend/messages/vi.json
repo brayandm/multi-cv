@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Tự động điền hồ sơ của bạn và cải thiện nó bằng AI",
-        "description": "Tải lên CV của bạn để tự động hoàn thành hồ sơ, và nhận sự hỗ trợ cá nhân hóa qua trò chuyện AI của chúng tôi để nâng cao trải nghiệm của bạn và nổi bật hơn."
+        "description": "Tải lên CV của bạn để tự động hoàn thành hồ sơ, và nhận sự hỗ trợ cá nhân hóa qua trò chuyện AI của chúng tôi để nâng cao trải nghiệm của bạn và nổi bật hơn.",
+        "features": {
+          "1": "Tự động trích xuất dữ liệu từ CV của bạn.",
+          "2": "Nhận gợi ý từ AI chỉ trong vài giây.",
+          "3": "Cải thiện cơ hội của bạn với CV được tùy chỉnh."
+        }
       },
       "vision": {
         "title": "Tương lai của MultiCV",

@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Compila automaticamente il tuo profilo e miglioralo con l'IA",
-        "description": "Carica il tuo CV per completare automaticamente il tuo profilo e ricevi assistenza personalizzata tramite la nostra chat AI per migliorare la tua esperienza e distinguerti."
+        "description": "Carica il tuo CV per completare automaticamente il tuo profilo e ricevi assistenza personalizzata tramite la nostra chat AI per migliorare la tua esperienza e distinguerti.",
+        "features": {
+          "1": "Estrai automaticamente i dati dal tuo CV.",
+          "2": "Ricevi suggerimenti potenziati dall'IA in pochi secondi.",
+          "3": "Migliora le tue possibilità con CV personalizzati."
+        }
       },
       "vision": {
         "title": "Il Futuro di MultiCV",

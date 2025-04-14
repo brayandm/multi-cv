@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Fyll i din profil automatiskt och förbättra den med AI",
-        "description": "Ladda upp ditt CV för att automatiskt fylla i din profil och få personlig hjälp genom vår AI-chatt för att förbättra din upplevelse och sticka ut."
+        "description": "Ladda upp ditt CV för att automatiskt fylla i din profil och få personlig hjälp genom vår AI-chatt för att förbättra din upplevelse och sticka ut.",
+        "features": {
+          "1": "Automatiskt extrahera data från ditt CV.",
+          "2": "Få AI-drivna förslag på sekunder.",
+          "3": "Förbättra dina chanser med skräddarsydda CV:n."
+        }
       },
       "vision": {
         "title": "Framtiden för MultiCV",

@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Remplissez automatiquement votre profil et améliorez-le avec l'IA",
-        "description": "Téléchargez votre CV pour compléter automatiquement votre profil et bénéficiez d'une assistance personnalisée via notre chat IA pour améliorer votre expérience et vous démarquer."
+        "description": "Téléchargez votre CV pour compléter automatiquement votre profil et bénéficiez d'une assistance personnalisée via notre chat IA pour améliorer votre expérience et vous démarquer.",
+        "features": {
+          "1": "Extraire automatiquement des données de votre CV.",
+          "2": "Obtenez des suggestions alimentées par l'IA en quelques secondes.",
+          "3": "Améliorez vos chances avec des CV personnalisés."
+        }
       },
       "vision": {
         "title": "L'avenir de MultiCV",

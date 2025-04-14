@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Automatycznie uzupełnij swój profil i popraw go za pomocą AI",
-        "description": "Prześlij swoje CV, aby automatycznie uzupełnić swój profil, a także uzyskaj spersonalizowaną pomoc przez nasz czat AI, aby poprawić swoje doświadczenie i wyróżnić się."
+        "description": "Prześlij swoje CV, aby automatycznie uzupełnić swój profil, a także uzyskaj spersonalizowaną pomoc przez nasz czat AI, aby poprawić swoje doświadczenie i wyróżnić się.",
+        "features": {
+          "1": "Automatycznie wyodrębnij dane z CV.",
+          "2": "Uzyskaj sugestie zasilane AI w kilka sekund.",
+          "3": "Zwiększ swoje szanse dzięki dostosowanym CV."
+        }
       },
       "vision": {
         "title": "Przyszłość MultiCV",

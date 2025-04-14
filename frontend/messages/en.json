@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Auto-fill your profile and improve it with AI",
-        "description": "Upload your CV to automatically complete your profile, and get personalized assistance through our AI chat to enhance your experience and stand out."
+        "description": "Upload your CV to automatically complete your profile, and get personalized assistance through our AI chat to enhance your experience and stand out.",
+        "features": {
+          "1": "Automatically extract data from your CV.",
+          "2": "Get AI-powered suggestions in seconds.",
+          "3": "Improve your chances with tailored CVs."
+        }
       },
       "vision": {
         "title": "The Future of MultiCV",

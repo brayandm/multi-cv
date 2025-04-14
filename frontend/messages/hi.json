@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Apne profile ko auto-fill karein aur AI ke saath sudhaarein",
-        "description": "Apna CV upload karein taaki aapka profile swatah poora ho sake, aur hamare AI chat ke madhyam se vyaktigat sahayata prapt karein taaki aapka anubhav sudharen aur aap alag nazar aayein."
+        "description": "Apna CV upload karein taaki aapka profile swatah poora ho sake, aur hamare AI chat ke madhyam se vyaktigat sahayata prapt karein taaki aapka anubhav sudharen aur aap alag nazar aayein.",
+        "features": {
+          "1": "Aapke CV se data ko svachalit roop se nikaalna.",
+          "2": "Kuch hi seconds mein AI-samarthit sujhav prapt karein.",
+          "3": "Vishesh CVs ke saath apne mauke sudhaarein."
+        }
       },
       "vision": {
         "title": "MultiCV ka Bhavishya",

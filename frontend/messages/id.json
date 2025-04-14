@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Isi profil Anda secara otomatis dan tingkatkan dengan AI",
-        "description": "Unggah CV Anda untuk secara otomatis melengkapi profil Anda, dan dapatkan bantuan pribadi melalui obrolan AI kami untuk meningkatkan pengalaman Anda dan menonjol."
+        "description": "Unggah CV Anda untuk secara otomatis melengkapi profil Anda, dan dapatkan bantuan pribadi melalui obrolan AI kami untuk meningkatkan pengalaman Anda dan menonjol.",
+        "features": {
+          "1": "Secara otomatis mengekstrak data dari CV Anda.",
+          "2": "Dapatkan saran yang didukung AI dalam hitungan detik.",
+          "3": "Tingkatkan peluang Anda dengan CV yang disesuaikan."
+        }
       },
       "vision": {
         "title": "Masa Depan MultiCV",

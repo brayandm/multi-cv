@@ -366,7 +366,12 @@
       },
       "profile_filling": {
         "title": "Profilinizi otomatik olarak doldurun ve AI ile geliştirin",
-        "description": "Profilinizi otomatik olarak tamamlamak için CV'nizi yükleyin ve deneyiminizi geliştirmek ve öne çıkmak için AI sohbetimizden kişiselleştirilmiş yardım alın."
+        "description": "Profilinizi otomatik olarak tamamlamak için CV'nizi yükleyin ve deneyiminizi geliştirmek ve öne çıkmak için AI sohbetimizden kişiselleştirilmiş yardım alın.",
+        "features": {
+          "1": "CV'nizden verileri otomatik olarak çıkarın.",
+          "2": "Saniyeler içinde AI destekli öneriler alın.",
+          "3": "Özelleştirilmiş CV'lerle şansınızı artırın."
+        }
       },
       "vision": {
         "title": "MultiCV'nin Geleceği",
