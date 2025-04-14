@@ -6,6 +6,7 @@ import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { Button } from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { useUserStatus } from "@/contexts/UserStatusContext";
+import { useEffect, useState } from "react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -31,6 +32,12 @@ export default function PricingComponent() {
   const router = useRouter();
 
   const { userStatus } = useUserStatus();
+
+  const [key, setKey] = useState(0);
+
+  useEffect(() => {
+    setKey(Math.random());
+  }, []);
 
   const plans: {
     color: keyof typeof colorMap;
@@ -80,88 +87,93 @@ export default function PricingComponent() {
   ];
 
   return (
-    <motion.section
-      className="py-28 px-6 bg-default-100 dark:bg-gray-900 text-gray-900 dark:text-white"
-      {...fadeInUp}
-    >
-      <motion.h2 className="text-5xl font-bold text-center mb-16" {...fadeInUp}>
-        {t("pages.pricing.title")}
-      </motion.h2>
-
-      <motion.p
-        className="max-w-3xl mx-auto text-center text-2xl mb-12"
+    <div key={key}>
+      <motion.section
+        className="py-28 px-6 bg-default-100 dark:bg-gray-900 text-gray-900 dark:text-white"
         {...fadeInUp}
-        transition={{ delay: 0.3 }}
       >
-        {t("pages.pricing.description")}
-      </motion.p>
+        <motion.h2
+          className="text-5xl font-bold text-center mb-16"
+          {...fadeInUp}
+        >
+          {t("pages.pricing.title")}
+        </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
-        {plans.map((plan) => {
-          const isCurrent = plan.currentPlan;
-          return (
-            <motion.div
-              key={plan.title}
-              className={`relative border-t-8 rounded-xl shadow-md p-6 bg-white dark:bg-gray-800 border-${
-                plan.color
-              }-500 ${isCurrent ? "ring-4 ring-warning-400" : ""}`}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-            >
-              {isCurrent && (
-                <span className="absolute top-[-20px] right-1 bg-warning-400 text-black text-sm font-semibold px-2 py-1 rounded-full">
-                  {t("pages.pricing.current_plan")}
-                </span>
-              )}
+        <motion.p
+          className="max-w-3xl mx-auto text-center text-2xl mb-12"
+          {...fadeInUp}
+          transition={{ delay: 0.3 }}
+        >
+          {t("pages.pricing.description")}
+        </motion.p>
 
-              <div className="flex items-center gap-2 mb-4">
-                <CheckCircleIcon
-                  className={`h-6 w-6 ${colorMap[plan.color].split(" ")[1]}`}
-                />
-                <h3 className="text-2xl font-semibold">{plan.title}</h3>
-              </div>
-              <div
-                className="text-3xl font-bold mb-2 flex items-center gap-1"
-                style={{
-                  wordBreak: "break-word",
-                }}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-7xl mx-auto">
+          {plans.map((plan) => {
+            const isCurrent = plan.currentPlan;
+            return (
+              <motion.div
+                key={plan.title}
+                className={`relative border-t-8 rounded-xl shadow-md p-6 bg-white dark:bg-gray-800 border-${
+                  plan.color
+                }-500 ${isCurrent ? "ring-4 ring-warning-400" : ""}`}
+                whileHover={{ scale: 1.03 }}
+                transition={{ duration: 0.3 }}
               >
-                {plan.price}
-              </div>
-              <p className="text-gray-700 dark:text-gray-300 mb-4">
-                {plan.description}
-              </p>
-              <ul className="space-y-2 text-left text-sm text-gray-800 dark:text-gray-300 mb-6">
-                {plan.bullets.map((bullet, i) => (
-                  <li key={i} className="flex gap-2 items-center">
-                    <span className="text-lg mt-1">•</span>
-                    <span>{bullet}</span>
-                  </li>
-                ))}
-              </ul>
-              <Button
-                className={`
+                {isCurrent && (
+                  <span className="absolute top-[-20px] right-1 bg-warning-400 text-black text-sm font-semibold px-2 py-1 rounded-full">
+                    {t("pages.pricing.current_plan")}
+                  </span>
+                )}
+
+                <div className="flex items-center gap-2 mb-4">
+                  <CheckCircleIcon
+                    className={`h-6 w-6 ${colorMap[plan.color].split(" ")[1]}`}
+                  />
+                  <h3 className="text-2xl font-semibold">{plan.title}</h3>
+                </div>
+                <div
+                  className="text-3xl font-bold mb-2 flex items-center gap-1"
+                  style={{
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {plan.price}
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  {plan.description}
+                </p>
+                <ul className="space-y-2 text-left text-sm text-gray-800 dark:text-gray-300 mb-6">
+                  {plan.bullets.map((bullet, i) => (
+                    <li key={i} className="flex gap-2 items-center">
+                      <span className="text-lg mt-1">•</span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Button
+                  className={`
                   w-full font-semibold
                   bg-gradient-to-r ${bgGradientMap[plan.color]}
                   shadow-md hover:shadow-lg
                   text-white
                 `}
-                onPress={() => {
-                  const isIframe = window.self !== window.top;
+                  onPress={() => {
+                    const isIframe = window.self !== window.top;
 
-                  if (isIframe) {
-                    window.open(`/payment?plan=${plan.planId}`, "_blank");
-                  } else {
-                    router.push(`/payment?plan=${plan.planId}`);
-                  }
-                }}
-              >
-                {t("pages.pricing.select_button")}
-              </Button>
-            </motion.div>
-          );
-        })}
-      </div>
-    </motion.section>
+                    if (isIframe) {
+                      window.open(`/payment?plan=${plan.planId}`, "_blank");
+                    } else {
+                      router.push(`/payment?plan=${plan.planId}`);
+                    }
+                  }}
+                >
+                  {t("pages.pricing.select_button")}
+                </Button>
+              </motion.div>
+            );
+          })}
+        </div>
+      </motion.section>
+    </div>
   );
 }
