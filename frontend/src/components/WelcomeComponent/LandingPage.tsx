@@ -86,7 +86,7 @@ export default function LandingPage() {
               {t("pages.landing_page.profile_filling.description")}
             </motion.p>
             <div className="mt-6 space-y-3 flex flex-col items-center lg:items-start">
-              <div>
+              <div className="flex flex-col gap-3">
                 {[
                   t("pages.landing_page.profile_filling.features.1"),
                   t("pages.landing_page.profile_filling.features.2"),
@@ -98,7 +98,7 @@ export default function LandingPage() {
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.1 }}
+                    transition={{ delay: 0.3 + index * 0.2 }}
                   >
                     <CheckCircleIcon className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                     <span className="ml-2">{text}</span>
