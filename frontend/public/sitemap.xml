@@ -3,9 +3,26 @@
   <url>
     <loc>https://multicv.space/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://multicv.space/"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://multicv.space/ar/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://multicv.space/de/"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://multicv.space/es/"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://multicv.space/ru/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://multicv.space/fr/"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://multicv.space/he/"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://multicv.space/hi/"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://multicv.space/id/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://multicv.space/it/"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://multicv.space/ja/"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://multicv.space/ko/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://multicv.space/nl/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://multicv.space/pl/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://multicv.space/pt/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://multicv.space/ru/"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://multicv.space/sv/"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://multicv.space/th/"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://multicv.space/tr/"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://multicv.space/uk/"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://multicv.space/vi/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://multicv.space/zh/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://multicv.space/"/>
     <priority>1.0</priority>
     <changefreq>daily</changefreq>
@@ -13,9 +30,26 @@
   <url>
     <loc>https://multicv.space/pricing</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://multicv.space/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://multicv.space/ar/pricing"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://multicv.space/de/pricing"/>
     <xhtml:link rel="alternate" hreflang="es" href="https://multicv.space/es/pricing"/>
-    <xhtml:link rel="alternate" hreflang="ru" href="https://multicv.space/ru/pricing"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://multicv.space/fr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="he" href="https://multicv.space/he/pricing"/>
     <xhtml:link rel="alternate" hreflang="hi" href="https://multicv.space/hi/pricing"/>
+    <xhtml:link rel="alternate" hreflang="id" href="https://multicv.space/id/pricing"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://multicv.space/it/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ja" href="https://multicv.space/ja/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://multicv.space/ko/pricing"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://multicv.space/nl/pricing"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://multicv.space/pl/pricing"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://multicv.space/pt/pricing"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://multicv.space/ru/pricing"/>
+    <xhtml:link rel="alternate" hreflang="sv" href="https://multicv.space/sv/pricing"/>
+    <xhtml:link rel="alternate" hreflang="th" href="https://multicv.space/th/pricing"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://multicv.space/tr/pricing"/>
+    <xhtml:link rel="alternate" hreflang="uk" href="https://multicv.space/uk/pricing"/>
+    <xhtml:link rel="alternate" hreflang="vi" href="https://multicv.space/vi/pricing"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://multicv.space/zh/pricing"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://multicv.space/pricing"/>
     <priority>0.5</priority>
     <changefreq>daily</changefreq>

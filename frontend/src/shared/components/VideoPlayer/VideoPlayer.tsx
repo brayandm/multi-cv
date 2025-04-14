@@ -1,11 +1,11 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 
 type Props = {
   src: string;
   className?: string;
 };
 
-export default function VideoPlayer({ src, className }: Props) {
+function VideoPlayer({ src, className }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
@@ -39,3 +39,5 @@ export default function VideoPlayer({ src, className }: Props) {
     />
   );
 }
+
+export default memo(VideoPlayer);

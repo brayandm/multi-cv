@@ -1,5 +1,27 @@
 {
-  "languages": ["en", "es", "ru", "hi"],
+  "languages": [
+    "ar",
+    "de",
+    "en",
+    "es",
+    "fr",
+    "he",
+    "hi",
+    "id",
+    "it",
+    "ja",
+    "ko",
+    "nl",
+    "pl",
+    "pt",
+    "ru",
+    "sv",
+    "th",
+    "tr",
+    "uk",
+    "vi",
+    "zh"
+  ],
   "routes": [
     {
       "path": "/",

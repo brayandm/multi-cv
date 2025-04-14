@@ -3,17 +3,51 @@ Disallow: /
 Disallow: /*?callbackUrl=
 
 Allow: /$
+Allow: /ar/
+Allow: /de/
 Allow: /es/
-Allow: /ru/
+Allow: /fr/
+Allow: /he/
 Allow: /hi/
+Allow: /id/
+Allow: /it/
+Allow: /ja/
+Allow: /ko/
+Allow: /nl/
+Allow: /pl/
+Allow: /pt/
+Allow: /ru/
+Allow: /sv/
+Allow: /th/
+Allow: /tr/
+Allow: /uk/
+Allow: /vi/
+Allow: /zh/
 
 Allow: /favicon.ico
 Allow: /sitemap.xml
 
 
 Allow: /pricing
+Allow: /ar/pricing
+Allow: /de/pricing
 Allow: /es/pricing
-Allow: /ru/pricing
+Allow: /fr/pricing
+Allow: /he/pricing
 Allow: /hi/pricing
+Allow: /id/pricing
+Allow: /it/pricing
+Allow: /ja/pricing
+Allow: /ko/pricing
+Allow: /nl/pricing
+Allow: /pl/pricing
+Allow: /pt/pricing
+Allow: /ru/pricing
+Allow: /sv/pricing
+Allow: /th/pricing
+Allow: /tr/pricing
+Allow: /uk/pricing
+Allow: /vi/pricing
+Allow: /zh/pricing
 
 Sitemap: https://multicv.space/sitemap.xml

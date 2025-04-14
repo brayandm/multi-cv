@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { CheckCircleIcon } from "@heroicons/react/24/solid";
 import { Button } from "@heroui/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useUserStatus } from "@/contexts/UserStatusContext";
 import { useEffect, useState } from "react";
 
@@ -34,10 +34,11 @@ export default function PricingComponent() {
   const { userStatus } = useUserStatus();
 
   const [key, setKey] = useState(0);
+  const pathname = usePathname();
 
   useEffect(() => {
-    setKey(Math.random());
-  }, []);
+    setKey((prevKey) => prevKey + 1);
+  }, [pathname]);
 
   const plans: {
     color: keyof typeof colorMap;
