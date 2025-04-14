@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import PricingComponent from "../PricingComponent";
+import VideoPlayer from "@/shared/components/VideoPlayer";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
@@ -90,13 +91,9 @@ export default function LandingPage() {
             transition={{ delay: 0.4 }}
           >
             <div className="w-[300px] md:w-[380px] lg:w-[400px] rounded-xl overflow-hidden shadow-lg">
-              <video
+              <VideoPlayer
                 src="/profile.webm"
                 className="w-full h-auto object-contain"
-                autoPlay
-                muted
-                loop
-                playsInline
               />
             </div>
           </motion.div>
@@ -230,14 +227,7 @@ export default function LandingPage() {
           {...fadeInUp}
           transition={{ delay: 0.4 }}
         >
-          <video
-            src="/web-extension.webm"
-            className="w-full h-full"
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
+          <VideoPlayer src="/web-extension.webm" className="w-full h-full" />
         </motion.div>
         <motion.div {...fadeInUp} transition={{ delay: 0.6 }}>
           <Button
