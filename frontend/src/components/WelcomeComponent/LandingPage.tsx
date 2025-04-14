@@ -27,8 +27,6 @@ export default function LandingPage() {
 
   const t = useTranslations();
 
-  console.log("LandingPage", key);
-
   return (
     key && (
       <div
