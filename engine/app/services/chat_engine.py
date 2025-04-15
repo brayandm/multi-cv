@@ -1,9 +1,9 @@
 from datetime import datetime, timezone
 from typing import List, Optional, Union
+import asyncio
 
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
-from openai import OpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import (
     AIMessage,
@@ -12,6 +12,7 @@ from langchain.schema import (
     SystemMessage,
 )
 from langchain_openai import ChatOpenAI
+from openai import OpenAI
 from pydantic import BaseModel, SecretStr
 
 from app.classes.models import Chat
@@ -120,13 +121,13 @@ class ChatEngineService:
         return str(response)
 
     async def moderation(self, text: str) -> bool:
-        client = OpenAI(
-            api_key=OPENAI_API_KEY,
-        )
-        result = client.moderations.create(
-            model="omni-moderation-latest",
-            input=text,
-        )
+        def sync_moderation() -> bool:
+            client = OpenAI(api_key=OPENAI_API_KEY)
+            result = client.moderations.create(
+                model="omni-moderation-latest",
+                input=text,
+            )
+            return result.results[0].flagged
 
-        flagged = result.results[0].flagged
+        flagged = await asyncio.to_thread(sync_moderation)
         return not flagged

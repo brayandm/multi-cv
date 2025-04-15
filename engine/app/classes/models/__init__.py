@@ -17,9 +17,9 @@ from .profile.language import Language
 from .profile.professional_link import ProfessionalLink
 from .profile.profile import Profile
 from .settings import Settings
+from .text import Text
 from .traduction import Traduction
 from .webhook_payload import WebhookPayload
-from .text import Text
 
 __all__ = [
     "Profile",

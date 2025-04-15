@@ -17,9 +17,9 @@ from app.classes.models import (
     Html,
     Profile,
     Settings,
+    Text,
     Traduction,
     WebhookPayload,
-    Text,
 )
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
