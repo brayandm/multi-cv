@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
         MultiCV uses cookies to enhance Your experience, analyze site usage, and
         manage user sessions. The cookies we use may include:
       </p>
-      <ul>
+      <ol>
         <li>
           <strong>Essential Cookies:</strong> Required for basic site
           functionality.
@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
           <strong>Functional Cookies:</strong> Store user preferences, such as
           language selection.
         </li>
-      </ul>
+      </ol>
 
       <h2>Managing Cookies</h2>
       <p>
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
         may affect site functionality.
       </p>
       <p>To disable cookies, follow these links for popular browsers:</p>
-      <ul>
+      <ol>
         <li>
           <a
             href="https://support.google.com/chrome/answer/95647"
@@ -102,7 +102,7 @@ export default function PrivacyPolicyPage() {
             Internet Explorer
           </a>
         </li>
-      </ul>
+      </ol>
 
       <h2>Third-Party Cookies</h2>
       <p>

@@ -60,7 +60,7 @@ export default function PrivacyPolicyPage() {
       </p>
 
       <h3>Definitions</h3>
-      <ul>
+      <ol>
         <li>
           <strong>Project</strong>: MultiCV (&quot;We&quot;, &quot;Us&quot;,
           &quot;Our&quot;).
@@ -79,13 +79,13 @@ export default function PrivacyPolicyPage() {
         <li>
           <strong>You</strong>: The individual accessing or using the Service.
         </li>
-      </ul>
+      </ol>
 
       <h2>Collecting and Using Your Personal Data</h2>
       <h3>Types of Data Collected</h3>
       <h4>Personal Data</h4>
       <p>We collect and process the following Personal Data:</p>
-      <ul>
+      <ol>
         <li>Name and surname</li>
         <li>Email address</li>
         <li>Phone number</li>
@@ -103,7 +103,7 @@ export default function PrivacyPolicyPage() {
         <li>
           Usage Data (e.g., IP address, browser type, visited pages, etc.)
         </li>
-      </ul>
+      </ol>
 
       <h3>Sharing Your Profile with Hiring Teams</h3>
       <p>
@@ -120,7 +120,7 @@ export default function PrivacyPolicyPage() {
         If You are in the European Economic Area (EEA), We process Your Personal
         Data under the following legal bases:
       </p>
-      <ul>
+      <ol>
         <li>
           <strong>Performance of a contract</strong>: To provide the CV
           generation service You request.
@@ -133,7 +133,7 @@ export default function PrivacyPolicyPage() {
           <strong>Legitimate interest</strong>: To improve and analyze our
           services, enhance security, and prevent fraud.
         </li>
-      </ul>
+      </ol>
 
       <h2>Cookies and Analytics</h2>
       <p>
@@ -145,7 +145,7 @@ export default function PrivacyPolicyPage() {
 
       <h2>Your Rights Under GDPR</h2>
       <p>If You are in the EU, You have the following rights:</p>
-      <ul>
+      <ol>
         <li>
           <strong>Right to access</strong>: Request copies of Your Personal
           Data.
@@ -169,7 +169,7 @@ export default function PrivacyPolicyPage() {
           <strong>Right to object</strong>: Object to Our processing of Your
           data.
         </li>
-      </ul>
+      </ol>
       <p>
         To exercise these rights, contact Us at{" "}
         <strong>hello.multicv@gmail.com</strong>.
@@ -184,7 +184,7 @@ export default function PrivacyPolicyPage() {
         </strong>
         , California residents have the following rights:
       </p>
-      <ul>
+      <ol>
         <li>
           <strong>Right to Know</strong>: Request details about collected data.
         </li>
@@ -202,7 +202,7 @@ export default function PrivacyPolicyPage() {
           <strong>Right to Non-Discrimination</strong>: We will not discriminate
           against You.
         </li>
-      </ul>
+      </ol>
       <p>
         To exercise these rights, email Us at{" "}
         <strong>hello.multicv@gmail.com</strong>.
