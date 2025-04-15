@@ -3,15 +3,16 @@ import { memo, useEffect, useRef } from "react";
 type Props = {
   src: string;
   className?: string;
+  play?: boolean;
 };
 
-function VideoPlayer({ src, className }: Props) {
+function VideoPlayer({ src, className, play }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
 
-    if (!video) return;
+    if (!video || !play) return;
 
     video.muted = true;
     video.playsInline = true;
@@ -25,14 +26,14 @@ function VideoPlayer({ src, className }: Props) {
     };
 
     playVideo();
-  }, []);
+  }, [play]);
 
   return (
     <video
       ref={videoRef}
       src={src}
       className={className}
-      preload="metadata"
+      preload="auto"
       loop
       muted
       playsInline

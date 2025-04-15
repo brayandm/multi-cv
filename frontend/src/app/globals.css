@@ -103,4 +103,8 @@ body {
   .documents-typography li {
     @apply mb-1;
   }
+
+  .documents-typography a {
+    @apply underline text-primary;
+  }
 }
