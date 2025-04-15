@@ -47,6 +47,7 @@ from app.framework.types.request import DocumentDownloadRequest
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
 from app.services.settings_service import SettingsService, get_settings_service
+from app.services.chat_engine import ChatEngineService
 from app.services.text_extractor import InvalidPDFError, TextExtractor
 from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
@@ -72,6 +73,33 @@ router = APIRouter(prefix="/api/v1")
 @router.get("/ping")
 async def ping() -> Dict[str, str]:
     return {"message": "pong"}
+
+
+@router.post("/moderation")
+@authenticate()
+async def moderation(
+    input: str,
+) -> Response:
+    if not input:
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is required."},
+        )
+
+    service = ChatEngineService()
+
+    result = await service.moderation(input)
+
+    if result:
+        return JSONResponse(
+            status_code=200,
+            content={"message": "Input is safe."},
+        )
+    else:
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
+        )
 
 
 @router.post("/auto-fill/cv/from-document")
