@@ -4,6 +4,7 @@ from typing import List, Optional, Union
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate
+from langchain.chains.moderation import OpenAIModerationChain
 from langchain.schema import (
     AIMessage,
     BaseMessage,
@@ -117,3 +118,10 @@ class ChatEngineService:
             await self.add_cost(total_cost, total_tokens)
 
         return str(response)
+
+    async def moderation(self, text: str) -> bool:
+        moderation_chain = OpenAIModerationChain(
+            openai_api_key=OPENAI_API_KEY,
+        )
+        result = await moderation_chain.arun(text)
+        return result["flagged"] is False
