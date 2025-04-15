@@ -28,6 +28,9 @@ export default function LandingPage() {
 
   const t = useTranslations();
 
+  const [profileVideoReady, setProfileVideoReady] = useState(false);
+  const [extensionVideoReady, setExtensionVideoReady] = useState(false);
+
   return key ? (
     <div
       key={key}
@@ -111,11 +114,13 @@ export default function LandingPage() {
             className="w-full lg:w-1/2 flex justify-center"
             {...fadeInUp}
             transition={{ delay: 0.4 }}
+            onAnimationComplete={() => setProfileVideoReady(true)}
           >
             <div className="w-[300px] md:w-[350] lg:w-[400px] rounded-xl overflow-hidden shadow-lg">
               <VideoPlayer
                 src="/profile.webm"
                 className="w-full h-auto object-contain"
+                play={profileVideoReady}
               />
             </div>
           </motion.div>
@@ -248,8 +253,13 @@ export default function LandingPage() {
           className="relative max-w-4xl mx-auto aspect-video rounded-xl overflow-hidden shadow-lg mb-6"
           {...fadeInUp}
           transition={{ delay: 0.4 }}
+          onAnimationComplete={() => setExtensionVideoReady(true)}
         >
-          <VideoPlayer src="/web-extension.webm" className="w-full h-full" />
+          <VideoPlayer
+            src="/web-extension.webm"
+            className="w-full h-full"
+            play={extensionVideoReady}
+          />
         </motion.div>
         <motion.div {...fadeInUp} transition={{ delay: 0.6 }}>
           <Button
