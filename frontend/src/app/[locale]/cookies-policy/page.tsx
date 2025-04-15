@@ -12,6 +12,8 @@ export default function PrivacyPolicyPage() {
     const headers = contentRef.current?.querySelectorAll("h2, h3") || [];
 
     headers.forEach((el) => {
+      if ((el as HTMLElement).dataset.processed === "true") return;
+
       if (el.tagName === "H2") {
         subSectionCount = 0;
         el.textContent = `${sectionCount}. ${el.textContent}`;
@@ -22,6 +24,8 @@ export default function PrivacyPolicyPage() {
           el.textContent
         }`;
       }
+
+      (el as HTMLElement).dataset.processed = "true";
     });
   }, []);
 
