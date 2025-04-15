@@ -19,10 +19,10 @@ services:
         environment:
             - WORKON_HOME=/app/.venvs/engine
             - PIPENV_VENV_IN_PROJECT=0
-            - HOT_RELOAD=${HOT_RELOAD:-true}
+            - HOT_RELOAD=${HOT_RELOAD}
         command: >
             sh -c "pipenv install --dev &&
-            if [ \"$HOT_RELOAD\" = \"true\" ]; then
+            if [ \"${HOT_RELOAD:-true}\" = \"true\" ]; then
                 echo 'Running with --reload'; 
                 pipenv run uvicorn app.main:app --reload --host 0.0.0.0 --port 90;
             else
@@ -49,10 +49,10 @@ services:
         environment:
             - WORKON_HOME=/app/.venvs/celery
             - PIPENV_VENV_IN_PROJECT=0
-            - HOT_RELOAD=${HOT_RELOAD:-true}
+            - HOT_RELOAD=${HOT_RELOAD}
         command: >
             sh -c "pipenv install --dev &&
-            if [ \"$HOT_RELOAD\" = \"true\" ]; then
+            if [ \"${HOT_RELOAD:-true}\" = \"true\" ]; then
                 echo 'Running Celery with watchmedo auto-restart';
                 pipenv run watchmedo auto-restart --directory=./ --pattern=*.py --recursive -- \
                 pipenv run celery -A app.worker.celery worker --loglevel=info -Q openai_queue --pool=threads --concurrency=5;

@@ -19,6 +19,7 @@ from app.classes.models import (
     Settings,
     Traduction,
     WebhookPayload,
+    Text,
 )
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
@@ -44,10 +45,10 @@ from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
 from app.framework.types.request import DocumentDownloadRequest
+from app.services.chat_engine import ChatEngineService
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
 from app.services.settings_service import SettingsService, get_settings_service
-from app.services.chat_engine import ChatEngineService
 from app.services.text_extractor import InvalidPDFError, TextExtractor
 from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
@@ -78,8 +79,11 @@ async def ping() -> Dict[str, str]:
 @router.post("/moderation")
 @authenticate()
 async def moderation(
-    input: str,
+    text: Text,
 ) -> Response:
+
+    input = text.content
+
     if not input:
         return JSONResponse(
             status_code=400,

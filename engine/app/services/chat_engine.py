@@ -3,7 +3,7 @@ from typing import List, Optional, Union
 
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
-from langchain.chains.moderation import OpenAIModerationChain
+from openai import OpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import (
     AIMessage,
@@ -120,8 +120,13 @@ class ChatEngineService:
         return str(response)
 
     async def moderation(self, text: str) -> bool:
-        moderation_chain = OpenAIModerationChain(
-            openai_api_key=OPENAI_API_KEY,
+        client = OpenAI(
+            api_key=OPENAI_API_KEY,
         )
-        result = await moderation_chain.arun(text)
-        return result["flagged"] is False
+        result = client.moderations.create(
+            model="omni-moderation-latest",
+            input=text,
+        )
+
+        flagged = result.results[0].flagged
+        return not flagged

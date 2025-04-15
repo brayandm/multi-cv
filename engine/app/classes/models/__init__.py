@@ -19,6 +19,7 @@ from .profile.profile import Profile
 from .settings import Settings
 from .traduction import Traduction
 from .webhook_payload import WebhookPayload
+from .text import Text
 
 __all__ = [
     "Profile",
@@ -47,4 +48,5 @@ __all__ = [
     "Html",
     "GenerationInput",
     "Settings",
+    "Text",
 ]
