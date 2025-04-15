@@ -33,7 +33,7 @@ function VideoPlayer({ src, className, play }: Props) {
       ref={videoRef}
       src={src}
       className={className}
-      preload="metadata"
+      preload="auto"
       loop
       muted
       playsInline
