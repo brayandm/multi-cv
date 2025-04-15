@@ -3,8 +3,8 @@ from typing import List, Optional, Union
 
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
-from langchain.prompts import ChatPromptTemplate
 from langchain.chains.moderation import OpenAIModerationChain
+from langchain.prompts import ChatPromptTemplate
 from langchain.schema import (
     AIMessage,
     BaseMessage,
