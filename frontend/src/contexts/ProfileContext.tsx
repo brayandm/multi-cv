@@ -119,6 +119,13 @@ const ProfileContext = createContext<ProfileContextType | undefined>(undefined);
 
 export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const { userStatus } = useUserStatus();
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    userStatus.authenticated
+  );
+
+  useEffect(() => {
+    setIsAuthenticated(userStatus.authenticated);
+  }, [userStatus]);
 
   const [basicInfo, setBasicInfo] = useState<IBasicInfo>({
     first_name: "",
@@ -168,7 +175,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const pullProfile = useCallback(async () => {
-    if (userStatus.authenticated) {
+    if (isAuthenticated) {
       try {
         const response = await getProfileEngine();
         if (response.data) {
@@ -199,7 +206,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
         setOnLoadedError(true);
       }
     }
-  }, [userStatus]);
+  }, [isAuthenticated]); // eslint-disable-line
 
   useEffect(() => {
     pullProfile();
