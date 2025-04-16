@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "账户已暂停",
+        "description": "您的账户已被暂停。请联系支持以获取更多信息。"
+      }
+    },
     "email_verification": {
       "title": "电子邮件验证",
       "already_verified": {

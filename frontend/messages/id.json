@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Akun Ditangguhkan",
+        "description": "Akun Anda telah ditangguhkan. Silakan hubungi dukungan untuk informasi lebih lanjut."
+      }
+    },
     "email_verification": {
       "title": "Verifikasi Email",
       "already_verified": {

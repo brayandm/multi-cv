@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Khata Sthagit",
+        "description": "Aapka khata sthagit kar diya gaya hai. Kripya adhik jankari ke liye samarthan se sampark karein."
+      }
+    },
     "email_verification": {
       "title": "Email Paryavekshan",
       "already_verified": {

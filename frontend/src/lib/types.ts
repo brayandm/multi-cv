@@ -13,6 +13,7 @@ export interface UserStatusResponse {
   has_profile_picture?: boolean;
   payment_plan?: string;
   is_freemium?: boolean;
+  is_suspended?: boolean;
 }
 
 export interface LoginResponse {

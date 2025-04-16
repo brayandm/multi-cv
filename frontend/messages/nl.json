@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Account Opgeschort",
+        "description": "Uw account is opgeschort. Neem contact op met de ondersteuning voor meer informatie."
+      }
+    },
     "email_verification": {
       "title": "E-mailverificatie",
       "already_verified": {

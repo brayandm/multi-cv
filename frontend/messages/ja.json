@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "アカウントが停止されました",
+        "description": "あなたのアカウントは停止されました。詳細についてはサポートにお問い合わせください。"
+      }
+    },
     "email_verification": {
       "title": "メール認証",
       "already_verified": {

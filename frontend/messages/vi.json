@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Tài khoản bị đình chỉ",
+        "description": "Tài khoản của bạn đã bị đình chỉ. Vui lòng liên hệ với bộ phận hỗ trợ để biết thêm thông tin."
+      }
+    },
     "email_verification": {
       "title": "Xác minh Email",
       "already_verified": {

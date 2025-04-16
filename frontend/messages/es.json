@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Cuenta Suspendida",
+        "description": "Su cuenta ha sido suspendida. Por favor, contacte con el soporte para más información."
+      }
+    },
     "email_verification": {
       "title": "Verificación de Correo",
       "already_verified": {

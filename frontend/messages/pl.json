@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Konto Zawieszone",
+        "description": "Twoje konto zostało zawieszone. Proszę skontaktować się z pomocą techniczną w celu uzyskania więcej informacji."
+      }
+    },
     "email_verification": {
       "title": "Weryfikacja e-mail",
       "already_verified": {

@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "บัญชีถูกระงับ",
+        "description": "บัญชีของคุณถูกระงับ กรุณาติดต่อฝ่ายสนับสนุนเพื่อขอข้อมูลเพิ่มเติม."
+      }
+    },
     "email_verification": {
       "title": "การตรวจสอบอีเมล",
       "already_verified": {

@@ -234,6 +234,7 @@ class AuthController extends Controller
             'has_profile_picture' => $user->hasMedia('profile_picture'),
             'payment_plan' => $payment_plan->name,
             'is_freemium' => $is_freemium,
+            'is_suspended' => $user->suspended_account_at ? true : false,
         ]);
     }
 

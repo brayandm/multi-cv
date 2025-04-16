@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "تم تعليق الحساب",
+        "description": "تم تعليق حسابك. يرجى الاتصال بالدعم للحصول على مزيد من المعلومات."
+      }
+    },
     "email_verification": {
       "title": "تحقق من البريد الإلكتروني",
       "already_verified": {

@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "החשבון הוקפא",
+        "description": "החשבון שלך הוקפא. אנא פנה לתמיכה למידע נוסף."
+      }
+    },
     "email_verification": {
       "title": "אימות אימייל",
       "already_verified": {

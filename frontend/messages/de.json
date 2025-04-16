@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Konto Gesperrt",
+        "description": "Ihr Konto wurde gesperrt. Bitte kontaktieren Sie den Support für weitere Informationen."
+      }
+    },
     "email_verification": {
       "title": "E-Mail-Verifizierung",
       "already_verified": {

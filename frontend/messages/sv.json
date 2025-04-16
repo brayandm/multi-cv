@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Kontot är avstängt",
+        "description": "Ditt konto har blivit avstängt. Vänligen kontakta supporten för mer information."
+      }
+    },
     "email_verification": {
       "title": "E-postverifiering",
       "already_verified": {

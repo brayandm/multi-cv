@@ -210,6 +210,12 @@
     }
   },
   "pages": {
+    "suspended": {
+      "account": {
+        "title": "Hesap Askıya Alındı",
+        "description": "Hesabınız askıya alındı. Daha fazla bilgi için lütfen destekle iletişime geçin."
+      }
+    },
     "email_verification": {
       "title": "E-posta Doğrulama",
       "already_verified": {
