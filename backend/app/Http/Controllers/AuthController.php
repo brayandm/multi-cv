@@ -471,12 +471,11 @@ class AuthController extends Controller
             return response()->json(['errors' => 'User not found'], 404);
         }
 
-        if ($user->suspended_account) {
+        if ($user->suspended_account_at) {
             return response()->json(['errors' => 'User account is already suspended'], 400);
         }
 
         $user->update([
-            'suspended_account' => true,
             'suspended_account_at' => Carbon::now(),
         ]);
     }

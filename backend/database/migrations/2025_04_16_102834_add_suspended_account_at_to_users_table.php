@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('suspended_account')->default(false)->after('remember_token');
-            $table->timestamp('suspended_account_at')->nullable()->after('suspended_account');
+            $table->timestamp('suspended_account_at')->nullable()->after('remember_token');
         });
     }
 
@@ -23,7 +22,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('suspended_account');
             $table->dropColumn('suspended_account_at');
         });
     }

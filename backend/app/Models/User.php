@@ -38,7 +38,6 @@ class User extends Authenticatable implements MustVerifyEmail, HasMedia
         'locale',
         'app_theme',
         'is_first_login',
-        'suspended_account',
         'suspended_account_at',
     ];
 
