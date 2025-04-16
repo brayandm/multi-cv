@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\CookiesHelper;
+use App\Mail\UserSuspended;
 use App\Models\User;
 use App\Services\PaymentPlanService;
 use App\Services\UserService;
@@ -10,6 +11,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 
@@ -479,5 +481,9 @@ class AuthController extends Controller
         $user->update([
             'suspended_account_at' => Carbon::now(),
         ]);
+
+        if (config('app.environment') == 'production') {
+            Mail::to(config('app.notification_mail'))->queue(new UserSuspended($user));
+        }
     }
 }
