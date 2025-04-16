@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
     >
       <h1 className="text-3xl font-bold">Cookies Policy</h1>
       <p>
-        <strong>Last updated: March 28, 2025</strong>
+        <strong>Last updated: April 16, 2025</strong>
       </p>
 
       <h2>What Are Cookies?</h2>

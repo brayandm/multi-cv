@@ -36,6 +36,9 @@ export default function PrivacyPolicyPage() {
     >
       <h1 className="text-3xl font-bold">Privacy Policy</h1>
       <p>
+        <strong>Last updated: April 16, 2025</strong>
+      </p>
+      <p>
         This Privacy Policy describes Our policies and procedures on the
         collection, use, and disclosure of Your information when You use the
         Service and informs You about Your privacy rights and how the law
@@ -143,8 +146,39 @@ export default function PrivacyPolicyPage() {
       <p>
         We use cookies and similar tracking technologies to enhance user
         experience and analyze website traffic. By using the Service, You
-        consent to the use of cookies as described in our
+        consent to the use of cookies as described in our{" "}
         <a href="cookies-policy">Cookies Policy</a>.
+      </p>
+
+      <h3>Analytics and Session Tracking</h3>
+      <p>
+        We use analytics tools to understand how our users interact with the
+        Service. These tools may track user activity both before and after
+        authentication. This includes the use of{" "}
+        <strong>anonymous identifiers</strong> that help us understand usage
+        patterns from the first interaction, even when You are not logged in.
+      </p>
+      <p>
+        When You later sign in or create an account, these previously anonymous
+        usage patterns may be{" "}
+        <strong>associated with Your authenticated profile</strong> in order to
+        provide continuity, improve personalization, and analyze behavior more
+        effectively. This process helps us offer better recommendations,
+        identify potential issues, and enhance Your overall experience with the
+        Service.
+      </p>
+      <p>
+        In addition, analytics tools may include{" "}
+        <strong>session recordings</strong> or replays (such as mouse movements,
+        page transitions, and clicks), which help us understand how users
+        interact with specific parts of the site. These recordings may begin
+        before login and continue after login, and may later be linked to Your
+        profile for support, analytics, or product improvement purposes.
+      </p>
+      <p>
+        All tracking and analysis is performed in accordance with applicable
+        data protection laws. You may control or opt out of some tracking
+        through your browser settings or by contacting us directly.
       </p>
 
       <h2>Your Rights Under GDPR</h2>
