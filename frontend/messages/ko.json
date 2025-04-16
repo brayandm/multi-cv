@@ -109,7 +109,8 @@
       "dates_impossible": "종료 날짜는 시작 날짜 이후여야 합니다",
       "expiration_impossible": "만료 날짜는 발급 날짜 이후여야 합니다",
       "generate_cv": "CV 생성 실패",
-      "download_document": "문서 다운로드 실패"
+      "download_document": "문서 다운로드 실패",
+      "input_unsafe": "귀하의 입력에는 부적절한 내용이 포함될 수 있으며, 당사의 이용 약관 정책을 위반할 수 있습니다. 검토하고 수정해 주시기 바랍니다."
     },
     "success": {
       "password_change": "비밀번호가 변경되었습니다",

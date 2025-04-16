@@ -109,7 +109,8 @@
       "dates_impossible": "La fecha de finalización debe ser posterior a la fecha de inicio",
       "expiration_impossible": "La fecha de expiración debe ser posterior a la fecha de emisión",
       "generate_cv": "La generación del CV falló",
-      "download_document": "Error al descargar el documento"
+      "download_document": "Error al descargar el documento",
+      "input_unsafe": "Su entrada puede contener contenido inapropiado y podría violar nuestras políticas de Términos y Condiciones. Por favor, revíselo y modifíquelo."
     },
     "success": {
       "password_change": "Contraseña cambiada",

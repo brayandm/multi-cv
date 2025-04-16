@@ -109,7 +109,8 @@
       "dates_impossible": "Bitiş tarihi başlangıç tarihinden sonra olmalıdır",
       "expiration_impossible": "Son kullanma tarihi, düzenleme tarihinden sonra olmalıdır",
       "generate_cv": "CV oluşturma başarısız",
-      "download_document": "Belge indirme başarısız"
+      "download_document": "Belge indirme başarısız",
+      "input_unsafe": "Girdiğiniz içerik uygunsuz olabilir ve Hizmet Şartlarımızı ihlal edebilir. Lütfen gözden geçirin ve düzenleyin."
     },
     "success": {
       "password_change": "Şifre değiştirildi",

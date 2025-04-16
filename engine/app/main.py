@@ -38,6 +38,7 @@ from app.framework.decorators.action import (
     commit_action,
     commit_action_after,
     rollback_action,
+    cancel_action,
 )
 from app.framework.decorators.context_vars import get_auth_token, get_user_id
 from app.framework.logging import logger
@@ -113,6 +114,7 @@ async def auto_fill_cv_from_document(
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Response:
     if file.content_type != "application/pdf":
+        cancel_action()
         return JSONResponse(
             status_code=400,
             content={
@@ -126,6 +128,15 @@ async def auto_fill_cv_from_document(
         extractor = TextExtractor(contents)
         text = extractor.extract_text()
         extractor.close()
+
+        chat_engine_service = ChatEngineService()
+        is_safe = await chat_engine_service.moderation(text)
+        if not is_safe:
+            cancel_action()
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Input is unsafe."},
+            )
 
         profile = await AutoFillProfilePipeline().run(text)
 
