@@ -6,54 +6,63 @@ import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 import { AuthCookie } from "@/lib/types";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
+import { useUserStatus } from "@/contexts/UserStatusContext";
 
 export default function RedirectBack() {
   const searchParams = useSearchParams();
+  const { refreshUserStatus } = useUserStatus();
   const router = useRouter();
 
   const { callbackUrl, redirectToCallback } = useCallbackRedirect();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const extension = searchParams.get("extension") === "true";
+    const func = async () => {
+      if (typeof window !== "undefined") {
+        const extension = searchParams.get("extension") === "true";
 
-      const authCookieName = decodeURIComponent(searchParams.get("name") || "");
-      const authCookieValue = decodeURIComponent(
-        searchParams.get("value") || ""
-      );
-      const authCookieExpirationDate = Number(
-        decodeURIComponent(searchParams.get("expiration_date") || "")
-      );
+        const authCookieName = decodeURIComponent(
+          searchParams.get("name") || ""
+        );
+        const authCookieValue = decodeURIComponent(
+          searchParams.get("value") || ""
+        );
+        const authCookieExpirationDate = Number(
+          decodeURIComponent(searchParams.get("expiration_date") || "")
+        );
 
-      if (!authCookieName || !authCookieValue || !authCookieExpirationDate) {
-        router.push("/");
-        return;
+        if (!authCookieName || !authCookieValue || !authCookieExpirationDate) {
+          router.push("/");
+          return;
+        }
+
+        const auth_cookie: AuthCookie = {
+          name: authCookieName,
+          value: authCookieValue,
+          expiration_date: authCookieExpirationDate,
+        };
+
+        if (extension) {
+          storeExtensionStorageValue("auth_cookie", auth_cookie, () => {
+            window.close();
+          });
+        } else {
+          setCookieClient(
+            auth_cookie.name,
+            auth_cookie.value,
+            auth_cookie.expiration_date
+          ).then(async () => {
+            await refreshUserStatus();
+            if (callbackUrl) {
+              redirectToCallback();
+            } else {
+              router.push("/home");
+            }
+          });
+        }
       }
+    };
 
-      const auth_cookie: AuthCookie = {
-        name: authCookieName,
-        value: authCookieValue,
-        expiration_date: authCookieExpirationDate,
-      };
-
-      if (extension) {
-        storeExtensionStorageValue("auth_cookie", auth_cookie, () => {
-          window.close();
-        });
-      } else {
-        setCookieClient(
-          auth_cookie.name,
-          auth_cookie.value,
-          auth_cookie.expiration_date
-        ).then(() => {
-          if (callbackUrl) {
-            redirectToCallback();
-          } else {
-            router.push("/home");
-          }
-        });
-      }
-    }
+    func();
   }, []); // eslint-disable-line
   return null;
 }
