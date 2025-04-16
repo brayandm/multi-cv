@@ -57,6 +57,8 @@ class ChatEngineService:
         max_completion_tokens: Optional[int] = None,
     ) -> str:
 
+        user_id = str(get_user_id())
+
         client = ChatOpenAI(
             api_key=SecretStr(OPENAI_API_KEY),
             model="gpt-4o-mini",
@@ -69,7 +71,7 @@ class ChatEngineService:
         )
 
         with get_openai_callback() as cb:
-            response = await client.ainvoke(messages)
+            response = await client.ainvoke(messages, user=user_id)
             total_cost = cb.total_cost
             total_tokens = cb.total_tokens
 
@@ -84,6 +86,8 @@ class ChatEngineService:
         chat: Chat,
         max_completion_tokens: Optional[int] = None,
     ) -> str:
+        user_id = str(get_user_id())
+
         client = ChatOpenAI(
             api_key=SecretStr(OPENAI_API_KEY),
             model="gpt-4o-mini",
@@ -112,7 +116,7 @@ class ChatEngineService:
         chain = LLMChain(llm=client, prompt=prompt)
 
         with get_openai_callback() as cb:
-            response = await chain.arun({})
+            response = await chain.arun(user=user_id)
             total_cost = cb.total_cost
             total_tokens = cb.total_tokens
 
