@@ -19,6 +19,7 @@ export interface ChatMessage {
   sender: Sender;
   text: string;
   isLoading?: boolean;
+  error?: boolean;
 }
 
 export interface ChatSelector {
@@ -112,12 +113,18 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   ) => {
     try {
       if (currentType === "experience" && currentId) {
+        const data = chatMap[getKey({ type: currentType, id: currentId })] || {
+          messages: [],
+        };
+
+        data.messages = data.messages.filter(
+          (message) => message.error !== true
+        );
+
         const response = await chatExperienceEngine({
           experience_id: currentId,
           traduction: getTraduction(),
-          chat: chatMap[getKey({ type: currentType, id: currentId })] || {
-            messages: [],
-          },
+          chat: data,
         });
         return response.data.message;
       }
@@ -191,7 +198,21 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       setChatMap((prev) => {
         const messages = [...(prev[key]?.messages || [])];
 
-        messages.splice(-2, 2);
+        const lastIndex = messages.findIndex((m) => m.isLoading);
+        if (lastIndex !== -1) {
+          messages.splice(lastIndex, 1);
+        }
+
+        const userLastIndex = [...messages]
+          .reverse()
+          .findIndex((m) => m.sender === "person");
+        if (userLastIndex !== -1) {
+          const actualIndex = messages.length - 1 - userLastIndex;
+          messages[actualIndex] = {
+            ...messages[actualIndex],
+            error: true,
+          };
+        }
 
         return {
           ...prev,

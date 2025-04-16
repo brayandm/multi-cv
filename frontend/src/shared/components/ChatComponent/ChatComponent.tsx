@@ -28,6 +28,42 @@ export default function ChatComponent() {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
+
+  const [sendingMessageDisabled, setSendingMessageDisabled] = useState(false);
+
+  useEffect(() => {
+    if (!input.trim()) {
+      setSendingMessageDisabled(true);
+      return;
+    }
+
+    if (chat === null) {
+      setSendingMessageDisabled(true);
+      return;
+    }
+
+    if (chat.messages.some((m) => m.isLoading)) {
+      setSendingMessageDisabled(true);
+      return;
+    }
+
+    if (
+      chat.messages.length > 0 &&
+      chat.messages[chat.messages.length - 1].sender === "person" &&
+      !chat.messages[chat.messages.length - 1].error
+    ) {
+      setSendingMessageDisabled(true);
+      return;
+    }
+    if (quotaInfo !== null && quotaInfo.left == 0) {
+      setSendingMessageDisabled(true);
+      return;
+    }
+
+    setSendingMessageDisabled(false);
+  }, [chat, input, quotaInfo]);
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -46,6 +82,8 @@ export default function ChatComponent() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();
+
+        if (sendingMessageDisabled) return;
         sendMessage();
       }
     };
@@ -53,11 +91,11 @@ export default function ChatComponent() {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [sendMessage]);
+  }, [sendMessage, sendingMessageDisabled]);
 
   useEffect(() => {
     if (isChatOpen && chat) {
-      if (chat.messages.length === 0) {
+      if (chat.messages.length === 0 && quotaInfo && quotaInfo.left > 0) {
         const func = async () => {
           await syncProfile();
           generateBotMessage();
@@ -67,7 +105,10 @@ export default function ChatComponent() {
 
       if (
         chat.messages.length > 0 &&
-        chat.messages[chat.messages.length - 1].sender === "person"
+        chat.messages[chat.messages.length - 1].sender === "person" &&
+        !chat.messages[chat.messages.length - 1].error &&
+        quotaInfo &&
+        quotaInfo?.left > 0
       ) {
         const func = async () => {
           await syncProfile();
@@ -77,8 +118,6 @@ export default function ChatComponent() {
       }
     }
   }, [chat, generateBotMessage, isChatOpen]); // eslint-disable-line
-
-  const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
 
   useEffect(() => {
     const getQuota = () => {
@@ -169,12 +208,21 @@ export default function ChatComponent() {
                 {chat.messages.map((msg, index) => (
                   <div key={index} className="flex flex-col items-start">
                     <div
-                      className={`break-words text-small font-medium max-w-[90%] rounded-3xl p-3 ${
-                        msg.sender === "bot"
+                      className={`relative break-words text-small font-medium max-w-[90%] rounded-3xl p-3 ${
+                        msg.error
+                          ? "bg-danger text-white self-end"
+                          : msg.sender === "bot"
                           ? "bg-secondary text-white self-start"
                           : "bg-primary text-white self-end"
                       } `}
                     >
+                      {msg.error && (
+                        <>
+                          <div className="absolute text-xs top-[-2px] right-[-2px] bg-danger-600 w-4 h-4 rounded-full flex items-center justify-center">
+                            !
+                          </div>
+                        </>
+                      )}
                       {msg.isLoading ? (
                         <div className="flex space-x-1">
                           <div
@@ -226,13 +274,7 @@ export default function ChatComponent() {
                     onPressStart={sendMessage}
                     className="p-2 rounded-full "
                     isIconOnly
-                    isDisabled={
-                      !input.trim() ||
-                      chat.messages.some((m) => m.isLoading) ||
-                      (chat.messages.length > 0 &&
-                        chat.messages[chat.messages.length - 1].sender ===
-                          "person")
-                    }
+                    isDisabled={sendingMessageDisabled}
                   >
                     <PaperAirplaneIcon className="w-5 h-5" />
                   </Button>
