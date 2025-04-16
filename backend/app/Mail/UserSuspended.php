@@ -29,7 +29,7 @@ class UserSuspended extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'User Suspended: ' . $this->user->name,
+            subject: 'User Suspended: '.$this->user->name,
         );
     }
 
