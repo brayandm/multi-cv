@@ -110,7 +110,8 @@
       "expiration_impossible": "The expiration date must be after the issue date",
       "generate_cv": "CV generation failed",
       "download_document": "Document download failed",
-      "input_unsafe": "Your input may contain inappropriate content and could violate our Terms & Conditions policies. Please review and revise it."
+      "input_unsafe": "Your input may contain inappropriate content and could violate our Terms & Conditions policies. Please review and revise it.",
+      "chatbot": "Chatbot error"
     },
     "success": {
       "password_change": "Password changed",

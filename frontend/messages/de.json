@@ -110,7 +110,8 @@
       "expiration_impossible": "Das Ablaufdatum muss nach dem Ausstellungsdatum liegen",
       "generate_cv": "CV-Generierung fehlgeschlagen",
       "download_document": "Dokumenten-Download fehlgeschlagen",
-      "input_unsafe": "Ihre Eingabe könnte unangemessene Inhalte enthalten und gegen unsere Nutzungsbedingungen verstoßen. Bitte überprüfen und überarbeiten Sie sie."
+      "input_unsafe": "Ihre Eingabe könnte unangemessene Inhalte enthalten und gegen unsere Nutzungsbedingungen verstoßen. Bitte überprüfen und überarbeiten Sie sie.",
+      "chatbot": "Chatbot-Fehler"
     },
     "success": {
       "password_change": "Passwort geändert",

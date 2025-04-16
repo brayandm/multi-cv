@@ -10,6 +10,8 @@ import React, {
   ReactNode,
 } from "react";
 import { useLocale } from "./LocaleContext";
+import { addToast } from "@heroui/react";
+import { useTranslations } from "next-intl";
 
 export type Sender = "bot" | "person";
 
@@ -48,6 +50,7 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
   const [chatMap, setChatMap] = useState<ChatMap>({});
   const [currentType, setCurrentType] = useState<string | null>(null);
   const [currentId, setCurrentId] = useState<string | undefined>(undefined);
+  const t = useTranslations();
   const { getTraduction } = useLocale();
 
   const currentKey = useMemo(() => {
@@ -120,6 +123,28 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       }
     } catch (error) {
       console.error("Failed to fetch bot message:", error);
+
+      const message = (
+        error as unknown as {
+          response?: { data?: { error?: string } };
+        }
+      )?.response?.data?.error;
+
+      if (message === "Input is unsafe.") {
+        addToast({
+          title: t("common.errors.chatbot"),
+          description: t("common.errors.input_unsafe"),
+          color: "danger",
+          timeout: 10000,
+        });
+      } else {
+        addToast({
+          title: t("common.errors.chatbot"),
+          description: t("common.errors.server"),
+          color: "danger",
+          timeout: 5000,
+        });
+      }
     }
   };
 
@@ -162,6 +187,17 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
       });
     } catch (error) {
       console.error("Failed to fetch bot message:", error);
+
+      setChatMap((prev) => {
+        const messages = [...(prev[key]?.messages || [])];
+
+        messages.splice(-2, 2);
+
+        return {
+          ...prev,
+          [key]: { messages },
+        };
+      });
     }
   };
 

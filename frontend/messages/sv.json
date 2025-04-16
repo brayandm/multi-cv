@@ -110,7 +110,8 @@
       "expiration_impossible": "Utgångsdatumet måste vara efter utfärdandedatumet",
       "generate_cv": "CV-generering misslyckades",
       "download_document": "Nedladdning av dokument misslyckades",
-      "input_unsafe": "Din inmatning kan innehålla olämpligt innehåll och kan bryta mot våra villkor. Vänligen granska och revidera den."
+      "input_unsafe": "Din inmatning kan innehålla olämpligt innehåll och kan bryta mot våra villkor. Vänligen granska och revidera den.",
+      "chatbot": "Chatbotfel"
     },
     "success": {
       "password_change": "Lösenordet har ändrats",

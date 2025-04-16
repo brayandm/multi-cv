@@ -110,7 +110,8 @@
       "expiration_impossible": "De vervaldatum moet na de uitgiftedatum liggen",
       "generate_cv": "CV-generatie mislukt",
       "download_document": "Document downloaden mislukt",
-      "input_unsafe": "Uw invoer kan ongepaste inhoud bevatten en mogelijk in strijd zijn met onze voorwaarden. Gelieve het te herzien en aan te passen."
+      "input_unsafe": "Uw invoer kan ongepaste inhoud bevatten en mogelijk in strijd zijn met onze voorwaarden. Gelieve het te herzien en aan te passen.",
+      "chatbot": "Chatbotfout"
     },
     "success": {
       "password_change": "Wachtwoord gewijzigd",

@@ -286,11 +286,23 @@ async def chat_experience(
     traduction: Traduction,
     chat: Chat,
     profile_service: ProfileService = Depends(get_profile_service),
-) -> Dict[str, str]:
+) -> Response:
 
     experience = await profile_service.get_experience(
         get_user_id(), experience_id.id
     )
+
+    chat_engine_service = ChatEngineService()
+    is_safe = await chat_engine_service.moderation(
+        chat.model_dump_json() + experience.model_dump_json()
+    )
+
+    if not is_safe:
+        cancel_action()
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
+        )
 
     chat_message, notes = await ChatExperiencePipeline().run(
         chat, experience, traduction
@@ -300,7 +312,7 @@ async def chat_experience(
         get_user_id(), experience_id.id, notes
     )
 
-    return {"message": chat_message}
+    return JSONResponse(content={"message": chat_message}, status_code=200)
 
 
 @router.post("/render/cv")

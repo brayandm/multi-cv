@@ -110,7 +110,8 @@
       "expiration_impossible": "La date d'expiration doit être après la date d'émission",
       "generate_cv": "Échec de la génération du CV",
       "download_document": "Échec du téléchargement du document",
-      "input_unsafe": "Votre saisie peut contenir un contenu inapproprié et pourrait enfreindre nos politiques de Conditions Générales. Veuillez le revoir et le modifier."
+      "input_unsafe": "Votre saisie peut contenir un contenu inapproprié et pourrait enfreindre nos politiques de Conditions Générales. Veuillez le revoir et le modifier.",
+      "chatbot": "Erreur du chatbot"
     },
     "success": {
       "password_change": "Mot de passe changé",

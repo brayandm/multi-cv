@@ -110,7 +110,8 @@
       "expiration_impossible": "到期日期必须在发行日期之后",
       "generate_cv": "简历生成失败",
       "download_document": "文档下载失败",
-      "input_unsafe": "您的输入可能包含不当内容，可能违反我们的条款和条件政策。请审查并修改。"
+      "input_unsafe": "您的输入可能包含不当内容，可能违反我们的条款和条件政策。请审查并修改。",
+      "chatbot": "聊天机器人错误"
     },
     "success": {
       "password_change": "密码已更改",
