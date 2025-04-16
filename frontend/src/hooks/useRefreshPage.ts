@@ -6,9 +6,11 @@ import { setCookieClient } from "@/lib/setCookieClient";
 import { getLocaleFromSources, useLocale } from "@/contexts/LocaleContext";
 import { getSystemTheme, useTheme } from "@/contexts/ThemeContext";
 import { getCookie } from "cookies-next";
+import { useUserStatus } from "@/contexts/UserStatusContext";
 
 export const useRefreshPage = () => {
   const router = useRouter();
+  const { refreshUserStatus } = useUserStatus();
   const pathname = usePathname();
 
   const { updateLocale } = useLocale();
@@ -70,6 +72,8 @@ export const useRefreshPage = () => {
       document.addEventListener("visibilitychange", handleVisibilityChange);
     }
 
+    refreshUserStatus();
+
     return () => {
       if (isIframe) {
         window.removeEventListener("message", handleActionRefreshPage);
@@ -80,5 +84,5 @@ export const useRefreshPage = () => {
         );
       }
     };
-  }, [router, updateLocale, updateTheme, pathname]);
+  }, [router, updateLocale, updateTheme, pathname]); // eslint-disable-line
 };
