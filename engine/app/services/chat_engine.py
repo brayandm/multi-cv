@@ -2,6 +2,7 @@ import asyncio
 from datetime import datetime, timezone
 from typing import Any, List, Optional, Union
 
+import requests  # type: ignore
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
 from langchain.prompts import ChatPromptTemplate
@@ -14,24 +15,21 @@ from langchain.schema import (
 from langchain_openai import ChatOpenAI
 from openai import OpenAI
 from pydantic import BaseModel, SecretStr
+from pymongo import ReturnDocument
 
 from app.classes.models import Chat
-from app.config import OPENAI_API_KEY
+from app.config import (
+    BACKEND_API_URL,
+    INTER_COMMUNICATION_TOKEN,
+    OPENAI_API_KEY,
+)
 from app.database.mongodb import mongo_handler
 from app.framework.decorators.context_vars import (
     get_action,
     get_action_id,
     get_user_id,
 )
-
 from app.framework.logging import logger
-from app.config import (
-    BACKEND_API_URL,
-    INTER_COMMUNICATION_TOKEN,
-)
-import requests  # type: ignore
-
-from pymongo import ReturnDocument
 
 
 class ChatEngineService:
