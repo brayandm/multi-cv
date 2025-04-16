@@ -24,6 +24,15 @@ from app.framework.decorators.context_vars import (
     get_user_id,
 )
 
+from app.framework.logging import logger
+from app.config import (
+    BACKEND_API_URL,
+    INTER_COMMUNICATION_TOKEN,
+)
+import requests  # type: ignore
+
+from pymongo import ReturnDocument
+
 
 class ChatEngineService:
     def __init__(self) -> None:
@@ -140,13 +149,50 @@ class ChatEngineService:
         user_id = get_user_id()
 
         if flagged:
-            await self.db["moderated_messages"].insert_one(
-                {
-                    "user_id": user_id,
-                    "message": text,
-                    "result": result.model_dump(),
-                    "created_at": datetime.now(timezone.utc),
-                }
+            await self.moderate_user(
+                user_id=user_id,
+                message=text,
+                result=result,
             )
-
         return not flagged
+
+    async def moderate_user(
+        self, user_id: int, message: str, result: Any
+    ) -> None:
+        await self.db["moderated_messages"].insert_one(
+            {
+                "user_id": user_id,
+                "message": message,
+                "result": result.model_dump(),
+                "created_at": datetime.now(timezone.utc),
+            }
+        )
+
+        doc = await self.db["user_moderation_stats"].find_one_and_update(
+            {"user_id": user_id},
+            {
+                "$inc": {"inappropriate_messages": 1},
+                "$setOnInsert": {"created_at": datetime.now(timezone.utc)},
+                "$set": {"updated_at": datetime.now(timezone.utc)},
+            },
+            upsert=True,
+            return_document=ReturnDocument.AFTER,
+        )
+
+        inappropriate_messages = doc["inappropriate_messages"]
+
+        if inappropriate_messages >= 20:
+            try:
+                requests.post(
+                    f"{BACKEND_API_URL}/suspend/account",
+                    json={"user_id": user_id},
+                    headers={
+                        "X-API-Key": INTER_COMMUNICATION_TOKEN,
+                    },
+                )
+
+            except Exception as e:
+                logger.error(
+                    f"Error suspending account for user {user_id}: {e}"
+                )
+                raise e

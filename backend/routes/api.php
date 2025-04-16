@@ -47,6 +47,8 @@ Route::group(['prefix' => 'v1'], function () {
         Route::post('/action/rollback', 'App\Http\Controllers\ActionController@rollbackAction');
         Route::post('/action/cancel', 'App\Http\Controllers\ActionController@cancelAction');
         Route::post('/action/commit', 'App\Http\Controllers\ActionController@commitAction');
+
+        Route::post('/suspend/account', 'App\Http\Controllers\AuthController@suspendAccount');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {

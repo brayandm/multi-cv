@@ -84,6 +84,15 @@ class AuthController extends Controller
         return $validator;
     }
 
+    public function validateUserId($request)
+    {
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required|integer|exists:users,id',
+        ]);
+
+        return $validator;
+    }
+
     public function register(Request $request)
     {
         $validator = $this->validateCorrectRegisterUser($request);
@@ -446,5 +455,29 @@ class AuthController extends Controller
         $user = $request->user();
 
         return response()->json(['theme' => $user->app_theme]);
+    }
+
+    public function suspendAccount(Request $request)
+    {
+        $validator = $this->validateUserId($request);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 400);
+        }
+
+        $user = User::find($request->user_id);
+
+        if (! $user) {
+            return response()->json(['errors' => 'User not found'], 404);
+        }
+
+        if ($user->suspended_account) {
+            return response()->json(['errors' => 'User account is already suspended'], 400);
+        }
+
+        $user->update([
+            'suspended_account' => true,
+            'suspended_account_at' => Carbon::now(),
+        ]);
     }
 }
