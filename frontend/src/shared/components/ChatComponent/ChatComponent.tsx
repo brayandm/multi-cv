@@ -212,8 +212,8 @@ export default function ChatComponent() {
                         msg.error
                           ? "bg-danger text-white self-end"
                           : msg.sender === "bot"
-                          ? "bg-secondary text-white self-start"
-                          : "bg-primary text-white self-end"
+                            ? "bg-secondary text-white self-start"
+                            : "bg-primary text-white self-end"
                       } `}
                     >
                       {msg.error && (
