@@ -9,6 +9,7 @@ import { InterceptorProvider } from "@/contexts/InterceptorContext";
 import { ChatProvider } from "@/contexts/ChatContext";
 import { CvProvider } from "@/contexts/CvContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { MixpanelProvider } from "@/contexts/MixpanelContext";
 
 export default async function Providers({
   children,
@@ -26,9 +27,11 @@ export default async function Providers({
             <InterceptorProvider>
               <ChatProvider>
                 <UserStatusProvider>
-                  <ProfileProvider>
-                    <CvProvider>{children}</CvProvider>
-                  </ProfileProvider>
+                  <MixpanelProvider>
+                    <ProfileProvider>
+                      <CvProvider>{children}</CvProvider>
+                    </ProfileProvider>
+                  </MixpanelProvider>
                 </UserStatusProvider>
               </ChatProvider>
             </InterceptorProvider>
