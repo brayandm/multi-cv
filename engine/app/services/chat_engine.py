@@ -1,6 +1,6 @@
 import asyncio
 from datetime import datetime, timezone
-from typing import List, Optional, Union
+from typing import List, Optional, Union, Any
 
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
@@ -125,13 +125,28 @@ class ChatEngineService:
         return str(response)
 
     async def moderation(self, text: str) -> bool:
-        def sync_moderation() -> bool:
+        def sync_moderation() -> Any:
             client = OpenAI(api_key=OPENAI_API_KEY)
             result = client.moderations.create(
                 model="omni-moderation-latest",
                 input=text,
             )
-            return result.results[0].flagged
+            return result
 
-        flagged = await asyncio.to_thread(sync_moderation)
+        result = await asyncio.to_thread(sync_moderation)
+
+        flagged = result.results[0].flagged
+
+        user_id = get_user_id()
+
+        if flagged:
+            await self.db["moderated_messages"].insert_one(
+                {
+                    "user_id": user_id,
+                    "message": text,
+                    "result": result.model_dump(),
+                    "created_at": datetime.now(timezone.utc),
+                }
+            )
+
         return not flagged
