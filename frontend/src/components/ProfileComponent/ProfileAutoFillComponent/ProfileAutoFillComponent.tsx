@@ -132,12 +132,10 @@ export default function ProfileAutoCvComponent() {
         style={{
           maxWidth: `${maxWidth}vw`,
           width: `${width}px`,
-          height: `${height}px`,
-          maxHeight: `${maxHeight}vh`,
         }}
       >
         <form className="flex flex-col gap-2">
-          <Card style={{ height: `${height}px` }}>
+          <Card style={{ height: `${height}px`, maxHeight: `${maxHeight}vh` }}>
             <CardHeader className="pb-0 flex flex-col items-start">
               <div className="px-1 py-1">
                 <h1>{t("pages.profile.auto_fill.title")}</h1>
