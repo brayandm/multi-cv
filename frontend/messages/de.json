@@ -109,7 +109,8 @@
       "dates_impossible": "Das Enddatum muss nach dem Startdatum liegen",
       "expiration_impossible": "Das Ablaufdatum muss nach dem Ausstellungsdatum liegen",
       "generate_cv": "CV-Generierung fehlgeschlagen",
-      "download_document": "Dokumenten-Download fehlgeschlagen"
+      "download_document": "Dokumenten-Download fehlgeschlagen",
+      "input_unsafe": "Ihre Eingabe könnte unangemessene Inhalte enthalten und gegen unsere Nutzungsbedingungen verstoßen. Bitte überprüfen und überarbeiten Sie sie."
     },
     "success": {
       "password_change": "Passwort geändert",

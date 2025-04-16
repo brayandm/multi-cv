@@ -109,7 +109,8 @@
       "dates_impossible": "Ngày kết thúc phải sau ngày bắt đầu",
       "expiration_impossible": "Ngày hết hạn phải sau ngày phát hành",
       "generate_cv": "Tạo CV không thành công",
-      "download_document": "Tải tài liệu không thành công"
+      "download_document": "Tải tài liệu không thành công",
+      "input_unsafe": "Nội dung bạn nhập có thể chứa thông tin không phù hợp và có thể vi phạm các chính sách Điều khoản & Điều kiện của chúng tôi. Vui lòng xem xét và chỉnh sửa lại."
     },
     "success": {
       "password_change": "Mật khẩu đã được thay đổi",

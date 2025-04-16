@@ -1,9 +1,9 @@
+import asyncio
 from datetime import datetime, timezone
-from typing import List, Optional, Union
+from typing import Any, List, Optional, Union
 
 from langchain.callbacks import get_openai_callback
 from langchain.chains import LLMChain
-from langchain.chains.moderation import OpenAIModerationChain
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema import (
     AIMessage,
@@ -12,6 +12,7 @@ from langchain.schema import (
     SystemMessage,
 )
 from langchain_openai import ChatOpenAI
+from openai import OpenAI
 from pydantic import BaseModel, SecretStr
 
 from app.classes.models import Chat
@@ -56,6 +57,8 @@ class ChatEngineService:
         max_completion_tokens: Optional[int] = None,
     ) -> str:
 
+        user_id = str(get_user_id())
+
         client = ChatOpenAI(
             api_key=SecretStr(OPENAI_API_KEY),
             model="gpt-4o-mini",
@@ -68,7 +71,7 @@ class ChatEngineService:
         )
 
         with get_openai_callback() as cb:
-            response = await client.ainvoke(messages)
+            response = await client.ainvoke(messages, user=user_id)
             total_cost = cb.total_cost
             total_tokens = cb.total_tokens
 
@@ -83,6 +86,8 @@ class ChatEngineService:
         chat: Chat,
         max_completion_tokens: Optional[int] = None,
     ) -> str:
+        user_id = str(get_user_id())
+
         client = ChatOpenAI(
             api_key=SecretStr(OPENAI_API_KEY),
             model="gpt-4o-mini",
@@ -111,7 +116,7 @@ class ChatEngineService:
         chain = LLMChain(llm=client, prompt=prompt)
 
         with get_openai_callback() as cb:
-            response = await chain.arun({})
+            response = await chain.arun(user=user_id)
             total_cost = cb.total_cost
             total_tokens = cb.total_tokens
 
@@ -120,8 +125,28 @@ class ChatEngineService:
         return str(response)
 
     async def moderation(self, text: str) -> bool:
-        moderation_chain = OpenAIModerationChain(
-            openai_api_key=OPENAI_API_KEY,
-        )
-        result = await moderation_chain.arun(text)
-        return result["flagged"] is False
+        def sync_moderation() -> Any:
+            client = OpenAI(api_key=OPENAI_API_KEY)
+            result = client.moderations.create(
+                model="omni-moderation-latest",
+                input=text,
+            )
+            return result
+
+        result = await asyncio.to_thread(sync_moderation)
+
+        flagged = result.results[0].flagged
+
+        user_id = get_user_id()
+
+        if flagged:
+            await self.db["moderated_messages"].insert_one(
+                {
+                    "user_id": user_id,
+                    "message": text,
+                    "result": result.model_dump(),
+                    "created_at": datetime.now(timezone.utc),
+                }
+            )
+
+        return not flagged

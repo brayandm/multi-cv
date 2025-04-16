@@ -109,7 +109,8 @@
       "dates_impossible": "A data de término deve ser após a data de início",
       "expiration_impossible": "A data de expiração deve ser após a data de emissão",
       "generate_cv": "Falha ao gerar CV",
-      "download_document": "Falha ao baixar o documento"
+      "download_document": "Falha ao baixar o documento",
+      "input_unsafe": "Sua entrada pode conter conteúdo inadequado e pode violar nossas políticas de Termos e Condições. Por favor, revise e revise-a."
     },
     "success": {
       "password_change": "Senha alterada",

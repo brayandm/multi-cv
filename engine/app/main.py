@@ -17,6 +17,7 @@ from app.classes.models import (
     Html,
     Profile,
     Settings,
+    Text,
     Traduction,
     WebhookPayload,
 )
@@ -34,6 +35,7 @@ from app.framework.decorators import (
     validate_api_token,
 )
 from app.framework.decorators.action import (
+    cancel_action,
     commit_action,
     commit_action_after,
     rollback_action,
@@ -44,6 +46,7 @@ from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
 from app.framework.types.request import DocumentDownloadRequest
+from app.services.chat_engine import ChatEngineService
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
 from app.services.settings_service import SettingsService, get_settings_service
@@ -74,6 +77,36 @@ async def ping() -> Dict[str, str]:
     return {"message": "pong"}
 
 
+@router.post("/moderation")
+@authenticate()
+async def moderation(
+    text: Text,
+) -> Response:
+
+    input = text.content
+
+    if not input:
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is required."},
+        )
+
+    service = ChatEngineService()
+
+    result = await service.moderation(input)
+
+    if result:
+        return JSONResponse(
+            status_code=200,
+            content={"message": "Input is safe."},
+        )
+    else:
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
+        )
+
+
 @router.post("/auto-fill/cv/from-document")
 @consume_action("auto_fill_cv_from_document")
 async def auto_fill_cv_from_document(
@@ -81,6 +114,7 @@ async def auto_fill_cv_from_document(
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Response:
     if file.content_type != "application/pdf":
+        cancel_action()
         return JSONResponse(
             status_code=400,
             content={
@@ -94,6 +128,15 @@ async def auto_fill_cv_from_document(
         extractor = TextExtractor(contents)
         text = extractor.extract_text()
         extractor.close()
+
+        chat_engine_service = ChatEngineService()
+        is_safe = await chat_engine_service.moderation(text)
+        if not is_safe:
+            cancel_action()
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Input is unsafe."},
+            )
 
         profile = await AutoFillProfilePipeline().run(text)
 

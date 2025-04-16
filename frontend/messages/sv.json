@@ -109,7 +109,8 @@
       "dates_impossible": "Slutdatumet måste vara efter startdatumet",
       "expiration_impossible": "Utgångsdatumet måste vara efter utfärdandedatumet",
       "generate_cv": "CV-generering misslyckades",
-      "download_document": "Nedladdning av dokument misslyckades"
+      "download_document": "Nedladdning av dokument misslyckades",
+      "input_unsafe": "Din inmatning kan innehålla olämpligt innehåll och kan bryta mot våra villkor. Vänligen granska och revidera den."
     },
     "success": {
       "password_change": "Lösenordet har ändrats",

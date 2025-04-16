@@ -66,16 +66,31 @@ export default function ProfileAutoCvComponent() {
 
       router.push("/profile/initial");
     } catch (error) {
+      const message = (
+        error as unknown as {
+          response?: { data?: { error?: string } };
+        }
+      )?.response?.data?.error;
+
       console.error("Error during autofill:", error);
 
       onClose();
 
-      addToast({
-        title: t("common.errors.autofill"),
-        description: t("common.errors.server"),
-        color: "danger",
-        timeout: 5000,
-      });
+      if (message === "Input is unsafe.") {
+        addToast({
+          title: t("common.errors.autofill"),
+          description: t("common.errors.input_unsafe"),
+          color: "danger",
+          timeout: 10000,
+        });
+      } else {
+        addToast({
+          title: t("common.errors.autofill"),
+          description: t("common.errors.server"),
+          color: "danger",
+          timeout: 5000,
+        });
+      }
     }
   };
 

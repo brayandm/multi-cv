@@ -109,7 +109,8 @@
       "dates_impossible": "Tanggal akhir harus setelah tanggal mulai",
       "expiration_impossible": "Tanggal kedaluwarsa harus setelah tanggal penerbitan",
       "generate_cv": "Generasi CV gagal",
-      "download_document": "Unduhan dokumen gagal"
+      "download_document": "Unduhan dokumen gagal",
+      "input_unsafe": "Input Anda mungkin mengandung konten yang tidak pantas dan dapat melanggar kebijakan Syarat & Ketentuan kami. Harap tinjau dan perbaiki."
     },
     "success": {
       "password_change": "Kata sandi telah diubah",
