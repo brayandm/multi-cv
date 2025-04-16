@@ -83,6 +83,7 @@ export default function ProfileAutoCvComponent() {
           color: "danger",
           timeout: 10000,
         });
+        router.refresh();
       } else {
         addToast({
           title: t("common.errors.autofill"),

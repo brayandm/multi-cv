@@ -12,6 +12,7 @@ import React, {
 import { useLocale } from "./LocaleContext";
 import { addToast } from "@heroui/react";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 export type Sender = "bot" | "person";
 
@@ -48,6 +49,7 @@ const getKey = ({ type, id }: ChatSelector): string =>
   id ? `${type}:${id}` : type;
 
 export const ChatProvider = ({ children }: { children: ReactNode }) => {
+  const router = useRouter();
   const [chatMap, setChatMap] = useState<ChatMap>({});
   const [currentType, setCurrentType] = useState<string | null>(null);
   const [currentId, setCurrentId] = useState<string | undefined>(undefined);
@@ -144,6 +146,8 @@ export const ChatProvider = ({ children }: { children: ReactNode }) => {
           color: "danger",
           timeout: 10000,
         });
+
+        router.refresh();
       } else {
         addToast({
           title: t("common.errors.chatbot"),
