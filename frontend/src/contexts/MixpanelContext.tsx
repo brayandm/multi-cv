@@ -38,6 +38,14 @@ export const MixpanelProvider = ({ children }: MixpanelProviderProps) => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+
+    const consent = localStorage.getItem("cookie_consent");
+
+    if (!consent) {
+      console.warn("Mixpanel tracking is disabled due to cookie consent");
+      return;
+    }
+
     if (!MIXPANEL_TOKEN) {
       console.warn("Mixpanel token is not defined");
       return;
