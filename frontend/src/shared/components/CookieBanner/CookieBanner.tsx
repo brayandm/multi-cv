@@ -38,6 +38,7 @@ export default function CookieBanner() {
         isDismissable={false}
         isKeyboardDismissDisabled={true}
         hideCloseButton={true}
+        placement="bottom"
       >
         <ModalContent>
           {() => (
