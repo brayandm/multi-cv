@@ -64,6 +64,12 @@ export const MixpanelProvider = ({ children }: MixpanelProviderProps) => {
     // eslint-disable-next-line
     mixpanel.init(MIXPANEL_TOKEN, config as any);
 
+    const isIframe = window.self !== window.top;
+
+    mixpanel.register({
+      is_chrome_extension: isIframe,
+    });
+
     setIsReady(true);
   }, []);
 
