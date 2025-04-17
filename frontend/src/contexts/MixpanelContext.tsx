@@ -41,7 +41,7 @@ export const MixpanelProvider = ({ children }: MixpanelProviderProps) => {
 
     const consent = localStorage.getItem("cookie_consent");
 
-    if (!consent) {
+    if (!consent || consent === "denied") {
       console.warn("Mixpanel tracking is disabled due to cookie consent");
       return;
     }
