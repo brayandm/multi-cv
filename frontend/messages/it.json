@@ -79,7 +79,9 @@
       "clear": "Pulisci",
       "autofill_button": "Compila il profilo dal CV",
       "download": "Scarica",
-      "custom_prompt": "Richiesta personalizzata"
+      "custom_prompt": "Richiesta personalizzata",
+      "accept": "Accetta",
+      "deny": "Rifiuta"
     },
     "errors": {
       "login": "Accesso non riuscito",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Termini e Condizioni",
       "privacy_policy": "Informativa sulla privacy",
+      "cookies_policy": "Politica sui cookie",
       "confirm_age": "Confermo di avere più di 18 anni",
       "accept_terms": "Accetto i <termsConditions></termsConditions> e <privacyPolicy></privacyPolicy>",
-      "talent_pool": "Consenti ai reclutatori di visualizzare il mio profilo per opportunità di lavoro."
+      "talent_pool": "Consenti ai reclutatori di visualizzare il mio profilo per opportunità di lavoro.",
+      "cookies": "Utilizziamo i cookie",
+      "cookies_description": "Utilizziamo i cookie per migliorare la tua esperienza, aiutarci a identificare bug e problemi, e raccogliere dati di utilizzo per l'analisi. Per ulteriori informazioni, consulta la nostra <privacyPolicy></privacyPolicy> e <cookiesPolicy></cookiesPolicy>. Puoi scegliere se consentirlo."
     },
     "months": {
       "january": "Gennaio",

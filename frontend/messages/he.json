@@ -79,7 +79,9 @@
       "clear": "נקה",
       "autofill_button": "מלא פרופיל מ-CV",
       "download": "הורד",
-      "custom_prompt": "הנחיה מותאמת אישית"
+      "custom_prompt": "הנחיה מותאמת אישית",
+      "accept": "קבל",
+      "deny": "דחה"
     },
     "errors": {
       "login": "התחברות נכשלה",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "תנאים והגבלות",
       "privacy_policy": "מדיניות פרטיות",
+      "cookies_policy": "מדיניות עוגיות",
       "confirm_age": "אני מאשר שאני מעל גיל 18",
       "accept_terms": "אני מקבל את <termsConditions></termsConditions> ואת <privacyPolicy></privacyPolicy>",
-      "talent_pool": "אפשר למגייסים לראות את הפרופיל שלי להזדמנויות עבודה."
+      "talent_pool": "אפשר למגייסים לראות את הפרופיל שלי להזדמנויות עבודה.",
+      "cookies": "אנחנו משתמשים בעוגיות",
+      "cookies_description": "אנחנו משתמשים בעוגיות כדי לשפר את החוויה שלך, לעזור לנו לזהות באגים ובעיות, ולאסוף נתוני שימוש לניתוח. למידע נוסף, ראה את <privacyPolicy></privacyPolicy> ואת <cookiesPolicy></cookiesPolicy>. אתה יכול לבחור אם לאפשר זאת."
     },
     "months": {
       "january": "ינואר",

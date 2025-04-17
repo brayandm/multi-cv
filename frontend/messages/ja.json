@@ -79,7 +79,9 @@
       "clear": "クリア",
       "autofill_button": "CVからプロフィールを入力",
       "download": "ダウンロード",
-      "custom_prompt": "カスタムプロンプト"
+      "custom_prompt": "カスタムプロンプト",
+      "accept": "受け入れる",
+      "deny": "拒否する"
     },
     "errors": {
       "login": "ログインに失敗しました",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "利用規約",
       "privacy_policy": "プライバシーポリシー",
+      "cookies_policy": "クッキーポリシー",
       "confirm_age": "私は18歳以上であることを確認します",
       "accept_terms": "<termsConditions></termsConditions>と<privacyPolicy></privacyPolicy>に同意します",
-      "talent_pool": "リクルーターが私のプロフィールを求人機会のために見ることを許可します。"
+      "talent_pool": "リクルーターが私のプロフィールを求人機会のために見ることを許可します。",
+      "cookies": "クッキーを使用しています",
+      "cookies_description": "私たちは、あなたの体験を向上させ、バグや問題を特定し、分析のための使用データを収集するためにクッキーを使用しています。詳細については、私たちの<privacyPolicy></privacyPolicy>および<cookiesPolicy></cookiesPolicy>をご覧ください。この使用を許可するかどうかを選択できます。"
     },
     "months": {
       "january": "1月",

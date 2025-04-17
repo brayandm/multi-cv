@@ -79,7 +79,9 @@
       "clear": "Saaf karein",
       "autofill_button": "CV se profile bharein",
       "download": "Download",
-      "custom_prompt": "Khaas prompt"
+      "custom_prompt": "Khaas prompt",
+      "accept": "Sweekar karein",
+      "deny": "Inkaar karein"
     },
     "errors": {
       "login": "Login mein asafalta",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Terms & Conditions",
       "privacy_policy": "Gopniyata Niti",
+      "cookies_policy": "Cookies Niti",
       "confirm_age": "Main sweekar karta hoon ki main 18 saal se upar hoon",
       "accept_terms": "Main <termsConditions></termsConditions> aur <privacyPolicy></privacyPolicy> ko sweekar karta hoon",
-      "talent_pool": "Recruiters ko meri profile dekhne ki anumati dein."
+      "talent_pool": "Recruiters ko meri profile dekhne ki anumati dein.",
+      "cookies": "Hum cookies ka istemal karte hain",
+      "cookies_description": "Hum aapke anubhav ko sudharne, bugs aur samasyaon ki pehchaan karne, aur vishleshan ke liye upyog data ikattha karne ke liye cookies ka istemal karte hain. Adhik jankari ke liye, hamari <privacyPolicy></privacyPolicy> aur <cookiesPolicy></cookiesPolicy> dekhein. Aap isse anumati dene ka chunav kar sakte hain."
     },
     "months": {
       "january": "Janvari",

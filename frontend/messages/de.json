@@ -79,7 +79,9 @@
       "clear": "Löschen",
       "autofill_button": "Profil aus Lebenslauf ausfüllen",
       "download": "Herunterladen",
-      "custom_prompt": "Benutzerdefinierte Eingabeaufforderung"
+      "custom_prompt": "Benutzerdefinierte Eingabeaufforderung",
+      "accept": "Akzeptieren",
+      "deny": "Ablehnen"
     },
     "errors": {
       "login": "Anmeldung fehlgeschlagen",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Allgemeine Geschäftsbedingungen",
       "privacy_policy": "Datenschutzrichtlinie",
+      "cookies_policy": "Cookies-Richtlinie",
       "confirm_age": "Ich bestätige, dass ich über 18 Jahre alt bin",
       "accept_terms": "Ich akzeptiere die <termsConditions></termsConditions> und <privacyPolicy></privacyPolicy>",
-      "talent_pool": "Erlauben Sie Recruitern, mein Profil für Jobmöglichkeiten zu sehen."
+      "talent_pool": "Erlauben Sie Recruitern, mein Profil für Jobmöglichkeiten zu sehen.",
+      "cookies": "Wir verwenden Cookies",
+      "cookies_description": "Wir verwenden Cookies, um Ihre Erfahrung zu verbessern, uns bei der Identifizierung von Fehlern und Problemen zu helfen und Nutzungsdaten für Analysen zu sammeln. Weitere Informationen finden Sie in unserer <privacyPolicy></privacyPolicy> und <cookiesPolicy></cookiesPolicy>. Sie können wählen, ob Sie dies zulassen möchten."
     },
     "months": {
       "january": "Januar",

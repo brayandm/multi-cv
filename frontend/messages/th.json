@@ -79,7 +79,9 @@
       "clear": "ล้าง",
       "autofill_button": "กรอกโปรไฟล์จาก CV",
       "download": "ดาวน์โหลด",
-      "custom_prompt": "คำสั่งที่กำหนดเอง"
+      "custom_prompt": "คำสั่งที่กำหนดเอง",
+      "accept": "ยอมรับ",
+      "deny": "ปฏิเสธ"
     },
     "errors": {
       "login": "การเข้าสู่ระบบล้มเหลว",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "ข้อกำหนดและเงื่อนไข",
       "privacy_policy": "นโยบายความเป็นส่วนตัว",
+      "cookies_policy": "นโยบายคุกกี้",
       "confirm_age": "ฉันยืนยันว่าฉันมีอายุมากกว่า 18 ปี",
       "accept_terms": "ฉันยอมรับ <termsConditions></termsConditions> และ <privacyPolicy></privacyPolicy>",
-      "talent_pool": "อนุญาตให้ผู้สรรหาสามารถดูโปรไฟล์ของฉันเพื่อโอกาสในการทำงาน."
+      "talent_pool": "อนุญาตให้ผู้สรรหาสามารถดูโปรไฟล์ของฉันเพื่อโอกาสในการทำงาน.",
+      "cookies": "เราใช้คุกกี้",
+      "cookies_description": "เราใช้คุกกี้เพื่อปรับปรุงประสบการณ์ของคุณ ช่วยให้เราระบุข้อบกพร่องและปัญหา และรวบรวมข้อมูลการใช้งานเพื่อการวิเคราะห์ สำหรับข้อมูลเพิ่มเติม โปรดดูที่ <privacyPolicy></privacyPolicy> และ <cookiesPolicy></cookiesPolicy> คุณสามารถเลือกว่าจะอนุญาตหรือไม่"
     },
     "months": {
       "january": "มกราคม",

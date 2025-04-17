@@ -79,7 +79,9 @@
       "clear": "Limpiar",
       "autofill_button": "Llenar perfil desde CV",
       "download": "Descargar",
-      "custom_prompt": "Prompt personalizado"
+      "custom_prompt": "Prompt personalizado",
+      "accept": "Aceptar",
+      "deny": "Rechazar"
     },
     "errors": {
       "login": "Error de inicio de sesión",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Términos y Condiciones",
       "privacy_policy": "Política de Privacidad",
+      "cookies_policy": "Política de Cookies",
       "confirm_age": "Confirmo que tengo más de 18 años",
       "accept_terms": "Acepto los <termsConditions></termsConditions> y <privacyPolicy></privacyPolicy>",
-      "talent_pool": "Permitir a los reclutadores ver mi perfil para oportunidades laborales."
+      "talent_pool": "Permitir a los reclutadores ver mi perfil para oportunidades laborales.",
+      "cookies": "Usamos cookies",
+      "cookies_description": "Usamos cookies para mejorar tu experiencia, ayudarnos a identificar errores y problemas, y recopilar datos de uso para análisis. Para más información, consulta nuestra <privacyPolicy></privacyPolicy> y <cookiesPolicy></cookiesPolicy>. Puedes elegir si permitir esto."
     },
     "months": {
       "january": "Enero",

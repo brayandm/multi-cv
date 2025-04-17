@@ -79,7 +79,9 @@
       "clear": "清除",
       "autofill_button": "从简历填写个人资料",
       "download": "下载",
-      "custom_prompt": "自定义提示"
+      "custom_prompt": "自定义提示",
+      "accept": "接受",
+      "deny": "拒绝"
     },
     "errors": {
       "login": "登录失败",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "条款与条件",
       "privacy_policy": "隐私政策",
+      "cookies_policy": "Cookie政策",
       "confirm_age": "我确认我已年满 18 岁",
       "accept_terms": "我接受 <termsConditions></termsConditions> 和 <privacyPolicy></privacyPolicy>",
-      "talent_pool": "允许招聘人员查看我的个人资料以获取工作机会。"
+      "talent_pool": "允许招聘人员查看我的个人资料以获取工作机会。",
+      "cookies": "我们使用Cookie",
+      "cookies_description": "我们使用Cookie来改善您的体验，帮助我们识别错误和问题，并收集使用数据以进行分析。有关更多信息，请参见我们的<privacyPolicy></privacyPolicy>和<cookiesPolicy></cookiesPolicy>。您可以选择是否允许此操作。"
     },
     "months": {
       "january": "一月",

@@ -79,7 +79,9 @@
       "clear": "Bersihkan",
       "autofill_button": "Isi profil dari CV",
       "download": "Unduh",
-      "custom_prompt": "Prompt Kustom"
+      "custom_prompt": "Prompt Kustom",
+      "accept": "Terima",
+      "deny": "Tolak"
     },
     "errors": {
       "login": "Masuk gagal",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Syarat & Ketentuan",
       "privacy_policy": "Kebijakan Privasi",
+      "cookies_policy": "Kebijakan Cookie",
       "confirm_age": "Saya mengonfirmasi bahwa saya berusia di atas 18 tahun",
       "accept_terms": "Saya menerima <termsConditions></termsConditions> dan <privacyPolicy></privacyPolicy>",
-      "talent_pool": "Izinkan perekrut melihat profil saya untuk peluang kerja."
+      "talent_pool": "Izinkan perekrut melihat profil saya untuk peluang kerja.",
+      "cookies": "Kami menggunakan cookie",
+      "cookies_description": "Kami menggunakan cookie untuk meningkatkan pengalaman Anda, membantu kami mengidentifikasi bug dan masalah, serta mengumpulkan data penggunaan untuk analisis. Untuk informasi lebih lanjut, lihat <privacyPolicy></privacyPolicy> dan <cookiesPolicy></cookiesPolicy>. Anda dapat memilih apakah akan mengizinkan ini."
     },
     "months": {
       "january": "Januari",

@@ -79,7 +79,9 @@
       "clear": "Temizle",
       "autofill_button": "CV'den profili doldur",
       "download": "İndir",
-      "custom_prompt": "Özel İstek"
+      "custom_prompt": "Özel İstek",
+      "accept": "Kabul Et",
+      "deny": "Reddet"
     },
     "errors": {
       "login": "Giriş başarısız",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Şartlar ve Koşullar",
       "privacy_policy": "Gizlilik Politikası",
+      "cookies_policy": "Çerez Politikası",
       "confirm_age": "18 yaşından büyük olduğumu onaylıyorum",
       "accept_terms": "<termsConditions></termsConditions> ve <privacyPolicy></privacyPolicy> kabul ediyorum",
-      "talent_pool": "İş fırsatları için profilimi görüntülemelerine izin ver."
+      "talent_pool": "İş fırsatları için profilimi görüntülemelerine izin ver.",
+      "cookies": "Çerez kullanıyoruz",
+      "cookies_description": "Deneyiminizi geliştirmek, hataları ve sorunları tanımlamaya yardımcı olmak ve analiz için kullanım verilerini toplamak amacıyla çerez kullanıyoruz. Daha fazla bilgi için <privacyPolicy></privacyPolicy> ve <cookiesPolicy></cookiesPolicy> sayfalarımıza bakabilirsiniz. Bunu kabul edip etmeyeceğinizi seçebilirsiniz."
     },
     "months": {
       "january": "Ocak",

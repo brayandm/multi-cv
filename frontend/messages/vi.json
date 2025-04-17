@@ -79,7 +79,9 @@
       "clear": "Xóa",
       "autofill_button": "Điền hồ sơ từ CV",
       "download": "Tải xuống",
-      "custom_prompt": "Lời nhắc tùy chỉnh"
+      "custom_prompt": "Lời nhắc tùy chỉnh",
+      "accept": "Chấp nhận",
+      "deny": "Từ chối"
     },
     "errors": {
       "login": "Đăng nhập không thành công",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Điều khoản & Điều kiện",
       "privacy_policy": "Chính sách bảo mật",
+      "cookies_policy": "Chính sách Cookie",
       "confirm_age": "Tôi xác nhận rằng tôi trên 18 tuổi",
       "accept_terms": "Tôi chấp nhận <termsConditions></termsConditions> và <privacyPolicy></privacyPolicy>",
-      "talent_pool": "Cho phép nhà tuyển dụng xem hồ sơ của tôi để tìm kiếm cơ hội việc làm."
+      "talent_pool": "Cho phép nhà tuyển dụng xem hồ sơ của tôi để tìm kiếm cơ hội việc làm.",
+      "cookies": "Chúng tôi sử dụng cookie",
+      "cookies_description": "Chúng tôi sử dụng cookie để cải thiện trải nghiệm của bạn, giúp chúng tôi xác định lỗi và vấn đề, và thu thập dữ liệu sử dụng để phân tích. Để biết thêm thông tin, hãy xem <privacyPolicy></privacyPolicy> và <cookiesPolicy></cookiesPolicy>. Bạn có thể chọn cho phép điều này hay không."
     },
     "months": {
       "january": "Tháng Một",

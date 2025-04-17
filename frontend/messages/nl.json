@@ -79,7 +79,9 @@
       "clear": "Wissen",
       "autofill_button": "Profiel invullen vanuit CV",
       "download": "Downloaden",
-      "custom_prompt": "Aangepaste Prompt"
+      "custom_prompt": "Aangepaste Prompt",
+      "accept": "Accepteren",
+      "deny": "Weigeren"
     },
     "errors": {
       "login": "Inloggen mislukt",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Voorwaarden & Condities",
       "privacy_policy": "Privacybeleid",
+      "cookies_policy": "Cookiesbeleid",
       "confirm_age": "Ik bevestig dat ik ouder ben dan 18 jaar",
       "accept_terms": "Ik accepteer de <termsConditions></termsConditions> en <privacyPolicy></privacyPolicy>",
-      "talent_pool": "Sta recruiters toe mijn profiel te bekijken voor werkgelegenheid."
+      "talent_pool": "Sta recruiters toe mijn profiel te bekijken voor werkgelegenheid.",
+      "cookies": "Wij gebruiken cookies",
+      "cookies_description": "Wij gebruiken cookies om uw ervaring te verbeteren, ons te helpen bugs en problemen te identificeren, en gebruiksgegevens voor analyse te verzamelen. Voor meer informatie, zie ons <privacyPolicy></privacyPolicy> en <cookiesPolicy></cookiesPolicy>. U kunt kiezen of u dit wilt toestaan."
     },
     "months": {
       "january": "Januari",

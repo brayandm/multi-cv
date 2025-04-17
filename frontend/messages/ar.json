@@ -79,7 +79,9 @@
       "clear": "مسح",
       "autofill_button": "ملء الملف الشخصي من السيرة الذاتية",
       "download": "تحميل",
-      "custom_prompt": "موجه مخصص"
+      "custom_prompt": "موجه مخصص",
+      "accept": "قبول",
+      "deny": "رفض"
     },
     "errors": {
       "login": "فشل تسجيل الدخول",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "الشروط والأحكام",
       "privacy_policy": "سياسة الخصوصية",
+      "cookies_policy": "سياسة الكوكيز",
       "confirm_age": "أؤكد أنني فوق 18 عامًا",
       "accept_terms": "أقبل <termsConditions></termsConditions> و <privacyPolicy></privacyPolicy>",
-      "talent_pool": "السماح للمسؤولين برؤية ملفي الشخصي لفرص العمل."
+      "talent_pool": "السماح للمسؤولين برؤية ملفي الشخصي لفرص العمل.",
+      "cookies": "نستخدم الكوكيز",
+      "cookies_description": "نستخدم الكوكيز لتحسين تجربتك، ومساعدتنا في تحديد الأخطاء والمشكلات، وجمع بيانات الاستخدام للتحليل. لمزيد من المعلومات، راجع <privacyPolicy></privacyPolicy> و <cookiesPolicy></cookiesPolicy>. يمكنك اختيار ما إذا كنت ستسمح بذلك."
     },
     "months": {
       "january": "يناير",

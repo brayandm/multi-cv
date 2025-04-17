@@ -79,7 +79,9 @@
       "clear": "Rensa",
       "autofill_button": "Fyll i profil från CV",
       "download": "Ladda ner",
-      "custom_prompt": "Anpassad uppmaning"
+      "custom_prompt": "Anpassad uppmaning",
+      "accept": "Acceptera",
+      "deny": "Neka"
     },
     "errors": {
       "login": "Inloggning misslyckades",
@@ -190,9 +192,12 @@
     "legal": {
       "terms_conditions": "Villkor",
       "privacy_policy": "Integritetspolicy",
+      "cookies_policy": "Cookiespolicy",
       "confirm_age": "Jag bekräftar att jag är över 18 år gammal",
       "accept_terms": "Jag accepterar <termsConditions></termsConditions> och <privacyPolicy></privacyPolicy>",
-      "talent_pool": "Tillåt rekryterare att se min profil för jobbmöjligheter."
+      "talent_pool": "Tillåt rekryterare att se min profil för jobbmöjligheter.",
+      "cookies": "Vi använder cookies",
+      "cookies_description": "Vi använder cookies för att förbättra din upplevelse, hjälpa oss att identifiera buggar och problem, samt samla in användardata för analys. För mer information, se vår <privacyPolicy></privacyPolicy> och <cookiesPolicy></cookiesPolicy>. Du kan välja om du vill tillåta detta."
     },
     "months": {
       "january": "Januari",
