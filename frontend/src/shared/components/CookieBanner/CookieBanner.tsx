@@ -9,7 +9,6 @@ import {
   ModalFooter,
   Button,
 } from "@heroui/react";
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
@@ -17,7 +16,6 @@ export default function CookieBanner() {
   const t = useTranslations();
 
   const [showBanner, setShowBanner] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const consent = localStorage.getItem("cookie_consent");
@@ -26,10 +24,10 @@ export default function CookieBanner() {
     }
   }, []);
 
-  const handleConsent = (accepted: boolean) => {
-    localStorage.setItem("cookie_consent", accepted ? "accepted" : "denied");
+  const handleConsent = (granted: boolean) => {
+    localStorage.setItem("cookie_consent", granted ? "granted" : "denied");
+    window.dispatchEvent(new Event("cookie-consent-changed"));
     setShowBanner(false);
-    router.refresh();
   };
 
   return (

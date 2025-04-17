@@ -36,12 +36,30 @@ export const MixpanelProvider = ({ children }: MixpanelProviderProps) => {
   const [isReady, setIsReady] = useState<boolean>(false);
   const { userStatus } = useUserStatus();
 
+  const [cookieConsent, setCookieConsent] = useState<
+    "granted" | "denied" | null
+  >(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("cookie_consent");
+    if (stored === "granted") setCookieConsent("granted");
+    else if (stored === "denied") setCookieConsent("denied");
+
+    const onConsentChange = () => {
+      const updated = localStorage.getItem("cookie_consent");
+      if (updated === "granted") setCookieConsent("granted");
+      else setCookieConsent("denied");
+    };
+
+    window.addEventListener("cookie-consent-changed", onConsentChange);
+    return () =>
+      window.removeEventListener("cookie-consent-changed", onConsentChange);
+  }, []);
+
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const consent = localStorage.getItem("cookie_consent");
-
-    if (!consent || consent === "denied") {
+    if (cookieConsent !== "granted") {
       console.warn("Mixpanel tracking is disabled due to cookie consent");
       return;
     }
@@ -79,7 +97,7 @@ export const MixpanelProvider = ({ children }: MixpanelProviderProps) => {
     });
 
     setIsReady(true);
-  }, []);
+  }, [cookieConsent]);
 
   useEffect(() => {
     if (!isReady || !userStatus?.authenticated || !userStatus.email) return;
