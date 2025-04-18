@@ -108,21 +108,35 @@ export default function PrivacyPolicyPage() {
         </li>
       </ol>
 
-      <h2>Third-Party Cookies</h2>
+      <h2>Analytics and Session Tracking</h2>
       <p>
-        We may use third-party services such as Google Analytics to track user
-        activity. These services may set their own cookies, which are subject to
-        their respective privacy policies.
+        We use analytics tools to understand how our users interact with the
+        Service. These tools may track user activity both before and after
+        authentication. This includes the use of{" "}
+        <strong>anonymous identifiers</strong> that help us understand usage
+        patterns from the first interaction, even when You are not logged in.
       </p>
       <p>
-        For more information about Google Analytics cookies, visit{" "}
-        <a
-          href="https://policies.google.com/technologies/cookies"
-          target="_blank"
-        >
-          Google&apos;s Cookie Policy
-        </a>
-        .
+        When You later sign in or create an account, these previously anonymous
+        usage patterns may be{" "}
+        <strong>associated with Your authenticated profile</strong> in order to
+        provide continuity, improve personalization, and analyze behavior more
+        effectively. This process helps us offer better recommendations,
+        identify potential issues, and enhance Your overall experience with the
+        Service.
+      </p>
+      <p>
+        In addition, analytics tools may include{" "}
+        <strong>session recordings</strong> or replays (such as mouse movements,
+        page transitions, and clicks), which help us understand how users
+        interact with specific parts of the site. These recordings may begin
+        before login and continue after login, and may later be linked to Your
+        profile for support, analytics, or product improvement purposes.
+      </p>
+      <p>
+        All tracking and analysis is performed in accordance with applicable
+        data protection laws. You may control or opt out of some tracking
+        through your browser settings or by contacting us directly.
       </p>
 
       <h2>Changes to This Policy</h2>
