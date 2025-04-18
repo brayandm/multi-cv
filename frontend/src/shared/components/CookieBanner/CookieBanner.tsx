@@ -20,7 +20,19 @@ export default function CookieBanner() {
   useEffect(() => {
     const consent = localStorage.getItem("cookie_consent");
     if (!consent) {
-      setShowBanner(true);
+      const showModal = () => {
+        setShowBanner(true);
+        window.removeEventListener("click", showModal);
+        window.removeEventListener("touchstart", showModal);
+      };
+
+      window.addEventListener("click", showModal, { once: true });
+      window.addEventListener("touchstart", showModal, { once: true });
+
+      return () => {
+        window.removeEventListener("click", showModal);
+        window.removeEventListener("touchstart", showModal);
+      };
     }
   }, []);
 
