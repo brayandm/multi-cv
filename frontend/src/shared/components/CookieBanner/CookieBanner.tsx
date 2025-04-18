@@ -40,7 +40,7 @@ export default function CookieBanner() {
         hideCloseButton={true}
         placement="bottom"
       >
-        <ModalContent>
+        <ModalContent className="md:max-w-none md:w-[700px]">
           {() => (
             <>
               <ModalHeader className="flex flex-col gap-1">
@@ -53,7 +53,7 @@ export default function CookieBanner() {
                       <Link
                         href="/privacy-policy"
                         target="_blank"
-                        className="text-primary underline"
+                        className="text-primary underline font-medium"
                       >
                         {t("common.legal.privacy_policy")}
                       </Link>
@@ -62,7 +62,7 @@ export default function CookieBanner() {
                       <Link
                         href="/cookies-policy"
                         target="_blank"
-                        className="text-primary underline"
+                        className="text-primary underline font-medium"
                       >
                         {t("common.legal.cookies_policy")}
                       </Link>

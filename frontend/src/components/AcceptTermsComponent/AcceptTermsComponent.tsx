@@ -91,7 +91,7 @@ export default function AcceptTermsComponent({
                     <Link
                       href="/terms-and-conditions"
                       target="_blank"
-                      className="text-primary underline"
+                      className="text-primary underline font-medium"
                     >
                       {t("common.legal.terms_conditions")}
                     </Link>
@@ -100,7 +100,7 @@ export default function AcceptTermsComponent({
                     <Link
                       href="/privacy-policy"
                       target="_blank"
-                      className="text-primary underline"
+                      className="text-primary underline font-medium"
                     >
                       {t("common.legal.privacy_policy")}
                     </Link>
@@ -115,7 +115,7 @@ export default function AcceptTermsComponent({
                   <Link
                     href="/terms-and-conditions"
                     target="_blank"
-                    className="text-primary underline"
+                    className="text-primary underline font-medium"
                   >
                     {t("common.legal.terms_conditions")}
                   </Link>
@@ -124,7 +124,7 @@ export default function AcceptTermsComponent({
                   <Link
                     href="/privacy-policy"
                     target="_blank"
-                    className="text-primary underline"
+                    className="text-primary underline font-medium"
                   >
                     {t("common.legal.privacy_policy")}
                   </Link>
@@ -165,7 +165,7 @@ export default function AcceptTermsComponent({
                   <Link
                     href="/terms-and-conditions"
                     target="_blank"
-                    className="text-primary underline"
+                    className="text-primary underline font-medium"
                   >
                     {t("common.legal.terms_conditions")}
                   </Link>
@@ -174,7 +174,7 @@ export default function AcceptTermsComponent({
                   <Link
                     href="/privacy-policy"
                     target="_blank"
-                    className="text-primary underline"
+                    className="text-primary underline font-medium"
                   >
                     {t("common.legal.privacy_policy")}
                   </Link>
