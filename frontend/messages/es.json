@@ -297,7 +297,7 @@
           "loading": {
             "descriptions": {
               "1": "Analizando información personal...",
-              "2": "Procesando solicitud personalizada...",
+              "2": "Procesando prompt personalizado...",
               "3": "Verificando contenido...",
               "4": "Analizando experiencias...",
               "5": "Analizando habilidades...",
