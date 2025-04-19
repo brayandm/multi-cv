@@ -485,6 +485,6 @@ export const moderationEngine = async (
   text: string
 ): Promise<AxiosResponse<MessageResponse>> => {
   return await engine.post(moderationEngineLink, {
-    text: text,
+    content: text,
   });
 };
