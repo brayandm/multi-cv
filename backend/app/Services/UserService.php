@@ -63,11 +63,18 @@ class UserService
 
     public function updateProfile($user, $data)
     {
+        $previousEmail = $user->email;
+
         $user->update([
             'first_name' => $data->first_name,
             'last_name' => $data->last_name,
             'email' => $data->email,
         ]);
+
+        if($previousEmail !== $data->email) {
+            $user->email_verified_at = null;
+            $user->save();
+        }
 
         return $user;
     }
