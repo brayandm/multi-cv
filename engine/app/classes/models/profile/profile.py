@@ -43,3 +43,4 @@ class Profile(BaseModel):
     languages: Annotated[List[Language], Field(..., max_items=MAX_LANGUAGES)]
     skills: Skills
     general_notes: Optional[GeneralNotesStr] = None
+    moderation: Optional[bool] = None

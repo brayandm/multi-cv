@@ -26,6 +26,7 @@ class ProfileService:
 
         new_profile = profile.model_dump()
         new_profile["user_id"] = user_id
+        new_profile["moderation"] = False
 
         await self.db.profiles.update_one(
             {"user_id": user_id},
@@ -47,6 +48,12 @@ class ProfileService:
             return Profile(**profile)
 
         return remove_notes(Profile(**profile))
+
+    async def profile_moderation(self, user_id: int, moderation: bool) -> None:
+        await self.db.profiles.update_one(
+            {"user_id": user_id},
+            {"$set": {"moderation": moderation}},
+        )
 
     async def get_experience(self, user_id: int, id: str) -> Experience:
         profile = await self.get_profile(user_id, with_notes=True)
