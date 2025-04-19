@@ -28,8 +28,7 @@ class UserService
                 'is_in_talent_pool' => (bool) $data->talent_pool,
                 'accepted_terms_at' => Carbon::now(),
             ]);
-        }
-        else {
+        } else {
             $user = User::create([
                 'first_name' => $data->first_name,
                 'last_name' => $data->last_name,
