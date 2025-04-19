@@ -150,13 +150,30 @@ export default function GenerateDocumentComponent({
         window.open(blobUrl, "_blank");
       }
     } catch (error) {
+      const message = (
+        error as unknown as {
+          response?: { data?: { error?: string } };
+        }
+      )?.response?.data?.error;
+
       console.error("Error while generating CV", error);
-      addToast({
-        title: t("common.errors.generate_cv"),
-        description: t("common.errors.server"),
-        color: "danger",
-        timeout: 5000,
-      });
+
+      if (message === "Input is unsafe.") {
+        addToast({
+          title: t("common.errors.generate_cv"),
+          description: t("common.errors.input_unsafe"),
+          color: "danger",
+          timeout: 10000,
+        });
+        router.refresh();
+      } else {
+        addToast({
+          title: t("common.errors.generate_cv"),
+          description: t("common.errors.server"),
+          color: "danger",
+          timeout: 5000,
+        });
+      }
     }
 
     setIsCvLoading(false);
@@ -185,13 +202,30 @@ export default function GenerateDocumentComponent({
 
       router.push("/edit/cv");
     } catch (error) {
+      const message = (
+        error as unknown as {
+          response?: { data?: { error?: string } };
+        }
+      )?.response?.data?.error;
+
       console.error("Error while generating CV", error);
-      addToast({
-        title: t("common.errors.generate_cv"),
-        description: t("common.errors.server"),
-        color: "danger",
-        timeout: 5000,
-      });
+
+      if (message === "Input is unsafe.") {
+        addToast({
+          title: t("common.errors.generate_cv"),
+          description: t("common.errors.input_unsafe"),
+          color: "danger",
+          timeout: 10000,
+        });
+        router.refresh();
+      } else {
+        addToast({
+          title: t("common.errors.generate_cv"),
+          description: t("common.errors.server"),
+          color: "danger",
+          timeout: 5000,
+        });
+      }
     }
 
     setIsCvLoading(false);

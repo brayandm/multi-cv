@@ -186,6 +186,15 @@ async def generate_cv_inline(
             status_code=404,
         )
 
+    chat_engine_service = ChatEngineService()
+    is_safe = await chat_engine_service.moderation(input.model_dump_json())
+    if not is_safe:
+        cancel_action()
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
+        )
+
     cv = await GenerateCvPipeline().run(profile, input, traduction)
 
     cv_template = CvTemplate(
@@ -223,6 +232,15 @@ async def generate_cv_inline_norender(
         return Response(
             content="Profile not found.",
             status_code=404,
+        )
+
+    chat_engine_service = ChatEngineService()
+    is_safe = await chat_engine_service.moderation(input.model_dump_json())
+    if not is_safe:
+        cancel_action()
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
         )
 
     cv = await GenerateCvPipeline().run(profile, input, traduction)

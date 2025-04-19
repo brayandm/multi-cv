@@ -18,6 +18,7 @@ export default function DocumentsComponent() {
   );
 
   const t = useTranslations();
+
   const [downloading, setDownloading] = useState<Record<string, boolean>>({});
 
   const handleDownload = async (doc: Document) => {
@@ -72,11 +73,24 @@ export default function DocumentsComponent() {
 
   const groupedDocuments = documents ? groupByDate(documents) : {};
 
+  const parseDDMMYYYY = (dateStr: string): Date => {
+    const [dd, mm, yyyy] = dateStr.split("/");
+    return new Date(parseInt(yyyy), parseInt(mm) - 1, parseInt(dd));
+  };
+
   const sortedDates = Object.keys(groupedDocuments).sort((a, b) => {
-    const dateA = new Date(a.split("/").reverse().join("-")).getTime();
-    const dateB = new Date(b.split("/").reverse().join("-")).getTime();
-    return dateB - dateA;
+    const dateA = parseDDMMYYYY(a);
+    const dateB = parseDDMMYYYY(b);
+    return dateB.getTime() - dateA.getTime();
   });
+
+  const formatFullDate = (dateString: string): string => {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  };
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
@@ -93,7 +107,7 @@ export default function DocumentsComponent() {
           {sortedDates.map((date) => (
             <div key={date} className="w-full">
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-1 border-gray-300 dark:border-gray-600">
-                {date}
+                {formatFullDate(date)}
               </h3>
               <ul className="flex flex-col items-center space-y-4">
                 {groupedDocuments[date]
