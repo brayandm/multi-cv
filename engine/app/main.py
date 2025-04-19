@@ -416,16 +416,27 @@ async def get_profile(
 async def store_settings(
     settings: Settings,
     settings_service: SettingsService = Depends(get_settings_service),
-) -> Dict[str, str]:
+) -> Response:
 
     user_id = get_user_id()
+
+    chat_engine_service = ChatEngineService()
+    is_safe = await chat_engine_service.moderation(settings.model_dump_json())
+    if not is_safe:
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
+        )
 
     await settings_service.sync_settings(user_id, settings)
 
     logger.info(f"Settings: {settings}")
     print(f"Settings: {settings}")
 
-    return {"message": "Settings synced successfully."}
+    return JSONResponse(
+        content={"message": "Settings synced successfully."},
+        status_code=200,
+    )
 
 
 @router.get("/settings")

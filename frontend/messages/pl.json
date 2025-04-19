@@ -113,7 +113,8 @@
       "generate_cv": "Generowanie CV nie powiodło się",
       "download_document": "Pobieranie dokumentu nie powiodło się",
       "input_unsafe": "Twoje dane mogą zawierać nieodpowiednie treści i mogą naruszać nasze zasady i warunki. Proszę je przejrzeć i poprawić.",
-      "chatbot": "Błąd chatbota"
+      "chatbot": "Błąd chatbota",
+      "custom_prompt": "Błąd niestandardowego zapytania"
     },
     "success": {
       "password_change": "Hasło zmienione",

@@ -113,7 +113,8 @@
       "generate_cv": "CV generation failed",
       "download_document": "Document download failed",
       "input_unsafe": "Your input may contain inappropriate content and could violate our Terms & Conditions policies. Please review and revise it.",
-      "chatbot": "Chatbot error"
+      "chatbot": "Chatbot error",
+      "custom_prompt": "Custom prompt error"
     },
     "success": {
       "password_change": "Password changed",

@@ -113,7 +113,8 @@
       "generate_cv": "Generasi CV gagal",
       "download_document": "Unduhan dokumen gagal",
       "input_unsafe": "Input Anda mungkin mengandung konten yang tidak pantas dan dapat melanggar kebijakan Syarat & Ketentuan kami. Harap tinjau dan perbaiki.",
-      "chatbot": "Kesalahan chatbot"
+      "chatbot": "Kesalahan chatbot",
+      "custom_prompt": "Kesalahan prompt kustom"
     },
     "success": {
       "password_change": "Kata sandi telah diubah",
