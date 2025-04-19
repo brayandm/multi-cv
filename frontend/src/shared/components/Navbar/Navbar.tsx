@@ -23,6 +23,7 @@ import { useUserStatus } from "@/contexts/UserStatusContext";
 
 const NavbarItems: React.FC<ITopBarNavigationProps> = ({
   onlyLogout,
+  deleteAccount,
   settingsRoute,
   homeRoute,
   profileRoute,
@@ -98,16 +99,30 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
           </NavbarMenuItem>
         </>
       ) : onlyLogout ? (
-        <NavbarMenuItem>
-          <Link
-            className="w-full cursor-pointer"
-            color={"danger"}
-            size="sm"
-            onPress={() => logout()}
-          >
-            {t("common.auth.logout")}
-          </Link>
-        </NavbarMenuItem>
+        <>
+          {deleteAccount && (
+            <NavbarMenuItem>
+              <Link
+                className="w-full cursor-pointer"
+                color={"danger"}
+                size="sm"
+                onPress={() => {}}
+              >
+                {t("pages.settings.delete_account")}
+              </Link>
+            </NavbarMenuItem>
+          )}
+          <NavbarMenuItem>
+            <Link
+              className="w-full cursor-pointer"
+              color={"danger"}
+              size="sm"
+              onPress={() => logout()}
+            >
+              {t("common.auth.logout")}
+            </Link>
+          </NavbarMenuItem>
+        </>
       ) : (
         <>
           <NavbarMenuItem>
@@ -189,6 +204,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
 const Navbar: React.FC<ITopBarNavigationProps> = ({
   empty = false,
   onlyLogout = false,
+  deleteAccount = false,
   settingsRoute = false,
   homeRoute = false,
   profileRoute = false,
@@ -246,6 +262,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           <NavbarContent className="hidden sm:flex gap-4" justify="end">
             <NavbarItems
               onlyLogout={onlyLogout}
+              deleteAccount={deleteAccount}
               settingsRoute={settingsRoute}
               homeRoute={homeRoute}
               profileRoute={profileRoute}
@@ -256,6 +273,7 @@ const Navbar: React.FC<ITopBarNavigationProps> = ({
           <NavbarMenu className="overflow-hidden">
             <NavbarItems
               onlyLogout={onlyLogout}
+              deleteAccount={deleteAccount}
               settingsRoute={settingsRoute}
               homeRoute={homeRoute}
               profileRoute={profileRoute}

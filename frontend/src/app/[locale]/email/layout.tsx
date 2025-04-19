@@ -9,7 +9,7 @@ export default function EmailLayout({
   return (
     <>
       <NavbarWrapper>
-        <Navbar onlyLogout />
+        <Navbar deleteAccount onlyLogout />
       </NavbarWrapper>
       <SpacerDefault />
       {children}

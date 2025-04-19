@@ -71,7 +71,7 @@ class UserService
             'email' => $data->email,
         ]);
 
-        if($previousEmail !== $data->email) {
+        if ($previousEmail !== $data->email) {
             $user->email_verified_at = null;
             $user->save();
         }
