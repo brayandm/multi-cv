@@ -56,7 +56,9 @@
       "upgrade_plan": "Apne yojanā ko sudhāre",
       "payment_redirecting": "Bhugtaan ki or redirect kiya ja raha hai...",
       "analizing_plan": "Aapke yojana ka vishleshan kiya ja raha hai...",
-      "target_language": "Lakshya bhasha"
+      "target_language": "Lakshya bhasha",
+      "delete_account": "Account mitaen",
+      "delete_account_description": "Kya aap sach mein apna account mitaana chahte hain? Yeh kadam wapas nahi liya ja sakta."
     },
     "buttons": {
       "continue": "Aage badhein",

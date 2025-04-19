@@ -56,7 +56,9 @@
       "upgrade_plan": "Améliorez votre plan",
       "payment_redirecting": "Redirection vers le paiement...",
       "analizing_plan": "Analyse de votre plan...",
-      "target_language": "Langue cible"
+      "target_language": "Langue cible",
+      "delete_account": "Supprimer le compte",
+      "delete_account_description": "Êtes-vous sûr de vouloir supprimer votre compte ? Cette action ne peut pas être annulée."
     },
     "buttons": {
       "continue": "Continuer",

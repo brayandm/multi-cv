@@ -56,7 +56,9 @@
       "upgrade_plan": "Обновите свой тарифный план",
       "payment_redirecting": "Перенаправление на оплату...",
       "analizing_plan": "Анализ вашего плана...",
-      "target_language": "Целевой язык"
+      "target_language": "Целевой язык",
+      "delete_account": "Удалить аккаунт",
+      "delete_account_description": "Вы уверены, что хотите удалить свой аккаунт? Это действие нельзя отменить."
     },
     "buttons": {
       "continue": "Продолжить",

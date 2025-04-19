@@ -56,7 +56,9 @@
       "upgrade_plan": "プランをアップグレード",
       "payment_redirecting": "支払いにリダイレクト中...",
       "analizing_plan": "プランを分析中...",
-      "target_language": "ターゲット言語"
+      "target_language": "ターゲット言語",
+      "delete_account": "アカウントを削除",
+      "delete_account_description": "本当にアカウントを削除してもよろしいですか？この操作は元に戻せません。"
     },
     "buttons": {
       "continue": "続ける",

@@ -56,7 +56,9 @@
       "upgrade_plan": "שדרג את התוכנית שלך",
       "payment_redirecting": "מופנה לתשלום...",
       "analizing_plan": "מנתח את התוכנית שלך...",
-      "target_language": "שפת יעד"
+      "target_language": "שפת יעד",
+      "delete_account": "מחק חשבון",
+      "delete_account_description": "האם אתה בטוח שברצונך למחוק את החשבון שלך? פעולה זו אינה ניתנת לביטול."
     },
     "buttons": {
       "continue": "המשך",

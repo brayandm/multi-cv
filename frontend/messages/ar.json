@@ -56,7 +56,9 @@
       "upgrade_plan": "ترقية خطتك",
       "payment_redirecting": "يتم إعادة التوجيه إلى الدفع...",
       "analizing_plan": "تحليل خطتك...",
-      "target_language": "اللغة المستهدفة"
+      "target_language": "اللغة المستهدفة",
+      "delete_account": "حذف الحساب",
+      "delete_account_description": "هل أنت متأكد أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء."
     },
     "buttons": {
       "continue": "استمر",

@@ -56,7 +56,9 @@
       "upgrade_plan": "Zaktualizuj swój plan",
       "payment_redirecting": "Przekierowywanie do płatności...",
       "analizing_plan": "Analizowanie twojego planu...",
-      "target_language": "Język docelowy"
+      "target_language": "Język docelowy",
+      "delete_account": "Usuń konto",
+      "delete_account_description": "Czy na pewno chcesz usunąć swoje konto? Ta akcja nie może być cofnięta."
     },
     "buttons": {
       "continue": "Kontynuuj",

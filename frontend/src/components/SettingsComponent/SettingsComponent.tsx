@@ -8,6 +8,12 @@ import {
   Button,
   addToast,
   Spinner,
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+  useDisclosure,
 } from "@heroui/react";
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
@@ -53,6 +59,8 @@ export default function SettingsComponent() {
       });
     }
   };
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const width = DEFAULT_CARD_WIDTH;
   const maxWidth = DEFAULT_CARD_MAX_WIDTH;
@@ -108,10 +116,45 @@ export default function SettingsComponent() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2">
-                    <Button color="danger" onPress={() => {}}>
+                    <Button
+                      color="danger"
+                      onPress={() => {
+                        onOpen();
+                      }}
+                    >
                       {t("pages.settings.delete_account")}
                     </Button>
                   </div>
+                  <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+                    <ModalContent>
+                      {(onClose) => (
+                        <>
+                          <ModalHeader className="flex flex-col gap-1">
+                            <h3>{t("common.texts.delete_account")}</h3>
+                          </ModalHeader>
+                          <ModalBody>
+                            <p>
+                              {t("common.texts.delete_account_description")}
+                            </p>
+                          </ModalBody>
+                          <ModalFooter>
+                            <Button
+                              color="primary"
+                              variant="light"
+                              onPress={async () => {
+                                onClose();
+                              }}
+                            >
+                              {t("common.buttons.cancel")}
+                            </Button>
+                            <Button color="danger" onPress={async () => {}}>
+                              {t("pages.settings.delete_account")}
+                            </Button>
+                          </ModalFooter>
+                        </>
+                      )}
+                    </ModalContent>
+                  </Modal>
                 </>
               ) : (
                 <div className="flex justify-center">

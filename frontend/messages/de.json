@@ -56,7 +56,9 @@
       "upgrade_plan": "Upgrade Ihren Plan",
       "payment_redirecting": "Weiterleitung zur Zahlung...",
       "analizing_plan": "Analyse Ihres Plans...",
-      "target_language": "Zielsprache"
+      "target_language": "Zielsprache",
+      "delete_account": "Konto löschen",
+      "delete_account_description": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
     },
     "buttons": {
       "continue": "Fortfahren",

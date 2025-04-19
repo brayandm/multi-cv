@@ -56,7 +56,9 @@
       "upgrade_plan": "Uppgradera din plan",
       "payment_redirecting": "Omdirigerar till betalning...",
       "analizing_plan": "Analyserar din plan...",
-      "target_language": "Målspråk"
+      "target_language": "Målspråk",
+      "delete_account": "Ta bort konto",
+      "delete_account_description": "Är du säker på att du vill ta bort ditt konto? Denna åtgärd kan inte ångras."
     },
     "buttons": {
       "continue": "Fortsätt",

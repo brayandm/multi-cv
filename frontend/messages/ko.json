@@ -56,7 +56,9 @@
       "upgrade_plan": "플랜 업그레이드",
       "payment_redirecting": "결제로 리디렉션 중...",
       "analizing_plan": "플랜 분석 중...",
-      "target_language": "대상 언어"
+      "target_language": "대상 언어",
+      "delete_account": "계정 삭제",
+      "delete_account_description": "정말로 계정을 삭제하시겠습니까? 이 작업은 취소할 수 없습니다."
     },
     "buttons": {
       "continue": "계속",

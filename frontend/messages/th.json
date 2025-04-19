@@ -56,7 +56,9 @@
       "upgrade_plan": "อัปเกรดแผนของคุณ",
       "payment_redirecting": "กำลังเปลี่ยนเส้นทางไปยังการชำระเงิน...",
       "analizing_plan": "กำลังวิเคราะห์แผนของคุณ...",
-      "target_language": "ภาษาเป้าหมาย"
+      "target_language": "ภาษาเป้าหมาย",
+      "delete_account": "ลบบัญชี",
+      "delete_account_description": "คุณแน่ใจหรือว่าต้องการลบบัญชีของคุณ? การกระทำนี้ไม่สามารถย้อนกลับได้."
     },
     "buttons": {
       "continue": "ดำเนินการต่อ",

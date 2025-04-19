@@ -56,7 +56,9 @@
       "upgrade_plan": "Upgrade je plan",
       "payment_redirecting": "Doorverwijzen naar betaling...",
       "analizing_plan": "Je plan analyseren...",
-      "target_language": "Doeltaal"
+      "target_language": "Doeltaal",
+      "delete_account": "Verwijder account",
+      "delete_account_description": "Weet je zeker dat je je account wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
     },
     "buttons": {
       "continue": "Doorgaan",

@@ -56,7 +56,9 @@
       "upgrade_plan": "升级您的计划",
       "payment_redirecting": "正在重定向到支付...",
       "analizing_plan": "正在分析您的计划...",
-      "target_language": "目标语言"
+      "target_language": "目标语言",
+      "delete_account": "删除账户",
+      "delete_account_description": "您确定要删除您的账户吗？此操作无法撤销。"
     },
     "buttons": {
       "continue": "继续",

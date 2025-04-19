@@ -56,7 +56,9 @@
       "upgrade_plan": "Upgrade your plan",
       "payment_redirecting": "Redirecting to payment...",
       "analizing_plan": "Analyzing your plan...",
-      "target_language": "Target language"
+      "target_language": "Target language",
+      "delete_account": "Delete account",
+      "delete_account_description": "Are you sure you want to delete your account? This action cannot be undone."
     },
     "buttons": {
       "continue": "Continue",

@@ -56,7 +56,9 @@
       "upgrade_plan": "Nâng cấp gói của bạn",
       "payment_redirecting": "Đang chuyển hướng đến thanh toán...",
       "analizing_plan": "Đang phân tích gói của bạn...",
-      "target_language": "Ngôn ngữ mục tiêu"
+      "target_language": "Ngôn ngữ mục tiêu",
+      "delete_account": "Xóa tài khoản",
+      "delete_account_description": "Bạn có chắc chắn muốn xóa tài khoản của mình không? Hành động này không thể hoàn tác."
     },
     "buttons": {
       "continue": "Tiếp tục",

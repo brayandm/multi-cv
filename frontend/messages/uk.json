@@ -56,7 +56,9 @@
       "upgrade_plan": "Оновіть свій план",
       "payment_redirecting": "Перенаправлення на оплату...",
       "analizing_plan": "Аналізуємо ваш план...",
-      "target_language": "Цільова мова"
+      "target_language": "Цільова мова",
+      "delete_account": "Видалити акаунт",
+      "delete_account_description": "Ви впевнені, що хочете видалити свій акаунт? Цю дію не можна скасувати."
     },
     "buttons": {
       "continue": "Продовжити",
