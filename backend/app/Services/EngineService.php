@@ -12,7 +12,7 @@ class EngineService
 
     public function __construct()
     {
-        $this->baseUrl = config('services.engine.url');
+        $this->baseUrl = config('services.engine.api');
         $this->token = config('auth.inter_communication_token');
     }
 
