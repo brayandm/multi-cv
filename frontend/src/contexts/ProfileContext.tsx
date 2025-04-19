@@ -330,15 +330,14 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const syncProfile = async () => {
     if (!isLoaded || onLoadedError) return;
     try {
-      const result = await moderate(
-        JSON.stringify(
-          extractDifferences(
-            getJoinedProfile() as unknown as JSONObject,
-            profileEngine as unknown as JSONObject
-          )
-        )
+      const data = extractDifferences(
+        getJoinedProfile() as unknown as JSONObject,
+        profileEngine as unknown as JSONObject
       );
-      if (!result) return;
+      if (data && Object.keys(data).length > 0) {
+        const result = await moderate(JSON.stringify(data));
+        if (!result) return;
+      }
 
       await profileSyncEngine(getJoinedProfile());
       setProfileEngine(getJoinedProfile());
@@ -351,15 +350,14 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     if (!isLoaded || onLoadedError) return;
     if (!userStatus.is_first_login) return;
     try {
-      const result = await moderate(
-        JSON.stringify(
-          extractDifferences(
-            getJoinedProfile() as unknown as JSONObject,
-            profileEngine as unknown as JSONObject
-          )
-        )
+      const data = extractDifferences(
+        getJoinedProfile() as unknown as JSONObject,
+        profileEngine as unknown as JSONObject
       );
-      if (!result) return;
+      if (data && Object.keys(data).length > 0) {
+        const result = await moderate(JSON.stringify(data));
+        if (!result) return;
+      }
 
       await profileSyncEngine(getJoinedProfile());
       setProfileEngine(getJoinedProfile());
