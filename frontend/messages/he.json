@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "שנה את הגדרות החשבון שלך",
-      "password": "הגדרות סיסמה"
+      "password": "הגדרות סיסמה",
+      "delete_account": "מחק חשבון"
     },
     "welcome": {
       "title": "ברוך הבא ל-<appName></appName>",

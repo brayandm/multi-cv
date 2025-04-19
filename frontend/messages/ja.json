@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "アカウント設定を変更",
-      "password": "パスワード設定"
+      "password": "パスワード設定",
+      "delete_account": "アカウントを削除"
     },
     "welcome": {
       "title": "<appName></appName>へようこそ",

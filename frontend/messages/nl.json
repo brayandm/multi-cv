@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "Wijzig je accountinstellingen",
-      "password": "Wachtwoordinstellingen"
+      "password": "Wachtwoordinstellingen",
+      "delete_account": "Account verwijderen"
     },
     "welcome": {
       "title": "Welkom bij <appName></appName>",

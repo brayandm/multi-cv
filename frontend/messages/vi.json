@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "Thay đổi cài đặt tài khoản của bạn",
-      "password": "Cài đặt mật khẩu"
+      "password": "Cài đặt mật khẩu",
+      "delete_account": "Xóa tài khoản"
     },
     "welcome": {
       "title": "Chào mừng đến với <appName></appName>",

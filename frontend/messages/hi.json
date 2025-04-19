@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "Apne account settings badlein",
-      "password": "Password settings"
+      "password": "Password settings",
+      "delete_account": "Khata mitaen"
     },
     "welcome": {
       "title": "<appName></appName> mein aapka swagat hai",

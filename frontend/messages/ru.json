@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "Измените настройки вашей учетной записи",
-      "password": "Настройки пароля"
+      "password": "Настройки пароля",
+      "delete_account": "Удалить аккаунт"
     },
     "welcome": {
       "title": "Добро пожаловать в <appName></appName>",

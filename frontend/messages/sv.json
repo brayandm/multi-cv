@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "Ändra dina kontoinställningar",
-      "password": "Lösenordsinställningar"
+      "password": "Lösenordsinställningar",
+      "delete_account": "Ta bort konto"
     },
     "welcome": {
       "title": "Välkommen till <appName></appName>",

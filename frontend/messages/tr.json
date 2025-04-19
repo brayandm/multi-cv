@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "Hesap ayarlarınızı değiştirin",
-      "password": "Şifre ayarları"
+      "password": "Şifre ayarları",
+      "delete_account": "Hesabı sil"
     },
     "welcome": {
       "title": "<appName></appName>'ya Hoş Geldiniz",

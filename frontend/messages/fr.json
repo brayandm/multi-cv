@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "Changez les paramètres de votre compte",
-      "password": "Paramètres du mot de passe"
+      "password": "Paramètres du mot de passe",
+      "delete_account": "Supprimer le compte"
     },
     "welcome": {
       "title": "Bienvenue sur <appName></appName>",

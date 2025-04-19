@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "更改您的帐户设置",
-      "password": "密码设置"
+      "password": "密码设置",
+      "delete_account": "删除账户"
     },
     "welcome": {
       "title": "欢迎来到 <appName></appName>",

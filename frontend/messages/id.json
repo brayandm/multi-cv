@@ -253,7 +253,8 @@
     },
     "settings": {
       "subtitle": "Ubah pengaturan akun Anda",
-      "password": "Pengaturan kata sandi"
+      "password": "Pengaturan kata sandi",
+      "delete_account": "Hapus akun"
     },
     "welcome": {
       "title": "Selamat datang di <appName></appName>",
