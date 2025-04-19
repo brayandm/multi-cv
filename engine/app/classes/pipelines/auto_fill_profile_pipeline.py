@@ -11,7 +11,7 @@ class AutoFillProfilePipeline(Pipeline):
 
     async def run(self, text1: str, text2: str) -> Profile:
 
-        text = self.merger_agent.run(text1, text2)
+        text = await self.merger_agent.run(text1, text2)
 
         result = await self.agent.run(text)
 
