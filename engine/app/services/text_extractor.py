@@ -3,6 +3,10 @@ from pdf2image import convert_from_bytes
 
 from app.services.chat_engine import ChatEngineService
 
+from app.utils.pydantic_custom_types import (
+    MAX_PDF_PAGES,
+)
+
 
 class InvalidPDFError(Exception):
     """Raised when the file is not a valid PDF"""
@@ -33,6 +37,9 @@ class TextExtractor:
             "extract the CV data from the images and return it in a"
             "structured json format."
         )
+
+        if len(images) > MAX_PDF_PAGES:
+            images = images[:MAX_PDF_PAGES]
 
         chat_service = ChatEngineService()
         result = await chat_service.vision_chat_from_images(prompt, images)

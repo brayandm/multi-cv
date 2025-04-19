@@ -4,6 +4,7 @@ from .experience_notes_agent import ExperienceNotesAgent
 from .generate_cv_agent import GenerateCvAgent
 from .generate_cv_agent_based_on_job_post import GenerateCvAgentBasedOnJobPost
 from .generate_cv_agent_based_on_prompt import GenerateCvAgentBasedOnPrompt
+from .merger_data_agent import MergerDataAgent
 
 __all__ = [
     "GenerateCvAgent",
@@ -12,4 +13,5 @@ __all__ = [
     "AutoFillProfileAgent",
     "GenerateCvAgentBasedOnPrompt",
     "GenerateCvAgentBasedOnJobPost",
+    "MergerDataAgent",
 ]

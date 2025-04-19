@@ -34,6 +34,10 @@ from app.framework.decorators.context_vars import (
 )
 from app.framework.logging import logger
 
+from app.utils.pydantic_custom_types import (
+    MAX_INAPPROPRIATE_MESSAGES,
+)
+
 
 class ChatEngineService:
     def __init__(self) -> None:
@@ -182,7 +186,7 @@ class ChatEngineService:
 
         inappropriate_messages = doc["inappropriate_messages"]
 
-        if inappropriate_messages >= 20:
+        if inappropriate_messages >= MAX_INAPPROPRIATE_MESSAGES:
             try:
                 requests.post(
                     f"{BACKEND_API_URL}/suspend/account",
