@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Carregue seu CV para preencher seu perfil",
-        "message": "Economize tempo carregando seu CV existente — nós extrairemos as informações e preencheremos seu perfil automaticamente."
+        "message": "Economize tempo carregando seu CV existente — nós extrairemos as informações e preencheremos seu perfil automaticamente.",
+        "loading": {
+          "descriptions": {
+            "1": "Carregando seu CV...",
+            "2": "Analisando documento...",
+            "3": "Extraindo informações...",
+            "4": "Verificando conteúdo...",
+            "5": "Analisando com IA...",
+            "6": "Organizando seções...",
+            "7": "Finalizando..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

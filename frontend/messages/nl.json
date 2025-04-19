@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Upload je CV om je profiel in te vullen",
-        "message": "Bespaar tijd door je bestaande CV te uploaden — we extraheren de informatie en vullen je profiel automatisch in."
+        "message": "Bespaar tijd door je bestaande CV te uploaden — we extraheren de informatie en vullen je profiel automatisch in.",
+        "loading": {
+          "descriptions": {
+            "1": "Je CV aan het laden...",
+            "2": "Document aan het parseren...",
+            "3": "Informatie aan het extraheren...",
+            "4": "Inhoud aan het controleren...",
+            "5": "Analyseren met AI...",
+            "6": "Secties aan het organiseren...",
+            "7": "Afmaken..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

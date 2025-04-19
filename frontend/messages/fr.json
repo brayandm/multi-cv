@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Téléchargez votre CV pour remplir votre profil",
-        "message": "Gagnez du temps en téléchargeant votre CV existant — nous extrairons les informations et remplirons automatiquement votre profil."
+        "message": "Gagnez du temps en téléchargeant votre CV existant — nous extrairons les informations et remplirons automatiquement votre profil.",
+        "loading": {
+          "descriptions": {
+            "1": "Chargement de votre CV...",
+            "2": "Analyse du document...",
+            "3": "Extraction des informations...",
+            "4": "Vérification du contenu...",
+            "5": "Analyse avec l'IA...",
+            "6": "Organisation des sections...",
+            "7": "Finalisation..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

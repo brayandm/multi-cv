@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Prześlij swoje CV, aby wypełnić swój profil",
-        "message": "Zaoszczędź czas, przesyłając swoje istniejące CV — wyodrębnimy informacje i automatycznie wypełnimy twój profil."
+        "message": "Zaoszczędź czas, przesyłając swoje istniejące CV — wyodrębnimy informacje i automatycznie wypełnimy twój profil.",
+        "loading": {
+          "descriptions": {
+            "1": "Ładowanie twojego CV...",
+            "2": "Analizowanie dokumentu...",
+            "3": "Ekstrakcja informacji...",
+            "4": "Sprawdzanie treści...",
+            "5": "Analiza z użyciem AI...",
+            "6": "Organizowanie sekcji...",
+            "7": "Kończenie..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

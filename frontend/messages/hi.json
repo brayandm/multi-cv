@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Apna CV upload karein taaki aapka profile bharein",
-        "message": "Apna maujooda CV upload karke samay bachayein — hum jankari nikaal kar aapka profile aapke liye swachalit roop se bharenge."
+        "message": "Apna maujooda CV upload karke samay bachayein — hum jankari nikaal kar aapka profile aapke liye swachalit roop se bharenge.",
+        "loading": {
+          "descriptions": {
+            "1": "Aapka CV load ho raha hai...",
+            "2": "Document ka parsing ho raha hai...",
+            "3": "Jankari nikaal rahe hain...",
+            "4": "Content check kiya ja raha hai...",
+            "5": "AI ke saath vishleshan kiya ja raha hai...",
+            "6": "Sections ko vyavasthit kiya ja raha hai...",
+            "7": "Antim roop se tayaar kiya ja raha hai..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

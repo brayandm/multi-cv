@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Ladda upp ditt CV för att fylla i din profil",
-        "message": "Spara tid genom att ladda upp ditt befintliga CV — vi kommer att extrahera informationen och fylla i din profil automatiskt."
+        "message": "Spara tid genom att ladda upp ditt befintliga CV — vi kommer att extrahera informationen och fylla i din profil automatiskt.",
+        "loading": {
+          "descriptions": {
+            "1": "Laddar ditt CV...",
+            "2": "Bearbetar dokumentet...",
+            "3": "Extraherar information...",
+            "4": "Kontrollerar innehållet...",
+            "5": "Analyserar med AI...",
+            "6": "Organiserar sektioner...",
+            "7": "Avslutar..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

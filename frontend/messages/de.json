@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Laden Sie Ihren Lebenslauf hoch, um Ihr Profil auszufüllen",
-        "message": "Sparen Sie Zeit, indem Sie Ihren vorhandenen Lebenslauf hochladen – wir extrahieren die Informationen und füllen Ihr Profil automatisch aus."
+        "message": "Sparen Sie Zeit, indem Sie Ihren vorhandenen Lebenslauf hochladen – wir extrahieren die Informationen und füllen Ihr Profil automatisch aus.",
+        "loading": {
+          "descriptions": {
+            "1": "Lade deinen Lebenslauf...",
+            "2": "Dokument wird analysiert...",
+            "3": "Info wird extrahiert...",
+            "4": "Inhalt wird überprüft...",
+            "5": "Analyse mit KI...",
+            "6": "Abschnitte werden organisiert...",
+            "7": "Fertigstellen..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

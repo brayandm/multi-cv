@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Profilinizi doldurmak için CV'nizi yükleyin",
-        "message": "Mevcut CV'nizi yükleyerek zaman kazanın — bilgileri çıkaracağız ve profilinizi otomatik olarak dolduracağız."
+        "message": "Mevcut CV'nizi yükleyerek zaman kazanın — bilgileri çıkaracağız ve profilinizi otomatik olarak dolduracağız.",
+        "loading": {
+          "descriptions": {
+            "1": "CV'nizi yüklüyor...",
+            "2": "Belgeyi ayrıştırıyor...",
+            "3": "Bilgileri çıkarıyor...",
+            "4": "İçeriği kontrol ediyor...",
+            "5": "Yapay zeka ile analiz ediyor...",
+            "6": "Bölümleri düzenliyor...",
+            "7": "Tamamlıyor..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

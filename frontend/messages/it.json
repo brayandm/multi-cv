@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Carica il tuo CV per compilare il tuo profilo",
-        "message": "Risparmia tempo caricando il tuo CV esistente: estrarremo le informazioni e compileremo automaticamente il tuo profilo."
+        "message": "Risparmia tempo caricando il tuo CV esistente: estrarremo le informazioni e compileremo automaticamente il tuo profilo.",
+        "loading": {
+          "descriptions": {
+            "1": "Caricamento del tuo CV...",
+            "2": "Analisi del documento...",
+            "3": "Estrazione delle informazioni...",
+            "4": "Controllo del contenuto...",
+            "5": "Analisi con AI...",
+            "6": "Organizzazione delle sezioni...",
+            "7": "Completamento..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Unggah CV Anda untuk mengisi profil Anda",
-        "message": "Hemat waktu dengan mengunggah CV Anda yang sudah ada — kami akan mengekstrak informasi dan mengisi profil Anda secara otomatis."
+        "message": "Hemat waktu dengan mengunggah CV Anda yang sudah ada — kami akan mengekstrak informasi dan mengisi profil Anda secara otomatis.",
+        "loading": {
+          "descriptions": {
+            "1": "Memuat CV Anda...",
+            "2": "Menganalisis dokumen...",
+            "3": "Mengambil informasi...",
+            "4": "Memeriksa konten...",
+            "5": "Menganalisis dengan AI...",
+            "6": "Mengatur bagian...",
+            "7": "Menyelesaikan..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

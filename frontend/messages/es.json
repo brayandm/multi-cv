@@ -352,7 +352,18 @@
       },
       "auto_fill": {
         "title": "Sube tu CV para completar tu perfil",
-        "message": "Ahorra tiempo subiendo tu CV existente; extraeremos la información y llenaremos tu perfil automáticamente."
+        "message": "Ahorra tiempo subiendo tu CV existente; extraeremos la información y llenaremos tu perfil automáticamente.",
+        "loading": {
+          "descriptions": {
+            "1": "Cargando tu CV...",
+            "2": "Analizando documento...",
+            "3": "Extrayendo información...",
+            "4": "Verificando contenido...",
+            "5": "Analizando con IA...",
+            "6": "Organizando secciones...",
+            "7": "Terminando..."
+          }
+        }
       }
     },
     "terms_and_conditions": {

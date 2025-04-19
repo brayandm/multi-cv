@@ -32,6 +32,7 @@ import { useProfile } from "@/contexts/ProfileContext";
 import { AxiosResponse } from "axios";
 import { GetQuotaInfoResponse } from "@/lib/types";
 import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
+import AnimatedText from "@/shared/components/AnimatedText";
 
 export default function ProfileAutoCvComponent() {
   const width = DEFAULT_CARD_WIDTH;
@@ -207,9 +208,18 @@ export default function ProfileAutoCvComponent() {
               </ModalHeader>
               <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
                 <Spinner />
-                <p className="text-center text-sm text-gray-600 dark:text-gray-300">
-                  {t("common.texts.loading_autofill_description")}
-                </p>
+                <AnimatedText
+                  descriptions={[
+                    t("pages.profile.auto_fill.loading.descriptions.1"),
+                    t("pages.profile.auto_fill.loading.descriptions.2"),
+                    t("pages.profile.auto_fill.loading.descriptions.3"),
+                    t("pages.profile.auto_fill.loading.descriptions.4"),
+                    t("pages.profile.auto_fill.loading.descriptions.5"),
+                    t("pages.profile.auto_fill.loading.descriptions.6"),
+                    t("pages.profile.auto_fill.loading.descriptions.7"),
+                  ]}
+                  isCyclic={false}
+                />
               </ModalBody>
             </>
           )}
