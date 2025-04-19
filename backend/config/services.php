@@ -48,5 +48,5 @@ return [
 
     'engine' => [
         'api' => env('ENGINE_API_URL', 'http://engine:90/api/v1'),
-    ]
+    ],
 ];

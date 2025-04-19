@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class AuthController extends Controller
 {
     private UserService $userService;
+
     private EngineService $engineService;
 
     public function __construct(UserService $userService, EngineService $engineService)
