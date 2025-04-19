@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Account Opgeschort",
         "description": "Uw account is opgeschort. Neem contact op met de ondersteuning voor meer informatie."
+      },
+      "deletion": {
+        "title": "Account Verwijdering",
+        "description": "U staat op het punt uw account te verwijderen. Deze actie is permanent en verwijdert al uw persoonlijke gegevens uit ons systeem."
       }
     },
     "email_verification": {

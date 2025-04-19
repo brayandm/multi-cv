@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
-        "title": "Tài khoản bị đình chỉ",
+    "account": {
+      "suspended": {
+        "title": "Tài Khoản Bị Đình Chỉ",
         "description": "Tài khoản của bạn đã bị đình chỉ. Vui lòng liên hệ với bộ phận hỗ trợ để biết thêm thông tin."
+      },
+      "deletion": {
+        "title": "Xóa Tài Khoản",
+        "description": "Bạn sắp xóa tài khoản của mình. Hành động này là vĩnh viễn và sẽ xóa tất cả dữ liệu cá nhân của bạn khỏi hệ thống của chúng tôi."
       }
     },
     "email_verification": {

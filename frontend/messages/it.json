@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Account Sospeso",
         "description": "Il tuo account è stato sospeso. Contatta il supporto per ulteriori informazioni."
+      },
+      "deletion": {
+        "title": "Cancellazione dell'Account",
+        "description": "Stai per cancellare il tuo account. Questa azione è permanente e rimuoverà tutti i tuoi dati personali dal nostro sistema."
       }
     },
     "email_verification": {

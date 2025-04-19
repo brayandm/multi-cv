@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Kontot är avstängt",
         "description": "Ditt konto har blivit avstängt. Vänligen kontakta supporten för mer information."
+      },
+      "deletion": {
+        "title": "Kontoborttagning",
+        "description": "Du är på väg att ta bort ditt konto. Denna åtgärd är permanent och kommer att ta bort all din personliga data från vårt system."
       }
     },
     "email_verification": {

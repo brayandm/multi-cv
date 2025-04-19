@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Account Suspended",
         "description": "Your account has been suspended. Please contact support for more information."
+      },
+      "deletion": {
+        "title": "Account Deletion",
+        "description": "You are about to delete your account. This action is permanent and will remove all your personal data from our system."
       }
     },
     "email_verification": {

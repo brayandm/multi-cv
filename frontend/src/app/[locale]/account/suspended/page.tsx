@@ -6,7 +6,7 @@ export default function AccountSuspended() {
   return (
     <>
       <NavbarWrapper>
-        <Navbar onlyLogout />
+        <Navbar deleteAccount onlyLogout />
       </NavbarWrapper>
       <SpacerDefault />
       <AccountSuspendedComponent />

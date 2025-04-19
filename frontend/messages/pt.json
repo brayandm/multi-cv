@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Conta Suspensa",
         "description": "Sua conta foi suspensa. Por favor, entre em contato com o suporte para mais informações."
+      },
+      "deletion": {
+        "title": "Exclusão de Conta",
+        "description": "Você está prestes a excluir sua conta. Esta ação é permanente e removerá todos os seus dados pessoais do nosso sistema."
       }
     },
     "email_verification": {

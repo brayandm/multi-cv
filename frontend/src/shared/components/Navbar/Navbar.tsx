@@ -106,7 +106,13 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
                 className="w-full cursor-pointer"
                 color={"danger"}
                 size="sm"
-                onPress={() => {}}
+                onPress={() => {
+                  run({
+                    "navbar-routing": () => {
+                      router.push("/account/deletion");
+                    },
+                  });
+                }}
               >
                 {t("pages.settings.delete_account")}
               </Link>

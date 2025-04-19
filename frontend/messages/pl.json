@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Konto Zawieszone",
         "description": "Twoje konto zostało zawieszone. Proszę skontaktować się z pomocą techniczną w celu uzyskania więcej informacji."
+      },
+      "deletion": {
+        "title": "Usunięcie Konta",
+        "description": "Zaraz usuniesz swoje konto. Ta akcja jest trwała i usunie wszystkie twoje dane osobowe z naszego systemu."
       }
     },
     "email_verification": {

@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Konto Gesperrt",
         "description": "Ihr Konto wurde gesperrt. Bitte kontaktieren Sie den Support für weitere Informationen."
+      },
+      "deletion": {
+        "title": "Konto Löschen",
+        "description": "Sie sind dabei, Ihr Konto zu löschen. Diese Aktion ist dauerhaft und entfernt alle Ihre persönlichen Daten aus unserem System."
       }
     },
     "email_verification": {

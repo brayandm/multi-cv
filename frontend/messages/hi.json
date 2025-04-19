@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
-        "title": "Khata Sthagit",
-        "description": "Aapka khata sthagit kar diya gaya hai. Kripya adhik jankari ke liye samarthan se sampark karein."
+    "account": {
+      "suspended": {
+        "title": "Account Sthagit",
+        "description": "Aapka account sthagit kar diya gaya hai. Kripya adhik jankari ke liye samarthan se sampark karein."
+      },
+      "deletion": {
+        "title": "Account Mitaana",
+        "description": "Aap apna account mitaane ja rahe hain. Yeh karyavahi sthayi hai aur aapke sabhi vyaktigat data ko hamare pranali se hata degi."
       }
     },
     "email_verification": {

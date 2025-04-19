@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Akun Ditangguhkan",
         "description": "Akun Anda telah ditangguhkan. Silakan hubungi dukungan untuk informasi lebih lanjut."
+      },
+      "deletion": {
+        "title": "Penghapusan Akun",
+        "description": "Anda akan menghapus akun Anda. Tindakan ini bersifat permanen dan akan menghapus semua data pribadi Anda dari sistem kami."
       }
     },
     "email_verification": {

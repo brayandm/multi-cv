@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "アカウントが停止されました",
         "description": "あなたのアカウントは停止されました。詳細についてはサポートにお問い合わせください。"
+      },
+      "deletion": {
+        "title": "アカウント削除",
+        "description": "あなたはアカウントを削除しようとしています。この操作は永久的であり、あなたの個人データはすべてシステムから削除されます。"
       }
     },
     "email_verification": {

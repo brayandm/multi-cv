@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Hesap Askıya Alındı",
         "description": "Hesabınız askıya alındı. Daha fazla bilgi için lütfen destekle iletişime geçin."
+      },
+      "deletion": {
+        "title": "Hesap Silme",
+        "description": "Hesabınızı silmek üzeresiniz. Bu işlem kalıcıdır ve tüm kişisel verilerinizi sistemimizden kaldıracaktır."
       }
     },
     "email_verification": {

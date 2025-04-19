@@ -219,10 +219,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "账户已暂停",
         "description": "您的账户已被暂停。请联系支持以获取更多信息。"
+      },
+      "deletion": {
+        "title": "账户删除",
+        "description": "您即将删除您的账户。此操作是永久性的，将从我们的系统中删除您所有的个人数据。"
       }
     },
     "email_verification": {
