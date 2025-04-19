@@ -114,7 +114,8 @@
       "download_document": "Document downloaden mislukt",
       "input_unsafe": "Uw invoer kan ongepaste inhoud bevatten en mogelijk in strijd zijn met onze voorwaarden. Gelieve het te herzien en aan te passen.",
       "chatbot": "Chatbotfout",
-      "custom_prompt": "Fout bij aangepaste prompt"
+      "custom_prompt": "Fout bij aangepaste prompt",
+      "profile": "Profielupdate mislukt"
     },
     "success": {
       "password_change": "Wachtwoord gewijzigd",

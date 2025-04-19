@@ -114,7 +114,8 @@
       "download_document": "Dokumenten-Download fehlgeschlagen",
       "input_unsafe": "Ihre Eingabe könnte unangemessene Inhalte enthalten und gegen unsere Nutzungsbedingungen verstoßen. Bitte überprüfen und überarbeiten Sie sie.",
       "chatbot": "Chatbot-Fehler",
-      "custom_prompt": "Benutzerdefinierter Eingabefehler"
+      "custom_prompt": "Benutzerdefinierter Eingabefehler",
+      "profile": "Profilaktualisierung fehlgeschlagen"
     },
     "success": {
       "password_change": "Passwort geändert",

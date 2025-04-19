@@ -114,7 +114,8 @@
       "download_document": "Error al descargar el documento",
       "input_unsafe": "Su entrada puede contener contenido inapropiado y podría violar nuestras políticas de Términos y Condiciones. Por favor, revíselo y modifíquelo.",
       "chatbot": "Error del chatbot",
-      "custom_prompt": "Error de aviso personalizado"
+      "custom_prompt": "Error de aviso personalizado",
+      "profile": "La actualización del perfil falló"
     },
     "success": {
       "password_change": "Contraseña cambiada",

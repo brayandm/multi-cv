@@ -114,7 +114,8 @@
       "download_document": "Dastavej download mein asafalta hui",
       "input_unsafe": "Aapka input anuchit samagri shamil kar sakta hai aur hamare Terms & Conditions neetiyon ka ullanghan kar sakta hai. Kripya ise samiksha karein aur sudhaarein.",
       "chatbot": "Chatbot galti",
-      "custom_prompt": "Custom prompt galti"
+      "custom_prompt": "Custom prompt galti",
+      "profile": "Profile update mein galti hui"
     },
     "success": {
       "password_change": "Password badal gaya",

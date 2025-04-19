@@ -114,7 +114,8 @@
       "download_document": "Pobieranie dokumentu nie powiodło się",
       "input_unsafe": "Twoje dane mogą zawierać nieodpowiednie treści i mogą naruszać nasze zasady i warunki. Proszę je przejrzeć i poprawić.",
       "chatbot": "Błąd chatbota",
-      "custom_prompt": "Błąd niestandardowego zapytania"
+      "custom_prompt": "Błąd niestandardowego zapytania",
+      "profile": "Aktualizacja profilu nie powiodła się"
     },
     "success": {
       "password_change": "Hasło zmienione",
