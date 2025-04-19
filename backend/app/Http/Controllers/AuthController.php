@@ -492,7 +492,19 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        $user->clearMediaCollection();
+        $user->clearMediaCollection('profile_picture');
 
+        $user->first_name = "";
+        $user->last_name = "";
+        $user->email_verified_at = null;
+        $user->password = null;
+        $user->is_in_talent_pool = null;
+        $user->accepted_terms_at = null;
+        $user->notified_terms_at = null;
+        $user->locale = "en";
+        $user->app_theme = "light";
+        $user->is_first_login = true;
+
+        $this->userService->deleteAllUserTokens($user);
     }
 }
