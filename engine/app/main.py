@@ -45,7 +45,7 @@ from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
-from app.framework.types.request import DocumentDownloadRequest
+from app.framework.types.request import DocumentDownloadRequest, DeleteRequest
 from app.services.chat_engine import ChatEngineService
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
@@ -528,11 +528,12 @@ async def webhook(payload: WebhookPayload) -> Dict[str, str]:
 @router.post("/profile/delete")
 @validate_api_token()
 async def delete_profile(
+    delete_request: DeleteRequest,
     profile_service: ProfileService = Depends(get_profile_service),
     settings_service: SettingsService = Depends(get_settings_service),
     document_service: DocumentService = Depends(get_document_service),
 ) -> Response:
-    user_id = get_user_id()
+    user_id = delete_request.user_id
 
     await profile_service.delete_profile(user_id)
 
