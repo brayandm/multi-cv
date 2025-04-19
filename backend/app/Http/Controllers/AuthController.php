@@ -378,6 +378,7 @@ class AuthController extends Controller
         $extension = $request->file('photo')->getClientOriginalExtension();
 
         $user->addMediaFromRequest('photo')
+            ->usingName("profile_picture")
             ->usingFileName("profile_picture.$extension")
             ->toMediaCollection('profile_picture');
 
@@ -489,6 +490,10 @@ class AuthController extends Controller
 
     public function deleteAccount(Request $request)
     {
-        sleep(2);
+        $user = $request->user();
+
+        $user->clearMediaCollection();
+
+
     }
 }
