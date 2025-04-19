@@ -510,6 +510,7 @@ class AuthController extends Controller
         $user->locale = 'en';
         $user->app_theme = 'light';
         $user->is_first_login = true;
+        $user->save();
 
         $this->userService->deleteAllUserTokens($user);
     }
