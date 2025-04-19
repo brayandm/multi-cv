@@ -126,7 +126,7 @@ async def auto_fill_cv_from_document(
 
     try:
         extractor = TextExtractor(contents)
-        text = extractor.extract_text()
+        text = await extractor.extract_text()
         extractor.close()
 
         chat_engine_service = ChatEngineService()

@@ -21,6 +21,8 @@ phonenumbers = "*"
 playwright = "*"
 python-multipart = "*"
 pymupdf = "*"
+pillow = "*"
+pdf2image = "*"
 
 [dev-packages]
 black = "*"
