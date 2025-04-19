@@ -226,7 +226,7 @@ class ChatEngineService:
 
         user_id = str(get_user_id())
         chat = ChatOpenAI(
-            model="gpt-4o-mini",
+            model="gpt-4.1-nano",
             max_completion_tokens=2000,
             temperature=0.7,
         )
