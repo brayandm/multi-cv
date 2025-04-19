@@ -113,7 +113,9 @@
       "generate_cv": "CV-generering misslyckades",
       "download_document": "Nedladdning av dokument misslyckades",
       "input_unsafe": "Din inmatning kan innehålla olämpligt innehåll och kan bryta mot våra villkor. Vänligen granska och revidera den.",
-      "chatbot": "Chatbotfel"
+      "chatbot": "Chatbotfel",
+      "custom_prompt": "Fel med anpassad uppmaning",
+      "profile": "Profiluppdateringen misslyckades"
     },
     "success": {
       "password_change": "Lösenordet har ändrats",

@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 import {
   acceptTermsVersionApiLink,
   googleLoginApiLink,
@@ -33,6 +33,7 @@ import {
   checkoutSessionApiLink,
   getSettingsEngineLink,
   storeSettingsEngineLink,
+  moderationEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -297,16 +298,43 @@ export const generateCvInlineEngine = async (
   input: GenerationInput,
   traduction: Traduction
 ): Promise<AxiosResponse<Blob>> => {
-  return await engine.post(
-    generateCvInlineEngineLink,
-    {
-      input: input,
-      traduction: traduction,
-    },
-    {
-      responseType: "blob",
+  try {
+    const response = await engine.post(
+      generateCvInlineEngineLink,
+      {
+        input: input,
+        traduction: traduction,
+      },
+      {
+        responseType: "blob",
+      }
+    );
+
+    return response;
+  } catch (error) {
+    const axiosError = error as AxiosError<Blob>;
+
+    if (
+      axiosError.response &&
+      axiosError.response.data instanceof Blob &&
+      axiosError.response.data.type === "application/json"
+    ) {
+      const text = await axiosError.response.data.text();
+      const json = JSON.parse(text);
+      throw new AxiosError(
+        json.error || "Unknown error",
+        axiosError.code,
+        axiosError.config,
+        axiosError.request,
+        {
+          ...axiosError.response,
+          data: json,
+        }
+      );
     }
-  );
+
+    throw error;
+  }
 };
 
 export const generateCvInlineNoRenderEngine = async (
@@ -451,4 +479,12 @@ export const storeSettingsEngine = async (
   settings: Settings
 ): Promise<AxiosResponse<MessageResponse>> => {
   return await engine.post(storeSettingsEngineLink, settings);
+};
+
+export const moderationEngine = async (
+  text: string
+): Promise<AxiosResponse<MessageResponse>> => {
+  return await engine.post(moderationEngineLink, {
+    content: text,
+  });
 };

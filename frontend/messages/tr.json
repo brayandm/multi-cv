@@ -113,7 +113,9 @@
       "generate_cv": "CV oluşturma başarısız",
       "download_document": "Belge indirme başarısız",
       "input_unsafe": "Girdiğiniz içerik uygunsuz olabilir ve Hizmet Şartlarımızı ihlal edebilir. Lütfen gözden geçirin ve düzenleyin.",
-      "chatbot": "Chatbot hatası"
+      "chatbot": "Chatbot hatası",
+      "custom_prompt": "Özel istem hatası",
+      "profile": "Profil güncellemesi başarısız oldu"
     },
     "success": {
       "password_change": "Şifre değiştirildi",

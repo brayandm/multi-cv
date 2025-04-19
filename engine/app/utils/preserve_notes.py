@@ -30,6 +30,7 @@ def remove_notes(profile: Profile) -> Profile:
     profile.general_notes = None
     profile.basic_info.notes = None
     profile.skills.notes = None
+    profile.moderation = None
 
     for experience in profile.experience:
         experience.notes = None

@@ -178,12 +178,38 @@ async def generate_cv_inline(
     document_service: DocumentService = Depends(get_document_service),
 ) -> Response:
 
-    profile = await profile_service.get_profile(get_user_id())
+    profile = await profile_service.get_profile(get_user_id(), with_notes=True)
 
     if profile is None:
         return Response(
             content="Profile not found.",
             status_code=404,
+        )
+
+    chat_engine_service = ChatEngineService()
+
+    if profile.moderation is not True:
+        is_safe = await chat_engine_service.moderation(
+            profile.model_dump_json()
+        )
+
+        if not is_safe:
+            cancel_action()
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Input is unsafe."},
+            )
+
+        await profile_service.profile_moderation(
+            get_user_id(), moderation=True
+        )
+
+    is_safe = await chat_engine_service.moderation(input.model_dump_json())
+    if not is_safe:
+        cancel_action()
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
         )
 
     cv = await GenerateCvPipeline().run(profile, input, traduction)
@@ -217,12 +243,38 @@ async def generate_cv_inline_norender(
     profile_service: ProfileService = Depends(get_profile_service),
 ) -> Response:
 
-    profile = await profile_service.get_profile(get_user_id())
+    profile = await profile_service.get_profile(get_user_id(), with_notes=True)
 
     if profile is None:
         return Response(
             content="Profile not found.",
             status_code=404,
+        )
+
+    chat_engine_service = ChatEngineService()
+
+    if profile.moderation is not True:
+        is_safe = await chat_engine_service.moderation(
+            profile.model_dump_json()
+        )
+
+        if not is_safe:
+            cancel_action()
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Input is unsafe."},
+            )
+
+        await profile_service.profile_moderation(
+            get_user_id(), moderation=True
+        )
+
+    is_safe = await chat_engine_service.moderation(input.model_dump_json())
+    if not is_safe:
+        cancel_action()
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
         )
 
     cv = await GenerateCvPipeline().run(profile, input, traduction)
@@ -416,16 +468,27 @@ async def get_profile(
 async def store_settings(
     settings: Settings,
     settings_service: SettingsService = Depends(get_settings_service),
-) -> Dict[str, str]:
+) -> Response:
 
     user_id = get_user_id()
+
+    chat_engine_service = ChatEngineService()
+    is_safe = await chat_engine_service.moderation(settings.model_dump_json())
+    if not is_safe:
+        return JSONResponse(
+            status_code=400,
+            content={"error": "Input is unsafe."},
+        )
 
     await settings_service.sync_settings(user_id, settings)
 
     logger.info(f"Settings: {settings}")
     print(f"Settings: {settings}")
 
-    return {"message": "Settings synced successfully."}
+    return JSONResponse(
+        content={"message": "Settings synced successfully."},
+        status_code=200,
+    )
 
 
 @router.get("/settings")

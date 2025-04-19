@@ -113,7 +113,9 @@
       "generate_cv": "Generazione del CV non riuscita",
       "download_document": "Download del documento non riuscito",
       "input_unsafe": "Il tuo input potrebbe contenere contenuti inappropriati e potrebbe violare le nostre politiche sui Termini e Condizioni. Ti preghiamo di rivederlo e modificarlo.",
-      "chatbot": "Errore del chatbot"
+      "chatbot": "Errore del chatbot",
+      "custom_prompt": "Errore del prompt personalizzato",
+      "profile": "Aggiornamento del profilo non riuscito"
     },
     "success": {
       "password_change": "Password cambiata",

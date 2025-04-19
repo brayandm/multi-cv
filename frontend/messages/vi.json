@@ -113,7 +113,9 @@
       "generate_cv": "Tạo CV không thành công",
       "download_document": "Tải tài liệu không thành công",
       "input_unsafe": "Nội dung bạn nhập có thể chứa thông tin không phù hợp và có thể vi phạm các chính sách Điều khoản & Điều kiện của chúng tôi. Vui lòng xem xét và chỉnh sửa lại.",
-      "chatbot": "Lỗi chatbot"
+      "chatbot": "Lỗi chatbot",
+      "custom_prompt": "Lỗi lời nhắc tùy chỉnh",
+      "profile": "Cập nhật hồ sơ không thành công"
     },
     "success": {
       "password_change": "Mật khẩu đã được thay đổi",

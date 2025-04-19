@@ -113,7 +113,9 @@
       "generate_cv": "Falha ao gerar CV",
       "download_document": "Falha ao baixar o documento",
       "input_unsafe": "Sua entrada pode conter conteúdo inadequado e pode violar nossas políticas de Termos e Condições. Por favor, revise e revise-a.",
-      "chatbot": "Erro do chatbot"
+      "chatbot": "Erro do chatbot",
+      "custom_prompt": "Erro de prompt personalizado",
+      "profile": "Falha na atualização do perfil"
     },
     "success": {
       "password_change": "Senha alterada",

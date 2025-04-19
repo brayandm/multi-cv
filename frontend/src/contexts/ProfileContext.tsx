@@ -10,6 +10,8 @@ import {
   useCallback,
 } from "react";
 import { useUserStatus } from "./UserStatusContext";
+import { useModeration } from "@/hooks/useModeration";
+import { useTranslations } from "next-intl";
 
 export type IBasicInfo = {
   first_name: string;
@@ -91,6 +93,83 @@ export interface IProfile {
   skills: ISkills;
 }
 
+type JSONPrimitive = string | number | boolean | null;
+type JSONValue = JSONPrimitive | JSONObject | JSONValue[];
+type JSONObject = { [key: string]: JSONValue };
+export function extractDifferences<T extends JSONObject>(
+  local: T,
+  remote: T
+): Partial<T> {
+  const result: Partial<T> = {};
+
+  for (const key of Object.keys(local) as (keyof T)[]) {
+    const localValue = local[key];
+    const remoteValue = remote[key];
+
+    if (Array.isArray(localValue)) {
+      if (
+        localValue.length > 0 &&
+        typeof localValue[0] === "object" &&
+        localValue[0] !== null &&
+        "id" in localValue[0]
+      ) {
+        const remoteArray = Array.isArray(remoteValue) ? remoteValue : [];
+        const remoteMap = new Map<string, JSONObject>(
+          remoteArray.map((item) => [
+            String((item as JSONObject)["id"]),
+            item as JSONObject,
+          ])
+        );
+
+        const diffArray = (localValue as JSONObject[])
+          .map((localItem) => {
+            const id = String(localItem["id"]);
+            const remoteItem = remoteMap.get(id);
+            if (!remoteItem) return localItem;
+            const nestedDiff = extractDifferences(localItem, remoteItem);
+            return Object.keys(nestedDiff).length > 0 ? nestedDiff : null;
+          })
+          .filter((item): item is JSONObject => item !== null);
+
+        if (diffArray.length > 0) {
+          result[key] = diffArray as T[typeof key];
+        }
+      } else {
+        const remoteArray = Array.isArray(remoteValue) ? remoteValue : [];
+        const remoteSet = new Set(
+          remoteArray.map((item) => JSON.stringify(item))
+        );
+
+        const diffArray = localValue.filter(
+          (item) => !remoteSet.has(JSON.stringify(item))
+        );
+
+        if (diffArray.length > 0) {
+          result[key] = diffArray as T[typeof key];
+        }
+      }
+    } else if (
+      typeof localValue === "object" &&
+      localValue !== null &&
+      !Array.isArray(localValue)
+    ) {
+      const nestedDiff = extractDifferences(
+        localValue as JSONObject,
+        (remoteValue as JSONObject) || {}
+      );
+      if (Object.keys(nestedDiff).length > 0) {
+        result[key] = nestedDiff as T[typeof key];
+      }
+    } else {
+      if (localValue !== remoteValue) {
+        result[key] = localValue;
+      }
+    }
+  }
+
+  return result;
+}
+
 interface ProfileContextType {
   isLoaded: boolean;
   syncProfile: () => void;
@@ -122,6 +201,10 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(
     userStatus.authenticated
   );
+
+  const t = useTranslations();
+
+  const moderate = useModeration(t("common.errors.profile"), () => {});
 
   useEffect(() => {
     setIsAuthenticated(userStatus.authenticated);
@@ -249,6 +332,15 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const syncProfile = async () => {
     if (!isLoaded || onLoadedError) return;
     try {
+      const data = extractDifferences(
+        getJoinedProfile() as unknown as JSONObject,
+        profileEngine as unknown as JSONObject
+      );
+      if (data && Object.keys(data).length > 0) {
+        const result = await moderate(JSON.stringify(data));
+        if (!result) return;
+      }
+
       await profileSyncEngine(getJoinedProfile());
       setProfileEngine(getJoinedProfile());
     } catch (error) {
@@ -260,6 +352,15 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     if (!isLoaded || onLoadedError) return;
     if (!userStatus.is_first_login) return;
     try {
+      const data = extractDifferences(
+        getJoinedProfile() as unknown as JSONObject,
+        profileEngine as unknown as JSONObject
+      );
+      if (data && Object.keys(data).length > 0) {
+        const result = await moderate(JSON.stringify(data));
+        if (!result) return;
+      }
+
       await profileSyncEngine(getJoinedProfile());
       setProfileEngine(getJoinedProfile());
     } catch (error) {

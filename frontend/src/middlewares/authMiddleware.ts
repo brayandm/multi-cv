@@ -103,6 +103,10 @@ export async function authMiddleware(req: NextRequest) {
     if (isSuspended) {
       if (isSuspendedPage) return;
       return NextResponse.redirect(new URL("/suspended/account", req.url));
+    } else {
+      if (isSuspendedPage) {
+        return NextResponse.redirect(new URL("/home", req.url));
+      }
     }
 
     if (isAcceptTermsPage) {
