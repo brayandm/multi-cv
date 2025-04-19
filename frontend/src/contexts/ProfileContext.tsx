@@ -330,7 +330,7 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
   const syncProfile = async () => {
     if (!isLoaded || onLoadedError) return;
     try {
-      moderate(
+      const result = await moderate(
         JSON.stringify(
           extractDifferences(
             getJoinedProfile() as unknown as JSONObject,
@@ -338,6 +338,8 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
           )
         )
       );
+      if (!result) return;
+
       await profileSyncEngine(getJoinedProfile());
       setProfileEngine(getJoinedProfile());
     } catch (error) {
@@ -349,6 +351,16 @@ export const ProfileProvider = ({ children }: { children: ReactNode }) => {
     if (!isLoaded || onLoadedError) return;
     if (!userStatus.is_first_login) return;
     try {
+      const result = await moderate(
+        JSON.stringify(
+          extractDifferences(
+            getJoinedProfile() as unknown as JSONObject,
+            profileEngine as unknown as JSONObject
+          )
+        )
+      );
+      if (!result) return;
+
       await profileSyncEngine(getJoinedProfile());
       setProfileEngine(getJoinedProfile());
     } catch (error) {
