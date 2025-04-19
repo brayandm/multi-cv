@@ -33,6 +33,7 @@ import {
   checkoutSessionApiLink,
   getSettingsEngineLink,
   storeSettingsEngineLink,
+  moderationEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -451,4 +452,12 @@ export const storeSettingsEngine = async (
   settings: Settings
 ): Promise<AxiosResponse<MessageResponse>> => {
   return await engine.post(storeSettingsEngineLink, settings);
+};
+
+export const moderationEngine = async (
+  text: string
+): Promise<AxiosResponse<MessageResponse>> => {
+  return await engine.post(moderationEngineLink, {
+    text: text,
+  });
 };
