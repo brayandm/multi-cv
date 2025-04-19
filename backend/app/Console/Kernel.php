@@ -17,6 +17,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('backup:clean')->timezone('Europe/Madrid')->dailyAt('02:30');
 
         $schedule->command('backup:run --only-db')->timezone('Europe/Madrid')->dailyAt('03:00');
+
+        $schedule->command('users:anonymize-old-deleted')->daily();
     }
 
     /**
