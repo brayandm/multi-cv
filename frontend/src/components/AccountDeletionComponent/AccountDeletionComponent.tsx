@@ -11,11 +11,15 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@heroui/react";
+import { userDeleteApi } from "@/lib/backendService";
+import { useState } from "react";
 
 export default function AccountDeletionComponent({}) {
   const t = useTranslations();
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
+  const [isDeleting, setIsDeleting] = useState(false);
 
   return (
     <div className="flex flex-col gap-2 text-center w-[250px] mx-auto mt-10">
@@ -51,7 +55,15 @@ export default function AccountDeletionComponent({}) {
                 >
                   {t("common.buttons.cancel")}
                 </Button>
-                <Button color="danger" onPress={async () => {}}>
+                <Button
+                  color="danger"
+                  isLoading={isDeleting}
+                  onPress={async () => {
+                    setIsDeleting(true);
+                    await userDeleteApi();
+                    setIsDeleting(false);
+                  }}
+                >
                   {t("pages.settings.delete_account")}
                 </Button>
               </ModalFooter>

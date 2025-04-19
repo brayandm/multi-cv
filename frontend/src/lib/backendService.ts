@@ -34,6 +34,7 @@ import {
   getSettingsEngineLink,
   storeSettingsEngineLink,
   moderationEngineLink,
+  userDeleteApiLink,
 } from "./links";
 import {
   UserResponse,
@@ -487,4 +488,10 @@ export const moderationEngine = async (
   return await engine.post(moderationEngineLink, {
     content: text,
   });
+};
+
+export const userDeleteApi = async (): Promise<
+  AxiosResponse<MessageResponse>
+> => {
+  return await api.post(userDeleteApiLink);
 };

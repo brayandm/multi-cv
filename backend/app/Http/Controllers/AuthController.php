@@ -486,4 +486,9 @@ class AuthController extends Controller
             Mail::to(config('app.notification_mail'))->queue(new UserSuspended($user));
         }
     }
+
+    public function deleteAccount(Request $request)
+    {
+
+    }
 }

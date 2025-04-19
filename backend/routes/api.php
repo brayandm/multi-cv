@@ -70,6 +70,8 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::put('/user/set-theme', 'App\Http\Controllers\AuthController@updateTheme');
         Route::get('/user/theme', 'App\Http\Controllers\AuthController@getTheme');
+
+        Route::post('/user/delete', 'App\Http\Controllers\AuthController@deleteAccount');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {
