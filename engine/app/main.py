@@ -139,6 +139,16 @@ async def auto_fill_cv_from_document(
                 content={"error": "Input is unsafe."},
             )
 
+        is_safe = await chat_engine_service.moderation_from_images(
+            await extractor.extract_images()
+        )
+        if not is_safe:
+            cancel_action()
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Input is unsafe."},
+            )
+
         text2 = await extractor.extract_text_from_images()
 
         is_safe = await chat_engine_service.moderation(text2)

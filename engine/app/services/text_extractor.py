@@ -6,6 +6,8 @@ from app.utils.pydantic_custom_types import (
     MAX_PDF_PAGES,
 )
 
+from PIL import Image
+
 
 class InvalidPDFError(Exception):
     """Raised when the file is not a valid PDF"""
@@ -25,6 +27,9 @@ class TextExtractor:
             raise InvalidPDFError(
                 "The provided file is not a valid PDF."
             ) from e
+
+    async def extract_images(self) -> list[Image.Image]:
+        return convert_from_bytes(self.file_bytes, dpi=100)
 
     async def extract_text_from_images(self) -> str:
 
