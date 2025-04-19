@@ -187,6 +187,23 @@ async def generate_cv_inline(
         )
 
     chat_engine_service = ChatEngineService()
+
+    if profile.moderation is not True:
+        is_safe = await chat_engine_service.moderation(
+            profile.model_dump_json()
+        )
+
+        if not is_safe:
+            cancel_action()
+            return JSONResponse(
+                status_code=400,
+                content={"error": "Input is unsafe."},
+            )
+
+        await profile_service.profile_moderation(
+            get_user_id(), moderation=True
+        )
+
     is_safe = await chat_engine_service.moderation(input.model_dump_json())
     if not is_safe:
         cancel_action()
