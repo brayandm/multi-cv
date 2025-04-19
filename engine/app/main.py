@@ -126,8 +126,16 @@ async def auto_fill_cv_from_document(
 
     try:
         extractor = TextExtractor(contents)
-        text = extractor.extract_text()
+        text = await extractor.extract_text_from_images()
         extractor.close()
+
+        return JSONResponse(
+            content={
+                "message": "Text extracted successfully.",
+                "text": text,
+            },
+            status_code=200,
+        )
 
         chat_engine_service = ChatEngineService()
         is_safe = await chat_engine_service.moderation(text)

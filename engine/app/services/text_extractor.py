@@ -1,4 +1,7 @@
 import fitz  # type: ignore
+from pdf2image import convert_from_bytes
+
+from app.services.chat_engine import ChatEngineService
 
 
 class InvalidPDFError(Exception):
@@ -19,6 +22,22 @@ class TextExtractor:
             raise InvalidPDFError(
                 "The provided file is not a valid PDF."
             ) from e
+
+    async def extract_text_from_images(self) -> str:
+
+        images = convert_from_bytes(self.file_bytes, dpi=300)
+
+        prompt = (
+            "You are an expert in extracting text from images, "
+            "specifically from PDF files that are CVs. So please "
+            "extract the CV data from the images and return it in a"
+            "structured format."
+        )
+
+        chat_service = ChatEngineService()
+        result = await chat_service.vision_chat_from_images(prompt, images)
+
+        return result
 
     def extract_text(self) -> str:
         text: str = ""

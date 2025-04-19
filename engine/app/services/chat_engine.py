@@ -1,5 +1,7 @@
 import asyncio
+import base64
 from datetime import datetime, timezone
+from io import BytesIO
 from typing import Any, List, Optional, Union
 
 import requests  # type: ignore
@@ -14,6 +16,7 @@ from langchain.schema import (
 )
 from langchain_openai import ChatOpenAI
 from openai import OpenAI
+from PIL import Image
 from pydantic import BaseModel, SecretStr
 from pymongo import ReturnDocument
 
@@ -194,3 +197,41 @@ class ChatEngineService:
                     f"Error suspending account for user {user_id}: {e}"
                 )
                 raise e
+
+    async def vision_chat_from_images(
+        self, system_prompt: str, images: List[Image.Image]
+    ) -> str:
+        def encode_image_to_base64(img: Image.Image) -> str:
+            buffered = BytesIO()
+            img.save(buffered, format="PNG")
+            return base64.b64encode(buffered.getvalue()).decode("utf-8")
+
+        content: List[dict[Any, Any]] = [
+            {"type": "text", "text": system_prompt}
+        ]
+
+        for img in images:
+            base64_image = encode_image_to_base64(img)
+            content.append(
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/png;base64,{base64_image}"
+                    },
+                }
+            )
+
+        def call_openai(content: List[dict[Any, Any]]) -> str:
+            client = OpenAI(api_key=OPENAI_API_KEY)
+            response = client.chat.completions.create(
+                model="gpt-4o",
+                messages=[{"role": "user", "content": str(content)}],
+                max_tokens=2000,
+            )
+            return (
+                (response.choices[0].message.content or "").strip()
+                if content is not None
+                else ""
+            )
+
+        return await asyncio.to_thread(call_openai, content)
