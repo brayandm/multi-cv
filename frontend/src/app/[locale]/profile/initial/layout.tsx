@@ -9,7 +9,7 @@ export default function ProfileInitialLayout({
   return (
     <div>
       <NavbarWrapper>
-        <Navbar onlyLogout />
+        <Navbar deleteAccount onlyLogout />
       </NavbarWrapper>
       <SpacerDefault />
       {children}

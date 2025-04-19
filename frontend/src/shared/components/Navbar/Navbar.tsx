@@ -107,11 +107,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
                 color={"foreground"}
                 size="sm"
                 onPress={() => {
-                  run({
-                    "navbar-routing": () => {
-                      router.push("/account/deletion");
-                    },
-                  });
+                  router.push("/account/deletion");
                 }}
               >
                 {t("pages.settings.delete_account")}
