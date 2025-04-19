@@ -512,6 +512,8 @@ class AuthController extends Controller
         $user->is_first_login = true;
         $user->save();
 
+        $user->delete();
+
         $this->userService->deleteAllUserTokens($user);
     }
 }

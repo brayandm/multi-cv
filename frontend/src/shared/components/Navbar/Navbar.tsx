@@ -104,7 +104,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
             <NavbarMenuItem>
               <Link
                 className="w-full cursor-pointer"
-                color={"danger"}
+                color={"foreground"}
                 size="sm"
                 onPress={() => {
                   run({
