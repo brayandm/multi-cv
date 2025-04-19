@@ -20,7 +20,6 @@ from PIL import Image
 from pydantic import BaseModel, SecretStr
 from pymongo import ReturnDocument
 
-
 from app.classes.models import Chat
 from app.config import (
     BACKEND_API_URL,
