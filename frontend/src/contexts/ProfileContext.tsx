@@ -127,9 +127,7 @@ export function extractDifferences<T extends JSONObject>(
             const remoteItem = remoteMap.get(id);
             if (!remoteItem) return localItem;
             const nestedDiff = extractDifferences(localItem, remoteItem);
-            return Object.keys(nestedDiff).length > 0
-              ? { id, ...nestedDiff }
-              : null;
+            return Object.keys(nestedDiff).length > 0 ? nestedDiff : null;
           })
           .filter((item): item is JSONObject => item !== null);
 
