@@ -33,7 +33,6 @@ from app.framework.decorators.context_vars import (
     get_user_id,
 )
 from app.framework.logging import logger
-
 from app.utils.pydantic_custom_types import (
     MAX_INAPPROPRIATE_MESSAGES,
 )

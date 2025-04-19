@@ -2,7 +2,6 @@ import fitz  # type: ignore
 from pdf2image import convert_from_bytes
 
 from app.services.chat_engine import ChatEngineService
-
 from app.utils.pydantic_custom_types import (
     MAX_PDF_PAGES,
 )
