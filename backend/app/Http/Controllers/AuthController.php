@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\CookiesHelper;
 use App\Mail\UserSuspended;
 use App\Models\User;
+use App\Services\EngineService;
 use App\Services\PaymentPlanService;
 use App\Services\UserService;
 use Carbon\Carbon;
@@ -18,10 +19,12 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 class AuthController extends Controller
 {
     private UserService $userService;
+    private EngineService $engineService;
 
-    public function __construct(UserService $userService)
+    public function __construct(UserService $userService, EngineService $engineService)
     {
         $this->userService = $userService;
+        $this->engineService = $engineService;
     }
 
     private function validateCorrectRegisterUser(Request $request)
@@ -491,6 +494,8 @@ class AuthController extends Controller
     public function deleteAccount(Request $request)
     {
         $user = $request->user();
+
+        $this->engineService->deleteAccount($user->id);
 
         $user->clearMediaCollection('profile_picture');
 
