@@ -68,7 +68,7 @@ export default function AccountDeletionComponent({}) {
                     setIsDeleting(true);
                     await userDeleteApi();
                     await refreshUserStatus();
-                    router.push("/");
+                    await router.push("/");
                     setIsDeleting(false);
                   }}
                 >
