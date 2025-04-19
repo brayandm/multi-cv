@@ -370,12 +370,15 @@
         "loading": {
           "descriptions": {
             "1": "Laddar ditt CV...",
-            "2": "Bearbetar dokumentet...",
-            "3": "Extraherar information...",
-            "4": "Kontrollerar innehållet...",
-            "5": "Analyserar med AI...",
-            "6": "Organiserar sektioner...",
-            "7": "Avslutar..."
+            "2": "Analyserar dokumentet...",
+            "3": "Analyserar sektioner...",
+            "4": "Extraherar information...",
+            "5": "Kontrollerar innehåll...",
+            "6": "Analyserar med AI...",
+            "7": "Förstår datan...",
+            "8": "Organiserar sektioner...",
+            "9": "Laddar data...",
+            "10": "Avslutar..."
           }
         }
       }

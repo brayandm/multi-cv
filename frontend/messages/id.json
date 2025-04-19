@@ -371,11 +371,14 @@
           "descriptions": {
             "1": "Memuat CV Anda...",
             "2": "Menganalisis dokumen...",
-            "3": "Mengambil informasi...",
-            "4": "Memeriksa konten...",
-            "5": "Menganalisis dengan AI...",
-            "6": "Mengatur bagian...",
-            "7": "Menyelesaikan..."
+            "3": "Menganalisis bagian...",
+            "4": "Mengambil informasi...",
+            "5": "Memeriksa konten...",
+            "6": "Menganalisis dengan AI...",
+            "7": "Memahami data...",
+            "8": "Mengorganisir bagian...",
+            "9": "Memuat data...",
+            "10": "Menyelesaikan..."
           }
         }
       }

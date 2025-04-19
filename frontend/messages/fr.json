@@ -371,11 +371,14 @@
           "descriptions": {
             "1": "Chargement de votre CV...",
             "2": "Analyse du document...",
-            "3": "Extraction des informations...",
-            "4": "Vérification du contenu...",
-            "5": "Analyse avec l'IA...",
-            "6": "Organisation des sections...",
-            "7": "Finalisation..."
+            "3": "Analyse des sections...",
+            "4": "Extraction des informations...",
+            "5": "Vérification du contenu...",
+            "6": "Analyse avec l'IA...",
+            "7": "Compréhension des données...",
+            "8": "Organisation des sections...",
+            "9": "Chargement des données...",
+            "10": "Finalisation..."
           }
         }
       }

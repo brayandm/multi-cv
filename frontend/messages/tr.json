@@ -369,13 +369,16 @@
         "message": "Mevcut CV'nizi yükleyerek zaman kazanın — bilgileri çıkaracağız ve profilinizi otomatik olarak dolduracağız.",
         "loading": {
           "descriptions": {
-            "1": "CV'nizi yüklüyor...",
-            "2": "Belgeyi ayrıştırıyor...",
-            "3": "Bilgileri çıkarıyor...",
-            "4": "İçeriği kontrol ediyor...",
-            "5": "Yapay zeka ile analiz ediyor...",
-            "6": "Bölümleri düzenliyor...",
-            "7": "Tamamlıyor..."
+            "1": "CV'nizi yüklüyoruz...",
+            "2": "Belgeyi ayrıştırıyoruz...",
+            "3": "Bölümleri analiz ediyoruz...",
+            "4": "Bilgileri çıkarıyoruz...",
+            "5": "İçeriği kontrol ediyoruz...",
+            "6": "Yapay zeka ile analiz ediyoruz...",
+            "7": "Verileri anlıyoruz...",
+            "8": "Bölümleri düzenliyoruz...",
+            "9": "Verileri yüklüyoruz...",
+            "10": "Tamamlıyoruz..."
           }
         }
       }

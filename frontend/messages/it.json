@@ -371,11 +371,14 @@
           "descriptions": {
             "1": "Caricamento del tuo CV...",
             "2": "Analisi del documento...",
-            "3": "Estrazione delle informazioni...",
-            "4": "Controllo del contenuto...",
-            "5": "Analisi con AI...",
-            "6": "Organizzazione delle sezioni...",
-            "7": "Completamento..."
+            "3": "Analizzando le sezioni...",
+            "4": "Estrazione delle informazioni...",
+            "5": "Controllo dei contenuti...",
+            "6": "Analizzando con l'IA...",
+            "7": "Comprensione dei dati...",
+            "8": "Organizzazione delle sezioni...",
+            "9": "Caricamento dei dati...",
+            "10": "Completamento..."
           }
         }
       }

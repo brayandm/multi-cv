@@ -371,11 +371,14 @@
           "descriptions": {
             "1": "Loading your CV...",
             "2": "Parsing document...",
-            "3": "Extracting info...",
-            "4": "Checking content...",
-            "5": "Analyzing with AI...",
-            "6": "Organizing sections...",
-            "7": "Finishing up..."
+            "3": "Analizing sections...",
+            "4": "Extracting info...",
+            "5": "Checking content...",
+            "6": "Analyzing with AI...",
+            "7": "Understanding the data...",
+            "8": "Organizing sections...",
+            "9": "Loading data...",
+            "10": "Finishing up..."
           }
         }
       }

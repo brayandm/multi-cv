@@ -371,11 +371,14 @@
           "descriptions": {
             "1": "Đang tải CV của bạn...",
             "2": "Đang phân tích tài liệu...",
-            "3": "Đang trích xuất thông tin...",
-            "4": "Đang kiểm tra nội dung...",
-            "5": "Đang phân tích bằng AI...",
-            "6": "Đang tổ chức các phần...",
-            "7": "Đang hoàn tất..."
+            "3": "Đang phân tích các phần...",
+            "4": "Đang trích xuất thông tin...",
+            "5": "Đang kiểm tra nội dung...",
+            "6": "Đang phân tích bằng AI...",
+            "7": "Đang hiểu dữ liệu...",
+            "8": "Đang tổ chức các phần...",
+            "9": "Đang tải dữ liệu...",
+            "10": "Đang hoàn tất..."
           }
         }
       }

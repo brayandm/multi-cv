@@ -371,11 +371,14 @@
           "descriptions": {
             "1": "Carregando seu CV...",
             "2": "Analisando documento...",
-            "3": "Extraindo informações...",
-            "4": "Verificando conteúdo...",
-            "5": "Analisando com IA...",
-            "6": "Organizando seções...",
-            "7": "Finalizando..."
+            "3": "Analisando seções...",
+            "4": "Extraindo informações...",
+            "5": "Verificando conteúdo...",
+            "6": "Analisando com IA...",
+            "7": "Entendendo os dados...",
+            "8": "Organizando seções...",
+            "9": "Carregando dados...",
+            "10": "Finalizando..."
           }
         }
       }

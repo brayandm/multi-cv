@@ -371,11 +371,14 @@
           "descriptions": {
             "1": "Ładowanie twojego CV...",
             "2": "Analizowanie dokumentu...",
-            "3": "Ekstrakcja informacji...",
-            "4": "Sprawdzanie treści...",
-            "5": "Analiza z użyciem AI...",
-            "6": "Organizowanie sekcji...",
-            "7": "Kończenie..."
+            "3": "Analizowanie sekcji...",
+            "4": "Ekstrakcja informacji...",
+            "5": "Sprawdzanie treści...",
+            "6": "Analizowanie z AI...",
+            "7": "Rozumienie danych...",
+            "8": "Organizowanie sekcji...",
+            "9": "Ładowanie danych...",
+            "10": "Kończenie..."
           }
         }
       }

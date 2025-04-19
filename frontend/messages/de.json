@@ -371,11 +371,14 @@
           "descriptions": {
             "1": "Lade deinen Lebenslauf...",
             "2": "Dokument wird analysiert...",
-            "3": "Info wird extrahiert...",
-            "4": "Inhalt wird überprüft...",
-            "5": "Analyse mit KI...",
-            "6": "Abschnitte werden organisiert...",
-            "7": "Fertigstellen..."
+            "3": "Abschnitte werden analysiert...",
+            "4": "Informationen werden extrahiert...",
+            "5": "Inhalt wird überprüft...",
+            "6": "Analyse mit KI...",
+            "7": "Daten werden verstanden...",
+            "8": "Abschnitte werden organisiert...",
+            "9": "Daten werden geladen...",
+            "10": "Fertigstellen..."
           }
         }
       }

@@ -1,3 +1,4 @@
+import uuid
 from typing import Optional
 
 from pydantic import BaseModel, field_validator
@@ -6,8 +7,6 @@ from app.utils.pydantic_custom_types import (
     NotesStr,
     ShortStr,
 )
-
-import uuid
 
 
 class Education(BaseModel):

@@ -369,13 +369,16 @@
         "message": "Bespaar tijd door je bestaande CV te uploaden — we extraheren de informatie en vullen je profiel automatisch in.",
         "loading": {
           "descriptions": {
-            "1": "Je CV aan het laden...",
+            "1": "Je CV laden...",
             "2": "Document aan het parseren...",
-            "3": "Informatie aan het extraheren...",
-            "4": "Inhoud aan het controleren...",
-            "5": "Analyseren met AI...",
-            "6": "Secties aan het organiseren...",
-            "7": "Afmaken..."
+            "3": "Secties analyseren...",
+            "4": "Informatie extraheren...",
+            "5": "Inhoud controleren...",
+            "6": "Analyseren met AI...",
+            "7": "De gegevens begrijpen...",
+            "8": "Secties organiseren...",
+            "9": "Gegevens laden...",
+            "10": "Afmaken..."
           }
         }
       }
