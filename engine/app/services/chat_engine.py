@@ -224,22 +224,20 @@ class ChatEngineService:
                 }
             )
 
-        def call_openai(content: List[dict[Any, Any]]) -> str:
-            client = OpenAI(api_key=OPENAI_API_KEY)
+        user_id = str(get_user_id())
+        chat = ChatOpenAI(
+            model="gpt-4o-mini",
+            max_completion_tokens=2000,
+            temperature=0.7,
+        )
 
-            messages = [
-                {
-                    "role": "user",
-                    "content": content,
-                }
-            ]
-
-            response = client.chat.completions.create(
-                model="gpt-4o",
-                messages=messages,  # type: ignore
-                max_tokens=2000,  # type: ignore
+        with get_openai_callback() as cb:
+            response = await chat.ainvoke(
+                # type: ignore
+                [HumanMessage(content=content)],  # type: ignore
+                user=user_id,
             )
 
-            return response.choices[0].message.content or ""
+            await self.add_cost(cb.total_cost, cb.total_tokens)
 
-        return await asyncio.to_thread(call_openai, content)
+        return response.content.strip()  # type: ignore
