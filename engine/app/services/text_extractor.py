@@ -39,7 +39,7 @@ class TextExtractor:
 
         return result
 
-    def extract_text(self) -> str:
+    async def extract_text(self) -> str:
         text: str = ""
         for page in self.doc:
             text += page.get_text()
