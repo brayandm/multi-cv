@@ -9,7 +9,7 @@ import {
   Spinner,
 } from "@heroui/react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 interface IInputModalComponentProps {
   title: string;
@@ -40,13 +40,30 @@ export default function InputModalComponent({
     setOpen(isOpen);
   };
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     setOpen(false);
-  };
+  }, [setOpen]);
 
   const t = useTranslations();
 
   const [onSaving, setOnSaving] = useState(false);
+
+  useEffect(() => {
+    const handleGlobalKeyDown = async (e: KeyboardEvent) => {
+      if (e.key === "Enter" && open) {
+        e.preventDefault();
+        if (!onSaving && !isInputLoading) {
+          setOnSaving(true);
+          await onSave();
+          setOnSaving(false);
+          handleClose();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleGlobalKeyDown);
+    return () => window.removeEventListener("keydown", handleGlobalKeyDown);
+  }, [open, onSaving, isInputLoading, onSave, handleClose]);
 
   return (
     <Modal
