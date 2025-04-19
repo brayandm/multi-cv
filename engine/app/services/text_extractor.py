@@ -25,7 +25,7 @@ class TextExtractor:
 
     async def extract_text_from_images(self) -> str:
 
-        images = convert_from_bytes(self.file_bytes, dpi=300)
+        images = convert_from_bytes(self.file_bytes, dpi=100)
 
         prompt = (
             "You are an expert in extracting text from images, "
