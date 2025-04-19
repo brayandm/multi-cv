@@ -8,6 +8,7 @@ export type Item = {
 export interface ITopBarNavigationProps {
   empty?: boolean;
   onlyLogout?: boolean;
+  deleteAccount?: boolean;
   settingsRoute?: boolean;
   homeRoute?: boolean;
   profileRoute?: boolean;

@@ -56,7 +56,9 @@
       "upgrade_plan": "ترقية خطتك",
       "payment_redirecting": "يتم إعادة التوجيه إلى الدفع...",
       "analizing_plan": "تحليل خطتك...",
-      "target_language": "اللغة المستهدفة"
+      "target_language": "اللغة المستهدفة",
+      "delete_account": "حذف الحساب",
+      "delete_account_description": "هل أنت متأكد أنك تريد حذف حسابك؟ لا يمكن التراجع عن هذا الإجراء."
     },
     "buttons": {
       "continue": "استمر",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "فشل تسجيل الدخول",
+      "logout": "فشل تسجيل الخروج",
       "login_description": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
       "register": "فشل التسجيل",
       "register_description": "البريد الإلكتروني مستخدم بالفعل.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "تم تعليق الحساب",
         "description": "تم تعليق حسابك. يرجى الاتصال بالدعم للحصول على مزيد من المعلومات."
+      },
+      "deletion": {
+        "title": "حذف الحساب",
+        "description": "أنت على وشك حذف حسابك. هذه العملية دائمة وستزيل جميع بياناتك الشخصية من نظامنا."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "قم بتغيير إعدادات حسابك",
-      "password": "إعدادات كلمة المرور"
+      "password": "إعدادات كلمة المرور",
+      "delete_account": "حذف الحساب"
     },
     "welcome": {
       "title": "مرحبًا بك في <appName></appName>",

@@ -56,7 +56,9 @@
       "upgrade_plan": "Upgrade je plan",
       "payment_redirecting": "Doorverwijzen naar betaling...",
       "analizing_plan": "Je plan analyseren...",
-      "target_language": "Doeltaal"
+      "target_language": "Doeltaal",
+      "delete_account": "Verwijder account",
+      "delete_account_description": "Weet je zeker dat je je account wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt."
     },
     "buttons": {
       "continue": "Doorgaan",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Inloggen mislukt",
+      "logout": "Uitloggen mislukt",
       "login_description": "Het e-mailadres of wachtwoord is onjuist.",
       "register": "Registratie mislukt",
       "register_description": "Het e-mailadres is al in gebruik.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Account Opgeschort",
         "description": "Uw account is opgeschort. Neem contact op met de ondersteuning voor meer informatie."
+      },
+      "deletion": {
+        "title": "Account Verwijdering",
+        "description": "U staat op het punt uw account te verwijderen. Deze actie is permanent en verwijdert al uw persoonlijke gegevens uit ons systeem."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Wijzig je accountinstellingen",
-      "password": "Wachtwoordinstellingen"
+      "password": "Wachtwoordinstellingen",
+      "delete_account": "Account verwijderen"
     },
     "welcome": {
       "title": "Welkom bij <appName></appName>",

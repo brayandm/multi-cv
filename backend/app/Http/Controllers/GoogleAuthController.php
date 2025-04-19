@@ -72,13 +72,29 @@ class GoogleAuthController extends Controller
 
         $user = User::where('email', $userInfo['email'])->first();
 
+        $userDeleted = User::onlyTrashed()
+            ->where('email', $userInfo['email'])
+            ->first();
+
         if (! $user) {
-            $user = User::Create([
-                'email' => $userInfo['email'],
-                'first_name' => $userInfo['given_name'] ?? '',
-                'last_name' => $userInfo['family_name'] ?? '',
-                'email_verified_at' => now(),
-            ]);
+            if ($userDeleted) {
+                $user = $userDeleted;
+
+                $user->restore();
+
+                $user->update([
+                    'first_name' => $userInfo['given_name'] ?? '',
+                    'last_name' => $userInfo['family_name'] ?? '',
+                    'email_verified_at' => now(),
+                ]);
+            } else {
+                $user = User::create([
+                    'email' => $userInfo['email'],
+                    'first_name' => $userInfo['given_name'] ?? '',
+                    'last_name' => $userInfo['family_name'] ?? '',
+                    'email_verified_at' => now(),
+                ]);
+            }
 
             if (isset($userInfo['picture'])) {
                 $response = Http::head($userInfo['picture']);

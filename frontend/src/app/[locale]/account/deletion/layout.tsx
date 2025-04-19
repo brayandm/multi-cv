@@ -1,4 +1,4 @@
-export default function SuspendedAccountLayout({
+export default function AccountDeletionLayout({
   children,
 }: {
   children: React.ReactNode;

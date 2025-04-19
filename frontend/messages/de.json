@@ -56,7 +56,9 @@
       "upgrade_plan": "Upgrade Ihren Plan",
       "payment_redirecting": "Weiterleitung zur Zahlung...",
       "analizing_plan": "Analyse Ihres Plans...",
-      "target_language": "Zielsprache"
+      "target_language": "Zielsprache",
+      "delete_account": "Konto löschen",
+      "delete_account_description": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden."
     },
     "buttons": {
       "continue": "Fortfahren",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Anmeldung fehlgeschlagen",
+      "logout": "Abmeldung fehlgeschlagen",
       "login_description": "Die E-Mail oder das Passwort ist falsch.",
       "register": "Registrierung fehlgeschlagen",
       "register_description": "Die E-Mail wird bereits verwendet.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Konto Gesperrt",
         "description": "Ihr Konto wurde gesperrt. Bitte kontaktieren Sie den Support für weitere Informationen."
+      },
+      "deletion": {
+        "title": "Konto Löschen",
+        "description": "Sie sind dabei, Ihr Konto zu löschen. Diese Aktion ist dauerhaft und entfernt alle Ihre persönlichen Daten aus unserem System."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Ändern Sie Ihre Kontoeinstellungen",
-      "password": "Passworteinstellungen"
+      "password": "Passworteinstellungen",
+      "delete_account": "Konto löschen"
     },
     "welcome": {
       "title": "Willkommen bei <appName></appName>",

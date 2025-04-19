@@ -56,7 +56,9 @@
       "upgrade_plan": "Zaktualizuj swój plan",
       "payment_redirecting": "Przekierowywanie do płatności...",
       "analizing_plan": "Analizowanie twojego planu...",
-      "target_language": "Język docelowy"
+      "target_language": "Język docelowy",
+      "delete_account": "Usuń konto",
+      "delete_account_description": "Czy na pewno chcesz usunąć swoje konto? Ta akcja nie może być cofnięta."
     },
     "buttons": {
       "continue": "Kontynuuj",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Logowanie nie powiodło się",
+      "logout": "Wylogowanie nie powiodło się",
       "login_description": "Adres e-mail lub hasło jest nieprawidłowe.",
       "register": "Rejestracja nie powiodła się",
       "register_description": "Adres e-mail jest już zajęty.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Konto Zawieszone",
         "description": "Twoje konto zostało zawieszone. Proszę skontaktować się z pomocą techniczną w celu uzyskania więcej informacji."
+      },
+      "deletion": {
+        "title": "Usunięcie Konta",
+        "description": "Zaraz usuniesz swoje konto. Ta akcja jest trwała i usunie wszystkie twoje dane osobowe z naszego systemu."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Zmień ustawienia swojego konta",
-      "password": "Ustawienia hasła"
+      "password": "Ustawienia hasła",
+      "delete_account": "Usuń konto"
     },
     "welcome": {
       "title": "Witamy w <appName></appName>",

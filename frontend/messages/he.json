@@ -56,7 +56,9 @@
       "upgrade_plan": "שדרג את התוכנית שלך",
       "payment_redirecting": "מופנה לתשלום...",
       "analizing_plan": "מנתח את התוכנית שלך...",
-      "target_language": "שפת יעד"
+      "target_language": "שפת יעד",
+      "delete_account": "מחק חשבון",
+      "delete_account_description": "האם אתה בטוח שברצונך למחוק את החשבון שלך? פעולה זו אינה ניתנת לביטול."
     },
     "buttons": {
       "continue": "המשך",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "התחברות נכשלה",
+      "logout": "היציאה נכשלה",
       "login_description": "האימייל או הסיסמה אינם נכונים.",
       "register": "הרשמה נכשלה",
       "register_description": "האימייל כבר בשימוש.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "החשבון הוקפא",
         "description": "החשבון שלך הוקפא. אנא פנה לתמיכה למידע נוסף."
+      },
+      "deletion": {
+        "title": "מחיקת חשבון",
+        "description": "אתה עומד למחוק את החשבון שלך. פעולה זו היא קבועה ותסיר את כל הנתונים האישיים שלך מהמערכת שלנו."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "שנה את הגדרות החשבון שלך",
-      "password": "הגדרות סיסמה"
+      "password": "הגדרות סיסמה",
+      "delete_account": "מחק חשבון"
     },
     "welcome": {
       "title": "ברוך הבא ל-<appName></appName>",

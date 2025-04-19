@@ -53,12 +53,17 @@ const ProfilePhotoUploader = ({
       const smallerFile =
         compressedFile.size < file.size ? compressedFile : file;
 
-      await onImageChange(smallerFile);
+      const namedFile = new File([smallerFile], file.name, {
+        type: smallerFile.type,
+      });
+
+      await onImageChange(namedFile);
 
       setVersion(Date.now());
     } catch (err) {
       console.error("Compression error:", err);
       setError(t("common.errors.compression"));
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
 
     setOnSubmitting(false);

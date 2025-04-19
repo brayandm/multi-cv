@@ -56,7 +56,9 @@
       "upgrade_plan": "Nâng cấp gói của bạn",
       "payment_redirecting": "Đang chuyển hướng đến thanh toán...",
       "analizing_plan": "Đang phân tích gói của bạn...",
-      "target_language": "Ngôn ngữ mục tiêu"
+      "target_language": "Ngôn ngữ mục tiêu",
+      "delete_account": "Xóa tài khoản",
+      "delete_account_description": "Bạn có chắc chắn muốn xóa tài khoản của mình không? Hành động này không thể hoàn tác."
     },
     "buttons": {
       "continue": "Tiếp tục",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Đăng nhập không thành công",
+      "logout": "Đăng xuất không thành công",
       "login_description": "Email hoặc mật khẩu không chính xác.",
       "register": "Đăng ký không thành công",
       "register_description": "Email đã được sử dụng.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
-        "title": "Tài khoản bị đình chỉ",
+    "account": {
+      "suspended": {
+        "title": "Tài Khoản Bị Đình Chỉ",
         "description": "Tài khoản của bạn đã bị đình chỉ. Vui lòng liên hệ với bộ phận hỗ trợ để biết thêm thông tin."
+      },
+      "deletion": {
+        "title": "Xóa Tài Khoản",
+        "description": "Bạn sắp xóa tài khoản của mình. Hành động này là vĩnh viễn và sẽ xóa tất cả dữ liệu cá nhân của bạn khỏi hệ thống của chúng tôi."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Thay đổi cài đặt tài khoản của bạn",
-      "password": "Cài đặt mật khẩu"
+      "password": "Cài đặt mật khẩu",
+      "delete_account": "Xóa tài khoản"
     },
     "welcome": {
       "title": "Chào mừng đến với <appName></appName>",

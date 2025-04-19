@@ -63,18 +63,20 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('/logoutall', 'App\Http\Controllers\AuthController@logoutall');
 
+        Route::get('/user', 'App\Http\Controllers\AuthController@getUser');
+
         Route::put('/user/set-locale', 'App\Http\Controllers\AuthController@updateLocale');
         Route::get('/user/locale', 'App\Http\Controllers\AuthController@getLocale');
 
         Route::put('/user/set-theme', 'App\Http\Controllers\AuthController@updateTheme');
         Route::get('/user/theme', 'App\Http\Controllers\AuthController@getTheme');
+
+        Route::post('/user/delete', 'App\Http\Controllers\AuthController@deleteAccount');
     });
 
     Route::middleware(['check.constant.connection', 'auth:sanctum', 'verified'])->group(function () {
 
         Route::post('/quota/info', 'App\Http\Controllers\ActionController@getQuotaInfo');
-
-        Route::get('/user', 'App\Http\Controllers\AuthController@getUser');
 
         Route::put('/user/update/profile', 'App\Http\Controllers\AuthController@updateProfile');
         Route::put('/user/update/password', 'App\Http\Controllers\AuthController@updatePassword');

@@ -28,6 +28,9 @@ class SettingsService:
             return Settings(**settings_data)
         return Settings()
 
+    async def delete_settings(self, user_id: int) -> None:
+        await self.db.settings.delete_one({"user_id": user_id})
+
 
 def get_settings_service(
     db: AgnosticDatabase[Any] = Depends(get_database),

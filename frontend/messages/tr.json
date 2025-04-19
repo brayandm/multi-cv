@@ -56,7 +56,9 @@
       "upgrade_plan": "Planınızı yükseltin",
       "payment_redirecting": "Ödeme sayfasına yönlendiriliyor...",
       "analizing_plan": "Planınızı analiz ediyoruz...",
-      "target_language": "Hedef dil"
+      "target_language": "Hedef dil",
+      "delete_account": "Hesabı sil",
+      "delete_account_description": "Hesabınızı silmek istediğinizden emin misiniz? Bu işlem geri alınamaz."
     },
     "buttons": {
       "continue": "Devam Et",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Giriş başarısız",
+      "logout": "Çıkış başarısız oldu",
       "login_description": "E-posta veya şifre yanlış.",
       "register": "Kayıt başarısız",
       "register_description": "E-posta zaten kullanılıyor.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Hesap Askıya Alındı",
         "description": "Hesabınız askıya alındı. Daha fazla bilgi için lütfen destekle iletişime geçin."
+      },
+      "deletion": {
+        "title": "Hesap Silme",
+        "description": "Hesabınızı silmek üzeresiniz. Bu işlem kalıcıdır ve tüm kişisel verilerinizi sistemimizden kaldıracaktır."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Hesap ayarlarınızı değiştirin",
-      "password": "Şifre ayarları"
+      "password": "Şifre ayarları",
+      "delete_account": "Hesabı sil"
     },
     "welcome": {
       "title": "<appName></appName>'ya Hoş Geldiniz",

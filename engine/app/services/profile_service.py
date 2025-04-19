@@ -88,6 +88,12 @@ class ProfileService:
                 )
                 break
 
+    async def delete_profile(self, user_id: int) -> None:
+        await self.db.profiles.delete_one({"user_id": user_id})
+
+    async def delete_moderated_messages(self, user_id: int) -> None:
+        await self.db.moderated_messages.delete_many({"user_id": user_id})
+
 
 def get_profile_service(
     db: AgnosticDatabase[Any] = Depends(get_database),

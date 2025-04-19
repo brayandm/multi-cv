@@ -56,7 +56,9 @@
       "upgrade_plan": "Tingkatkan rencana Anda",
       "payment_redirecting": "Mengalihkan ke pembayaran...",
       "analizing_plan": "Menganalisis rencana Anda...",
-      "target_language": "Bahasa target"
+      "target_language": "Bahasa target",
+      "delete_account": "Hapus akun",
+      "delete_account_description": "Apakah Anda yakin ingin menghapus akun Anda? Tindakan ini tidak dapat dibatalkan."
     },
     "buttons": {
       "continue": "Lanjutkan",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Masuk gagal",
+      "logout": "Gagal keluar",
       "login_description": "Email atau kata sandi salah.",
       "register": "Pendaftaran gagal",
       "register_description": "Email sudah digunakan.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Akun Ditangguhkan",
         "description": "Akun Anda telah ditangguhkan. Silakan hubungi dukungan untuk informasi lebih lanjut."
+      },
+      "deletion": {
+        "title": "Penghapusan Akun",
+        "description": "Anda akan menghapus akun Anda. Tindakan ini bersifat permanen dan akan menghapus semua data pribadi Anda dari sistem kami."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Ubah pengaturan akun Anda",
-      "password": "Pengaturan kata sandi"
+      "password": "Pengaturan kata sandi",
+      "delete_account": "Hapus akun"
     },
     "welcome": {
       "title": "Selamat datang di <appName></appName>",

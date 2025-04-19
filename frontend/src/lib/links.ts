@@ -35,3 +35,4 @@ export const checkoutSessionApiLink = "/checkout-session";
 export const storeSettingsEngineLink = "/settings";
 export const getSettingsEngineLink = "/settings";
 export const moderationEngineLink = "/moderation";
+export const userDeleteApiLink = "/user/delete";

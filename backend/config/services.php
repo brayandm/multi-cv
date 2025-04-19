@@ -45,4 +45,8 @@ return [
             'tolerance' => env('STRIPE_WEBHOOK_TOLERANCE', 300),
         ],
     ],
+
+    'engine' => [
+        'api' => env('ENGINE_API_URL', 'http://engine:90/api/v1'),
+    ],
 ];

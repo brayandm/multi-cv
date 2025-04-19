@@ -56,7 +56,9 @@
       "upgrade_plan": "プランをアップグレード",
       "payment_redirecting": "支払いにリダイレクト中...",
       "analizing_plan": "プランを分析中...",
-      "target_language": "ターゲット言語"
+      "target_language": "ターゲット言語",
+      "delete_account": "アカウントを削除",
+      "delete_account_description": "本当にアカウントを削除してもよろしいですか？この操作は元に戻せません。"
     },
     "buttons": {
       "continue": "続ける",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "ログインに失敗しました",
+      "logout": "ログアウトに失敗しました",
       "login_description": "メールアドレスまたはパスワードが正しくありません。",
       "register": "登録に失敗しました",
       "register_description": "そのメールアドレスはすでに使用されています。",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "アカウントが停止されました",
         "description": "あなたのアカウントは停止されました。詳細についてはサポートにお問い合わせください。"
+      },
+      "deletion": {
+        "title": "アカウント削除",
+        "description": "あなたはアカウントを削除しようとしています。この操作は永久的であり、あなたの個人データはすべてシステムから削除されます。"
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "アカウント設定を変更",
-      "password": "パスワード設定"
+      "password": "パスワード設定",
+      "delete_account": "アカウントを削除"
     },
     "welcome": {
       "title": "<appName></appName>へようこそ",

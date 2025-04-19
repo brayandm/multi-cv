@@ -1,15 +1,15 @@
-import SuspendedAccountComponent from "@/components/SuspendedAccountComponent";
+import AccountSuspendedComponent from "@/components/AccountSuspendedComponent";
 import { NavbarWrapper, SpacerDefault } from "@/app/main.styles";
 import Navbar from "@/shared/components/Navbar";
 
-export default function SuspendedAccount() {
+export default function AccountSuspended() {
   return (
     <>
       <NavbarWrapper>
-        <Navbar onlyLogout />
+        <Navbar deleteAccount onlyLogout />
       </NavbarWrapper>
       <SpacerDefault />
-      <SuspendedAccountComponent />
+      <AccountSuspendedComponent />
     </>
   );
 }

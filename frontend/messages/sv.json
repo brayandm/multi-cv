@@ -56,7 +56,9 @@
       "upgrade_plan": "Uppgradera din plan",
       "payment_redirecting": "Omdirigerar till betalning...",
       "analizing_plan": "Analyserar din plan...",
-      "target_language": "Målspråk"
+      "target_language": "Målspråk",
+      "delete_account": "Ta bort konto",
+      "delete_account_description": "Är du säker på att du vill ta bort ditt konto? Denna åtgärd kan inte ångras."
     },
     "buttons": {
       "continue": "Fortsätt",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Inloggning misslyckades",
+      "logout": "Utloggning misslyckades",
       "login_description": "E-postadressen eller lösenordet är felaktigt.",
       "register": "Registrering misslyckades",
       "register_description": "E-postadressen används redan.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Kontot är avstängt",
         "description": "Ditt konto har blivit avstängt. Vänligen kontakta supporten för mer information."
+      },
+      "deletion": {
+        "title": "Kontoborttagning",
+        "description": "Du är på väg att ta bort ditt konto. Denna åtgärd är permanent och kommer att ta bort all din personliga data från vårt system."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Ändra dina kontoinställningar",
-      "password": "Lösenordsinställningar"
+      "password": "Lösenordsinställningar",
+      "delete_account": "Ta bort konto"
     },
     "welcome": {
       "title": "Välkommen till <appName></appName>",

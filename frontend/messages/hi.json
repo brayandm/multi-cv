@@ -56,7 +56,9 @@
       "upgrade_plan": "Apne yojanā ko sudhāre",
       "payment_redirecting": "Bhugtaan ki or redirect kiya ja raha hai...",
       "analizing_plan": "Aapke yojana ka vishleshan kiya ja raha hai...",
-      "target_language": "Lakshya bhasha"
+      "target_language": "Lakshya bhasha",
+      "delete_account": "Account mitaen",
+      "delete_account_description": "Kya aap sach mein apna account mitaana chahte hain? Yeh kadam wapas nahi liya ja sakta."
     },
     "buttons": {
       "continue": "Aage badhein",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Login mein asafalta",
+      "logout": "Logout mein asafalta",
       "login_description": "Email ya password galat hai.",
       "register": "Registration mein asafalta",
       "register_description": "Email pehle se istemal ho rahi hai.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
-        "title": "Khata Sthagit",
-        "description": "Aapka khata sthagit kar diya gaya hai. Kripya adhik jankari ke liye samarthan se sampark karein."
+    "account": {
+      "suspended": {
+        "title": "Account Sthagit",
+        "description": "Aapka account sthagit kar diya gaya hai. Kripya adhik jankari ke liye samarthan se sampark karein."
+      },
+      "deletion": {
+        "title": "Account Mitaana",
+        "description": "Aap apna account mitaane ja rahe hain. Yeh karyavahi sthayi hai aur aapke sabhi vyaktigat data ko hamare pranali se hata degi."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Apne account settings badlein",
-      "password": "Password settings"
+      "password": "Password settings",
+      "delete_account": "Khata mitaen"
     },
     "welcome": {
       "title": "<appName></appName> mein aapka swagat hai",

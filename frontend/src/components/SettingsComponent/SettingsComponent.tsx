@@ -80,29 +80,41 @@ export default function SettingsComponent() {
                 <p>{t("pages.settings.subtitle")}</p>
               </div>
             </CardHeader>
-            <CardBody className="flex flex-col gap-6">
+            <CardBody className="flex flex-col justify-between">
               {userData ? (
                 <>
-                  <div className="flex gap-4">
-                    <Switch
-                      isSelected={accepted}
-                      onValueChange={changeTalentPool}
-                      aria-label="Accept switch"
-                    />
-                    <span className="text-xs font-medium text-gray-600 dark:text-gray-300 max-w-[30ch]">
-                      {t("common.legal.talent_pool")}
-                    </span>
-                  </div>
+                  <div className="flex flex-col gap-6">
+                    <div className="flex gap-4">
+                      <Switch
+                        isSelected={accepted}
+                        onValueChange={changeTalentPool}
+                        aria-label="Accept switch"
+                      />
+                      <span className="text-xs font-medium text-gray-600 dark:text-gray-300 max-w-[30ch]">
+                        {t("common.legal.talent_pool")}
+                      </span>
+                    </div>
 
+                    <div className="flex flex-col gap-2">
+                      <Button
+                        color="primary"
+                        variant="bordered"
+                        onPress={() => {
+                          router.push("/password");
+                        }}
+                      >
+                        {t("pages.settings.password")}
+                      </Button>
+                    </div>
+                  </div>
                   <div className="flex flex-col gap-2">
                     <Button
-                      color="primary"
-                      variant="bordered"
+                      color="danger"
                       onPress={() => {
-                        router.push("/password");
+                        router.push("/account/deletion");
                       }}
                     >
-                      {t("pages.settings.password")}
+                      {t("pages.settings.delete_account")}
                     </Button>
                   </div>
                 </>

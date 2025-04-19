@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\CookiesHelper;
 use App\Mail\UserSuspended;
 use App\Models\User;
+use App\Services\EngineService;
 use App\Services\PaymentPlanService;
 use App\Services\UserService;
 use Carbon\Carbon;
@@ -19,9 +20,12 @@ class AuthController extends Controller
 {
     private UserService $userService;
 
-    public function __construct(UserService $userService)
+    private EngineService $engineService;
+
+    public function __construct(UserService $userService, EngineService $engineService)
     {
         $this->userService = $userService;
+        $this->engineService = $engineService;
     }
 
     private function validateCorrectRegisterUser(Request $request)
@@ -378,6 +382,7 @@ class AuthController extends Controller
         $extension = $request->file('photo')->getClientOriginalExtension();
 
         $user->addMediaFromRequest('photo')
+            ->usingName('profile_picture')
             ->usingFileName("profile_picture.$extension")
             ->toMediaCollection('profile_picture');
 
@@ -485,5 +490,30 @@ class AuthController extends Controller
         if (config('app.environment') == 'production') {
             Mail::to(config('app.notification_mail'))->queue(new UserSuspended($user));
         }
+    }
+
+    public function deleteAccount(Request $request)
+    {
+        $user = $request->user();
+
+        $this->engineService->deleteAccount($user->id);
+
+        $user->clearMediaCollection('profile_picture');
+
+        $user->first_name = '';
+        $user->last_name = '';
+        $user->email_verified_at = null;
+        $user->password = null;
+        $user->is_in_talent_pool = null;
+        $user->accepted_terms_at = null;
+        $user->notified_terms_at = null;
+        $user->locale = 'en';
+        $user->app_theme = 'light';
+        $user->is_first_login = true;
+        $user->save();
+
+        $user->delete();
+
+        $this->userService->deleteAllUserTokens($user);
     }
 }

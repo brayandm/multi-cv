@@ -56,7 +56,9 @@
       "upgrade_plan": "Atualize seu plano",
       "payment_redirecting": "Redirecionando para o pagamento...",
       "analizing_plan": "Analisando seu plano...",
-      "target_language": "Idioma alvo"
+      "target_language": "Idioma alvo",
+      "delete_account": "Excluir conta",
+      "delete_account_description": "Você tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita."
     },
     "buttons": {
       "continue": "Continuar",
@@ -85,6 +87,7 @@
     },
     "errors": {
       "login": "Falha ao entrar",
+      "logout": "Falha ao sair",
       "login_description": "O e-mail ou a senha estão incorretos.",
       "register": "Falha ao registrar",
       "register_description": "O e-mail já está em uso.",
@@ -217,10 +220,14 @@
     }
   },
   "pages": {
-    "suspended": {
-      "account": {
+    "account": {
+      "suspended": {
         "title": "Conta Suspensa",
         "description": "Sua conta foi suspensa. Por favor, entre em contato com o suporte para mais informações."
+      },
+      "deletion": {
+        "title": "Exclusão de Conta",
+        "description": "Você está prestes a excluir sua conta. Esta ação é permanente e removerá todos os seus dados pessoais do nosso sistema."
       }
     },
     "email_verification": {
@@ -253,7 +260,8 @@
     },
     "settings": {
       "subtitle": "Altere as configurações da sua conta",
-      "password": "Configurações de senha"
+      "password": "Configurações de senha",
+      "delete_account": "Excluir conta"
     },
     "welcome": {
       "title": "Bem-vindo ao <appName></appName>",
