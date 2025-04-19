@@ -45,7 +45,7 @@ from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
-from app.framework.types.request import DocumentDownloadRequest, DeleteRequest
+from app.framework.types.request import DeleteRequest, DocumentDownloadRequest
 from app.services.chat_engine import ChatEngineService
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service

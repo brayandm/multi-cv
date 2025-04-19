@@ -70,12 +70,12 @@ class DocumentService:
             raise e
 
     async def get_all_documents(self, user_id: int) -> list[Document]:
-        documents = (
+        documents_data = (
             await self.db["documents"]
             .find({"user_id": user_id})
             .to_list(length=None)
         )
-        return documents
+        return [Document(**doc) for doc in documents_data]
 
     async def get_document_file(
         self, user_id: int, document_id: str
