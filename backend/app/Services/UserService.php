@@ -12,14 +12,33 @@ class UserService
 {
     public function createUser($data)
     {
-        $user = User::create([
-            'first_name' => $data->first_name,
-            'last_name' => $data->last_name,
-            'email' => $data->email,
-            'password' => Hash::make($data->password),
-            'is_in_talent_pool' => (bool) $data->talent_pool,
-            'accepted_terms_at' => Carbon::now(),
-        ]);
+        $userDeleted = User::onlyTrashed()
+            ->where('email', $data->email)
+            ->first();
+
+        if ($userDeleted) {
+            $user = $userDeleted;
+
+            $user->restore();
+
+            $user->update([
+                'first_name' => $data->first_name,
+                'last_name' => $data->last_name,
+                'password' => Hash::make($data->password),
+                'is_in_talent_pool' => (bool) $data->talent_pool,
+                'accepted_terms_at' => Carbon::now(),
+            ]);
+        }
+        else {
+            $user = User::create([
+                'first_name' => $data->first_name,
+                'last_name' => $data->last_name,
+                'email' => $data->email,
+                'password' => Hash::make($data->password),
+                'is_in_talent_pool' => (bool) $data->talent_pool,
+                'accepted_terms_at' => Carbon::now(),
+            ]);
+        }
 
         event(new Registered($user));
 

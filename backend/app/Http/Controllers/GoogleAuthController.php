@@ -77,8 +77,7 @@ class GoogleAuthController extends Controller
             ->first();
 
         if (! $user) {
-            if($userDeleted)
-            {
+            if ($userDeleted) {
                 $user = $userDeleted;
 
                 $user->restore();
@@ -88,10 +87,8 @@ class GoogleAuthController extends Controller
                     'last_name' => $userInfo['family_name'] ?? '',
                     'email_verified_at' => now(),
                 ]);
-            }
-            else
-            {
-                $user = User::Create([
+            } else {
+                $user = User::create([
                     'email' => $userInfo['email'],
                     'first_name' => $userInfo['given_name'] ?? '',
                     'last_name' => $userInfo['family_name'] ?? '',
