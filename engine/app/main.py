@@ -140,8 +140,6 @@ async def auto_fill_cv_from_document(
 
         profile = await AutoFillProfilePipeline().run(text)
 
-        logger.info(f"Extracted profile: {profile}")
-
         await profile_service.sync_profile(get_user_id(), profile)
 
         commit_action()
