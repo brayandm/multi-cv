@@ -57,7 +57,9 @@ const ProfessionalLinks: React.FC = () => {
   function updateProfessionalLinks(newSelectedProfessionalLinks: string[]) {
     const updatedProfessionalLinks = newSelectedProfessionalLinks.map(
       (social) => {
-        const found = professionalLinksList.find((s) => s.name === social);
+        const found = professionalLinksList.find(
+          (s) => s.name.toLowerCase() === social.toLowerCase()
+        );
         return found || { name: social, link: "" };
       }
     );
