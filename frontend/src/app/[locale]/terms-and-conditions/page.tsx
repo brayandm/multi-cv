@@ -36,7 +36,7 @@ export default function TermsAndConditionsPage() {
     >
       <h1 className="text-3xl font-bold">Terms and Conditions</h1>
       <p>
-        <strong>Last updated: April 16, 2025</strong>
+        <strong>Last updated: April 19, 2025</strong>
       </p>
 
       <h2>Who We Are</h2>

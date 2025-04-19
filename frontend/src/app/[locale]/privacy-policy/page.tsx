@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
     >
       <h1 className="text-3xl font-bold">Privacy Policy</h1>
       <p>
-        <strong>Last updated: April 16, 2025</strong>
+        <strong>Last updated: April 19, 2025</strong>
       </p>
       <p>
         This Privacy Policy describes Our policies and procedures on the
@@ -271,8 +271,22 @@ export default function PrivacyPolicyPage() {
 
       <h2>Data Retention</h2>
       <p>
-        We retain Your Personal Data only as long as necessary. We also retain
-        data for legal compliance.
+        We retain Your Personal Data only as long as necessary to fulfill the
+        purposes outlined in this Privacy Policy. This includes fulfilling
+        contractual and legal obligations, improving the Service, and ensuring
+        fair use.
+      </p>
+      <p>
+        Specifically, we may retain email addresses for up to{" "}
+        <strong>12 months</strong> after an account is deleted in order to
+        prevent abuse of our free-tier offering (e.g., by repeatedly creating
+        new accounts to bypass limitations). This data is stored securely and
+        used exclusively for this purpose.
+      </p>
+      <p>
+        This processing is based on our legitimate interest in protecting the
+        integrity of the platform and ensuring fair usage. After this period,
+        the email addresses are permanently deleted or anonymized.
       </p>
 
       <h2>Data Security</h2>
