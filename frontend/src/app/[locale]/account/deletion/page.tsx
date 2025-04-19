@@ -6,7 +6,7 @@ export default function AccountDeletion() {
   return (
     <>
       <NavbarWrapper>
-        <Navbar deleteAccount onlyLogout />
+        <Navbar onlyLogout />
       </NavbarWrapper>
       <SpacerDefault />
       <AccountDeletionComponent />
