@@ -10,9 +10,8 @@ import {
   ModalBody,
   ModalFooter,
   useDisclosure,
-  addToast,
 } from "@heroui/react";
-import { logoutApi, userDeleteApi } from "@/lib/backendService";
+import { userDeleteApi } from "@/lib/backendService";
 import { useState } from "react";
 import { useUserStatus } from "@/contexts/UserStatusContext";
 import { useRouter } from "next/navigation";
@@ -27,26 +26,6 @@ export default function AccountDeletionComponent({}) {
   const { refreshUserStatus } = useUserStatus();
 
   const router = useRouter();
-
-  const logout = async () => {
-    try {
-      const logoutResponse = await logoutApi();
-
-      await refreshUserStatus();
-
-      if (logoutResponse.status === 200) {
-        router.push("/");
-      }
-    } catch (error) {
-      console.log(error);
-      addToast({
-        title: t("common.errors.logout"),
-        description: t("common.errors.server"),
-        color: "danger",
-        timeout: 5000,
-      });
-    }
-  };
 
   return (
     <div className="flex flex-col gap-2 text-center w-[250px] mx-auto mt-10">
@@ -88,8 +67,9 @@ export default function AccountDeletionComponent({}) {
                   onPress={async () => {
                     setIsDeleting(true);
                     await userDeleteApi();
+                    await refreshUserStatus();
                     setIsDeleting(false);
-                    logout();
+                    router.push("/");
                   }}
                 >
                   {t("pages.settings.delete_account")}
