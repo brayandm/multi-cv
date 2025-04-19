@@ -509,7 +509,7 @@ async def get_settings(
 
 @router.post("/webhook")
 @commit_action_after()
-@validate_api_token()
+@validate_api_token(check_action=True)
 async def webhook(payload: WebhookPayload) -> Dict[str, str]:
     action = payload.action
     action_id = payload.action_id
@@ -523,6 +523,29 @@ async def webhook(payload: WebhookPayload) -> Dict[str, str]:
     )
 
     return {"message": "Webhook processed successfully."}
+
+
+@router.post("/profile/delete")
+@validate_api_token()
+async def delete_profile(
+    profile_service: ProfileService = Depends(get_profile_service),
+    settings_service: SettingsService = Depends(get_settings_service),
+    document_service: DocumentService = Depends(get_document_service),
+) -> Response:
+    user_id = get_user_id()
+
+    await profile_service.delete_profile(user_id)
+
+    await profile_service.delete_moderated_messages(user_id)
+
+    await settings_service.delete_settings(user_id)
+
+    await document_service.delete_all_documents(user_id)
+
+    return JSONResponse(
+        content={"message": "Profile deleted successfully."},
+        status_code=200,
+    )
 
 
 app.include_router(router)

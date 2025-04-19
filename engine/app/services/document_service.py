@@ -99,6 +99,34 @@ class DocumentService:
 
         return filename, file
 
+    async def delete_document(self, user_id: int, document_id: str) -> None:
+        document = await self.db["documents"].find_one(
+            {"user_id": user_id, "document_id": document_id}
+        )
+        if not document:
+            raise ValueError("Document not found")
+
+        fs = FilesystemFacade.get_filesystem()
+        dest_folder = f"/documents/cv/{user_id}/{document_id}/"
+
+        if fs.exists(dest_folder):
+            fs.removetree(dest_folder)
+
+        await self.db["documents"].delete_one(
+            {"user_id": user_id, "document_id": document_id}
+        )
+
+    async def delete_all_documents(self, user_id: int) -> None:
+        documents = await self.get_all_documents(user_id)
+
+        for document in documents:
+            try:
+                await self.delete_document(
+                    user_id=user_id, document_id=document.document_id
+                )
+            except Exception as e:
+                logger.info(f"Error deleting document: {e}")
+
     async def process_cv(
         self, profile: Profile, cv: Cv, cv_template: CvTemplate
     ) -> Tuple[str, bytes]:
