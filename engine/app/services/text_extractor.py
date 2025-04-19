@@ -1,12 +1,11 @@
 import fitz  # type: ignore
 from pdf2image import convert_from_bytes
+from PIL import Image
 
 from app.services.chat_engine import ChatEngineService
 from app.utils.pydantic_custom_types import (
     MAX_PDF_PAGES,
 )
-
-from PIL import Image
 
 
 class InvalidPDFError(Exception):
