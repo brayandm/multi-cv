@@ -34,6 +34,7 @@ class AutoFillProfileAgent(Agent):
         "Portfolio"
         - Dont fill is_present or hasnt_expiration_date fields if the
         dates are not provided.
+        - If there are some IDs fill them with a random UUID.
 
         **Input profile data (text):**
         {text}

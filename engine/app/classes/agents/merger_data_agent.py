@@ -17,6 +17,8 @@ class MergerDataAgent(Agent):
         they were extracted from different sources. Your goal is to organize
         the information in just one structured JSON.
 
+        If there are some IDs fill them with a random UUID.
+
         **Input profile data (text1):**
         {text1}
 
