@@ -121,13 +121,17 @@ export function extractDifferences<T extends JSONObject>(
           ])
         );
 
-        const diffArray = (localValue as JSONObject[]).filter((localItem) => {
-          const id = String(localItem["id"]);
-          const remoteItem = remoteMap.get(id);
-          if (!remoteItem) return true;
-          const nestedDiff = extractDifferences(localItem, remoteItem);
-          return Object.keys(nestedDiff).length > 0;
-        });
+        const diffArray = (localValue as JSONObject[])
+          .map((localItem) => {
+            const id = String(localItem["id"]);
+            const remoteItem = remoteMap.get(id);
+            if (!remoteItem) return localItem;
+            const nestedDiff = extractDifferences(localItem, remoteItem);
+            return Object.keys(nestedDiff).length > 0
+              ? { id, ...nestedDiff }
+              : null;
+          })
+          .filter((item): item is JSONObject => item !== null);
 
         if (diffArray.length > 0) {
           result[key] = diffArray as T[typeof key];
