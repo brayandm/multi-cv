@@ -63,6 +63,7 @@ const ProfilePhotoUploader = ({
     } catch (err) {
       console.error("Compression error:", err);
       setError(t("common.errors.compression"));
+      if (fileInputRef.current) fileInputRef.current.value = "";
     }
 
     setOnSubmitting(false);
