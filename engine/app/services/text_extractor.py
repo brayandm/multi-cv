@@ -31,7 +31,7 @@ class TextExtractor:
             "You are an expert in extracting text from images, "
             "specifically from PDF files that are CVs. So please "
             "extract the CV data from the images and return it in a"
-            "structured format."
+            "structured json format."
         )
 
         chat_service = ChatEngineService()
