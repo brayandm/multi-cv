@@ -17,7 +17,10 @@ class MergerDataAgent(Agent):
         they were extracted from different sources. Your goal is to organize
         the information in just one structured JSON.
 
-        If there are some IDs fill them with a random UUID.
+        **Requirements:**
+        - If there are some IDs fill them with a random UUID.
+        - If you see any date with only the year, just keep the year without
+          the month.
 
         **Input profile data (text1):**
         {text1}

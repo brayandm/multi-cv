@@ -30,12 +30,12 @@ class TextExtractor:
 
         images = convert_from_bytes(self.file_bytes, dpi=100)
 
-        prompt = (
-            "You are an expert in extracting text from images, "
-            "specifically from PDF files that are CVs. So please "
-            "extract the CV data from the images and return it in a"
-            "structured json format."
-        )
+        prompt = """
+            You are an expert in extracting text from images,
+            specifically from PDF files that are CVs. So please
+            extract the CV data from the images and return it in a
+            structured json format.
+        """
 
         if len(images) > MAX_PDF_PAGES:
             images = images[:MAX_PDF_PAGES]
