@@ -293,6 +293,20 @@
                 "placeholder": "Incolla qui la descrizione dell'offerta di lavoro"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Analizzando le informazioni personali...",
+              "2": "Elaborando il prompt personalizzato...",
+              "3": "Controllando il contenuto...",
+              "4": "Analizzando le esperienze...",
+              "5": "Analizzando le competenze...",
+              "6": "Generando il riepilogo...",
+              "7": "Generando le esperienze...",
+              "8": "Costruendo il CV...",
+              "9": "Rendering PDF...",
+              "10": "Completando..."
+            }
           }
         },
         "applications": {

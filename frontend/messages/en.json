@@ -293,6 +293,20 @@
                 "placeholder": "Paste the job post description here"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Analyzing personal info...",
+              "2": "Processing custom prompt...",
+              "3": "Checking content...",
+              "4": "Analyzing experiences...",
+              "5": "Analyzing skills...",
+              "6": "Generating summary...",
+              "7": "Generating experiences...",
+              "8": "Building CV...",
+              "9": "Rendering PDF...",
+              "10": "Finishing up..."
+            }
           }
         },
         "applications": {

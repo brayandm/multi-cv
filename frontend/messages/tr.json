@@ -293,6 +293,20 @@
                 "placeholder": "İş ilanı açıklamasını buraya yapıştırın"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Kişisel bilgileri analiz ediliyor...",
+              "2": "Özel istem işleniyor...",
+              "3": "İçerik kontrol ediliyor...",
+              "4": "Deneyimler analiz ediliyor...",
+              "5": "Beceriler analiz ediliyor...",
+              "6": "Özet oluşturuluyor...",
+              "7": "Deneyimler oluşturuluyor...",
+              "8": "CV oluşturuluyor...",
+              "9": "PDF oluşturuluyor...",
+              "10": "Tamamlanıyor..."
+            }
           }
         },
         "applications": {

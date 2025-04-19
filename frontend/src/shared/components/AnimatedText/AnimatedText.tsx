@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 interface IAnimatedTextProps {
   descriptions: string[];
   isCyclic?: boolean;
+  intervalTime?: number;
 }
 
 export default function AnimatedText({
   descriptions,
   isCyclic = true,
+  intervalTime = 4000,
 }: IAnimatedTextProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
@@ -26,10 +28,10 @@ export default function AnimatedText({
       );
 
       setTimeout(() => setPrevIndex(null), 500);
-    }, 4000);
+    }, intervalTime);
 
     return () => clearInterval(interval);
-  }, [currentIndex, isCyclic, descriptions.length]);
+  }, [currentIndex, isCyclic, descriptions.length, intervalTime]);
 
   return (
     <div className="relative h-6 w-full overflow-hidden text-center">

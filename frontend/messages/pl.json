@@ -293,6 +293,20 @@
                 "placeholder": "Wklej tutaj opis oferty pracy"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Analizowanie informacji osobistych...",
+              "2": "Przetwarzanie niestandardowego polecenia...",
+              "3": "Sprawdzanie treści...",
+              "4": "Analizowanie doświadczeń...",
+              "5": "Analizowanie umiejętności...",
+              "6": "Generowanie podsumowania...",
+              "7": "Generowanie doświadczeń...",
+              "8": "Tworzenie CV...",
+              "9": "Renderowanie PDF...",
+              "10": "Kończenie..."
+            }
           }
         },
         "applications": {

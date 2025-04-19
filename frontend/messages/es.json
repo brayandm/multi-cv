@@ -293,6 +293,20 @@
                 "placeholder": "Pega la descripción de la oferta de trabajo aquí"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Analizando información personal...",
+              "2": "Procesando solicitud personalizada...",
+              "3": "Verificando contenido...",
+              "4": "Analizando experiencias...",
+              "5": "Analizando habilidades...",
+              "6": "Generando resumen...",
+              "7": "Generando experiencias...",
+              "8": "Construyendo CV...",
+              "9": "Renderizando PDF...",
+              "10": "Terminando..."
+            }
           }
         },
         "applications": {

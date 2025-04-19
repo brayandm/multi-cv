@@ -293,6 +293,20 @@
                 "placeholder": "Yahan naukri ki vigyapan varnan chipkayein"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Vyaktigat jankari ka vishleshan kiya ja raha hai...",
+              "2": "Kustom prompt ka prakriya kiya ja raha hai...",
+              "3": "Samagri ka jaanch kiya ja raha hai...",
+              "4": "Anubhav ka vishleshan kiya ja raha hai...",
+              "5": "Kaushalon ka vishleshan kiya ja raha hai...",
+              "6": "Saar likha ja raha hai...",
+              "7": "Anubhav tayar kiya ja raha hai...",
+              "8": "CV bana rahe hain...",
+              "9": "PDF ka rendering kiya ja raha hai...",
+              "10": "Antim tayyari ki ja rahi hai..."
+            }
           }
         },
         "applications": {

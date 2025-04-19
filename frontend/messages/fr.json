@@ -293,6 +293,20 @@
                 "placeholder": "Collez la description de l'offre d'emploi ici"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Analyse des informations personnelles...",
+              "2": "Traitement de l'invite personnalisée...",
+              "3": "Vérification du contenu...",
+              "4": "Analyse des expériences...",
+              "5": "Analyse des compétences...",
+              "6": "Génération du résumé...",
+              "7": "Génération des expériences...",
+              "8": "Création du CV...",
+              "9": "Rendu du PDF...",
+              "10": "Finalisation..."
+            }
           }
         },
         "applications": {

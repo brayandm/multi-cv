@@ -43,6 +43,7 @@ import {
 import { requiredValidator } from "@/lib/validator";
 import InputModalComponent from "@/shared/components/InputModalComponent";
 import { generalInputsStyles } from "@/lib/customStyles";
+import AnimatedText from "@/shared/components/AnimatedText";
 
 interface IGenerateDocumentComponentProps {
   type?: "simple" | "role" | "job";
@@ -441,9 +442,21 @@ export default function GenerateDocumentComponent({
               </ModalHeader>
               <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
                 <Spinner />
-                <p className="text-center text-sm text-gray-600 dark:text-gray-300">
-                  {t("common.texts.loading_generating_cv_description")}
-                </p>
+                <AnimatedText
+                  descriptions={[
+                    t("pages.home.tabs.builder.loading.descriptions.1"),
+                    t("pages.home.tabs.builder.loading.descriptions.2"),
+                    t("pages.home.tabs.builder.loading.descriptions.3"),
+                    t("pages.home.tabs.builder.loading.descriptions.4"),
+                    t("pages.home.tabs.builder.loading.descriptions.5"),
+                    t("pages.home.tabs.builder.loading.descriptions.6"),
+                    t("pages.home.tabs.builder.loading.descriptions.7"),
+                    t("pages.home.tabs.builder.loading.descriptions.8"),
+                    t("pages.home.tabs.builder.loading.descriptions.9"),
+                    t("pages.home.tabs.builder.loading.descriptions.10"),
+                  ]}
+                  isCyclic={false}
+                />
               </ModalBody>
             </>
           )}

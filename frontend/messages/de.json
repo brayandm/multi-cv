@@ -293,6 +293,20 @@
                 "placeholder": "Fügen Sie hier die Stellenangebotsbeschreibung ein"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Persönliche Informationen werden analysiert...",
+              "2": "Benutzerdefinierte Eingabe wird verarbeitet...",
+              "3": "Inhalt wird überprüft...",
+              "4": "Erfahrungen werden analysiert...",
+              "5": "Fähigkeiten werden analysiert...",
+              "6": "Zusammenfassung wird erstellt...",
+              "7": "Erfahrungen werden generiert...",
+              "8": "CV wird erstellt...",
+              "9": "PDF wird gerendert...",
+              "10": "Fertigstellen..."
+            }
           }
         },
         "applications": {

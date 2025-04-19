@@ -293,6 +293,20 @@
                 "placeholder": "Cole a descrição da vaga aqui"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Analisando informações pessoais...",
+              "2": "Processando prompt personalizado...",
+              "3": "Verificando conteúdo...",
+              "4": "Analisando experiências...",
+              "5": "Analisando habilidades...",
+              "6": "Gerando resumo...",
+              "7": "Gerando experiências...",
+              "8": "Construindo CV...",
+              "9": "Renderizando PDF...",
+              "10": "Finalizando..."
+            }
           }
         },
         "applications": {

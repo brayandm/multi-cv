@@ -293,6 +293,20 @@
                 "placeholder": "Dán mô tả bài đăng việc làm ở đây"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Đang phân tích thông tin cá nhân...",
+              "2": "Đang xử lý yêu cầu tùy chỉnh...",
+              "3": "Đang kiểm tra nội dung...",
+              "4": "Đang phân tích kinh nghiệm...",
+              "5": "Đang phân tích kỹ năng...",
+              "6": "Đang tạo tóm tắt...",
+              "7": "Đang tạo kinh nghiệm...",
+              "8": "Đang xây dựng CV...",
+              "9": "Đang xuất PDF...",
+              "10": "Đang hoàn tất..."
+            }
           }
         },
         "applications": {

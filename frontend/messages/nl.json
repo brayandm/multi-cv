@@ -293,6 +293,20 @@
                 "placeholder": "Plak hier de vacaturebeschrijving"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Persoonlijke informatie analyseren...",
+              "2": "Aangepaste prompt verwerken...",
+              "3": "Inhoud controleren...",
+              "4": "Ervaringen analyseren...",
+              "5": "Vaardigheden analyseren...",
+              "6": "Samenvatting genereren...",
+              "7": "Ervaringen genereren...",
+              "8": "CV opbouwen...",
+              "9": "PDF renderen...",
+              "10": "Afmaken..."
+            }
           }
         },
         "applications": {

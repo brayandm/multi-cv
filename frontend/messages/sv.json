@@ -293,6 +293,20 @@
                 "placeholder": "Klistra in jobbannonsbeskrivningen här"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Analyserar personlig information...",
+              "2": "Bearbetar anpassad prompt...",
+              "3": "Kontrollerar innehåll...",
+              "4": "Analyserar erfarenheter...",
+              "5": "Analyserar färdigheter...",
+              "6": "Genererar sammanfattning...",
+              "7": "Genererar erfarenheter...",
+              "8": "Bygger CV...",
+              "9": "Renderar PDF...",
+              "10": "Avslutar..."
+            }
           }
         },
         "applications": {

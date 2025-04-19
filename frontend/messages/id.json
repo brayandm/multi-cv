@@ -293,6 +293,20 @@
                 "placeholder": "Tempel deskripsi lowongan pekerjaan di sini"
               }
             }
+          },
+          "loading": {
+            "descriptions": {
+              "1": "Menganalisis informasi pribadi...",
+              "2": "Memproses prompt kustom...",
+              "3": "Memeriksa konten...",
+              "4": "Menganalisis pengalaman...",
+              "5": "Menganalisis keterampilan...",
+              "6": "Menghasilkan ringkasan...",
+              "7": "Menghasilkan pengalaman...",
+              "8": "Membangun CV...",
+              "9": "Merender PDF...",
+              "10": "Menyelesaikan..."
+            }
           }
         },
         "applications": {
