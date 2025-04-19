@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "ログインに失敗しました",
+      "logout": "ログアウトに失敗しました",
       "login_description": "メールアドレスまたはパスワードが正しくありません。",
       "register": "登録に失敗しました",
       "register_description": "そのメールアドレスはすでに使用されています。",

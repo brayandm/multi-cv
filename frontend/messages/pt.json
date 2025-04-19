@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Falha ao entrar",
+      "logout": "Falha ao sair",
       "login_description": "O e-mail ou a senha estão incorretos.",
       "register": "Falha ao registrar",
       "register_description": "O e-mail já está em uso.",

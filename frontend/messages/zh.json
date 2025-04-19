@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "登录失败",
+      "logout": "注销失败",
       "login_description": "电子邮件或密码不正确。",
       "register": "注册失败",
       "register_description": "该电子邮件已被使用。",

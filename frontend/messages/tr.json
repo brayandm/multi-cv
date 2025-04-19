@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Giriş başarısız",
+      "logout": "Çıkış başarısız oldu",
       "login_description": "E-posta veya şifre yanlış.",
       "register": "Kayıt başarısız",
       "register_description": "E-posta zaten kullanılıyor.",

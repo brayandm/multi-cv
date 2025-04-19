@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Masuk gagal",
+      "logout": "Gagal keluar",
       "login_description": "Email atau kata sandi salah.",
       "register": "Pendaftaran gagal",
       "register_description": "Email sudah digunakan.",

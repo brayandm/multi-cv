@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Inloggen mislukt",
+      "logout": "Uitloggen mislukt",
       "login_description": "Het e-mailadres of wachtwoord is onjuist.",
       "register": "Registratie mislukt",
       "register_description": "Het e-mailadres is al in gebruik.",

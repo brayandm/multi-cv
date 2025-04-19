@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Logowanie nie powiodło się",
+      "logout": "Wylogowanie nie powiodło się",
       "login_description": "Adres e-mail lub hasło jest nieprawidłowe.",
       "register": "Rejestracja nie powiodła się",
       "register_description": "Adres e-mail jest już zajęty.",

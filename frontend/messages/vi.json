@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Đăng nhập không thành công",
+      "logout": "Đăng xuất không thành công",
       "login_description": "Email hoặc mật khẩu không chính xác.",
       "register": "Đăng ký không thành công",
       "register_description": "Email đã được sử dụng.",

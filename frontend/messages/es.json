@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Error de inicio de sesión",
+      "logout": "Error al cerrar sesión",
       "login_description": "El correo o la contraseña son incorrectos.",
       "register": "Error de registro",
       "register_description": "El correo ya está en uso.",

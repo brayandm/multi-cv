@@ -489,6 +489,6 @@ class AuthController extends Controller
 
     public function deleteAccount(Request $request)
     {
-
+        sleep(2);
     }
 }

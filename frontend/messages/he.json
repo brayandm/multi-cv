@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "התחברות נכשלה",
+      "logout": "היציאה נכשלה",
       "login_description": "האימייל או הסיסמה אינם נכונים.",
       "register": "הרשמה נכשלה",
       "register_description": "האימייל כבר בשימוש.",

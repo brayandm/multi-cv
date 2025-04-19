@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Inloggning misslyckades",
+      "logout": "Utloggning misslyckades",
       "login_description": "E-postadressen eller lösenordet är felaktigt.",
       "register": "Registrering misslyckades",
       "register_description": "E-postadressen används redan.",

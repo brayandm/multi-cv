@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Login mein asafalta",
+      "logout": "Logout mein asafalta",
       "login_description": "Email ya password galat hai.",
       "register": "Registration mein asafalta",
       "register_description": "Email pehle se istemal ho rahi hai.",

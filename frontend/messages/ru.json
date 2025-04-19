@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Ошибка входа",
+      "logout": "Ошибка выхода",
       "login_description": "Email или пароль неверны.",
       "register": "Ошибка регистрации",
       "register_description": "Email уже используется.",

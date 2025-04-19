@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Anmeldung fehlgeschlagen",
+      "logout": "Abmeldung fehlgeschlagen",
       "login_description": "Die E-Mail oder das Passwort ist falsch.",
       "register": "Registrierung fehlgeschlagen",
       "register_description": "Die E-Mail wird bereits verwendet.",

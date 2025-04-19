@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Échec de la connexion",
+      "logout": "Échec de la déconnexion",
       "login_description": "L'email ou le mot de passe est incorrect.",
       "register": "Échec de l'inscription",
       "register_description": "L'email est déjà utilisé.",

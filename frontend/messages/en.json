@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Login failed",
+      "logout": "Logout failed",
       "login_description": "The email or password is incorrect.",
       "register": "Registration failed",
       "register_description": "The email is already in use.",

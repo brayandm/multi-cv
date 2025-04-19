@@ -87,6 +87,7 @@
     },
     "errors": {
       "login": "Accesso non riuscito",
+      "logout": "Logout non riuscito",
       "login_description": "L'email o la password sono errate.",
       "register": "Registrazione non riuscita",
       "register_description": "L'email è già in uso.",

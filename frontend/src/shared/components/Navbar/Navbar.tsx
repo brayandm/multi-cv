@@ -49,7 +49,7 @@ const NavbarItems: React.FC<ITopBarNavigationProps> = ({
     } catch (error) {
       console.log(error);
       addToast({
-        title: t("common.errors.settings"),
+        title: t("common.errors.logout"),
         description: t("common.errors.server"),
         color: "danger",
         timeout: 5000,
