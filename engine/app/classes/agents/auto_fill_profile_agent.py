@@ -11,7 +11,9 @@ class AutoFillProfileAgent(Agent):
 
     async def run(self, text: str) -> Profile:
 
-        profile_structure = get_schema(Profile)
+        profile_structure = get_schema(
+            Profile, exclude_keys=["notes", "general_notes", "moderation"]
+        )
 
         input_prompt = f"""
         You are an AI assistant whose task is to automatically generate
