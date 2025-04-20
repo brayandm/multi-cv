@@ -37,6 +37,7 @@ import {
   userDeleteApiLink,
   applicationEngineLink,
   applicationsEngineLink,
+  updateApplicationEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -508,4 +509,10 @@ export const applicationEngine = async (
   applicationId: string
 ): Promise<AxiosResponse<Application>> => {
   return await engine.get(`${applicationEngineLink}?id=${applicationId}`);
+};
+
+export const updateApplicationEngine = async (
+  application: Partial<Application>
+): Promise<AxiosResponse<MessageResponse>> => {
+  return await engine.put(updateApplicationEngineLink, application);
 };

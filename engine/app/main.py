@@ -360,6 +360,22 @@ async def get_application(
     return application
 
 
+@router.post("/application")
+@authenticate()
+async def update_application(
+    application: Application,
+    application_service: ApplicationService = Depends(get_application_service),
+) -> Response:
+
+    await application_service.update_application(
+        get_user_id(), application.application_id, application
+    )
+    return JSONResponse(
+        content={"message": "Application updated successfully."},
+        status_code=200,
+    )
+
+
 @router.post("/document/download")
 @authenticate()
 async def download_document(
@@ -594,6 +610,7 @@ async def delete_profile(
     profile_service: ProfileService = Depends(get_profile_service),
     settings_service: SettingsService = Depends(get_settings_service),
     document_service: DocumentService = Depends(get_document_service),
+    application_service: ApplicationService = Depends(get_application_service),
 ) -> Response:
     user_id = delete_request.user_id
 
@@ -604,6 +621,8 @@ async def delete_profile(
     await settings_service.delete_settings(user_id)
 
     await document_service.delete_all_documents(user_id)
+
+    await application_service.delete_applications(user_id)
 
     return JSONResponse(
         content={"message": "Profile deleted successfully."},

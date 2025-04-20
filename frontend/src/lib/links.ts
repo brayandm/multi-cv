@@ -38,3 +38,4 @@ export const moderationEngineLink = "/moderation";
 export const userDeleteApiLink = "/user/delete";
 export const applicationsEngineLink = "/applications";
 export const applicationEngineLink = "/application";
+export const updateApplicationEngineLink = "/application";
