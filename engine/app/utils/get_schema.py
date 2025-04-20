@@ -20,19 +20,36 @@ def get_schema(
     origin = get_origin(type_hint)
     args = get_args(type_hint)
 
+    is_optional = False
+
     if origin is Annotated:
         return get_schema(args[0], exclude_keys)
-    if origin is Union:
+
+    if origin is Union and type(None) in args:
+        is_optional = True
         non_none = [arg for arg in args if arg is not type(None)]
-        return get_schema(non_none[0], exclude_keys) if non_none else None
+        type_hint = non_none[0]
+        origin = get_origin(type_hint)
+        args = get_args(type_hint)
+
     if inspect.isclass(type_hint) and issubclass(type_hint, BaseModel):
-        return generate_structure(type_hint, exclude_keys)
-    if origin in {list, List}:
+        schema = generate_structure(type_hint, exclude_keys)
+    elif origin in {list, List}:
         inner = get_schema(args[0], exclude_keys) if args else "string"
-        return [inner]
-    if type_hint in {str, int, float, bool}:
-        return "string" if type_hint is str else type_hint.__name__
-    return "string"
+        schema = [inner]  # type: ignore
+    elif type_hint in {str, int, float, bool}:
+        schema = (
+            "string"
+            if type_hint is str
+            else type_hint.__name__  # type: ignore
+        )
+    else:
+        schema = "string"  # type: ignore
+
+    if is_optional:
+        return {"__optional__": True, "value": schema}
+
+    return schema
 
 
 def generate_structure(
