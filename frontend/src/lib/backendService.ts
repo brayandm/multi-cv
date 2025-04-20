@@ -55,6 +55,7 @@ import {
   GenerationInput,
   Settings,
   Application,
+  ApplicationResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -507,7 +508,7 @@ export const applicationsEngine = async (): Promise<
 };
 export const applicationEngine = async (
   applicationId: string
-): Promise<AxiosResponse<Application>> => {
+): Promise<AxiosResponse<ApplicationResponse>> => {
   return await engine.get(`${applicationEngineLink}?id=${applicationId}`);
 };
 

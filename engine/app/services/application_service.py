@@ -4,13 +4,17 @@ from typing import Any
 from fastapi import Depends
 from motor.core import AgnosticDatabase
 
-from app.classes.models import Application
+from app.classes.models import Application, Document
 from app.database.mongodb import get_database
+from app.services.document_service import DocumentService, get_document_service
 
 
 class ApplicationService:
-    def __init__(self, db: AgnosticDatabase[Any]):
+    def __init__(
+        self, db: AgnosticDatabase[Any], document_service: DocumentService
+    ):
         self.db = db
+        self.document_service = document_service
 
     async def store_application(
         self, user_id: int, application: Application
@@ -26,13 +30,19 @@ class ApplicationService:
 
     async def get_application(
         self, user_id: int, application_id: str
-    ) -> Application:
+    ) -> tuple[Application, list[Document]]:
         application = await self.db.applications.find_one(
             {"user_id": user_id, "application_id": application_id}
         )
         if not application:
             raise ValueError("Application not found")
-        return Application(**application)
+
+        documents = await self.document_service.get_application_documents(
+            user_id=user_id,
+            application_id=application_id,
+        )
+
+        return Application(**application), documents
 
     async def get_applications(self, user_id: int) -> list[Application]:
         applications = await self.db.applications.find(
@@ -62,5 +72,6 @@ class ApplicationService:
 
 def get_application_service(
     db: AgnosticDatabase[Any] = Depends(get_database),
+    document_service: DocumentService = Depends(get_document_service),
 ) -> ApplicationService:
-    return ApplicationService(db)
+    return ApplicationService(db, document_service)

@@ -159,6 +159,17 @@ class DocumentService:
 
         return (quoted_filename, pdf_bytes)
 
+    async def get_application_documents(
+        self, user_id: int, application_id: str
+    ) -> list[Document]:
+        documents = (
+            await self.db["documents"]
+            .find({"user_id": user_id, "application_id": application_id})
+            .to_list(length=None)
+        )
+
+        return [Document(**doc) for doc in documents]
+
 
 def get_document_service(
     db: AgnosticDatabase[Any] = Depends(get_database),

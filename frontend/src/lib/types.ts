@@ -82,6 +82,11 @@ export interface UserThemeResponse {
 export interface CheckoutSessionResponse {
   id: string;
 }
+
+export interface ApplicationResponse {
+  application: Application;
+  documents: Document[];
+}
 export interface Document {
   document_id: string;
   user_id: number;

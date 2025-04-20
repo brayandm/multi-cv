@@ -353,11 +353,20 @@ async def get_applications(
 async def get_application(
     application_id: str,
     application_service: ApplicationService = Depends(get_application_service),
-) -> Application:
-    application = await application_service.get_application(
+) -> Response:
+    application, documents = await application_service.get_application(
         get_user_id(), application_id
     )
-    return application
+    return JSONResponse(
+        content={
+            "application": application.model_dump(exclude_none=True),
+            "documents": [
+                document.model_dump(exclude_none=True)
+                for document in documents
+            ],
+        },
+        status_code=200,
+    )
 
 
 @router.post("/application")
