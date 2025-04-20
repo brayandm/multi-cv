@@ -20,6 +20,7 @@ from .settings import Settings
 from .text import Text
 from .traduction import Traduction
 from .webhook_payload import WebhookPayload
+from .application.application import Application
 
 __all__ = [
     "Profile",
@@ -49,4 +50,5 @@ __all__ = [
     "GenerationInput",
     "Settings",
     "Text",
+    "Application",
 ]
