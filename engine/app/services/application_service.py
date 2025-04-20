@@ -16,16 +16,11 @@ class ApplicationService:
         self, user_id: int, application: Application
     ) -> str:
         application_id = str(uuid.uuid4())
-        # Ensure the application is valid
         new_application = application.model_dump(exclude_none=True)
         new_application["user_id"] = user_id
         new_application["application_id"] = application_id
 
-        await self.db.applications.update_one(
-            {"user_id": user_id},
-            {"$set": new_application},
-            upsert=True,
-        )
+        await self.db.applications.insert_one(new_application)
 
         return application_id
 

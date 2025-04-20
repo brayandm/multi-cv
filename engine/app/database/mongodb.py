@@ -37,6 +37,8 @@ class MongoDBHandler:
 
 async def ensure_indexes(db: AgnosticDatabase[Any]) -> None:
     await db["actions_costs"].create_index("user_id")
+    await db["applications"].create_index("user_id")
+    await db["applications"].create_index("application_id")
     await db["documents"].create_index("document_id")
     await db["documents"].create_index("user_id")
     await db["moderated_messages"].create_index("user_id")
