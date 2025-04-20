@@ -2,7 +2,8 @@ from io import BytesIO
 from typing import Any, Dict, Optional
 from urllib.parse import quote
 
-from fastapi import APIRouter, Depends, FastAPI, File, UploadFile
+from fastapi import APIRouter, Depends, FastAPI, File, Query, UploadFile
+from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
 
@@ -351,20 +352,22 @@ async def get_applications(
 @router.get("/application")
 @authenticate()
 async def get_application(
-    application_id: str,
+    application_id: str = Query(...),
     application_service: ApplicationService = Depends(get_application_service),
 ) -> Response:
     application, documents = await application_service.get_application(
         get_user_id(), application_id
     )
     return JSONResponse(
-        content={
-            "application": application.model_dump(exclude_none=True),
-            "documents": [
-                document.model_dump(exclude_none=True)
-                for document in documents
-            ],
-        },
+        content=jsonable_encoder(
+            {
+                "application": application.model_dump(exclude_none=True),
+                "documents": [
+                    document.model_dump(exclude_none=True)
+                    for document in documents
+                ],
+            }
+        ),
         status_code=200,
     )
 

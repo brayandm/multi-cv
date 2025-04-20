@@ -108,7 +108,7 @@ export default function ApplicationsComponent() {
     <div className="max-w-3xl mx-auto px-4 py-10">
       {selectedApplication && (
         <FullApplicationModal
-          application={selectedApplication}
+          application_id={selectedApplication.application_id}
           isOpen={isOpen}
           onClose={onOpenChange}
           onStatusChange={handleStatusChange}
