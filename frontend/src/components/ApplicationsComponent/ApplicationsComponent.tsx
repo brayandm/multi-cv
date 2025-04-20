@@ -6,7 +6,7 @@ import { Select, SelectItem, Spinner, useDisclosure } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { FullApplicationModal } from "../FullApplicationComponent/FullApplicationComponent";
+import FullApplicationComponent from "../FullApplicationComponent";
 
 export const statusOptions = ["Applied", "Interview", "Offer", "Rejected"];
 
