@@ -4,6 +4,7 @@ from typing import (
     Annotated,
     Any,
     List,
+    Literal,
     Optional,
     Type,
     Union,
@@ -32,7 +33,10 @@ def get_schema(
         origin = get_origin(type_hint)
         args = get_args(type_hint)
 
-    if inspect.isclass(type_hint) and issubclass(type_hint, BaseModel):
+    if origin is Literal:
+        literal_values = " | ".join(str(x) for x in args)
+        schema = {"__literal__": True, "value": literal_values}
+    elif inspect.isclass(type_hint) and issubclass(type_hint, BaseModel):
         schema = generate_structure(type_hint, exclude_keys)
     elif origin in {list, List}:
         inner = get_schema(args[0], exclude_keys) if args else "string"
