@@ -93,11 +93,11 @@ export default function ApplicationsComponent() {
                             className={`w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-sm`}
                             style={{
                               backgroundColor: getPastelColor(
-                                application.company_name || "A"
+                                application.company_name || "?"
                               ),
                             }}
                           >
-                            {(application.company_name || "A")[0].toUpperCase()}
+                            {(application.company_name || "?")[0].toUpperCase()}
                           </div>
                         )}
 
