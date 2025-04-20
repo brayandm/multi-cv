@@ -49,4 +49,4 @@ class Application(BaseModel):
     salary: Optional[ForceShortStr] = None
     skills: Optional[List[str]] = None
 
-    user_comments: Optional[ForceShortStr] = None
+    user_comments: ForceShortStr
