@@ -168,7 +168,7 @@ const authRoutePatterns = [
   "/profile/*",
   "/register/*",
   "/settings/*",
-  "/suspended/*",
+  "/account/*",
   "/",
 ];
 
