@@ -38,7 +38,7 @@ interface FullApplicationModalProps {
   status: ApplicationStatusType;
 }
 
-export function FullApplicationComponent({
+export default function FullApplicationComponent({
   application_id,
   isOpen,
   onClose,
