@@ -92,6 +92,14 @@ export interface Document {
   type: "cv" | "cover_letter";
 }
 
+export type ApplicationStatusType =
+  | "Applied"
+  | "Interview"
+  | "Offer"
+  | "Rejected";
+
+export type ApplicationLocationType = "Remote" | "Hybrid" | "Onsite";
+
 export interface Application {
   application_id: string;
 
@@ -100,7 +108,7 @@ export interface Application {
   company_website?: string;
   company_logo_link?: string;
   job_post_link?: string;
-  location_type?: "Remote" | "Hybrid" | "Onsite";
+  location_type?: ApplicationLocationType;
   country_or_region?: string;
 
   job_summary?: string;
@@ -108,7 +116,7 @@ export interface Application {
   job_description_raw: string;
 
   application_date: string;
-  status: "Applied" | "Interview" | "Offer" | "Rejected";
+  status: ApplicationStatusType;
   contact_email?: string;
   recruiter_name?: string;
 

@@ -514,5 +514,5 @@ export const applicationEngine = async (
 export const updateApplicationEngine = async (
   application: Partial<Application>
 ): Promise<AxiosResponse<MessageResponse>> => {
-  return await engine.put(updateApplicationEngineLink, application);
+  return await engine.post(updateApplicationEngineLink, application);
 };

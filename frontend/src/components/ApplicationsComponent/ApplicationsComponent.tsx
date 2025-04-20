@@ -1,6 +1,6 @@
-import { fetcherEngine } from "@/lib/backendService";
+import { fetcherEngine, updateApplicationEngine } from "@/lib/backendService";
 import { applicationsEngineLink } from "@/lib/links";
-import { Application } from "@/lib/types";
+import { Application, ApplicationStatusType } from "@/lib/types";
 
 import { Select, SelectItem, Spinner } from "@heroui/react";
 import { useTranslations } from "next-intl";
@@ -70,11 +70,19 @@ export default function ApplicationsComponent() {
   }
 
   const handleStatusChange = (id: string, newStatus: string) => {
-    console.log(`Status changed for ${id} to ${newStatus}`);
     setStatuses((prev) => ({
       ...prev,
       [id]: newStatus,
     }));
+
+    const application = applications?.find((app) => app.application_id === id);
+    if (!application) return;
+    const updatedApplication = {
+      ...application,
+      status: newStatus as ApplicationStatusType,
+    };
+
+    updateApplicationEngine(updatedApplication);
   };
 
   return (
