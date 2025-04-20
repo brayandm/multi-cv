@@ -1,16 +1,16 @@
 from app.classes.agents import (
+    GenerateApplicationBasedOnJobPostAgent,
     GenerateCvAgent,
     GenerateCvBasedOnJobPostAgent,
     GenerateCvBasedOnPromptAgent,
-    GenerateApplicationBasedOnJobPostAgent,
 )
 from app.classes.base import Pipeline
 from app.classes.models import (
+    Application,
     Cv,
     GenerationInput,
     Profile,
     Traduction,
-    Application,
 )
 
 

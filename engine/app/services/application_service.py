@@ -1,3 +1,4 @@
+import uuid
 from typing import Any
 
 from fastapi import Depends
@@ -5,8 +6,6 @@ from motor.core import AgnosticDatabase
 
 from app.classes.models import Application
 from app.database.mongodb import get_database
-
-import uuid
 
 
 class ApplicationService:

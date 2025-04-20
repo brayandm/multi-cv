@@ -35,6 +35,14 @@ class GenerateApplicationBasedOnJobPostAgent(Agent):
         schema provided below. You need to extract the information and
         translate it to {traduction.name} language.
 
+        **Instructions:**
+        - In Job Summary, include a brief summary of the job.
+        - In Job Bullets, include the main responsibilities and requirements
+          of the job in small bullet points.
+        - In Job Post Source, include the source of the job post if is
+          available. (e.g., LinkedIn, Indeed, etc.).
+        - In skills, include the main skills required for the job.
+
         **Input Job Post**
         {job_post}
 

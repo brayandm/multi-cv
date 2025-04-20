@@ -46,14 +46,14 @@ from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
 from app.framework.types.request import DeleteRequest, DocumentDownloadRequest
-from app.services.chat_engine import ChatEngineService
-from app.services.document_service import DocumentService, get_document_service
-from app.services.profile_service import ProfileService, get_profile_service
-from app.services.settings_service import SettingsService, get_settings_service
 from app.services.application_service import (
     ApplicationService,
     get_application_service,
 )
+from app.services.chat_engine import ChatEngineService
+from app.services.document_service import DocumentService, get_document_service
+from app.services.profile_service import ProfileService, get_profile_service
+from app.services.settings_service import SettingsService, get_settings_service
 from app.services.text_extractor import InvalidPDFError, TextExtractor
 from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
