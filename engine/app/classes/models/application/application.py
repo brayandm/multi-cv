@@ -37,7 +37,7 @@ class Application(BaseModel):
     role: Optional[ForceShortStr] = None
     company_name: Optional[ForceShortStr] = None
     company_website: Optional[ForceShortStr] = None
-    company_logo: Optional[ForceShortStr] = None
+    company_logo_link: Optional[ForceShortStr] = None
     job_post_link: Optional[ForceShortStr] = None
     location_type: Optional[LocationType] = None
     country_or_region: Optional[ForceShortStr] = None

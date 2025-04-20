@@ -98,7 +98,7 @@ export interface Application {
   role?: string;
   company_name?: string;
   company_website?: string;
-  company_logo?: string;
+  company_logo_link?: string;
   job_post_link?: string;
   location_type?: "Remote" | "Hybrid" | "Onsite";
   country_or_region?: string;
