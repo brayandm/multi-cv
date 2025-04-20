@@ -4,7 +4,7 @@ import { Application, ApplicationStatusType } from "@/lib/types";
 
 import { Select, SelectItem, Spinner } from "@heroui/react";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 const statusOptions = ["Applied", "Interview", "Offer", "Rejected"];
@@ -77,13 +77,22 @@ export default function ApplicationsComponent() {
 
     const application = applications?.find((app) => app.application_id === id);
     if (!application) return;
-    const updatedApplication = {
-      ...application,
-      status: newStatus as ApplicationStatusType,
-    };
 
-    updateApplicationEngine(updatedApplication);
+    application.status = newStatus as ApplicationStatusType;
+
+    updateApplicationEngine(application);
   };
+
+  useEffect(() => {
+    if (applications) {
+      const initialStatuses: Record<string, string> = {};
+      applications.forEach((application) => {
+        initialStatuses[application.application_id] =
+          application.status || "Applied";
+      });
+      setStatuses(initialStatuses);
+    }
+  }, [applications]);
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
@@ -142,54 +151,55 @@ export default function ApplicationsComponent() {
                                 {application.role || "Unknown Role"}
                               </p>
                             </div>
-                            <Select
-                              aria-label="Application status"
-                              className={`sm:w-[140px] w-[100px] text-[10px]`}
-                              size="sm"
-                              selectedKeys={[
-                                statuses[application.application_id] ||
-                                  application.status,
-                              ]}
-                              onChange={(event) =>
-                                handleStatusChange(
-                                  application.application_id,
-                                  event.target.value
-                                )
-                              }
-                              classNames={{
-                                label: "hidden",
-                                popoverContent: "w-32",
-                                listboxWrapper: "w-32",
-                                listbox: "w-32 text-center",
-                                selectorIcon: "hidden",
-                                trigger: `flex  
+                            {statuses[application.application_id] && (
+                              <Select
+                                aria-label="Application status"
+                                className={`sm:w-[140px] w-[100px] text-[10px]`}
+                                size="sm"
+                                selectedKeys={[
+                                  statuses[application.application_id] ||
+                                    application.status,
+                                ]}
+                                onChange={(event) =>
+                                  handleStatusChange(
+                                    application.application_id,
+                                    event.target.value
+                                  )
+                                }
+                                classNames={{
+                                  label: "hidden",
+                                  popoverContent: "w-32",
+                                  listboxWrapper: "w-32",
+                                  listbox: "w-32 text-center",
+                                  selectorIcon: "hidden",
+                                  trigger: `flex  
                                   items-center justify-center p-0
                                 ${
                                   statusToClass[
-                                    statuses[application.application_id] ||
-                                      application.status
+                                    statuses[application.application_id]
                                   ]
                                 }`,
-                                value: "text-center",
-                              }}
-                            >
-                              {statusOptions.map((status) => (
-                                <SelectItem
-                                  key={status}
-                                  classNames={{
-                                    selectedIcon: "hidden",
-                                    base: "p-0",
-                                  }}
-                                  textValue={status}
-                                >
-                                  <div
-                                    className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-8`}
+                                  value: "text-center",
+                                }}
+                              >
+                                {statusOptions.map((status) => (
+                                  <SelectItem
+                                    key={status}
+                                    classNames={{
+                                      selectedIcon: "hidden",
+                                      base: "p-0",
+                                    }}
+                                    textValue={status}
                                   >
-                                    {status}
-                                  </div>
-                                </SelectItem>
-                              ))}
-                            </Select>
+                                    <div
+                                      className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-8`}
+                                    >
+                                      {status}
+                                    </div>
+                                  </SelectItem>
+                                ))}
+                              </Select>
+                            )}
                           </div>
 
                           {application.location_type && (
