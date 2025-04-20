@@ -107,7 +107,7 @@ export default function ApplicationsComponent() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       {selectedApplication && (
-        <FullApplicationModal
+        <FullApplicationComponent
           application_id={selectedApplication.application_id}
           isOpen={isOpen}
           onClose={onOpenChange}
