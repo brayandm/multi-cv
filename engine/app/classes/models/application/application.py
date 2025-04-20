@@ -30,23 +30,23 @@ ApplicationStatusType = Annotated[
 
 
 class Application(BaseModel):
-    role: ForceShortStr
-    job_post_link: ForceShortStr
-    location_type: LocationType
+    role: Optional[ForceShortStr]
+    company_name: Optional[ForceShortStr]
+    job_post_link: Optional[ForceShortStr]
+    location_type: Optional[LocationType]
+    country_or_region: Optional[ForceShortStr]
 
-    job_summary: ForceLongStr
-    job_bullets: List[ForceShortStr]
+    job_summary: Optional[ForceLongStr]
+    job_bullets: Optional[List[ForceShortStr]]
     job_description_raw: ForceExtraLongStr
-
-    company_name: ForceShortStr
-    country_or_region: ForceShortStr
 
     application_date: date
     status: ApplicationStatusType
-    contact_email: ForceShortStr
-    recruiter_name: ForceShortStr
+    contact_email: Optional[ForceShortStr]
+    recruiter_name: Optional[ForceShortStr]
 
     job_post_source: Optional[ForceShortStr] = None
     salary: Optional[ForceShortStr] = None
     skills: Optional[List[str]] = None
-    comments: Optional[ForceShortStr] = None
+
+    user_comments: Optional[ForceShortStr] = None
