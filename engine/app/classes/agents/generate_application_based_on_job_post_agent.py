@@ -1,12 +1,11 @@
-from app.classes.base import Agent
-from app.classes.models import Application, Traduction
-from app.utils.get_schema import get_schema
+import json
+from datetime import datetime, timezone
 
 from langchain.schema import HumanMessage
 
-import json
-
-from datetime import datetime, timezone
+from app.classes.base import Agent
+from app.classes.models import Application, Traduction
+from app.utils.get_schema import get_schema
 
 
 class GenerateApplicationBasedOnJobPostAgent(Agent):

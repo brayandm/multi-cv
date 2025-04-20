@@ -1,5 +1,4 @@
 import inspect
-import json
 from typing import (
     Annotated,
     Any,
@@ -22,69 +21,44 @@ def unwrap_annotated(type_hint: Any) -> Any:
     return type_hint
 
 
-def ordered_schema(
-    schema: dict,  # type: ignore
-    is_optional: bool = False,
-    is_literal: bool = False,
-) -> dict:  # type: ignore
-    ordered = {}
-    if is_optional:
-        ordered["__optional__"] = True
-    if is_literal:
-        ordered["__literal__"] = True
-    for k, v in schema.items():
-        ordered[k] = v
-    return ordered
-
-
 def get_schema(
     type_hint: Any, exclude_keys: Optional[List[str]] = None
-) -> Any:
+) -> tuple[Any, list[str]]:
     raw_type = unwrap_annotated(type_hint)
     origin = get_origin(raw_type)
     args = get_args(raw_type)
 
-    is_optional = False
-    is_literal = False
-    literal_values = None
+    flags: list[str] = []
 
     if origin is Union and type(None) in args:
-        is_optional = True
+        flags.append("optional")
         non_none = [arg for arg in args if arg is not type(None)]
         raw_type = unwrap_annotated(non_none[0])
         origin = get_origin(raw_type)
         args = get_args(raw_type)
 
     if origin is Literal:
-        is_literal = True
+        flags.append("literal")
         literal_values = " | ".join(str(x) for x in args)
-        schema = {"value": literal_values}
-        return ordered_schema(schema, is_optional, is_literal)
+        return literal_values, flags
 
     if inspect.isclass(raw_type) and issubclass(raw_type, BaseModel):
-        schema = generate_structure(raw_type, exclude_keys)
+        return generate_structure(raw_type, exclude_keys), flags
     elif origin in {list, List}:
-        inner = get_schema(args[0], exclude_keys) if args else "string"
-        schema = [inner]  # type: ignore
-    elif raw_type in {str, int, float, bool}:
-        schema = (
-            "string" if raw_type is str else raw_type.__name__  # type: ignore
+        inner, inner_flags = (
+            get_schema(args[0], exclude_keys) if args else ("string", [])
         )
+        return [inner], flags
+    elif raw_type in {str, int, float, bool}:
+        return ("string" if raw_type is str else raw_type.__name__, flags)
     else:
-        schema = "string"  # type: ignore
-
-    if isinstance(schema, dict):
-        return ordered_schema(schema, is_optional, is_literal)
-    elif is_optional:
-        return {"__optional__": True, "value": schema}
-    else:
-        return schema
+        return ("string", flags)
 
 
 def generate_structure(
     model: Type[BaseModel], exclude_keys: Optional[List[str]] = None
-) -> dict[str, Any]:
-    fields: dict[str, Any] = {}
+) -> dict[str, tuple[Any, list[str]]]:
+    fields: dict[str, tuple[Any, list[str]]] = {}
     exclude_keys = exclude_keys or []
     for name, field in model.__annotations__.items():
         if name in exclude_keys:
@@ -96,4 +70,17 @@ def generate_structure(
 def structure_to_string(
     model: Type[BaseModel], exclude_keys: Optional[List[str]] = None
 ) -> str:
-    return json.dumps(generate_structure(model, exclude_keys), indent=2)
+    structure = generate_structure(model, exclude_keys)
+    lines = ["{"]
+    for i, (key, (value, flags)) in enumerate(structure.items()):
+        comment = f"  # {', '.join(flags)}" if flags else ""
+        json_value = (
+            f'"{value}"'
+            if isinstance(value, str)
+            else str(value).replace("'", '"')
+        )
+        lines.append(f'  "{key}": {json_value},{comment}')
+    if lines[-1].endswith(","):
+        lines[-1] = lines[-1].rstrip(",")
+    lines.append("}")
+    return "\n".join(lines)

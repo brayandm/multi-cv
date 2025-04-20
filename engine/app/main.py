@@ -50,6 +50,10 @@ from app.services.chat_engine import ChatEngineService
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
 from app.services.settings_service import SettingsService, get_settings_service
+from app.services.application_service import (
+    ApplicationService,
+    get_application_service,
+)
 from app.services.text_extractor import InvalidPDFError, TextExtractor
 from app.utils.playwright import get_browser
 from app.utils.traductions import get_traductions
@@ -195,9 +199,12 @@ async def generate_cv_inline(
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
     document_service: DocumentService = Depends(get_document_service),
+    application_service: ApplicationService = Depends(get_application_service),
 ) -> Response:
 
-    profile = await profile_service.get_profile(get_user_id(), with_notes=True)
+    user_id = get_user_id()
+
+    profile = await profile_service.get_profile(user_id, with_notes=True)
 
     if profile is None:
         return Response(
@@ -219,9 +226,7 @@ async def generate_cv_inline(
                 content={"error": "Input is unsafe."},
             )
 
-        await profile_service.profile_moderation(
-            get_user_id(), moderation=True
-        )
+        await profile_service.profile_moderation(user_id, moderation=True)
 
     is_safe = await chat_engine_service.moderation(input.model_dump_json())
     if not is_safe:
@@ -231,7 +236,12 @@ async def generate_cv_inline(
             content={"error": "Input is unsafe."},
         )
 
-    cv = await GenerateCvPipeline().run(profile, input, traduction)
+    cv, application = await GenerateCvPipeline().run(
+        profile, input, traduction
+    )
+
+    if application:
+        await application_service.store_application(user_id, application)
 
     cv_template = CvTemplate(
         id="default", type="latex", cv_texts=get_traductions(traduction.locale)
@@ -260,9 +270,12 @@ async def generate_cv_inline_norender(
     input: GenerationInput,
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
+    application_service: ApplicationService = Depends(get_application_service),
 ) -> Response:
 
-    profile = await profile_service.get_profile(get_user_id(), with_notes=True)
+    user_id = get_user_id()
+
+    profile = await profile_service.get_profile(user_id, with_notes=True)
 
     if profile is None:
         return Response(
@@ -284,9 +297,7 @@ async def generate_cv_inline_norender(
                 content={"error": "Input is unsafe."},
             )
 
-        await profile_service.profile_moderation(
-            get_user_id(), moderation=True
-        )
+        await profile_service.profile_moderation(user_id, moderation=True)
 
     is_safe = await chat_engine_service.moderation(input.model_dump_json())
     if not is_safe:
@@ -296,7 +307,13 @@ async def generate_cv_inline_norender(
             content={"error": "Input is unsafe."},
         )
 
-    cv = await GenerateCvPipeline().run(profile, input, traduction)
+    cv, application = await GenerateCvPipeline().run(
+        profile, input, traduction
+    )
+
+    if application:
+        await application_service.store_application(user_id, application)
+
     cv_texts = CvTexts(**get_traductions(traduction.locale))
 
     return JSONResponse(
