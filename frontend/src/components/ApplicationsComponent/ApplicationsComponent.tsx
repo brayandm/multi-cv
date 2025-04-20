@@ -2,10 +2,11 @@ import { fetcherEngine, updateApplicationEngine } from "@/lib/backendService";
 import { applicationsEngineLink } from "@/lib/links";
 import { Application, ApplicationStatusType } from "@/lib/types";
 
-import { Select, SelectItem, Spinner } from "@heroui/react";
+import { Select, SelectItem, Spinner, useDisclosure } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import { FullApplicationModal } from "../FullApplicationComponent/FullApplicationComponent";
 
 const statusOptions = ["Applied", "Interview", "Offer", "Rejected"];
 
@@ -94,8 +95,24 @@ export default function ApplicationsComponent() {
     }
   }, [applications]);
 
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [selectedApplication, setSelectedApplication] =
+    useState<Application | null>(null);
+
+  const openModal = (application: Application) => {
+    setSelectedApplication(application);
+    onOpen();
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
+      {selectedApplication && (
+        <FullApplicationModal
+          application={selectedApplication}
+          isOpen={isOpen}
+          onClose={onOpenChange}
+        />
+      )}
       {isLoading || !applications ? (
         <div className="text-center text-gray-500 dark:text-gray-400">
           <Spinner variant="dots" />
@@ -111,6 +128,7 @@ export default function ApplicationsComponent() {
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-1 border-gray-300 dark:border-gray-600">
                 {formatFullDate(date)}
               </h3>
+
               <ul className="flex flex-col items-center space-y-4">
                 {groupedApplications[date]
                   .slice()
@@ -118,7 +136,9 @@ export default function ApplicationsComponent() {
                   .map((application) => (
                     <li
                       key={application.application_id}
-                      className="flex items-center w-[300px] sm:w-[600px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
+                      role="button"
+                      onClick={() => openModal(application)}
+                      className="cursor-pointer flex items-center w-[300px] sm:w-[600px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
                     >
                       <div className="flex items-center gap-4 w-full">
                         {application.company_logo_link ? (
