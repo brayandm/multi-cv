@@ -1,14 +1,13 @@
+from datetime import date
+from typing import Annotated, List, Literal, Optional
+
 from pydantic import BaseModel, Field
-from typing import Optional, List, Annotated, Literal
 
 from app.utils.pydantic_custom_types import (
-    ForceShortStr,
-    ForceLongStr,
     ForceExtraLongStr,
+    ForceLongStr,
+    ForceShortStr,
 )
-
-from datetime import date
-
 
 LocationType = Annotated[
     Literal[

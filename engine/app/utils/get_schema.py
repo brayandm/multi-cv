@@ -4,11 +4,11 @@ from typing import (
     Annotated,
     Any,
     List,
+    Optional,
     Type,
     Union,
     get_args,
     get_origin,
-    Optional,
 )
 
 from pydantic import BaseModel

@@ -1,3 +1,4 @@
+from .application.application import Application
 from .chat import Chat, ChatMessage
 from .cover_letter.cover_letter import CoverLetter
 from .cover_letter.cover_letter_template import CoverLetterTemplate
@@ -20,7 +21,6 @@ from .settings import Settings
 from .text import Text
 from .traduction import Traduction
 from .webhook_payload import WebhookPayload
-from .application.application import Application
 
 __all__ = [
     "Profile",

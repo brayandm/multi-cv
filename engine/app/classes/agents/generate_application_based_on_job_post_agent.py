@@ -1,7 +1,7 @@
 from app.classes.base import Agent
-from app.utils.get_schema import get_schema
-from app.framework.logging import logger
 from app.classes.models import Application, Cv, Profile
+from app.framework.logging import logger
+from app.utils.get_schema import get_schema
 
 
 class GenerateApplicationBasedOnJobPostAgent(Agent):
