@@ -328,7 +328,7 @@
             "source": "Fonte",
             "salary": "Salário",
             "skills": "Habilidades",
-            "show_raw_post": "Mostrar Descrição da Vaga Bruta",
+            "show_raw_post": "Mostrar descrição original da vaga",
             "notes": "Notas",
             "notes_placeholder": "Escreva suas notas sobre esta candidatura..."
           }

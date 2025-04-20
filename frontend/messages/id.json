@@ -328,7 +328,7 @@
             "source": "Sumber",
             "salary": "Gaji",
             "skills": "Keterampilan",
-            "show_raw_post": "Tampilkan Deskripsi Pekerjaan Mentah",
+            "show_raw_post": "Tampilkan Deskripsi Pekerjaan Asli",
             "notes": "Catatan",
             "notes_placeholder": "Tulis catatan Anda tentang lamaran ini..."
           }

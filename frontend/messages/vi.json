@@ -328,7 +328,7 @@
             "source": "Nguồn",
             "salary": "Mức lương",
             "skills": "Kỹ năng",
-            "show_raw_post": "Hiển thị mô tả công việc thô",
+            "show_raw_post": "Hiển thị mô tả công việc gốc",
             "notes": "Ghi chú",
             "notes_placeholder": "Viết ghi chú của bạn về đơn ứng tuyển này..."
           }

@@ -112,7 +112,7 @@ export function FullApplicationModal({
                   <AccordionItem
                     key="1"
                     aria-label="Job Description Raw"
-                    title={tApplication("job-description")}
+                    title={tApplication("show_raw_post")}
                   >
                     <div className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300">
                       {application.job_description_raw}

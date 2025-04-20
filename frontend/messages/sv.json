@@ -328,7 +328,7 @@
             "source": "Källa",
             "salary": "Lön",
             "skills": "Färdigheter",
-            "show_raw_post": "Visa rå jobbbeskrivning",
+            "show_raw_post": "Visa original Jobbbeskrivning",
             "notes": "Anteckningar",
             "notes_placeholder": "Skriv dina anteckningar om denna ansökan..."
           }

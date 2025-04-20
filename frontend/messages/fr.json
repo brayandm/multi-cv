@@ -328,7 +328,7 @@
             "source": "Source",
             "salary": "Salaire",
             "skills": "Compétences",
-            "show_raw_post": "Afficher la description de poste brute",
+            "show_raw_post": "Afficher la description de poste originale",
             "notes": "Notes",
             "notes_placeholder": "Écrivez vos notes sur cette candidature..."
           }

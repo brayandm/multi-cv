@@ -328,7 +328,7 @@
             "source": "Quelle",
             "salary": "Gehalt",
             "skills": "Fähigkeiten",
-            "show_raw_post": "Rohbeschreibung der Stelle anzeigen",
+            "show_raw_post": "Originale Stellenbeschreibung anzeigen",
             "notes": "Notizen",
             "notes_placeholder": "Schreiben Sie Ihre Notizen zu dieser Bewerbung..."
           }

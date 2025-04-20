@@ -328,7 +328,7 @@
             "source": "Source",
             "salary": "Salary",
             "skills": "Skills",
-            "show_raw_post": "Show Raw Job Description",
+            "show_raw_post": "Show original Job Description",
             "notes": "Notes",
             "notes_placeholder": "Write your notes about this application..."
           }

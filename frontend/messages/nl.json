@@ -328,7 +328,7 @@
             "source": "Bron",
             "salary": "Salaris",
             "skills": "Vaardigheden",
-            "show_raw_post": "Toon Ruwe Vacaturebeschrijving",
+            "show_raw_post": "Toon originele functiebeschrijving",
             "notes": "Notities",
             "notes_placeholder": "Schrijf je notities over deze aanvraag..."
           }

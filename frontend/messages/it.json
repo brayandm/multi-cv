@@ -328,7 +328,7 @@
             "source": "Fonte",
             "salary": "Stipendio",
             "skills": "Competenze",
-            "show_raw_post": "Mostra descrizione del lavoro grezza",
+            "show_raw_post": "Mostra la descrizione originale del lavoro",
             "notes": "Note",
             "notes_placeholder": "Scrivi le tue note su questa candidatura..."
           }

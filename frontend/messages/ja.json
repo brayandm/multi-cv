@@ -328,7 +328,7 @@
             "source": "ソース",
             "salary": "給与",
             "skills": "スキル",
-            "show_raw_post": "生の求人内容を表示",
+            "show_raw_post": "元の職務内容を表示",
             "notes": "ノート",
             "notes_placeholder": "この応募に関するノートを書いてください..."
           }
