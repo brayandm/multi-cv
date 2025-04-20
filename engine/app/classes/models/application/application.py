@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Annotated, List, Literal, Optional
 
 from pydantic import BaseModel, Field
@@ -46,7 +46,9 @@ class Application(BaseModel):
     job_bullets: Optional[List[ForceLongStr]] = None
     job_description_raw: ForceExtraLongStr
 
-    application_date: datetime
+    application_date: datetime = Field(
+        default_factory=lambda: datetime.now(timezone.utc)
+    )
     status: ApplicationStatusType
     contact_email: Optional[ForceShortStr] = None
     recruiter_name: Optional[ForceShortStr] = None
@@ -56,3 +58,10 @@ class Application(BaseModel):
     skills: Optional[List[str]] = None
 
     user_comments: LongStr
+
+    class Config:
+        json_encoders = {
+            datetime: lambda v: v.astimezone(timezone.utc)
+            .isoformat()
+            .replace("+00:00", "Z")
+        }

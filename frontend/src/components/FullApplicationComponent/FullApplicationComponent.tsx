@@ -18,6 +18,8 @@ import {
   statusOptions,
   statusToClass,
 } from "../ApplicationsComponent/ApplicationsComponent";
+import { MAX_LONG_TEXT_LENGTH } from "@/lib/consts";
+import { updateApplicationEngine } from "@/lib/backendService";
 
 interface FullApplicationModalProps {
   application: Application;
@@ -50,6 +52,11 @@ export function FullApplicationModal({
   const t = useTranslations();
 
   const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
+
+  const saveApplication = () => {
+    application.user_comments = comments;
+    updateApplicationEngine(application);
+  };
 
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} size="5xl">
@@ -137,9 +144,10 @@ export function FullApplicationModal({
                   )}
                 {infoBlock(
                   tApplication("date"),
-                  new Date(application.application_date).toLocaleDateString()
+                  new Date(application.application_date).toLocaleDateString() +
+                    " " +
+                    new Date(application.application_date).toLocaleTimeString()
                 )}
-                {infoBlock(tApplication("status"), application.status)}
                 {infoBlock(
                   tApplication("recruiter"),
                   application.recruiter_name
@@ -175,6 +183,8 @@ export function FullApplicationModal({
                     onChange={(e) => setComments(e.target.value)}
                     placeholder={tApplication("notes_placeholder")}
                     minRows={3}
+                    maxLength={MAX_LONG_TEXT_LENGTH}
+                    description={`${comments.length} / 1000`}
                   />
                 </div>
                 <div className="mb-5">
@@ -209,6 +219,7 @@ export function FullApplicationModal({
                 color="primary"
                 onPress={() => {
                   onClose();
+                  saveApplication();
                 }}
               >
                 {t("common.buttons.save")}
