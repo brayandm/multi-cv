@@ -89,9 +89,11 @@ export function FullApplicationModal({
           {() => (
             <>
               {isLoading || !application ? (
-                <div>
-                  <Spinner />
-                </div>
+                <ModalBody className="space-y-3 ">
+                  <div className="flex justify-center items-center h-64">
+                    <Spinner />
+                  </div>
+                </ModalBody>
               ) : (
                 <>
                   <ModalHeader>
