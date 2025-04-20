@@ -8,9 +8,9 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 import { FullApplicationModal } from "../FullApplicationComponent/FullApplicationComponent";
 
-const statusOptions = ["Applied", "Interview", "Offer", "Rejected"];
+export const statusOptions = ["Applied", "Interview", "Offer", "Rejected"];
 
-const statusToClass: Record<string, string> = {
+export const statusToClass: Record<string, string> = {
   Applied:
     "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 dark:focus:bg-gray-600",
   Interview:
@@ -111,6 +111,11 @@ export default function ApplicationsComponent() {
           application={selectedApplication}
           isOpen={isOpen}
           onClose={onOpenChange}
+          onStatusChange={handleStatusChange}
+          status={
+            (statuses[selectedApplication.application_id] ||
+              selectedApplication.status) as ApplicationStatusType
+          }
         />
       )}
       {isLoading || !applications ? (

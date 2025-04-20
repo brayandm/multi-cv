@@ -8,21 +8,31 @@ import {
   Textarea,
   Accordion,
   AccordionItem,
+  SelectItem,
+  Select,
 } from "@heroui/react";
 import { useState } from "react";
-import { Application } from "@/lib/types";
+import { Application, ApplicationStatusType } from "@/lib/types";
 import { useTranslations } from "next-intl";
+import {
+  statusOptions,
+  statusToClass,
+} from "../ApplicationsComponent/ApplicationsComponent";
 
 interface FullApplicationModalProps {
   application: Application;
   isOpen: boolean;
   onClose: () => void;
+  onStatusChange: (id: string, newStatus: ApplicationStatusType) => void;
+  status: ApplicationStatusType;
 }
 
 export function FullApplicationModal({
   application,
   isOpen,
   onClose,
+  onStatusChange,
+  status,
 }: FullApplicationModalProps) {
   const [comments, setComments] = useState(application.user_comments || "");
 
@@ -46,11 +56,57 @@ export function FullApplicationModal({
       <ModalContent>
         {() => (
           <>
-            <ModalHeader className="flex flex-col gap-1">
-              {application.company_name || tApplication("company")}{" "}
-              <span className="text-sm font-normal text-gray-500">
-                {application.role || tApplication("no-role")}
-              </span>
+            <ModalHeader>
+              <div className="pt-5 flex flex-row gap-1 justify-between w-full">
+                <div className="flex flex-col gap-1">
+                  {application.company_name || tApplication("company")}{" "}
+                  <span className="text-sm font-normal text-gray-500">
+                    {application.role || tApplication("no-role")}
+                  </span>
+                </div>
+                <div className="mr-3">
+                  <Select
+                    aria-label="Application status"
+                    className={`sm:w-[140px] w-[100px] text-[10px]`}
+                    size="sm"
+                    selectedKeys={[status || application.status]}
+                    onChange={(event) =>
+                      onStatusChange(
+                        application.application_id,
+                        event.target.value as ApplicationStatusType
+                      )
+                    }
+                    classNames={{
+                      label: "hidden",
+                      popoverContent: "w-32",
+                      listboxWrapper: "w-32",
+                      listbox: "w-32 text-center",
+                      selectorIcon: "hidden",
+                      trigger: `flex  
+                                  items-center justify-center p-0
+                                ${statusToClass[status]}`,
+                      value: "text-center",
+                    }}
+                  >
+                    {statusOptions.map((status) => (
+                      <SelectItem
+                        key={status}
+                        classNames={{
+                          selectedIcon: "hidden",
+                          base: "p-0",
+                        }}
+                        textValue={status}
+                      >
+                        <div
+                          className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-8`}
+                        >
+                          {status}
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </Select>
+                </div>
+              </div>
             </ModalHeader>
 
             <ModalBody className="space-y-3 ">
