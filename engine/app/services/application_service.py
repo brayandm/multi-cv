@@ -14,16 +14,20 @@ class ApplicationService:
 
     async def store_application(
         self, user_id: int, application: Application
-    ) -> None:
+    ) -> str:
+        application_id = str(uuid.uuid4())
+        # Ensure the application is valid
         new_application = application.model_dump(exclude_none=True)
         new_application["user_id"] = user_id
-        new_application["application_id"] = str(uuid.uuid4())
+        new_application["application_id"] = application_id
 
         await self.db.applications.update_one(
             {"user_id": user_id},
             {"$set": new_application},
             upsert=True,
         )
+
+        return application_id
 
     async def get_application(
         self, user_id: int, application_id: str

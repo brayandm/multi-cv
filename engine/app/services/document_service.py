@@ -2,7 +2,7 @@ import os
 import uuid
 from datetime import datetime, timezone
 from io import BytesIO
-from typing import Any, Tuple
+from typing import Any, Tuple, Optional
 from urllib.parse import quote
 
 from fastapi import Depends
@@ -31,6 +31,7 @@ class DocumentService:
         cv_template: CvTemplate,
         filename: str,
         file: bytes,
+        application_id: Optional[str] = None,
     ) -> None:
 
         try:
@@ -52,6 +53,7 @@ class DocumentService:
                 {
                     "document_id": cv_id,
                     "user_id": user_id,
+                    "application_id": application_id,
                     "name": filename,
                     "size": len(file),
                     "created_at": datetime.now(timezone.utc),
@@ -128,7 +130,11 @@ class DocumentService:
                 logger.info(f"Error deleting document: {e}")
 
     async def process_cv(
-        self, profile: Profile, cv: Cv, cv_template: CvTemplate
+        self,
+        profile: Profile,
+        cv: Cv,
+        cv_template: CvTemplate,
+        application_id: Optional[str] = None,
     ) -> Tuple[str, bytes]:
         document_render = DocumentRenderFacade.get_render()
 
@@ -146,6 +152,7 @@ class DocumentService:
             cv_template=cv_template,
             filename=filename,
             file=pdf_bytes,
+            application_id=application_id,
         )
 
         quoted_filename = quote(filename)

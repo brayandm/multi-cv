@@ -240,15 +240,19 @@ async def generate_cv_inline(
         profile, input, traduction
     )
 
+    application_id = None
+
     if application:
-        await application_service.store_application(user_id, application)
+        application_id = await application_service.store_application(
+            user_id, application
+        )
 
     cv_template = CvTemplate(
         id="default", type="latex", cv_texts=get_traductions(traduction.locale)
     )
 
     quoted_filename, pdf_bytes = await document_service.process_cv(
-        profile, cv, cv_template
+        profile, cv, cv_template, application_id
     )
 
     return Response(
