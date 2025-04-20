@@ -41,7 +41,7 @@ class Application(BaseModel):
     country_or_region: Optional[ForceShortStr] = None
 
     job_summary: Optional[ForceLongStr] = None
-    job_bullets: Optional[List[ForceShortStr]] = None
+    job_bullets: Optional[List[ForceLongStr]] = None
     job_description_raw: ForceExtraLongStr
 
     application_date: datetime
