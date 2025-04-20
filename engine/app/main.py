@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
 
 from app.classes.models import (
+    Application,
     Chat,
     Cv,
     CvTemplate,
@@ -20,7 +21,6 @@ from app.classes.models import (
     Text,
     Traduction,
     WebhookPayload,
-    Application,
 )
 from app.classes.pipelines import (
     AutoFillProfilePipeline,

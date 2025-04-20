@@ -92,6 +92,33 @@ export interface Document {
   type: "cv" | "cover_letter";
 }
 
+export interface Application {
+  application_id: string;
+
+  role?: string;
+  company_name?: string;
+  company_website?: string;
+  company_logo?: string;
+  job_post_link?: string;
+  location_type?: "Remote" | "Hybrid" | "Onsite";
+  country_or_region?: string;
+
+  job_summary?: string;
+  job_bullets?: string[];
+  job_description_raw: string;
+
+  application_date: string;
+  status: "Applied" | "Interview" | "Offer" | "Rejected";
+  contact_email?: string;
+  recruiter_name?: string;
+
+  job_post_source?: string;
+  salary?: string;
+  skills?: string[];
+
+  user_comments: string;
+}
+
 export interface GenerationInput {
   type: "simple" | "role" | "job";
   role_input: string | null;

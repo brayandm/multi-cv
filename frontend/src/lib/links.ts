@@ -36,3 +36,5 @@ export const storeSettingsEngineLink = "/settings";
 export const getSettingsEngineLink = "/settings";
 export const moderationEngineLink = "/moderation";
 export const userDeleteApiLink = "/user/delete";
+export const applicationsEngineLink = "/applications";
+export const applicationEngineLink = "/application";
