@@ -74,9 +74,7 @@ const ProfessionalLinks: React.FC = () => {
         className="mb-2"
         isMultiline={true}
         items={professionalLinks}
-        selectedKeys={professionalLinksList.map((social) =>
-          social.name.toLowerCase()
-        )}
+        selectedKeys={professionalLinksList.map((social) => social.name)}
         label={t("common.form.professional_links_select")}
         placeholder={t("common.placeholders.professional_links_select")}
         renderValue={(items) => {
@@ -99,7 +97,7 @@ const ProfessionalLinks: React.FC = () => {
         selectionMode="multiple"
       >
         {(item) => (
-          <SelectItem key={item.name.toLowerCase()} textValue={item.name}>
+          <SelectItem key={item.name} textValue={item.name}>
             <div className="flex gap-2 items-center ">
               <Avatar
                 alt={item.name}
