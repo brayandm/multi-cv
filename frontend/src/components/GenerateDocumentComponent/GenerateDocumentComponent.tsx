@@ -388,12 +388,15 @@ export default function GenerateDocumentComponent({
               isDisabled={
                 isCvLoading ||
                 quotaInfo?.left === 0 ||
-                quotaInfo?.pending >= quotaInfo?.max_pending ||
+                (quotaInfo?.max_pending != -1 &&
+                  quotaInfo?.pending >= quotaInfo?.max_pending) ||
                 isQuotaInfoLoading ||
                 isSettingsLoading
               }
             >
-              {isCvLoading || quotaInfo?.pending >= quotaInfo?.max_pending
+              {isCvLoading ||
+              (quotaInfo?.max_pending != -1 &&
+                quotaInfo?.pending >= quotaInfo?.max_pending)
                 ? t("common.texts.pending_generation")
                 : t("common.texts.generate_cv")}
             </Button>
