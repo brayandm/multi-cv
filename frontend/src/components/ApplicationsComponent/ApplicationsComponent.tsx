@@ -6,6 +6,21 @@ import { Spinner } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import useSWR from "swr";
 
+function getStatusColor(status: string): string {
+  switch (status) {
+    case "Applied":
+      return "bg-gray-200 text-gray-800";
+    case "Interview":
+      return "bg-yellow-200 text-yellow-800";
+    case "Offer":
+      return "bg-green-200 text-green-800";
+    case "Rejected":
+      return "bg-red-200 text-red-800";
+    default:
+      return "bg-gray-100 text-gray-600";
+  }
+}
+
 export default function ApplicationsComponent() {
   const { data: applications, isLoading } = useSWR<Application[]>(
     applicationsEngineLink,
@@ -79,7 +94,7 @@ export default function ApplicationsComponent() {
                       key={application.application_id}
                       className="flex items-center w-[300px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
                     >
-                      <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-4 w-full">
                         {/* Logo o inicial */}
                         {application.company_logo_link ? (
                           // eslint-disable-next-line
@@ -90,7 +105,7 @@ export default function ApplicationsComponent() {
                           />
                         ) : (
                           <div
-                            className={`w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-sm`}
+                            className="w-10 h-10 rounded-full flex items-center justify-center text-black font-bold text-sm"
                             style={{
                               backgroundColor: getPastelColor(
                                 application.company_name || "?"
@@ -101,21 +116,28 @@ export default function ApplicationsComponent() {
                           </div>
                         )}
 
-                        <div className="flex flex-col">
-                          <h2 className="text-sm font-semibold text-gray-800 dark:text-white">
-                            {application.company_name || "Unknown Company"}
-                          </h2>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {application.role || "Unknown Role"}
-                          </p>
+                        <div className="flex flex-col flex-grow">
+                          <div className="flex flex-row justify-between items-start w-full">
+                            <div>
+                              <h2 className="text-sm font-semibold text-gray-800 dark:text-white">
+                                {application.company_name || "Unknown Company"}
+                              </h2>
+                              <p className="text-xs text-gray-600 dark:text-gray-400">
+                                {application.role || "Unknown Role"}
+                              </p>
+                            </div>
+                            <span
+                              className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${getStatusColor(
+                                application.status
+                              )}`}
+                            >
+                              {application.status}
+                            </span>
+                          </div>
+
                           {application.location_type && (
                             <p className="text-xs text-gray-500 dark:text-gray-500 italic">
                               {application.location_type}
-                            </p>
-                          )}
-                          {application.user_comments && (
-                            <p className="text-xs text-gray-600 dark:text-gray-400 mt-1 line-clamp-2">
-                              {application.user_comments}
                             </p>
                           )}
                         </div>
