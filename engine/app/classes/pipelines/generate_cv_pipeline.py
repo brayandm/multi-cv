@@ -1,7 +1,7 @@
 from app.classes.agents import (
     GenerateCvAgent,
-    GenerateCvAgentBasedOnJobPost,
-    GenerateCvAgentBasedOnPrompt,
+    GenerateCvBasedOnJobPostAgent,
+    GenerateCvBasedOnPromptAgent,
 )
 from app.classes.base import Pipeline
 from app.classes.models import Cv, GenerationInput, Profile, Traduction
@@ -11,8 +11,8 @@ class GenerateCvPipeline(Pipeline):
 
     def __init__(self) -> None:
         self.agent = GenerateCvAgent()
-        self.agent_role = GenerateCvAgentBasedOnPrompt()
-        self.agent_job = GenerateCvAgentBasedOnJobPost()
+        self.agent_role = GenerateCvBasedOnPromptAgent()
+        self.agent_job = GenerateCvBasedOnJobPostAgent()
 
     async def run(
         self, profile: Profile, input: GenerationInput, traduction: Traduction

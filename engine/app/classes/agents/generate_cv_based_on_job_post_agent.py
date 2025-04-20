@@ -9,7 +9,7 @@ from app.utils.get_schema import get_schema
 from app.utils.phone import to_international_format
 
 
-class GenerateCvAgentBasedOnPrompt(Agent):
+class GenerateCvBasedOnJobPostAgent(Agent):
 
     async def run(
         self,
@@ -60,21 +60,26 @@ class GenerateCvAgentBasedOnPrompt(Agent):
         - A `list` of specific skills within that category.
         - Avoid duplicate categories and ensure a logical grouping of skills.
 
-        **Additional Input Role or Position Title:**
+       **Additional Input Job Post:**
         - You have to generate a CV based on the provided input, that is
-        a role or a position title, so you have to adapt the CV to this role
-        or position.
-        - You need to add or remove some information from the CV, and
-        adjust the role or position title in the experiences
-        to be more relevant to the input.
+        a Job Post, so you have to adapt the CV to this Job Post.
+        - You need to add or remove some information from the CV to be
+        more relevant to the Job Post provided in the input, but
+        dont hallucinate or add any information that is not in the profile.
+        - You need to adjust the role or position title in the experiences
+        to be more relevant to the Role or Position Title in the Job Post and
+        try to be consistent with the role among the experiences if are similar
         - You need to restructure and order the bullet points in the CV to be
-        more relevant to the role or position title provided in the input.
+        more relevant to the Job Post provided in the input.
         - You need to create a summary, experience, educations, skills,
-        projects, and certifications that are relevant to the role or
-        position title provided in the input.
+        projects, and certifications that are relevant to the Job Post
+        provided in the input.
         - You can omit experience, educations, skills, projects,
-        and certifications that you are sure are not relevant to the role
-        or position title provided in the input.
+        and certifications that you are 100% sure are not relevant to the
+        field of the Job Post provided in the input.
+        - You need to highlight the most important information in the CV
+        to be more relevant to the Job Post provided in the input and
+        pass the ATS test.
 
         The user provided the following custom prompt for the CV Geration,
         so you have to take it into account and force the CV to be
@@ -83,7 +88,7 @@ class GenerateCvAgentBasedOnPrompt(Agent):
         **Custom Prompt:**
         {custom_prompt}
 
-        **Input Role or Position Title:**
+        **Input Job Post**
         {input}
 
         **Input Profile (JSON format):**
