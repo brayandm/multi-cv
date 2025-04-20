@@ -23,7 +23,7 @@ export default function GenerateDocumentComponentWrapper() {
         }}
       >
         <Tab
-          key="photos"
+          key="simple"
           title={
             <div className="flex items-center space-x-2">
               <span>{t("pages.home.tabs.builder.tabs.simple_cv.title")}</span>
@@ -35,7 +35,7 @@ export default function GenerateDocumentComponentWrapper() {
           </div>
         </Tab>
         <Tab
-          key="music"
+          key="role"
           title={
             <div className="flex items-center space-x-2">
               <span>
@@ -49,7 +49,7 @@ export default function GenerateDocumentComponentWrapper() {
           </div>
         </Tab>
         <Tab
-          key="videos"
+          key="job"
           title={
             <div className="flex items-center space-x-2">
               <span>
