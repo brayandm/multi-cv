@@ -39,6 +39,8 @@ export function FullApplicationModal({
 
   const t = useTranslations();
 
+  const [openKeys, setOpenKeys] = useState<Set<string>>(new Set());
+
   return (
     <Modal isOpen={isOpen} onOpenChange={onClose} size="5xl">
       <ModalContent>
@@ -52,7 +54,7 @@ export function FullApplicationModal({
             </ModalHeader>
 
             <ModalBody className="space-y-3 ">
-              <div className="overflow-scroll h-[60vh]">
+              <div className="overflow-y-scroll h-[60vh]">
                 {infoBlock(
                   tApplication("website"),
                   application.company_website
@@ -91,7 +93,7 @@ export function FullApplicationModal({
                 {infoBlock(tApplication("salary"), application.salary)}
 
                 {application.skills && application.skills?.length > 0 && (
-                  <div className="text-sm">
+                  <div className="text-sm mb-3">
                     <span className="font-semibold text-gray-800 dark:text-gray-200">
                       {tApplication("skills")}:
                     </span>
@@ -108,19 +110,7 @@ export function FullApplicationModal({
                   </div>
                 )}
 
-                <Accordion variant="splitted">
-                  <AccordionItem
-                    key="1"
-                    aria-label="Job Description Raw"
-                    title={tApplication("show_raw_post")}
-                  >
-                    <div className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300">
-                      {application.job_description_raw}
-                    </div>
-                  </AccordionItem>
-                </Accordion>
-
-                <div>
+                <div className="mb-5">
                   <label className="block text-sm font-medium text-gray-800 dark:text-gray-200 mb-1">
                     {tApplication("notes")}
                   </label>
@@ -130,6 +120,27 @@ export function FullApplicationModal({
                     placeholder={tApplication("notes_placeholder")}
                     minRows={3}
                   />
+                </div>
+                <div className="mb-5">
+                  <Accordion
+                    selectedKeys={openKeys}
+                    onSelectionChange={(keys) =>
+                      setOpenKeys(new Set(keys as unknown as string[]))
+                    }
+                  >
+                    <AccordionItem
+                      key="1"
+                      aria-label="Job Description Raw"
+                      title={tApplication("show_raw_post")}
+                    >
+                      <div
+                        className="whitespace-pre-wrap text-sm text-gray-700 dark:text-gray-300 cursor-pointer"
+                        onClick={() => setOpenKeys(new Set())}
+                      >
+                        {application.job_description_raw}
+                      </div>
+                    </AccordionItem>
+                  </Accordion>
                 </div>
               </div>
             </ModalBody>
