@@ -75,6 +75,7 @@
       "add_element": "Voeg {element} toe",
       "delete": "Verwijderen",
       "cancel": "Annuleren",
+      "close": "Sluiten",
       "save": "Opslaan",
       "discard": "Verwerpen",
       "keep_editing": "Blijf bewerken",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Sollicitaties"
+          "title": "Sollicitaties",
+          "application": {
+            "company": "Bedrijf",
+            "no-role": "Geen rol opgegeven",
+            "website": "Website",
+            "link": "Link naar vacature",
+            "location": "Locatietype",
+            "place": "Land of Regio",
+            "summary": "Vacature Samenvatting",
+            "bullets": "Vacature Punten",
+            "date": "Aanvraagdatum",
+            "status": "Status",
+            "recruiter": "Recruiter",
+            "contact": "Contact E-mail",
+            "source": "Bron",
+            "salary": "Salaris",
+            "skills": "vaardigheden",
+            "show_raw_post": "Toon Ruwe Vacaturebeschrijving",
+            "notes": "Notities",
+            "notes_placeholder": "Schrijf je notities over deze aanvraag..."
+          }
         },
         "documents": {
           "title": "Documenten",

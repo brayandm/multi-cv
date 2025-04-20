@@ -75,6 +75,7 @@
       "add_element": "Aggiungi {element}",
       "delete": "Elimina",
       "cancel": "Annulla",
+      "close": "Chiudi",
       "save": "Salva",
       "discard": "Scarta",
       "keep_editing": "Continua a modificare",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Candidature"
+          "title": "Candidature",
+          "application": {
+            "company": "Azienda",
+            "no-role": "Nessun ruolo specificato",
+            "website": "Sito web",
+            "link": "Link all'annuncio di lavoro",
+            "location": "Tipo di posizione",
+            "place": "Paese o Regione",
+            "summary": "Riepilogo del lavoro",
+            "bullets": "Punti salienti del lavoro",
+            "date": "Data di candidatura",
+            "status": "Stato",
+            "recruiter": "Reclutatore",
+            "contact": "Email di contatto",
+            "source": "Fonte",
+            "salary": "Stipendio",
+            "skills": "competenze",
+            "show_raw_post": "Mostra descrizione del lavoro grezza",
+            "notes": "Note",
+            "notes_placeholder": "Scrivi le tue note su questa candidatura..."
+          }
         },
         "documents": {
           "title": "Documenti",

@@ -75,6 +75,7 @@
       "add_element": "הוסף {element}",
       "delete": "מחק",
       "cancel": "ביטול",
+      "close": "סגור",
       "save": "שמור",
       "discard": "זרוק",
       "keep_editing": "המשך לערוך",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "מועמדויות"
+          "title": "מועמדויות",
+          "application": {
+            "company": "חברה",
+            "no-role": "לא צוינה תפקיד",
+            "website": "אתר אינטרנט",
+            "link": "קישור למשרה",
+            "location": "סוג מיקום",
+            "place": "מדינה או אזור",
+            "summary": "סיכום משרה",
+            "bullets": "נקודות משרה",
+            "date": "תאריך בקשה",
+            "status": "סטטוס",
+            "recruiter": "מגייס",
+            "contact": "אימייל ליצירת קשר",
+            "source": "מקור",
+            "salary": "שכר",
+            "skills": "כישורים",
+            "show_raw_post": "הצג תיאור משרה גולמי",
+            "notes": "הערות",
+            "notes_placeholder": "כתוב את ההערות שלך על בקשה זו..."
+          }
         },
         "documents": {
           "title": "מסמכים",

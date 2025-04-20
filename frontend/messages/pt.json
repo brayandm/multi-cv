@@ -75,6 +75,7 @@
       "add_element": "Adicionar {element}",
       "delete": "Excluir",
       "cancel": "Cancelar",
+      "close": "Fechar",
       "save": "Salvar",
       "discard": "Descartar",
       "keep_editing": "Continuar editando",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Candidaturas"
+          "title": "Candidaturas",
+          "application": {
+            "company": "Empresa",
+            "no-role": "Nenhum cargo especificado",
+            "website": "Site",
+            "link": "Link da Vaga",
+            "location": "Tipo de Localização",
+            "place": "País ou Região",
+            "summary": "Resumo da Vaga",
+            "bullets": "Pontos da Vaga",
+            "date": "Data da Candidatura",
+            "status": "Status",
+            "recruiter": "Recrutador",
+            "contact": "Email de Contato",
+            "source": "Fonte",
+            "salary": "Salário",
+            "skills": "habilidades",
+            "show_raw_post": "Mostrar Descrição da Vaga Bruta",
+            "notes": "Notas",
+            "notes_placeholder": "Escreva suas notas sobre esta candidatura..."
+          }
         },
         "documents": {
           "title": "Documentos",

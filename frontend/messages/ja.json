@@ -75,6 +75,7 @@
       "add_element": "{element}を追加",
       "delete": "削除",
       "cancel": "キャンセル",
+      "close": "閉じる",
       "save": "保存",
       "discard": "破棄",
       "keep_editing": "編集を続ける",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "応募"
+          "title": "応募",
+          "application": {
+            "company": "会社",
+            "no-role": "指定された役割はありません",
+            "website": "ウェブサイト",
+            "link": "求人リンク",
+            "location": "勤務地の種類",
+            "place": "国または地域",
+            "summary": "求人概要",
+            "bullets": "求人のポイント",
+            "date": "応募日",
+            "status": "ステータス",
+            "recruiter": "リクルーター",
+            "contact": "連絡先メール",
+            "source": "ソース",
+            "salary": "給与",
+            "skills": "スキル",
+            "show_raw_post": "生の求人内容を表示",
+            "notes": "ノート",
+            "notes_placeholder": "この応募に関するノートを書いてください..."
+          }
         },
         "documents": {
           "title": "ドキュメント",

@@ -75,6 +75,7 @@
       "add_element": "Dodaj {element}",
       "delete": "Usuń",
       "cancel": "Anuluj",
+      "close": "Zamknij",
       "save": "Zapisz",
       "discard": "Odrzuć",
       "keep_editing": "Kontynuuj edytowanie",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Aplikacje"
+          "title": "Aplikacje",
+          "application": {
+            "company": "Firma",
+            "no-role": "Brak określonej roli",
+            "website": "Strona internetowa",
+            "link": "Link do ogłoszenia o pracę",
+            "location": "Typ lokalizacji",
+            "place": "Kraj lub region",
+            "summary": "Podsumowanie pracy",
+            "bullets": "Punkty dotyczące pracy",
+            "date": "Data aplikacji",
+            "status": "Status",
+            "recruiter": "Rekruter",
+            "contact": "Email kontaktowy",
+            "source": "Źródło",
+            "salary": "Wynagrodzenie",
+            "skills": "umiejętności",
+            "show_raw_post": "Pokaż surowy opis pracy",
+            "notes": "Notatki",
+            "notes_placeholder": "Napisz swoje notatki dotyczące tej aplikacji..."
+          }
         },
         "documents": {
           "title": "Dokumenty",

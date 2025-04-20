@@ -75,6 +75,7 @@
       "add_element": "{element} Ekle",
       "delete": "Sil",
       "cancel": "İptal",
+      "close": "Kapat",
       "save": "Kaydet",
       "discard": "İptal Et",
       "keep_editing": "Düzenlemeye devam et",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Başvurular"
+          "title": "Başvurular",
+          "application": {
+            "company": "Şirket",
+            "no-role": "Rol belirtilmedi",
+            "website": "Web Sitesi",
+            "link": "İş İlanı Bağlantısı",
+            "location": "Konum Türü",
+            "place": "Ülke veya Bölge",
+            "summary": "İş Özeti",
+            "bullets": "İş Detayları",
+            "date": "Başvuru Tarihi",
+            "status": "Durum",
+            "recruiter": "İşe Alımcı",
+            "contact": "İletişim E-postası",
+            "source": "Kaynak",
+            "salary": "Maaş",
+            "skills": "yetenekler",
+            "show_raw_post": "Ham İş Tanımını Göster",
+            "notes": "Notlar",
+            "notes_placeholder": "Bu başvuru hakkında notlarınızı yazın..."
+          }
         },
         "documents": {
           "title": "Belgeler",

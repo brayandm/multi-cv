@@ -75,6 +75,7 @@
       "add_element": "Add {element}",
       "delete": "Delete",
       "cancel": "Cancel",
+      "close": "Close",
       "save": "Save",
       "discard": "Discard",
       "keep_editing": "Keep editing",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Applications"
+          "title": "Applications",
+          "application": {
+            "company": "Company",
+            "no-role": "No role specified",
+            "website": "Website",
+            "link": "Job Post Link",
+            "location": "Location Type",
+            "place": "Country or Region",
+            "summary": "Job Summary",
+            "bullets": "Job Bullets",
+            "date": "Application Date",
+            "status": "Status",
+            "recruiter": "Recruiter",
+            "contact": "Contact Email",
+            "source": "Source",
+            "salary": "Salary",
+            "skills": "skills",
+            "show_raw_post": "Show Raw Job Description",
+            "notes": "Notes",
+            "notes_placeholder": "Write your notes about this application..."
+          }
         },
         "documents": {
           "title": "Documents",

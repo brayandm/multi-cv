@@ -75,6 +75,7 @@
       "add_element": "添加 {element}",
       "delete": "删除",
       "cancel": "取消",
+      "close": "关闭",
       "save": "保存",
       "discard": "放弃",
       "keep_editing": "继续编辑",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "申请"
+          "title": "申请",
+          "application": {
+            "company": "公司",
+            "no-role": "未指定角色",
+            "website": "网站",
+            "link": "职位发布链接",
+            "location": "地点类型",
+            "place": "国家或地区",
+            "summary": "职位摘要",
+            "bullets": "职位要点",
+            "date": "申请日期",
+            "status": "状态",
+            "recruiter": "招聘者",
+            "contact": "联系邮箱",
+            "source": "来源",
+            "salary": "薪资",
+            "skills": "技能",
+            "show_raw_post": "显示原始职位描述",
+            "notes": "备注",
+            "notes_placeholder": "写下您对该申请的备注..."
+          }
         },
         "documents": {
           "title": "文档",

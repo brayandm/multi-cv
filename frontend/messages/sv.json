@@ -75,6 +75,7 @@
       "add_element": "Lägg till {element}",
       "delete": "Ta bort",
       "cancel": "Avbryt",
+      "close": "Stäng",
       "save": "Spara",
       "discard": "Kassera",
       "keep_editing": "Fortsätt redigera",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Ansökningar"
+          "title": "Ansökningar",
+          "application": {
+            "company": "Företag",
+            "no-role": "Ingen roll angiven",
+            "website": "Webbplats",
+            "link": "Jobbannonslänk",
+            "location": "Plats Typ",
+            "place": "Land eller Region",
+            "summary": "Jobbbeskrivning",
+            "bullets": "Jobbpunkter",
+            "date": "Ansökningsdatum",
+            "status": "Status",
+            "recruiter": "Rekryterare",
+            "contact": "Kontakt E-post",
+            "source": "Källa",
+            "salary": "Lön",
+            "skills": "kompetenser",
+            "show_raw_post": "Visa rå jobbbeskrivning",
+            "notes": "Anteckningar",
+            "notes_placeholder": "Skriv dina anteckningar om denna ansökan..."
+          }
         },
         "documents": {
           "title": "Dokument",

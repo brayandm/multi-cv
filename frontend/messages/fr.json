@@ -75,6 +75,7 @@
       "add_element": "Ajouter {element}",
       "delete": "Supprimer",
       "cancel": "Annuler",
+      "close": "Fermer",
       "save": "Enregistrer",
       "discard": "Annuler",
       "keep_editing": "Continuer à modifier",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Candidatures"
+          "title": "Candidatures",
+          "application": {
+            "company": "Entreprise",
+            "no-role": "Aucun rôle spécifié",
+            "website": "Site Web",
+            "link": "Lien de l'offre d'emploi",
+            "location": "Type de localisation",
+            "place": "Pays ou région",
+            "summary": "Résumé du poste",
+            "bullets": "Points du poste",
+            "date": "Date de candidature",
+            "status": "Statut",
+            "recruiter": "Recruteur",
+            "contact": "Email de contact",
+            "source": "Source",
+            "salary": "Salaire",
+            "skills": "compétences",
+            "show_raw_post": "Afficher la description de poste brute",
+            "notes": "Notes",
+            "notes_placeholder": "Écrivez vos notes sur cette candidature..."
+          }
         },
         "documents": {
           "title": "Documents",

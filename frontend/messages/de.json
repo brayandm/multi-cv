@@ -75,6 +75,7 @@
       "add_element": "{element} hinzufügen",
       "delete": "Löschen",
       "cancel": "Abbrechen",
+      "close": "Schließen",
       "save": "Speichern",
       "discard": "Verwerfen",
       "keep_editing": "Weiter bearbeiten",
@@ -310,7 +311,27 @@
           }
         },
         "applications": {
-          "title": "Bewerbungen"
+          "title": "Bewerbungen",
+          "application": {
+            "company": "Unternehmen",
+            "no-role": "Keine Rolle angegeben",
+            "website": "Webseite",
+            "link": "Link zur Stellenanzeige",
+            "location": "Standorttyp",
+            "place": "Land oder Region",
+            "summary": "Stellenbeschreibung",
+            "bullets": "Stellenpunkte",
+            "date": "Bewerbungsdatum",
+            "status": "Status",
+            "recruiter": "Personalvermittler",
+            "contact": "Kontakt-E-Mail",
+            "source": "Quelle",
+            "salary": "Gehalt",
+            "skills": "Fähigkeiten",
+            "show_raw_post": "Rohbeschreibung der Stelle anzeigen",
+            "notes": "Notizen",
+            "notes_placeholder": "Schreiben Sie Ihre Notizen zu dieser Bewerbung..."
+          }
         },
         "documents": {
           "title": "Dokumente",
