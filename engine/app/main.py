@@ -20,6 +20,7 @@ from app.classes.models import (
     Text,
     Traduction,
     WebhookPayload,
+    Application,
 )
 from app.classes.pipelines import (
     AutoFillProfilePipeline,
@@ -336,6 +337,27 @@ async def get_documents(
 ) -> list[Document]:
     documents = await document_service.get_all_documents(get_user_id())
     return documents
+
+
+@router.get("/applications")
+@authenticate()
+async def get_applications(
+    application_service: ApplicationService = Depends(get_application_service),
+) -> list[Application]:
+    applications = await application_service.get_applications(get_user_id())
+    return applications
+
+
+@router.get("/application")
+@authenticate()
+async def get_application(
+    application_id: str,
+    application_service: ApplicationService = Depends(get_application_service),
+) -> Application:
+    application = await application_service.get_application(
+        get_user_id(), application_id
+    )
+    return application
 
 
 @router.post("/document/download")
