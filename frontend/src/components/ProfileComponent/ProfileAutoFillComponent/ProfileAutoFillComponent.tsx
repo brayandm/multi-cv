@@ -217,6 +217,9 @@ export default function ProfileAutoCvComponent() {
                     t("pages.profile.auto_fill.loading.descriptions.5"),
                     t("pages.profile.auto_fill.loading.descriptions.6"),
                     t("pages.profile.auto_fill.loading.descriptions.7"),
+                    t("pages.profile.auto_fill.loading.descriptions.8"),
+                    t("pages.profile.auto_fill.loading.descriptions.9"),
+                    t("pages.profile.auto_fill.loading.descriptions.10"),
                   ]}
                   isCyclic={false}
                 />
