@@ -15,45 +15,70 @@ from typing import (
 from pydantic import BaseModel
 
 
+def unwrap_annotated(type_hint: Any) -> Any:
+    origin = get_origin(type_hint)
+    if origin is Annotated:
+        return unwrap_annotated(get_args(type_hint)[0])
+    return type_hint
+
+
+def ordered_schema(
+    schema: dict,  # type: ignore
+    is_optional: bool = False,
+    is_literal: bool = False,
+) -> dict:  # type: ignore
+    ordered = {}
+    if is_optional:
+        ordered["__optional__"] = True
+    if is_literal:
+        ordered["__literal__"] = True
+    for k, v in schema.items():
+        ordered[k] = v
+    return ordered
+
+
 def get_schema(
     type_hint: Any, exclude_keys: Optional[List[str]] = None
 ) -> Any:
-    origin = get_origin(type_hint)
-    args = get_args(type_hint)
+    raw_type = unwrap_annotated(type_hint)
+    origin = get_origin(raw_type)
+    args = get_args(raw_type)
 
     is_optional = False
-
-    if origin is Annotated:
-        return get_schema(args[0], exclude_keys)
+    is_literal = False
+    literal_values = None
 
     if origin is Union and type(None) in args:
         is_optional = True
         non_none = [arg for arg in args if arg is not type(None)]
-        type_hint = non_none[0]
-        origin = get_origin(type_hint)
-        args = get_args(type_hint)
+        raw_type = unwrap_annotated(non_none[0])
+        origin = get_origin(raw_type)
+        args = get_args(raw_type)
 
     if origin is Literal:
+        is_literal = True
         literal_values = " | ".join(str(x) for x in args)
-        schema = {"__literal__": True, "value": literal_values}
-    elif inspect.isclass(type_hint) and issubclass(type_hint, BaseModel):
-        schema = generate_structure(type_hint, exclude_keys)
+        schema = {"value": literal_values}
+        return ordered_schema(schema, is_optional, is_literal)
+
+    if inspect.isclass(raw_type) and issubclass(raw_type, BaseModel):
+        schema = generate_structure(raw_type, exclude_keys)
     elif origin in {list, List}:
         inner = get_schema(args[0], exclude_keys) if args else "string"
         schema = [inner]  # type: ignore
-    elif type_hint in {str, int, float, bool}:
+    elif raw_type in {str, int, float, bool}:
         schema = (
-            "string"
-            if type_hint is str
-            else type_hint.__name__  # type: ignore
+            "string" if raw_type is str else raw_type.__name__  # type: ignore
         )
     else:
         schema = "string"  # type: ignore
 
-    if is_optional:
+    if isinstance(schema, dict):
+        return ordered_schema(schema, is_optional, is_literal)
+    elif is_optional:
         return {"__optional__": True, "value": schema}
-
-    return schema
+    else:
+        return schema
 
 
 def generate_structure(
