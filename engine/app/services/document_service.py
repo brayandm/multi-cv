@@ -2,7 +2,7 @@ import os
 import uuid
 from datetime import datetime, timezone
 from io import BytesIO
-from typing import Any, Tuple, Optional
+from typing import Any, Optional, Tuple
 from urllib.parse import quote
 
 from fastapi import Depends

@@ -9,7 +9,7 @@ from app.classes.models import (
     Cv,
     CvTemplate,
 )
-from app.utils.pydantic_custom_types import LongStr, ShortStr, ForceShortStr
+from app.utils.pydantic_custom_types import ForceShortStr, LongStr, ShortStr
 
 
 class Document(BaseModel):
