@@ -75,6 +75,7 @@
       "add_element": "{element} jodna",
       "delete": "Hataana",
       "cancel": "Cancel",
+      "close": "Band karo",
       "save": "Bachana",
       "discard": "Hataana",
       "keep_editing": "Editing jaari rakhein",
@@ -310,7 +311,28 @@
           }
         },
         "applications": {
-          "title": "Aavedan"
+          "title": "Aavedan",
+          "application": {
+            "company": "Kampani",
+            "no-role": "Koi bhumika nahi di gayi",
+            "website": "Website",
+            "link": "Naukri Post Link",
+            "location": "Sthal Prakar",
+            "place": "Desh ya Kshetra",
+            "summary": "Naukri Sankhya",
+            "bullets": "Naukri Bullet",
+            "date": "Aavedan Tareekh",
+            "status": "Sthiti",
+            "recruiter": "Bharti Karta",
+            "contact": "Sampark Email",
+            "source": "Srot",
+            "salary": "Vetan",
+            "skills": "Kaushal",
+            "show_raw_post": "Mool Rozgar Vivaran Dikhayein",
+            "notes": "Notes",
+            "notes_placeholder": "Is aavedan ke baare mein apne notes likhiye...",
+            "documents": "Dastavej"
+          }
         },
         "documents": {
           "title": "Dastavej",

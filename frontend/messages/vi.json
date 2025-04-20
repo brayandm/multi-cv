@@ -75,6 +75,7 @@
       "add_element": "Thêm {element}",
       "delete": "Xóa",
       "cancel": "Hủy",
+      "close": "Đóng",
       "save": "Lưu",
       "discard": "Hủy bỏ",
       "keep_editing": "Tiếp tục chỉnh sửa",
@@ -310,7 +311,28 @@
           }
         },
         "applications": {
-          "title": "Đơn ứng tuyển"
+          "title": "Đơn ứng tuyển",
+          "application": {
+            "company": "Công ty",
+            "no-role": "Không có vai trò nào được chỉ định",
+            "website": "Trang web",
+            "link": "Liên kết bài đăng công việc",
+            "location": "Loại địa điểm",
+            "place": "Quốc gia hoặc Khu vực",
+            "summary": "Tóm tắt công việc",
+            "bullets": "Điểm nổi bật công việc",
+            "date": "Ngày nộp đơn",
+            "status": "Trạng thái",
+            "recruiter": "Nhà tuyển dụng",
+            "contact": "Email liên hệ",
+            "source": "Nguồn",
+            "salary": "Mức lương",
+            "skills": "Kỹ năng",
+            "show_raw_post": "Hiển thị mô tả công việc gốc",
+            "notes": "Ghi chú",
+            "notes_placeholder": "Viết ghi chú của bạn về đơn ứng tuyển này...",
+            "documents": "Tài liệu"
+          }
         },
         "documents": {
           "title": "Tài liệu",

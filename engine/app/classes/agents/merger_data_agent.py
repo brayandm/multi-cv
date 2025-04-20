@@ -9,7 +9,9 @@ class MergerDataAgent(Agent):
 
     async def run(self, text1: str, text2: str) -> str:
 
-        profile_structure = get_schema(Profile)
+        profile_structure = get_schema(
+            Profile, exclude_keys=["notes", "general_notes", "moderation"]
+        )
 
         input_prompt = f"""
         You are an AI assistant whose task is to merge two texts/json

@@ -75,6 +75,7 @@
       "add_element": "เพิ่ม {element}",
       "delete": "ลบ",
       "cancel": "ยกเลิก",
+      "close": "ปิด",
       "save": "บันทึก",
       "discard": "ยกเลิก",
       "keep_editing": "เก็บการแก้ไข",
@@ -310,7 +311,28 @@
           }
         },
         "applications": {
-          "title": "การสมัครงาน"
+          "title": "การสมัครงาน",
+          "application": {
+            "company": "บริษัท",
+            "no-role": "ไม่มีบทบาทที่ระบุ",
+            "website": "เว็บไซต์",
+            "link": "ลิงก์ประกาศงาน",
+            "location": "ประเภทสถานที่",
+            "place": "ประเทศหรือภูมิภาค",
+            "summary": "สรุปงาน",
+            "bullets": "รายละเอียดงาน",
+            "date": "วันที่สมัคร",
+            "status": "สถานะ",
+            "recruiter": "ผู้สรรหา",
+            "contact": "อีเมลติดต่อ",
+            "source": "แหล่งที่มา",
+            "salary": "เงินเดือน",
+            "skills": "ทักษะ",
+            "show_raw_post": "แสดงคำอธิบายงานต้นฉบับ",
+            "notes": "หมายเหตุ",
+            "notes_placeholder": "เขียนหมายเหตุเกี่ยวกับการสมัครงานนี้...",
+            "documents": "เอกสาร"
+          }
         },
         "documents": {
           "title": "เอกสาร",

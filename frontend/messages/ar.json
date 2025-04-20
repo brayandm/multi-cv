@@ -75,6 +75,7 @@
       "add_element": "أضف {element}",
       "delete": "حذف",
       "cancel": "إلغاء",
+      "close": "إغلاق",
       "save": "حفظ",
       "discard": "تجاهل",
       "keep_editing": "استمر في التحرير",
@@ -310,7 +311,28 @@
           }
         },
         "applications": {
-          "title": "الطلبات"
+          "title": "الطلبات",
+          "application": {
+            "company": "شركة",
+            "no-role": "لا توجد وظيفة محددة",
+            "website": "موقع الويب",
+            "link": "رابط إعلان الوظيفة",
+            "location": "نوع الموقع",
+            "place": "الدولة أو المنطقة",
+            "summary": "ملخص الوظيفة",
+            "bullets": "نقاط الوظيفة",
+            "date": "تاريخ التقديم",
+            "status": "الحالة",
+            "recruiter": "المجند",
+            "contact": "البريد الإلكتروني للتواصل",
+            "source": "المصدر",
+            "salary": "الراتب",
+            "skills": "المهارات",
+            "show_raw_post": "عرض الوصف الوظيفي الأصلي",
+            "notes": "ملاحظات",
+            "notes_placeholder": "اكتب ملاحظاتك حول هذا الطلب...",
+            "documents": "مستندات"
+          }
         },
         "documents": {
           "title": "المستندات",

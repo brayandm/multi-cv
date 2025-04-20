@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from typing import Literal
+from typing import Literal, Optional
 
 from pydantic import BaseModel, Field
 
@@ -9,12 +9,14 @@ from app.classes.models import (
     Cv,
     CvTemplate,
 )
-from app.utils.pydantic_custom_types import LongStr, ShortStr
+from app.utils.pydantic_custom_types import ForceShortStr, LongStr, ShortStr
 
 
 class Document(BaseModel):
     document_id: ShortStr
     user_id: int
+    application_id: Optional[ShortStr] = None
+    metaname: Optional[ForceShortStr] = None
     name: LongStr  # Is concatenation of a ShortStr + something
     size: int
     created_at: datetime = Field(

@@ -7,6 +7,7 @@ import { Tab, Tabs } from "@heroui/react";
 import DocumentsComponent from "../DocumentsComponent";
 import { useTranslations } from "next-intl";
 import GenerateDocumentComponentWrapper from "../GenerateDocumentComponentWrapper";
+import ApplicationsComponent from "../ApplicationsComponent";
 
 export default function HomeComponent() {
   const t = useTranslations();
@@ -37,14 +38,16 @@ export default function HomeComponent() {
           >
             <GenerateDocumentComponentWrapper />
           </Tab>
-          {/* <Tab
+          <Tab
             key="applications"
             title={
               <div className="flex items-center space-x-2">
                 <span>{t("pages.home.tabs.applications.title")}</span>
               </div>
             }
-          /> */}
+          >
+            <ApplicationsComponent />
+          </Tab>
           <Tab
             key="documents"
             title={

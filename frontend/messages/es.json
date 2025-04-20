@@ -75,6 +75,7 @@
       "add_element": "Agregar {element}",
       "delete": "Eliminar",
       "cancel": "Cancelar",
+      "close": "Cerrar",
       "save": "Guardar",
       "discard": "Descartar",
       "keep_editing": "Seguir editando",
@@ -310,7 +311,28 @@
           }
         },
         "applications": {
-          "title": "Solicitudes"
+          "title": "Solicitudes",
+          "application": {
+            "company": "Empresa",
+            "no-role": "No se especificó rol",
+            "website": "Sitio web",
+            "link": "Enlace de la oferta de trabajo",
+            "location": "Tipo de ubicación",
+            "place": "País o región",
+            "summary": "Resumen del trabajo",
+            "bullets": "Puntos del trabajo",
+            "date": "Fecha de la solicitud",
+            "status": "Estado",
+            "recruiter": "Reclutador",
+            "contact": "Correo electrónico de contacto",
+            "source": "Fuente",
+            "salary": "Salario",
+            "skills": "Habilidades",
+            "show_raw_post": "Mostrar descripción del trabajo original",
+            "notes": "Notas",
+            "notes_placeholder": "Escribe tus notas sobre esta solicitud...",
+            "documents": "Documentos"
+          }
         },
         "documents": {
           "title": "Documentos",

@@ -2,11 +2,13 @@ from io import BytesIO
 from typing import Any, Dict, Optional
 from urllib.parse import quote
 
-from fastapi import APIRouter, Depends, FastAPI, File, UploadFile
+from fastapi import APIRouter, Depends, FastAPI, File, Query, UploadFile
+from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
 
 from app.classes.models import (
+    Application,
     Chat,
     Cv,
     CvTemplate,
@@ -46,6 +48,10 @@ from app.framework.middlewares import (
     RequestHandleMiddleware,
 )
 from app.framework.types.request import DeleteRequest, DocumentDownloadRequest
+from app.services.application_service import (
+    ApplicationService,
+    get_application_service,
+)
 from app.services.chat_engine import ChatEngineService
 from app.services.document_service import DocumentService, get_document_service
 from app.services.profile_service import ProfileService, get_profile_service
@@ -195,9 +201,12 @@ async def generate_cv_inline(
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
     document_service: DocumentService = Depends(get_document_service),
+    application_service: ApplicationService = Depends(get_application_service),
 ) -> Response:
 
-    profile = await profile_service.get_profile(get_user_id(), with_notes=True)
+    user_id = get_user_id()
+
+    profile = await profile_service.get_profile(user_id, with_notes=True)
 
     if profile is None:
         return Response(
@@ -219,9 +228,7 @@ async def generate_cv_inline(
                 content={"error": "Input is unsafe."},
             )
 
-        await profile_service.profile_moderation(
-            get_user_id(), moderation=True
-        )
+        await profile_service.profile_moderation(user_id, moderation=True)
 
     is_safe = await chat_engine_service.moderation(input.model_dump_json())
     if not is_safe:
@@ -231,14 +238,23 @@ async def generate_cv_inline(
             content={"error": "Input is unsafe."},
         )
 
-    cv = await GenerateCvPipeline().run(profile, input, traduction)
+    cv, application = await GenerateCvPipeline().run(
+        profile, input, traduction
+    )
+
+    application_id = None
+
+    if application:
+        application_id = await application_service.store_application(
+            user_id, application
+        )
 
     cv_template = CvTemplate(
         id="default", type="latex", cv_texts=get_traductions(traduction.locale)
     )
 
     quoted_filename, pdf_bytes = await document_service.process_cv(
-        profile, cv, cv_template
+        profile, cv, cv_template, application_id
     )
 
     return Response(
@@ -260,9 +276,12 @@ async def generate_cv_inline_norender(
     input: GenerationInput,
     traduction: Traduction,
     profile_service: ProfileService = Depends(get_profile_service),
+    application_service: ApplicationService = Depends(get_application_service),
 ) -> Response:
 
-    profile = await profile_service.get_profile(get_user_id(), with_notes=True)
+    user_id = get_user_id()
+
+    profile = await profile_service.get_profile(user_id, with_notes=True)
 
     if profile is None:
         return Response(
@@ -284,9 +303,7 @@ async def generate_cv_inline_norender(
                 content={"error": "Input is unsafe."},
             )
 
-        await profile_service.profile_moderation(
-            get_user_id(), moderation=True
-        )
+        await profile_service.profile_moderation(user_id, moderation=True)
 
     is_safe = await chat_engine_service.moderation(input.model_dump_json())
     if not is_safe:
@@ -296,7 +313,13 @@ async def generate_cv_inline_norender(
             content={"error": "Input is unsafe."},
         )
 
-    cv = await GenerateCvPipeline().run(profile, input, traduction)
+    cv, application = await GenerateCvPipeline().run(
+        profile, input, traduction
+    )
+
+    if application:
+        await application_service.store_application(user_id, application)
+
     cv_texts = CvTexts(**get_traductions(traduction.locale))
 
     return JSONResponse(
@@ -315,6 +338,54 @@ async def get_documents(
 ) -> list[Document]:
     documents = await document_service.get_all_documents(get_user_id())
     return documents
+
+
+@router.get("/applications")
+@authenticate()
+async def get_applications(
+    application_service: ApplicationService = Depends(get_application_service),
+) -> list[Application]:
+    applications = await application_service.get_applications(get_user_id())
+    return applications
+
+
+@router.get("/application")
+@authenticate()
+async def get_application(
+    application_id: str = Query(...),
+    application_service: ApplicationService = Depends(get_application_service),
+) -> Response:
+    application, documents = await application_service.get_application(
+        get_user_id(), application_id
+    )
+    return JSONResponse(
+        content=jsonable_encoder(
+            {
+                "application": application.model_dump(exclude_none=True),
+                "documents": [
+                    document.model_dump(exclude_none=True)
+                    for document in documents
+                ],
+            }
+        ),
+        status_code=200,
+    )
+
+
+@router.post("/application")
+@authenticate()
+async def update_application(
+    application: Application,
+    application_service: ApplicationService = Depends(get_application_service),
+) -> Response:
+
+    await application_service.update_application(
+        get_user_id(), application.application_id, application
+    )
+    return JSONResponse(
+        content={"message": "Application updated successfully."},
+        status_code=200,
+    )
 
 
 @router.post("/document/download")
@@ -551,6 +622,7 @@ async def delete_profile(
     profile_service: ProfileService = Depends(get_profile_service),
     settings_service: SettingsService = Depends(get_settings_service),
     document_service: DocumentService = Depends(get_document_service),
+    application_service: ApplicationService = Depends(get_application_service),
 ) -> Response:
     user_id = delete_request.user_id
 
@@ -561,6 +633,8 @@ async def delete_profile(
     await settings_service.delete_settings(user_id)
 
     await document_service.delete_all_documents(user_id)
+
+    await application_service.delete_applications(user_id)
 
     return JSONResponse(
         content={"message": "Profile deleted successfully."},

@@ -35,6 +35,9 @@ import {
   storeSettingsEngineLink,
   moderationEngineLink,
   userDeleteApiLink,
+  applicationEngineLink,
+  applicationsEngineLink,
+  updateApplicationEngineLink,
 } from "./links";
 import {
   UserResponse,
@@ -51,6 +54,8 @@ import {
   CheckoutSessionResponse,
   GenerationInput,
   Settings,
+  Application,
+  ApplicationResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -494,4 +499,21 @@ export const userDeleteApi = async (): Promise<
   AxiosResponse<MessageResponse>
 > => {
   return await api.post(userDeleteApiLink);
+};
+
+export const applicationsEngine = async (): Promise<
+  AxiosResponse<Application[]>
+> => {
+  return await engine.get(applicationsEngineLink);
+};
+export const applicationEngine = async (
+  applicationId: string
+): Promise<AxiosResponse<ApplicationResponse>> => {
+  return await engine.get(`${applicationEngineLink}?id=${applicationId}`);
+};
+
+export const updateApplicationEngine = async (
+  application: Partial<Application>
+): Promise<AxiosResponse<MessageResponse>> => {
+  return await engine.post(updateApplicationEngineLink, application);
 };

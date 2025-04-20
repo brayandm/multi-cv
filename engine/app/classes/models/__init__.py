@@ -1,3 +1,4 @@
+from .application.application import Application
 from .chat import Chat, ChatMessage
 from .cover_letter.cover_letter import CoverLetter
 from .cover_letter.cover_letter_template import CoverLetterTemplate
@@ -49,4 +50,5 @@ __all__ = [
     "GenerationInput",
     "Settings",
     "Text",
+    "Application",
 ]

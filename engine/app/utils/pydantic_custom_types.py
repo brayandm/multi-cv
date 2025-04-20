@@ -62,6 +62,12 @@ ForceLongStr = Annotated[
     Field(max_length=MAX_LONG_STR_LENGTH),
 ]
 
+ForceExtraLongStr = Annotated[
+    str,
+    crop_str(MAX_EXTRA_LONG_STR_LENGTH),
+    Field(max_length=MAX_EXTRA_LONG_STR_LENGTH),
+]
+
 NotesStr = Annotated[
     Optional[str],
     crop_str(MAX_NOTES_LENGTH),

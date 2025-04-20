@@ -75,6 +75,7 @@
       "add_element": "Tambah {element}",
       "delete": "Hapus",
       "cancel": "Batal",
+      "close": "Tutup",
       "save": "Simpan",
       "discard": "Buang",
       "keep_editing": "Terus mengedit",
@@ -310,7 +311,28 @@
           }
         },
         "applications": {
-          "title": "Aplikasi"
+          "title": "Aplikasi",
+          "application": {
+            "company": "Perusahaan",
+            "no-role": "Tidak ada peran yang ditentukan",
+            "website": "Situs Web",
+            "link": "Tautan Lowongan Kerja",
+            "location": "Tipe Lokasi",
+            "place": "Negara atau Wilayah",
+            "summary": "Ringkasan Pekerjaan",
+            "bullets": "Poin Pekerjaan",
+            "date": "Tanggal Lamaran",
+            "status": "Status",
+            "recruiter": "Rekruter",
+            "contact": "Email Kontak",
+            "source": "Sumber",
+            "salary": "Gaji",
+            "skills": "Keterampilan",
+            "show_raw_post": "Tampilkan Deskripsi Pekerjaan Asli",
+            "notes": "Catatan",
+            "notes_placeholder": "Tulis catatan Anda tentang lamaran ini...",
+            "documents": "Dokumen"
+          }
         },
         "documents": {
           "title": "Dokumen",

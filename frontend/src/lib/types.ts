@@ -82,6 +82,11 @@ export interface UserThemeResponse {
 export interface CheckoutSessionResponse {
   id: string;
 }
+
+export interface ApplicationResponse {
+  application: Application;
+  documents: Document[];
+}
 export interface Document {
   document_id: string;
   user_id: number;
@@ -90,6 +95,41 @@ export interface Document {
   created_at: string;
   updated_at: string;
   type: "cv" | "cover_letter";
+}
+
+export type ApplicationStatusType =
+  | "Applied"
+  | "Interview"
+  | "Offer"
+  | "Rejected";
+
+export type ApplicationLocationType = "Remote" | "Hybrid" | "Onsite";
+
+export interface Application {
+  application_id: string;
+
+  role?: string;
+  company_name?: string;
+  company_website?: string;
+  company_logo_link?: string;
+  job_post_link?: string;
+  location_type?: ApplicationLocationType;
+  country_or_region?: string;
+
+  job_summary?: string;
+  job_bullets?: string[];
+  job_description_raw: string;
+
+  application_date: string;
+  status: ApplicationStatusType;
+  contact_email?: string;
+  recruiter_name?: string;
+
+  job_post_source?: string;
+  salary?: string;
+  skills?: string[];
+
+  user_comments: string;
 }
 
 export interface GenerationInput {
