@@ -2,24 +2,23 @@ import { fetcherEngine } from "@/lib/backendService";
 import { applicationsEngineLink } from "@/lib/links";
 import { Application } from "@/lib/types";
 
-import { Spinner } from "@heroui/react";
+import { Select, SelectItem, Spinner } from "@heroui/react";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import useSWR from "swr";
 
-function getStatusColor(status: string): string {
-  switch (status) {
-    case "Applied":
-      return "bg-gray-200 text-gray-800";
-    case "Interview":
-      return "bg-yellow-200 text-yellow-800";
-    case "Offer":
-      return "bg-green-200 text-green-800";
-    case "Rejected":
-      return "bg-red-200 text-red-800";
-    default:
-      return "bg-gray-100 text-gray-600";
-  }
-}
+const statusOptions = ["Applied", "Interview", "Offer", "Rejected"];
+
+const statusToClass: Record<string, string> = {
+  Applied:
+    "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 dark:focus:bg-gray-600",
+  Interview:
+    "bg-yellow-200 text-yellow-800 hover:bg-yellow-300 focus:bg-yellow-300 dark:bg-yellow-500 dark:text-yellow-100 dark:hover:bg-yellow-400 dark:focus:bg-yellow-400",
+  Offer:
+    "bg-green-200 text-green-800 hover:bg-green-300 focus:bg-green-300 dark:bg-green-500 dark:text-green-100 dark:hover:bg-green-400 dark:focus:bg-green-400",
+  Rejected:
+    "bg-red-200 text-red-800 hover:bg-red-300 focus:bg-red-300 dark:bg-red-500 dark:text-red-100 dark:hover:bg-red-400 dark:focus:bg-red-400",
+};
 
 export default function ApplicationsComponent() {
   const { data: applications, isLoading } = useSWR<Application[]>(
@@ -28,6 +27,8 @@ export default function ApplicationsComponent() {
   );
 
   const t = useTranslations();
+
+  const [statuses, setStatuses] = useState<Record<string, string>>({});
 
   const groupByDate = (applications: Application[]) => {
     const grouped: Record<string, Application[]> = {};
@@ -68,6 +69,14 @@ export default function ApplicationsComponent() {
     return `hsl(${hue}, 70%, 80%)`;
   }
 
+  const handleStatusChange = (id: string, newStatus: string) => {
+    console.log(`Status changed for ${id} to ${newStatus}`);
+    setStatuses((prev) => ({
+      ...prev,
+      [id]: newStatus,
+    }));
+  };
+
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       {isLoading || !applications ? (
@@ -92,10 +101,9 @@ export default function ApplicationsComponent() {
                   .map((application) => (
                     <li
                       key={application.application_id}
-                      className="flex items-center w-[300px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
+                      className="flex items-center w-[300px] sm:w-[600px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
                     >
                       <div className="flex items-center gap-4 w-full">
-                        {/* Logo o inicial */}
                         {application.company_logo_link ? (
                           // eslint-disable-next-line
                           <img
@@ -126,13 +134,54 @@ export default function ApplicationsComponent() {
                                 {application.role || "Unknown Role"}
                               </p>
                             </div>
-                            <span
-                              className={`text-[10px] px-2 py-0.5 rounded-full font-semibold ${getStatusColor(
-                                application.status
-                              )}`}
+                            <Select
+                              aria-label="Application status"
+                              className={`sm:w-[140px] w-[100px] text-[10px]`}
+                              size="sm"
+                              selectedKeys={[
+                                statuses[application.application_id] ||
+                                  application.status,
+                              ]}
+                              onChange={(event) =>
+                                handleStatusChange(
+                                  application.application_id,
+                                  event.target.value
+                                )
+                              }
+                              classNames={{
+                                label: "hidden",
+                                popoverContent: "w-32",
+                                listboxWrapper: "w-32",
+                                listbox: "w-32 text-center",
+                                selectorIcon: "hidden",
+                                trigger: `flex  
+                                  items-center justify-center p-0
+                                ${
+                                  statusToClass[
+                                    statuses[application.application_id] ||
+                                      application.status
+                                  ]
+                                }`,
+                                value: "text-center",
+                              }}
                             >
-                              {application.status}
-                            </span>
+                              {statusOptions.map((status) => (
+                                <SelectItem
+                                  key={status}
+                                  classNames={{
+                                    selectedIcon: "hidden",
+                                    base: "p-0",
+                                  }}
+                                  textValue={status}
+                                >
+                                  <div
+                                    className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-8`}
+                                  >
+                                    {status}
+                                  </div>
+                                </SelectItem>
+                              ))}
+                            </Select>
                           </div>
 
                           {application.location_type && (
