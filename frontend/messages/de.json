@@ -330,7 +330,8 @@
             "skills": "Fähigkeiten",
             "show_raw_post": "Originale Stellenbeschreibung anzeigen",
             "notes": "Notizen",
-            "notes_placeholder": "Schreiben Sie Ihre Notizen zu dieser Bewerbung..."
+            "notes_placeholder": "Schreiben Sie Ihre Notizen zu dieser Bewerbung...",
+            "documents": "Dokumente"
           }
         },
         "documents": {

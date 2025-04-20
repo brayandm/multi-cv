@@ -330,7 +330,8 @@
             "skills": "כישורים",
             "show_raw_post": "הצג תיאור עבודה מקורי",
             "notes": "הערות",
-            "notes_placeholder": "כתוב את ההערות שלך על בקשה זו..."
+            "notes_placeholder": "כתוב את ההערות שלך על בקשה זו...",
+            "documents": "מסמכים"
           }
         },
         "documents": {

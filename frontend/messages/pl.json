@@ -330,7 +330,8 @@
             "skills": "Umiejętności",
             "show_raw_post": "Pokaż oryginalny opis stanowiska",
             "notes": "Notatki",
-            "notes_placeholder": "Napisz swoje notatki dotyczące tej aplikacji..."
+            "notes_placeholder": "Napisz swoje notatki dotyczące tej aplikacji...",
+            "documents": "Dokumenty"
           }
         },
         "documents": {

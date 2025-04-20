@@ -330,7 +330,8 @@
             "skills": "기술",
             "show_raw_post": "원본 직무 설명 보기",
             "notes": "노트",
-            "notes_placeholder": "이 지원서에 대한 노트를 작성하세요..."
+            "notes_placeholder": "이 지원서에 대한 노트를 작성하세요...",
+            "documents": "문서"
           }
         },
         "documents": {

@@ -330,7 +330,8 @@
             "skills": "Beceriler",
             "show_raw_post": "Orijinal İş Tanımını Göster",
             "notes": "Notlar",
-            "notes_placeholder": "Bu başvuru hakkında notlarınızı yazın..."
+            "notes_placeholder": "Bu başvuru hakkında notlarınızı yazın...",
+            "documents": "Belgeler"
           }
         },
         "documents": {

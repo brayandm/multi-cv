@@ -17,6 +17,7 @@ import {
   Application,
   ApplicationResponse,
   ApplicationStatusType,
+  Document,
 } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import {
@@ -27,6 +28,7 @@ import { MAX_LONG_TEXT_LENGTH } from "@/lib/consts";
 import { fetcherEngine, updateApplicationEngine } from "@/lib/backendService";
 import { applicationEngineLink } from "@/lib/links";
 import useSWR from "swr";
+import DocumentComponent from "@/shared/components/DocumentComponent";
 
 interface FullApplicationModalProps {
   application_id: string;
@@ -50,9 +52,12 @@ export function FullApplicationModal({
 
   const [application, setApplication] = useState<Application | null>();
 
+  const [documents, setDocuments] = useState<Document[]>([]);
+
   useEffect(() => {
     if (applicationResponse) {
       setApplication(applicationResponse.application);
+      setDocuments(applicationResponse.documents);
     }
   }, [applicationResponse]);
 
@@ -238,6 +243,23 @@ export function FullApplicationModal({
                           description={`${comments.length} / 1000`}
                         />
                       </div>
+
+                      {documents.length > 0 && (
+                        <div className="mb-5">
+                          <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
+                            {tApplication("documents")}
+                          </p>
+                          <div>
+                            {documents.map((doc) => (
+                              <DocumentComponent
+                                key={doc.document_id}
+                                document={doc}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
                       <div className="mb-5">
                         <Accordion
                           selectedKeys={openKeys}

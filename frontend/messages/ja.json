@@ -330,7 +330,8 @@
             "skills": "スキル",
             "show_raw_post": "元の職務内容を表示",
             "notes": "ノート",
-            "notes_placeholder": "この応募に関するノートを書いてください..."
+            "notes_placeholder": "この応募に関するノートを書いてください...",
+            "documents": "ドキュメント"
           }
         },
         "documents": {

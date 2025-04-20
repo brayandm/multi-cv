@@ -330,7 +330,8 @@
             "skills": "Vaardigheden",
             "show_raw_post": "Toon originele functiebeschrijving",
             "notes": "Notities",
-            "notes_placeholder": "Schrijf je notities over deze aanvraag..."
+            "notes_placeholder": "Schrijf je notities over deze aanvraag...",
+            "documents": "Documenten"
           }
         },
         "documents": {

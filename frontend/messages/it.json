@@ -330,7 +330,8 @@
             "skills": "Competenze",
             "show_raw_post": "Mostra la descrizione originale del lavoro",
             "notes": "Note",
-            "notes_placeholder": "Scrivi le tue note su questa candidatura..."
+            "notes_placeholder": "Scrivi le tue note su questa candidatura...",
+            "documents": "Documenti"
           }
         },
         "documents": {

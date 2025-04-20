@@ -330,7 +330,8 @@
             "skills": "Habilidades",
             "show_raw_post": "Mostrar descrição original da vaga",
             "notes": "Notas",
-            "notes_placeholder": "Escreva suas notas sobre esta candidatura..."
+            "notes_placeholder": "Escreva suas notas sobre esta candidatura...",
+            "documents": "Documentos"
           }
         },
         "documents": {

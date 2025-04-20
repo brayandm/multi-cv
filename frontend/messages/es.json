@@ -330,7 +330,8 @@
             "skills": "Habilidades",
             "show_raw_post": "Mostrar descripción del trabajo original",
             "notes": "Notas",
-            "notes_placeholder": "Escribe tus notas sobre esta solicitud..."
+            "notes_placeholder": "Escribe tus notas sobre esta solicitud...",
+            "documents": "Documentos"
           }
         },
         "documents": {

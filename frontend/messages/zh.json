@@ -330,7 +330,8 @@
             "skills": "技能",
             "show_raw_post": "显示原始职位描述",
             "notes": "备注",
-            "notes_placeholder": "写下您对该申请的备注..."
+            "notes_placeholder": "写下您对该申请的备注...",
+            "documents": "文件"
           }
         },
         "documents": {

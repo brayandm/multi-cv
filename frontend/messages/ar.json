@@ -330,7 +330,8 @@
             "skills": "المهارات",
             "show_raw_post": "عرض الوصف الوظيفي الأصلي",
             "notes": "ملاحظات",
-            "notes_placeholder": "اكتب ملاحظاتك حول هذا الطلب..."
+            "notes_placeholder": "اكتب ملاحظاتك حول هذا الطلب...",
+            "documents": "مستندات"
           }
         },
         "documents": {
