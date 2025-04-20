@@ -60,7 +60,7 @@ export default function DocumentComponent({
   };
   return (
     <>
-      <div className="flex items-center w-[300px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition">
+      <div className="flex items-center max-w-[300px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition">
         <div className="flex items-center gap-4">
           <div className="bg-primary/10 text-primary dark:bg-primary/20 p-2 rounded-full">
             <DocumentTextIcon className="w-6 h-6" />
