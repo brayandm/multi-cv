@@ -6,7 +6,7 @@ import { Select, SelectItem, Spinner, useDisclosure } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { FullApplicationModal } from "../FullApplicationComponent/FullApplicationComponent";
+import FullApplicationComponent from "../FullApplicationComponent";
 
 export const statusOptions = ["Applied", "Interview", "Offer", "Rejected"];
 
@@ -107,7 +107,7 @@ export default function ApplicationsComponent() {
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       {selectedApplication && (
-        <FullApplicationModal
+        <FullApplicationComponent
           application_id={selectedApplication.application_id}
           isOpen={isOpen}
           onClose={onOpenChange}
