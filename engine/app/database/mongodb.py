@@ -42,10 +42,10 @@ async def ensure_indexes(db: AgnosticDatabase[Any]) -> None:
     await db["documents"].create_index("document_id")
     await db["documents"].create_index("user_id")
     await db["moderated_messages"].create_index("user_id")
-    await db["profiles"].create_index("user_id")
-    await db["settings"].create_index("user_id")
-    await db["total_costs"].create_index("user_id")
-    await db["user_moderation_stats"].create_index("user_id")
+    await db["profiles"].create_index("user_id", unique=True)
+    await db["settings"].create_index("user_id", unique=True)
+    await db["total_costs"].create_index("user_id", unique=True)
+    await db["user_moderation_stats"].create_index("user_id", unique=True)
 
 
 mongo_handler = MongoDBHandler()
@@ -55,6 +55,7 @@ mongo_handler = MongoDBHandler()
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     await mongo_handler.connect()
     app.state.db = mongo_handler.get_database()
+    await ensure_indexes(app.state.db)
     yield
     await mongo_handler.close()
 
