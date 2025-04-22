@@ -19,6 +19,7 @@ class GenerateApplicationBasedOnJobPostAgent(Agent):
         application_structure = get_schema(
             Application,
             exclude_keys=[
+                "company_logo_link",
                 "job_description_raw",
                 "application_date",
                 "status",
