@@ -11,6 +11,7 @@ import {
 } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import { storeExtensionStorageValue } from "@/lib/storeExtensionStorageValue";
 
 export default function CookieBanner() {
   const t = useTranslations();
@@ -37,7 +38,15 @@ export default function CookieBanner() {
   }, []);
 
   const handleConsent = (granted: boolean) => {
-    localStorage.setItem("cookie_consent", granted ? "granted" : "denied");
+    const isIframe = window.self !== window.top;
+
+    const value = granted ? "granted" : "denied";
+
+    localStorage.setItem("cookie_consent", value);
+
+    if (isIframe) {
+      storeExtensionStorageValue("cookie_consent", value, () => {});
+    }
     window.dispatchEvent(new Event("cookie-consent-changed"));
     setShowBanner(false);
   };

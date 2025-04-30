@@ -22,6 +22,7 @@ export const useRefreshPage = () => {
         const content = event.data.content as {
           locale?: string;
           theme?: string;
+          cookie_consent?: string;
           auth_cookie?: {
             name: string;
             value: string;
@@ -31,6 +32,7 @@ export const useRefreshPage = () => {
 
         const cookie = content.auth_cookie;
         const locale = content.locale;
+        const cookieConsent = content.cookie_consent;
         const theme = content.theme;
 
         if (locale) {
@@ -39,6 +41,11 @@ export const useRefreshPage = () => {
 
         if (theme) {
           await updateTheme(theme);
+        }
+
+        if (cookieConsent) {
+          localStorage.setItem("cookie_consent", cookieConsent);
+          window.dispatchEvent(new Event("cookie-consent-changed"));
         }
 
         if (cookie) {
