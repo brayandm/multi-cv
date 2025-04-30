@@ -73,15 +73,16 @@ const ApplicationStatusComponent = ({
       onChange={(event) => onChange(event.target.value as string)}
       classNames={{
         label: "hidden",
-        popoverContent: "w-40",
-        listboxWrapper: "w-40",
-        listbox: "w-40 text-center",
+        popoverContent: "sm:w-[200px] w-[100px]",
+        listboxWrapper: "sm:w-[200px] w-[100px]",
+        listbox: "sm:w-[200px] w-[100px] text-center",
         selectorIcon: "hidden",
         trigger: `flex  
     items-center justify-center p-0
   ${statusToClass[status]}`,
         value: "text-center",
       }}
+      popoverProps={{}}
     >
       {statusOptions.map((status) => (
         <SelectItem
@@ -93,7 +94,7 @@ const ApplicationStatusComponent = ({
           textValue={status}
         >
           <div
-            className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-8`}
+            className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-12 sm:h-8`}
           >
             {capitalizeWords(status)}
           </div>
