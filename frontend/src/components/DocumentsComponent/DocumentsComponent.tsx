@@ -69,7 +69,10 @@ export default function DocumentsComponent() {
                   .slice()
                   .reverse()
                   .map((doc) => (
-                    <li key={doc.document_id}>
+                    <li
+                      key={doc.document_id}
+                      className="flex justify-center w-full"
+                    >
                       <DocumentComponent document={doc} />
                     </li>
                   ))}
