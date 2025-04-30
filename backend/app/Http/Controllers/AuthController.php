@@ -414,11 +414,11 @@ class AuthController extends Controller
         }
 
         $lastModified = $media->updated_at;
-        $etag = md5($media->id . $media->updated_at);
+        $etag = md5($media->id.$media->updated_at);
 
         $headers = [
             'Content-Type' => $media->mime_type,
-            'Content-Disposition' => 'inline; filename="' . $media->file_name . '"',
+            'Content-Disposition' => 'inline; filename="'.$media->file_name.'"',
             'Cache-Control' => 'public, max-age=0, must-revalidate',
             'Last-Modified' => $lastModified->format(DATE_RFC7231),
             'ETag' => $etag,

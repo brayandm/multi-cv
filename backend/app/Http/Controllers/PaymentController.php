@@ -65,14 +65,13 @@ class PaymentController extends Controller
             ];
         }
 
-
         $actionService = app(ActionService::class);
 
-        $quotaInfo = $actionService->getQuotaInfo($user->id, "beta_testing");
+        $quotaInfo = $actionService->getQuotaInfo($user->id, 'beta_testing');
 
-        if ($quotaInfo && $quotaInfo["left"] > 0) {
-            if ($plan == "occasional") {
-                $plan = "beta_testing";
+        if ($quotaInfo && $quotaInfo['left'] > 0) {
+            if ($plan == 'occasional') {
+                $plan = 'beta_testing';
             }
         }
 
@@ -83,8 +82,8 @@ class PaymentController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => url(config('app.frontend_url') . '/payment/success?session_id={CHECKOUT_SESSION_ID}'),
-            'cancel_url' => url(config('app.frontend_url') . '/payment/cancel'),
+            'success_url' => url(config('app.frontend_url').'/payment/success?session_id={CHECKOUT_SESSION_ID}'),
+            'cancel_url' => url(config('app.frontend_url').'/payment/cancel'),
             'allow_promotion_codes' => true,
             'customer_email' => $user->email,
             'metadata' => [
@@ -117,15 +116,14 @@ class PaymentController extends Controller
                 $userId = $session->metadata->user_id ?? null;
                 $plan = $session->metadata->plan ?? null;
 
-
                 DB::transaction(function () use ($userId, $plan) {
 
-                    if ($plan == "beta_testing") {
+                    if ($plan == 'beta_testing') {
                         $actionService = app(ActionService::class);
 
                         $actionService->consumeAction(
                             $userId,
-                            "beta_testing"
+                            'beta_testing'
                         );
 
                         PaymentPlanService::createOccasionalPlan($userId, 20);
@@ -145,7 +143,7 @@ class PaymentController extends Controller
                 break;
 
             default:
-                Log::info('📩 Stripe Event Received: ' . $event->type);
+                Log::info('📩 Stripe Event Received: '.$event->type);
         }
 
         return response('Webhook received', 200);
