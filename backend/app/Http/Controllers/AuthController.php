@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\CookiesHelper;
 use App\Mail\UserSuspended;
 use App\Models\User;
+use App\Services\ActionService;
 use App\Services\EngineService;
 use App\Services\PaymentPlanService;
 use App\Services\UserService;
@@ -210,13 +211,13 @@ class AuthController extends Controller
         $current_terms_version = config('app.privacy_policy_and_terms_of_service_version');
 
         $is_valid_terms_version = $user->accepted_terms_at ?
-        Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
-        null;
+            Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
+            null;
 
         $in_time = Carbon::now()->lt(Carbon::parse($current_terms_version)->addMonth());
 
         $notice_new_terms_version = $is_valid_terms_version ? null : ($user->accepted_terms_at ?
-         ($in_time ? ($user->notified_terms_at ? null : true) : false) : null);
+            ($in_time ? ($user->notified_terms_at ? null : true) : false) : null);
 
         $email_verified = $user->email_verified_at ? true : false;
 
@@ -228,7 +229,8 @@ class AuthController extends Controller
 
         $is_freemium = $payment_plan->name === 'freemium';
 
-        return response()->json(['authenticated' => true,
+        return response()->json([
+            'authenticated' => true,
             'is_valid_terms_version' => $is_valid_terms_version,
             'notice_new_terms_version' => $notice_new_terms_version,
             'email_verified' => $email_verified,
@@ -248,9 +250,22 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        $user->update([
-            'is_first_login' => false,
-        ]);
+        DB::transaction(function () use ($user) {
+
+            if ($user->is_first_login) {
+                $paymentPlanService = app(PaymentPlanService::class);
+
+                $userCount = User::where('is_first_login', true)->count();
+
+                if ($userCount < 60) {
+                    $paymentPlanService->createOccasionalPlan($user->id, 20);
+                }
+            }
+
+            $user->update([
+                'is_first_login' => false,
+            ]);
+        });
 
         return response()->json(['message' => 'First login finished successfully']);
     }
@@ -283,13 +298,13 @@ class AuthController extends Controller
         $current_terms_version = config('app.privacy_policy_and_terms_of_service_version');
 
         $user->is_valid_terms_version = $user->accepted_terms_at ?
-        Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
-        null;
+            Carbon::parse($user->accepted_terms_at)->gte(Carbon::parse($current_terms_version)) :
+            null;
 
         $in_time = Carbon::now()->lt(Carbon::parse($current_terms_version)->addMonth());
 
         $user->notice_new_terms_version = $user->is_valid_terms_version ? null : ($user->accepted_terms_at ?
-        ($in_time ? ($user->notified_terms_at ? null : true) : false) : null);
+            ($in_time ? ($user->notified_terms_at ? null : true) : false) : null);
 
         return $user;
     }
@@ -413,11 +428,11 @@ class AuthController extends Controller
         }
 
         $lastModified = $media->updated_at;
-        $etag = md5($media->id.$media->updated_at);
+        $etag = md5($media->id . $media->updated_at);
 
         $headers = [
             'Content-Type' => $media->mime_type,
-            'Content-Disposition' => 'inline; filename="'.$media->file_name.'"',
+            'Content-Disposition' => 'inline; filename="' . $media->file_name . '"',
             'Cache-Control' => 'public, max-age=0, must-revalidate',
             'Last-Modified' => $lastModified->format(DATE_RFC7231),
             'ETag' => $etag,

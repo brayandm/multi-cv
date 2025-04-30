@@ -131,7 +131,7 @@ class PaymentPlanService
         ]);
     }
 
-    public static function createOccasionalPlan($userId)
+    public static function createOccasionalPlan($userId, $generations = 10)
     {
         $paymentPlan = PaymentPlan::create([
             'name' => 'occasional',
@@ -148,7 +148,7 @@ class PaymentPlanService
             'quota' => 0,
             'frequency' => 'onetime',
             'cumulative' => false,
-            'left' => 10,
+            'left' => $generations,
             'max_failed' => 3,
             'max_pending' => 1,
         ]);
