@@ -57,6 +57,7 @@ export async function authMiddleware(req: NextRequest) {
     cleanPathname === "/profile/initial" ||
     cleanPathname === "/profile/auto-fill";
   const isSuspendedPage = cleanPathname === "/account/suspended";
+  const isDeletionPage = cleanPathname === "/account/deletion";
 
   const authToken = req.cookies.get(process.env.NEXT_PUBLIC_AUTH_COOKIE_NAME!);
   let data: AxiosResponse<UserStatusResponse>;
@@ -100,6 +101,10 @@ export async function authMiddleware(req: NextRequest) {
   if (isUnProtectedPage) return;
 
   if (isAuthenticated) {
+    if (isDeletionPage) {
+      return;
+    }
+
     if (isSuspended) {
       if (isSuspendedPage) return;
       return NextResponse.redirect(new URL("/account/suspended", req.url));
