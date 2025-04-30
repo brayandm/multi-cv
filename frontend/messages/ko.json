@@ -17,6 +17,19 @@
       "use_other_method": "다른 방법 사용",
       "forgot_password": "비밀번호를 잊으셨나요?"
     },
+    "application_status": {
+      "none": "없음",
+      "applied": "지원함",
+      "test_scheduled": "시험 일정 잡힘",
+      "test_completed": "시험 완료",
+      "interview_scheduled": "면접 일정 잡힘",
+      "interview_completed": "면접 완료",
+      "offer_extended": "제안 연장됨",
+      "offer_accepted": "제안 수락됨",
+      "offer_declined": "제안 거절됨",
+      "application_withdrawn": "지원 철회됨",
+      "rejected": "거절됨"
+    },
     "texts": {
       "delete": "{element} 삭제 중",
       "delete_confirmation": "이 {element}를 삭제하시겠습니까?",

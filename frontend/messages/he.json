@@ -17,6 +17,19 @@
       "use_other_method": "השתמש בשיטה אחרת",
       "forgot_password": "שכחת את הסיסמה שלך?"
     },
+    "application_status": {
+      "none": "אין",
+      "applied": "הוגש",
+      "test_scheduled": "מבחן מתוכנן",
+      "test_completed": "מבחן הושלם",
+      "interview_scheduled": "ראיון מתוכנן",
+      "interview_completed": "ראיון הושלם",
+      "offer_extended": "הצעה מורחבת",
+      "offer_accepted": "הצעה התקבלה",
+      "offer_declined": "הצעה נדחתה",
+      "application_withdrawn": "הבקשה נמשכה",
+      "rejected": "נדחה"
+    },
     "texts": {
       "delete": "מוחק {element}",
       "delete_confirmation": "האם אתה בטוח שברצונך למחוק את {element} הזה?",

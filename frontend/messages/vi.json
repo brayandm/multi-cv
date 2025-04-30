@@ -17,6 +17,19 @@
       "use_other_method": "Sử dụng phương pháp khác",
       "forgot_password": "Quên mật khẩu?"
     },
+    "application_status": {
+      "none": "Không có",
+      "applied": "Đã nộp",
+      "test_scheduled": "Đã lên lịch kiểm tra",
+      "test_completed": "Đã hoàn thành kiểm tra",
+      "interview_scheduled": "Đã lên lịch phỏng vấn",
+      "interview_completed": "Đã hoàn thành phỏng vấn",
+      "offer_extended": "Đề nghị đã được mở rộng",
+      "offer_accepted": "Đề nghị đã được chấp nhận",
+      "offer_declined": "Đề nghị đã bị từ chối",
+      "application_withdrawn": "Đơn đã rút",
+      "rejected": "Bị từ chối"
+    },
     "texts": {
       "delete": "Đang xóa {element}",
       "delete_confirmation": "Bạn có chắc chắn muốn xóa {element} này không?",

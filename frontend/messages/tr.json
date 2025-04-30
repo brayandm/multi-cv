@@ -17,6 +17,19 @@
       "use_other_method": "Başka bir yöntem kullan",
       "forgot_password": "Şifrenizi mi unuttunuz?"
     },
+    "application_status": {
+      "none": "Yok",
+      "applied": "Başvuruldu",
+      "test_scheduled": "Test Planlandı",
+      "test_completed": "Test Tamamlandı",
+      "interview_scheduled": "Görüşme Planlandı",
+      "interview_completed": "Görüşme Tamamlandı",
+      "offer_extended": "Teklif Uzatıldı",
+      "offer_accepted": "Teklif Kabul Edildi",
+      "offer_declined": "Teklif Reddedildi",
+      "application_withdrawn": "Başvuru Geri Alındı",
+      "rejected": "Reddedildi"
+    },
     "texts": {
       "delete": "{element} siliniyor",
       "delete_confirmation": "Bu {element} silmek istediğinize emin misiniz?",

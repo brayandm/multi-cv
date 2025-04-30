@@ -17,6 +17,19 @@
       "use_other_method": "Använd en annan metod",
       "forgot_password": "Glömt ditt lösenord?"
     },
+    "application_status": {
+      "none": "Ingen",
+      "applied": "Ansökt",
+      "test_scheduled": "Test Schemalagd",
+      "test_completed": "Test Genomfört",
+      "interview_scheduled": "Intervju Schemalagd",
+      "interview_completed": "Intervju Genomförd",
+      "offer_extended": "Erbjudande Utökat",
+      "offer_accepted": "Erbjudande Accepterat",
+      "offer_declined": "Erbjudande Avböjt",
+      "application_withdrawn": "Ansökan Återkallad",
+      "rejected": "Avvisad"
+    },
     "texts": {
       "delete": "Tar bort {element}",
       "delete_confirmation": "Är du säker på att du vill ta bort detta {element}?",

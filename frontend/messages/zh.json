@@ -17,6 +17,19 @@
       "use_other_method": "使用其他方式",
       "forgot_password": "忘记密码？"
     },
+    "application_status": {
+      "none": "无",
+      "applied": "已申请",
+      "test_scheduled": "测试已安排",
+      "test_completed": "测试已完成",
+      "interview_scheduled": "面试已安排",
+      "interview_completed": "面试已完成",
+      "offer_extended": "已发出报价",
+      "offer_accepted": "报价已接受",
+      "offer_declined": "报价已拒绝",
+      "application_withdrawn": "申请已撤回",
+      "rejected": "已拒绝"
+    },
     "texts": {
       "delete": "正在删除 {element}",
       "delete_confirmation": "您确定要删除这个 {element} 吗？",

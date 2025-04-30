@@ -17,6 +17,19 @@
       "use_other_method": "別の方法を使用",
       "forgot_password": "パスワードを忘れましたか？"
     },
+    "application_status": {
+      "none": "なし",
+      "applied": "応募済み",
+      "test_scheduled": "テスト予定",
+      "test_completed": "テスト完了",
+      "interview_scheduled": "面接予定",
+      "interview_completed": "面接完了",
+      "offer_extended": "オファー延長",
+      "offer_accepted": "オファー受諾",
+      "offer_declined": "オファー辞退",
+      "application_withdrawn": "応募取り下げ",
+      "rejected": "拒否"
+    },
     "texts": {
       "delete": "{element}を削除中",
       "delete_confirmation": "この{element}を削除してもよろしいですか？",

@@ -17,6 +17,19 @@
       "use_other_method": "Gebruik een andere methode",
       "forgot_password": "Wachtwoord vergeten?"
     },
+    "application_status": {
+      "none": "Geen",
+      "applied": "Aanvraag ingediend",
+      "test_scheduled": "Test Gepland",
+      "test_completed": "Test Voltooid",
+      "interview_scheduled": "Interview Gepland",
+      "interview_completed": "Interview Voltooid",
+      "offer_extended": "Aanbod Uitgebreid",
+      "offer_accepted": "Aanbod Geaccepteerd",
+      "offer_declined": "Aanbod Weigeren",
+      "application_withdrawn": "Aanvraag Teruggetrokken",
+      "rejected": "Afgewezen"
+    },
     "texts": {
       "delete": "Verwijderen {element}",
       "delete_confirmation": "Weet je zeker dat je deze {element} wilt verwijderen?",

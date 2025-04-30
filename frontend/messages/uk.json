@@ -17,6 +17,19 @@
       "use_other_method": "Використати інший метод",
       "forgot_password": "Забули пароль?"
     },
+    "application_status": {
+      "none": "Немає",
+      "applied": "Подано",
+      "test_scheduled": "Тест заплановано",
+      "test_completed": "Тест завершено",
+      "interview_scheduled": "Співбесіда запланована",
+      "interview_completed": "Співбесіда завершена",
+      "offer_extended": "Пропозиція продовжена",
+      "offer_accepted": "Пропозицію прийнято",
+      "offer_declined": "Пропозицію відхилено",
+      "application_withdrawn": "Заява відкликана",
+      "rejected": "Відхилено"
+    },
     "texts": {
       "delete": "Видалення {element}",
       "delete_confirmation": "Ви впевнені, що хочете видалити цей {element}?",

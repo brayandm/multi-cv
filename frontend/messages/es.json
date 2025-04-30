@@ -17,6 +17,19 @@
       "use_other_method": "Usar otro método",
       "forgot_password": "¿Olvidaste tu contraseña?"
     },
+    "application_status": {
+      "none": "Ninguno",
+      "applied": "Solicitado",
+      "test_scheduled": "Prueba Programada",
+      "test_completed": "Prueba Completada",
+      "interview_scheduled": "Entrevista Programada",
+      "interview_completed": "Entrevista Completada",
+      "offer_extended": "Oferta Extendida",
+      "offer_accepted": "Oferta Aceptada",
+      "offer_declined": "Oferta Rechazada",
+      "application_withdrawn": "Solicitud Retirada",
+      "rejected": "Rechazado"
+    },
     "texts": {
       "delete": "Eliminando {element}",
       "delete_confirmation": "¿Estás seguro de que deseas eliminar este {element}?",

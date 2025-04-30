@@ -17,6 +17,19 @@
       "use_other_method": "Use another method",
       "forgot_password": "Forgot your password?"
     },
+    "application_status": {
+      "none": "None",
+      "applied": "Applied",
+      "test_scheduled": "Test Scheduled",
+      "test_completed": "Test Completed",
+      "interview_scheduled": "Interview Scheduled",
+      "interview_completed": "Interview Completed",
+      "offer_extended": "Offer Extended",
+      "offer_accepted": "Offer Accepted",
+      "offer_declined": "Offer Declined",
+      "application_withdrawn": "Application Withdrawn",
+      "rejected": "Rejected"
+    },
     "texts": {
       "delete": "Deleting {element}",
       "delete_confirmation": "Are you sure you want to delete this {element}?",

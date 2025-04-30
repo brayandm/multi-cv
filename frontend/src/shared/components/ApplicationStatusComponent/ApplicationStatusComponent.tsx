@@ -1,5 +1,5 @@
-import { capitalizeWords } from "@/lib/strings";
 import { Select, SelectItem } from "@heroui/react";
+import { useTranslations } from "next-intl";
 import React from "react";
 
 export const statusOptions = [
@@ -61,6 +61,22 @@ const ApplicationStatusComponent = ({
   status,
   onChange,
 }: IApplicationStatusComponentProps) => {
+  const t = useTranslations();
+
+  const statusTranslations = {
+    none: t("common.application_status.none"),
+    applied: t("common.application_status.applied"),
+    test_scheduled: t("common.application_status.test_scheduled"),
+    test_completed: t("common.application_status.test_completed"),
+    interview_scheduled: t("common.application_status.interview_scheduled"),
+    interview_completed: t("common.application_status.interview_completed"),
+    offer_extended: t("common.application_status.offer_extended"),
+    offer_accepted: t("common.application_status.offer_accepted"),
+    offer_declined: t("common.application_status.offer_declined"),
+    application_withdrawn: t("common.application_status.application_withdrawn"),
+    rejected: t("common.application_status.rejected"),
+  };
+
   return (
     <Select
       aria-label="Application status"
@@ -68,7 +84,12 @@ const ApplicationStatusComponent = ({
       size="sm"
       selectedKeys={[status]}
       renderValue={(items) => {
-        return items.map((item) => capitalizeWords(item.textValue!));
+        return items.map(
+          (item) =>
+            statusTranslations[
+              item.textValue! as keyof typeof statusTranslations
+            ]
+        );
       }}
       onChange={(event) => onChange(event.target.value as string)}
       classNames={{
@@ -96,7 +117,7 @@ const ApplicationStatusComponent = ({
           <div
             className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-12 sm:h-8`}
           >
-            {capitalizeWords(status)}
+            {statusTranslations[status]}
           </div>
         </SelectItem>
       ))}

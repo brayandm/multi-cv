@@ -17,6 +17,19 @@
       "use_other_method": "Dusra tarika istemal karein",
       "forgot_password": "Kya aapne apna password bhool gaye?"
     },
+    "application_status": {
+      "none": "Koi nahi",
+      "applied": "Aavedan kiya",
+      "test_scheduled": "Pariksha Niyojit",
+      "test_completed": "Pariksha Puri",
+      "interview_scheduled": "Interview Niyojit",
+      "interview_completed": "Interview Puri",
+      "offer_extended": "Prastav Vistarit",
+      "offer_accepted": "Prastav Swikrit",
+      "offer_declined": "Prastav Aswikrit",
+      "application_withdrawn": "Aavedan Wapas Liya",
+      "rejected": "Asafal"
+    },
     "texts": {
       "delete": "{element} ko hata rahe hain",
       "delete_confirmation": "Kya aap sach mein is {element} ko hataana chahte hain?",

@@ -17,6 +17,19 @@
       "use_other_method": "Использовать другой метод",
       "forgot_password": "Забыли пароль?"
     },
+    "application_status": {
+      "none": "Нет",
+      "applied": "Подано",
+      "test_scheduled": "Тест запланирован",
+      "test_completed": "Тест завершен",
+      "interview_scheduled": "Собеседование запланировано",
+      "interview_completed": "Собеседование завершено",
+      "offer_extended": "Предложение продлено",
+      "offer_accepted": "Предложение принято",
+      "offer_declined": "Предложение отклонено",
+      "application_withdrawn": "Заявление отозвано",
+      "rejected": "Отклонено"
+    },
     "texts": {
       "delete": "Удаление {element}",
       "delete_confirmation": "Вы уверены, что хотите удалить этот {element}?",

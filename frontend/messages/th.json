@@ -17,6 +17,19 @@
       "use_other_method": "ใช้วิธีอื่น",
       "forgot_password": "ลืมรหัสผ่าน?"
     },
+    "application_status": {
+      "none": "ไม่มี",
+      "applied": "สมัครแล้ว",
+      "test_scheduled": "กำหนดการทดสอบ",
+      "test_completed": "ทดสอบเสร็จสิ้น",
+      "interview_scheduled": "กำหนดการสัมภาษณ์",
+      "interview_completed": "สัมภาษณ์เสร็จสิ้น",
+      "offer_extended": "ข้อเสนอขยายเวลา",
+      "offer_accepted": "ข้อเสนอที่ยอมรับ",
+      "offer_declined": "ข้อเสนอที่ปฏิเสธ",
+      "application_withdrawn": "ถอนใบสมัคร",
+      "rejected": "ถูกปฏิเสธ"
+    },
     "texts": {
       "delete": "กำลังลบ {element}",
       "delete_confirmation": "คุณแน่ใจหรือว่าต้องการลบ {element} นี้?",

@@ -17,6 +17,19 @@
       "use_other_method": "استخدام طريقة أخرى",
       "forgot_password": "نسيت كلمة المرور؟"
     },
+    "application_status": {
+      "none": "لا شيء",
+      "applied": "تم التقديم",
+      "test_scheduled": "تم جدولة الاختبار",
+      "test_completed": "تم الانتهاء من الاختبار",
+      "interview_scheduled": "تم جدولة المقابلة",
+      "interview_completed": "تم الانتهاء من المقابلة",
+      "offer_extended": "تم تمديد العرض",
+      "offer_accepted": "تم قبول العرض",
+      "offer_declined": "تم رفض العرض",
+      "application_withdrawn": "تم سحب الطلب",
+      "rejected": "مرفوض"
+    },
     "texts": {
       "delete": "حذف {element}",
       "delete_confirmation": "هل أنت متأكد أنك تريد حذف هذا {element}؟",

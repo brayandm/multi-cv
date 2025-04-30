@@ -17,6 +17,19 @@
       "use_other_method": "Gunakan metode lain",
       "forgot_password": "Lupa kata sandi?"
     },
+    "application_status": {
+      "none": "Tidak ada",
+      "applied": "Diterapkan",
+      "test_scheduled": "Tes Dijadwalkan",
+      "test_completed": "Tes Selesai",
+      "interview_scheduled": "Wawancara Dijadwalkan",
+      "interview_completed": "Wawancara Selesai",
+      "offer_extended": "Tawaran Diperpanjang",
+      "offer_accepted": "Tawaran Diterima",
+      "offer_declined": "Tawaran Ditolak",
+      "application_withdrawn": "Aplikasi Ditarik",
+      "rejected": "Ditolak"
+    },
     "texts": {
       "delete": "Menghapus {element}",
       "delete_confirmation": "Apakah Anda yakin ingin menghapus {element} ini?",
