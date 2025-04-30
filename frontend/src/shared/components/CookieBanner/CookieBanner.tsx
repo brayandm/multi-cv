@@ -22,6 +22,10 @@ export default function CookieBanner() {
     const consent = localStorage.getItem("cookie_consent");
     if (!consent) {
       const showModal = () => {
+        const consent = localStorage.getItem("cookie_consent");
+        if (consent) {
+          return;
+        }
         setShowBanner(true);
         window.removeEventListener("click", showModal);
         window.removeEventListener("touchstart", showModal);
