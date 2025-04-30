@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\ActionService;
 use App\Services\PaymentPlanService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Checkout\Session;
@@ -38,7 +40,10 @@ class PaymentController extends Controller
             return response()->json(['error' => $validator->errors()], 422);
         }
 
-        if ($request->plan === 'freemium') {
+        $user = $request->user();
+        $plan = $request->plan;
+
+        if ($plan === 'freemium') {
             return response()->json(['id' => 'freemium'], 200);
         }
 
@@ -48,28 +53,43 @@ class PaymentController extends Controller
             $priceIdMap = [
                 'freemium' => '',
                 'occasional' => 'price_1RAXuEBydkY3MlDEZkIKjGjO',
+                'beta_testing' => 'price_1RJXTXBydkY3MlDEHkFijcg4',
                 'daily_15' => 'price_1RAXrgBydkY3MlDEvKs2xvsZ',
             ];
         } else {
             $priceIdMap = [
                 'freemium' => '',
                 'occasional' => 'price_1RAhfpR9gIm0VrhqhhEMGey5',
+                'beta_testing' => 'price_1RJX8PR9gIm0VrhqG2WiAAtF',
                 'daily_15' => 'price_1RAhgTR9gIm0VrhqVc2DdjIY',
             ];
+        }
+
+
+        $actionService = app(ActionService::class);
+
+        $quotaInfo = $actionService->getQuotaInfo($user->id, "beta_testing");
+
+        if ($quotaInfo && $quotaInfo["left"] > 0) {
+            if ($plan == "occasional") {
+                $plan = "beta_testing";
+            }
         }
 
         $session = Session::create([
             'payment_method_types' => ['card'],
             'line_items' => [[
-                'price' => $priceIdMap[$request->plan],
+                'price' => $priceIdMap[$plan],
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => url(config('app.frontend_url').'/payment/success?session_id={CHECKOUT_SESSION_ID}'),
-            'cancel_url' => url(config('app.frontend_url').'/payment/cancel'),
+            'success_url' => url(config('app.frontend_url') . '/payment/success?session_id={CHECKOUT_SESSION_ID}'),
+            'cancel_url' => url(config('app.frontend_url') . '/payment/cancel'),
+            'allow_promotion_codes' => true,
+            'customer_email' => $user->email,
             'metadata' => [
-                'user_id' => $request->user()->id,
-                'plan' => $request->plan,
+                'user_id' => $user->id,
+                'plan' => $plan,
             ],
         ]);
 
@@ -97,6 +117,23 @@ class PaymentController extends Controller
                 $userId = $session->metadata->user_id ?? null;
                 $plan = $session->metadata->plan ?? null;
 
+
+                DB::transaction(function () use ($userId, $plan) {
+
+                    if ($plan == "beta_testing") {
+                        $actionService = app(ActionService::class);
+
+                        $actionService->consumeAction(
+                            $userId,
+                            "beta_testing"
+                        );
+
+                        PaymentPlanService::createOccasionalPlan($userId, 20);
+                    } else {
+                        $this->createPlan($userId, $plan);
+                    }
+                });
+
                 $this->createPlan($userId, $plan);
 
                 Log::info('✅ Payment successful', [
@@ -108,7 +145,7 @@ class PaymentController extends Controller
                 break;
 
             default:
-                Log::info('📩 Stripe Event Received: '.$event->type);
+                Log::info('📩 Stripe Event Received: ' . $event->type);
         }
 
         return response('Webhook received', 200);

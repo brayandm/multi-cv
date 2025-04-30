@@ -249,22 +249,9 @@ class AuthController extends Controller
     {
         $user = $request->user();
 
-        DB::transaction(function () use ($user) {
-
-            if ($user->is_first_login) {
-                $paymentPlanService = app(PaymentPlanService::class);
-
-                $userCount = User::where('is_first_login', true)->count();
-
-                if ($userCount < 60) {
-                    $paymentPlanService->createOccasionalPlan($user->id, 20);
-                }
-            }
-
-            $user->update([
-                'is_first_login' => false,
-            ]);
-        });
+        $user->update([
+            'is_first_login' => false,
+        ]);
 
         return response()->json(['message' => 'First login finished successfully']);
     }
@@ -427,11 +414,11 @@ class AuthController extends Controller
         }
 
         $lastModified = $media->updated_at;
-        $etag = md5($media->id.$media->updated_at);
+        $etag = md5($media->id . $media->updated_at);
 
         $headers = [
             'Content-Type' => $media->mime_type,
-            'Content-Disposition' => 'inline; filename="'.$media->file_name.'"',
+            'Content-Disposition' => 'inline; filename="' . $media->file_name . '"',
             'Cache-Control' => 'public, max-age=0, must-revalidate',
             'Last-Modified' => $lastModified->format(DATE_RFC7231),
             'ETag' => $etag,

@@ -97,6 +97,18 @@ class PaymentPlanService
         Quota::create([
             'user_id' => $userId,
             'payment_plan_id' => $paymentPlan->id,
+            'action' => 'beta_testing',
+            'quota' => 0,
+            'frequency' => 'onetime',
+            'cumulative' => false,
+            'left' => 1,
+            'max_failed' => 0,
+            'max_pending' => 0,
+        ]);
+
+        Quota::create([
+            'user_id' => $userId,
+            'payment_plan_id' => $paymentPlan->id,
             'action' => 'generate_cv',
             'quota' => 3,
             'frequency' => 'months',
