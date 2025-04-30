@@ -32,8 +32,8 @@ class AutoFillProfileAgent(Agent):
           in names or text written in Spanish. Only correct malformed
           characters—do not change content that is already correct.
         - Dates should be formatted as YYYY-MM
-        - The only professional links allowed are "GitHub", "LinkedIn",
-        "Portfolio"
+        - The only professional links allowed are "github", "linkedin",
+        "portfolio"
         - Dont fill is_present or hasnt_expiration_date fields if the
         dates are not provided.
         - If there are some IDs fill them with a random UUID.
