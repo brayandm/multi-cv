@@ -69,7 +69,6 @@ export default function AccountDeletionComponent({}) {
                     await userDeleteApi();
                     await refreshUserStatus();
                     await router.push("/");
-                    setIsDeleting(false);
                   }}
                 >
                   {t("pages.settings.delete_account")}
