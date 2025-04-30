@@ -375,6 +375,15 @@ export const Footer = () => {
 
       <motion.div className="mb-2" {...fadeInUp} transition={{ delay: 0.2 }}>
         <Link
+          href="https://t.me/mullticv"
+          className="hover:text-black dark:hover:text-white"
+        >
+          {t("pages.landing_page.footer.telegram_group")}
+        </Link>
+      </motion.div>
+
+      <motion.div className="mb-2" {...fadeInUp} transition={{ delay: 0.2 }}>
+        <Link
           href="mailto:hello.multicv@gmail.com"
           className="hover:text-black dark:hover:text-white"
         >
