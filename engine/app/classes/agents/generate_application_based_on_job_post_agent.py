@@ -71,7 +71,7 @@ class GenerateApplicationBasedOnJobPostAgent(Agent):
 
             application_data["job_description_raw"] = job_post
             application_data["application_date"] = datetime.now(timezone.utc)
-            application_data["status"] = "Applied"
+            application_data["status"] = "none"
             application_data["user_comments"] = ""
 
             application = Application(**application_data)

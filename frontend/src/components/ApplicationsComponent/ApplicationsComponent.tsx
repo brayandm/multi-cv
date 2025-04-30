@@ -2,25 +2,12 @@ import { fetcherEngine, updateApplicationEngine } from "@/lib/backendService";
 import { applicationsEngineLink } from "@/lib/links";
 import { Application, ApplicationStatusType } from "@/lib/types";
 
-import { Select, SelectItem, Spinner, useDisclosure } from "@heroui/react";
+import { Spinner, useDisclosure } from "@heroui/react";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import FullApplicationComponent from "../FullApplicationComponent";
-import { capitalizeWords } from "@/lib/strings";
-
-export const statusOptions = ["applied", "interview", "offer", "rejected"];
-
-export const statusToClass: Record<string, string> = {
-  applied:
-    "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 dark:focus:bg-gray-600",
-  interview:
-    "bg-yellow-200 text-yellow-800 hover:bg-yellow-300 focus:bg-yellow-300 dark:bg-yellow-500 dark:text-yellow-100 dark:hover:bg-yellow-400 dark:focus:bg-yellow-400",
-  offer:
-    "bg-green-200 text-green-800 hover:bg-green-300 focus:bg-green-300 dark:bg-green-500 dark:text-green-100 dark:hover:bg-green-400 dark:focus:bg-green-400",
-  rejected:
-    "bg-red-200 text-red-800 hover:bg-red-300 focus:bg-red-300 dark:bg-red-500 dark:text-red-100 dark:hover:bg-red-400 dark:focus:bg-red-400",
-};
+import ApplicationStatusComponent from "@/shared/components/ApplicationStatusComponent";
 
 export default function ApplicationsComponent() {
   const { data: applications, isLoading } = useSWR<Application[]>(
@@ -178,58 +165,18 @@ export default function ApplicationsComponent() {
                               </p>
                             </div>
                             {statuses[application.application_id] && (
-                              <Select
-                                aria-label="Application status"
-                                className={`sm:w-[140px] w-[100px] text-[10px]`}
-                                size="sm"
-                                selectedKeys={[
+                              <ApplicationStatusComponent
+                                status={
                                   statuses[application.application_id] ||
-                                    application.status,
-                                ]}
-                                renderValue={(items) => {
-                                  return items.map((item) =>
-                                    capitalizeWords(item.textValue!)
-                                  );
-                                }}
-                                onChange={(event) =>
+                                  application.status
+                                }
+                                onChange={(newStatus) => {
                                   handleStatusChange(
                                     application.application_id,
-                                    event.target.value
-                                  )
-                                }
-                                classNames={{
-                                  label: "hidden",
-                                  popoverContent: "w-32",
-                                  listboxWrapper: "w-32",
-                                  listbox: "w-32 text-center",
-                                  selectorIcon: "hidden",
-                                  trigger: `flex  
-                                  items-center justify-center p-0
-                                ${
-                                  statusToClass[
-                                    statuses[application.application_id]
-                                  ]
-                                }`,
-                                  value: "text-center",
+                                    newStatus
+                                  );
                                 }}
-                              >
-                                {statusOptions.map((status) => (
-                                  <SelectItem
-                                    key={status}
-                                    classNames={{
-                                      selectedIcon: "hidden",
-                                      base: "p-0",
-                                    }}
-                                    textValue={status}
-                                  >
-                                    <div
-                                      className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-8`}
-                                    >
-                                      {capitalizeWords(status)}
-                                    </div>
-                                  </SelectItem>
-                                ))}
-                              </Select>
+                              />
                             )}
                           </div>
 

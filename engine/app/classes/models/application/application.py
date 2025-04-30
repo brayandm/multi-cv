@@ -22,9 +22,16 @@ LocationType = Annotated[
 
 ApplicationStatusType = Annotated[
     Literal[
+        "none",
         "applied",
-        "interview",
-        "offer",
+        "test_scheduled",
+        "test_completed",
+        "interview_scheduled",
+        "interview_completed",
+        "offer_extended",
+        "offer_accepted",
+        "offer_declined",
+        "application_withdrawn",
         "rejected",
     ],
     Field(...),

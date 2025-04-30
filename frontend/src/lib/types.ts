@@ -98,9 +98,16 @@ export interface Document {
 }
 
 export type ApplicationStatusType =
+  | "none"
   | "applied"
-  | "interview"
-  | "offer"
+  | "test_scheduled"
+  | "test_completed"
+  | "interview_scheduled"
+  | "interview_completed"
+  | "offer_extended"
+  | "offer_accepted"
+  | "offer_declined"
+  | "application_withdrawn"
   | "rejected";
 
 export type ApplicationLocationType = "remote" | "hybrid" | "onsite";
