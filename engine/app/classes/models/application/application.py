@@ -1,5 +1,5 @@
 from datetime import datetime, timezone
-from typing import Annotated, List, Literal, Optional
+from typing import Annotated, List, Literal, Optional, get_args
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -37,6 +37,8 @@ ApplicationStatusType = Annotated[
     Field(...),
 ]
 
+VALID_APPLICATION_STATUSES = set(get_args(get_args(ApplicationStatusType)[0]))
+
 
 class Application(BaseModel):
     application_id: ShortStr
@@ -73,7 +75,7 @@ class Application(BaseModel):
             .replace("+00:00", "Z")
         }
 
-    @field_validator("location_type", "status", mode="before")
+    @field_validator("location_type", mode="before")
     @classmethod
     def lowercase_str(cls, v: Optional[str]) -> Optional[str]:
         if v is None:
@@ -81,3 +83,12 @@ class Application(BaseModel):
         if isinstance(v, str):
             return v.lower()
         return v
+
+    @field_validator("status", mode="before")
+    @classmethod
+    def normalize_status(cls, v: str) -> str:
+        if isinstance(v, str):
+            v = v.lower()
+            if v in VALID_APPLICATION_STATUSES:
+                return v
+        return "none"
