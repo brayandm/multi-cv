@@ -7,17 +7,18 @@ import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import FullApplicationComponent from "../FullApplicationComponent";
+import { capitalizeWords } from "@/lib/strings";
 
-export const statusOptions = ["Applied", "Interview", "Offer", "Rejected"];
+export const statusOptions = ["applied", "interview", "offer", "rejected"];
 
 export const statusToClass: Record<string, string> = {
-  Applied:
+  applied:
     "bg-gray-200 text-gray-800 hover:bg-gray-300 focus:bg-gray-300 dark:bg-gray-700 dark:text-gray-100 dark:hover:bg-gray-600 dark:focus:bg-gray-600",
-  Interview:
+  interview:
     "bg-yellow-200 text-yellow-800 hover:bg-yellow-300 focus:bg-yellow-300 dark:bg-yellow-500 dark:text-yellow-100 dark:hover:bg-yellow-400 dark:focus:bg-yellow-400",
-  Offer:
+  offer:
     "bg-green-200 text-green-800 hover:bg-green-300 focus:bg-green-300 dark:bg-green-500 dark:text-green-100 dark:hover:bg-green-400 dark:focus:bg-green-400",
-  Rejected:
+  rejected:
     "bg-red-200 text-red-800 hover:bg-red-300 focus:bg-red-300 dark:bg-red-500 dark:text-red-100 dark:hover:bg-red-400 dark:focus:bg-red-400",
 };
 
@@ -185,6 +186,11 @@ export default function ApplicationsComponent() {
                                   statuses[application.application_id] ||
                                     application.status,
                                 ]}
+                                renderValue={(items) => {
+                                  return items.map((item) =>
+                                    capitalizeWords(item.textValue!)
+                                  );
+                                }}
                                 onChange={(event) =>
                                   handleStatusChange(
                                     application.application_id,
@@ -219,7 +225,7 @@ export default function ApplicationsComponent() {
                                     <div
                                       className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-8`}
                                     >
-                                      {status}
+                                      {capitalizeWords(status)}
                                     </div>
                                   </SelectItem>
                                 ))}

@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from typing import Annotated, List, Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from app.utils.pydantic_custom_types import (
     ForceExtraLongStr,
@@ -13,19 +13,19 @@ from app.utils.pydantic_custom_types import (
 
 LocationType = Annotated[
     Literal[
-        "Remote",
-        "Hybrid",
-        "Onsite",
+        "remote",
+        "hybrid",
+        "onsite",
     ],
     Field(...),
 ]
 
 ApplicationStatusType = Annotated[
     Literal[
-        "Applied",
-        "Interview",
-        "Offer",
-        "Rejected",
+        "applied",
+        "interview",
+        "offer",
+        "rejected",
     ],
     Field(...),
 ]
@@ -65,3 +65,12 @@ class Application(BaseModel):
             .isoformat()
             .replace("+00:00", "Z")
         }
+
+    @field_validator("location_type", "status", mode="before")
+    @classmethod
+    def lowercase_str(cls, v: Optional[str]) -> Optional[str]:
+        if v is None:
+            return None
+        if isinstance(v, str):
+            return v.lower()
+        return v

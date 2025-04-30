@@ -69,10 +69,10 @@ const Languages: React.FC = () => {
   }, [inputLanguage, languages, updateLanguages, syncProfileOnFirstLogin, t]);
 
   const languageLevels = [
-    { label: t("common.texts.basic"), key: "Basic" },
-    { label: t("common.texts.intermediate"), key: "Intermediate" },
-    { label: t("common.texts.professional"), key: "Professional" },
-    { label: t("common.texts.native"), key: "Native" },
+    { label: t("common.texts.basic"), key: "basic" },
+    { label: t("common.texts.intermediate"), key: "intermediate" },
+    { label: t("common.texts.professional"), key: "professional" },
+    { label: t("common.texts.native"), key: "native" },
   ];
 
   useEffect(() => {

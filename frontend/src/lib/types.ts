@@ -98,12 +98,12 @@ export interface Document {
 }
 
 export type ApplicationStatusType =
-  | "Applied"
-  | "Interview"
-  | "Offer"
-  | "Rejected";
+  | "applied"
+  | "interview"
+  | "offer"
+  | "rejected";
 
-export type ApplicationLocationType = "Remote" | "Hybrid" | "Onsite";
+export type ApplicationLocationType = "remote" | "hybrid" | "onsite";
 
 export interface Application {
   application_id: string;

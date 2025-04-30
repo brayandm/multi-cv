@@ -29,6 +29,7 @@ import { fetcherEngine, updateApplicationEngine } from "@/lib/backendService";
 import { applicationEngineLink } from "@/lib/links";
 import useSWR from "swr";
 import DocumentComponent from "@/shared/components/DocumentComponent";
+import { capitalizeWords } from "@/lib/strings";
 
 interface FullApplicationModalProps {
   application_id: string;
@@ -165,7 +166,7 @@ export default function FullApplicationComponent({
                       )}
                       {infoBlock(
                         tApplication("location"),
-                        application.location_type
+                        capitalizeWords(application.location_type || "")
                       )}
                       {infoBlock(
                         tApplication("place"),

@@ -10,21 +10,31 @@ import { useChat } from "@/contexts/ChatContext";
 
 export const professionalLinks = [
   {
-    name: "GitHub",
+    name: "github",
+    displayName: "GitHub",
     avatar: "/icons/companies/github.webp",
     url: "https://github.com/",
   },
   {
-    name: "LinkedIn",
+    name: "linkedin",
+    displayName: "LinkedIn",
     avatar: "/icons/companies/linkedin.webp",
     url: "https://www.linkedin.com/in/",
   },
   {
-    name: "Portfolio",
+    name: "portfolio",
+    displayName: "Portfolio",
     avatar: "/icons/others/portfolio.png",
     url: "https://yourportfolio.amz/",
   },
 ];
+
+export const mapName = (name: string) => {
+  const found = professionalLinks.find(
+    (s) => s.displayName.toLowerCase() === name.toLowerCase()
+  );
+  return found ? found.displayName : null;
+};
 
 const ProfessionalLinks: React.FC = () => {
   const {
@@ -104,7 +114,7 @@ const ProfessionalLinks: React.FC = () => {
                 src={item.avatar}
               />
               <div className="flex flex-col">
-                <span className="text-small">{item.name}</span>
+                <span className="text-small">{mapName(item.name)!}</span>
                 <span className="text-tiny text-default-400">{item.url}</span>
               </div>
             </div>
@@ -114,7 +124,7 @@ const ProfessionalLinks: React.FC = () => {
       {professionalLinksList.map((social, index) => {
         const inputs: IDynamicInputArray<string & boolean> = [
           {
-            label: social?.name || "",
+            label: mapName(social?.name) || "",
             type: "text",
             placeholder: t("common.placeholders.enter_your_link", {
               field: social?.name,

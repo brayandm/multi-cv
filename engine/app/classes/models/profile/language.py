@@ -1,6 +1,6 @@
 from typing import Annotated, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 from app.utils.pydantic_custom_types import (
     ShortStr,
@@ -8,10 +8,10 @@ from app.utils.pydantic_custom_types import (
 
 LanguageLevel = Annotated[
     Literal[
-        "Basic",
-        "Intermediate",
-        "Professional",
-        "Native",
+        "basic",
+        "intermediate",
+        "professional",
+        "native",
     ],
     Field(...),
 ]
@@ -20,3 +20,10 @@ LanguageLevel = Annotated[
 class Language(BaseModel):
     name: ShortStr
     level: LanguageLevel
+
+    @field_validator("level", mode="before")
+    @classmethod
+    def lowercase_str(cls, v: str) -> str:
+        if isinstance(v, str):
+            return v.lower()
+        return v
