@@ -25,6 +25,8 @@ const InputButton: React.FC<InputButtonProps> = (props) => {
 const Languages: React.FC = () => {
   const { languages, updateLanguages } = useProfile();
 
+  const minLanguages = 1;
+
   const { setChat } = useChat();
 
   useEffect(() => {
@@ -97,6 +99,16 @@ const Languages: React.FC = () => {
       value: inputLanguage,
       endContent: <InputButton onPress={addLanguage}></InputButton>,
       onValueChange: setInputLanguage,
+      description: t("common.form.language_description", { min: minLanguages }),
+      errorMessage: t("common.errors.language_length", {
+        min: minLanguages,
+      }),
+      isInvalid: languages.length >= minLanguages ? false : undefined,
+      validate: () => {
+        if (languages.length < minLanguages) {
+          return "error";
+        }
+      },
     },
   ];
 
