@@ -80,7 +80,7 @@ const ApplicationStatusComponent = ({
   return (
     <Select
       aria-label="Application status"
-      className={`sm:w-[200px] w-[100px] text-[10px]`}
+      className={`w-[100px] sm:w-[200px]  text-[10px]`}
       size="sm"
       selectedKeys={[status]}
       renderValue={(items) => {
@@ -94,16 +94,21 @@ const ApplicationStatusComponent = ({
       onChange={(event) => onChange(event.target.value as string)}
       classNames={{
         label: "hidden",
-        popoverContent: "sm:w-[200px] w-[100px]",
-        listboxWrapper: "sm:w-[200px] w-[100px]",
-        listbox: "sm:w-[200px] w-[100px] text-center",
+        popoverContent: "w-[200px]",
+        listboxWrapper: "w-[200px]",
+        listbox: "w-[200px] text-center",
         selectorIcon: "hidden",
         trigger: `flex  
     items-center justify-center p-0
   ${statusToClass[status]}`,
         value: "text-center",
       }}
-      popoverProps={{}}
+      popoverProps={{
+        classNames: {
+          base: "relative right-[100px] sm:right-0 sm:block ",
+          content: "w-[200px]",
+        },
+      }}
     >
       {statusOptions.map((status) => (
         <SelectItem
@@ -115,7 +120,7 @@ const ApplicationStatusComponent = ({
           textValue={status}
         >
           <div
-            className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-12 sm:h-8`}
+            className={`flex justify-center items-center ${statusToClass[status]} rounded-md text-center w-full h-12`}
           >
             {statusTranslations[status]}
           </div>
