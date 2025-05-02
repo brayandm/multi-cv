@@ -76,7 +76,7 @@ export interface generateCvInlineNoRenderResponse {
 }
 
 export interface UserThemeResponse {
-  theme: string;
+  theme?: string;
 }
 
 export interface CheckoutSessionResponse {
