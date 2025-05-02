@@ -9,7 +9,7 @@ import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 
 interface IEmailVerificationComponentProps {
   type: "already-verified" | "success" | "expired" | "verification";
-  email: string;
+  email?: string;
 }
 
 export default function EmailVerificationComponent({
