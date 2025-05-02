@@ -134,16 +134,16 @@ async def auto_fill_cv_from_document(
         chat_engine_service = ChatEngineService()
 
         extractor = TextExtractor(contents)
-        text1 = await extractor.extract_text()
-        extractor.close()
+        # text_from_pdf = await extractor.extract_text()
+        # extractor.close()
 
-        is_safe = await chat_engine_service.moderation(text1)
-        if not is_safe:
-            cancel_action()
-            return JSONResponse(
-                status_code=400,
-                content={"error": "Input is unsafe."},
-            )
+        # is_safe = await chat_engine_service.moderation(text_from_pdf)
+        # if not is_safe:
+        #     cancel_action()
+        #     return JSONResponse(
+        #         status_code=400,
+        #         content={"error": "Input is unsafe."},
+        #     )
 
         is_safe = await chat_engine_service.moderation_from_images(
             await extractor.extract_images()
@@ -155,9 +155,9 @@ async def auto_fill_cv_from_document(
                 content={"error": "Input is unsafe."},
             )
 
-        text2 = await extractor.extract_text_from_images()
+        text_from_images = await extractor.extract_text_from_images()
 
-        is_safe = await chat_engine_service.moderation(text2)
+        is_safe = await chat_engine_service.moderation(text_from_images)
         if not is_safe:
             cancel_action()
             return JSONResponse(
@@ -165,7 +165,7 @@ async def auto_fill_cv_from_document(
                 content={"error": "Input is unsafe."},
             )
 
-        profile = await AutoFillProfilePipeline().run(text1, text2)
+        profile = await AutoFillProfilePipeline().run(text_from_images)
 
         await profile_service.sync_profile(get_user_id(), profile)
 
