@@ -1,8 +1,8 @@
+from typing import Optional
+
 from app.classes.agents import AutoFillProfileAgent, MergerDataAgent
 from app.classes.base import Pipeline
 from app.classes.models import Profile
-
-from typing import Optional
 
 
 class AutoFillProfilePipeline(Pipeline):
