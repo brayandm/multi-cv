@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price');
             $table->text('description')->nullable();
+            $table->timestamp('expires_at')->nullable();
             $table->unsignedBigInteger('user_id')->index('payment_plans_user_id_foreign');
             $table->integer('priority')->default(0);
             $table->timestamps();

@@ -24,10 +24,12 @@ return new class extends Migration
             $table->timestamp('accepted_terms_at')->nullable();
             $table->timestamp('notified_terms_at')->nullable();
             $table->string('locale')->default('en');
-            $table->string('app_theme')->default('light');
+            $table->string('app_theme')->nullable();
             $table->boolean('is_first_login')->default(true);
             $table->rememberToken();
+            $table->timestamp('suspended_account_at')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
