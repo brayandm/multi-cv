@@ -1,7 +1,9 @@
+import { NavbarWrapper, SpacerDefault } from "@/app/main.styles";
 import EmailVerificationComponent from "@/components/EmailVerificationComponent";
 import { api } from "@/lib/backendService";
 import { userStatusApiLink } from "@/lib/links";
 import { UserStatusResponse } from "@/lib/types";
+import Navbar from "@/shared/components/Navbar";
 import { cookies } from "next/headers";
 
 export default async function EmailVerification() {
@@ -16,9 +18,15 @@ export default async function EmailVerification() {
   });
 
   return (
-    <EmailVerificationComponent
-      type={"verification"}
-      email={data.data.email!}
-    />
+    <>
+      <NavbarWrapper>
+        <Navbar deleteAccount onlyLogout />
+      </NavbarWrapper>
+      <SpacerDefault />
+      <EmailVerificationComponent
+        type={"verification"}
+        email={data.data.email!}
+      />
+    </>
   );
 }
