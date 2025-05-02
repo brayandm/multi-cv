@@ -169,25 +169,17 @@ class ChatEngineService:
         )
         return base64.b64encode(buffer.getvalue()).decode("utf-8")
 
-    async def moderation_from_images(self, images: List[Image.Image]) -> bool:
-
+    async def moderation_from_image(self, img: Image.Image) -> bool:
         def sync_moderation() -> Any:
-
-            content = []
-
-            for img in images:
-                base64_image = self.encode_image_to_base64(img)
-
-                content.append(
-                    {
-                        "type": "image_url",
-                        "image_url": {
-                            "url": f"data:image/jpeg;base64,{base64_image}"
-                        },
-                    }
-                )
-
-                break
+            base64_image = self.encode_image_to_base64(img)
+            content = [
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:image/jpeg;base64,{base64_image}"
+                    },
+                }
+            ]
 
             client = OpenAI(api_key=OPENAI_API_KEY)
             result = client.moderations.create(
@@ -200,15 +192,22 @@ class ChatEngineService:
 
         flagged = result.results[0].flagged
 
-        user_id = get_user_id()
-
         if flagged:
+            user_id = get_user_id()
             await self.moderate_user(
                 user_id=user_id,
-                message="Content moderation from images",
+                message="Content moderation from image",
                 result=result,
             )
+
         return not flagged
+
+    async def moderation_from_images(self, images: List[Image.Image]) -> bool:
+        for img in images:
+            is_valid = await self.moderation_from_image(img)
+            if not is_valid:
+                return False
+        return True
 
     async def moderate_user(
         self, user_id: int, message: str, result: Any
