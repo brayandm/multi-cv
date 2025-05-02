@@ -2,5 +2,6 @@
 
 namespace App\Notifications;
 
-
-class VerifyEmailQueued extends VerifyEmail {}
+class VerifyEmailQueued extends VerifyEmail
+{
+}
