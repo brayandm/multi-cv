@@ -15,6 +15,9 @@ const unProtectedPages = [
   "/password/recovery/success",
   "/password/recovery/fail",
   "/password/recovery/new",
+  "/email/verify/success",
+  "/email/verify/already-verified",
+  "/email/verify/expired",
 ];
 const badEmailVerificationPages = ["/email/verify", "/email/verify/expired"];
 const goodEmailVerificationPages = [

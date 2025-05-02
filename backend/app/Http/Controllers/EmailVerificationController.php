@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -11,20 +12,22 @@ class EmailVerificationController extends Controller
 {
     public function verify(Request $request)
     {
-        $user = $request->user();
-
-        if ($user->hasVerifiedEmail()) {
-            return redirect()->to(config('app.frontend_url').'/email/verify/already-verified');
+        if (! $request->hasValidSignature()) {
+            return redirect()->to(config('app.frontend_url') . '/email/verify/expired');
         }
 
-        if (! $request->hasValidSignature()) {
-            return redirect()->to(config('app.frontend_url').'/email/verify/expired');
+        $userId = $request->query('id');
+        info("User ID: {$userId}");
+        $user = User::findOrFail($userId);
+
+        if ($user->hasVerifiedEmail()) {
+            return redirect()->to(config('app.frontend_url') . '/email/verify/already-verified');
         }
 
         $user->markEmailAsVerified();
         event(new Verified($user));
 
-        return redirect()->to(config('app.frontend_url').'/email/verify/success');
+        return redirect()->to(config('app.frontend_url') . '/email/verify/success');
     }
 
     public function resend(Request $request)

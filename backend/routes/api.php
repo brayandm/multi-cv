@@ -34,6 +34,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@redirectToResetPassword')
         ->name('password.reset');
 
+    Route::get('/email/verify', 'App\Http\Controllers\EmailVerificationController@verify')
+        ->name('verification.verify');
+
     Route::post('/password/reset', 'App\Http\Controllers\PasswordRecoveryController@resetPassword');
 
     Route::post('/stripe/webhook', 'App\Http\Controllers\PaymentController@handleWebhook');
@@ -53,8 +56,6 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
 
-        Route::get('/email/verify', 'App\Http\Controllers\EmailVerificationController@verify')
-            ->name('verification.verify');
 
         Route::post('/email/resend', 'App\Http\Controllers\EmailVerificationController@resend')
             ->name('verification.resend');
