@@ -100,6 +100,10 @@ export function extractDifferences<T extends JSONObject>(
   local: T,
   remote: T
 ): Partial<T> {
+  if (remote === null || remote === undefined) {
+    return local;
+  }
+
   const result: Partial<T> = {};
 
   for (const key of Object.keys(local) as (keyof T)[]) {
