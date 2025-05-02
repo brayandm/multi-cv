@@ -5,7 +5,7 @@ from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
 from app.classes.models import Application, Traduction
-from app.utils.get_schema import get_schema
+from app.utils.get_schema import structure_to_string
 
 
 class GenerateApplicationBasedOnJobPostAgent(Agent):
@@ -16,7 +16,7 @@ class GenerateApplicationBasedOnJobPostAgent(Agent):
         traduction: Traduction,
     ) -> Application:
 
-        application_structure = get_schema(
+        application_structure = structure_to_string(
             Application,
             exclude_keys=[
                 "company_logo_link",

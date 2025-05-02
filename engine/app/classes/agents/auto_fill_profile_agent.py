@@ -4,14 +4,14 @@ from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
 from app.classes.models import Profile
-from app.utils.get_schema import get_schema
+from app.utils.get_schema import structure_to_string
 
 
 class AutoFillProfileAgent(Agent):
 
     async def run(self, text: str) -> Profile:
 
-        profile_structure = get_schema(
+        profile_structure = structure_to_string(
             Profile, exclude_keys=["notes", "general_notes", "moderation"]
         )
 

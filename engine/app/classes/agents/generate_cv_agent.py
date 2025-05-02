@@ -5,7 +5,7 @@ from langchain.schema import HumanMessage
 
 from app.classes.base import Agent
 from app.classes.models import Cv, Profile, Traduction
-from app.utils.get_schema import get_schema
+from app.utils.get_schema import structure_to_string
 from app.utils.phone import to_international_format
 
 
@@ -16,7 +16,7 @@ class GenerateCvAgent(Agent):
     ) -> Cv:
         profile_json = profile.model_dump_json()
 
-        cv_structure = get_schema(Cv)
+        cv_structure = structure_to_string(Cv)
 
         input_prompt = f"""
         You are an AI assistant that generates JSON-formatted resumes in
