@@ -13,7 +13,7 @@ class EmailVerificationController extends Controller
     public function verify(Request $request)
     {
         if (! $request->hasValidSignature()) {
-            return redirect()->to(config('app.frontend_url') . '/email/verify/expired');
+            return redirect()->to(config('app.frontend_url').'/email/verify/expired');
         }
 
         $userId = $request->query('id');
@@ -21,13 +21,13 @@ class EmailVerificationController extends Controller
         $user = User::findOrFail($userId);
 
         if ($user->hasVerifiedEmail()) {
-            return redirect()->to(config('app.frontend_url') . '/email/verify/already-verified');
+            return redirect()->to(config('app.frontend_url').'/email/verify/already-verified');
         }
 
         $user->markEmailAsVerified();
         event(new Verified($user));
 
-        return redirect()->to(config('app.frontend_url') . '/email/verify/success');
+        return redirect()->to(config('app.frontend_url').'/email/verify/success');
     }
 
     public function resend(Request $request)

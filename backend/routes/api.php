@@ -56,7 +56,6 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::middleware(['check.constant.connection', 'auth:sanctum'])->group(function () {
 
-
         Route::post('/email/resend', 'App\Http\Controllers\EmailVerificationController@resend')
             ->name('verification.resend');
 
