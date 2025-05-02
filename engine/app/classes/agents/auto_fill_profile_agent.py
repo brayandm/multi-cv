@@ -31,7 +31,8 @@ class AutoFillProfileAgent(Agent):
         - Fix encoding issues and restore correct accents or special characters
           in names or text written in Spanish. Only correct malformed
           characters—do not change content that is already correct.
-        - Dates should be formatted as YYYY-MM
+        - Dates should be formatted as YYYY-MM and if there is no date
+          provided, use the empty string "".
         - The only professional links allowed are "github", "linkedin",
         "portfolio"
         - Dont fill is_present or hasnt_expiration_date fields if the
