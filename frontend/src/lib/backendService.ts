@@ -427,6 +427,7 @@ export const autoFillCvFromDocumentEngine = async (
     headers: {
       "Content-Type": "multipart/form-data",
     },
+    timeout: 300000,
   });
 };
 
