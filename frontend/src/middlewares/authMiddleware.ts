@@ -9,7 +9,13 @@ import { Language } from "@/i18n/routing";
 import { NextURL } from "next/dist/server/web/next-url";
 
 const authPages = ["/login", "/register"];
-const unProtectedPages = ["/"];
+const unProtectedPages = [
+  "/",
+  "/password/recovery",
+  "/password/recovery/success",
+  "/password/recovery/fail",
+  "/password/recovery/new",
+];
 const badEmailVerificationPages = ["/email/verify", "/email/verify/expired"];
 const goodEmailVerificationPages = [
   "/email/verify/success",
