@@ -91,7 +91,7 @@ export default function PasswordRecoveryComponent({
 
   const handleContinue = (e: React.FormEvent) => {
     e.preventDefault();
-    router.push("/");
+    router.push("/login");
   };
 
   const handleTryAgain = (e: React.FormEvent) => {
