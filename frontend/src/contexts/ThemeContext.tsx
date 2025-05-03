@@ -57,8 +57,17 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       console.log("Error getting user theme", error);
     }
 
-    if (userThemeResponse?.data?.theme) {
-      setTheme(userThemeResponse.data.theme);
+    if (userThemeResponse?.data) {
+      if (userThemeResponse.data.theme) {
+        setTheme(userThemeResponse.data.theme);
+      } else {
+        setTheme(newTheme);
+        try {
+          userSetThemeApi(newTheme);
+        } catch (error) {
+          console.log("Error setting user theme", error);
+        }
+      }
     } else {
       setTheme(newTheme);
     }
