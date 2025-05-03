@@ -184,12 +184,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
       if (userLocaleResponse.data.locale) {
         setLocale(userLocaleResponse.data.locale);
       } else {
-        setLocale(newLocale);
-        try {
-          userSetLocaleApi(newLocale);
-        } catch (error) {
-          console.log("Error setting user theme", error);
-        }
+        syncLocale(newLocale);
       }
     } else {
       setLocale(newLocale);
