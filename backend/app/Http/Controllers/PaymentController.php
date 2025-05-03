@@ -85,8 +85,8 @@ class PaymentController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => url(config('app.frontend_url') . '/payment/success?session_id={CHECKOUT_SESSION_ID}'),
-            'cancel_url' => url(config('app.frontend_url') . '/payment/cancel'),
+            'success_url' => url(config('app.frontend_url').'/payment/success?session_id={CHECKOUT_SESSION_ID}'),
+            'cancel_url' => url(config('app.frontend_url').'/payment/cancel'),
             'allow_promotion_codes' => true,
             'customer_email' => $user->email,
             'metadata' => [
@@ -151,7 +151,7 @@ class PaymentController extends Controller
                 break;
 
             default:
-                Log::info('📩 Stripe Event Received: ' . $event->type);
+                Log::info('📩 Stripe Event Received: '.$event->type);
         }
 
         return response('Webhook received', 200);
