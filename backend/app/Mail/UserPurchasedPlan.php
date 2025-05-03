@@ -14,6 +14,7 @@ class UserPurchasedPlan extends Mailable
     use Queueable, SerializesModels;
 
     public User $user;
+
     public string $planName;
 
     /**
@@ -31,7 +32,7 @@ class UserPurchasedPlan extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'New Plan Purchase: ' . $this->user->name . ' bought ' . $this->planName,
+            subject: 'New Plan Purchase: '.$this->user->name.' bought '.$this->planName,
         );
     }
 
