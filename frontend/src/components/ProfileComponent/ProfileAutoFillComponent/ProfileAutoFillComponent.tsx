@@ -27,6 +27,7 @@ import { useRouter } from "next/navigation";
 import {
   autoFillCvFromDocumentEngine,
   getActionApi,
+  getActionByNameApi,
   getQuotaInfoApi,
 } from "@/lib/backendService";
 import { useProfile } from "@/contexts/ProfileContext";
@@ -59,6 +60,22 @@ export default function ProfileAutoCvComponent() {
     }
   };
 
+  const waitForAction = async (actionId: string) => {
+    while (true) {
+      await sleep(5000);
+      try {
+        const response = await getActionApi(actionId);
+
+        if (!response || response.data.action === null) {
+          break;
+        }
+      } catch (error) {
+        console.error("Error during polling:", error);
+        break;
+      }
+    }
+  };
+
   const handleAutofill = async () => {
     onOpen();
 
@@ -66,20 +83,7 @@ export default function ProfileAutoCvComponent() {
       const responseAutoFill = await autoFillCvFromDocumentEngine(file as File);
       const actionId = responseAutoFill.data.action_id;
 
-      while (true) {
-        try {
-          const response = await getActionApi(actionId);
-
-          if (!response || response.data.action === null) {
-            break;
-          }
-        } catch (error) {
-          console.error("Error during polling:", error);
-          break;
-        }
-
-        await sleep(5000);
-      }
+      await waitForAction(actionId);
 
       await pullProfile();
 
@@ -115,10 +119,12 @@ export default function ProfileAutoCvComponent() {
   };
 
   const [isQuotaInfoLoading, setIsQuotaInfoLoading] = useState(true);
+  const [quotaInfo, setQuotaInfo] = useState<GetQuotaInfoResponse | null>(null);
 
   const getQuota = useCallback(() => {
     getQuotaInfoApi("auto_fill_cv_from_document")
       .then((response: AxiosResponse<GetQuotaInfoResponse>) => {
+        setQuotaInfo(response.data);
         if (
           Object.keys(response.data).length === 0 ||
           response.data.left <= 0
@@ -140,6 +146,27 @@ export default function ProfileAutoCvComponent() {
   useEffect(() => {
     getQuota();
   }, [getQuota]);
+
+  useEffect(() => {
+    if (quotaInfo?.pending) {
+      const func = async () => {
+        onOpen();
+        const response = await getActionByNameApi("auto_fill_cv_from_document");
+
+        const actionId = response.data.action?.action_id;
+
+        if (actionId) {
+          await waitForAction(actionId);
+        }
+
+        await pullProfile();
+
+        router.push("/profile/initial");
+      };
+
+      func();
+    }
+  }, [quotaInfo]); // eslint-disable-line
 
   if (isQuotaInfoLoading) {
     return null;
@@ -240,7 +267,7 @@ export default function ProfileAutoCvComponent() {
                     t("pages.profile.auto_fill.loading.descriptions.9"),
                     t("pages.profile.auto_fill.loading.descriptions.10"),
                   ]}
-                  isCyclic={false}
+                  isCyclic={true}
                 />
               </ModalBody>
             </>

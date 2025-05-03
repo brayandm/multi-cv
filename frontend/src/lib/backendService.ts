@@ -39,6 +39,7 @@ import {
   applicationsEngineLink,
   updateApplicationEngineLink,
   getActionApiLink,
+  getActionByNameApiLink,
 } from "./links";
 import {
   UserResponse,
@@ -526,4 +527,10 @@ export const getActionApi = async (
   actionId: string
 ): Promise<AxiosResponse<GetActionResponse>> => {
   return await api.get(`${getActionApiLink}?action_id=${actionId}`);
+};
+
+export const getActionByNameApi = async (
+  action: string
+): Promise<AxiosResponse<GetActionResponse>> => {
+  return await api.get(`${getActionByNameApiLink}?action=${action}`);
 };

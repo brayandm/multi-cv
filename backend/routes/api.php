@@ -78,6 +78,7 @@ Route::group(['prefix' => 'v1'], function () {
 
         Route::post('/quota/info', 'App\Http\Controllers\ActionController@getQuotaInfo');
         Route::get('/action', 'App\Http\Controllers\ActionController@getAction');
+        Route::get('/action/name', 'App\Http\Controllers\ActionController@getActionByName');
 
         Route::put('/user/update/profile', 'App\Http\Controllers\AuthController@updateProfile');
         Route::put('/user/update/password', 'App\Http\Controllers\AuthController@updatePassword');

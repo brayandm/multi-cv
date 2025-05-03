@@ -161,4 +161,22 @@ class ActionController extends Controller
             'action' => $result,
         ]);
     }
+
+    public function getActionByName(Request $request)
+    {
+        $validator = $this->validateAction($request);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        $action = $validator->validated()['action'];
+        $user_id = auth()->user()->id;
+
+        $result = $this->actionService->getActionByName($action, $user_id);
+
+        return response()->json([
+            'action' => $result,
+        ]);
+    }
 }

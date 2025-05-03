@@ -37,6 +37,7 @@ export const getSettingsEngineLink = "/settings";
 export const moderationEngineLink = "/moderation";
 export const userDeleteApiLink = "/user/delete";
 export const getActionApiLink = "/action";
+export const getActionByNameApiLink = "/action/name";
 export const applicationsEngineLink = "/applications";
 export const applicationEngineLink = "/application";
 export const updateApplicationEngineLink = "/application";

@@ -558,4 +558,26 @@ class ActionService
             'updated_at' => $action->updated_at,
         ];
     }
+
+    public function getActionByName(string $action, int $user_id): ?array
+    {
+
+        $actionRecord = Action::where('payment_plan_id', $this->getPlanId($user_id))
+            ->where('user_id', $user_id)
+            ->where('action', $action)
+            ->first();
+
+        if (! $actionRecord) {
+            return null;
+        }
+
+        return [
+            'action_id' => $actionRecord->action_id,
+            'user_id' => $actionRecord->user_id,
+            'payment_plan_id' => $actionRecord->payment_plan_id,
+            'action' => $actionRecord->action,
+            'created_at' => $actionRecord->created_at,
+            'updated_at' => $actionRecord->updated_at,
+        ];
+    }
 }

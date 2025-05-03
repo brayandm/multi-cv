@@ -9,7 +9,7 @@ interface IAnimatedTextProps {
 export default function AnimatedText({
   descriptions,
   isCyclic = true,
-  intervalTime = 4000,
+  intervalTime = 5000,
 }: IAnimatedTextProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
