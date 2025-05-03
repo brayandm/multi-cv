@@ -1,6 +1,13 @@
 {
-    "Hello!": "Hello!",
-    "Regards": "Regards",
-    "Whoops!": "Whoops!",
-    "notifications.subcopy": "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below into your web browser:"
+    "notifications.greeting": "Hello!",
+    "notifications.salutation": "Regards",
+    "notifications.error_title": "Whoops!",
+    "notifications.subcopy": "If you're having trouble clicking the \":actionText\" button, copy and paste the URL below into your web browser:",
+
+    "passwords.subject": "Reset Password Notification",
+    "passwords.greeting": "Hello :name,",
+    "passwords.line1": "You are receiving this email because we received a password reset request for your account.",
+    "passwords.action": "Reset Password",
+    "passwords.expire": "This password reset link will expire in :count minutes.",
+    "passwords.no_action": "If you did not request a password reset, no further action is required."
 }
