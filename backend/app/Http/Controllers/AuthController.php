@@ -30,6 +30,10 @@ class AuthController extends Controller
 
     private function validateCorrectRegisterUser(Request $request)
     {
+        $request->merge([
+            'locale' => $request->input('locale', 'en'),
+        ]);
+
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
