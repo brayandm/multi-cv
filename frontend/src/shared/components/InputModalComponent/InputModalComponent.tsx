@@ -66,12 +66,7 @@ export default function InputModalComponent({
   }, [open, onSaving, isInputLoading, onSave, handleClose]);
 
   return (
-    <Modal
-      isOpen={open}
-      onOpenChange={onOpenChange}
-      hideCloseButton
-      isDismissable={false}
-    >
+    <Modal isOpen={open} onOpenChange={onOpenChange} hideCloseButton>
       <ModalContent>
         {() => (
           <>
