@@ -7,6 +7,8 @@ import { AuthCookie } from "@/lib/types";
 import { setCookieClient } from "@/lib/setCookieClient";
 import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 import { useUserStatus } from "@/contexts/UserStatusContext";
+import { useLocale } from "@/contexts/LocaleContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function RedirectBack() {
   const searchParams = useSearchParams();
@@ -14,6 +16,9 @@ export default function RedirectBack() {
   const router = useRouter();
 
   const { callbackUrl, redirectToCallback } = useCallbackRedirect();
+
+  const { updateLocale } = useLocale();
+  const { updateTheme } = useTheme();
 
   useEffect(() => {
     const func = async () => {
@@ -52,6 +57,8 @@ export default function RedirectBack() {
             auth_cookie.expiration_date
           ).then(async () => {
             await refreshUserStatus();
+            await updateLocale();
+            await updateTheme();
             if (callbackUrl) {
               redirectToCallback();
             } else {

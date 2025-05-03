@@ -18,7 +18,7 @@ type Theme = "light" | "dark";
 
 interface ThemeContextType {
   theme: string;
-  updateTheme: (newTheme: string) => void;
+  updateTheme: (newTheme?: string) => void;
   syncTheme: (newTheme: string) => void;
 }
 
@@ -48,7 +48,10 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     document.documentElement.classList.add(theme);
   }, [theme, initialized]);
 
-  const updateTheme = async (newTheme: string) => {
+  const updateTheme = async (newTheme?: string) => {
+    if (!newTheme) {
+      newTheme = (getCookie("theme") as string) || getSystemTheme();
+    }
     let userThemeResponse;
 
     try {
@@ -61,7 +64,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       if (userThemeResponse.data.theme) {
         setTheme(userThemeResponse.data.theme);
       } else {
-        syncTheme(newTheme);
+        await syncTheme(newTheme);
       }
     } else {
       setTheme(newTheme);

@@ -19,11 +19,16 @@ import {
 } from "@/lib/validator";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
+import { useLocale } from "@/contexts/LocaleContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function RegisterComponent() {
   const router = useRouter();
 
   const t = useTranslations();
+
+  const { updateLocale } = useLocale();
+  const { updateTheme } = useTheme();
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -104,8 +109,10 @@ export default function RegisterComponent() {
         }
 
         if (isIframe) {
-          storeExtensionStorageValue("auth_cookie", auth_cookie, () => {
+          storeExtensionStorageValue("auth_cookie", auth_cookie, async () => {
             if (loginResponse.status === 200) {
+              await updateLocale();
+              await updateTheme();
               router.push("/home");
             }
           });
@@ -114,7 +121,9 @@ export default function RegisterComponent() {
             auth_cookie.name,
             auth_cookie.value,
             auth_cookie.expiration_date
-          ).then(() => {
+          ).then(async () => {
+            await updateLocale();
+            await updateTheme();
             if (callbackUrl) {
               redirectToCallback();
             } else {

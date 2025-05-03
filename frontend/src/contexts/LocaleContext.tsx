@@ -16,7 +16,7 @@ import { getCookie } from "cookies-next";
 
 interface LocaleContextType {
   locale: string;
-  updateLocale: (newLocale: string) => void;
+  updateLocale: (newLocale?: string) => void;
   syncLocale: (newLocale: string) => void;
   getTraduction: () => Traduction;
 }
@@ -171,7 +171,10 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
     await router.refresh();
   };
 
-  const updateLocale = async (newLocale: string) => {
+  const updateLocale = async (newLocale?: string) => {
+    if (!newLocale) {
+      newLocale = getLocaleFromSources(pathname);
+    }
     let userLocaleResponse;
 
     try {
@@ -184,7 +187,7 @@ export const LocaleProvider = ({ children }: { children: ReactNode }) => {
       if (userLocaleResponse.data.locale) {
         setLocale(userLocaleResponse.data.locale);
       } else {
-        syncLocale(newLocale);
+        await syncLocale(newLocale);
       }
     } else {
       setLocale(newLocale);

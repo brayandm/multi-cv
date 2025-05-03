@@ -16,6 +16,8 @@ import { MAX_SHORT_TEXT_LENGTH } from "@/lib/consts";
 import { emailValidator, requiredValidator } from "@/lib/validator";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
+import { useLocale } from "@/contexts/LocaleContext";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function LoginComponent() {
   const router = useRouter();
@@ -26,6 +28,9 @@ export default function LoginComponent() {
   const [onLogin, setOnLogin] = useState(false);
 
   const { callbackUrl, redirectToCallback } = useCallbackRedirect();
+
+  const { updateLocale } = useLocale();
+  const { updateTheme } = useTheme();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -53,8 +58,10 @@ export default function LoginComponent() {
       }
 
       if (isIframe) {
-        storeExtensionStorageValue("auth_cookie", auth_cookie, () => {
+        storeExtensionStorageValue("auth_cookie", auth_cookie, async () => {
           if (loginresponse.status === 200) {
+            await updateLocale();
+            await updateTheme();
             router.push("/home");
           }
         });
@@ -63,7 +70,9 @@ export default function LoginComponent() {
           auth_cookie.name,
           auth_cookie.value,
           auth_cookie.expiration_date
-        ).then(() => {
+        ).then(async () => {
+          await updateLocale();
+          await updateTheme();
           if (callbackUrl) {
             redirectToCallback();
           } else {
