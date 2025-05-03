@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Cześć!",
+  "notifications.salutation": "Pozdrawiam",
+  "notifications.error_title": "Ups!",
+  "notifications.subcopy": "Jeśli masz problemy z kliknięciem przycisku \":actionText\", skopiuj i wklej poniższy adres URL do swojej przeglądarki internetowej:",
+  "passwords.subject": "Powiadomienie o zresetowaniu hasła",
+  "passwords.greeting": "Cześć :name,",
+  "passwords.line1": "Otrzymujesz ten e-mail, ponieważ otrzymaliśmy prośbę o zresetowanie hasła dla Twojego konta.",
+  "passwords.action": "Zresetuj hasło",
+  "passwords.expire": "Ten link do zresetowania hasła wygaśnie za :count minut.",
+  "passwords.no_action": "Jeśli nie prosiłeś o zresetowanie hasła, nie jest wymagane żadne dalsze działanie.",
+  "verification.subject": "Proszę potwierdzić swój adres e-mail dla :app",
+  "verification.greeting": "Cześć :name,",
+  "verification.line1": "Dziękujemy za rejestrację! Jeszcze tylko jeden krok: proszę potwierdzić swój adres e-mail, klikając przycisk poniżej.",
+  "verification.action": "Potwierdź mój e-mail",
+  "verification.no_action": "Jeśli nie prosiłeś o zresetowanie hasła, nie jest wymagane żadne dalsze działanie."
+}

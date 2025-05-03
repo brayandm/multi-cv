@@ -160,6 +160,7 @@ export const registerApi = async (formData: {
   email: string;
   password: string;
   talentPool: boolean;
+  locale: string;
 }): Promise<AxiosResponse<MessageResponse>> => {
   return await api.post(
     registerApiLink,
@@ -169,6 +170,7 @@ export const registerApi = async (formData: {
       email: formData.email,
       password: formData.password,
       talent_pool: formData.talentPool,
+      locale: formData.locale,
     },
     {
       headers: {

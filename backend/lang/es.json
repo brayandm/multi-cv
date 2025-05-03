@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "¡Hola!",
+  "notifications.salutation": "Saludos",
+  "notifications.error_title": "¡Vaya!",
+  "notifications.subcopy": "Si tienes problemas al hacer clic en el botón \":actionText\", copia y pega la siguiente URL en tu navegador:",
+  "passwords.subject": "Notificación de restablecimiento de contraseña",
+  "passwords.greeting": "Hola :name,",
+  "passwords.line1": "Estás recibiendo este correo porque solicitaste restablecer la contraseña de tu cuenta.",
+  "passwords.action": "Restablecer contraseña",
+  "passwords.expire": "Este enlace expirará en :count minutos.",
+  "passwords.no_action": "Si no solicitaste restablecer tu contraseña, puedes ignorar este mensaje.",
+  "verification.subject": "Por favor confirma tu correo para :app",
+  "verification.greeting": "Hola :name,",
+  "verification.line1": "¡Gracias por registrarte! Solo falta un paso: confirma tu dirección de correo haciendo clic en el botón de abajo.",
+  "verification.action": "Confirmar mi correo",
+  "verification.no_action": "Si no solicitaste restablecer tu contraseña, puedes ignorar este mensaje."
+}

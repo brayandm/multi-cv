@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "مرحبًا!",
+  "notifications.salutation": "مع أطيب التحيات",
+  "notifications.error_title": "عذرًا!",
+  "notifications.subcopy": "إذا كنت تواجه مشكلة في النقر على زر \":actionText\"، انسخ والصق الرابط أدناه في متصفح الويب الخاص بك:",
+  "passwords.subject": "إشعار إعادة تعيين كلمة المرور",
+  "passwords.greeting": "مرحبًا :name،",
+  "passwords.line1": "أنت تتلقى هذا البريد الإلكتروني لأننا تلقينا طلب إعادة تعيين كلمة المرور لحسابك.",
+  "passwords.action": "إعادة تعيين كلمة المرور",
+  "passwords.expire": "سوف تنتهي صلاحية رابط إعادة تعيين كلمة المرور هذا في :count دقيقة.",
+  "passwords.no_action": "إذا لم تطلب إعادة تعيين كلمة المرور، فلا حاجة لأي إجراء آخر.",
+  "verification.subject": "يرجى تأكيد بريدك الإلكتروني لـ :app",
+  "verification.greeting": "مرحبًا :name،",
+  "verification.line1": "شكرًا لتسجيلك! خطوة واحدة أخرى: يرجى تأكيد عنوان بريدك الإلكتروني من خلال النقر على الزر أدناه.",
+  "verification.action": "تأكيد بريدي الإلكتروني",
+  "verification.no_action": "إذا لم تطلب إعادة تعيين كلمة المرور، فلا حاجة لأي إجراء آخر."
+}

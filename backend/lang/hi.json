@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Namaste!",
+  "notifications.salutation": "Shubhkamnayein",
+  "notifications.error_title": "Arre!",
+  "notifications.subcopy": "Agar aap \":actionText\" button par click karne mein samasya mehsoos kar rahe hain, to neeche diye gaye URL ko apne web browser mein copy aur paste karein:",
+  "passwords.subject": "Password Reset Ki Suchna",
+  "passwords.greeting": "Namaste :name,",
+  "passwords.line1": "Aapko yeh email isliye mil rahi hai kyunki humne aapke account ke liye password reset ka request prapt kiya hai.",
+  "passwords.action": "Password Reset Karein",
+  "passwords.expire": "Yeh password reset link :count minute mein expire ho jayega.",
+  "passwords.no_action": "Agar aapne password reset ka request nahi kiya hai, to koi aur action ki zarurat nahi hai.",
+  "verification.subject": ":app ke liye apne email ki pushti karein",
+  "verification.greeting": "Namaste :name,",
+  "verification.line1": "Signup karne ke liye dhanyavaad! Bas ek aur kadam: kripya neeche diye gaye button par click karke apne email address ki pushti karein.",
+  "verification.action": "Mera Email Pushti Karein",
+  "verification.no_action": "Agar aapne password reset ka request nahi kiya hai, to koi aur action ki zarurat nahi hai."
+}

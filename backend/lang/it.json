@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Ciao!",
+  "notifications.salutation": "Cordiali saluti",
+  "notifications.error_title": "Ops!",
+  "notifications.subcopy": "Se hai problemi a fare clic sul pulsante \":actionText\", copia e incolla l'URL qui sotto nel tuo browser web:",
+  "passwords.subject": "Notifica di reimpostazione della password",
+  "passwords.greeting": "Ciao :name,",
+  "passwords.line1": "Stai ricevendo questa email perché abbiamo ricevuto una richiesta di reimpostazione della password per il tuo account.",
+  "passwords.action": "Reimposta Password",
+  "passwords.expire": "Questo link per la reimpostazione della password scadrà tra :count minuti.",
+  "passwords.no_action": "Se non hai richiesto una reimpostazione della password, non è necessaria alcuna ulteriore azione.",
+  "verification.subject": "Per favore conferma la tua email per :app",
+  "verification.greeting": "Ciao :name,",
+  "verification.line1": "Grazie per esserti registrato! Solo un altro passo: per favore conferma il tuo indirizzo email facendo clic sul pulsante qui sotto.",
+  "verification.action": "Conferma la mia email",
+  "verification.no_action": "Se non hai richiesto una reimpostazione della password, non è necessaria alcuna ulteriore azione."
+}

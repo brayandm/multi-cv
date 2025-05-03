@@ -18,6 +18,7 @@ api_key: str = os.environ.get("OPENAI_API_KEY") or ""
 
 base_paths: list[str] = [
     "../frontend/messages",
+    "../backend/lang",
     "./app/utils/traductions/cv",
 ]
 
@@ -54,15 +55,34 @@ def unflatten(d: dict[str, str], sep: str = ".") -> OrderedDict[str, Any]:
     return result
 
 
-chat_prompt: ChatPromptTemplate = ChatPromptTemplate.from_messages(
+backend_prompt = ChatPromptTemplate.from_messages(
+    [
+        SystemMessage(
+            content=(
+                "You are an expert translator and Laravel developer. "
+                "You will be given a flat JSON file with dot-notated keys,"
+                "like 'passwords.subject' or 'notifications.greeting'. "
+                "Translate only the values into the target language, "
+                "but DO NOT change the keys or reformat the structure. "
+                "Return the translated JSON with flat keys exactly as "
+                "received, without nesting or grouping. No extra "
+                "comments or explanations."
+            )
+        ),
+        HumanMessagePromptTemplate.from_template(
+            "{json_data}\n\nTranslate to {target_language}"
+        ),
+    ]
+)
+default_prompt = ChatPromptTemplate.from_messages(
     [
         SystemMessage(
             content=(
                 "You are an expert translator and developer familiar with "
                 "the NextIntl file format used in Next.js applications. "
                 "You will be given a JSON file with translation strings in "
-                "English. Your task is to translate the values into the"
-                "target language, keeping the JSON structure and keys"
+                "English. Your task is to translate the values into the "
+                "target language, keeping the JSON structure and keys "
                 "identical. Return only the translated JSON with flat keys. "
                 "No extra text."
             )
@@ -78,8 +98,6 @@ llm: ChatOpenAI = ChatOpenAI(
     api_key=SecretStr(api_key),
     model="gpt-4o-mini",
 )
-
-chain = chat_prompt | llm
 
 
 def translate_and_sync_nested(base_path: str, target: dict[str, str]) -> str:
@@ -115,7 +133,12 @@ def translate_and_sync_nested(base_path: str, target: dict[str, str]) -> str:
         input_json_str: str = json.dumps(
             new_keys, ensure_ascii=False, indent=2
         )
-        result = chain.invoke(
+        prompt_chain = (
+            backend_prompt | llm
+            if base_path.endswith("/backend/lang")
+            else default_prompt | llm
+        )
+        result = prompt_chain.invoke(
             {"json_data": input_json_str, "target_language": lang}
         )
         translated_flat: dict[str, str] = json.loads(
@@ -132,7 +155,11 @@ def translate_and_sync_nested(base_path: str, target: dict[str, str]) -> str:
         if k in updated_flat:
             ordered_final[k] = updated_flat[k]
 
-    final_nested: OrderedDict[str, Any] = unflatten(ordered_final)
+    final_nested: OrderedDict[str, Any] = (
+        unflatten(ordered_final)
+        if not base_path.endswith("/backend/lang")
+        else ordered_final
+    )
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(final_nested, f, ensure_ascii=False, indent=2)
 

@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "你好！",
+  "notifications.salutation": "问候",
+  "notifications.error_title": "哎呀！",
+  "notifications.subcopy": "如果你在点击 \":actionText\" 按钮时遇到问题，请将下面的 URL 复制并粘贴到你的网页浏览器中：",
+  "passwords.subject": "重置密码通知",
+  "passwords.greeting": "你好 :name，",
+  "passwords.line1": "你收到这封电子邮件是因为我们收到了你账户的密码重置请求。",
+  "passwords.action": "重置密码",
+  "passwords.expire": "此密码重置链接将在 :count 分钟后过期。",
+  "passwords.no_action": "如果你没有请求重置密码，则无需进一步操作。",
+  "verification.subject": "请确认你的 :app 邮箱",
+  "verification.greeting": "你好 :name，",
+  "verification.line1": "感谢你注册！只需再一步：请通过点击下面的按钮确认你的电子邮件地址。",
+  "verification.action": "确认我的电子邮件",
+  "verification.no_action": "如果你没有请求重置密码，则无需进一步操作。"
+}

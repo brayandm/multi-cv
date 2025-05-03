@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "שלום!",
+  "notifications.salutation": "בברכה",
+  "notifications.error_title": "אופס!",
+  "notifications.subcopy": "אם אתה נתקל בבעיות בלחיצה על כפתור \":actionText\", העתק והדבק את ה-URL למטה בדפדפן שלך:",
+  "passwords.subject": "הודעת איפוס סיסמה",
+  "passwords.greeting": "שלום :name,",
+  "passwords.line1": "אתה מקבל דוא\"ל זה כי קיבלנו בקשה לאיפוס סיסמה עבור החשבון שלך.",
+  "passwords.action": "איפוס סיסמה",
+  "passwords.expire": "קישור איפוס הסיסמה הזה יפוג בעוד :count דקות.",
+  "passwords.no_action": "אם לא ביקשת לאפס סיסמה, אין צורך בפעולה נוספת.",
+  "verification.subject": "אנא אשר את הדוא\"ל שלך עבור :app",
+  "verification.greeting": "שלום :name,",
+  "verification.line1": "תודה שנרשמת! רק צעד אחד נוסף: אנא אשר את כתובת הדוא\"ל שלך על ידי לחיצה על הכפתור למטה.",
+  "verification.action": "אשר את הדוא\"ל שלי",
+  "verification.no_action": "אם לא ביקשת לאפס סיסמה, אין צורך בפעולה נוספת."
+}

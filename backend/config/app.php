@@ -117,6 +117,39 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Available locales
+    |--------------------------------------------------------------------------
+    |
+    | List all locales that your application works with
+    |
+    */
+
+    'available_locales' => [
+        'Arabic' => 'ar',
+        'German' => 'de',
+        'English' => 'en',
+        'Spanish' => 'es',
+        'French' => 'fr',
+        'Hebrew' => 'he',
+        'Romanized Hindi' => 'hi',
+        'Indonesian' => 'id',
+        'Italian' => 'it',
+        'Japanese' => 'ja',
+        'Korean' => 'ko',
+        'Dutch' => 'nl',
+        'Polish' => 'pl',
+        'Portuguese' => 'pt',
+        'Russian' => 'ru',
+        'Swedish' => 'sv',
+        'Thai' => 'th',
+        'Turkish' => 'tr',
+        'Ukrainian' => 'uk',
+        'Vietnamese' => 'vi',
+        'Chinese' => 'zh',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Encryption Key
     |--------------------------------------------------------------------------
     |

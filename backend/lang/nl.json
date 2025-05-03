@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Hallo!",
+  "notifications.salutation": "Met vriendelijke groet",
+  "notifications.error_title": "Oeps!",
+  "notifications.subcopy": "Als je problemen hebt met het klikken op de \":actionText\" knop, kopieer en plak dan de onderstaande URL in je webbrowser:",
+  "passwords.subject": "Wachtwoord Reset Notificatie",
+  "passwords.greeting": "Hallo :name,",
+  "passwords.line1": "Je ontvangt deze e-mail omdat we een verzoek voor het resetten van je wachtwoord voor je account hebben ontvangen.",
+  "passwords.action": "Wachtwoord Resetten",
+  "passwords.expire": "Deze link voor het resetten van het wachtwoord vervalt over :count minuten.",
+  "passwords.no_action": "Als je geen verzoek voor het resetten van het wachtwoord hebt gedaan, is er geen verdere actie vereist.",
+  "verification.subject": "Bevestig je e-mail voor :app",
+  "verification.greeting": "Hallo :name,",
+  "verification.line1": "Bedankt voor je aanmelding! Nog één stap: bevestig je e-mailadres door op de onderstaande knop te klikken.",
+  "verification.action": "Bevestig Mijn E-mail",
+  "verification.no_action": "Als je geen verzoek voor het resetten van het wachtwoord hebt gedaan, is er geen verdere actie vereist."
+}

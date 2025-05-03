@@ -27,6 +27,7 @@ class UserService
                 'password' => Hash::make($data->password),
                 'is_in_talent_pool' => (bool) $data->talent_pool,
                 'accepted_terms_at' => Carbon::now(),
+                'locale' => $data->locale,
             ]);
         } else {
             $user = User::create([
@@ -36,6 +37,7 @@ class UserService
                 'password' => Hash::make($data->password),
                 'is_in_talent_pool' => (bool) $data->talent_pool,
                 'accepted_terms_at' => Carbon::now(),
+                'locale' => $data->locale,
             ]);
         }
 

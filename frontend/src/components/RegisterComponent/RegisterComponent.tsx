@@ -27,6 +27,8 @@ export default function RegisterComponent() {
 
   const t = useTranslations();
 
+  const { locale } = useLocale();
+
   const { updateLocale } = useLocale();
   const { updateTheme } = useTheme();
 
@@ -39,6 +41,7 @@ export default function RegisterComponent() {
     acceptTerms: false,
     underAge: false,
     talentPool: false,
+    locale: "",
   });
 
   const [onRegister, setOnRegister] = useState(false);
@@ -91,6 +94,7 @@ export default function RegisterComponent() {
     setOnRegister(true);
 
     try {
+      formData.locale = locale;
       const registerResponse = await registerApi(formData);
 
       if (registerResponse.status === 200) {

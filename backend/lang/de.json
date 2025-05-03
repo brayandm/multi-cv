@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Hallo!",
+  "notifications.salutation": "Mit freundlichen Grüßen",
+  "notifications.error_title": "Hoppla!",
+  "notifications.subcopy": "Wenn Sie Probleme haben, auf die Schaltfläche \":actionText\" zu klicken, kopieren Sie die URL unten und fügen Sie sie in Ihren Webbrowser ein:",
+  "passwords.subject": "Benachrichtigung zur Passwortzurücksetzung",
+  "passwords.greeting": "Hallo :name,",
+  "passwords.line1": "Sie erhalten diese E-Mail, weil wir eine Anfrage zur Passwortzurücksetzung für Ihr Konto erhalten haben.",
+  "passwords.action": "Passwort zurücksetzen",
+  "passwords.expire": "Dieser Link zur Passwortzurücksetzung läuft in :count Minuten ab.",
+  "passwords.no_action": "Wenn Sie keine Passwortzurücksetzung angefordert haben, sind keine weiteren Maßnahmen erforderlich.",
+  "verification.subject": "Bitte bestätigen Sie Ihre E-Mail für :app",
+  "verification.greeting": "Hallo :name,",
+  "verification.line1": "Danke für Ihre Anmeldung! Nur noch ein Schritt: Bitte bestätigen Sie Ihre E-Mail-Adresse, indem Sie auf die Schaltfläche unten klicken.",
+  "verification.action": "Meine E-Mail bestätigen",
+  "verification.no_action": "Wenn Sie keine Passwortzurücksetzung angefordert haben, sind keine weiteren Maßnahmen erforderlich."
+}
