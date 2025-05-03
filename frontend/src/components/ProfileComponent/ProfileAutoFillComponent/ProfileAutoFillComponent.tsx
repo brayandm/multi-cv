@@ -188,7 +188,7 @@ export default function ProfileAutoCvComponent() {
                 <p>{t("pages.profile.auto_fill.message")}</p>
               </div>
             </CardHeader>
-            <CardBody className="flex flex-col gap-6">
+            <CardBody className="flex flex-col gap-6 pt-24">
               <label
                 htmlFor="pdf-upload"
                 className="flex items-center justify-center gap-2 border border-dashed border-gray-300 rounded-xl p-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-default-100 transition"
@@ -213,7 +213,7 @@ export default function ProfileAutoCvComponent() {
                 />
               </label>
 
-              <div className="flex flex-col justify-between items-center w-full">
+              <div className="flex mt-6 flex-col justify-between items-center w-full">
                 <Button
                   color="secondary"
                   onPress={handleAutofill}
