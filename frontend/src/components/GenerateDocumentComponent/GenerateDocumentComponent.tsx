@@ -396,9 +396,19 @@ export default function GenerateDocumentComponent({
             >
               {isCvLoading ||
               (quotaInfo?.max_pending != -1 &&
-                quotaInfo?.pending >= quotaInfo?.max_pending)
-                ? t("common.texts.pending_generation")
-                : t("common.texts.generate_cv")}
+                quotaInfo?.pending >= quotaInfo?.max_pending) ? (
+                <>
+                  <Spinner
+                    classNames={{
+                      circle1: "border-b-secondary-700",
+                      circle2: "border-b-secondary-700",
+                    }}
+                  />
+                  {t("common.texts.pending_generation")}
+                </>
+              ) : (
+                t("common.texts.generate_cv")
+              )}
             </Button>
           </div>
           <div className="mt-4 text-center">
@@ -431,12 +441,7 @@ export default function GenerateDocumentComponent({
           <Spinner variant="dots" />
         </div>
       )}
-      <Modal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        hideCloseButton
-        isDismissable={false}
-      >
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={true}>
         <ModalContent>
           {() => (
             <>
