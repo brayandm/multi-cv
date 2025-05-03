@@ -58,7 +58,7 @@
       "native": "Muttersprache",
       "upload_cv": "Laden Sie Ihren Lebenslauf hoch (PDF)",
       "loading_autofill_title": "Verarbeitung Ihres Lebenslaufs",
-      "loading_autofill_description": "Bitte warten Sie, während wir Ihr Profil ausfüllen...",
+      "loading_autofill_description": "Je nach Größe und Inhalt des Dokuments kann dieser Prozess mehrere Minuten dauern. Bitte schließen oder aktualisieren Sie die Seite nicht.",
       "loading_generating_cv_title": "Generierung Ihres Lebenslaufs",
       "loading_generating_cv_description": "Bitte warten Sie, während wir Ihren Lebenslauf generieren...",
       "only_year": "Nur Jahr",

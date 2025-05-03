@@ -58,7 +58,7 @@
       "native": "Nativo",
       "upload_cv": "Carregue seu CV (PDF)",
       "loading_autofill_title": "Processando seu CV",
-      "loading_autofill_description": "Por favor, aguarde enquanto preenchemos seu perfil...",
+      "loading_autofill_description": "Dependendo do tamanho e conteúdo do documento, esse processo pode levar vários minutos. Por favor, não feche ou atualize a página.",
       "loading_generating_cv_title": "Gerando seu CV",
       "loading_generating_cv_description": "Por favor, aguarde enquanto geramos seu CV...",
       "only_year": "Apenas ano",

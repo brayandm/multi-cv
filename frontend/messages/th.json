@@ -58,7 +58,7 @@
       "native": "เจ้าของภาษา",
       "upload_cv": "อัปโหลด CV ของคุณ (PDF)",
       "loading_autofill_title": "กำลังประมวลผล CV ของคุณ",
-      "loading_autofill_description": "กรุณารอสักครู่ในขณะที่เรากำลังกรอกข้อมูลโปรไฟล์ของคุณ...",
+      "loading_autofill_description": "ขึ้นอยู่กับขนาดและเนื้อหาของเอกสาร กระบวนการนี้อาจใช้เวลาหลายนาที กรุณาอย่าปิดหรือรีเฟรชหน้าเว็บ",
       "loading_generating_cv_title": "กำลังสร้าง CV ของคุณ",
       "loading_generating_cv_description": "กรุณารอสักครู่ในขณะที่เรากำลังสร้าง CV ของคุณ...",
       "only_year": "เฉพาะปี",

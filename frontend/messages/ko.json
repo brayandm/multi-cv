@@ -58,7 +58,7 @@
       "native": "모국어",
       "upload_cv": "CV 업로드 (PDF)",
       "loading_autofill_title": "CV 처리 중",
-      "loading_autofill_description": "프로필을 채우는 동안 기다려 주세요...",
+      "loading_autofill_description": "문서의 크기와 내용에 따라 이 과정은 몇 분이 걸릴 수 있습니다. 페이지를 닫거나 새로 고치지 마세요.",
       "loading_generating_cv_title": "CV 생성 중",
       "loading_generating_cv_description": "CV를 생성하는 동안 기다려 주세요...",
       "only_year": "연도만",

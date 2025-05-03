@@ -58,7 +58,7 @@
       "native": "Modersmål",
       "upload_cv": "Ladda upp ditt CV (PDF)",
       "loading_autofill_title": "Behandlar ditt CV",
-      "loading_autofill_description": "Vänligen vänta medan vi fyller i din profil...",
+      "loading_autofill_description": "Beroende på dokumentets storlek och innehåll kan denna process ta flera minuter. Vänligen stäng inte eller uppdatera sidan.",
       "loading_generating_cv_title": "Genererar ditt CV",
       "loading_generating_cv_description": "Vänligen vänta medan vi genererar ditt CV...",
       "only_year": "Endast år",

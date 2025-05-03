@@ -4,12 +4,12 @@ from urllib.parse import quote
 
 from fastapi import (
     APIRouter,
+    BackgroundTasks,
     Depends,
     FastAPI,
     File,
     Query,
     UploadFile,
-    BackgroundTasks,
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
@@ -51,9 +51,9 @@ from app.framework.decorators.action import (
     rollback_action,
 )
 from app.framework.decorators.context_vars import (
+    get_action_id,
     get_auth_token,
     get_user_id,
-    get_action_id,
 )
 from app.framework.logging import logger
 from app.framework.middlewares import (

@@ -58,7 +58,7 @@
       "native": "Ana dil",
       "upload_cv": "CV'nizi yükleyin (PDF)",
       "loading_autofill_title": "CV'nizi işliyoruz",
-      "loading_autofill_description": "Profilinizi doldururken lütfen bekleyin...",
+      "loading_autofill_description": "Belgenin boyutuna ve içeriğine bağlı olarak, bu işlem birkaç dakika sürebilir. Lütfen sayfayı kapatmayın veya yenilemeyin.",
       "loading_generating_cv_title": "CV'nizi oluşturuyoruz",
       "loading_generating_cv_description": "CV'nizi oluştururken lütfen bekleyin...",
       "only_year": "Sadece yıl",

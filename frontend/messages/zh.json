@@ -58,7 +58,7 @@
       "native": "母语",
       "upload_cv": "上传您的简历 (PDF)",
       "loading_autofill_title": "正在处理您的简历",
-      "loading_autofill_description": "请稍候，我们正在填写您的个人资料...",
+      "loading_autofill_description": "根据文档的大小和内容，此过程可能需要几分钟。请不要关闭或刷新页面。",
       "loading_generating_cv_title": "正在生成您的简历",
       "loading_generating_cv_description": "请稍候，我们正在生成您的简历...",
       "only_year": "仅年份",

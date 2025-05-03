@@ -58,7 +58,7 @@
       "native": "Madrelingua",
       "upload_cv": "Carica il tuo CV (PDF)",
       "loading_autofill_title": "Elaborazione del tuo CV",
-      "loading_autofill_description": "Attendi mentre compiliamo il tuo profilo...",
+      "loading_autofill_description": "A seconda delle dimensioni e del contenuto del documento, questo processo potrebbe richiedere diversi minuti. Si prega di non chiudere o aggiornare la pagina.",
       "loading_generating_cv_title": "Generazione del tuo CV",
       "loading_generating_cv_description": "Attendi mentre generiamo il tuo CV...",
       "only_year": "Solo anno",

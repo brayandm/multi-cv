@@ -58,7 +58,7 @@
       "native": "Rodzimy",
       "upload_cv": "Prześlij swoje CV (PDF)",
       "loading_autofill_title": "Przetwarzanie twojego CV",
-      "loading_autofill_description": "Proszę czekać, podczas gdy wypełniamy twój profil...",
+      "loading_autofill_description": "W zależności od rozmiaru i treści dokumentu, ten proces może zająć kilka minut. Proszę nie zamykać ani nie odświeżać strony.",
       "loading_generating_cv_title": "Generowanie twojego CV",
       "loading_generating_cv_description": "Proszę czekać, podczas gdy generujemy twoje CV...",
       "only_year": "Tylko rok",

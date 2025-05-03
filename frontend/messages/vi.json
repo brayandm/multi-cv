@@ -58,7 +58,7 @@
       "native": "Bản ngữ",
       "upload_cv": "Tải lên CV của bạn (PDF)",
       "loading_autofill_title": "Đang xử lý CV của bạn",
-      "loading_autofill_description": "Vui lòng chờ trong khi chúng tôi điền thông tin hồ sơ của bạn...",
+      "loading_autofill_description": "Tùy thuộc vào kích thước và nội dung của tài liệu, quá trình này có thể mất vài phút. Vui lòng không đóng hoặc làm mới trang.",
       "loading_generating_cv_title": "Đang tạo CV của bạn",
       "loading_generating_cv_description": "Vui lòng chờ trong khi chúng tôi tạo CV của bạn...",
       "only_year": "Chỉ năm",

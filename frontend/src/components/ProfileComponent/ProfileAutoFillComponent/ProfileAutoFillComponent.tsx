@@ -225,6 +225,7 @@ export default function ProfileAutoCvComponent() {
                 {t("common.texts.loading_autofill_title")}
               </ModalHeader>
               <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
+                <p>{t("common.texts.loading_autofill_description")}</p>
                 <Spinner />
                 <AnimatedText
                   descriptions={[

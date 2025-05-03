@@ -58,7 +58,7 @@
       "native": "ネイティブ",
       "upload_cv": "CVをアップロード（PDF）",
       "loading_autofill_title": "CVを処理中",
-      "loading_autofill_description": "プロフィールを入力するまでお待ちください...",
+      "loading_autofill_description": "ドキュメントのサイズと内容によって、このプロセスには数分かかる場合があります。ページを閉じたり更新したりしないでください。",
       "loading_generating_cv_title": "CVを生成中",
       "loading_generating_cv_description": "CVを生成するまでお待ちください...",
       "only_year": "年のみ",

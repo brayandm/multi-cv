@@ -58,7 +58,7 @@
       "native": "Рідна",
       "upload_cv": "Завантажте своє CV (PDF)",
       "loading_autofill_title": "Обробка вашого CV",
-      "loading_autofill_description": "Будь ласка, зачекайте, поки ми заповнимо ваш профіль...",
+      "loading_autofill_description": "В залежності від розміру та вмісту документа, цей процес може зайняти кілька хвилин. Будь ласка, не закривайте і не оновлюйте сторінку.",
       "loading_generating_cv_title": "Генерація вашого CV",
       "loading_generating_cv_description": "Будь ласка, зачекайте, поки ми генеруємо ваше CV...",
       "only_year": "Тільки рік",

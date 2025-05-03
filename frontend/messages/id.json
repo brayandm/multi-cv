@@ -58,7 +58,7 @@
       "native": "Asli",
       "upload_cv": "Unggah CV Anda (PDF)",
       "loading_autofill_title": "Memproses CV Anda",
-      "loading_autofill_description": "Silakan tunggu sementara kami mengisi profil Anda...",
+      "loading_autofill_description": "Bergantung pada ukuran dan konten dokumen, proses ini mungkin memakan waktu beberapa menit. Harap jangan tutup atau segarkan halaman.",
       "loading_generating_cv_title": "Menghasilkan CV Anda",
       "loading_generating_cv_description": "Silakan tunggu sementara kami menghasilkan CV Anda...",
       "only_year": "Hanya tahun",
