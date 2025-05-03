@@ -192,6 +192,7 @@ const Experience = ({ formRef, width, maxWidth }: IExperienceProps) => {
           },
           value: experience?.start_date || "",
           isRequired: true,
+          isInvalid: !experience?.start_date,
         };
 
         const endDateInput: IDynamicInput<string & boolean> = {

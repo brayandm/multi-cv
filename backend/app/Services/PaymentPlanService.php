@@ -84,7 +84,7 @@ class PaymentPlanService
         return $quotaQuery->first();
     }
 
-    public static function createFreemiumPlan($userId)
+    public static function createFreemiumPlan($userId): PaymentPlan
     {
         $paymentPlan = PaymentPlan::create([
             'name' => 'freemium',
@@ -141,9 +141,11 @@ class PaymentPlanService
             'max_failed' => 1,
             'max_pending' => 1,
         ]);
+
+        return $paymentPlan;
     }
 
-    public static function createOccasionalPlan($userId, $generations = 10)
+    public static function createOccasionalPlan($userId, $generations = 10): PaymentPlan
     {
         $paymentPlan = PaymentPlan::create([
             'name' => 'occasional',
@@ -176,9 +178,11 @@ class PaymentPlanService
             'max_failed' => 5,
             'max_pending' => 1,
         ]);
+
+        return $paymentPlan;
     }
 
-    public static function createDaily15Plan($userId)
+    public static function createDaily15Plan($userId): PaymentPlan
     {
         $now = now();
 
@@ -218,5 +222,7 @@ class PaymentPlanService
             'last_reset_at' => $now,
             'expires_at' => $now->addMonth(),
         ]);
+
+        return $paymentPlan;
     }
 }

@@ -165,6 +165,7 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
             certification?.issue_date != "" ||
             certification?.expiration_date != "" ||
             certification?.hasnt_expiration_date,
+          isInvalid: !certification?.issue_date,
         };
 
         const expirationDateInput: IDynamicInput<string & boolean> = {

@@ -147,6 +147,7 @@ const Education = ({ formRef, width, maxWidth }: IEducationProps) => {
           },
           value: education?.start_date || "",
           isRequired: true,
+          isInvalid: !education?.start_date,
         };
 
         const endDateInput: IDynamicInput<string & boolean> = {

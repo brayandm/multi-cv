@@ -18,12 +18,20 @@ type ISelectDateProps = Omit<InputProps, "value" | "onValueChange"> & {
   value?: string; // "YYYY-MM" or "YYYY"
   onValueChange?: (value: string) => void;
   onBlur?: () => void;
+  isRequired?: boolean;
+  isInvalid?: boolean;
+  isDisabled?: boolean;
+  errorMessage?: string;
 };
 
 export default function SelectDate({
   value,
   onValueChange,
   onBlur,
+  isRequired,
+  isInvalid,
+  isDisabled,
+  errorMessage,
   ...props
 }: ISelectDateProps) {
   const t = useTranslations();
@@ -97,11 +105,11 @@ export default function SelectDate({
       const formatted = isOnlyYear
         ? String(draftYear)
         : draftMonth
-          ? `${draftYear}-${String(months.indexOf(draftMonth) + 1).padStart(
-              2,
-              "0"
-            )}`
-          : "";
+        ? `${draftYear}-${String(months.indexOf(draftMonth) + 1).padStart(
+            2,
+            "0"
+          )}`
+        : "";
       onValueChange?.(formatted);
     }
 
@@ -110,6 +118,7 @@ export default function SelectDate({
   }, [draftYear, draftMonth, onValueChange, onBlur, months, isOnlyYear]);
 
   const handleClear = () => {
+    setFirstInteraction(false);
     setSelectedMonth(null);
     setSelectedYear(null);
     setDraftMonth(null);
@@ -146,7 +155,7 @@ export default function SelectDate({
   const [forceUpdate, setForceUpdate] = useState(0);
   useEffect(() => {
     setForceUpdate((prev) => prev + 1);
-  }, [props.isRequired, props.isDisabled]);
+  }, [isRequired, isDisabled, isInvalid]);
 
   return (
     <Popover
@@ -171,30 +180,33 @@ export default function SelectDate({
                 ? isOnlyYear
                   ? `${selectedYear}`
                   : selectedMonth
-                    ? `${selectedMonth} ${selectedYear}`
-                    : "--------- ----"
+                  ? `${selectedMonth} ${selectedYear}`
+                  : "--------- ----"
                 : "--------- ----"
             }
             endContent={
               <CalendarIcon className="ml-[-5px] w-5 h-5 text-gray-500 cursor-pointer" />
             }
             isInvalid={
-              props.isInvalid ||
-              (firstInteraction || !props.isRequired
+              firstInteraction
                 ? undefined
-                : !props.isDisabled &&
-                  (selectedYear === null || (!isOnlyYear && !selectedMonth)))
+                : isInvalid ||
+                  (!isRequired
+                    ? undefined
+                    : !isDisabled &&
+                      (selectedYear === null ||
+                        (!isOnlyYear && !selectedMonth)))
             }
-            isRequired={props.isRequired}
+            isRequired={isRequired}
             errorMessage={
-              props.errorMessage ||
-              (props.isRequired ? undefined : t("common.errors.select_date"))
+              errorMessage ||
+              (!isRequired ? undefined : t("common.errors.select_date"))
             }
             validate={() =>
-              props.isDisabled ||
+              isDisabled ||
               (selectedYear !== null &&
-                (isOnlyYear || (!!selectedMonth && !props.isDisabled))) ||
-              !props.isRequired
+                (isOnlyYear || (!!selectedMonth && !isDisabled))) ||
+              !isRequired
                 ? true
                 : t("common.errors.select_date")
             }

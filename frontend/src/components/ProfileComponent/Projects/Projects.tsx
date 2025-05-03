@@ -145,6 +145,7 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
             project?.start_date != "" ||
             project?.end_date != "" ||
             project?.is_present,
+          isInvalid: !project?.start_date,
         };
 
         const endDateInput: IDynamicInput<string & boolean> = {

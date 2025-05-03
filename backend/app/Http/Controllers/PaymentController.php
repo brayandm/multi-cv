@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Mail\UserPurchasedPlan;
+use App\Models\PaymentPlan;
+use App\Models\Transaction;
 use App\Models\User;
 use App\Services\ActionService;
 use App\Services\PaymentPlanService;
@@ -26,13 +28,14 @@ class PaymentController extends Controller
         return $validator;
     }
 
-    private function createPlan($userId, $plan)
+    private function createPlan($userId, $plan): PaymentPlan
     {
         if ($plan === 'occasional') {
-            PaymentPlanService::createOccasionalPlan($userId);
+            return PaymentPlanService::createOccasionalPlan($userId);
         } elseif ($plan === 'daily_15') {
-            PaymentPlanService::createDaily15Plan($userId);
+            return PaymentPlanService::createDaily15Plan($userId);
         }
+        throw new \InvalidArgumentException('Invalid plan type');
     }
 
     public function createCheckoutSession(Request $request)
@@ -120,8 +123,7 @@ class PaymentController extends Controller
                 $userId = $session->metadata->user_id ?? null;
                 $plan = $session->metadata->plan ?? null;
 
-                DB::transaction(function () use ($userId, $plan) {
-
+                DB::transaction(function () use ($userId, $plan, $session) {
                     if ($plan == 'beta_testing') {
                         $actionService = app(ActionService::class);
 
@@ -130,10 +132,12 @@ class PaymentController extends Controller
                             'beta_testing'
                         );
 
-                        PaymentPlanService::createOccasionalPlan($userId, 20);
+                        $paymentPlan = PaymentPlanService::createOccasionalPlan($userId, 20);
                     } else {
-                        $this->createPlan($userId, $plan);
+                        $paymentPlan = $this->createPlan($userId, $plan);
                     }
+
+                    Transaction::fromStripeSession($session, $userId, $paymentPlan->id);
                 });
 
                 Log::info('✅ Payment successful', [
