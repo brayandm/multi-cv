@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Olá!",
+  "notifications.salutation": "Atenciosamente",
+  "notifications.error_title": "Ops!",
+  "notifications.subcopy": "Se você está tendo problemas para clicar no botão \":actionText\", copie e cole a URL abaixo no seu navegador:",
+  "passwords.subject": "Notificação de Redefinição de Senha",
+  "passwords.greeting": "Olá :name,",
+  "passwords.line1": "Você está recebendo este e-mail porque recebemos um pedido de redefinição de senha para sua conta.",
+  "passwords.action": "Redefinir Senha",
+  "passwords.expire": "Este link de redefinição de senha expirará em :count minutos.",
+  "passwords.no_action": "Se você não solicitou uma redefinição de senha, nenhuma ação adicional é necessária.",
+  "verification.subject": "Por favor, confirme seu e-mail para :app",
+  "verification.greeting": "Olá :name,",
+  "verification.line1": "Obrigado por se inscrever! Apenas mais um passo: por favor, confirme seu endereço de e-mail clicando no botão abaixo.",
+  "verification.action": "Confirmar Meu E-mail",
+  "verification.no_action": "Se você não solicitou uma redefinição de senha, nenhuma ação adicional é necessária."
+}

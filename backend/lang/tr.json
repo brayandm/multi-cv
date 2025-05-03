@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Merhaba!",
+  "notifications.salutation": "Saygılar",
+  "notifications.error_title": "Hata!",
+  "notifications.subcopy": "Eğer \":actionText\" butonuna tıklamakta zorluk yaşıyorsanız, aşağıdaki URL'yi kopyalayıp web tarayıcınıza yapıştırın:",
+  "passwords.subject": "Şifre Sıfırlama Bildirimi",
+  "passwords.greeting": "Merhaba :name,",
+  "passwords.line1": "Bu e-postayı, hesabınız için bir şifre sıfırlama talebi aldığımız için alıyorsunuz.",
+  "passwords.action": "Şifreyi Sıfırla",
+  "passwords.expire": "Bu şifre sıfırlama bağlantısı :count dakika içinde geçerliliğini yitirecektir.",
+  "passwords.no_action": "Eğer bir şifre sıfırlama talebinde bulunmadıysanız, başka bir işlem yapmanıza gerek yoktur.",
+  "verification.subject": ":app için e-posta adresinizi onaylayın lütfen",
+  "verification.greeting": "Merhaba :name,",
+  "verification.line1": "Kaydolduğunuz için teşekkürler! Sadece bir adım kaldı: lütfen aşağıdaki butona tıklayarak e-posta adresinizi onaylayın.",
+  "verification.action": "E-postamı Onayla",
+  "verification.no_action": "Eğer bir şifre sıfırlama talebinde bulunmadıysanız, başka bir işlem yapmanıza gerek yoktur."
+}

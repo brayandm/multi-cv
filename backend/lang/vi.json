@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Xin chào!",
+  "notifications.salutation": "Trân trọng",
+  "notifications.error_title": "Ôi không!",
+  "notifications.subcopy": "Nếu bạn gặp khó khăn khi nhấp vào nút \":actionText\", hãy sao chép và dán URL bên dưới vào trình duyệt web của bạn:",
+  "passwords.subject": "Thông báo Đặt lại Mật khẩu",
+  "passwords.greeting": "Xin chào :name,",
+  "passwords.line1": "Bạn nhận được email này vì chúng tôi đã nhận được yêu cầu đặt lại mật khẩu cho tài khoản của bạn.",
+  "passwords.action": "Đặt lại Mật khẩu",
+  "passwords.expire": "Liên kết đặt lại mật khẩu này sẽ hết hạn trong :count phút.",
+  "passwords.no_action": "Nếu bạn không yêu cầu đặt lại mật khẩu, không cần thực hiện thêm hành động nào.",
+  "verification.subject": "Vui lòng xác nhận email của bạn cho :app",
+  "verification.greeting": "Xin chào :name,",
+  "verification.line1": "Cảm ơn bạn đã đăng ký! Chỉ còn một bước nữa: vui lòng xác nhận địa chỉ email của bạn bằng cách nhấp vào nút bên dưới.",
+  "verification.action": "Xác nhận Email của Tôi",
+  "verification.no_action": "Nếu bạn không yêu cầu đặt lại mật khẩu, không cần thực hiện thêm hành động nào."
+}

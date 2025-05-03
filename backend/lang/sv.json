@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Hej!",
+  "notifications.salutation": "Hälsningar",
+  "notifications.error_title": "Oj!",
+  "notifications.subcopy": "Om du har problem med att klicka på \":actionText\"-knappen, kopiera och klistra in URL:en nedan i din webbläsare:",
+  "passwords.subject": "Återställning av lösenord meddelande",
+  "passwords.greeting": "Hej :name,",
+  "passwords.line1": "Du får detta e-postmeddelande eftersom vi har mottagit en begäran om att återställa lösenordet för ditt konto.",
+  "passwords.action": "Återställ lösenord",
+  "passwords.expire": "Denna länk för återställning av lösenord kommer att gå ut om :count minuter.",
+  "passwords.no_action": "Om du inte begärde en återställning av lösenordet krävs ingen ytterligare åtgärd.",
+  "verification.subject": "Vänligen bekräfta din e-post för :app",
+  "verification.greeting": "Hej :name,",
+  "verification.line1": "Tack för att du registrerade dig! Bara ett steg till: vänligen bekräfta din e-postadress genom att klicka på knappen nedan.",
+  "verification.action": "Bekräfta min e-post",
+  "verification.no_action": "Om du inte begärde en återställning av lösenordet krävs ingen ytterligare åtgärd."
+}

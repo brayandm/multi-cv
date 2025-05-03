@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "Bonjour!",
+  "notifications.salutation": "Cordialement",
+  "notifications.error_title": "Oups!",
+  "notifications.subcopy": "Si vous avez des problèmes pour cliquer sur le bouton \":actionText\", copiez et collez l'URL ci-dessous dans votre navigateur web:",
+  "passwords.subject": "Notification de réinitialisation de mot de passe",
+  "passwords.greeting": "Bonjour :name,",
+  "passwords.line1": "Vous recevez cet e-mail car nous avons reçu une demande de réinitialisation de mot de passe pour votre compte.",
+  "passwords.action": "Réinitialiser le mot de passe",
+  "passwords.expire": "Ce lien de réinitialisation de mot de passe expirera dans :count minutes.",
+  "passwords.no_action": "Si vous n'avez pas demandé de réinitialisation de mot de passe, aucune autre action n'est requise.",
+  "verification.subject": "Veuillez confirmer votre e-mail pour :app",
+  "verification.greeting": "Bonjour :name,",
+  "verification.line1": "Merci de vous être inscrit! Juste une étape de plus: veuillez confirmer votre adresse e-mail en cliquant sur le bouton ci-dessous.",
+  "verification.action": "Confirmer mon e-mail",
+  "verification.no_action": "Si vous n'avez pas demandé de réinitialisation de mot de passe, aucune autre action n'est requise."
+}

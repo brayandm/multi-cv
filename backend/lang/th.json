@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "สวัสดี!",
+  "notifications.salutation": "ขอแสดงความนับถือ",
+  "notifications.error_title": "อุ๊บส์!",
+  "notifications.subcopy": "หากคุณมีปัญหาในการคลิกปุ่ม \":actionText\" ให้คัดลอกและวาง URL ด้านล่างลงในเว็บเบราว์เซอร์ของคุณ:",
+  "passwords.subject": "การแจ้งเตือนการรีเซ็ตรหัสผ่าน",
+  "passwords.greeting": "สวัสดี :name,",
+  "passwords.line1": "คุณได้รับอีเมลนี้เพราะเราได้รับคำขอรีเซ็ตรหัสผ่านสำหรับบัญชีของคุณ.",
+  "passwords.action": "รีเซ็ตรหัสผ่าน",
+  "passwords.expire": "ลิงก์รีเซ็ตรหัสผ่านนี้จะหมดอายุใน :count นาที.",
+  "passwords.no_action": "หากคุณไม่ได้ขอรีเซ็ตรหัสผ่าน ไม่จำเป็นต้องดำเนินการเพิ่มเติม.",
+  "verification.subject": "กรุณายืนยันอีเมลของคุณสำหรับ :app",
+  "verification.greeting": "สวัสดี :name,",
+  "verification.line1": "ขอบคุณที่ลงทะเบียน! อีกเพียงขั้นตอนเดียว: กรุณายืนยันที่อยู่อีเมลของคุณโดยการคลิกปุ่มด้านล่าง.",
+  "verification.action": "ยืนยันอีเมลของฉัน",
+  "verification.no_action": "หากคุณไม่ได้ขอรีเซ็ตรหัสผ่าน ไม่จำเป็นต้องดำเนินการเพิ่มเติม."
+}

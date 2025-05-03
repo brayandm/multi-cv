@@ -1,0 +1,17 @@
+{
+  "notifications.greeting": "こんにちは！",
+  "notifications.salutation": "よろしくお願いします",
+  "notifications.error_title": "おっと！",
+  "notifications.subcopy": "「:actionText」ボタンをクリックするのに問題がある場合は、以下のURLをコピーしてウェブブラウザに貼り付けてください：",
+  "passwords.subject": "パスワードリセット通知",
+  "passwords.greeting": "こんにちは :name、",
+  "passwords.line1": "あなたのアカウントのパスワードリセットリクエストを受け取ったため、このメールを受け取っています。",
+  "passwords.action": "パスワードをリセットする",
+  "passwords.expire": "このパスワードリセットリンクは :count 分後に期限切れになります。",
+  "passwords.no_action": "パスワードリセットをリクエストしていない場合は、これ以上のアクションは必要ありません。",
+  "verification.subject": ":app のためにメールを確認してください",
+  "verification.greeting": "こんにちは :name、",
+  "verification.line1": "サインアップありがとうございます！もう一つのステップです：以下のボタンをクリックしてメールアドレスを確認してください。",
+  "verification.action": "私のメールを確認する",
+  "verification.no_action": "パスワードリセットをリクエストしていない場合は、これ以上のアクションは必要ありません。"
+}
