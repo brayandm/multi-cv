@@ -360,8 +360,8 @@ class ActionService
                 }
 
                 $lastReset = $quota->last_reset_at
-                ? Carbon::parse($quota->last_reset_at)
-                : Carbon::parse($quota->created_at);
+                    ? Carbon::parse($quota->last_reset_at)
+                    : Carbon::parse($quota->created_at);
 
                 $now = Carbon::now();
 
@@ -537,6 +537,25 @@ class ActionService
             'max_pending' => $quota->max_pending,
             'finished' => $isQuotaFinished,
             'is_freemium' => $this->paymentPlanService->isFreemium($user_id),
+        ];
+    }
+
+    public function getAction(string $action_id): ?array
+    {
+        $action = Action::where('action_id', $action_id)
+            ->first();
+
+        if (! $action) {
+            return null;
+        }
+
+        return [
+            'action_id' => $action->action_id,
+            'user_id' => $action->user_id,
+            'payment_plan_id' => $action->payment_plan_id,
+            'action' => $action->action,
+            'created_at' => $action->created_at,
+            'updated_at' => $action->updated_at,
         ];
     }
 }

@@ -70,6 +70,11 @@ export interface MessageResponse {
   message: string;
 }
 
+export interface AutoFillCvFromDocumentResponse {
+  message: string;
+  action_id: string;
+}
+
 export interface generateCvInlineNoRenderResponse {
   cv: Cv;
   cv_texts: CvTexts;
@@ -87,6 +92,18 @@ export interface ApplicationResponse {
   application: Application;
   documents: Document[];
 }
+
+export interface GetActionResponse {
+  action?: {
+    action_id: string;
+    user_id: number;
+    payment_plan_id: number;
+    action: string;
+    created_at: string;
+    updated_at: string;
+  };
+}
+
 export interface Document {
   document_id: string;
   user_id: number;

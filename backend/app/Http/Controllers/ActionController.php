@@ -144,4 +144,21 @@ class ActionController extends Controller
 
         return response()->json($result);
     }
+
+    public function getAction(Request $request)
+    {
+        $validator = $this->validateActionId($request);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+
+        $action_id = $validator->validated()['action_id'];
+
+        $result = $this->actionService->getAction($action_id);
+
+        return response()->json([
+            'action' => $result,
+        ]);
+    }
 }

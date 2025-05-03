@@ -26,6 +26,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   autoFillCvFromDocumentEngine,
+  getActionApi,
   getQuotaInfoApi,
 } from "@/lib/backendService";
 import { useProfile } from "@/contexts/ProfileContext";
@@ -33,6 +34,7 @@ import { AxiosResponse } from "axios";
 import { GetQuotaInfoResponse } from "@/lib/types";
 import { useCallbackRedirect } from "@/hooks/useCallbackRedirect";
 import AnimatedText from "@/shared/components/AnimatedText";
+import { sleep } from "@/lib/utils";
 
 export default function ProfileAutoCvComponent() {
   const width = DEFAULT_CARD_WIDTH;
@@ -61,7 +63,23 @@ export default function ProfileAutoCvComponent() {
     onOpen();
 
     try {
-      await autoFillCvFromDocumentEngine(file as File);
+      const responseAutoFill = await autoFillCvFromDocumentEngine(file as File);
+      const actionId = responseAutoFill.data.action_id;
+
+      while (true) {
+        try {
+          const response = await getActionApi(actionId);
+
+          if (!response || response.data.action === null) {
+            break;
+          }
+        } catch (error) {
+          console.error("Error during polling:", error);
+          break;
+        }
+
+        await sleep(5000);
+      }
 
       await pullProfile();
 

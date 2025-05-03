@@ -2,7 +2,15 @@ from io import BytesIO
 from typing import Any, Dict, Optional
 from urllib.parse import quote
 
-from fastapi import APIRouter, Depends, FastAPI, File, Query, UploadFile
+from fastapi import (
+    APIRouter,
+    Depends,
+    FastAPI,
+    File,
+    Query,
+    UploadFile,
+    BackgroundTasks,
+)
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, Response, StreamingResponse
@@ -42,7 +50,11 @@ from app.framework.decorators.action import (
     commit_action_after,
     rollback_action,
 )
-from app.framework.decorators.context_vars import get_auth_token, get_user_id
+from app.framework.decorators.context_vars import (
+    get_auth_token,
+    get_user_id,
+    get_action_id,
+)
 from app.framework.logging import logger
 from app.framework.middlewares import (
     RequestHandleMiddleware,
@@ -113,27 +125,15 @@ async def moderation(
         )
 
 
-@router.post("/auto-fill/cv/from-document")
-@consume_action("auto_fill_cv_from_document")
-async def auto_fill_cv_from_document(
-    file: UploadFile = File(...),
-    profile_service: ProfileService = Depends(get_profile_service),
-) -> Response:
-    if file.content_type != "application/pdf":
-        cancel_action()
-        return JSONResponse(
-            status_code=400,
-            content={
-                "error": "Invalid file type. Only PDF files are allowed."
-            },
-        )
-
-    contents = await file.read()
-
+async def process_document_task(
+    contents: bytes,
+    user_id: int,
+    profile_service: ProfileService,
+) -> None:
     try:
         chat_engine_service = ChatEngineService()
-
         extractor = TextExtractor(contents)
+
         # text_from_pdf = await extractor.extract_text()
         # extractor.close()
 
@@ -150,47 +150,61 @@ async def auto_fill_cv_from_document(
         )
         if not is_safe:
             cancel_action()
-            return JSONResponse(
-                status_code=400,
-                content={"error": "Input is unsafe."},
-            )
+            return
 
         text_from_images = await extractor.extract_text_from_images()
 
         is_safe = await chat_engine_service.moderation(text_from_images)
         if not is_safe:
             cancel_action()
-            return JSONResponse(
-                status_code=400,
-                content={"error": "Input is unsafe."},
-            )
+            return
 
         profile = await AutoFillProfilePipeline().run(text_from_images)
 
-        await profile_service.sync_profile(get_user_id(), profile)
+        await profile_service.sync_profile(user_id, profile)
 
         commit_action()
 
-        return JSONResponse(
-            content={
-                "message": "Document processed successfully.",
-            },
-            status_code=200,
-        )
-    except InvalidPDFError as e:
+    except InvalidPDFError:
+        rollback_action()
+    except Exception:
         rollback_action()
 
+
+@router.post("/auto-fill/cv/from-document")
+@consume_action("auto_fill_cv_from_document")
+async def auto_fill_cv_from_document(
+    background_tasks: BackgroundTasks,
+    file: UploadFile = File(...),
+    profile_service: ProfileService = Depends(get_profile_service),
+) -> Response:
+    if file.content_type != "application/pdf":
+        cancel_action()
         return JSONResponse(
             status_code=400,
-            content={"error": str(e)},
+            content={
+                "error": "Invalid file type. Only PDF files are allowed."
+            },
         )
-    except Exception as e:
-        rollback_action()
 
-        return JSONResponse(
-            status_code=500,
-            content={"error": f"Unexpected error: {str(e)}"},
-        )
+    contents = await file.read()
+    user_id = get_user_id()
+    action_id = get_action_id()
+
+    background_tasks.add_task(
+        process_document_task,
+        contents,
+        user_id,
+        profile_service,
+    )
+
+    return JSONResponse(
+        content={
+            "message": "Document is being processed in the background.",
+            "action_id": action_id,
+        },
+        status_code=202,
+    )
 
 
 @router.post("/generate/cv/inline")

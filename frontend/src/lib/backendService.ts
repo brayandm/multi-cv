@@ -38,6 +38,7 @@ import {
   applicationEngineLink,
   applicationsEngineLink,
   updateApplicationEngineLink,
+  getActionApiLink,
 } from "./links";
 import {
   UserResponse,
@@ -56,6 +57,8 @@ import {
   Settings,
   Application,
   ApplicationResponse,
+  GetActionResponse,
+  AutoFillCvFromDocumentResponse,
 } from "./types";
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
@@ -419,7 +422,7 @@ export const userDeleteProfilePictureApi = async (): Promise<
 
 export const autoFillCvFromDocumentEngine = async (
   file: File
-): Promise<AxiosResponse<MessageResponse>> => {
+): Promise<AxiosResponse<AutoFillCvFromDocumentResponse>> => {
   const formData = new FormData();
   formData.append("file", file);
 
@@ -517,4 +520,10 @@ export const updateApplicationEngine = async (
   application: Partial<Application>
 ): Promise<AxiosResponse<MessageResponse>> => {
   return await engine.post(updateApplicationEngineLink, application);
+};
+
+export const getActionApi = async (
+  actionId: string
+): Promise<AxiosResponse<GetActionResponse>> => {
+  return await api.get(`${getActionApiLink}?action_id=${actionId}`);
 };
