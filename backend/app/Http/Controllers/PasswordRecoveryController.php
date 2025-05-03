@@ -34,7 +34,7 @@ class PasswordRecoveryController extends Controller
 
         RateLimiter::attempt(
             "{$action}:{$userId}",
-            3,
+            3000,
             function () {
                 return true;
             },

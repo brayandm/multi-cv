@@ -5,7 +5,9 @@ namespace App\Notifications;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\URL;
 
 class VerifyEmail extends Notification
@@ -43,6 +45,8 @@ class VerifyEmail extends Notification
      */
     public function toMail($notifiable)
     {
+        App::setLocale($notifiable->locale ?? config('app.locale'));
+
         $verificationUrl = $this->verificationUrl($notifiable);
 
         if (static::$toMailCallback) {
@@ -62,11 +66,15 @@ class VerifyEmail extends Notification
     {
         return (new MailMessage)
             ->from(config('mail.from.address'), config('app.name'))
-            ->subject('Please confirm your email for '.config('app.name'))
-            ->greeting('Hello '.$notifiable->first_name.' '.$notifiable->last_name.',')
-            ->line('Thanks for signing up! Just one more step: please confirm your email address by clicking the button below.')
-            ->action('Confirm My Email', $url)
-            ->line('If you did not request a password reset, no further action is required.');
+            ->subject(Lang::get('verification.subject', [
+                'app' => config('app.name'),
+            ]))
+            ->greeting(Lang::get('verification.greeting', [
+                'name' => $notifiable->first_name.' '.$notifiable->last_name,
+            ]))
+            ->line(Lang::get('verification.line1'))
+            ->action(Lang::get('verification.action'), $url)
+            ->line(Lang::get('verification.no_action'));
     }
 
     /**

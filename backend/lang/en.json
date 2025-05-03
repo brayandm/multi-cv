@@ -9,5 +9,11 @@
     "passwords.line1": "You are receiving this email because we received a password reset request for your account.",
     "passwords.action": "Reset Password",
     "passwords.expire": "This password reset link will expire in :count minutes.",
-    "passwords.no_action": "If you did not request a password reset, no further action is required."
+    "passwords.no_action": "If you did not request a password reset, no further action is required.",
+
+    "verification.subject": "Please confirm your email for :app",
+    "verification.greeting": "Hello :name,",
+    "verification.line1": "Thanks for signing up! Just one more step: please confirm your email address by clicking the button below.",
+    "verification.action": "Confirm My Email",
+    "verification.no_action": "If you did not request a password reset, no further action is required."
 }
