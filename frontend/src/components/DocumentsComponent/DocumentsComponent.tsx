@@ -17,7 +17,8 @@ export default function DocumentsComponent() {
   const groupByDate = (docs: Document[]) => {
     const grouped: Record<string, Document[]> = {};
     docs.forEach((doc) => {
-      const date = new Date(doc.created_at).toLocaleDateString();
+      const date = new Date(doc.created_at).toLocaleDateString("es-ES");
+
       if (!grouped[date]) {
         grouped[date] = [];
       }
@@ -39,14 +40,6 @@ export default function DocumentsComponent() {
     return dateB.getTime() - dateA.getTime();
   });
 
-  const formatFullDate = (dateString: string): string => {
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    return `${day}/${month}/${year}`;
-  };
-
   return (
     <div className="max-w-3xl mx-auto px-4 py-10">
       {isLoading || !documents ? (
@@ -62,7 +55,7 @@ export default function DocumentsComponent() {
           {sortedDates.map((date) => (
             <div key={date} className="w-full">
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-200 mb-4 border-b pb-1 border-gray-300 dark:border-gray-600">
-                {formatFullDate(date)}
+                {date}
               </h3>
               <ul className="flex flex-col items-center space-y-4">
                 {groupedDocuments[date]
