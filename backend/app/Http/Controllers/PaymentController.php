@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\UserPurchasedPlan;
+use App\Models\User;
 use App\Services\ActionService;
 use App\Services\PaymentPlanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Stripe\Checkout\Session;
 use Stripe\Stripe;
@@ -82,8 +85,8 @@ class PaymentController extends Controller
                 'quantity' => 1,
             ]],
             'mode' => 'payment',
-            'success_url' => url(config('app.frontend_url').'/payment/success?session_id={CHECKOUT_SESSION_ID}'),
-            'cancel_url' => url(config('app.frontend_url').'/payment/cancel'),
+            'success_url' => url(config('app.frontend_url') . '/payment/success?session_id={CHECKOUT_SESSION_ID}'),
+            'cancel_url' => url(config('app.frontend_url') . '/payment/cancel'),
             'allow_promotion_codes' => true,
             'customer_email' => $user->email,
             'metadata' => [
@@ -141,10 +144,16 @@ class PaymentController extends Controller
                     'amount_total' => $session->amount_total,
                 ]);
 
+                $user = User::find($userId);
+
+                if (config('app.env') == 'production') {
+                    Mail::to(config('app.notification_mail'))->queue(new UserPurchasedPlan($user, $plan));
+                }
+
                 break;
 
             default:
-                Log::info('📩 Stripe Event Received: '.$event->type);
+                Log::info('📩 Stripe Event Received: ' . $event->type);
         }
 
         return response('Webhook received', 200);
