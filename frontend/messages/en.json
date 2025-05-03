@@ -403,7 +403,7 @@
       },
       "auto_fill": {
         "title": "Upload your CV to fill your profile",
-        "message": "Save time by uploading your existing CV — we'll extract the information and fill in your profile for you automatically.",
+        "message": "Save time by uploading your existing CV. We'll extract the information and fill in your profile for you automatically.",
         "loading": {
           "descriptions": {
             "1": "Loading your CV...",
