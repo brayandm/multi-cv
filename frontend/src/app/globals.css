@@ -106,7 +106,7 @@ body {
 
 @layer components {
   .documents-typography p {
-    @apply text-lg leading-relaxed;
+    @apply text-lg leading-relaxed font-extralight;
   }
 
   .documents-typography h1 {
@@ -122,18 +122,31 @@ body {
   }
 
   .documents-typography ul {
-    @apply list-disc pl-6 my-2;
+    @apply list-disc pl-6 my-2 font-extralight;
   }
 
   .documents-typography ol {
-    @apply list-decimal pl-6 my-2;
+    @apply list-decimal pl-6 my-2 font-extralight;
   }
 
   .documents-typography li {
-    @apply mb-1;
+    @apply mb-1 font-extralight;
   }
 
   .documents-typography a {
-    @apply underline text-primary;
+    @apply underline text-primary font-extralight;
+  }
+
+  .documents-typography p strong,
+  .documents-typography p b,
+  .documents-typography ul strong,
+  .documents-typography ul b,
+  .documents-typography ol strong,
+  .documents-typography ol b,
+  .documents-typography li strong,
+  .documents-typography li b,
+  .documents-typography a strong,
+  .documents-typography a b {
+    @apply font-semibold;
   }
 }
