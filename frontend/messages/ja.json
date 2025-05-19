@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "応募",
+          "empty": "アプリケーションが見つかりません。",
           "application": {
             "company": "会社",
             "no-role": "指定された役割はありません",

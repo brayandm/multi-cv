@@ -106,7 +106,7 @@ export default function ApplicationsComponent() {
         </div>
       ) : applications.length === 0 ? (
         <p className="text-center text-gray-500 dark:text-gray-400">
-          {t("pages.home.tabs.documents.empty")}
+          {t("pages.home.tabs.applications.empty")}
         </p>
       ) : (
         <div className="space-y-8">

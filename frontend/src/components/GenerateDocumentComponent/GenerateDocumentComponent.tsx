@@ -336,7 +336,7 @@ export default function GenerateDocumentComponent({
             )}
           </div>
           {type === "role" && (
-            <div className="mb-10 w-full  flex flex-col items-center">
+            <div className="mb-10 w-full flex flex-col items-center">
               <Textarea
                 label={t(
                   "pages.home.tabs.builder.tabs.based_on_role.input.label"

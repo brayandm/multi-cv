@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Sollicitaties",
+          "empty": "Geen aanvragen gevonden.",
           "application": {
             "company": "Bedrijf",
             "no-role": "Geen rol opgegeven",

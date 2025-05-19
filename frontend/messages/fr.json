@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Candidatures",
+          "empty": "Aucune candidature trouvée.",
           "application": {
             "company": "Entreprise",
             "no-role": "Aucun rôle spécifié",

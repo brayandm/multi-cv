@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Aplikasi",
+          "empty": "Tidak ada aplikasi yang ditemukan.",
           "application": {
             "company": "Perusahaan",
             "no-role": "Tidak ada peran yang ditentukan",

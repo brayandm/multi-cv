@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "الطلبات",
+          "empty": "لم يتم العثور على أي طلبات.",
           "application": {
             "company": "شركة",
             "no-role": "لا توجد وظيفة محددة",

@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Заявления",
+          "empty": "Заявлений не найдено.",
           "application": {
             "company": "Компания",
             "no-role": "Роль не указана",

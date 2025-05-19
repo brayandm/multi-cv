@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Ansökningar",
+          "empty": "Inga ansökningar hittades.",
           "application": {
             "company": "Företag",
             "no-role": "Ingen roll angiven",

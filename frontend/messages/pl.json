@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Aplikacje",
+          "empty": "Nie znaleziono aplikacji.",
           "application": {
             "company": "Firma",
             "no-role": "Brak określonej roli",
