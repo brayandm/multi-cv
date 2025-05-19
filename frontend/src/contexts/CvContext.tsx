@@ -54,6 +54,12 @@ interface CvContextType {
   setApplicationId: (id: string | null) => void;
 }
 
+interface Storage {
+  cv: Cv;
+  cvTexts: CvTexts;
+  applicationId: string | null;
+}
+
 const CvContext = createContext<CvContextType | undefined>(undefined);
 
 export const CvProvider = ({ children }: { children: ReactNode }) => {
@@ -83,10 +89,13 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
   const [applicationId, setApplicationId] = useState<string | null>(null);
 
   useEffect(() => {
-    const stored = sessionStorage.getItem("cv");
+    const stored = sessionStorage.getItem("cv_context");
     if (stored) {
       try {
-        setCv(JSON.parse(stored));
+        const { cv, cvTexts, applicationId }: Storage = JSON.parse(stored);
+        setCv(cv);
+        setCvTexts(cvTexts);
+        setApplicationId(applicationId);
       } catch {
         console.warn("Invalid CV in sessionStorage");
       }
@@ -94,12 +103,11 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   useEffect(() => {
-    if (cv) {
-      sessionStorage.setItem("cv", JSON.stringify(cv));
-    } else {
-      sessionStorage.removeItem("cv");
-    }
-  }, [cv]);
+    sessionStorage.setItem(
+      "cv_context",
+      JSON.stringify({ cv, cvTexts, applicationId })
+    );
+  }, [cv, cvTexts, applicationId]);
 
   return (
     <CvContext.Provider

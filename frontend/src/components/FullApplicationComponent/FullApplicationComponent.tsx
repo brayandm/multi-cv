@@ -214,7 +214,7 @@ export default function FullApplicationComponent({
                           <p className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
                             {tApplication("documents")}
                           </p>
-                          <div>
+                          <div className="flex flex-col gap-4">
                             {documents.map((doc) => (
                               <DocumentComponent
                                 key={doc.document_id}
