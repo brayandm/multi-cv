@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Aavedan",
+          "empty": "Koi applications nahi mili.",
           "application": {
             "company": "Kampani",
             "no-role": "Koi bhumika nahi di gayi",

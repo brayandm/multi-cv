@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "지원서",
+          "empty": "신청서가 없습니다.",
           "application": {
             "company": "회사",
             "no-role": "지정된 역할 없음",

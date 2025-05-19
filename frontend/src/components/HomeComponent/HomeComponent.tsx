@@ -77,11 +77,11 @@ export default function HomeComponent() {
             aria-label="Options"
             classNames={{
               tabList:
-                "flex justify-evenly  mt-16 w-48 gap-x-0 sm:justify-center sm:gap-x-16 relative rounded-none p-0 border-b border-divider",
+                "flex justify-evenly bg-default mt-16 w-48 gap-x-0 sm:justify-center sm:gap-x-16 relative rounded-none p-0 border-b border-divider",
               cursor: "w-full bg-primary",
               tab: "w-full sm:max-w-fit h-12 flex justify-center items-center",
               tabContent: "group-data-[selected=true]:text-primary",
-              panel: "w-full pr-48",
+              panel: "w-full pr-48 pt-16",
             }}
             color="primary"
             variant="underlined"

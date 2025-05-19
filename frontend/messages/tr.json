@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Başvurular",
+          "empty": "Hiç uygulama bulunamadı.",
           "application": {
             "company": "Şirket",
             "no-role": "Rol belirtilmedi",

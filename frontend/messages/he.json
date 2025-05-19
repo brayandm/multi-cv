@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "מועמדויות",
+          "empty": "לא נמצאו בקשות.",
           "application": {
             "company": "חברה",
             "no-role": "לא צוינה תפקיד",

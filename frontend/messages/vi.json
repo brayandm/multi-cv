@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "Đơn ứng tuyển",
+          "empty": "Không tìm thấy đơn ứng tuyển nào.",
           "application": {
             "company": "Công ty",
             "no-role": "Không có vai trò nào được chỉ định",

@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "การสมัครงาน",
+          "empty": "ไม่พบใบสมัครใด ๆ",
           "application": {
             "company": "บริษัท",
             "no-role": "ไม่มีบทบาทที่ระบุ",

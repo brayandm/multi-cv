@@ -327,6 +327,7 @@
         },
         "applications": {
           "title": "申请",
+          "empty": "未找到申请。",
           "application": {
             "company": "公司",
             "no-role": "未指定角色",
