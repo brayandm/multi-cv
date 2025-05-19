@@ -274,7 +274,7 @@ export default function GenerateDocumentComponent({
       onSubmit={async (e) => {
         e.preventDefault();
         onOpen();
-        if (true) {
+        if (false) {
           await handleDocument(true);
         } else {
           await redirectEditCv();
