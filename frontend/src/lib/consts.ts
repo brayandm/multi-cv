@@ -10,7 +10,8 @@ export const MAX_LANGUAGES_ELEMENTS = 10;
 export const MAX_SKILLS_ELEMENTS = 50;
 
 export const SCREEN_SIZES = {
-  mobile: 600,
+  mobile: 640,
+  tablet: 768,
 };
 
 export const DEFAULT_CARD_WIDTH = 500; // px
