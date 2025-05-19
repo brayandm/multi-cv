@@ -34,7 +34,8 @@ class GenerateApplicationBasedOnJobPostAgent(Agent):
         might be unstructured, incomplete, or noisy. Your goal is to extract
         and organize the relevant information strictly following the JSON
         schema provided below. You need to extract the information and
-        translate it to {traduction.name} language.
+        translate it to {traduction.name} language except for the
+        literal strings or enums in the JSON schema.
 
         **Instructions:**
         - In Job Summary, include a brief summary of the job.

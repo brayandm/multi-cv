@@ -5,11 +5,14 @@ import DefaultTemplate from "@/templates/default";
 import { Button } from "@heroui/react";
 import { useRef, useState } from "react";
 import { saveAs } from "file-saver";
+import { useTranslations } from "next-intl";
 
 export default function EditCvComponent() {
   const templateRef = useRef<HTMLDivElement>(null);
 
   const [isCvLoading, setIsCvLoading] = useState(false);
+
+  const t = useTranslations();
 
   const handleDocument = async (download = false) => {
     try {
@@ -72,14 +75,16 @@ export default function EditCvComponent() {
   return (
     <>
       <div className="flex flex-col justify-center items-center gap-3">
-        <Button
-          className=""
-          color="primary"
-          isLoading={isCvLoading}
-          onPress={() => handleDocument(true)}
-        >
-          Download CV
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            className=""
+            color="secondary"
+            isLoading={isCvLoading}
+            onPress={() => handleDocument(true)}
+          >
+            {t("common.texts.generate_cv")}
+          </Button>
+        </div>
         <div className="shadow-lg">
           <div
             style={{
