@@ -127,7 +127,9 @@ const BasicUserInfo: React.FC = () => {
             label: t("common.form.phone_number"),
             placeholder: "XXXXXXXXX",
             type: "phone_number",
-            value: basicInfo.phone_number,
+            value: new AsYouType(
+              basicInfo.phone_country_code as CountryCode
+            ).input(basicInfo.phone_number || ""),
 
             onValueChange: (value: string) => {
               const formatter = new AsYouType(
