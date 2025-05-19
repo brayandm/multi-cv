@@ -47,6 +47,7 @@
       "ai_assistant": "עוזר AI",
       "type_message": "הקלד הודעה...",
       "generate_cv": "צור CV",
+      "save_cv": "שמור קורות חיים",
       "quota_info": "מידע על מכסה",
       "used": "שימוש",
       "message_left": "הודעות שנותרו: {count}",

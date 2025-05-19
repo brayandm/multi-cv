@@ -47,6 +47,7 @@
       "ai_assistant": "AI Asistanı",
       "type_message": "Bir mesaj yazın...",
       "generate_cv": "CV Oluştur",
+      "save_cv": "CV'yi Kaydet",
       "quota_info": "Kota Bilgisi",
       "used": "Kullanıldı",
       "message_left": "Kalan mesajlar: {count}",

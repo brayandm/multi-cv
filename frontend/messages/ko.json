@@ -47,6 +47,7 @@
       "ai_assistant": "AI 어시스턴트",
       "type_message": "메시지를 입력하세요...",
       "generate_cv": "CV 생성",
+      "save_cv": "이력서 저장",
       "quota_info": "쿼타 정보",
       "used": "사용됨",
       "message_left": "남은 메시지: {count}",

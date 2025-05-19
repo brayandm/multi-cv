@@ -47,6 +47,7 @@
       "ai_assistant": "Asystent AI",
       "type_message": "Napisz wiadomość...",
       "generate_cv": "Generuj CV",
+      "save_cv": "Zapisz CV",
       "quota_info": "Informacje o kwocie",
       "used": "Użyto",
       "message_left": "Pozostałe wiadomości: {count}",

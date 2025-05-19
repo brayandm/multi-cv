@@ -47,6 +47,7 @@
       "ai_assistant": "AI-assistent",
       "type_message": "Skriv ett meddelande...",
       "generate_cv": "Generera CV",
+      "save_cv": "Spara CV",
       "quota_info": "Kvoteinformation",
       "used": "Använt",
       "message_left": "Meddelanden kvar: {count}",

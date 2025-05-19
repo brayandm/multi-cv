@@ -47,6 +47,7 @@
       "ai_assistant": "ผู้ช่วย AI",
       "type_message": "พิมพ์ข้อความ...",
       "generate_cv": "สร้าง CV",
+      "save_cv": "บันทึกประวัติย่อ",
       "quota_info": "ข้อมูลโควต้า",
       "used": "ใช้แล้ว",
       "message_left": "ข้อความที่เหลือ: {count}",

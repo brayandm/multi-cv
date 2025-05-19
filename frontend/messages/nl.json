@@ -47,6 +47,7 @@
       "ai_assistant": "AI Assistent",
       "type_message": "Typ een bericht...",
       "generate_cv": "CV genereren",
+      "save_cv": "CV opslaan",
       "quota_info": "Quota-informatie",
       "used": "Gebruikt",
       "message_left": "Berichten over: {count}",

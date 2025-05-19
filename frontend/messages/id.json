@@ -47,6 +47,7 @@
       "ai_assistant": "Asisten AI",
       "type_message": "Ketik pesan...",
       "generate_cv": "Hasilkan CV",
+      "save_cv": "Simpan CV",
       "quota_info": "Info Kuota",
       "used": "Digunakan",
       "message_left": "Pesan tersisa: {count}",

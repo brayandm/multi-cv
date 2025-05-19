@@ -47,6 +47,7 @@
       "ai_assistant": "AI 助手",
       "type_message": "输入消息...",
       "generate_cv": "生成简历",
+      "save_cv": "保存简历",
       "quota_info": "配额信息",
       "used": "已使用",
       "message_left": "剩余消息：{count}",

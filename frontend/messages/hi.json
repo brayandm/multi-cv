@@ -47,6 +47,7 @@
       "ai_assistant": "AI Sahayak",
       "type_message": "Ek sandesh likhein...",
       "generate_cv": "CV banaein",
+      "save_cv": "CV bachao",
       "quota_info": "Quota Jankari",
       "used": "Istemaal kiya",
       "message_left": "Bache hue sandesh: {count}",

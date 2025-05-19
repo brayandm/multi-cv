@@ -7,6 +7,7 @@ import { useRef, useState } from "react";
 import { saveAs } from "file-saver";
 import { useTranslations } from "next-intl";
 import { useCv } from "@/contexts/CvContext";
+import { useRouter } from "next/navigation";
 
 export default function EditCvComponent() {
   const templateRef = useRef<HTMLDivElement>(null);
@@ -14,6 +15,8 @@ export default function EditCvComponent() {
   const [isCvLoading, setIsCvLoading] = useState(false);
 
   const { cv, cvTexts, applicationId } = useCv();
+
+  const router = useRouter();
 
   const t = useTranslations();
 
@@ -77,11 +80,12 @@ export default function EditCvComponent() {
 
         window.open(blobUrl, "_blank");
       }
+
+      router.push("/home");
     } catch (error) {
       console.error("Error while generating CV", error);
+      setIsCvLoading(false);
     }
-
-    setIsCvLoading(false);
   };
 
   return (
@@ -94,7 +98,7 @@ export default function EditCvComponent() {
             isLoading={isCvLoading}
             onPress={() => handleDocument(true)}
           >
-            {t("common.texts.generate_cv")}
+            {t("common.texts.save_cv")}
           </Button>
         </div>
         <div className="shadow-lg">
