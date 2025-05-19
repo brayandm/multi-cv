@@ -78,6 +78,7 @@ export interface AutoFillCvFromDocumentResponse {
 export interface generateCvInlineNoRenderResponse {
   cv: Cv;
   cv_texts: CvTexts;
+  application_id: string;
 }
 
 export interface UserThemeResponse {
@@ -166,14 +167,4 @@ export interface GenerationInput {
 export interface Settings {
   custom_prompt?: string;
   target_locale?: string;
-}
-
-export interface CV {
-  id: number;
-  company: string;
-  image: string;
-  role: string;
-  job_description: string;
-  pdf_file: string;
-  days_to_expire: number;
 }

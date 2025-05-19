@@ -6,11 +6,14 @@ import { Button } from "@heroui/react";
 import { useRef, useState } from "react";
 import { saveAs } from "file-saver";
 import { useTranslations } from "next-intl";
+import { useCv } from "@/contexts/CvContext";
 
 export default function EditCvComponent() {
   const templateRef = useRef<HTMLDivElement>(null);
 
   const [isCvLoading, setIsCvLoading] = useState(false);
+
+  const { cv, cvTexts } = useCv();
 
   const t = useTranslations();
 
@@ -44,7 +47,11 @@ export default function EditCvComponent() {
       </html>
     `;
 
-      const response = await renderHtmlInlineEngine(fullHtml);
+      const response = await renderHtmlInlineEngine(fullHtml, cv, {
+        id: "default",
+        type: "html",
+        cv_texts: cvTexts,
+      });
 
       const blob = new Blob([response.data], { type: "application/pdf" });
 

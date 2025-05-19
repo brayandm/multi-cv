@@ -39,11 +39,19 @@ export interface CvTexts {
   skills: string;
 }
 
+export interface CvTemplate {
+  id: string;
+  type: "latex" | "html";
+  cv_texts: CvTexts;
+}
+
 interface CvContextType {
   cv: Cv;
   setCv: (cv: Cv) => void;
   cvTexts: CvTexts;
   setCvTexts: (texts: CvTexts) => void;
+  applicationId: string | null;
+  setApplicationId: (id: string | null) => void;
 }
 
 const CvContext = createContext<CvContextType | undefined>(undefined);
@@ -72,6 +80,8 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
     skills: "Skills",
   });
 
+  const [applicationId, setApplicationId] = useState<string | null>(null);
+
   useEffect(() => {
     const stored = sessionStorage.getItem("cv");
     if (stored) {
@@ -98,6 +108,8 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
         setCv,
         cvTexts,
         setCvTexts,
+        applicationId,
+        setApplicationId,
       }}
     >
       {children}

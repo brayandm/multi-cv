@@ -19,6 +19,7 @@ class GenerateApplicationBasedOnJobPostAgent(Agent):
         application_structure = structure_to_string(
             Application,
             exclude_keys=[
+                "application_id",
                 "company_logo_link",
                 "job_description_raw",
                 "application_date",
@@ -70,6 +71,7 @@ class GenerateApplicationBasedOnJobPostAgent(Agent):
 
             application_data = json.loads(json_content)
 
+            application_data["application_id"] = ""
             application_data["job_description_raw"] = job_post
             application_data["application_date"] = datetime.now(timezone.utc)
             application_data["status"] = "none"

@@ -64,6 +64,7 @@ import {
 import { IProfile } from "@/contexts/ProfileContext";
 import { ChatData } from "@/contexts/ChatContext";
 import { Traduction } from "@/contexts/LocaleContext";
+import { Cv, CvTemplate } from "@/contexts/CvContext";
 
 const isServer = typeof window === "undefined";
 
@@ -366,12 +367,20 @@ export const generateCvInlineNoRenderEngine = async (
 };
 
 export const renderHtmlInlineEngine = async (
-  html: string
+  html: string,
+  cv: Cv,
+  cv_template: CvTemplate,
+  applicationId?: string
 ): Promise<AxiosResponse<Blob>> => {
   return await engine.post(
-    renderHtmlInlineEngineLink,
+    renderHtmlInlineEngineLink +
+      (applicationId ? `?application_id=${applicationId}` : ""),
     {
-      content: html,
+      html: {
+        content: html,
+      },
+      cv: cv,
+      cv_template: cv_template,
     },
     {
       responseType: "blob",

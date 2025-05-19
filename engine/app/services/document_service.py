@@ -135,12 +135,17 @@ class DocumentService:
         cv: Cv,
         cv_template: CvTemplate,
         application_id: Optional[str] = None,
+        cv_file: Optional[bytes] = None,
     ) -> Tuple[str, bytes]:
-        document_render = DocumentRenderFacade.get_render()
 
-        document_render.render_cv(cv, cv_template)
+        pdf_bytes = cv_file
 
-        pdf_bytes = document_render.get_cv()
+        if pdf_bytes is None:
+            document_render = DocumentRenderFacade.get_render()
+
+            document_render.render_cv(cv, cv_template)
+
+            pdf_bytes = document_render.get_cv()
 
         first_name = profile.basic_info.first_name
         last_name = profile.basic_info.last_name

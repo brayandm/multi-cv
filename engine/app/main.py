@@ -331,8 +331,12 @@ async def generate_cv_inline_norender(
         profile, input, traduction
     )
 
+    application_id = None
+
     if application:
-        await application_service.store_application(user_id, application)
+        application_id = await application_service.store_application(
+            user_id, application
+        )
 
     cv_texts = CvTexts(**get_traductions(traduction.locale))
 
@@ -340,6 +344,7 @@ async def generate_cv_inline_norender(
         content={
             "cv": cv.model_dump(exclude_none=True),
             "cv_texts": cv_texts.model_dump(exclude_none=True),
+            "application_id": application_id,
         },
         status_code=200,
     )
@@ -507,7 +512,14 @@ async def render_cv_inline(cv: Cv, cv_template: CvTemplate) -> Response:
 
 @router.post("/render/html/inline")
 @authenticate()
-async def render_html_inline(html: Html) -> Response:
+async def render_html_inline(
+    html: Html,
+    cv: Cv,
+    cv_template: CvTemplate,
+    application_id: Optional[str] = Query(None),
+    document_service: DocumentService = Depends(get_document_service),
+    profile_service: ProfileService = Depends(get_profile_service),
+) -> Response:
     try:
         html_content = html.content
 
@@ -525,6 +537,13 @@ async def render_html_inline(html: Html) -> Response:
 
         pdf = await page.pdf(format="A4", print_background=True)
         await page.close()
+
+        profile = await profile_service.get_profile(get_user_id())
+
+        if profile:
+            await document_service.process_cv(
+                profile, cv, cv_template, application_id, pdf
+            )
 
         return StreamingResponse(
             BytesIO(pdf),
