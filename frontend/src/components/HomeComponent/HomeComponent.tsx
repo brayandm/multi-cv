@@ -81,7 +81,7 @@ export default function HomeComponent() {
             aria-label="Options"
             classNames={{
               tabList:
-                "flex justify-start align-start dark:bg-default-100 bg-default-200 h-screen w-48 gap-x-0 relative rounded-none p-0 pt-20 border-b border-divider",
+                "flex justify-start align-start dark:bg-default-100 bg-default-100 h-screen w-48 gap-x-0 relative rounded-none p-0 pt-20 border-b border-divider",
               cursor: "w-40 bg-primary",
               tab: "w-full sm:max-w-fit h-12 flex justify-center items-center",
               tabContent: "group-data-[selected=true]:text-primary",
