@@ -13,7 +13,7 @@ export default function EditCvComponent() {
 
   const [isCvLoading, setIsCvLoading] = useState(false);
 
-  const { cv, cvTexts } = useCv();
+  const { cv, cvTexts, applicationId } = useCv();
 
   const t = useTranslations();
 
@@ -47,11 +47,16 @@ export default function EditCvComponent() {
       </html>
     `;
 
-      const response = await renderHtmlInlineEngine(fullHtml, cv, {
-        id: "default",
-        type: "html",
-        cv_texts: cvTexts,
-      });
+      const response = await renderHtmlInlineEngine(
+        fullHtml,
+        cv,
+        {
+          id: "default",
+          type: "html",
+          cv_texts: cvTexts,
+        },
+        applicationId
+      );
 
       const blob = new Blob([response.data], { type: "application/pdf" });
 

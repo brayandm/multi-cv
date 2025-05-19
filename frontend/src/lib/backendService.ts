@@ -370,7 +370,7 @@ export const renderHtmlInlineEngine = async (
   html: string,
   cv: Cv,
   cv_template: CvTemplate,
-  applicationId?: string
+  applicationId: string | null
 ): Promise<AxiosResponse<Blob>> => {
   return await engine.post(
     renderHtmlInlineEngineLink +
