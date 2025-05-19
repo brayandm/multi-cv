@@ -38,7 +38,9 @@ export default function HomeComponent() {
           </div>
         }
       >
-        <ApplicationsComponent />
+        <div className="w-full items-center">
+          <ApplicationsComponent />
+        </div>
       </Tab>
       <Tab
         key="documents"
@@ -48,7 +50,9 @@ export default function HomeComponent() {
           </div>
         }
       >
-        <DocumentsComponent />
+        <div className="w-full items-center">
+          <DocumentsComponent />
+        </div>
       </Tab>
     </>
   );
@@ -77,8 +81,8 @@ export default function HomeComponent() {
             aria-label="Options"
             classNames={{
               tabList:
-                "flex justify-evenly bg-default mt-16 w-48 gap-x-0 sm:justify-center sm:gap-x-16 relative rounded-none p-0 border-b border-divider",
-              cursor: "w-full bg-primary",
+                "flex justify-start align-start dark:bg-default-100 bg-default-200 h-screen w-48 gap-x-0 relative rounded-none p-0 pt-20 border-b border-divider",
+              cursor: "w-40 bg-primary",
               tab: "w-full sm:max-w-fit h-12 flex justify-center items-center",
               tabContent: "group-data-[selected=true]:text-primary",
               panel: "w-full pr-48 pt-16",
