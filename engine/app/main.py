@@ -1,4 +1,3 @@
-from io import BytesIO
 from typing import Any, Dict, Optional
 from urllib.parse import quote
 
@@ -13,7 +12,7 @@ from fastapi import (
 )
 from fastapi.encoders import jsonable_encoder
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, Response, StreamingResponse
+from fastapi.responses import JSONResponse, Response
 
 from app.classes.models import (
     Application,
@@ -541,17 +540,21 @@ async def render_html_inline(
         profile = await profile_service.get_profile(get_user_id())
 
         if profile:
-            await document_service.process_cv(
+            quoted_filename, _ = await document_service.process_cv(
                 profile, cv, cv_template, application_id, pdf
             )
 
-        return StreamingResponse(
-            BytesIO(pdf),
+        return Response(
+            content=pdf,
             media_type="application/pdf",
             headers={
-                "Content-Disposition": "attachment; filename=cv.pdf",
+                "Content-Disposition": (
+                    f"inline; filename*=UTF-8''{quoted_filename}"
+                ),
+                "Access-Control-Expose-Headers": "Content-Disposition",
             },
         )
+
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
 

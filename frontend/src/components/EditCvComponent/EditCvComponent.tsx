@@ -96,9 +96,16 @@ export default function EditCvComponent() {
         let filename = "cv.pdf";
 
         if (contentDisposition) {
-          const match = contentDisposition.match(/filename="(.+)"/);
-          if (match && match[1]) {
-            filename = match[1];
+          const utf8FilenameMatch = contentDisposition.match(
+            /filename\*\=UTF-8''([^;]+)/
+          );
+          if (utf8FilenameMatch && utf8FilenameMatch[1]) {
+            filename = decodeURIComponent(utf8FilenameMatch[1]);
+          } else {
+            const fallbackMatch = contentDisposition.match(/filename="(.+?)"/);
+            if (fallbackMatch && fallbackMatch[1]) {
+              filename = fallbackMatch[1];
+            }
           }
         }
 
@@ -178,7 +185,7 @@ export default function EditCvComponent() {
                 {t("pages.edit_cv.select_template")}
               </ModalHeader>
               <ModalBody>
-                <div className="h-[600px] relative overflow-y-auto">
+                <div className="h-[400px] sm:h-[600px] relative overflow-y-auto">
                   <div
                     style={{
                       transform:
@@ -262,10 +269,10 @@ export default function EditCvComponent() {
                   width < SCREEN_SIZES.sm
                     ? "scale(0.40)"
                     : width < SCREEN_SIZES.md
-                      ? "scale(0.60)"
-                      : width < SCREEN_SIZES.lg
-                        ? "scale(0.80)"
-                        : undefined,
+                    ? "scale(0.60)"
+                    : width < SCREEN_SIZES.lg
+                    ? "scale(0.80)"
+                    : undefined,
                 transformOrigin: "top",
                 display: "inline-block",
               }}
