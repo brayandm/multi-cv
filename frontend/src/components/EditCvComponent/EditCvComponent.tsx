@@ -154,44 +154,46 @@ export default function EditCvComponent() {
                 {t("pages.edit_cv.select_template")}
               </ModalHeader>
               <ModalBody>
-                <div className="h-[600px]">
+                <div className="h-[600px] flex justify-center items-start">
                   <div
                     style={{
                       transform: "scale(0.40)",
                       transformOrigin: "top",
+                      display: "inline-block",
                     }}
-                    className="flex flex-row justify-center items-center gap-32"
                   >
-                    <div
-                      style={{
-                        transform: "scale(0.90)",
-                        transformOrigin: "top",
-                      }}
-                    >
+                    <div className="flex flex-row justify-center items-center gap-32">
                       <div
-                        onClick={() => setTemplate("topbar")}
-                        className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                        style={{
+                          transform: "scale(0.90)",
+                          transformOrigin: "top",
+                        }}
                       >
-                        {getTemplate(<TopBarTemplate />, false)}
+                        <div
+                          onClick={() => setTemplate("topbar")}
+                          className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                        >
+                          {getTemplate(<TopBarTemplate />, false)}
+                        </div>
                       </div>
-                    </div>
-                    <div
-                      onClick={() => setTemplate("default")}
-                      className="transition-transform hover:scale-105 cursor-pointer"
-                    >
-                      {getTemplate(<DefaultTemplate />, false)}
-                    </div>
-                    <div
-                      style={{
-                        transform: "scale(0.90)",
-                        transformOrigin: "top",
-                      }}
-                    >
                       <div
-                        onClick={() => setTemplate("latex")}
-                        className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                        onClick={() => setTemplate("default")}
+                        className="transition-transform hover:scale-105 cursor-pointer"
                       >
-                        {getTemplate(<LatexLikeTemplate />, false)}
+                        {getTemplate(<DefaultTemplate />, false)}
+                      </div>
+                      <div
+                        style={{
+                          transform: "scale(0.90)",
+                          transformOrigin: "top",
+                        }}
+                      >
+                        <div
+                          onClick={() => setTemplate("latex")}
+                          className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                        >
+                          {getTemplate(<LatexLikeTemplate />, false)}
+                        </div>
                       </div>
                     </div>
                   </div>
