@@ -271,19 +271,7 @@ export default function GenerateDocumentComponent({
   };
 
   return (
-    <form
-      className="w-full max-w-96 flex flex-col items-center"
-      onSubmit={async (e) => {
-        e.preventDefault();
-        onOpen();
-        if (false) {
-          await handleDocument(true);
-        } else {
-          await redirectEditCv();
-        }
-        onClose();
-      }}
-    >
+    <div className="w-full max-w-96 flex flex-col items-center">
       {!isQuotaInfoLoading && quotaInfo ? (
         <>
           <div className="flex flex-row items-center justify-between w-full mb-5">
@@ -383,10 +371,54 @@ export default function GenerateDocumentComponent({
               />
             </div>
           )}
-          <div className="flex justify-center">
+          <div className="flex justify-center gap-4">
+            <Button
+              color="primary"
+              onPress={async () => {
+                onOpen();
+                if (false) {
+                  await handleDocument(true);
+                } else {
+                  await redirectEditCv();
+                }
+                onClose();
+              }}
+              isDisabled={
+                isCvLoading ||
+                quotaInfo?.left === 0 ||
+                (quotaInfo?.max_pending != -1 &&
+                  quotaInfo?.pending >= quotaInfo?.max_pending) ||
+                isQuotaInfoLoading ||
+                isSettingsLoading
+              }
+            >
+              {isCvLoading ||
+              (quotaInfo?.max_pending != -1 &&
+                quotaInfo?.pending >= quotaInfo?.max_pending) ? (
+                <>
+                  <Spinner
+                    classNames={{
+                      circle1: "border-b-secondary-700",
+                      circle2: "border-b-secondary-700",
+                    }}
+                  />
+                  {t("common.texts.pending_generation")}
+                </>
+              ) : (
+                t("common.texts.generate_cv")
+              )}
+            </Button>
             <Button
               color="secondary"
-              type="submit"
+              onPress={async () => {
+                onOpen();
+                if (false) {
+                  await handleDocument(true);
+                } else {
+                  await redirectEditCv();
+                }
+                onClose();
+              }}
               isDisabled={
                 isCvLoading ||
                 quotaInfo?.left === 0 ||
@@ -443,7 +475,12 @@ export default function GenerateDocumentComponent({
           <Spinner variant="dots" />
         </div>
       )}
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={true}>
+      <Modal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        isDismissable={false}
+        hideCloseButton={true}
+      >
         <ModalContent>
           {() => (
             <>
@@ -472,6 +509,6 @@ export default function GenerateDocumentComponent({
           )}
         </ModalContent>
       </Modal>
-    </form>
+    </div>
   );
 }
