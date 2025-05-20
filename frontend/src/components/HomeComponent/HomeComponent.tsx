@@ -61,7 +61,7 @@ export default function HomeComponent() {
     <main className="">
       <div className="flex justify-center"></div>
       <div className="flex w-full flex-col">
-        {width < SCREEN_SIZES.tablet ? (
+        {width < SCREEN_SIZES.md ? (
           <Tabs
             aria-label="Options"
             classNames={{

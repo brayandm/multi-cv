@@ -56,7 +56,7 @@ export default function GenerateDocumentComponentWrapper() {
 
   return (
     <div className="flex w-full flex-col items-center">
-      {width < SCREEN_SIZES.tablet ? (
+      {width < SCREEN_SIZES.md ? (
         <Tabs
           aria-label="Options"
           color="primary"

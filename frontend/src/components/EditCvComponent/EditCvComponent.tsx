@@ -18,6 +18,8 @@ import { saveAs } from "file-saver";
 import { useTranslations } from "next-intl";
 import { useCv } from "@/contexts/CvContext";
 import { useRouter } from "next/navigation";
+import { useWindowSize } from "@/hooks/useWindowSize";
+import { SCREEN_SIZES } from "@/lib/consts";
 
 export default function EditCvComponent() {
   const templateRef = useRef<HTMLDivElement>(null);
@@ -25,6 +27,8 @@ export default function EditCvComponent() {
   const { cv, cvTexts, applicationId } = useCv();
   const router = useRouter();
   const t = useTranslations();
+
+  const { width } = useWindowSize();
 
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure({
@@ -155,44 +159,52 @@ export default function EditCvComponent() {
               </ModalHeader>
               <ModalBody>
                 <div className="h-[600px] flex justify-center items-start">
-                  <div
-                    style={{
-                      transform: "scale(0.40)",
-                      transformOrigin: "top",
-                      display: "inline-block",
-                    }}
-                  >
-                    <div className="flex flex-row justify-center items-center gap-32">
-                      <div
-                        style={{
-                          transform: "scale(0.90)",
-                          transformOrigin: "top",
-                        }}
-                      >
+                  <div className="flex flex-col justify-center items-center gap-3 overflow-y-scroll">
+                    <div
+                      style={{
+                        transform: "scale(0.40)",
+                        transformOrigin: "top",
+                        display: "inline-block",
+                      }}
+                    >
+                      <div className="flex flex-col xl:flex-row justify-center items-center gap-32">
                         <div
-                          onClick={() => setTemplate("topbar")}
-                          className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                          style={{
+                            transform:
+                              width < SCREEN_SIZES.xl
+                                ? undefined
+                                : "scale(0.90)",
+                            transformOrigin: "top",
+                          }}
                         >
-                          {getTemplate(<TopBarTemplate />, false)}
+                          <div
+                            onClick={() => setTemplate("topbar")}
+                            className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                          >
+                            {getTemplate(<TopBarTemplate />, false)}
+                          </div>
                         </div>
-                      </div>
-                      <div
-                        onClick={() => setTemplate("default")}
-                        className="transition-transform hover:scale-105 cursor-pointer"
-                      >
-                        {getTemplate(<DefaultTemplate />, false)}
-                      </div>
-                      <div
-                        style={{
-                          transform: "scale(0.90)",
-                          transformOrigin: "top",
-                        }}
-                      >
                         <div
-                          onClick={() => setTemplate("latex")}
-                          className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                          onClick={() => setTemplate("default")}
+                          className="transition-transform hover:scale-105 cursor-pointer"
                         >
-                          {getTemplate(<LatexLikeTemplate />, false)}
+                          {getTemplate(<DefaultTemplate />, false)}
+                        </div>
+                        <div
+                          style={{
+                            transform:
+                              width < SCREEN_SIZES.xl
+                                ? undefined
+                                : "scale(0.90)",
+                            transformOrigin: "top",
+                          }}
+                        >
+                          <div
+                            onClick={() => setTemplate("latex")}
+                            className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                          >
+                            {getTemplate(<LatexLikeTemplate />, false)}
+                          </div>
                         </div>
                       </div>
                     </div>

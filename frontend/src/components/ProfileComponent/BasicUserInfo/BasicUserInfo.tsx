@@ -187,7 +187,7 @@ const BasicUserInfo: React.FC = () => {
 
           let inputs: IDynamicInputArray<string & boolean> = [];
 
-          if (width < SCREEN_SIZES.mobile) {
+          if (width < SCREEN_SIZES.sm) {
             inputs = [
               [pictureInput, [firstNameInput, lastNameInput]],
               emailInput,
