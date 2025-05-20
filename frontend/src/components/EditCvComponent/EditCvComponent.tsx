@@ -154,57 +154,59 @@ export default function EditCvComponent() {
         <ModalContent className="max-w-[90vw] w-[90vw]">
           {() => (
             <>
-              <ModalHeader className="flex justify-center text-2xl">
+              <ModalHeader className="flex justify-center text-xl sm:text-2xl">
                 {t("pages.edit_cv.select_template")}
               </ModalHeader>
               <ModalBody>
-                <div className="h-[600px] flex justify-center items-start">
-                  <div className="flex flex-col justify-center items-center gap-3 overflow-y-scroll">
-                    <div
-                      style={{
-                        transform: "scale(0.40)",
-                        transformOrigin: "top",
-                        display: "inline-block",
-                      }}
-                    >
-                      <div className="flex flex-col xl:flex-row justify-center items-center gap-32">
+                <div className="h-[600px] relative overflow-y-auto">
+                  <div
+                    style={{
+                      transform:
+                        "translateX(-50%)" +
+                        (width < SCREEN_SIZES.sm
+                          ? " scale(0.25)"
+                          : " scale(0.40)"),
+                      transformOrigin: "top",
+                      position: "absolute",
+                      left: "50%",
+                      display: "inline-block",
+                    }}
+                  >
+                    <div className="flex flex-col xl:flex-row justify-center items-center gap-32">
+                      <div
+                        style={{
+                          transform:
+                            width < SCREEN_SIZES.xl ? undefined : "scale(0.90)",
+                          transformOrigin: "top",
+                        }}
+                      >
                         <div
-                          style={{
-                            transform:
-                              width < SCREEN_SIZES.xl
-                                ? undefined
-                                : "scale(0.90)",
-                            transformOrigin: "top",
-                          }}
+                          onClick={() => setTemplate("topbar")}
+                          className="transition-transform hover:scale-105 cursor-pointer pt-32"
                         >
-                          <div
-                            onClick={() => setTemplate("topbar")}
-                            className="transition-transform hover:scale-105 cursor-pointer pt-32"
-                          >
-                            {getTemplate(<TopBarTemplate />, false)}
-                          </div>
+                          {getTemplate(<TopBarTemplate />, false)}
                         </div>
+                      </div>
+
+                      <div
+                        onClick={() => setTemplate("default")}
+                        className="transition-transform hover:scale-105 cursor-pointer"
+                      >
+                        {getTemplate(<DefaultTemplate />, false)}
+                      </div>
+
+                      <div
+                        style={{
+                          transform:
+                            width < SCREEN_SIZES.xl ? undefined : "scale(0.90)",
+                          transformOrigin: "top",
+                        }}
+                      >
                         <div
-                          onClick={() => setTemplate("default")}
-                          className="transition-transform hover:scale-105 cursor-pointer"
+                          onClick={() => setTemplate("latex")}
+                          className="transition-transform hover:scale-105 cursor-pointer pt-32"
                         >
-                          {getTemplate(<DefaultTemplate />, false)}
-                        </div>
-                        <div
-                          style={{
-                            transform:
-                              width < SCREEN_SIZES.xl
-                                ? undefined
-                                : "scale(0.90)",
-                            transformOrigin: "top",
-                          }}
-                        >
-                          <div
-                            onClick={() => setTemplate("latex")}
-                            className="transition-transform hover:scale-105 cursor-pointer pt-32"
-                          >
-                            {getTemplate(<LatexLikeTemplate />, false)}
-                          </div>
+                          {getTemplate(<LatexLikeTemplate />, false)}
                         </div>
                       </div>
                     </div>
