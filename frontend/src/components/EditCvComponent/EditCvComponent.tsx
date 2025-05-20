@@ -233,17 +233,32 @@ export default function EditCvComponent() {
               {t("pages.edit_cv.change_template")}
             </Button>
           </div>
-          <div className="shadow-lg">
-            <div
-              style={{
-                fontFamily: "Inter, sans-serif",
-                lineHeight: 1.2,
-                fontWeight: 400,
-                color: "#000",
-              }}
-            >
-              <div className="w-[794px] h-[1123px] relative">
-                {renderTemplate()}
+          <div
+            style={{
+              transform:
+                width < SCREEN_SIZES.sm
+                  ? "scale(0.30)"
+                  : width < SCREEN_SIZES.md
+                  ? "scale(0.60)"
+                  : width < SCREEN_SIZES.lg
+                  ? "scale(0.80)"
+                  : undefined,
+              transformOrigin: "top",
+              display: "inline-block",
+            }}
+          >
+            <div className="shadow-lg">
+              <div
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  lineHeight: 1.2,
+                  fontWeight: 400,
+                  color: "#000",
+                }}
+              >
+                <div className="w-[794px] h-[1123px] relative">
+                  {renderTemplate()}
+                </div>
               </div>
             </div>
           </div>
