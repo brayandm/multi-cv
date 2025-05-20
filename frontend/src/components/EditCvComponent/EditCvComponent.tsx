@@ -24,13 +24,12 @@ import { SCREEN_SIZES } from "@/lib/consts";
 export default function EditCvComponent() {
   const templateRef = useRef<HTMLDivElement>(null);
   const [isCvLoading, setIsCvLoading] = useState(false);
-  const { cv, cvTexts, applicationId } = useCv();
+  const { cv, cvTexts, applicationId, setCvTemplateId, cvTemplateId } = useCv();
   const router = useRouter();
   const t = useTranslations();
 
   const { width } = useWindowSize();
 
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure({
     defaultOpen: true,
   });
@@ -69,7 +68,7 @@ export default function EditCvComponent() {
         fullHtml,
         cv,
         {
-          id: "default",
+          id: cvTemplateId || "default",
           type: "html",
           cv_texts: cvTexts,
         },
@@ -104,7 +103,7 @@ export default function EditCvComponent() {
   };
 
   const renderTemplate = () => {
-    switch (selectedTemplate) {
+    switch (cvTemplateId) {
       case "topbar":
         return <TopBarTemplate />;
       case "default":
@@ -139,7 +138,8 @@ export default function EditCvComponent() {
   };
 
   const setTemplate = (template: string) => {
-    setSelectedTemplate(template);
+    setCvTemplateId(template);
+
     onClose();
   };
 
@@ -219,7 +219,7 @@ export default function EditCvComponent() {
         </ModalContent>
       </Modal>
 
-      {selectedTemplate && (
+      {cvTemplateId && (
         <div className="flex flex-col justify-center items-center gap-3">
           <div className="flex gap-3">
             <Button
@@ -242,10 +242,10 @@ export default function EditCvComponent() {
                   width < SCREEN_SIZES.sm
                     ? "scale(0.40)"
                     : width < SCREEN_SIZES.md
-                      ? "scale(0.60)"
-                      : width < SCREEN_SIZES.lg
-                        ? "scale(0.80)"
-                        : undefined,
+                    ? "scale(0.60)"
+                    : width < SCREEN_SIZES.lg
+                    ? "scale(0.80)"
+                    : undefined,
                 transformOrigin: "top",
                 display: "inline-block",
               }}
