@@ -189,7 +189,6 @@ export default function EditCvComponent() {
         </ModalContent>
       </Modal>
 
-      {/* Vista principal de edición */}
       {selectedTemplate && (
         <div className="flex flex-col justify-center items-center gap-3">
           <div className="flex gap-3">
@@ -213,7 +212,7 @@ export default function EditCvComponent() {
                 color: "#000",
               }}
             >
-              <div className="w-[794px] h-[1123px]" ref={templateRef}>
+              <div className="w-[794px] h-[1123px] relative">
                 {renderTemplate()}
               </div>
             </div>
