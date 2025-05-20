@@ -611,7 +611,7 @@ export const ExperienceDescription = ({
         />
       </div>
       {hovered && (
-        <div className="absolute flex gap-1 z-10 bottom-[-5px] w-24 items-center justify-center">
+        <div className="absolute flex gap-1 z-10 bottom-[-25px] w-24 items-center justify-center">
           <button
             className="bg-primary hover:bg-primary-700 text-sm p-1 border rounded shadow"
             onClick={handleAddBelow}
