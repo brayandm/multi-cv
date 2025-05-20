@@ -583,11 +583,16 @@ export const ExperienceDescription = ({
     };
     setCv({ ...cv, experiences: updated });
   };
+
   return (
-    <div
+    <motion.div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
+      transition={{ duration: 0.2 }}
     >
       <div style={{ minWidth: "200px", minHeight: "20px" }}>
         <EditableField
@@ -621,6 +626,6 @@ export const ExperienceDescription = ({
           </button>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
