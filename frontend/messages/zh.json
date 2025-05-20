@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "选择另一个模板",
-      "select_template": "选择一个模板"
+      "select_template": "选择一个模板",
+      "new_bullet": "新的要点..."
     }
   }
 }

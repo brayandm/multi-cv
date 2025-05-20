@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Selecteer een andere sjabloon",
-      "select_template": "Selecteer een sjabloon"
+      "select_template": "Selecteer een sjabloon",
+      "new_bullet": "Nieuw opsommingsteken..."
     }
   }
 }

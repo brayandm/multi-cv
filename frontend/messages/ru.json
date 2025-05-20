@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Выбрать другой шаблон",
-      "select_template": "Выбрать шаблон"
+      "select_template": "Выбрать шаблон",
+      "new_bullet": "Новый пункт..."
     }
   }
 }

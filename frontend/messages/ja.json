@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "別のテンプレートを選択",
-      "select_template": "テンプレートを選択"
+      "select_template": "テンプレートを選択",
+      "new_bullet": "新しい箇条書き..."
     }
   }
 }

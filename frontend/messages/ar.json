@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "اختر قالبًا آخر",
-      "select_template": "اختر قالبًا"
+      "select_template": "اختر قالبًا",
+      "new_bullet": "نقطة جديدة..."
     }
   }
 }

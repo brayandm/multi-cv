@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "다른 템플릿 선택",
-      "select_template": "템플릿 선택"
+      "select_template": "템플릿 선택",
+      "new_bullet": "새 항목..."
     }
   }
 }

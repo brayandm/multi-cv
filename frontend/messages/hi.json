@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Ek aur template chuniye",
-      "select_template": "Ek template chuniye"
+      "select_template": "Ek template chuniye",
+      "new_bullet": "Naya bullet point..."
     }
   }
 }

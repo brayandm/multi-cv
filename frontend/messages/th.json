@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "เลือกแม่แบบอื่น",
-      "select_template": "เลือกแม่แบบ"
+      "select_template": "เลือกแม่แบบ",
+      "new_bullet": "จุดกระสุนใหม่..."
     }
   }
 }

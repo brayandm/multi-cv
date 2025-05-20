@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Seleziona un altro modello",
-      "select_template": "Seleziona un modello"
+      "select_template": "Seleziona un modello",
+      "new_bullet": "Nuovo punto elenco..."
     }
   }
 }

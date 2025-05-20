@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Välj en annan mall",
-      "select_template": "Välj en mall"
+      "select_template": "Välj en mall",
+      "new_bullet": "Ny punkt..."
     }
   }
 }

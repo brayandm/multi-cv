@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Seleccionar otra plantilla",
-      "select_template": "Seleccionar una plantilla"
+      "select_template": "Seleccionar una plantilla",
+      "new_bullet": "Nuevo punto de viñeta..."
     }
   }
 }

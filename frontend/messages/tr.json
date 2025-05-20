@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Başka bir şablon seçin",
-      "select_template": "Bir şablon seçin"
+      "select_template": "Bir şablon seçin",
+      "new_bullet": "Yeni madde noktası..."
     }
   }
 }

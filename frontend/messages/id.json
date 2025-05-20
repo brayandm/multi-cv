@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Pilih template lain",
-      "select_template": "Pilih template"
+      "select_template": "Pilih template",
+      "new_bullet": "Poin baru..."
     }
   }
 }

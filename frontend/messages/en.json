@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Select another template",
-      "select_template": "Select a template"
+      "select_template": "Select a template",
+      "new_bullet": "New bullet point..."
     }
   }
 }

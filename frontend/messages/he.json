@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "בחר תבנית אחרת",
-      "select_template": "בחר תבנית"
+      "select_template": "בחר תבנית",
+      "new_bullet": "נקודת בוליט חדשה..."
     }
   }
 }

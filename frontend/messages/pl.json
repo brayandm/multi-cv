@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Wybierz inny szablon",
-      "select_template": "Wybierz szablon"
+      "select_template": "Wybierz szablon",
+      "new_bullet": "Nowy punkt wypunktowania..."
     }
   }
 }

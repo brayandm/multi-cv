@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Wählen Sie eine andere Vorlage",
-      "select_template": "Wählen Sie eine Vorlage"
+      "select_template": "Wählen Sie eine Vorlage",
+      "new_bullet": "Neuer Aufzählungspunkt..."
     }
   }
 }

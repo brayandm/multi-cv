@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Chọn một mẫu khác",
-      "select_template": "Chọn một mẫu"
+      "select_template": "Chọn một mẫu",
+      "new_bullet": "Điểm mới..."
     }
   }
 }

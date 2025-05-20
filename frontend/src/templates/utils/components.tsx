@@ -2,6 +2,8 @@ import React, { ReactElement, ReactNode, useState } from "react";
 import { useCv } from "@/contexts/CvContext";
 import { userProfilePictureApiLink } from "@/lib/links";
 import { AnimatePresence, motion } from "framer-motion";
+import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 
 export const COLOR_PALETTE = [
   "#f4f0ed",
@@ -557,20 +559,70 @@ export const ExperienceDescription = ({
   subindex?: number;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const { cv, setCv } = useCv();
+  const t = useTranslations();
+  const [hovered, setHovered] = useState(false);
+
+  const handleDelete = () => {
+    const updated = [...cv.experiences];
+    const updatedDescriptions = [...updated[index].descriptions];
+    updatedDescriptions.splice(subindex, 1);
+    updated[index] = {
+      ...updated[index],
+      descriptions: updatedDescriptions,
+    };
+    setCv({ ...cv, experiences: updated });
+  };
+
+  const handleAddBelow = () => {
+    const updated = [...cv.experiences];
+    const updatedDescriptions = [...updated[index].descriptions];
+    updatedDescriptions.splice(
+      subindex + 1,
+      0,
+      t("pages.edit_cv.new_bullet_point")
+    );
+    updated[index] = {
+      ...updated[index],
+      descriptions: updatedDescriptions,
+    };
+    setCv({ ...cv, experiences: updated });
+  };
   return (
-    <EditableField
-      value={cv.experiences[index].descriptions[subindex]}
-      onEdit={(val) => {
-        const updated = [...cv.experiences];
-        const updatedDescriptions = [...updated[index].descriptions];
-        updatedDescriptions[subindex] = val;
-        updated[index] = {
-          ...updated[index],
-          descriptions: updatedDescriptions,
-        };
-        setCv({ ...cv, experiences: updated });
-      }}
-      {...props}
-    />
+    <span
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative"
+    >
+      <EditableField
+        value={cv.experiences[index].descriptions[subindex]}
+        onEdit={(val) => {
+          const updated = [...cv.experiences];
+          const updatedDescriptions = [...updated[index].descriptions];
+          updatedDescriptions[subindex] = val;
+          updated[index] = {
+            ...updated[index],
+            descriptions: updatedDescriptions,
+          };
+          setCv({ ...cv, experiences: updated });
+        }}
+        {...props}
+      />
+      {hovered && (
+        <div className="absolute bottom-[-20px] left-0 flex gap-1 z-10">
+          <button
+            className="bg-white text-sm p-1 border rounded shadow hover:bg-gray-100"
+            onClick={handleAddBelow}
+          >
+            <PlusIcon className="w-4 h-4" />
+          </button>
+          <button
+            className="bg-white text-sm p-1 border rounded shadow hover:bg-gray-100"
+            onClick={handleDelete}
+          >
+            <TrashIcon className="w-4 h-4" />
+          </button>
+        </div>
+      )}
+    </span>
   );
 };

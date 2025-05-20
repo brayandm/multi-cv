@@ -539,7 +539,8 @@
     },
     "edit_cv": {
       "change_template": "Sélectionnez un autre modèle",
-      "select_template": "Sélectionnez un modèle"
+      "select_template": "Sélectionnez un modèle",
+      "new_bullet": "Nouveau point de balle..."
     }
   }
 }
