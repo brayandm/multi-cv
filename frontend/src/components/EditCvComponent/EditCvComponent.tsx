@@ -151,7 +151,7 @@ export default function EditCvComponent() {
           {() => (
             <>
               <ModalHeader className="flex justify-center">
-                Select a Template
+                {t("pages.edit_cv.select_template")}
               </ModalHeader>
               <ModalBody>
                 <div className="h-[600px]">
@@ -193,14 +193,14 @@ export default function EditCvComponent() {
         <div className="flex flex-col justify-center items-center gap-3">
           <div className="flex gap-3">
             <Button
-              color="primary"
+              color="secondary"
               isLoading={isCvLoading}
               onPress={() => handleDocument(true)}
             >
               {t("common.texts.save_cv")}
             </Button>
-            <Button variant="ghost" onPress={onOpen}>
-              Select another template
+            <Button color="primary" onPress={onOpen}>
+              {t("pages.edit_cv.change_template")}
             </Button>
           </div>
           <div className="shadow-lg">

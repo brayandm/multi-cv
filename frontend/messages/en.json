@@ -536,6 +536,10 @@
         "title": "Already a Premium User",
         "description": "You are already a premium user. Spend your current plan before purchasing a new one."
       }
+    },
+    "edit_cv": {
+      "change_template": "Select another template",
+      "select_template": "Select a template"
     }
   }
 }

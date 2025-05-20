@@ -536,6 +536,10 @@
         "title": "Redan en premiumanvändare",
         "description": "Du är redan en premiumanvändare. Använd din nuvarande plan innan du köper en ny."
       }
+    },
+    "edit_cv": {
+      "change_template": "Välj en annan mall",
+      "select_template": "Välj en mall"
     }
   }
 }

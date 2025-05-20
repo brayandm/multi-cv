@@ -536,6 +536,10 @@
         "title": "Già Utente Premium",
         "description": "Sei già un utente premium. Utilizza il tuo piano attuale prima di acquistarne uno nuovo."
       }
+    },
+    "edit_cv": {
+      "change_template": "Seleziona un altro modello",
+      "select_template": "Seleziona un modello"
     }
   }
 }

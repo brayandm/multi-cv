@@ -536,6 +536,10 @@
         "title": "Đã là Người dùng Cao cấp",
         "description": "Bạn đã là người dùng cao cấp. Hãy sử dụng gói hiện tại của bạn trước khi mua gói mới."
       }
+    },
+    "edit_cv": {
+      "change_template": "Chọn một mẫu khác",
+      "select_template": "Chọn một mẫu"
     }
   }
 }

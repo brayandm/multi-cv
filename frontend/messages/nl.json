@@ -536,6 +536,10 @@
         "title": "Al een Premium Gebruiker",
         "description": "Je bent al een premium gebruiker. Gebruik je huidige plan voordat je een nieuw plan koopt."
       }
+    },
+    "edit_cv": {
+      "change_template": "Selecteer een andere sjabloon",
+      "select_template": "Selecteer een sjabloon"
     }
   }
 }

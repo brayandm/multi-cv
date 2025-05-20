@@ -536,6 +536,10 @@
         "title": "Sudah Pengguna Premium",
         "description": "Anda sudah menjadi pengguna premium. Gunakan rencana Anda saat ini sebelum membeli yang baru."
       }
+    },
+    "edit_cv": {
+      "change_template": "Pilih template lain",
+      "select_template": "Pilih template"
     }
   }
 }

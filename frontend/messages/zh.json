@@ -536,6 +536,10 @@
         "title": "已是高级用户",
         "description": "您已经是高级用户。在购买新计划之前，请先使用当前计划。"
       }
+    },
+    "edit_cv": {
+      "change_template": "选择另一个模板",
+      "select_template": "选择一个模板"
     }
   }
 }

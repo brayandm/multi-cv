@@ -536,6 +536,10 @@
         "title": "Pehele se Premium Upyogakarta",
         "description": "Aap pehle se ek premium upyogakarta hain. Naya yojana kharidne se pehle apne vartaman yojana ka istemal karein."
       }
+    },
+    "edit_cv": {
+      "change_template": "Ek aur template chuniye",
+      "select_template": "Ek template chuniye"
     }
   }
 }
