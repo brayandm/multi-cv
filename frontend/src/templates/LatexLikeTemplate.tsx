@@ -56,13 +56,21 @@ export default function LatexModernCvWithSections() {
 
       {/* Summary Section */}
       <SectionTitle>
-        <SummarySection />
+        <SummarySection
+          style={{
+            fontWeight: "bold",
+          }}
+        />
       </SectionTitle>
       <Summary style={{ fontSize: 12, marginBottom: 20 }} />
 
       {/* Experience Section */}
       <SectionTitle>
-        <ExperienceSection />
+        <ExperienceSection
+          style={{
+            fontWeight: "bold",
+          }}
+        />
       </SectionTitle>
       <ExperienceList>
         <Experience>
@@ -71,7 +79,7 @@ export default function LatexModernCvWithSections() {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                fontWeight: "bold",
+                fontWeight: "semibold",
               }}
             >
               <Div>
