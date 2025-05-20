@@ -150,7 +150,7 @@ export default function EditCvComponent() {
         <ModalContent className="max-w-[90vw] w-[90vw]">
           {() => (
             <>
-              <ModalHeader className="flex justify-center">
+              <ModalHeader className="flex justify-center text-2xl">
                 {t("pages.edit_cv.select_template")}
               </ModalHeader>
               <ModalBody>
