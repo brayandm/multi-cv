@@ -108,7 +108,7 @@ export default function EditCvComponent() {
         return <TopBarTemplate />;
       case "default":
         return <DefaultTemplate />;
-      case "latex":
+      case "professional":
         return <LatexLikeTemplate />;
       default:
         return null;
@@ -203,7 +203,7 @@ export default function EditCvComponent() {
                         }}
                       >
                         <div
-                          onClick={() => setTemplate("latex")}
+                          onClick={() => setTemplate("professional")}
                           className="transition-transform hover:scale-105 cursor-pointer pt-32"
                         >
                           {getTemplate(<LatexLikeTemplate />, false)}
