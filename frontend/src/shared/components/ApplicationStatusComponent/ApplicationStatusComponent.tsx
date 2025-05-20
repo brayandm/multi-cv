@@ -80,7 +80,7 @@ const ApplicationStatusComponent = ({
   return (
     <Select
       aria-label="Application status"
-      className={`w-[100px] sm:w-[200px]  text-[10px]`}
+      className={`w-[100px] lg:w-[200px]  text-[10px]`}
       size="sm"
       selectedKeys={[status]}
       renderValue={(items) => {

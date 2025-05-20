@@ -125,7 +125,7 @@ export default function ApplicationsComponent() {
                       key={application.application_id}
                       role="button"
                       onClick={() => openModal(application)}
-                      className="cursor-pointer flex items-center w-[300px] sm:w-[600px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
+                      className="cursor-pointer flex items-center w-[300px] lg:w-[600px] justify-between p-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm hover:shadow-md transition"
                     >
                       <div className="flex items-center gap-4 w-full">
                         {application.company_logo_link ? (
