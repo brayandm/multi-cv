@@ -1,48 +1,80 @@
 import React, { ReactElement, ReactNode, useState } from "react";
 import { useCv } from "@/contexts/CvContext";
 import { userProfilePictureApiLink } from "@/lib/links";
+import { AnimatePresence, motion } from "framer-motion";
 
 export const COLOR_PALETTE = [
-  "#2563eb",
-  "#059669",
-  "#f59e0b",
-  "#ef4444",
-  "#8b5cf6",
-  "#0f172a",
+  "#f4f0ed",
+  "#fef9c3",
+  "#cce5ff",
+  "#d1fae5",
+  "#fbd5d5",
+  "#e0e7ff",
 ];
 
 export const ColorPalette = ({
   onSelect,
+  isVisible,
 }: {
   onSelect: (color: string) => void;
+  isVisible: boolean;
 }) => {
+  const radius = 60;
+  const angles = COLOR_PALETTE.map(
+    (_, i) => ((i / COLOR_PALETTE.length) * 270 - 135) * (Math.PI / 180)
+  );
+
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "4px",
-        padding: "4px",
-        backgroundColor: "#fff",
-        border: "1px solid #ddd",
-        borderRadius: "4px",
-        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-      }}
-    >
-      {COLOR_PALETTE.map((paletteColor) => (
-        <div
-          key={paletteColor}
-          onClick={() => onSelect(paletteColor)}
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
           style={{
-            width: "20px",
-            height: "20px",
-            borderRadius: "4px",
-            backgroundColor: paletteColor,
-            cursor: "pointer",
-            border: "1px solid #ccc",
+            position: "relative",
+            width: `${radius * 2}px`,
+            height: `${radius * 2}px`,
           }}
-        />
-      ))}
-    </div>
+        >
+          {COLOR_PALETTE.map((paletteColor, index) => {
+            const angle = angles[index];
+            const x = radius + radius * Math.cos(angle) - 16;
+            const y = radius + radius * Math.sin(angle) - 16;
+
+            return (
+              <motion.div
+                key={paletteColor}
+                onClick={() => onSelect(paletteColor)}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                }}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                style={{
+                  position: "absolute",
+                  top: `${y}px`,
+                  left: `${x}px`,
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "50%",
+                  backgroundColor: paletteColor,
+                  cursor: "pointer",
+                  border: "1px solid #ccc",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+                }}
+              />
+            );
+          })}
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
@@ -111,7 +143,7 @@ export const ColorableDiv = ({
     return child;
   });
 
-  const [color, setColor] = useState<string>("white");
+  const [color, setColor] = useState<string>("#f4f0ed");
   const [hovered, setHovered] = useState<boolean>(false);
 
   const handleColorSelect = (selectedColor: string) => {
@@ -130,18 +162,16 @@ export const ColorableDiv = ({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {hovered && (
-        <div
-          style={{
-            position: "absolute",
-            top: "8px",
-            right: "8px",
-            zIndex: 10,
-          }}
-        >
-          <ColorPalette onSelect={handleColorSelect} />
-        </div>
-      )}
+      <div
+        style={{
+          position: "absolute",
+          top: "8px",
+          right: "8px",
+          zIndex: 10,
+        }}
+      >
+        <ColorPalette onSelect={handleColorSelect} isVisible={hovered} />
+      </div>
 
       {childrenWithProps}
     </div>
