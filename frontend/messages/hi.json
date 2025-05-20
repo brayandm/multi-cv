@@ -311,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Apne CV ko banane ka tarika chuniye",
+            "description": "Ek peshewar CV chuniye jo ATS pranaliyon ke liye optimized hai aur ek customizable version jahan aap apne personal brand ke anuroop styles, colors aur layout ko edit kar sakte hain",
+            "optimized_cv": "Optimized CV",
+            "custom_cv": "Custom CV"
+          },
           "loading": {
             "descriptions": {
               "1": "Vyaktigat jankari ka vishleshan kiya ja raha hai...",

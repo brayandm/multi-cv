@@ -311,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Kies Hoe U Uw CV Wilt Maken",
+            "description": "Kies tussen een professioneel CV dat geoptimaliseerd is voor ATS-systemen en een aanpasbare versie waarin u stijlen, kleuren en lay-out kunt bewerken om bij uw persoonlijke merk te passen",
+            "optimized_cv": "Geoptimaliseerd CV",
+            "custom_cv": "Aangepast CV"
+          },
           "loading": {
             "descriptions": {
               "1": "Persoonlijke informatie analyseren...",

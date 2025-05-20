@@ -311,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Scegli Come Creare il Tuo CV",
+            "description": "Scegli tra un CV professionale ottimizzato per i sistemi ATS e una versione personalizzabile in cui puoi modificare stili, colori e layout per adattarli al tuo marchio personale",
+            "optimized_cv": "CV Ottimizzato",
+            "custom_cv": "CV Personalizzato"
+          },
           "loading": {
             "descriptions": {
               "1": "Analizzando le informazioni personali...",

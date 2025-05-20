@@ -311,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "이력서를 작성하는 방법 선택하기",
+            "description": "ATS 시스템에 최적화된 전문 이력서와 개인 브랜드에 맞게 스타일, 색상 및 레이아웃을 편집할 수 있는 사용자 정의 버전 중에서 선택하세요.",
+            "optimized_cv": "최적화된 이력서",
+            "custom_cv": "사용자 정의 이력서"
+          },
           "loading": {
             "descriptions": {
               "1": "개인 정보를 분석하는 중...",

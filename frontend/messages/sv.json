@@ -311,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Välj Hur Du Vill Skapa Ditt CV",
+            "description": "Välj mellan ett professionellt CV optimerat för ATS-system och en anpassningsbar version där du kan redigera stilar, färger och layout för att matcha ditt personliga varumärke",
+            "optimized_cv": "Optimerat CV",
+            "custom_cv": "Anpassat CV"
+          },
           "loading": {
             "descriptions": {
               "1": "Analyserar personlig information...",

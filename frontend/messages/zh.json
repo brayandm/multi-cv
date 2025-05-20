@@ -311,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "选择如何创建您的简历",
+            "description": "在专业的简历（针对ATS系统优化）和可自定义版本之间进行选择，您可以编辑样式、颜色和布局以匹配您的个人品牌",
+            "optimized_cv": "优化简历",
+            "custom_cv": "自定义简历"
+          },
           "loading": {
             "descriptions": {
               "1": "正在分析个人信息...",

@@ -14,6 +14,7 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   Select,
   SelectItem,
@@ -59,6 +60,12 @@ export default function GenerateDocumentComponent({
   const router = useRouter();
 
   const { isOpen, onOpen, onClose, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isOpenSelection,
+    onOpen: onOpenSelection,
+    onClose: onCloseSelection,
+    onOpenChange: onOpenChangeSelection,
+  } = useDisclosure();
 
   const [input, setInput] = useState("");
   const [customPrompt, setCustomPrompt] = useState("");
@@ -373,51 +380,9 @@ export default function GenerateDocumentComponent({
           )}
           <div className="flex justify-center gap-4">
             <Button
-              color="primary"
-              onPress={async () => {
-                onOpen();
-                if (false) {
-                  await handleDocument(true);
-                } else {
-                  await redirectEditCv();
-                }
-                onClose();
-              }}
-              isDisabled={
-                isCvLoading ||
-                quotaInfo?.left === 0 ||
-                (quotaInfo?.max_pending != -1 &&
-                  quotaInfo?.pending >= quotaInfo?.max_pending) ||
-                isQuotaInfoLoading ||
-                isSettingsLoading
-              }
-            >
-              {isCvLoading ||
-              (quotaInfo?.max_pending != -1 &&
-                quotaInfo?.pending >= quotaInfo?.max_pending) ? (
-                <>
-                  <Spinner
-                    classNames={{
-                      circle1: "border-b-secondary-700",
-                      circle2: "border-b-secondary-700",
-                    }}
-                  />
-                  {t("common.texts.pending_generation")}
-                </>
-              ) : (
-                t("common.texts.generate_cv")
-              )}
-            </Button>
-            <Button
               color="secondary"
               onPress={async () => {
-                onOpen();
-                if (false) {
-                  await handleDocument(true);
-                } else {
-                  await redirectEditCv();
-                }
-                onClose();
+                onOpenSelection();
               }}
               isDisabled={
                 isCvLoading ||
@@ -505,6 +470,52 @@ export default function GenerateDocumentComponent({
                   isCyclic={false}
                 />
               </ModalBody>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+      <Modal isOpen={isOpenSelection} onOpenChange={onOpenChangeSelection}>
+        <ModalContent>
+          {() => (
+            <>
+              <ModalHeader className="text-center">
+                {t("pages.home.tabs.builder.choosing_generation_type.title")}
+              </ModalHeader>
+              <ModalBody className="flex flex-col items-center justify-center gap-4 py-6">
+                {t(
+                  "pages.home.tabs.builder.choosing_generation_type.description"
+                )}
+              </ModalBody>
+              <ModalFooter className="flex flex-row items-center justify-center gap-4">
+                <div className="flex flex-row items-center justify-center gap-4">
+                  <Button
+                    color="primary"
+                    onPress={async () => {
+                      onCloseSelection();
+                      onOpen();
+                      await handleDocument(true);
+                      onClose();
+                    }}
+                  >
+                    {t(
+                      "pages.home.tabs.builder.choosing_generation_type.optimized_cv"
+                    )}
+                  </Button>
+                  <Button
+                    color="secondary"
+                    onPress={async () => {
+                      onCloseSelection();
+                      onOpen();
+                      await redirectEditCv();
+                      onClose();
+                    }}
+                  >
+                    {t(
+                      "pages.home.tabs.builder.choosing_generation_type.custom_cv"
+                    )}
+                  </Button>
+                </div>
+              </ModalFooter>
             </>
           )}
         </ModalContent>

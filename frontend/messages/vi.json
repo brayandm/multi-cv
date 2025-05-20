@@ -311,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Chọn Cách Tạo CV Của Bạn",
+            "description": "Chọn giữa một CV chuyên nghiệp được tối ưu hóa cho hệ thống ATS và một phiên bản tùy chỉnh mà bạn có thể chỉnh sửa kiểu dáng, màu sắc và bố cục để phù hợp với thương hiệu cá nhân của bạn",
+            "optimized_cv": "CV Tối Ưu",
+            "custom_cv": "CV Tùy Chỉnh"
+          },
           "loading": {
             "descriptions": {
               "1": "Đang phân tích thông tin cá nhân...",

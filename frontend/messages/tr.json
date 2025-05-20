@@ -311,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "CV'nizi Oluşturma Yöntemini Seçin",
+            "description": "ATS sistemleri için optimize edilmiş profesyonel bir CV ile kişisel markanıza uyacak şekilde stilleri, renkleri ve düzeni düzenleyebileceğiniz özelleştirilebilir bir versiyon arasında seçim yapın",
+            "optimized_cv": "Optimize Edilmiş CV",
+            "custom_cv": "Özelleştirilmiş CV"
+          },
           "loading": {
             "descriptions": {
               "1": "Kişisel bilgileri analiz ediliyor...",
