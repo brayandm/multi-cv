@@ -58,7 +58,7 @@ export default function CreativeTopBarTemplate() {
               height: 120,
               borderRadius: "50%",
               backgroundColor: "#ccc",
-              border: "4px solid #2b2b2b",
+              border: "3px solid #2b2b2b",
             }}
           />
           <Div>
@@ -81,7 +81,8 @@ export default function CreativeTopBarTemplate() {
             display: "flex",
             flexWrap: "wrap",
             gap: "10px",
-            justifyContent: "flex-end",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           <Badge>
@@ -171,7 +172,7 @@ function Badge({ children }: React.PropsWithChildren<object>) {
         display: "inline-block",
         padding: "4px 12px",
         borderRadius: "20px",
-        backgroundColor: "#2b2b2b",
+        backgroundColor: "#575757",
         color: "#fff",
         fontSize: 12,
       }}
