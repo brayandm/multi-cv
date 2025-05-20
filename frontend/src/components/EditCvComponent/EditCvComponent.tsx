@@ -1,13 +1,15 @@
 "use client";
 
 import { renderHtmlInlineEngine } from "@/lib/backendService";
-import DefaultTemplate from "@/templates/default";
+import DefaultTemplate from "@/templates/DefaultTemplate";
 import { Button } from "@heroui/react";
 import { useRef, useState } from "react";
 import { saveAs } from "file-saver";
 import { useTranslations } from "next-intl";
 import { useCv } from "@/contexts/CvContext";
 import { useRouter } from "next/navigation";
+import TopBarTemplate from "@/templates/TopBarTemplate";
+import LatexLikeTemplate from "@/templates/LatexLikeTemplate";
 
 export default function EditCvComponent() {
   const templateRef = useRef<HTMLDivElement>(null);
@@ -101,17 +103,47 @@ export default function EditCvComponent() {
             {t("common.texts.save_cv")}
           </Button>
         </div>
-        <div className="shadow-lg">
-          <div
-            style={{
-              fontFamily: "Inter, sans-serif",
-              lineHeight: 1.2,
-              fontWeight: 400,
-              color: "#000",
-            }}
-          >
-            <div className="w-[794px] h-[1123px]" ref={templateRef}>
-              <DefaultTemplate />
+        <div className="flex flex-row gap-3">
+          <div className="shadow-lg">
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                lineHeight: 1.2,
+                fontWeight: 400,
+                color: "#000",
+              }}
+            >
+              <div className="w-[794px] h-[1123px]" ref={templateRef}>
+                <TopBarTemplate />
+              </div>
+            </div>
+          </div>
+          <div className="shadow-lg">
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                lineHeight: 1.2,
+                fontWeight: 400,
+                color: "#000",
+              }}
+            >
+              <div className="w-[794px] h-[1123px]" ref={templateRef}>
+                <DefaultTemplate />
+              </div>
+            </div>
+          </div>
+          <div className="shadow-lg">
+            <div
+              style={{
+                fontFamily: "Inter, sans-serif",
+                lineHeight: 1.2,
+                fontWeight: 400,
+                color: "#000",
+              }}
+            >
+              <div className="w-[794px] h-[1123px]" ref={templateRef}>
+                <LatexLikeTemplate />
+              </div>
             </div>
           </div>
         </div>
