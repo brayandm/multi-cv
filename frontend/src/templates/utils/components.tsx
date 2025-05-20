@@ -1,6 +1,50 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import { useCv } from "@/contexts/CvContext";
 import { userProfilePictureApiLink } from "@/lib/links";
+
+export const COLOR_PALETTE = [
+  "#2563eb",
+  "#059669",
+  "#f59e0b",
+  "#ef4444",
+  "#8b5cf6",
+  "#0f172a",
+];
+
+export const ColorPalette = ({
+  onSelect,
+}: {
+  onSelect: (color: string) => void;
+}) => {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "4px",
+        padding: "4px",
+        backgroundColor: "#fff",
+        border: "1px solid #ddd",
+        borderRadius: "4px",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+      }}
+    >
+      {COLOR_PALETTE.map((paletteColor) => (
+        <div
+          key={paletteColor}
+          onClick={() => onSelect(paletteColor)}
+          style={{
+            width: "20px",
+            height: "20px",
+            borderRadius: "4px",
+            backgroundColor: paletteColor,
+            cursor: "pointer",
+            border: "1px solid #ccc",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const EditableField = ({
   value,
@@ -48,6 +92,60 @@ export const Div = ({
   });
 
   return <div {...props}>{childrenWithProps}</div>;
+};
+
+export const ColorableDiv = ({
+  index,
+  subindex,
+  children,
+  ...props
+}: {
+  index?: number;
+  subindex?: number;
+  children?: ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>) => {
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement<{ index?: number; subindex?: number }>(child)) {
+      return React.cloneElement(child, { index, subindex });
+    }
+    return child;
+  });
+
+  const [color, setColor] = useState<string>("white");
+  const [hovered, setHovered] = useState<boolean>(false);
+
+  const handleColorSelect = (selectedColor: string) => {
+    setColor(selectedColor);
+  };
+
+  return (
+    <div
+      {...props}
+      style={{
+        ...props.style,
+        position: "relative",
+        backgroundColor: color,
+        transition: "background-color 0.3s",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {hovered && (
+        <div
+          style={{
+            position: "absolute",
+            top: "8px",
+            right: "8px",
+            zIndex: 10,
+          }}
+        >
+          <ColorPalette onSelect={handleColorSelect} />
+        </div>
+      )}
+
+      {childrenWithProps}
+    </div>
+  );
 };
 
 export const Span = ({

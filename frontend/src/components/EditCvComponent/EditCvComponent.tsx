@@ -94,7 +94,7 @@ export default function EditCvComponent() {
         <div className="flex gap-3">
           <Button
             className=""
-            color="secondary"
+            color="primary"
             isLoading={isCvLoading}
             onPress={() => handleDocument(true)}
           >

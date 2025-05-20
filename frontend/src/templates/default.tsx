@@ -21,6 +21,7 @@ import {
   ContactInfoSection,
   SummarySection,
   ProfilePicture,
+  ColorableDiv,
 } from "./utils/components";
 
 export default function DefaultTemplate() {
@@ -34,7 +35,7 @@ export default function DefaultTemplate() {
       }}
     >
       {/* Sidebar */}
-      <Div
+      <ColorableDiv
         style={{
           width: "30%",
           backgroundColor: "#f4f0ed",
@@ -85,7 +86,7 @@ export default function DefaultTemplate() {
           <LinkedIn />
           <GitHub />
         </Div>
-      </Div>
+      </ColorableDiv>
 
       {/* Main Content */}
       <Div style={{ width: "70%", padding: "30px 40px" }}>
