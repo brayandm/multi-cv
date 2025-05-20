@@ -54,7 +54,7 @@ export default function GenerateDocumentComponent({
 }: IGenerateDocumentComponentProps) {
   const { getTraduction } = useLocale();
 
-  const { setCv, setCvTexts, setApplicationId } = useCv();
+  const { setCv, setCvTexts, setApplicationId, setStoredCv } = useCv();
 
   const router = useRouter();
 
@@ -200,6 +200,7 @@ export default function GenerateDocumentComponent({
         setCv(response.data.cv);
         setCvTexts(response.data.cv_texts);
         setApplicationId(response.data.application_id);
+        setStoredCv(true);
       }
 
       router.push("/edit/cv");

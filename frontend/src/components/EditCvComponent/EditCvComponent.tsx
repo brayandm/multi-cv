@@ -13,7 +13,7 @@ import {
   ModalFooter,
   useDisclosure,
 } from "@heroui/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { saveAs } from "file-saver";
 import { useTranslations } from "next-intl";
 import { useCv } from "@/contexts/CvContext";
@@ -24,7 +24,15 @@ import { SCREEN_SIZES } from "@/lib/consts";
 export default function EditCvComponent() {
   const templateRef = useRef<HTMLDivElement>(null);
   const [isCvLoading, setIsCvLoading] = useState(false);
-  const { cv, cvTexts, applicationId, setCvTemplateId, cvTemplateId } = useCv();
+  const {
+    cv,
+    cvTexts,
+    applicationId,
+    setCvTemplateId,
+    cvTemplateId,
+    cleanUp,
+    storedCv,
+  } = useCv();
   const router = useRouter();
   const t = useTranslations();
 
@@ -33,6 +41,12 @@ export default function EditCvComponent() {
   const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure({
     defaultOpen: true,
   });
+
+  useEffect(() => {
+    if (!storedCv) {
+      router.push("/home");
+    }
+  }, [storedCv, router]);
 
   const handleDocument = async (download = false) => {
     try {
@@ -95,6 +109,8 @@ export default function EditCvComponent() {
         window.open(blobUrl, "_blank");
       }
 
+      cleanUp();
+
       router.push("/home");
     } catch (error) {
       console.error("Error while generating CV", error);
@@ -142,6 +158,10 @@ export default function EditCvComponent() {
 
     onClose();
   };
+
+  if (storedCv === false) {
+    return <></>;
+  }
 
   return (
     <>
@@ -242,10 +262,10 @@ export default function EditCvComponent() {
                   width < SCREEN_SIZES.sm
                     ? "scale(0.40)"
                     : width < SCREEN_SIZES.md
-                      ? "scale(0.60)"
-                      : width < SCREEN_SIZES.lg
-                        ? "scale(0.80)"
-                        : undefined,
+                    ? "scale(0.60)"
+                    : width < SCREEN_SIZES.lg
+                    ? "scale(0.80)"
+                    : undefined,
                 transformOrigin: "top",
                 display: "inline-block",
               }}

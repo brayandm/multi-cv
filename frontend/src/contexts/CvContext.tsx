@@ -54,6 +54,10 @@ interface CvContextType {
   setApplicationId: (id: string | null) => void;
   cvTemplateId: string | null;
   setCvTemplateId: (id: string | null) => void;
+  cleanUp: () => void;
+
+  storedCv: boolean;
+  setStoredCv: (stored: boolean) => void;
 }
 
 interface Storage {
@@ -65,33 +69,43 @@ interface Storage {
 
 const CvContext = createContext<CvContextType | undefined>(undefined);
 
-export const CvProvider = ({ children }: { children: ReactNode }) => {
-  const [cv, setCv] = useState<Cv>({
-    full_name: "",
-    email: "",
-    phone: "",
-    linkedin: "",
-    github: "",
-    location: "",
-    summary: "",
-    experiences: [],
-  });
+const initialCV: Cv = {
+  full_name: "",
+  email: "",
+  phone: "",
+  linkedin: "",
+  github: "",
+  location: "",
+  summary: "",
+  experiences: [],
+};
 
-  const [cvTexts, setCvTexts] = useState<CvTexts>({
-    locale: "en",
-    contact_info: "Contact Information",
-    summary: "Summary",
-    experience: "Experience",
-    education: "Education",
-    projects: "Projects",
-    certifications: "Certifications",
-    languages: "Languages",
-    skills: "Skills",
-  });
+const initialCvTexts: CvTexts = {
+  locale: "en",
+  contact_info: "Contact Information",
+  summary: "Summary",
+  experience: "Experience",
+  education: "Education",
+  projects: "Projects",
+  certifications: "Certifications",
+  languages: "Languages",
+  skills: "Skills",
+};
+
+export const CvProvider = ({ children }: { children: ReactNode }) => {
+  const [cv, setCv] = useState<Cv>(initialCV);
+
+  const [cvTexts, setCvTexts] = useState<CvTexts>(initialCvTexts);
 
   const [applicationId, setApplicationId] = useState<string | null>(null);
 
   const [cvTemplateId, setCvTemplateId] = useState<string | null>(null);
+
+  const [storedCv, setStoredCv] = useState<boolean>(false);
+
+  const cleanUp = () => {
+    setStoredCv(false);
+  };
 
   useEffect(() => {
     const stored = sessionStorage.getItem("cv_context");
@@ -127,6 +141,9 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
         setApplicationId,
         cvTemplateId,
         setCvTemplateId,
+        cleanUp,
+        storedCv,
+        setStoredCv,
       }}
     >
       {children}
