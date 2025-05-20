@@ -242,10 +242,10 @@ export default function EditCvComponent() {
                   width < SCREEN_SIZES.sm
                     ? "scale(0.40)"
                     : width < SCREEN_SIZES.md
-                      ? "scale(0.60)"
-                      : width < SCREEN_SIZES.lg
-                        ? "scale(0.80)"
-                        : undefined,
+                    ? "scale(0.60)"
+                    : width < SCREEN_SIZES.lg
+                    ? "scale(0.80)"
+                    : undefined,
                 transformOrigin: "top",
                 display: "inline-block",
               }}
@@ -259,7 +259,10 @@ export default function EditCvComponent() {
                     color: "#000",
                   }}
                 >
-                  <div className="w-[794px] h-[1123px] relative">
+                  <div
+                    className="w-[794px] h-[1123px] relative"
+                    ref={templateRef}
+                  >
                     {renderTemplate()}
                   </div>
                 </div>
