@@ -610,22 +610,30 @@ export const ExperienceDescription = ({
           {...props}
         />
       </div>
-      {hovered && (
-        <div className="absolute flex gap-1 z-10 bottom-[-25px] w-24 items-center justify-center">
-          <button
-            className="bg-primary hover:bg-primary-700 text-sm p-1 border rounded shadow"
-            onClick={handleAddBelow}
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            className="absolute flex gap-1 z-10 bottom-[-25px] items-center justify-center"
+            initial={{ opacity: 0, scale: 0.9, y: -5 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -5 }}
+            transition={{ duration: 0.2 }}
           >
-            <PlusIcon className="text-white w-4 h-4" />
-          </button>
-          <button
-            className="bg-danger hover:bg-danger-300 text-sm p-1 border rounded shadow"
-            onClick={handleDelete}
-          >
-            <TrashIcon className=" text-white w-4 h-4" />
-          </button>
-        </div>
-      )}
+            <button
+              className="bg-primary hover:bg-primary-700 text-sm p-1 border rounded shadow transition-all duration-200"
+              onClick={handleAddBelow}
+            >
+              <PlusIcon className="text-white w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+            </button>
+            <button
+              className="bg-danger hover:bg-danger-300 text-sm p-1 border rounded shadow transition-all duration-200"
+              onClick={handleDelete}
+            >
+              <TrashIcon className="text-white w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
