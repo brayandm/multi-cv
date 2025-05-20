@@ -86,7 +86,14 @@ export default function LatexModernCvWithSections() {
             </Div>
             <Div style={{ fontSize: 12, paddingLeft: 20 }}>
               <ExperienceDescriptions>
-                <Div style={{ marginTop: 4 }}>
+                <Div
+                  style={{
+                    marginTop: 2,
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 4,
+                  }}
+                >
                   <Span>• </Span>
                   <ExperienceDescription />
                 </Div>

@@ -145,7 +145,14 @@ export default function DefaultTemplate() {
                   }}
                 >
                   <ExperienceDescriptions>
-                    <Div style={{ marginTop: 2 }}>
+                    <Div
+                      style={{
+                        marginTop: 2,
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: 4,
+                      }}
+                    >
                       <Span>- </Span>
                       <ExperienceDescription />
                     </Div>

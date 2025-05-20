@@ -576,11 +576,7 @@ export const ExperienceDescription = ({
   const handleAddBelow = () => {
     const updated = [...cv.experiences];
     const updatedDescriptions = [...updated[index].descriptions];
-    updatedDescriptions.splice(
-      subindex + 1,
-      0,
-      t("pages.edit_cv.new_bullet_point")
-    );
+    updatedDescriptions.splice(subindex + 1, 0, t("pages.edit_cv.new_bullet"));
     updated[index] = {
       ...updated[index],
       descriptions: updatedDescriptions,
@@ -588,27 +584,29 @@ export const ExperienceDescription = ({
     setCv({ ...cv, experiences: updated });
   };
   return (
-    <span
+    <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className="relative"
     >
-      <EditableField
-        value={cv.experiences[index].descriptions[subindex]}
-        onEdit={(val) => {
-          const updated = [...cv.experiences];
-          const updatedDescriptions = [...updated[index].descriptions];
-          updatedDescriptions[subindex] = val;
-          updated[index] = {
-            ...updated[index],
-            descriptions: updatedDescriptions,
-          };
-          setCv({ ...cv, experiences: updated });
-        }}
-        {...props}
-      />
+      <div>
+        <EditableField
+          value={cv.experiences[index].descriptions[subindex]}
+          onEdit={(val) => {
+            const updated = [...cv.experiences];
+            const updatedDescriptions = [...updated[index].descriptions];
+            updatedDescriptions[subindex] = val;
+            updated[index] = {
+              ...updated[index],
+              descriptions: updatedDescriptions,
+            };
+            setCv({ ...cv, experiences: updated });
+          }}
+          {...props}
+        />
+      </div>
       {hovered && (
-        <div className="absolute bottom-[-20px] left-0 flex gap-1 z-10">
+        <div className="absolute flex gap-1 z-10 bottom-[-5px] w-24 items-center justify-center">
           <button
             className="bg-white text-sm p-1 border rounded shadow hover:bg-gray-100"
             onClick={handleAddBelow}
@@ -623,6 +621,6 @@ export const ExperienceDescription = ({
           </button>
         </div>
       )}
-    </span>
+    </div>
   );
 };
