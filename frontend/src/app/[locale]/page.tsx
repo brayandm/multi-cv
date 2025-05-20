@@ -8,7 +8,6 @@ import { useUserStatus } from "@/contexts/UserStatusContext";
 
 export default function Welcome() {
   const [isIframe, setIsIframe] = useState(false);
-
   const { userStatus, isLoading, refreshUserStatus } = useUserStatus();
 
   useEffect(() => {
@@ -16,20 +15,23 @@ export default function Welcome() {
     refreshUserStatus();
   }, []); // eslint-disable-line
 
+  const getNavbarProps = () => {
+    if (isLoading) {
+      return { empty: true };
+    }
+    if (isIframe) {
+      return { empty: true };
+    }
+    if (!userStatus.authenticated) {
+      return { withAuthMethods: true };
+    }
+    return {};
+  };
+
   return (
     <>
       <NavbarWrapper>
-        {!isLoading && (
-          <>
-            {isIframe ? (
-              <Navbar empty />
-            ) : userStatus.authenticated ? (
-              <Navbar />
-            ) : (
-              <Navbar withAuthMethods />
-            )}
-          </>
-        )}
+        <Navbar {...getNavbarProps()} />
       </NavbarWrapper>
       <WelcomeComponent />
     </>
