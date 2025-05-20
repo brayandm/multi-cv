@@ -47,6 +47,7 @@
       "ai_assistant": "AI Asistanı",
       "type_message": "Bir mesaj yazın...",
       "generate_cv": "CV Oluştur",
+      "save_cv": "CV'yi Kaydet",
       "quota_info": "Kota Bilgisi",
       "used": "Kullanıldı",
       "message_left": "Kalan mesajlar: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "CV'nizi Oluşturma Yöntemini Seçin",
+            "description": "ATS sistemleri için optimize edilmiş profesyonel bir CV ile kişisel markanıza uyacak şekilde stilleri, renkleri ve düzeni düzenleyebileceğiniz özelleştirilebilir bir versiyon arasında seçim yapın",
+            "optimized_cv": "Optimize Edilmiş CV",
+            "custom_cv": "Özelleştirilmiş CV"
+          },
           "loading": {
             "descriptions": {
               "1": "Kişisel bilgileri analiz ediliyor...",
@@ -535,6 +542,11 @@
         "title": "Zaten Premium Kullanıcısınız",
         "description": "Zaten premium bir kullanıcısınız. Yeni bir plan satın almadan önce mevcut planınızı harcayın."
       }
+    },
+    "edit_cv": {
+      "change_template": "Başka bir şablon seçin",
+      "select_template": "Bir şablon seçin",
+      "new_bullet": "Yeni madde noktası..."
     }
   }
 }

@@ -47,6 +47,7 @@
       "ai_assistant": "AIアシスタント",
       "type_message": "メッセージを入力...",
       "generate_cv": "CVを生成",
+      "save_cv": "履歴書を保存",
       "quota_info": "クォータ情報",
       "used": "使用済み",
       "message_left": "残りのメッセージ: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "履歴書の作成方法を選択してください",
+            "description": "ATSシステムに最適化されたプロフェッショナルな履歴書と、スタイル、色、レイアウトを編集して個人ブランドに合わせることができるカスタマイズ可能なバージョンのいずれかを選択してください",
+            "optimized_cv": "最適化された履歴書",
+            "custom_cv": "カスタム履歴書"
+          },
           "loading": {
             "descriptions": {
               "1": "個人情報を分析しています...",
@@ -535,6 +542,11 @@
         "title": "すでにプレミアムユーザー",
         "description": "あなたはすでにプレミアムユーザーです。新しいプランを購入する前に現在のプランを使い切ってください。"
       }
+    },
+    "edit_cv": {
+      "change_template": "別のテンプレートを選択",
+      "select_template": "テンプレートを選択",
+      "new_bullet": "新しい箇条書き..."
     }
   }
 }

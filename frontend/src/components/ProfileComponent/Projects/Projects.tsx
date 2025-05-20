@@ -179,7 +179,7 @@ const Projects = ({ formRef, width, maxWidth }: IProjectsProps) => {
 
         let inputs: IDynamicInputArray<string & boolean> = [];
 
-        if (windowWidth < SCREEN_SIZES.mobile) {
+        if (windowWidth < SCREEN_SIZES.sm) {
           inputs = [
             projectNameInput,
             linkInput,

@@ -47,6 +47,7 @@
       "ai_assistant": "Trợ lý AI",
       "type_message": "Gõ một tin nhắn...",
       "generate_cv": "Tạo CV",
+      "save_cv": "Lưu CV",
       "quota_info": "Thông tin hạn ngạch",
       "used": "Đã sử dụng",
       "message_left": "Tin nhắn còn lại: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Chọn Cách Tạo CV Của Bạn",
+            "description": "Chọn giữa một CV chuyên nghiệp được tối ưu hóa cho hệ thống ATS và một phiên bản tùy chỉnh mà bạn có thể chỉnh sửa kiểu dáng, màu sắc và bố cục để phù hợp với thương hiệu cá nhân của bạn",
+            "optimized_cv": "CV Tối Ưu",
+            "custom_cv": "CV Tùy Chỉnh"
+          },
           "loading": {
             "descriptions": {
               "1": "Đang phân tích thông tin cá nhân...",
@@ -535,6 +542,11 @@
         "title": "Đã là Người dùng Cao cấp",
         "description": "Bạn đã là người dùng cao cấp. Hãy sử dụng gói hiện tại của bạn trước khi mua gói mới."
       }
+    },
+    "edit_cv": {
+      "change_template": "Chọn một mẫu khác",
+      "select_template": "Chọn một mẫu",
+      "new_bullet": "Điểm mới..."
     }
   }
 }

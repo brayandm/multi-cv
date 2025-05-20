@@ -21,85 +21,90 @@ import {
   ContactInfoSection,
   SummarySection,
   ProfilePicture,
+  ColorableDiv,
 } from "./utils/components";
 
-export default function DefaultTemplate() {
+export default function CreativeTopBarTemplate() {
   return (
     <Div
       style={{
         display: "flex",
+        flexDirection: "column",
         width: "100%",
         height: "100%",
         backgroundColor: "#fff",
+        fontFamily: "sans-serif",
       }}
     >
-      {/* Sidebar */}
-      <Div
+      {/* Top Presentation Card */}
+      <ColorableDiv
         style={{
-          width: "30%",
+          width: "100%",
           backgroundColor: "#f4f0ed",
-          padding: "30px 20px",
+          padding: "40px 30px",
           boxSizing: "border-box",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          borderBottom: "4px solid #2b2b2b",
+          gap: "30px",
         }}
       >
-        <Div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            marginBottom: 20,
-          }}
-        >
+        <Div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <ProfilePicture
             style={{
-              width: 100,
-              height: 100,
+              width: 120,
+              height: 120,
               borderRadius: "50%",
               backgroundColor: "#ccc",
+              border: "3px solid #2b2b2b",
             }}
-          ></ProfilePicture>
+          />
+          <Div>
+            <Div style={{ fontSize: 36, fontWeight: "bold", color: "#2b2b2b" }}>
+              <FullName />
+            </Div>
+            <ContactInfoSection
+              style={{
+                fontSize: 16,
+                marginTop: 4,
+                color: "#555",
+              }}
+            />
+          </Div>
         </Div>
 
-        <ContactInfoSection
-          style={{
-            fontSize: 18,
-            fontWeight: "bold",
-            marginBottom: 10,
-            color: "#2b2b2b",
-            textAlign: "center",
-          }}
-        />
-
+        {/* Contact Details as badges */}
         <Div
           style={{
             display: "flex",
-            flexDirection: "column",
-            gap: 8,
-            fontSize: 12,
+            flexWrap: "wrap",
+            gap: "10px",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
-          <Email />
-          <Phone />
-          <Location />
-          <LinkedIn />
-          <GitHub />
+          <Badge>
+            <Email />
+          </Badge>
+          <Badge>
+            <Phone />
+          </Badge>
+          <Badge>
+            <Location />
+          </Badge>
+          <Badge>
+            <LinkedIn />
+          </Badge>
+          <Badge>
+            <GitHub />
+          </Badge>
         </Div>
-      </Div>
+      </ColorableDiv>
 
       {/* Main Content */}
-      <Div style={{ width: "70%", padding: "30px 40px" }}>
-        <Div
-          style={{
-            fontSize: 32,
-            fontWeight: "bold",
-            color: "#2b2b2b",
-            marginBottom: 4,
-          }}
-        >
-          <FullName />
-        </Div>
-
+      <Div style={{ padding: "30px 40px" }}>
         <Div className="summary-section" style={{ marginBottom: 40 }}>
           <SummarySection
             style={{
@@ -110,7 +115,6 @@ export default function DefaultTemplate() {
               marginBottom: 10,
             }}
           />
-
           <Summary />
         </Div>
 
@@ -144,7 +148,14 @@ export default function DefaultTemplate() {
                   }}
                 >
                   <ExperienceDescriptions>
-                    <Div style={{ marginTop: 2 }}>
+                    <Div
+                      style={{
+                        marginTop: 2,
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: 4,
+                      }}
+                    >
                       <Span>- </Span>
                       <ExperienceDescription />
                     </Div>
@@ -155,6 +166,25 @@ export default function DefaultTemplate() {
           </ExperienceList>
         </Div>
       </Div>
+    </Div>
+  );
+}
+
+import React from "react";
+
+function Badge({ children }: React.PropsWithChildren<object>) {
+  return (
+    <Div
+      style={{
+        display: "inline-block",
+        padding: "4px 12px",
+        borderRadius: "20px",
+        backgroundColor: "#575757",
+        color: "#fff",
+        fontSize: 12,
+      }}
+    >
+      {children}
     </Div>
   );
 }

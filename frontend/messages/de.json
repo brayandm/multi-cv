@@ -47,6 +47,7 @@
       "ai_assistant": "KI-Assistent",
       "type_message": "Nachricht eingeben...",
       "generate_cv": "CV generieren",
+      "save_cv": "CV speichern",
       "quota_info": "Quota-Info",
       "used": "Verwendet",
       "message_left": "Verbleibende Nachrichten: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Wählen Sie, wie Sie Ihren Lebenslauf erstellen möchten",
+            "description": "Wählen Sie zwischen einem professionellen Lebenslauf, der für ATS-Systeme optimiert ist, und einer anpassbaren Version, in der Sie Stile, Farben und Layout bearbeiten können, um Ihre persönliche Marke widerzuspiegeln",
+            "optimized_cv": "Optimierter Lebenslauf",
+            "custom_cv": "Benutzerdefinierter Lebenslauf"
+          },
           "loading": {
             "descriptions": {
               "1": "Persönliche Informationen werden analysiert...",
@@ -535,6 +542,11 @@
         "title": "Bereits ein Premium-Nutzer",
         "description": "Sie sind bereits ein Premium-Nutzer. Nutzen Sie Ihren aktuellen Plan, bevor Sie einen neuen kaufen."
       }
+    },
+    "edit_cv": {
+      "change_template": "Wählen Sie eine andere Vorlage",
+      "select_template": "Wählen Sie eine Vorlage",
+      "new_bullet": "Neuer Aufzählungspunkt..."
     }
   }
 }

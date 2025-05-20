@@ -47,6 +47,7 @@
       "ai_assistant": "AI Assistent",
       "type_message": "Typ een bericht...",
       "generate_cv": "CV genereren",
+      "save_cv": "CV opslaan",
       "quota_info": "Quota-informatie",
       "used": "Gebruikt",
       "message_left": "Berichten over: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Kies Hoe U Uw CV Wilt Maken",
+            "description": "Kies tussen een professioneel CV dat geoptimaliseerd is voor ATS-systemen en een aanpasbare versie waarin u stijlen, kleuren en lay-out kunt bewerken om bij uw persoonlijke merk te passen",
+            "optimized_cv": "Geoptimaliseerd CV",
+            "custom_cv": "Aangepast CV"
+          },
           "loading": {
             "descriptions": {
               "1": "Persoonlijke informatie analyseren...",
@@ -535,6 +542,11 @@
         "title": "Al een Premium Gebruiker",
         "description": "Je bent al een premium gebruiker. Gebruik je huidige plan voordat je een nieuw plan koopt."
       }
+    },
+    "edit_cv": {
+      "change_template": "Selecteer een andere sjabloon",
+      "select_template": "Selecteer een sjabloon",
+      "new_bullet": "Nieuw opsommingsteken..."
     }
   }
 }

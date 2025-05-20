@@ -47,6 +47,7 @@
       "ai_assistant": "Asistente AI",
       "type_message": "Escribe un mensaje...",
       "generate_cv": "Generar CV",
+      "save_cv": "Guardar CV",
       "quota_info": "Información de cuota",
       "used": "Usado",
       "message_left": "Mensajes restantes: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Elige Cómo Crear Tu CV",
+            "description": "Elige entre un CV profesional optimizado para sistemas ATS y una versión personalizable donde puedes editar estilos, colores y diseño para que coincida con tu marca personal",
+            "optimized_cv": "CV Optimizado",
+            "custom_cv": "CV Personalizado"
+          },
           "loading": {
             "descriptions": {
               "1": "Analizando información personal...",
@@ -535,6 +542,11 @@
         "title": "Ya eres un usuario Premium",
         "description": "Ya eres un usuario premium. Gasta tu plan actual antes de comprar uno nuevo."
       }
+    },
+    "edit_cv": {
+      "change_template": "Seleccionar otra plantilla",
+      "select_template": "Seleccionar una plantilla",
+      "new_bullet": "Nuevo punto de viñeta..."
     }
   }
 }

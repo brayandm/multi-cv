@@ -207,7 +207,7 @@ const Certifications = ({ formRef, width, maxWidth }: ICertificationsProps) => {
 
         let inputs: IDynamicInputArray<string & boolean> = [];
 
-        if (windowWidth < SCREEN_SIZES.mobile) {
+        if (windowWidth < SCREEN_SIZES.sm) {
           inputs = [
             certificationNameInput,
             [issuerInput, certificateIdInput],

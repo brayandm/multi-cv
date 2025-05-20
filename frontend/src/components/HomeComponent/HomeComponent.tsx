@@ -61,7 +61,7 @@ export default function HomeComponent() {
     <main className="">
       <div className="flex justify-center"></div>
       <div className="flex w-full flex-col">
-        {width < SCREEN_SIZES.tablet ? (
+        {width < SCREEN_SIZES.md ? (
           <Tabs
             aria-label="Options"
             classNames={{
@@ -85,7 +85,7 @@ export default function HomeComponent() {
               cursor: "w-40 bg-primary",
               tab: "w-full sm:max-w-fit h-12 flex justify-center items-center",
               tabContent: "group-data-[selected=true]:text-primary",
-              panel: "w-full pr-48 pt-16",
+              panel: "w-full xl:pr-48 pt-16",
             }}
             color="primary"
             variant="underlined"

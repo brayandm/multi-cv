@@ -47,6 +47,7 @@
       "ai_assistant": "Asisten AI",
       "type_message": "Ketik pesan...",
       "generate_cv": "Hasilkan CV",
+      "save_cv": "Simpan CV",
       "quota_info": "Info Kuota",
       "used": "Digunakan",
       "message_left": "Pesan tersisa: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Pilih Cara Membuat CV Anda",
+            "description": "Pilih antara CV profesional yang dioptimalkan untuk sistem ATS dan versi yang dapat disesuaikan di mana Anda dapat mengedit gaya, warna, dan tata letak untuk mencocokkan merek pribadi Anda",
+            "optimized_cv": "CV Teroptimasi",
+            "custom_cv": "CV Kustom"
+          },
           "loading": {
             "descriptions": {
               "1": "Menganalisis informasi pribadi...",
@@ -535,6 +542,11 @@
         "title": "Sudah Pengguna Premium",
         "description": "Anda sudah menjadi pengguna premium. Gunakan rencana Anda saat ini sebelum membeli yang baru."
       }
+    },
+    "edit_cv": {
+      "change_template": "Pilih template lain",
+      "select_template": "Pilih template",
+      "new_bullet": "Poin baru..."
     }
   }
 }

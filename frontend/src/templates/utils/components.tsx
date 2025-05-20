@@ -1,6 +1,80 @@
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import { useCv } from "@/contexts/CvContext";
 import { userProfilePictureApiLink } from "@/lib/links";
+import { AnimatePresence, motion } from "framer-motion";
+import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
+
+export const COLOR_PALETTE = [
+  "#f4f0ed",
+  "#fef9c3",
+  "#cce5ff",
+  "#d1fae5",
+  "#fbd5d5",
+  "#e0e7ff",
+];
+
+export const ColorPalette = ({
+  onSelect,
+  isVisible,
+}: {
+  onSelect: (color: string) => void;
+  isVisible: boolean;
+}) => {
+  const radius = 60;
+  const angles = COLOR_PALETTE.map(
+    (_, i) => ((i / COLOR_PALETTE.length) * 270 - 135) * (Math.PI / 180)
+  );
+
+  return (
+    <motion.div
+      style={{
+        position: "relative",
+        width: `${radius * 2}px`,
+        height: `${radius * 2}px`,
+      }}
+    >
+      <AnimatePresence>
+        {isVisible &&
+          COLOR_PALETTE.map((paletteColor, index) => {
+            const angle = angles[index];
+            const x = radius + radius * Math.cos(angle) - 16;
+            const y = radius + radius * Math.sin(angle) - 16;
+
+            return (
+              <motion.div
+                key={paletteColor}
+                onClick={() => onSelect(paletteColor)}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0 }}
+                transition={{
+                  delay: index * 0.1,
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                }}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                style={{
+                  position: "absolute",
+                  top: `${y}px`,
+                  left: `${x}px`,
+                  width: "32px",
+                  height: "32px",
+                  borderRadius: "50%",
+                  backgroundColor: paletteColor,
+                  cursor: "pointer",
+                  border: "1px solid #ccc",
+                  boxShadow: "0 1px 4px rgba(0,0,0,0.2)",
+                }}
+              />
+            );
+          })}
+      </AnimatePresence>
+    </motion.div>
+  );
+};
 
 const EditableField = ({
   value,
@@ -48,6 +122,58 @@ export const Div = ({
   });
 
   return <div {...props}>{childrenWithProps}</div>;
+};
+
+export const ColorableDiv = ({
+  index,
+  subindex,
+  children,
+  ...props
+}: {
+  index?: number;
+  subindex?: number;
+  children?: ReactNode;
+} & React.HTMLAttributes<HTMLDivElement>) => {
+  const childrenWithProps = React.Children.map(children, (child) => {
+    if (React.isValidElement<{ index?: number; subindex?: number }>(child)) {
+      return React.cloneElement(child, { index, subindex });
+    }
+    return child;
+  });
+
+  const [color, setColor] = useState<string>("#f4f0ed");
+  const [hovered, setHovered] = useState<boolean>(false);
+
+  const handleColorSelect = (selectedColor: string) => {
+    setColor(selectedColor);
+  };
+
+  return (
+    <div
+      {...props}
+      style={{
+        ...props.style,
+        position: "relative",
+        backgroundColor: color,
+        transition: "background-color 0.3s",
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      <div
+        style={{
+          position: "absolute",
+          top: "8px",
+          right: "8px",
+          zIndex: 10,
+        }}
+      >
+        <ColorPalette onSelect={handleColorSelect} isVisible={hovered} />
+      </div>
+
+      {childrenWithProps}
+    </div>
+  );
 };
 
 export const Span = ({
@@ -433,20 +559,81 @@ export const ExperienceDescription = ({
   subindex?: number;
 } & React.HTMLAttributes<HTMLDivElement>) => {
   const { cv, setCv } = useCv();
+  const t = useTranslations();
+  const [hovered, setHovered] = useState(false);
+
+  const handleDelete = () => {
+    const updated = [...cv.experiences];
+    const updatedDescriptions = [...updated[index].descriptions];
+    updatedDescriptions.splice(subindex, 1);
+    updated[index] = {
+      ...updated[index],
+      descriptions: updatedDescriptions,
+    };
+    setCv({ ...cv, experiences: updated });
+  };
+
+  const handleAddBelow = () => {
+    const updated = [...cv.experiences];
+    const updatedDescriptions = [...updated[index].descriptions];
+    updatedDescriptions.splice(subindex + 1, 0, t("pages.edit_cv.new_bullet"));
+    updated[index] = {
+      ...updated[index],
+      descriptions: updatedDescriptions,
+    };
+    setCv({ ...cv, experiences: updated });
+  };
+
   return (
-    <EditableField
-      value={cv.experiences[index].descriptions[subindex]}
-      onEdit={(val) => {
-        const updated = [...cv.experiences];
-        const updatedDescriptions = [...updated[index].descriptions];
-        updatedDescriptions[subindex] = val;
-        updated[index] = {
-          ...updated[index],
-          descriptions: updatedDescriptions,
-        };
-        setCv({ ...cv, experiences: updated });
-      }}
-      {...props}
-    />
+    <motion.div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div style={{ minWidth: "200px", minHeight: "20px" }}>
+        <EditableField
+          value={cv.experiences[index].descriptions[subindex]}
+          onEdit={(val) => {
+            const updated = [...cv.experiences];
+            const updatedDescriptions = [...updated[index].descriptions];
+            updatedDescriptions[subindex] = val;
+            updated[index] = {
+              ...updated[index],
+              descriptions: updatedDescriptions,
+            };
+            setCv({ ...cv, experiences: updated });
+          }}
+          {...props}
+        />
+      </div>
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            className="absolute flex gap-1 z-10 bottom-[-25px] items-center justify-center"
+            initial={{ opacity: 0, scale: 0.9, y: -5 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -5 }}
+            transition={{ duration: 0.2 }}
+          >
+            <button
+              className="bg-primary hover:bg-primary-700 text-sm p-1 border rounded shadow transition-all duration-200"
+              onClick={handleAddBelow}
+            >
+              <PlusIcon className="text-white w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+            </button>
+            <button
+              className="bg-danger hover:bg-danger-300 text-sm p-1 border rounded shadow transition-all duration-200"
+              onClick={handleDelete}
+            >
+              <TrashIcon className="text-white w-4 h-4 transition-transform duration-200 group-hover:scale-110" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };

@@ -47,6 +47,7 @@
       "ai_assistant": "AI Sahayak",
       "type_message": "Ek sandesh likhein...",
       "generate_cv": "CV banaein",
+      "save_cv": "CV bachao",
       "quota_info": "Quota Jankari",
       "used": "Istemaal kiya",
       "message_left": "Bache hue sandesh: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Apne CV ko banane ka tarika chuniye",
+            "description": "Ek peshewar CV chuniye jo ATS pranaliyon ke liye optimized hai aur ek customizable version jahan aap apne personal brand ke anuroop styles, colors aur layout ko edit kar sakte hain",
+            "optimized_cv": "Optimized CV",
+            "custom_cv": "Custom CV"
+          },
           "loading": {
             "descriptions": {
               "1": "Vyaktigat jankari ka vishleshan kiya ja raha hai...",
@@ -535,6 +542,11 @@
         "title": "Pehele se Premium Upyogakarta",
         "description": "Aap pehle se ek premium upyogakarta hain. Naya yojana kharidne se pehle apne vartaman yojana ka istemal karein."
       }
+    },
+    "edit_cv": {
+      "change_template": "Ek aur template chuniye",
+      "select_template": "Ek template chuniye",
+      "new_bullet": "Naya bullet point..."
     }
   }
 }

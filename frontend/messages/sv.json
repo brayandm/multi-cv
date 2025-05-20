@@ -47,6 +47,7 @@
       "ai_assistant": "AI-assistent",
       "type_message": "Skriv ett meddelande...",
       "generate_cv": "Generera CV",
+      "save_cv": "Spara CV",
       "quota_info": "Kvoteinformation",
       "used": "Använt",
       "message_left": "Meddelanden kvar: {count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "Välj Hur Du Vill Skapa Ditt CV",
+            "description": "Välj mellan ett professionellt CV optimerat för ATS-system och en anpassningsbar version där du kan redigera stilar, färger och layout för att matcha ditt personliga varumärke",
+            "optimized_cv": "Optimerat CV",
+            "custom_cv": "Anpassat CV"
+          },
           "loading": {
             "descriptions": {
               "1": "Analyserar personlig information...",
@@ -535,6 +542,11 @@
         "title": "Redan en premiumanvändare",
         "description": "Du är redan en premiumanvändare. Använd din nuvarande plan innan du köper en ny."
       }
+    },
+    "edit_cv": {
+      "change_template": "Välj en annan mall",
+      "select_template": "Välj en mall",
+      "new_bullet": "Ny punkt..."
     }
   }
 }

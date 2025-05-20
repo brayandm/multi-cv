@@ -47,6 +47,7 @@
       "ai_assistant": "AI 助手",
       "type_message": "输入消息...",
       "generate_cv": "生成简历",
+      "save_cv": "保存简历",
       "quota_info": "配额信息",
       "used": "已使用",
       "message_left": "剩余消息：{count}",
@@ -310,6 +311,12 @@
               }
             }
           },
+          "choosing_generation_type": {
+            "title": "选择如何创建您的简历",
+            "description": "在专业的简历（针对ATS系统优化）和可自定义版本之间进行选择，您可以编辑样式、颜色和布局以匹配您的个人品牌",
+            "optimized_cv": "优化简历",
+            "custom_cv": "自定义简历"
+          },
           "loading": {
             "descriptions": {
               "1": "正在分析个人信息...",
@@ -535,6 +542,11 @@
         "title": "已是高级用户",
         "description": "您已经是高级用户。在购买新计划之前，请先使用当前计划。"
       }
+    },
+    "edit_cv": {
+      "change_template": "选择另一个模板",
+      "select_template": "选择一个模板",
+      "new_bullet": "新的要点..."
     }
   }
 }

@@ -10,10 +10,12 @@ export const MAX_LANGUAGES_ELEMENTS = 10;
 export const MAX_SKILLS_ELEMENTS = 50;
 
 export const SCREEN_SIZES = {
-  mobile: 640,
-  tablet: 768,
+  sm: 640, // Small devices (mobile)
+  md: 768, // Medium devices (tablet)
+  lg: 1024, // Large devices (laptop)
+  xl: 1280, // Extra large devices (desktop)
+  "2xl": 1536, // 2x Extra large (widescreens)
 };
-
 export const DEFAULT_CARD_WIDTH = 500; // px
 export const DEFAULT_CARD_MAX_WIDTH = 90; // vw
 export const DEFAULT_CARD_HEIGHT = 650; // px
