@@ -1,6 +1,9 @@
 import React, { ReactElement, ReactNode, useState } from "react";
 import { useCv } from "@/contexts/CvContext";
-import { userProfilePictureApiLink } from "@/lib/links";
+import {
+  dummyProfilePictureApiLink,
+  userProfilePictureApiLink,
+} from "@/lib/links";
 import { AnimatePresence, motion } from "framer-motion";
 import { PlusIcon, TrashIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
@@ -278,10 +281,17 @@ export const H3 = ({
 
 export const ProfilePicture = ({
   ...props
-}: {} & React.HTMLAttributes<HTMLDivElement>) => {
+}: React.HTMLAttributes<HTMLImageElement>) => {
+  const [src, setSrc] = useState(userProfilePictureApiLink);
+
   return (
-    /* eslint-disable-next-line @next/next/no-img-element */
-    <img {...props} alt="Profile" src={userProfilePictureApiLink} />
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      {...props}
+      alt="Profile"
+      src={src}
+      onError={() => setSrc(dummyProfilePictureApiLink)}
+    />
   );
 };
 
