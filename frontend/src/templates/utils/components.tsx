@@ -613,16 +613,16 @@ export const ExperienceDescription = ({
       {hovered && (
         <div className="absolute flex gap-1 z-10 bottom-[-5px] w-24 items-center justify-center">
           <button
-            className="bg-white text-sm p-1 border rounded shadow hover:bg-gray-100"
+            className="bg-primary hover:bg-primary-700 text-sm p-1 border rounded shadow"
             onClick={handleAddBelow}
           >
-            <PlusIcon className="w-4 h-4" />
+            <PlusIcon className="text-white w-4 h-4" />
           </button>
           <button
-            className="bg-white text-sm p-1 border rounded shadow hover:bg-gray-100"
+            className="bg-danger hover:bg-danger-300 text-sm p-1 border rounded shadow"
             onClick={handleDelete}
           >
-            <TrashIcon className="w-4 h-4" />
+            <TrashIcon className=" text-white w-4 h-4" />
           </button>
         </div>
       )}
