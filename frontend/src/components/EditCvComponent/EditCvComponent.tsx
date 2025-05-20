@@ -160,13 +160,20 @@ export default function EditCvComponent() {
                       transform: "scale(0.40)",
                       transformOrigin: "top",
                     }}
-                    className="flex flex-row justify-center items-center gap-3"
+                    className="flex flex-row justify-center items-center gap-32"
                   >
                     <div
-                      onClick={() => setTemplate("topbar")}
-                      className="transition-transform hover:scale-105 cursor-pointer"
+                      style={{
+                        transform: "scale(0.90)",
+                        transformOrigin: "top",
+                      }}
                     >
-                      {getTemplate(<TopBarTemplate />, false)}
+                      <div
+                        onClick={() => setTemplate("topbar")}
+                        className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                      >
+                        {getTemplate(<TopBarTemplate />, false)}
+                      </div>
                     </div>
                     <div
                       onClick={() => setTemplate("default")}
@@ -175,10 +182,17 @@ export default function EditCvComponent() {
                       {getTemplate(<DefaultTemplate />, false)}
                     </div>
                     <div
-                      onClick={() => setTemplate("latex")}
-                      className="transition-transform hover:scale-105 cursor-pointer"
+                      style={{
+                        transform: "scale(0.90)",
+                        transformOrigin: "top",
+                      }}
                     >
-                      {getTemplate(<LatexLikeTemplate />, false)}
+                      <div
+                        onClick={() => setTemplate("latex")}
+                        className="transition-transform hover:scale-105 cursor-pointer pt-32"
+                      >
+                        {getTemplate(<LatexLikeTemplate />, false)}
+                      </div>
                     </div>
                   </div>
                 </div>
