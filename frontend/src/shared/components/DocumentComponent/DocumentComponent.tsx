@@ -66,9 +66,11 @@ export default function DocumentComponent({
             <DocumentTextIcon className="w-6 h-6" />
           </div>
           <div>
-            <h2 className="text-sm font-semibold text-gray-800 dark:text-white">
-              {document.name}
-            </h2>
+            <div className="max-w-[170px]">
+              <h2 className="text-sm font-semibold text-gray-800 dark:text-white truncate overflow-hidden whitespace-nowrap">
+                {document.name}
+              </h2>
+            </div>
             <p className="text-xs text-gray-500 dark:text-gray-400">
               {document.type === "cv"
                 ? t("common.texts.cv")

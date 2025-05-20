@@ -150,11 +150,11 @@ export default function ApplicationsComponent() {
 
                         <div className="flex flex-col flex-grow">
                           <div className="flex flex-row justify-between items-start w-full">
-                            <div>
-                              <h2 className="text-sm font-semibold text-gray-800 dark:text-white">
+                            <div className="max-w-[100px] lg:max-w-[300px]">
+                              <h2 className="text-sm font-semibold text-gray-800 dark:text-white truncate overflow-hidden whitespace-nowrap">
                                 {application.company_name || "Unknown Company"}
                               </h2>
-                              <p className="text-xs text-gray-600 dark:text-gray-400">
+                              <p className="text-xs text-gray-600 dark:text-gray-400 truncate overflow-hidden whitespace-nowrap">
                                 {application.role || "Unknown Role"}
                               </p>
                             </div>
