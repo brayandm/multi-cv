@@ -1,3 +1,4 @@
+import { useCv } from "@/contexts/CvContext";
 import {
   CompanyName,
   Email,
@@ -25,6 +26,8 @@ import {
 } from "./utils/components";
 
 export default function CreativeTopBarTemplate() {
+  const { cv } = useCv();
+
   return (
     <Div
       style={{
@@ -85,21 +88,31 @@ export default function CreativeTopBarTemplate() {
             alignItems: "center",
           }}
         >
-          <Badge>
-            <Email />
-          </Badge>
-          <Badge>
-            <Phone />
-          </Badge>
-          <Badge>
-            <Location />
-          </Badge>
-          <Badge>
-            <LinkedIn />
-          </Badge>
-          <Badge>
-            <GitHub />
-          </Badge>
+          {cv.email && (
+            <Badge>
+              <Email />
+            </Badge>
+          )}
+          {cv.phone && (
+            <Badge>
+              <Phone />
+            </Badge>
+          )}
+          {cv.location && (
+            <Badge>
+              <Location />
+            </Badge>
+          )}
+          {cv.linkedin && (
+            <Badge>
+              <LinkedIn />
+            </Badge>
+          )}
+          {cv.github && (
+            <Badge>
+              <GitHub />
+            </Badge>
+          )}
         </Div>
       </ColorableDiv>
 

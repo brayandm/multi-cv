@@ -1,3 +1,4 @@
+import React from "react";
 import {
   CompanyName,
   Email,
@@ -20,8 +21,11 @@ import {
   ExperienceSection,
   SummarySection,
 } from "./utils/components";
+import { useCv } from "@/contexts/CvContext";
 
 export default function LatexModernCvWithSections() {
+  const { cv } = useCv();
+
   return (
     <Div
       style={{
@@ -49,7 +53,15 @@ export default function LatexModernCvWithSections() {
               marginTop: 4,
             }}
           >
-            <Location /> | <Phone /> | <Email /> | <LinkedIn /> | <GitHub />
+            {cv.location && <Location />}
+            {cv.location && <Span> | </Span>}
+            {cv.phone && <Phone />}
+            {cv.phone && <Span> | </Span>}
+            {cv.email && <Email />}
+            {cv.email && <Span> | </Span>}
+            {cv.linkedin && <LinkedIn />}
+            {cv.linkedin && <Span> | </Span>}
+            {cv.github && <GitHub />}
           </Div>
         </Div>
       </Div>

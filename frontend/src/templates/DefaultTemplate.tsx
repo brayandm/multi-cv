@@ -1,3 +1,4 @@
+import { useCv } from "@/contexts/CvContext";
 import {
   CompanyName,
   Email,
@@ -25,6 +26,7 @@ import {
 } from "./utils/components";
 
 export default function DefaultTemplate() {
+  const { cv } = useCv();
   return (
     <Div
       style={{
@@ -80,11 +82,11 @@ export default function DefaultTemplate() {
             fontSize: 12,
           }}
         >
-          <Email />
-          <Phone />
-          <Location />
-          <LinkedIn />
-          <GitHub />
+          {cv.email && <Email />}
+          {cv.phone && <Phone />}
+          {cv.location && <Location />}
+          {cv.linkedin && <LinkedIn />}
+          {cv.github && <GitHub />}
         </Div>
       </ColorableDiv>
 
