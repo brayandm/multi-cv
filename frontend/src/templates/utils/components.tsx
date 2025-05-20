@@ -25,19 +25,16 @@ export const ColorPalette = ({
   );
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          style={{
-            position: "relative",
-            width: `${radius * 2}px`,
-            height: `${radius * 2}px`,
-          }}
-        >
-          {COLOR_PALETTE.map((paletteColor, index) => {
+    <motion.div
+      style={{
+        position: "relative",
+        width: `${radius * 2}px`,
+        height: `${radius * 2}px`,
+      }}
+    >
+      <AnimatePresence>
+        {isVisible &&
+          COLOR_PALETTE.map((paletteColor, index) => {
             const angle = angles[index];
             const x = radius + radius * Math.cos(angle) - 16;
             const y = radius + radius * Math.sin(angle) - 16;
@@ -72,9 +69,8 @@ export const ColorPalette = ({
               />
             );
           })}
-        </motion.div>
-      )}
-    </AnimatePresence>
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
