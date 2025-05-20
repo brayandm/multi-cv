@@ -269,10 +269,10 @@ export default function EditCvComponent() {
                   width < SCREEN_SIZES.sm
                     ? "scale(0.40)"
                     : width < SCREEN_SIZES.md
-                    ? "scale(0.60)"
-                    : width < SCREEN_SIZES.lg
-                    ? "scale(0.80)"
-                    : undefined,
+                      ? "scale(0.60)"
+                      : width < SCREEN_SIZES.lg
+                        ? "scale(0.80)"
+                        : undefined,
                 transformOrigin: "top",
                 display: "inline-block",
               }}
