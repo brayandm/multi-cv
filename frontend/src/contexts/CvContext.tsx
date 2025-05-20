@@ -65,6 +65,7 @@ interface Storage {
   cvTexts: CvTexts;
   applicationId: string | null;
   cvTemplateId: string | null;
+  storedCv: boolean;
 }
 
 const CvContext = createContext<CvContextType | undefined>(undefined);
@@ -101,7 +102,7 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
 
   const [cvTemplateId, setCvTemplateId] = useState<string | null>(null);
 
-  const [storedCv, setStoredCv] = useState<boolean>(false);
+  const [storedCv, setStoredCv] = useState<boolean>(true);
 
   const cleanUp = () => {
     setStoredCv(false);
@@ -111,12 +112,13 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
     const stored = sessionStorage.getItem("cv_context");
     if (stored) {
       try {
-        const { cv, cvTexts, applicationId, cvTemplateId }: Storage =
+        const { cv, cvTexts, applicationId, cvTemplateId, storedCv }: Storage =
           JSON.parse(stored);
         setCv(cv);
         setCvTexts(cvTexts);
         setApplicationId(applicationId);
         setCvTemplateId(cvTemplateId);
+        setStoredCv(storedCv);
       } catch {
         console.warn("Invalid CV in sessionStorage");
       }
@@ -126,9 +128,9 @@ export const CvProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     sessionStorage.setItem(
       "cv_context",
-      JSON.stringify({ cv, cvTexts, applicationId, cvTemplateId })
+      JSON.stringify({ cv, cvTexts, applicationId, cvTemplateId, storedCv })
     );
-  }, [cv, cvTexts, applicationId, cvTemplateId]);
+  }, [cv, cvTexts, applicationId, cvTemplateId, storedCv]);
 
   return (
     <CvContext.Provider
