@@ -589,7 +589,7 @@ export const ExperienceDescription = ({
       onMouseLeave={() => setHovered(false)}
       className="relative"
     >
-      <div>
+      <div style={{ minWidth: "200px", minHeight: "20px" }}>
         <EditableField
           value={cv.experiences[index].descriptions[subindex]}
           onEdit={(val) => {
