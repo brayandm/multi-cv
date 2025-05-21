@@ -11,6 +11,8 @@ jobs:
             - uses: actions/checkout@v3
             - name: Copying .env to frontend project
               run: echo "${{ vars.PROD_FRONTEND }}" > frontend/.env
+            - name: Copying .env to frontend e2e project
+              run: echo "${{ vars.PROD_E2E_TEST }}" > frontend/.env.e2e
             - name: Copying .env to backend project
               run: echo "${{ vars.PROD_BACKEND }}" > backend/.env
             - name: Copying .env to engine project
@@ -41,37 +43,9 @@ jobs:
             - name: Starting the containers
               run: docker compose up -d
 
-    e2e:
-        if: github.event_name == 'workflow_dispatch'
-        needs: deploy
-        runs-on:
-            - self-hosted
-        steps:
-            - name: Prepare and run E2E tests with env vars
-              run: |
-                  echo "${{ vars.E2E_TEST }}" > e2e.env
-
-                  docker run --rm \
-                    --init \
-                    --ipc=host \
-                    --cap-add=SYS_ADMIN \
-                    $(awk -F= '{print "-e", $1}' e2e.env) \
-                    -v ${{ github.workspace }}/playwright-report:/tests/playwright-report \
-                    -v ${{ github.workspace }}/frontend:/tests \
-                    -w /tests \
-                    mcr.microsoft.com/playwright:v1.52.0-noble \
-                    npx playwright test
-                    
-                      - name: Upload Playwright HTML report
-                        if: always()
-                        uses: actions/upload-artifact@v3
-                        with:
-                            name: playwright-report
-                            path: playwright-report
-
     clean:
         if: always()
-        needs: e2e
+        needs: deploy
         runs-on:
             - self-hosted
         steps:

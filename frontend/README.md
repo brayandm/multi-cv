@@ -16,6 +16,7 @@ npm install
 
 ```bash
 cp .env.example .env
+cp .env.e2e.example .env.e2e
 ```
 
 4 - Create Docker Network:
