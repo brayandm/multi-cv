@@ -38,7 +38,14 @@ services:
         depends_on:
             nginx:
                 condition: service_healthy
+            engine:
+                condition: service_healthy
         command: npm run start
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:3000"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
 
     nginx:
         image: multi-cv-nginx
