@@ -28,6 +28,12 @@ jobs:
               run: echo "${{ vars.PROD_E2E_TEST }}" > frontend/.env.e2e
             - name: Run tests
               run: bash run-tests.sh
+            - name: Upload Playwright report
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: playwright-report
+                  path: frontend/playwright-report
 
     deploy:
         if: github.event_name == 'workflow_dispatch'
