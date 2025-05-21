@@ -7,9 +7,13 @@ test("test", async ({ page }) => {
       "Create impactful resumes with AI MultiCV helps you generate personalized"
     )
     .click();
+
+  // Check cookie consent modal
   await expect(page.getByRole("paragraph")).toContainText(
     "We use cookies to improve your experience, help us identify bugs and issues, and gather usage data for analysis. For more information, see our Privacy Policy and Cookies Policy. You can choose whether to allow this."
   );
+
+  // Set cookie consent to accepted
   await page.getByRole("button", { name: "Accept" }).click();
   await expect(page.locator("h1")).toContainText(
     "Create impactful resumes with AI"

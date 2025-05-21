@@ -23,3 +23,7 @@ docker run --rm \
   -w /tests \
   mcr.microsoft.com/playwright:v1.52.0-noble \
   bash -c "npm ci && npx playwright test"
+
+if [ -z "$CI" ]; then
+  npx playwright show-report
+fi
