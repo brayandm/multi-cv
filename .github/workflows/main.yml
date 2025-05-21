@@ -41,6 +41,31 @@ jobs:
             - name: Starting the containers
               run: docker compose up -d
 
+    e2e:
+        if: github.event_name == 'workflow_dispatch'
+        needs: deploy
+        runs-on:
+            - self-hosted
+        steps:
+            - name: Run E2E tests in Docker
+              run: |
+                  docker run --rm \
+                    --init \
+                    --ipc=host \
+                    --cap-add=SYS_ADMIN \
+                    -v ${{ github.workspace }}/playwright-report:/tests/playwright-report \
+                    -v ${{ github.workspace }}/frontend:/tests \
+                    -w /tests \
+                    mcr.microsoft.com/playwright:v1.52.0-noble \
+                    npx playwright test
+
+            - name: Upload Playwright HTML report
+              if: always()
+              uses: actions/upload-artifact@v3
+              with:
+                  name: playwright-report
+                  path: playwright-report
+
     clean:
         if: always()
         needs: deploy
