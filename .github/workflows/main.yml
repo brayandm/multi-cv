@@ -71,7 +71,7 @@ jobs:
 
     clean:
         if: always()
-        needs: deploy
+        needs: e2e
         runs-on:
             - self-hosted
         steps:
