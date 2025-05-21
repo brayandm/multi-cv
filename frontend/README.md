@@ -45,6 +45,12 @@ open http://localhost:3000
 docker compose -f docker-compose.build.yml build --compress --force-rm --no-cache --parallel --pull
 ```
 
+## Testing
+
+```bash
+bash test.sh
+```
+
 ## Install dependencies
 
 ```bash
