@@ -11,8 +11,6 @@ jobs:
             - uses: actions/checkout@v3
             - name: Copying .env to frontend project
               run: echo "${{ vars.PROD_FRONTEND }}" > frontend/.env
-            - name: Copying .env to frontend e2e project
-              run: echo "${{ vars.PROD_E2E_TEST }}" > frontend/.env.e2e
             - name: Copying .env to backend project
               run: echo "${{ vars.PROD_BACKEND }}" > backend/.env
             - name: Copying .env to engine project
@@ -26,6 +24,8 @@ jobs:
             - self-hosted
         steps:
             - uses: actions/checkout@v3
+            - name: Copying .env to frontend e2e project
+              run: echo "${{ vars.PROD_E2E_TEST }}" > frontend/.env.e2e
             - name: Run tests
               run: bash run-tests.sh
 
