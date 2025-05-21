@@ -22,6 +22,8 @@ jobs:
         needs: build
         runs-on:
             - self-hosted
+        env:
+            CI: true
         steps:
             - uses: actions/checkout@v3
             - name: Copying .env to frontend e2e project
