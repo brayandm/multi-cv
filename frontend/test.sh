@@ -16,6 +16,8 @@ docker run --rm \
   --ipc=host \
   --cap-add=SYS_ADMIN \
   -e BASE_URL="$BASE_URL" \
+  -e USER_TEST_EMAIL="$USER_TEST_EMAIL" \
+  -e USER_TEST_PASSWORD="$USER_TEST_PASSWORD" \
   -v $(pwd):/tests \
   -v $(pwd)/playwright-report:/tests/playwright-report \
   -w /tests \
