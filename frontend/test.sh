@@ -11,7 +11,7 @@ set -a
 source "$ENV_FILE"
 set +a
 
-docker run -it --rm \
+docker run --rm \
   --init \
   --ipc=host \
   --cap-add=SYS_ADMIN \
