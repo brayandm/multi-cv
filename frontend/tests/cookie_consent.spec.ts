@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
 
 test("test", async ({ page }) => {
-  await page.goto("https://multicv.space/");
+  const baseURL = process.env.BASE_URL!;
+
+  await page.goto(baseURL);
   await page
     .getByText(
       "Create impactful resumes with AI MultiCV helps you generate personalized"
