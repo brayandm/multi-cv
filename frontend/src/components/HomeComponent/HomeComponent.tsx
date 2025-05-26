@@ -26,7 +26,7 @@ export default function HomeComponent() {
           </div>
         }
       >
-        <div className="w-full items-center">
+        <div className="w-full xl:pr-48 items-center overflow-y-auto h-[calc(100vh-113px)] md:h-[calc(100vh-64px)]">
           <GenerateDocumentComponentWrapper />
         </div>
       </Tab>
@@ -38,7 +38,7 @@ export default function HomeComponent() {
           </div>
         }
       >
-        <div className="w-full items-center">
+        <div className="w-full xl:pr-48 items-center overflow-y-auto h-[calc(100vh-113px)] md:h-[calc(100vh-64px)]">
           <ApplicationsComponent />
         </div>
       </Tab>
@@ -50,7 +50,7 @@ export default function HomeComponent() {
           </div>
         }
       >
-        <div className="w-full items-center">
+        <div className="w-full xl:pr-48 items-center overflow-y-auto h-[calc(100vh-113px)] md:h-[calc(100vh-64px)]">
           <DocumentsComponent />
         </div>
       </Tab>
@@ -70,6 +70,7 @@ export default function HomeComponent() {
               cursor: "w-full bg-primary",
               tab: "w-full sm:max-w-fit h-12 flex justify-center items-center",
               tabContent: "group-data-[selected=true]:text-primary",
+              panel: "pt-0 pb-0",
             }}
             color="primary"
             variant="underlined"
@@ -85,7 +86,7 @@ export default function HomeComponent() {
               cursor: "w-40 bg-primary",
               tab: "w-full sm:max-w-fit h-12 flex justify-center items-center",
               tabContent: "group-data-[selected=true]:text-primary",
-              panel: "w-full xl:pr-48 pt-16",
+              panel: "w-full pt-16",
             }}
             color="primary"
             variant="underlined"
