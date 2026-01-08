@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClientLayout } from "./ClientLayout";
 import Providers from "./providers";
 import { cookies } from "next/headers";
+import { getLocale } from "next-intl/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,16 +45,11 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: {
-    locale: string;
-  };
 }>) {
   const theme = (await cookies()).get("theme")?.value || "light";
-
-  const { locale } = await params;
+  const locale = await getLocale();
 
   return (
     <html lang={locale} className={`flex h-screen ${theme}`}>
